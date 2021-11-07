@@ -20,17 +20,16 @@ Options:
 """
 
 import hashlib
-import os
 import json
+import os
 import re
 import tempfile
 import textwrap
-
 from datetime import datetime
 from shutil import copyfile
 
-import misaka
 import genanki
+import misaka
 import yaml
 from docopt import docopt
 
@@ -470,7 +469,7 @@ def replace_cloze_id_with_unique(string, selected_cloze=None):
     for cloze in selected_clozes:
         hash = int(hashlib.sha256(cloze.encode("utf-8")).hexdigest(), 16) % 10 ** 3
 
-        new_cloze = f"{{c{hash}::{cloze[1:-1]}}}"
+        new_cloze = f"{{{{c{hash}::{cloze[1:-1]}}}}}"
 
         string = string.replace(cloze, new_cloze)
 
@@ -647,9 +646,9 @@ def produce_cloze_cards_from_block(
             block_string, selected_cloze=selected_cloze
         )
 
+        # Remove the unused-clozes from the card
         non_selected_clozes = re.findall(r"{(?!BearID)(?!{)(?!c\d).[^}]*}", card_string)
 
-        # Remove the unused-clozes from the card
         for non_selected_cloze in non_selected_clozes:
             card_string = card_string.replace(
                 non_selected_cloze, non_selected_cloze[1:-1]
