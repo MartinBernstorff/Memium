@@ -542,7 +542,7 @@ def find_question_lines(string) -> str:
     Find the Anki question in a string.
 
     """
-    question = re.findall(r"Q.{0,1}\.(?:(?!A\. ).)*", string)[0]
+    question = re.findall(r"Q.{0,1}\.(?:(?!A\. ).)*", string, re.DOTALL)[0]
 
     return question
 
