@@ -1,25 +1,10 @@
 import pytest
+import os
 from datetime import datetime
-from main import (
-    break_string_by_two_or_more_newlines,
-    get_first_answer,
-    get_first_question,
-)
 
 from personal_mnemonic_medium.main import *
 
-
-@pytest.fixture(scope="function")
-def generator_tester(generator_iterator_to_test, expected_values):
-    range_index = 0
-    for actual in generator_iterator_to_test:
-        assert range_index + 1 <= len(
-            expected_values
-        ), "Too many values returned from range"
-        assert expected_values[range_index] == actual
-        range_index += 1
-
-    assert range_index == len(expected_values), "Too few values returned from range"
+IMPORT_TIME = "{}".format(datetime.now().strftime("%Y.%m/%d_%H:%M"))
 
 
 def test_has_qa_matches():
@@ -90,8 +75,6 @@ def test_block_breakage():
 
 
 def test_q_production_from_file():
-    IMPORT_TIME = "{}".format(datetime.now().strftime("%Y.%m/%d_%H:%M"))
-
     card_generator = produce_cards_from_file("tests/test.md", import_time=IMPORT_TIME)
 
     file_blocks = []
@@ -152,3 +135,20 @@ def test_getting_content_only():
     content_only = get_content_only(test_string)
 
     assert content_only == reference_string
+
+
+def test_stable_guids():
+    working_directory = os.getcwd()
+
+    file_path = os.path.join(
+        working_directory + "/tests/test_md_files/test_card_guid.md"
+    )
+
+    example_cards = produce_cards_from_file(file_path, import_time=IMPORT_TIME)
+
+    reference_guids = [3015058362, 122283111, 3001245253, 952903559]
+
+    for i, example_card in enumerate(example_cards):
+        reference_guid = reference_guids[i]
+
+        assert reference_guid == example_card.guid()

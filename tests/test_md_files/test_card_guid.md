@@ -1,0 +1,9 @@
+Q. A card with a GUID.
+A. And here is its answer.
+
+QS. How about a card like this?
+A. Yes, an answer too.
+
+And some {cloze} deletions? For sure! Multipe {even}.
+
+<!-- {BearID:7696CDCD-803A-40BC-88D8-855DDBEC56CA-31546-000054DF17EAE2C1} -->
