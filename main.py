@@ -266,7 +266,9 @@ Q_TYPE_TAG = {
 
 def simple_hash(text):
     """MD5 of text, mod 2^63. Probably not a great hash function."""
-    return int(hashlib.sha256(text.encode("utf-8")).hexdigest(), 16) % 10 ** 10
+    hash = int(hashlib.sha256(text.encode("utf-8")).hexdigest(), 16) % 10 ** 10
+
+    return hash
 
 
 class Card(object):
@@ -345,16 +347,19 @@ class Card(object):
 
     def card_id(self):  # The identifier for cards
         if len(re.findall(r"{(?!BearID).[^}]*}", self.fields[0])) > 0:  # If cloze
-            cloze = re.findall(r"{(?!BearID).[^}]*}", self.fields[0])[
-                0
-            ]  # Excludes bearID. We don't want clozes to update just because the surrounding information did.
-            return simple_hash(
-                "{}{}".format(cloze, self.basename())
-            )  # Card ID is the cloze deletions + BearID
+            # Excludes bearID. We don't want clozes to update just because the surrounding information did.
+            cloze = re.findall(r"{(?!BearID).[^}]*}", self.fields[0])[0]
+
+            # Card ID is the cloze deletions + BearID
+            return simple_hash(f"{cloze}{self.basename()}")
+
         else:  # If not cloze
-            return simple_hash(
-                "{}".format(self.fields[0])
-            )  # Q/A cards should be unique from their phrasing. Now it's not tied to a given note.
+            # Q/A cards should be unique from their phrasing. Now it's not tied to a given note.
+            # rstrip and replace removes idiosyncrasies of previous code to match last iteration's hash
+            hash_string = self.fields[0].rstrip().replace("  </p>", "</p>")
+
+            hash = simple_hash(f"{hash_string}")
+            return hash
 
     def guid(self):  # The identifier for notes
         return (
