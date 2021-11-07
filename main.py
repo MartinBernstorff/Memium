@@ -662,6 +662,23 @@ def produce_cloze_cards_from_block(
     return cards
 
 
+def strip_header(string):
+    """Strip first occurrence of a markdown level 1 header"""
+    return re.sub(r"^#.*\n", "", string)
+
+
+def strip_backlinks(string):
+    """Strip anything showing up after ## Backlinks"""
+
+    return re.sub(r"## Backlinks.*", "", string, flags=re.DOTALL)
+
+
+def get_content_only(string):
+    string_stripped = strip_header(strip_backlinks(string))
+
+    return string_stripped
+
+
 def produce_cards_from_file(filepath: str, import_time):
     """
     Parameters:
@@ -683,13 +700,12 @@ def produce_cards_from_file(filepath: str, import_time):
 
         extra_string = gen_bear_button_html(filepath)
 
-        blocks = break_string_by_two_or_more_newlines(file_string)
-        blocks_without_backlinks = slice_off_backlinks(blocks)
+        # Content
+        content_string = get_content_only(file_string)
 
-        for block_string in blocks_without_backlinks:
-            if "## Backlinks" in block_string:
-                continue
+        blocks = break_string_by_two_or_more_newlines(content_string)
 
+        for block_string in blocks:
             # QA processing
             if has_qa(block_string):
                 card = produce_qa_card_from_block(
