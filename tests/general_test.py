@@ -1,5 +1,10 @@
 import pytest
 from datetime import datetime
+from main import (
+    break_string_by_two_or_more_newlines,
+    get_first_answer,
+    get_first_question,
+)
 
 from personal_mnemonic_medium.main import *
 
@@ -64,7 +69,7 @@ for (let i = 0; i < 4; i += 1) {
 
     """
 
-    assert len(get_answer_lines(example_1)) > 0
+    assert len(get_first_answer(example_1)) > 0
 
     example_2 = """
 'QG. Hvor sidder et [[Angiopatisk diabetisk fodsår]] typisk?
@@ -72,7 +77,7 @@ A. Tæer eller fodryg.
 ![](BearImages/571434A5-E8B0-4F67-9269-1D0E968E7B24-62499-00007B8AE41283A1/23B8BF26-1E95-4DCD-AEBC-34722EB6CB27.png)
     """
 
-    assert len(get_answer_lines(example_2)) > 0
+    assert len(get_first_answer(example_2)) > 0
 
 
 def test_block_breakage():
@@ -96,13 +101,13 @@ def test_q_production_from_file():
 
     reference_blocks = [
         {
-            "<p>QS. Hvilke biokemiske faktorer <strong>leder til</strong> sekretion af <u>FSH</u>? </p>\n": "<p>A. <u>GnRH</u></p>\n"
+            "<p>QS. Hvilke biokemiske faktorer <strong>leder til</strong> sekretion af <u>FSH</u>?   </p>\n": "<p>A. <u>GnRH</u>  </p>\n"
         },
         {
-            "<p>QS. Hvilke biokemiske faktorer <strong>hæmmer</strong> sekretion af <u>FSH</u>? </p>\n": "<p>A. <u>Testosteron</u>/<u>Østrogen</u> og <u>Inhibin</u></p>\n"
+            "<p>QS. Hvilke biokemiske faktorer <strong>hæmmer</strong> sekretion af <u>FSH</u>?   </p>\n": "<p>A. <u>Testosteron</u>/<u>Østrogen</u> og <u>Inhibin</u>  </p>\n"
         },
         {
-            "<p>QG. Hvilke(t) organ(er) påvirkes af <u>FSH</u>? </p>\n": "<p>A. Ovarier/tests</p>\n"
+            "<p>QG. Hvilke(t) organ(er) påvirkes af <u>FSH</u>?   </p>\n": "<p>A. Ovarier/tests  </p>\n"
         },
         {
             "<p>{{c490::And now}} for some testing of cloze deletions –\xa0how much does this matter? More than me just accepting that it&#39;s missing deletions.</p>\n": '<h4 class="right"><a href="bear://x-callback-url/open-note?title=test&show_window=yes&new_window=yes&edit=yes">Bear</a></h4>'

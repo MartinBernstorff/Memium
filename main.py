@@ -428,9 +428,12 @@ class DeckCollection(dict):
         return super(DeckCollection, self).__getitem__(deckname)
 
 
-def field_to_html(field):  # Math processing
-    """Need to extract the math in brackets so that it doesn't get markdowned.
-    If math is separated with dollar sign it is converted to brackets."""
+def field_to_html(field):
+    # Math processing
+    """
+    Need to extract the math in brackets so that it doesn't get markdowned.
+    If math is separated with dollar sign it is converted to brackets.
+    """
     if CONFIG["dollar"]:
         for (sep, (op, cl)) in [("$$", (r"\\[", r"\\]")), ("$", (r"\\(", r"\\)"))]:
             escaped_sep = sep.replace(r"$", r"\$")
@@ -457,6 +460,9 @@ def field_to_html(field):  # Math processing
         for instance in token_instances:
             field = field.replace(instance, replacement + instance[1:-1] + replacement)
 
+    # Make sure every \n converts into a newline
+    field = field.replace("\n", "  \n")
+
     return misaka.html(field, extensions=("fenced-code", "math"))
 
 
@@ -478,7 +484,6 @@ def replace_cloze_id_with_unique(string, selected_cloze=None):
 
 def compile_field(fieldtext, is_markdown):
     """Turn field lines into an HTML field suitable for Anki."""
-    """Furthermore"""
     fieldtext_sans_wiki = fieldtext.replace("[[", "<u>").replace("]]", "</u>")
 
     if is_markdown == 0:
@@ -498,7 +503,7 @@ def has_cloze(string):
 
 
 def has_qa(string):
-    if len(re.findall(r"^(?![:>]).*Q.{0,1}\. ", string)) != 0:
+    if len(re.findall(r"^(?![:>]).*Q.{0,1}\. ", string, flags=re.DOTALL)) != 0:
         return True
     return False
 
@@ -537,17 +542,17 @@ def gen_file_tags(string, import_time):
     return file_tags
 
 
-def find_question_lines(string) -> str:
+def get_first_question(string) -> str:
     """
     Find the Anki question in a string.
 
     """
-    question = re.findall(r"Q.{0,1}\.(?:(?!A\. ).)*", string, re.DOTALL)[0]
+    question = re.findall(r"Q.{0,1}\.(?:(?!A\. ).)*", string, flags=re.DOTALL)[0]
 
     return question
 
 
-def get_answer_lines(string) -> str:
+def get_first_answer(string) -> str:
     """
     Find the Anki answer in a string.
 
@@ -581,14 +586,6 @@ def gen_bear_button_html(filepath):
     return f'<h4 class="right"><a href="{href}">Bear</a></h4>'
 
 
-def slice_off_backlinks(list):
-    """Remove all blocks occurring after backlinks"""
-    for i, item in enumerate(list):
-        if re.search(r"## Backlinks", item):
-            return list[: i - 1]
-    return list
-
-
 def get_q_type_tag(question_string):
     q_type_letter = re.findall(r"Q\w{0,1}\.", question_string)[0][1]
     return Q_TYPE_TAG[q_type_letter]
@@ -599,8 +596,8 @@ def produce_qa_card_from_block(
 ):
     current_card = Card(filepath)
 
-    question_string = find_question_lines(block_string)
-    answer_string = get_answer_lines(block_string)
+    question_string = get_first_question(block_string)
+    answer_string = get_first_answer(block_string)
 
     # Metadata handling
     current_card.set_deck(subdeck)
