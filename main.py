@@ -563,9 +563,9 @@ def get_first_answer(string) -> str:
 
     string_padded = f"{string.rstrip()}\n\n"
 
-    matches = re.findall(r"\nA\.[ \n]+\n*.+", string_padded, re.DOTALL)
+    answer = re.findall(r"\nA\.[ \n]+\n*.+", string_padded, re.DOTALL)[0]
 
-    return matches[0][1:]
+    return answer
 
 
 def break_string_by_two_or_more_newlines(string):
@@ -609,7 +609,10 @@ def produce_qa_card_from_block(
     current_card.append_tags(file_tags)
 
     # Content handling
-    for field_content in [question_string, answer_string]:
+    question_content = re.sub(r"Q.{0,1}\.", "", question_string)
+    answer_content = answer_string[4:]
+
+    for field_content in [question_content, answer_content]:
         current_card.add_field(field_content)
 
     current_card.add_field(extra_string, is_markdown=False)

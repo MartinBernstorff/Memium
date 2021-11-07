@@ -48,7 +48,7 @@ def test_has_qa_does_not_match():
 
 def simple_has_answer_tests():
     list = [
-        "QG. Hvilke overordnede kategorier [[Bensår]] findes?\nA. 1) Venøse, 2) Arterielle, 3) Immunologisk"
+        "QG. Hvilke overordnede kategorier [[Bensår]] findes?\n1) Venøse, 2) Arterielle, 3) Immunologisk"
     ]
 
     matches = [string for string in list if has_qa(string)]
@@ -101,13 +101,13 @@ def test_q_production_from_file():
 
     reference_blocks = [
         {
-            "<p>QS. Hvilke biokemiske faktorer <strong>leder til</strong> sekretion af <u>FSH</u>?   </p>\n": "<p>A. <u>GnRH</u>  </p>\n"
+            "<p>Hvilke biokemiske faktorer <strong>leder til</strong> sekretion af <u>FSH</u>?   </p>\n": "<p><u>GnRH</u>  </p>\n"
         },
         {
-            "<p>QS. Hvilke biokemiske faktorer <strong>hæmmer</strong> sekretion af <u>FSH</u>?   </p>\n": "<p>A. <u>Testosteron</u>/<u>Østrogen</u> og <u>Inhibin</u>  </p>\n"
+            "<p>Hvilke biokemiske faktorer <strong>hæmmer</strong> sekretion af <u>FSH</u>?   </p>\n": "<p><u>Testosteron</u>/<u>Østrogen</u> og <u>Inhibin</u>  </p>\n"
         },
         {
-            "<p>QG. Hvilke(t) organ(er) påvirkes af <u>FSH</u>?   </p>\n": "<p>A. Ovarier/tests  </p>\n"
+            "<p>Hvilke(t) organ(er) påvirkes af <u>FSH</u>?   </p>\n": "<p>Ovarier/tests  </p>\n"
         },
         {
             "<p>{{c490::And now}} for some testing of cloze deletions –\xa0how much does this matter? More than me just accepting that it&#39;s missing deletions.</p>\n": '<h4 class="right"><a href="bear://x-callback-url/open-note?title=test&show_window=yes&new_window=yes&edit=yes">Bear</a></h4>'
