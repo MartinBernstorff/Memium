@@ -2,7 +2,7 @@ import pytest
 import os
 from datetime import datetime
 
-from personal_mnemonic_medium.main import *
+from main import *
 
 IMPORT_TIME = "{}".format(datetime.now().strftime("%Y.%m/%d_%H:%M"))
 
