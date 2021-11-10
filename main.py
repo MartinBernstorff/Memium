@@ -276,6 +276,7 @@ class Card(object):
 
     def __init__(self, filepath):
         self.fields = []
+        self.source_markdown = []
         self.filepath = filepath
         self.tags = []
 
@@ -346,7 +347,7 @@ class Card(object):
             return uid
 
     def card_id(self):  # The identifier for cards
-        if len(re.findall(r"{(?!BearID).[^}]*}", self.fields[0])) > 0:  # If cloze
+        if len(re.findall(r"{(?!BearID).[^}]*}", self.fields[0])) > 0:
             # Excludes bearID. We don't want clozes to update just because the surrounding information did.
             cloze = re.findall(r"{(?!BearID).[^}]*}", self.fields[0])[0]
 
@@ -355,8 +356,7 @@ class Card(object):
 
         else:  # If not cloze
             # Q/A cards should be unique from their phrasing. Now it's not tied to a given note.
-            # rstrip and replace removes idiosyncrasies of previous code to match last iteration's hash
-            hash_string = self.fields[0].rstrip().replace("  </p>", "</p>")
+            hash_string = self.source_markdown[0]
 
             hash = simple_hash(f"{hash_string}")
             return hash
@@ -368,6 +368,7 @@ class Card(object):
 
     def add_field(self, field, is_markdown=True):
         self.fields.append(compile_field(field, is_markdown))
+        self.source_markdown.append(field)
 
     def has_cloze(self):
         return len(self.fields) > 0 and any("{" in s for s in self.fields)
@@ -488,16 +489,18 @@ def replace_cloze_id_with_unique(string, selected_cloze=None):
 
 
 def compile_field(fieldtext, is_markdown):
-    """Turn field lines into an HTML field suitable for Anki."""
+    """Turn source markdown into an HTML field suitable for Anki."""
     fieldtext_sans_wiki = fieldtext.replace("[[", "<u>").replace("]]", "</u>")
+
+    fieldtext_sans_headers = strip_header(fieldtext_sans_wiki)
 
     if is_markdown == 0:
         return fieldtext
     else:
-        return field_to_html(fieldtext_sans_wiki)
+        return field_to_html(fieldtext_sans_headers)
 
 
-def has_cloze(string):
+def string_has_cloze(string):
     if (
         len(re.findall(r"{.*}", string)) > 0
         and not "BearID" in string
@@ -718,7 +721,7 @@ def produce_cards_from_file(filepath: str, import_time):
                 )
                 yield card
 
-            elif has_cloze(block_string):
+            elif string_has_cloze(block_string):
                 cards = produce_cloze_cards_from_block(
                     filepath, subdeck, file_tags, block_string, extra_string
                 )

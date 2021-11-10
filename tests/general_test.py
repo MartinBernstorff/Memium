@@ -137,7 +137,7 @@ def test_getting_content_only():
     assert content_only == reference_string
 
 
-def test_stable_guids():
+def test_header_removal():
     working_directory = os.getcwd()
 
     file_path = os.path.join(
@@ -146,9 +146,30 @@ def test_stable_guids():
 
     example_cards = produce_cards_from_file(file_path, import_time=IMPORT_TIME)
 
-    reference_guids = [3015058362, 122283111, 3775963017, 3001245253, 952903559]
+    reference_guids = [9315717920, 3912828915, 6300568814, 3001245253, 952903559]
+    generated_guids = []
 
-    for i, example_card in enumerate(example_cards):
-        reference_guid = reference_guids[i]
+    for example_card in example_cards:
+        generated_guids.append(example_card.guid())
 
-        assert reference_guid == example_card.guid()
+    for i, ref_guid in enumerate(reference_guids):
+        assert ref_guid == generated_guids[i]
+
+
+def test_header_removal():
+    working_directory = os.getcwd()
+
+    file_path = os.path.join(
+        working_directory + "/tests/test_md_files/test_header_removal.md"
+    )
+
+    example_cards = produce_cards_from_file(file_path, import_time=IMPORT_TIME)
+
+    reference_guids = [9360765022, 1138085893]
+    generated_guids = []
+
+    for example_card in example_cards:
+        generated_guids.append(example_card.guid())
+
+    for i, ref_guid in enumerate(reference_guids):
+        assert ref_guid == generated_guids[i]
