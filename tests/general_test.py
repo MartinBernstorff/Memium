@@ -146,7 +146,7 @@ def test_stable_guids():
 
     example_cards = produce_cards_from_file(file_path, import_time=IMPORT_TIME)
 
-    reference_guids = [3015058362, 122283111, 3001245253, 952903559]
+    reference_guids = [3015058362, 122283111, 3775963017, 3001245253, 952903559]
 
     for i, example_card in enumerate(example_cards):
         reference_guid = reference_guids[i]
