@@ -34,7 +34,7 @@ import yaml
 from docopt import docopt
 from pathlib import Path
 
-from sync import sync_package, sync_model
+from personal_mnemonic_medium.sync import sync_package, sync_model
 
 VERSION = "0.1"
 
