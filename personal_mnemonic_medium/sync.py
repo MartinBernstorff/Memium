@@ -3,8 +3,7 @@ import typing as t
 import urllib.request
 from pathlib import Path
 
-from genanki import Deck, Model
-from genanki.note import Note
+from genanki import Model
 
 anki_connect_url = "http://localhost:8765"
 
