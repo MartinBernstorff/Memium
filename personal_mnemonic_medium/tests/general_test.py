@@ -1,8 +1,7 @@
-import pytest
 import os
 from datetime import datetime
 
-from main import *
+from primary import *
 
 IMPORT_TIME = "{}".format(datetime.now().strftime("%Y.%m/%d_%H:%M"))
 

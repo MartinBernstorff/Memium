@@ -5,3 +5,4 @@ pystache==0.5.4 # You must downgrade setuptools BEFORE you install pystache.
 pytest
 black
 docopt==0.6.2
+typer

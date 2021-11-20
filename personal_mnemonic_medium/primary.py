@@ -32,6 +32,9 @@ import genanki
 import misaka
 import yaml
 from docopt import docopt
+from pathlib import Path
+
+from sync import sync_package, sync_model
 
 VERSION = "0.1"
 
@@ -775,7 +778,7 @@ def produce_cards_from_dir(dirname):
                     VERSION_LOG[filepath] = cur_hash
 
 
-def cards_to_apkg(cards, output_name):
+def cards_to_package(cards, output_name):
     """Take an iterable of the cards, and put a .apkg in a file called output_name.
 
     NOTE: We _must_ be in a temp directory.
@@ -797,7 +800,11 @@ def cards_to_apkg(cards, output_name):
         print("Warning: No decks generated")
 
     package = genanki.Package(deck_or_decks=decks.values(), media_files=list(media))
-    package.write_to_file(output_name)
+
+    if output_name:
+        package.write_to_file(output_name)
+
+    return package
 
 
 def apply_arguments(arguments):
@@ -844,7 +851,9 @@ def main():
         os.chdir(tmpdirname)  # genanki is very opinionated about where we are.
 
         card_iterator = produce_cards_from_dir(recur_dir)
-        cards_to_apkg(card_iterator, pkg_arg)
+        package = cards_to_package(card_iterator, output_name=pkg_arg)
+
+        sync_package(Path(pkg_arg))
 
         os.chdir(initial_dir)
 
