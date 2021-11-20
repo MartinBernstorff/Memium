@@ -34,7 +34,11 @@ import yaml
 from docopt import docopt
 from pathlib import Path
 
-from personal_mnemonic_medium.sync import sync_package, sync_model
+import json
+import typing as t
+from pathlib import Path
+
+from genanki import Model
 
 VERSION = "0.1"
 
@@ -272,6 +276,74 @@ def simple_hash(text):
     hash = int(hashlib.sha256(text.encode("utf-8")).hexdigest(), 16) % 10 ** 10
 
     return hash
+
+
+import json
+import typing as t
+import urllib.request
+from pathlib import Path
+
+from genanki import Model
+
+anki_connect_url = "http://localhost:8765"
+
+# helper for creating anki connect requests
+def request(action, **params):
+    return {"action": action, "params": params, "version": 6}
+
+
+# helper for invoking actions with anki-connect
+def invoke(action, **params):
+    """Helper for invoking actions with anki-connect
+    Args:
+        action (string): the action to invoke
+    Raises:
+        Exception: invalid fields provided
+    Returns:
+        Any: the response from anki connect
+    """
+    global anki_connect_url
+    requestJson = json.dumps(request(action, **params)).encode("utf-8")
+    response = json.load(
+        urllib.request.urlopen(urllib.request.Request(anki_connect_url, requestJson))
+    )
+    if len(response) != 2:
+        raise Exception("response has an unexpected number of fields")
+    if "error" not in response:
+        raise Exception("response is missing required error field")
+    if "result" not in response:
+        raise Exception("response is missing required result field")
+    if response["error"] is not None:
+        raise Exception(response["error"])
+    return response["result"]
+
+
+def anki_connect_is_live():
+    global anki_connect_url
+    try:
+        if urllib.request.urlopen(anki_connect_url).getcode() == 200:
+            return True
+        else:
+            raise Exception()
+    except Exception:
+        print(
+            "Unable to reach anki connect. Make sure anki is running and the Anki Connect addon is installed.",
+        )
+
+    return False
+
+
+# synchronize the deck with markdown
+# Borrowed from https://github.com/lukesmurray/markdown-anki-decks/blob/de6556d7ecd2d39335607c05171f8a9c39c8f422/markdown_anki_decks/sync.py#L64
+def sync_package(pathToDeckPackage: Path):
+    if anki_connect_is_live():
+        pathToDeckPackage = pathToDeckPackage.resolve()
+        try:
+            invoke("importPackage", path=str(pathToDeckPackage))
+            print(f"Imported {pathToDeckPackage}!")
+        except Exception as e:
+            print(f"Unable to import {pathToDeckPackage} to anki")
+            print(f"\t{e}")
 
 
 class Card(object):
