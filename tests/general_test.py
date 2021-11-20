@@ -1,7 +1,7 @@
 import os
 from datetime import datetime
 
-from primary import *
+from personal_mnemonic_medium.primary import *
 
 IMPORT_TIME = "{}".format(datetime.now().strftime("%Y.%m/%d_%H:%M"))
 
