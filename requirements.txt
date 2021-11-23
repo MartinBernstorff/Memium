@@ -1,7 +1,5 @@
-setuptools < 58 # Breaking changes in setuptools remove the ability to install the latest pystache version.
 misaka==2.1.1
-genanki==0.10.1
-pystache==0.5.4 # You must downgrade setuptools BEFORE you install pystache.
+genanki==0.12.0
 pytest
 black
 docopt==0.6.2
