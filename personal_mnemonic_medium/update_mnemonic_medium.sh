@@ -1,5 +1,5 @@
 #!/bin/bash
-path=$HOME"/Dropbox/Projects/Programming/Git/personal_mnemonic_medium"
+path=$HOME"/Dropbox/Projects/Programming/Git/personal_mnemonic_medium/personal_mnemonic_medium"
 
 $HOME/Dropbox/Projects/Programming/Git/Bear-Markdown-Export-master/update_bear_markdown.sh
 
