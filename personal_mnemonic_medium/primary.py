@@ -630,7 +630,7 @@ def get_first_question(string) -> str:
     Find the Anki question in a string.
 
     """
-    question = re.findall(r"Q.{0,1}\.(?:(?!A\. ).)*", string, flags=re.DOTALL)[0]
+    question = re.findall(r"Q.{0,1}\.(?:(?!A\.).)*", string, flags=re.DOTALL)[0]
 
     return question
 
