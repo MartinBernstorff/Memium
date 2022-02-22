@@ -31,6 +31,7 @@ from shutil import copyfile
 import genanki
 import misaka
 import yaml
+from wasabi import msg
 from docopt import docopt
 from pathlib import Path
 
@@ -326,7 +327,7 @@ def anki_connect_is_live():
         else:
             raise Exception()
     except Exception:
-        print(
+        msg.warn(
             "Unable to reach anki connect. Make sure anki is running and the Anki Connect addon is installed.",
         )
 
@@ -340,10 +341,10 @@ def sync_package(pathToDeckPackage: Path):
         pathToDeckPackage = pathToDeckPackage.resolve()
         try:
             invoke("importPackage", path=str(pathToDeckPackage))
-            print(f"Imported {pathToDeckPackage}!")
+            msg.good(f"Imported {pathToDeckPackage}!")
         except Exception as e:
-            print(f"Unable to import {pathToDeckPackage} to anki")
-            print(f"\t{e}")
+            msg.warn(f"Unable to import {pathToDeckPackage} to anki")
+            msg.warn(f"\t{e}")
 
 
 class Card(object):
@@ -659,12 +660,14 @@ def break_string_by_two_or_more_newlines(string):
 
 
 def gen_bear_button_html(filepath):
-
     bear_base = "bear://x-callback-url/open-note?title="
+    
     filename = os.path.basename(filepath)[:-3]
+    file_url = urllib.parse.quote(filename)
+    
     bear_extension = "&show_window=yes&new_window=yes&edit=yes"
 
-    href = bear_base + filename + bear_extension
+    href = bear_base + file_url + bear_extension
 
     return f'<h4 class="right"><a href="{href}">Bear</a></h4>'
 
@@ -845,7 +848,7 @@ def produce_cards_from_dir(dirname):
                         ):
                             yield card
                     except:
-                        print("Didn't yield any cards in {}".format(filepath))
+                        msg.info("Didn't yield any cards in {}".format(filepath))
                 else:
                     VERSION_LOG[filepath] = cur_hash
 
@@ -869,7 +872,7 @@ def cards_to_package(cards, output_name):
         decks[card.deckname()].add_note(card.to_genanki_note())
 
     if len(decks) == 0:
-        print("Warning: No decks generated")
+        msg.warn("No decks generated")
 
     package = genanki.Package(deck_or_decks=decks.values(), media_files=list(media))
 
