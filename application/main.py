@@ -20,13 +20,14 @@ Options:
 """
 
 import hashlib
+from tqdm import tqdm
 import json
 import os
 import re
 import tempfile
-import textwrap
 from datetime import datetime
 from shutil import copyfile
+from time import sleep
 
 import genanki
 import misaka
@@ -36,245 +37,14 @@ from docopt import docopt
 from pathlib import Path
 
 import json
-import typing as t
 from pathlib import Path
 
-from genanki import Model
-
-VERSION = "0.1"
-
-# Anki 2.1 has mathjax built in, but ankidroid and other clients don't.
-CARD_MATHJAX_CONTENT = textwrap.dedent(
-    """\
-
-"""
-)
-
-CONFIG = {
-    "pkg_arg": "AnkdownPkg.apkg",
-    "recur_dir": ".",
-    "dollar": False,
-    "updated_only": False,
-    "version_log": ".mdvlog",
-    "card_model_name_cloze": "Ankdown Cloze",
-    "card_model_name_qa": "Ankdown QA",
-    "card_model_name_qa_da": "Ankdown QA DA",
-    "card_model_css": """
-        .card {
-            margin: 2em auto;
-            display: block;
-            font-family: New York, Georgia,
-            baskerville,
-            sans;
-            font-size: 1.3em;
-            text-align: left;
-            background-color: white;
-            line-height: 150%;
-            width: 25em;
-            height: 30 em;
-            background-color: black;
-            word-wrap: break-word;
-            color: #D7DEE9;
-        }
-
-        div.highlight {
-            background-color: rgba(255, 255, 255, 0.1) !important;
-            font-family: Arial;
-        }
-
-        div.back div.question {
-            font-size: 0.7em;
-            line-height: 100%;
-            color: rgba(255, 255, 255, 0.4);
-	        margin-bottom: 1.4em;
-        }
-
-        div.extra {
-            color: rgba(255, 0, 0, 0.1) ;
-            font-weight: 0;
-            font-style: italic;
-            font-size: 0.7em;
-        }
-
-        div.extra h4.left {
-            text-align: left;
-            float: left;
-            width: 60%;
-        }
-
-        h4 {
-            color: rgba(255, 255, 255, 0);
-            font-weight: 0;
-            font-style: italic;
-            font-size: 0.3em;
-            line-height: 120%;
-        }
-
-        div.extra h4.right {
-            text-align: right;
-            width: 30%;
-            float: right;
-        }
-
-        div.extra h4.right a {
-            text-align: right;
-            float: right;
-            color: rgba(255, 255, 255, 0.25) !important;
-            background-color: rgba(255, 40, 35, 0.15) !important;
-            border: none;
-            padding: 5px 8px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            margin: 4px 2px;
-            border-radius: 200px;
-        }
-
-        .cloze,
-        .cloze b,
-        .cloze u,
-        .cloze i {
-            font-weight: bold;
-            color: MediumSeaGreen !important;
-            min-width: 30 em;
-        }
-
-        #extra,
-        #extra i {
-            font-size: 15px;
-            color: #D7DEE9;
-            font-style: italic;
-        }
-
-        img {
-            display: block;
-            max-width: 45em;
-            max-height: none;
-            margin-left: auto;
-            margin: 10px auto 10px auto;
-        }
-
-        img:active {
-            width: 100%;
-        }
-
-        tr {
-            font-size: 12px;
-        }
-
-        /* COLOR ACCENTS FOR BOLD-ITALICS-UNDERLINE */
-        b {
-            color: #C695C6 !important;
-        }
-
-        /* BOLD STYLE */
-        u {
-            text-decoration: none;
-            color: #5EB3B3;
-        }
-
-        /* UNDERLINE STYLE */
-        i {
-            color: IndianRed;
-        }
-
-        /* ITALICS STYLE */
-        a {
-            color: LightGray !important;
-            text-decoration: none;
-            font-size: 10px;
-            font-style: normal;
-        }
-
-        /* LINK STYLE */
-        .myCodeClass {
-            padding: 5px;
-            background-color: lightgrey;
-            font-size: 18px
-        }
-
-        /* ADJUSTMENT FOR MOBILE DEVICES */
-        .mobile .card {
-            margin: 1em auto;
-            width: 90%;
-            font-size: 1.3em;
-            line-height: 150%;
-        }
-
-        .mobile .tags:hover {
-            opacity: 1;
-            position: relative;
-        }
-
-        .mobile img {
-            display: block;
-            max-width: 100%;
-            max-height: none;
-            margin-left: auto;
-            margin: 10px auto 10px auto;
-        }
-
-        .mobile .card img:active {
-            width: inherit;
-            max-height: none;
-        }
-        
-        """,
-    "card_model_fields_cloze": [{"name": "Text"}, {"name": "Extra"}, {"name": "Tags"}],
-    "card_model_fields_qa": [
-        {"name": "Question"},
-        {"name": "Answer"},
-        {"name": "Extra"},
-    ],
-    "card_model_template_qa": [
-        {
-            "name": "Ankdown QA Card",
-            "qfmt": '<div class="front">{{{{Question}}}}{{{{tts en_US voices=Apple_Samantha speed=1.1:Question}}}}\n{0}</div>\n<div class="extra">{{{{Extra}}}}</div>'.format(
-                CARD_MATHJAX_CONTENT
-            ),
-            "afmt": '<div class="back"><div class="question">{{{{Question}}}}</div><div class="answer">{{{{Answer}}}}{{{{tts en_US voices=Apple_Samantha speed=1.1:Answer}}}}</div>\n\n<div class="extra">{{{{Extra}}}}</div>{0}</div>'.format(
-                CARD_MATHJAX_CONTENT
-            ),
-        }
-    ],
-    "card_model_template_qa_da": [
-        {
-            "name": "Ankdown QA DK Card",
-            "qfmt": '<div class="front">{{{{Question}}}}{{{{tts da_DK  speed=1.4:Question}}}}\n{0}</div>\n<div class="extra">{{{{Extra}}}}</div>'.format(
-                CARD_MATHJAX_CONTENT
-            ),
-            "afmt": '<div class="back"><div class="question">{{{{Question}}}}</div><div class="answer">{{{{Answer}}}}{{{{tts da_DK speed=1.4:Answer}}}}</div>\n\n<div class="extra">{{{{Extra}}}}</div>{0}</div>'.format(
-                CARD_MATHJAX_CONTENT
-            ),
-        }
-    ],
-    "card_model_template_cloze": [
-        {
-            "name": "Ankdown Cloze Card",
-            "qfmt": "{{{{cloze:Text}}}}\n<div class='extra'>{{{{Extra}}}}</div>\n{0}".format(
-                CARD_MATHJAX_CONTENT
-            ),
-            "afmt": "{{{{cloze:Text}}}}\n<div class='extra'>{{{{Extra}}}}</div>\n{0}".format(
-                CARD_MATHJAX_CONTENT
-            ),
-        }
-    ],
-}
-
-VERSION_LOG = {}
-Q_TYPE_TAG = {
-    "G": "med/type/1_GP",
-    "A": "med/type/2_Acute_care",
-    "I": "med/type/3_Internal_medicine",
-    "S": "med/type/4_Specialty",
-    "D": "med/type/5_Disabled",
-    ".": "",
-}
+from personal_mnemonic_medium.globals import *
 
 
 def simple_hash(text):
     """MD5 of text, mod 2^63. Probably not a great hash function."""
-    hash = int(hashlib.sha256(text.encode("utf-8")).hexdigest(), 16) % 10 ** 10
+    hash = int(hashlib.sha256(text.encode("utf-8")).hexdigest(), 16) % 10**10
 
     return hash
 
@@ -327,24 +97,31 @@ def anki_connect_is_live():
         else:
             raise Exception()
     except Exception:
-        msg.warn(
-            "Unable to reach anki connect. Make sure anki is running and the Anki Connect addon is installed.",
-        )
-
-    return False
+        return False
 
 
 # synchronize the deck with markdown
 # Borrowed from https://github.com/lukesmurray/markdown-anki-decks/blob/de6556d7ecd2d39335607c05171f8a9c39c8f422/markdown_anki_decks/sync.py#L64
 def sync_package(pathToDeckPackage: Path):
-    if anki_connect_is_live():
-        pathToDeckPackage = pathToDeckPackage.resolve()
-        try:
-            invoke("importPackage", path=str(pathToDeckPackage))
-            msg.good(f"Imported {pathToDeckPackage}!")
-        except Exception as e:
-            msg.warn(f"Unable to import {pathToDeckPackage} to anki")
-            msg.warn(f"\t{e}")
+    sleep_length = 1
+
+    for i in range(300):
+        if anki_connect_is_live():
+            sleep(1)  # Sleep for a second to allow ankiconnect to fully start
+
+            pathToDeckPackage = pathToDeckPackage.resolve()
+            try:
+                invoke("importPackage", path=str(pathToDeckPackage))
+                msg.good(f"Imported {pathToDeckPackage}!")
+                break
+            except Exception as e:
+                msg.warn(f"Unable to import {pathToDeckPackage} to anki")
+                msg.warn(f"\t{e}")
+        else:
+            msg.warn(
+                f"{i}: Anki connect is not live, sleeping for {sleep_length} seconds"
+            )
+            sleep(sleep_length)
 
 
 class Card(object):
@@ -555,7 +332,7 @@ def replace_cloze_id_with_unique(string, selected_cloze=None):
         selected_clozes = re.findall(r"{(?!BearID).[^}]*}", string)
 
     for cloze in selected_clozes:
-        hash = int(hashlib.sha256(cloze.encode("utf-8")).hexdigest(), 16) % 10 ** 3
+        hash = int(hashlib.sha256(cloze.encode("utf-8")).hexdigest(), 16) % 10**3
 
         new_cloze = f"{{{{c{hash}::{cloze[1:-1]}}}}}"
 
@@ -661,10 +438,10 @@ def break_string_by_two_or_more_newlines(string):
 
 def gen_bear_button_html(filepath):
     bear_base = "bear://x-callback-url/open-note?title="
-    
+
     filename = os.path.basename(filepath)[:-3]
     file_url = urllib.parse.quote(filename)
-    
+
     bear_extension = "&show_window=yes&new_window=yes&edit=yes"
 
     href = bear_base + file_url + bear_extension
@@ -810,7 +587,7 @@ def produce_cards_from_file(filepath: str, import_time):
 
 def complex_hash(text):
     """MD5 of text, mod 2^63. Probably not a great hash function."""
-    return int(hashlib.sha256(text.encode("utf-8")).hexdigest(), 16) % 10 ** 15
+    return int(hashlib.sha256(text.encode("utf-8")).hexdigest(), 16) % 10**15
 
 
 def add_uid(filepath):
@@ -833,24 +610,23 @@ def produce_cards_from_dir(dirname):
     """Walk a directory and produce the cards found there, one by one."""
     global VERSION_LOG
     global CONFIG
-    for parent_dir, _, files in os.walk(dirname):
-        for fn in sorted(files):
-            if fn.endswith(".md") or fn.endswith(".markdown"):
-                filepath = os.path.join(parent_dir, fn)
-                old_hash = VERSION_LOG.get(filepath, None)
-                cur_hash = simple_hash(open(filepath, "r").read())
 
-                if old_hash != cur_hash or not CONFIG["updated_only"]:
-                    print("Processing {}".format(filepath))
+    for parent_dir, _, files in os.walk(dirname):
+        with tqdm(total=len(files)) as pbar:
+            for file_name in sorted(files):
+                if file_name.endswith(".md") or file_name.endswith(".markdown"):
+                    filepath = os.path.join(parent_dir, file_name)
+
                     try:
                         for card in produce_cards_from_file(
                             filepath, import_time=IMPORT_TIME
                         ):
                             yield card
+                        pbar.update(1)
                     except:
-                        msg.info("Didn't yield any cards in {}".format(filepath))
-                else:
-                    VERSION_LOG[filepath] = cur_hash
+                        # Didn't yield any cards
+                        pbar.update(1)
+                        continue
 
 
 def cards_to_package(cards, output_name):
