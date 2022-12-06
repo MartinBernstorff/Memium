@@ -1,7 +1,6 @@
 # Anki 2.1 has mathjax built in, but ankidroid and other clients don't.
 import textwrap
 
-
 CARD_MATHJAX_CONTENT = textwrap.dedent(
     """\
 
@@ -189,10 +188,14 @@ CONFIG = {
     "card_model_template_qa": [
         {
             "name": "Ankdown QA Card",
-            "qfmt": '<div class="front">{{{{Question}}}}{{{{tts en_US voices=Apple_Samantha speed=1.1:Question}}}}\n{0}</div>\n<div class="extra">{{{{Extra}}}}</div>'.format(
+            # If wanting to re-enable TTS, use
+            # {{{{tts en_US voices=Apple_Samantha speed=1.1:Question}}}}
+            "qfmt": '<div class="front">{{{{Question}}}}\n{0}</div>\n<div class="extra">{{{{Extra}}}}</div>'.format(
                 CARD_MATHJAX_CONTENT
             ),
-            "afmt": '<div class="back"><div class="question">{{{{Question}}}}</div><div class="answer">{{{{Answer}}}}{{{{tts en_US voices=Apple_Samantha speed=1.1:Answer}}}}</div>\n\n<div class="extra">{{{{Extra}}}}</div>{0}</div>'.format(
+            # If wanting to reenable TTS, use
+            # {{{{Answer}}}}{{{{tts en_US voices=Apple_Samantha speed=1.1:Answer}}}}
+            "afmt": '<div class="back"><div class="question">{{{{Question}}}}</div><div class="answer"></div>\n\n<div class="extra">{{{{Extra}}}}</div>{0}</div>'.format(
                 CARD_MATHJAX_CONTENT
             ),
         }
