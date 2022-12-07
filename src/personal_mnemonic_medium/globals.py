@@ -193,9 +193,7 @@ CONFIG = {
             "qfmt": '<div class="front">{{{{Question}}}}\n{0}</div>\n<div class="extra">{{{{Extra}}}}</div>'.format(
                 CARD_MATHJAX_CONTENT
             ),
-            # If wanting to reenable TTS, use
-            # {{{{Answer}}}}{{{{tts en_US voices=Apple_Samantha speed=1.1:Answer}}}}
-            "afmt": '<div class="back"><div class="question">{{{{Question}}}}</div><div class="answer"></div>\n\n<div class="extra">{{{{Extra}}}}</div>{0}</div>'.format(
+            "afmt": '<div class="back"><div class="question"></div><div class="answer">{{{{Answer}}}}{{{{tts en_US voices=Apple_Samantha speed=1.1:Answer}}}}</div>\n\n<div class="extra">{{{{Extra}}}}</div>{0}</div>'.format(
                 CARD_MATHJAX_CONTENT
             ),
         }
