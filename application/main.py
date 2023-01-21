@@ -304,7 +304,7 @@ def field_to_html(field):
         elif token == "*":
             replacement = "**"
 
-        pattern = "\{}[^<>\-\n]+\{}".format(token, token)
+        pattern = "\\{}[^<>\\-\n]+\\{}".format(token, token)
 
         token_instances = re.findall(pattern, field)
 
@@ -397,13 +397,6 @@ def get_first_answer(string) -> str:
     answer = re.findall(r"\nA\.[ \n]+\n*.+", string_padded, re.DOTALL)[0]
 
     return answer
-
-
-def break_string_by_two_or_more_newlines(string):
-    """
-    Break string into a list every time there are at least two newlines in a row.
-    """
-    return re.split(r"(\n\n)+", string)
 
 
 def gen_bear_button_html(filepath):
@@ -520,7 +513,7 @@ def produce_cards_from_file(filepath: str, import_time):
         A generator yielding genanki cards
     """
 
-    with open(filepath, "r", encoding="utf8") as f:
+    with open(filepath, "r", encoding="utf8"):
         extra_string = gen_bear_button_html(filepath)
 
         # Content
@@ -639,7 +632,7 @@ def main():
         os.chdir(tmpdirname)  # genanki is very opinionated about where we are.
 
         card_iterator = produce_cards_from_dir(recur_dir)
-        package = cards_to_package(card_iterator, output_name=pkg_arg)
+        cards_to_package(card_iterator, output_name=pkg_arg)
 
         sync_package(Path(pkg_arg))
 
