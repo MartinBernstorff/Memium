@@ -20,8 +20,6 @@ Options:
 """
 
 import hashlib
-from tqdm import tqdm
-import json
 import os
 import re
 import tempfile
@@ -32,13 +30,10 @@ from time import sleep
 import genanki
 import misaka
 import yaml
-from wasabi import msg
 from docopt import docopt
-from pathlib import Path
+from wasabi import msg
 
-import json
-from pathlib import Path
-
+from personal_mnemonic_medium.extractors.markdown import produce_cards_from_dir
 from personal_mnemonic_medium.globals import *
 
 
@@ -50,11 +45,8 @@ def simple_hash(text):
 
 
 import json
-import typing as t
 import urllib.request
 from pathlib import Path
-
-from genanki import Model
 
 anki_connect_url = "http://localhost:8765"
 
@@ -356,8 +348,8 @@ def compile_field(fieldtext, is_markdown):
 def string_has_cloze(string):
     if (
         len(re.findall(r"{.*}", string)) > 0
-        and not "BearID" in string
-        and not "$$" in string
+        and "BearID" not in string
+        and "$$" not in string
     ):
         return True
     return False
@@ -381,28 +373,6 @@ def has_subdeck_tag(string):
     return len(re.findall(r"#anki\/deck\/\S+", string)) != 0
 
 
-def get_subdeck_name(string):
-    return (
-        re.findall(r"#anki\/deck\/\S+", string)[0][11:]
-        .replace("/", "::")
-        .replace("#", "")
-    )
-
-
-def has_supplementary_tags(string):
-    return len(re.findall(r"#anki\/tag\/\S+", string)) != 0
-
-
-def gen_file_tags(string, import_time):
-    file_tags = [import_time]
-
-    if has_supplementary_tags(string):
-        for tag in re.findall(r"#anki\/tag\/\S+", string):
-            file_tags.append(tag[10:])
-
-    return file_tags
-
-
 def get_first_question(string) -> str:
     """
     Find the Anki question in a string.
@@ -420,7 +390,7 @@ def get_first_answer(string) -> str:
     Returns:
         String
     """
-    # I have to use positive lookahead to match code-blocks – to ensure the last answer is matched as well, I add 2 newlines to string. A little hacky.
+    # I have to use positive lookahead to match code-blocks - to ensure the last answer is matched as well, I add 2 newlines to string. A little hacky.
 
     string_padded = f"{string.rstrip()}\n\n"
 
@@ -551,16 +521,6 @@ def produce_cards_from_file(filepath: str, import_time):
     """
 
     with open(filepath, "r", encoding="utf8") as f:
-        file_string = f.read()
-
-        # Metadata handling
-        if has_subdeck_tag(file_string):
-            subdeck = get_subdeck_name(file_string)
-        else:
-            subdeck = "Default"
-
-        file_tags = gen_file_tags(file_string, import_time)
-
         extra_string = gen_bear_button_html(filepath)
 
         # Content
@@ -604,29 +564,6 @@ def line_prepender(filename, line):
         content = f.read()
         f.seek(0, 0)
         f.write(line.rstrip("\r\n") + "\n" + content)
-
-
-def produce_cards_from_dir(dirname):
-    """Walk a directory and produce the cards found there, one by one."""
-    global VERSION_LOG
-    global CONFIG
-
-    for parent_dir, _, files in os.walk(dirname):
-        with tqdm(total=len(files)) as pbar:
-            for file_name in sorted(files):
-                if file_name.endswith(".md") or file_name.endswith(".markdown"):
-                    filepath = os.path.join(parent_dir, file_name)
-
-                    try:
-                        for card in produce_cards_from_file(
-                            filepath, import_time=IMPORT_TIME
-                        ):
-                            yield card
-                        pbar.update(1)
-                    except:
-                        # Didn't yield any cards
-                        pbar.update(1)
-                        continue
 
 
 def cards_to_package(cards, output_name):

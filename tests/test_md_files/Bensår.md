@@ -81,4 +81,4 @@ Sår på [[§Ben]].
 
 <!-- #anki/tag/med/Derma #anki/deck/Medicine #anki/tag/med/Endocrinology -->
 
-<!-- {BearID:1062B55E-8F85-44C8-9271-FFC193FE1E6C-36407-0000013F9B8F0C61} -->
+<!-- {BearID:4a6a4cf2e514bc0c0844cd4b6b03a68c} -->
