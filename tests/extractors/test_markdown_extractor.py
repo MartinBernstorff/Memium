@@ -2,11 +2,11 @@ from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).parent.parent.parent
 
-from personal_mnemonic_medium.extractors.markdown import MarkdownToNotes
+from personal_mnemonic_medium.note_factories.markdown import MarkdownNoteFactory
 
 
 def test_get_notes_from_dir():
-    notes = MarkdownToNotes().get_notes_from_dir(
+    notes = MarkdownNoteFactory().get_notes_from_dir(
         PROJECT_ROOT / "tests" / "test_md_files"
     )
 

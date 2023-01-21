@@ -5,10 +5,10 @@ from typing import List, Optional
 
 from tqdm import tqdm
 
-from personal_mnemonic_medium.extractors.note import Note
+from personal_mnemonic_medium.note_factories.note import Note
 
 
-class MarkdownToNotes:
+class MarkdownNoteFactory:
     def __init__(self):
         pass
 
