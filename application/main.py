@@ -454,7 +454,6 @@ def produce_qa_card_from_block(
 def produce_cloze_cards_from_block(
     filepath: str, subdeck: str, file_tags: list, block_string: str, extra_string: str
 ) -> list:
-    clozes = re.findall(r"{(?!BearID).[^}]*}", block_string)
 
     cards = []
 
