@@ -29,13 +29,13 @@ class MarkdownNoteFactory:
             file_contents = f.read()
 
             try:
-                self.uuid = self.get_bear_id(file_contents)
+                uuid = self.get_bear_id(file_contents)
             except IndexError:
-                self.uuid = self.append_new_uuid_to_file(file_path)
+                uuid = self.append_new_uuid_to_file(file_path)
 
             note_title = file_path.stem
 
-            return Note(title=note_title, content=file_contents, uuid=self.uuid)
+            return Note(title=note_title, content=file_contents, uuid=uuid)
 
     def get_notes_from_dir(self, dir_path: Path) -> List[Note]:
         notes = []

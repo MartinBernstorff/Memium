@@ -33,8 +33,8 @@ import yaml
 from docopt import docopt
 from wasabi import msg
 
-from personal_mnemonic_medium.extractors.markdown import produce_cards_from_dir
 from personal_mnemonic_medium.globals import *
+from personal_mnemonic_medium.note_factories.markdown import produce_cards_from_dir
 
 
 def simple_hash(text):
