@@ -19,3 +19,4 @@ A. This is the prompt!
     assert len(prompts) == 1
     assert prompts[0].question == "What is the first test prompt?"
     assert prompts[0].answer == "This is the prompt!"
+    assert len([p for p in prompts if p.source_note is None]) == 0

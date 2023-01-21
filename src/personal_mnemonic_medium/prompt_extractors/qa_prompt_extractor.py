@@ -71,6 +71,7 @@ class QAPromptExtractor:
                         tags=note.tags,
                         subdeck=note.subdeck,
                         uuid=note.uuid,
+                        source_note=note,
                     )
                 )
 
