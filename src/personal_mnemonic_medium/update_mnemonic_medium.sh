@@ -3,8 +3,6 @@ PROJECT=$HOME"/Dropbox/Projects/Programming/Git/personal_mnemonic_medium"
 # If Anki.app is not already running, launch it
 open -a Anki
 
-$HOME/Dropbox/Projects/Programming/Git/Bear-Markdown-Export-master/update_bear_markdown.sh
-
 cd $PROJECT
 
 source .venv/bin/activate
