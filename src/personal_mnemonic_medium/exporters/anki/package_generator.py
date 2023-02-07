@@ -32,9 +32,7 @@ class PackageGenerator:
         pass
 
     @staticmethod
-    def cards_to_package(
-        cards: List[genanki.Card], output_name
-    ) -> Optional[genanki.Package]:
+    def cards_to_package(cards: List[genanki.Card], output_name) -> genanki.Package:
         """Take an iterable of the cards, output an .apkg in a file called output_name.
 
         NOTE: We _must_ be in a temp directory.

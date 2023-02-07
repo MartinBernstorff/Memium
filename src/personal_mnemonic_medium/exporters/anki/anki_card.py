@@ -1,19 +1,29 @@
+import hashlib
 import os
 import re
+from typing import List, Literal
 
 import genanki
 
-from application.main import compile_field
+from personal_mnemonic_medium.globals import CONFIG
 
 
 class AnkiCard(object):
     """A single anki card."""
 
-    def __init__(self, filepath):
-        self.fields = []
-        self.source_markdown = []
+    def __init__(
+        self,
+        filepath: str,
+        fields: List[str],
+        source_markdown: str,
+        tags: List[str],
+        model_type: Literal["QA", "Cloze", "QA_DK"],
+    ):
+        self.fields = fields
+        self.source_markdown = source_markdown
         self.filepath = filepath
-        self.tags = []
+        self.tags = tags
+        self.model = self.model_string_to_genanki_model(model_type=model_type)
 
     def append_tags(self, tags):
         self.tags.extend(tags)
@@ -24,7 +34,7 @@ class AnkiCard(object):
     def set_subdeck(self, subdeck):
         self.subdeck = subdeck
 
-    def set_model(self, model_type="Cloze"):
+    def model_string_to_genanki_model(self, model_type="Cloze"):
         self.model_type = model_type
 
         GENANKI_QA_MODEL_TYPE = 1
@@ -160,3 +170,22 @@ class AnkiCard(object):
 
             # Anki seems to hate alt tags :(
             self.fields[i] = re.sub(r'alt="[^"]*?"', "", current_stage)
+
+
+def compile_field(fieldtext, is_markdown):
+    """Turn source markdown into an HTML field suitable for Anki."""
+    fieldtext_sans_wiki = fieldtext.replace("[[", "<u>").replace("]]", "</u>")
+
+    fieldtext_sans_headers = strip_header(fieldtext_sans_wiki)
+
+    if is_markdown == 0:
+        return fieldtext
+    else:
+        return field_to_html(fieldtext_sans_headers)
+
+
+def simple_hash(text: str) -> int:
+    """MD5 of text, mod 2^63. Probably not a great hash function."""
+    comp_hash = int(hashlib.sha256(text.encode("utf-8")).hexdigest(), 16) % 10**10
+
+    return comp_hash
