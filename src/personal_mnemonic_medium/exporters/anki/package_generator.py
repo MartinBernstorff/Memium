@@ -9,6 +9,8 @@ from typing import List, Optional
 
 import genanki
 
+from personal_mnemonic_medium.exporters.anki.anki_card import AnkiCard
+
 
 def simple_hash(text: str) -> int:
     """MD5 of text, mod 2^63. Probably not a great hash function."""
@@ -32,7 +34,7 @@ class PackageGenerator:
         pass
 
     @staticmethod
-    def cards_to_package(cards: List[genanki.Card], output_name) -> genanki.Package:
+    def cards_to_package(cards: List[AnkiCard], output_name) -> genanki.Package:
         """Take an iterable of the cards, output an .apkg in a file called output_name.
 
         NOTE: We _must_ be in a temp directory.

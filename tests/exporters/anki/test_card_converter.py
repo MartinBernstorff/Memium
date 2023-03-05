@@ -1,7 +1,6 @@
 import genanki
 
 from personal_mnemonic_medium.exporters.anki.anki_card import AnkiCard
-from personal_mnemonic_medium.exporters.anki.card_converter import CardConverter
 
 
 def test_custom_card_to_genanki_card():
