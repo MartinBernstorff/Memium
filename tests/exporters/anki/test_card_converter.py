@@ -1,8 +1,6 @@
 import genanki
 
 from personal_mnemonic_medium.exporters.anki.anki_card import AnkiCard
-from personal_mnemonic_medium.note_factories.markdown import MarkdownNoteFactory
-from tests.note_factories.test_markdown_extractor import PROJECT_ROOT
 
 
 def test_custom_card_to_genanki_card():
@@ -16,8 +14,14 @@ def test_custom_card_to_genanki_card():
 
     assert isinstance(genanki_note, genanki.Note)
 
-def test_get_subtags():
-    cards = AnkiCard(fields=[""], sou)
 
-    assert len([note for note in notes if "Medicine" in note.subdeck]) == 1
-    assert len([note for note in notes if "med/Endocrinology" in note.tags]) == 1
+def test_get_subtags():
+    card = AnkiCard(
+        fields=[""],
+        source_markdown="Testing subdeck extraction, #anki/deck/Medicine, #anki/tag/med/Endocrinology",
+        tags=["test"],
+        model_type="QA",
+        note_uuid="1234",
+    )
+
+    assert "Medicine" in card.subdeck

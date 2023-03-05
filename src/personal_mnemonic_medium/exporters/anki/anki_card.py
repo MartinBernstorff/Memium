@@ -30,9 +30,6 @@ class AnkiCard(object):
         else:
             self.subdeck = "Default"
 
-    def append_tags(self, tags):
-        self.tags.extend(tags)
-
     def get_deck_dir(self):
         return os.path.dirname(self.filepath)
 

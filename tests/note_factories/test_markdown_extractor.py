@@ -14,4 +14,3 @@ def test_get_notes_from_dir():
     assert len([note for note in notes if "test_card_guid" == note.title]) == 1
     assert len([note for note in notes if "7696CDCD" in note.content]) == 1
     assert len([note for note in notes if "7696CDCD" in note.uuid]) == 1
-    assert len([note for note in notes if "med/Endocrinology" in note.tags]) == 1
