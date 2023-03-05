@@ -7,9 +7,9 @@ def test_package_generators():
         AnkiCard(
             fields=["Q. What is the capital of France?", "A. Paris"],
             source_markdown="Q. What is the capital of France?\nA. Paris",
-            filepath="tests/fixtures/anki_cards/anki_card.md",
             tags=["test"],
             model_type="QA",
+            uuid="1234",
         )
         for _ in range(4)
     ]
