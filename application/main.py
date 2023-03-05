@@ -34,8 +34,8 @@ import yaml
 from docopt import docopt
 from wasabi import msg
 
+from personal_mnemonic_medium.exporters.anki.globals import *
 from personal_mnemonic_medium.exporters.anki.package_generator import PackageGenerator
-from personal_mnemonic_medium.globals import *
 from personal_mnemonic_medium.note_factories.markdown import MarkdownNoteFactory
 from personal_mnemonic_medium.prompt_extractors.cloze_extractor import (
     ClozePromptExtractor,

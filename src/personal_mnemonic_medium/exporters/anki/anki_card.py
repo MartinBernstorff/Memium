@@ -5,7 +5,7 @@ from typing import List, Literal
 
 import genanki
 
-from personal_mnemonic_medium.globals import CONFIG
+from personal_mnemonic_medium.exporters.anki.globals import CONFIG
 
 
 class AnkiCard(object):
