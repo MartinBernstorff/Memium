@@ -237,12 +237,6 @@ def strip_header(string):
     return re.sub(r"^#.*\n", "", string)
 
 
-def strip_backlinks(string):
-    """Strip anything showing up after ## Backlinks"""
-
-    return re.sub(r"## Backlinks.*", "", string, flags=re.DOTALL)
-
-
 def get_content_only(string):
     string_stripped = strip_header(strip_backlinks(string))
 

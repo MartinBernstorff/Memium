@@ -7,11 +7,9 @@ class Prompt:
     def __init__(
         self,
         tags: List[str],
-        subdeck: str,
         uuid: str,
         source_note: Note,
     ):
         self.tags = tags
-        self.subdeck = subdeck
         self.uuid = uuid
         self.source_note = source_note

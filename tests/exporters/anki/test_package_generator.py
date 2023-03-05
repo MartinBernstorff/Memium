@@ -9,7 +9,7 @@ def test_package_generators():
             source_markdown="Q. What is the capital of France?\nA. Paris",
             tags=["test"],
             model_type="QA",
-            uuid="1234",
+            note_uuid="1234",
         )
         for _ in range(4)
     ]

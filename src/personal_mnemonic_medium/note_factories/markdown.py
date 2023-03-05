@@ -15,7 +15,7 @@ class MarkdownNoteFactory:
         Args:
             cut_note_after: Cut everything in the note after this string.
         """
-        self.cut_note_after: str = cut_note_after
+        self.cut_note_after = cut_note_after
 
     def append_new_uuid_to_file(self, file_path: Path):
         guid = os.urandom(32).hex()

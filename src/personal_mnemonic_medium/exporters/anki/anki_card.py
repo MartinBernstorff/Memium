@@ -25,14 +25,28 @@ class AnkiCard(object):
         self.model = self.model_string_to_genanki_model(model_type=model_type)
         self.note_uuid = note_uuid
 
+        if self.has_subdeck_tag(self.source_markdown):
+            self.subdeck = self.get_subdeck_name(self.source_markdown)
+        else:
+            self.subdeck = "Default"
+
     def append_tags(self, tags):
         self.tags.extend(tags)
 
     def get_deck_dir(self):
         return os.path.dirname(self.filepath)
 
-    def set_subdeck(self, subdeck):
-        self.subdeck = subdeck
+    @staticmethod
+    def has_subdeck_tag(input_str) -> bool:
+        return len(re.findall(r"#anki\/deck\/\S+", input_str)) != 0
+
+    @staticmethod
+    def get_subdeck_name(input_str) -> str:
+        return (
+            re.findall(r"#anki\/deck\/\S+", input_str)[0][11:]
+            .replace("/", "::")
+            .replace("#", "")
+        )
 
     def model_string_to_genanki_model(self, model_type="Cloze") -> genanki.Model:
         GENANKI_QA_MODEL_TYPE = 1
