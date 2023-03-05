@@ -14,4 +14,4 @@ def test_package_generators():
         for _ in range(4)
     ]
 
-    PackageGenerator().cards_to_package(cards=genanki_notes, output_name="test_package")
+    PackageGenerator().cards_to_package(cards=genanki_notes, output_path="test_package")

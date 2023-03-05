@@ -9,8 +9,13 @@ from personal_mnemonic_medium.note_factories.note import Note
 
 
 class MarkdownNoteFactory:
-    def __init__(self):
-        pass
+    def __init__(self, cut_note_after: str = "# Backlinks"):
+        """Create a new MarkdownNoteFactory.
+
+        Args:
+            cut_note_after: Cut everything in the note after this string.
+        """
+        self.cut_note_after: str = cut_note_after
 
     def append_new_uuid_to_file(self, file_path: Path):
         guid = os.urandom(32).hex()
@@ -34,6 +39,9 @@ class MarkdownNoteFactory:
                 uuid = self.append_new_uuid_to_file(file_path)
 
             note_title = file_path.stem
+
+            if self.cut_note_after in file_contents:
+                file_contents = file_contents.split(self.cut_note_after)[0]
 
             return Note(title=note_title, content=file_contents, uuid=uuid)
 
