@@ -8,6 +8,7 @@ from shutil import copyfile
 from typing import List, Optional
 
 import genanki
+from wasabi import msg
 
 from personal_mnemonic_medium.exporters.anki.anki_card import AnkiCard
 
@@ -30,6 +31,8 @@ class DeckCollection(dict):
 
 
 class PackageGenerator:
+    """Generates an anki package from a list of anki cards"""
+
     def __init__(self) -> None:
         pass
 
