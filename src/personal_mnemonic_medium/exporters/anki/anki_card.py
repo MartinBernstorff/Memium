@@ -13,17 +13,17 @@ class AnkiCard(object):
 
     def __init__(
         self,
-        filepath: str,
         fields: List[str],
         source_markdown: str,
         tags: List[str],
         model_type: Literal["QA", "Cloze", "QA_DK"],
+        note_uuid: str,
     ):
         self.fields = fields
         self.source_markdown = source_markdown
-        self.filepath = filepath
         self.tags = tags
         self.model = self.model_string_to_genanki_model(model_type=model_type)
+        self.note_uuid = note_uuid
 
     def append_tags(self, tags):
         self.tags.extend(tags)
@@ -34,14 +34,12 @@ class AnkiCard(object):
     def set_subdeck(self, subdeck):
         self.subdeck = subdeck
 
-    def model_string_to_genanki_model(self, model_type="Cloze"):
-        self.model_type = model_type
-
+    def model_string_to_genanki_model(self, model_type="Cloze") -> genanki.Model:
         GENANKI_QA_MODEL_TYPE = 1
         GENANKI_CLOZE_MODEL_TYPE = 1
 
         if model_type == "Cloze":
-            self.model = genanki.Model(
+            return genanki.Model(
                 model_id=simple_hash(CONFIG["card_model_name_cloze"]),
                 name=CONFIG["card_model_name_cloze"],
                 fields=CONFIG["card_model_fields_cloze"],
@@ -50,7 +48,7 @@ class AnkiCard(object):
                 model_type=GENANKI_CLOZE_MODEL_TYPE,  # This is the model_type number for genanki, takes 0 for QA or 1 for cloze
             )
         elif model_type == "QA":
-            self.model = genanki.Model(
+            return genanki.Model(
                 model_id=simple_hash(CONFIG["card_model_name_qa"]),
                 name=CONFIG["card_model_name_qa"],
                 fields=CONFIG["card_model_fields_qa"],
@@ -59,7 +57,7 @@ class AnkiCard(object):
                 model_type=GENANKI_QA_MODEL_TYPE,
             )
         elif model_type == "QA_DA":
-            self.model = genanki.Model(
+            return genanki.Model(
                 model_id=simple_hash(CONFIG["card_model_name_qa_da"]),
                 name=CONFIG["card_model_name_qa_da"],
                 fields=CONFIG["card_model_fields_qa"],
@@ -109,7 +107,7 @@ class AnkiCard(object):
             hash = simple_hash(f"{hash_string}")
             return hash
 
-    def guid(self):  # The identifier for notes
+    def note_uuid(self):  # The identifier for notes
         return (
             self.card_id()
         )  # This is now the hash of the BearID and the cloze or question side
@@ -135,7 +133,7 @@ class AnkiCard(object):
     def to_genanki_note(self):
         """Produce a genanki.Note with the specified guid."""
         return genanki.Note(
-            model=self.model, fields=self.fields, guid=self.guid(), tags=self.tags
+            model=self.model, fields=self.fields, guid=self.note_uuid, tags=self.tags
         )
 
     def make_ref_pair(self, filename):

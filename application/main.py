@@ -346,7 +346,8 @@ def main():
     # Flatten list of lists
     prompts = [item for sublist in qa_prompts + cloze_prompts for item in sublist]
 
-    package_path = PackageGenerator().cards_to_package(cards=prompts)
+    cards = PackageGenerator().prompts_to_cards(prompts=prompts)
+    package_path = PackageGenerator().cards_to_package(cards=cards, output_path=pkg_arg)
 
     sync_package(package_path)
     os.chdir(initial_dir)

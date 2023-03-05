@@ -9,7 +9,7 @@ class Prompt:
         tags: List[str],
         subdeck: str,
         uuid: str,
-        source_note: Optional[Note] = None,
+        source_note: Note,
     ):
         self.tags = tags
         self.subdeck = subdeck

@@ -6,12 +6,15 @@ Can take an arbitrary amount of post-processing steps to be applied.
 import hashlib
 from pathlib import Path
 from shutil import copyfile
-from typing import List, Optional
+from typing import List, Optional, Sequence, Union
 
 import genanki
 from wasabi import msg
 
 from personal_mnemonic_medium.exporters.anki.anki_card import AnkiCard
+from personal_mnemonic_medium.prompt_extractors.cloze_extractor import ClozePrompt
+from personal_mnemonic_medium.prompt_extractors.prompt import Prompt
+from personal_mnemonic_medium.prompt_extractors.qa_extractor import QAPrompt
 
 
 def simple_hash(text: str) -> int:
@@ -39,8 +42,7 @@ class PackageGenerator:
 
     @staticmethod
     def cards_to_package(cards: List[AnkiCard], output_path: Path) -> Path:
-        """Take an iterable of the cards, output an .apkg in a file called output_name.
-
+        """Take an iterable prompts, output an .apkg in a file called output_name.
         NOTE: We _must_ be in a temp directory.
         """
         decks = DeckCollection()
@@ -57,10 +59,39 @@ class PackageGenerator:
             decks[card.deckname()].add_note(card.to_genanki_note())
 
         if len(decks) == 0:
-            msg.warn("No decks generated")
+            raise ValueError("No decks were generated.")
 
         package = genanki.Package(deck_or_decks=decks.values(), media_files=list(media))
 
         package.write_to_file(output_path)
 
-        return output_path
+        return Path(output_path)
+
+    def prompts_to_cards(
+        self, prompts: Sequence[Union[QAPrompt, ClozePrompt]]
+    ) -> List[AnkiCard]:
+        """Takes an iterable of prompts and turns them into AnkiCards"""
+
+        cards = []
+
+        for prompt in prompts:
+            if isinstance(prompt, QAPrompt):
+                card = AnkiCard(
+                    fields=[prompt.question, prompt.answer],
+                    tags=prompt.tags,
+                    model_type="QA",
+                    source_markdown=prompt.source_note.content,
+                    note_uuid=prompt.uuid,
+                )
+            elif isinstance(prompt, ClozePrompt):
+                card = AnkiCard(
+                    fields=[prompt.content],
+                    tags=prompt.tags,
+                    model_type="Cloze",
+                    source_markdown=prompt.source_note.content,
+                    note_uuid=prompt.uuid,
+                )
+
+            cards += [card]
+
+        return cards
