@@ -2,7 +2,6 @@ from pathlib import Path
 
 import genanki
 from personal_mnemonic_medium.exporters.anki.anki_card import AnkiCard
-from personal_mnemonic_medium.exporters.anki.package_generator import PackageGenerator
 from personal_mnemonic_medium.markdown_to_ankicard import markdown_to_ankicard
 from personal_mnemonic_medium.note_factories.markdown import MarkdownNoteFactory
 from personal_mnemonic_medium.note_factories.note import Note

@@ -19,22 +19,18 @@ Options:
     --configFile CONFIG_FILE_PATH   path to ankdown configuration as YAML file
 """
 
-import hashlib
 import json
 import os
-import re
 import urllib.request
 from datetime import datetime
 from pathlib import Path
 from time import sleep
-from typing import Any, Dict, Union
+from typing import Any
 
-import misaka
 import yaml  # type: ignore
 from docopt import docopt
 from personal_mnemonic_medium.exporters.anki.globals import (
     CONFIG,
-    Q_TYPE_TAG,
     VERSION,
     VERSION_LOG,
 )
@@ -49,7 +45,7 @@ from wasabi import msg
 ANKI_CONNECT_URL = "http://localhost:8765"
 
 # helper for creating anki connect requests
-def request(action: Any, **params: Any) -> dict[str, Any]:
+def request(action: Any, **params: Any) -> dict"str, Any":
     return {"action": action, "params": params, "version": 6}
 
 
@@ -139,7 +135,7 @@ def main():
     pkg_arg = Path.resolve(Path.expanduser(CONFIG["pkg_arg"]))
     version_log = Path.resolve(Path.expanduser(CONFIG["version_log"]))
 
-    global IMPORT_TIME  # noqa
+    global IMPORT_TIME
     IMPORT_TIME = "{}".format(
         datetime.now().strftime("%Y.%m/%d_%H:%M"),
     )  # Init as global to avoid each card getting separate times

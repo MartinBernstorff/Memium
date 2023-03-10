@@ -7,7 +7,7 @@ import hashlib
 from collections.abc import Sequence
 from pathlib import Path
 from shutil import copyfile
-from typing import List, Union
+from typing import Union
 
 import genanki
 

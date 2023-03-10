@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import Optional
 
 from personal_mnemonic_medium.note_factories.note import Note
 

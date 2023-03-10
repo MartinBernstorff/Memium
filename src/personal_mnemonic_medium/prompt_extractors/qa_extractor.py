@@ -1,5 +1,4 @@
 import re
-from typing import List
 
 from personal_mnemonic_medium.note_factories.note import Note
 from personal_mnemonic_medium.prompt_extractors.prompt import Prompt
