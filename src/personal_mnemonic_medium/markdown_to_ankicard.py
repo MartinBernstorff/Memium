@@ -22,12 +22,14 @@ def markdown_to_ankicard(
 
     if dir_path is not None:
         notes += MarkdownNoteFactory().get_notes_from_dir(dir_path=dir_path)
+
     if file_path is not None:
         note_from_file = MarkdownNoteFactory().get_note_from_file(file_path=file_path)
         if note_from_file is not None:
             notes += [note_from_file]
 
     collected_prompts = []
+
     for extractor in extractors:
         for note in notes:
             collected_prompts += extractor.extract_prompts(note)  # type: ignore
