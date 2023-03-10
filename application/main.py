@@ -27,6 +27,7 @@ import tempfile
 import urllib.request
 from datetime import datetime
 from pathlib import Path
+from shutil import copyfile
 from time import sleep
 
 import misaka
@@ -62,7 +63,7 @@ def invoke(action, **params):
     global ANKI_CONNECT_URL
     requestJson = json.dumps(request(action, **params)).encode("utf-8")
     response = json.load(
-        urllib.request.urlopen(urllib.request.Request(ANKI_CONNECT_URL, requestJson))
+        urllib.request.urlopen(urllib.request.Request(ANKI_CONNECT_URL, requestJson)),
     )
     if len(response) != 2:
         raise Exception("response has an unexpected number of fields")
@@ -81,7 +82,7 @@ def anki_connect_is_live():
         if urllib.request.urlopen(ANKI_CONNECT_URL).getcode() == 200:
             return True
         else:
-            raise Exception()
+            raise Exception
     except Exception:
         return False
 
@@ -105,7 +106,7 @@ def sync_package(pathToDeckPackage: Path):
                 msg.warn(f"\t{e}")
         else:
             msg.warn(
-                f"{i}: Anki connect is not live, sleeping for {sleep_length} seconds"
+                f"{i}: Anki connect is not live, sleeping for {sleep_length} seconds",
             )
             sleep(sleep_length)
 
@@ -120,13 +121,13 @@ def field_to_html(field):
         for (sep, (op, cl)) in [("$$", (r"\\[", r"\\]")), ("$", (r"\\(", r"\\)"))]:
             escaped_sep = sep.replace(r"$", r"\$")
             # ignore escaped dollar signs when splitting the field
-            field = re.split(r"(?<!\\){}".format(escaped_sep), field)
+            field = re.split(rf"(?<!\\){escaped_sep}", field)
             # add op(en) and cl(osing) brackets to every second element of the list
             field[1::2] = [op + e + cl for e in field[1::2]]
             field = "".join(field)
     else:
         for bracket in ["(", ")", "[", "]"]:
-            field = field.replace(r"\{}".format(bracket), r"\\{}".format(bracket))
+            field = field.replace(rf"\{bracket}", rf"\\{bracket}")
             # backslashes, man.
 
     for token in ["*", "/"]:
@@ -135,7 +136,7 @@ def field_to_html(field):
         elif token == "*":
             replacement = "**"
 
-        pattern = "\\{}[^<>\\-\n]+\\{}".format(token, token)
+        pattern = f"\\{token}[^<>\\-\n]+\\{token}"
 
         token_instances = re.findall(pattern, field)
 
@@ -251,7 +252,7 @@ def produce_cards_from_file(filepath: str, import_time):
         A generator yielding genanki cards
     """
 
-    with open(filepath, "r", encoding="utf8"):
+    with open(filepath, encoding="utf8"):
         extra_string = gen_bear_button_html(filepath)
 
         # Content
@@ -263,13 +264,21 @@ def produce_cards_from_file(filepath: str, import_time):
             # QA processing
             if has_qa(block_string):
                 card = produce_qa_card_from_block(
-                    filepath, subdeck, file_tags, block_string, extra_string
+                    filepath,
+                    subdeck,
+                    file_tags,
+                    block_string,
+                    extra_string,
                 )
                 yield card
 
             elif string_has_cloze(block_string):
                 cards = produce_cloze_cards_from_block(
-                    filepath, subdeck, file_tags, block_string, extra_string
+                    filepath,
+                    subdeck,
+                    file_tags,
+                    block_string,
+                    extra_string,
                 )
 
                 for card in cards:
@@ -282,7 +291,7 @@ def complex_hash(text):
 
 
 def add_uid(filepath):
-    with open(filepath, "r", encoding="utf8") as f:
+    with open(filepath, encoding="utf8") as f:
         prefix = f.readline()[0:5]
         if prefix != "#####":
             file_id = complex_hash(filepath)
@@ -301,9 +310,9 @@ def apply_arguments(arguments):
     global CONFIG
     if arguments.get("--configFile") is not None:
         config_file_path = os.path.abspath(
-            os.path.expanduser(arguments.get("--configFile"))
+            os.path.expanduser(arguments.get("--configFile")),
         )
-        with open(config_file_path, "r") as config_file:
+        with open(config_file_path) as config_file:
             CONFIG.update(yaml.load(config_file))
     if arguments.get("--config") is not None:
         CONFIG.update(yaml.load(arguments.get("--config")))
@@ -326,11 +335,12 @@ def main():
 
     global IMPORT_TIME
     IMPORT_TIME = "{}".format(
-        datetime.now().strftime("%Y.%m/%d_%H:%M")
+        datetime.now().strftime("%Y.%m/%d_%H:%M"),
     )  # Init as global to avoid each card getting separate times
 
     cards = markdown_to_ankicard(
-        dir_path=recur_dir, extractors=[QAPromptExtractor(), ClozePromptExtractor()]
+        dir_path=recur_dir,
+        extractors=[QAPromptExtractor(), ClozePromptExtractor()],
     )
     package_path = PackageGenerator().cards_to_package(cards=cards, output_path=pkg_arg)
 
