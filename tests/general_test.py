@@ -1,7 +1,7 @@
 import os
 from datetime import datetime
 
-from personal_mnemonic_medium.main import *
+from application.main import *
 
 IMPORT_TIME = "{}".format(datetime.now().strftime("%Y.%m/%d_%H:%M"))
 
@@ -136,7 +136,7 @@ def test_getting_content_only():
     assert content_only == reference_string
 
 
-def test_header_removal():
+def test_card_guid():
     working_directory = os.getcwd()
 
     file_path = os.path.join(
