@@ -1,6 +1,10 @@
-import genanki
+from pathlib import Path
 
+import genanki
 from personal_mnemonic_medium.exporters.anki.anki_card import AnkiCard
+from personal_mnemonic_medium.exporters.anki.package_generator import PackageGenerator
+from personal_mnemonic_medium.note_factories.markdown import MarkdownNoteFactory
+from personal_mnemonic_medium.prompt_extractors.qa_extractor import QAPromptExtractor
 
 
 def test_custom_card_to_genanki_card():
@@ -25,3 +29,19 @@ def test_get_subtags():
     )
 
     assert "Medicine" in card.subdeck
+
+
+def test_card_uuid_generation():
+    file_path = (
+        Path(__file__).parent.parent.parent / "test_md_files" / "test_card_guid.md"
+    )
+    note = MarkdownNoteFactory().get_note_from_file(file_path=file_path)
+    qa_extractor = QAPromptExtractor(question_prefix="Q.", answer_prefix="A.")
+    qa_prompts = qa_extractor.extract_prompts(note)
+
+    cards = PackageGenerator().prompts_to_cards(prompts=qa_prompts)
+
+    reference_guids = {9315717920, 3912828915, 6300568814, 3001245253, 952903559}
+    generated_guids = {card.uuid for card in cards}
+
+    assert reference_guids == generated_guids
