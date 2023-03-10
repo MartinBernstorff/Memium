@@ -18,7 +18,11 @@ classifiers = [
 
 requires-python = ">=3.8"
 dependencies = [
-    "pydantic",
+    "misaka>=2.1.1",
+    "genanki>=0.13.0",
+    "docopt>=0.6.2",
+    "wasabi>=0.9.1",
+    "tqdm>=4.64.1",
 ]
 
 [project.license]
@@ -172,4 +176,3 @@ ignore_missing_imports = true
 no_implicit_optional = true
 warn_unused_ignores = true
 warn_unreachable = true
-plugins = "pydantic.mypy"

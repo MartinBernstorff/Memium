@@ -23,20 +23,22 @@ import hashlib
 import json
 import os
 import re
-import tempfile
 import urllib.request
 from datetime import datetime
 from pathlib import Path
-from shutil import copyfile
 from time import sleep
+from typing import Any, Dict
 
 import misaka
 import yaml
 from docopt import docopt
-from personal_mnemonic_medium.exporters.anki.globals import *
+from personal_mnemonic_medium.exporters.anki.globals import (
+    CONFIG,
+    Q_TYPE_TAG,
+    VERSION_LOG,
+)
 from personal_mnemonic_medium.exporters.anki.package_generator import PackageGenerator
 from personal_mnemonic_medium.markdown_to_ankicard import markdown_to_ankicard
-from personal_mnemonic_medium.note_factories.markdown import MarkdownNoteFactory
 from personal_mnemonic_medium.prompt_extractors.cloze_extractor import (
     ClozePromptExtractor,
 )
@@ -46,7 +48,7 @@ from wasabi import msg
 ANKI_CONNECT_URL = "http://localhost:8765"
 
 # helper for creating anki connect requests
-def request(action, **params):
+def request(action: Any, **params: Any) -> dict[str, Any]:
     return {"action": action, "params": params, "version": 6}
 
 
@@ -149,6 +151,11 @@ def field_to_html(field):
     return misaka.html(field, extensions=("fenced-code", "math"))
 
 
+def strip_header(string):
+    """Strip first occurrence of a markdown level 1 header"""
+    return re.sub(r"^#.*\n", "", string)
+
+
 def compile_field(fieldtext, is_markdown):
     """Turn source markdown into an HTML field suitable for Anki."""
     fieldtext_sans_wiki = fieldtext.replace("[[", "<u>").replace("]]", "</u>")
@@ -233,61 +240,22 @@ def get_q_type_tag(question_string):
     return Q_TYPE_TAG[q_type_letter]
 
 
-def strip_header(string):
-    """Strip first occurrence of a markdown level 1 header"""
-    return re.sub(r"^#.*\n", "", string)
-
-
 def get_content_only(string):
     string_stripped = strip_header(strip_backlinks(string))
 
     return string_stripped
 
 
-def produce_cards_from_file(filepath: str, import_time):
-    """
-    Parameters:
-        Filename as a string
-    Returns:
-        A generator yielding genanki cards
-    """
-
-    with open(filepath, encoding="utf8"):
-        extra_string = gen_bear_button_html(filepath)
-
-        # Content
-        content_string = get_content_only(file_string)
-
-        blocks = break_string_by_two_or_more_newlines(content_string)
-
-        for block_string in blocks:
-            # QA processing
-            if has_qa(block_string):
-                card = produce_qa_card_from_block(
-                    filepath,
-                    subdeck,
-                    file_tags,
-                    block_string,
-                    extra_string,
-                )
-                yield card
-
-            elif string_has_cloze(block_string):
-                cards = produce_cloze_cards_from_block(
-                    filepath,
-                    subdeck,
-                    file_tags,
-                    block_string,
-                    extra_string,
-                )
-
-                for card in cards:
-                    yield card
-
-
 def complex_hash(text):
     """MD5 of text, mod 2^63. Probably not a great hash function."""
     return int(hashlib.sha256(text.encode("utf-8")).hexdigest(), 16) % 10**15
+
+
+def line_prepender(filename, line):
+    with open(filename, "r+") as f:
+        content = f.read()
+        f.seek(0, 0)
+        f.write(line.rstrip("\r\n") + "\n" + content)
 
 
 def add_uid(filepath):
@@ -297,13 +265,6 @@ def add_uid(filepath):
             file_id = complex_hash(filepath)
             line_prepender(filepath, "###### " + str(file_id))
             return
-
-
-def line_prepender(filename, line):
-    with open(filename, "r+") as f:
-        content = f.read()
-        f.seek(0, 0)
-        f.write(line.rstrip("\r\n") + "\n" + content)
 
 
 def apply_arguments(arguments):
