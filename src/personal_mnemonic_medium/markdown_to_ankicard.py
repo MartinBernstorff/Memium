@@ -18,8 +18,11 @@ def markdown_to_ankicard(
         ClozePromptExtractor(),
     ),
 ) -> List[AnkiCard]:
-    notes = []
 
+    if dir_path is None and file_path is None:
+        raise ValueError("At least one of dir_path or file_path must be specified")
+
+    notes = []
     if dir_path is not None:
         notes += MarkdownNoteFactory().get_notes_from_dir(dir_path=dir_path)
 
