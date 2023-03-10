@@ -114,8 +114,13 @@ class AnkiCard(object):
             return simple_hash(f"{cloze}{self.basename()}")
 
         else:  # If not cloze
-            # Q/A cards should be unique from their phrasing. Now it's not tied to a given note.
-            hash_string = " " + self.fields[0] + "\n"
+            # Q/A cards should be unique from the phrasing of the question.
+            # A bunch of this is to maintain backwards compatability with a prior version of the code, ensuring that the hash is the same.
+            hash_string = self.fields[0] + "\n"
+
+            if not hash_string[0] == " ":
+                hash_string = " " + hash_string
+
             hash = simple_hash(f"{hash_string}")
             return hash  #
 
