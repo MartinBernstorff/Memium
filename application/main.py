@@ -22,7 +22,6 @@ Options:
 import json
 import os
 import urllib.request
-from datetime import datetime
 from pathlib import Path
 from time import sleep
 from typing import Any, Dict
@@ -134,11 +133,6 @@ def main():
     recur_dir = Path.resolve(Path.expanduser(CONFIG["recur_dir"]))
     pkg_arg = Path.resolve(Path.expanduser(CONFIG["pkg_arg"]))
     version_log = Path.resolve(Path.expanduser(CONFIG["version_log"]))
-
-    global IMPORT_TIME
-    IMPORT_TIME = "{}".format(
-        datetime.now().strftime("%Y.%m/%d_%H:%M"),
-    )  # Init as global to avoid each card getting separate times
 
     cards = markdown_to_ankicard(
         dir_path=recur_dir,
