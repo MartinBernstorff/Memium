@@ -6,6 +6,7 @@ from typing import List, Literal
 import genanki
 
 from personal_mnemonic_medium.exporters.anki.globals import CONFIG
+from personal_mnemonic_medium.note_factories.note import Note
 
 
 class AnkiCard(object):
@@ -17,13 +18,14 @@ class AnkiCard(object):
         source_markdown: str,
         tags: List[str],
         model_type: Literal["QA", "Cloze", "QA_DK"],
-        note_uuid: str,
+        source_note: Note,
     ):
         self.fields = fields
         self.source_markdown = source_markdown
         self.tags = tags
         self.model = self.model_string_to_genanki_model(model_type=model_type)
-        self.note_uuid = note_uuid
+        self.source_note = source_note
+        self.uuid = self.card_id()
 
         if self.has_subdeck_tag(self.source_markdown):
             self.subdeck = self.get_subdeck_name(self.source_markdown)
@@ -113,10 +115,9 @@ class AnkiCard(object):
 
         else:  # If not cloze
             # Q/A cards should be unique from their phrasing. Now it's not tied to a given note.
-            hash_string = self.source_markdown[0]
-
+            hash_string = self.fields[0]
             hash = simple_hash(f"{hash_string}")
-            return hash
+            return hash  #
 
     def note_uuid(self):  # The identifier for notes
         return (
