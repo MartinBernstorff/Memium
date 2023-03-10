@@ -20,26 +20,22 @@ Options:
 """
 
 import hashlib
-from tqdm import tqdm
 import json
 import os
 import re
 import tempfile
 from datetime import datetime
+from pathlib import Path
 from shutil import copyfile
 from time import sleep
 
 import genanki
 import misaka
 import yaml
-from wasabi import msg
 from docopt import docopt
-from pathlib import Path
-
-import json
-from pathlib import Path
-
 from personal_mnemonic_medium.globals import *
+from tqdm import tqdm
+from wasabi import msg
 
 
 def simple_hash(text):
@@ -203,9 +199,10 @@ class Card(object):
         if len(re.findall(r"{(?!BearID).[^}]*}", self.fields[0])) > 0:
             # Excludes bearID. We don't want clozes to update just because the surrounding information did.
             cloze = re.findall(r"{(?!BearID).[^}]*}", self.fields[0])[0]
+            basename = self.basename()
+            hash_value = simple_hash(f"{cloze}{basename}")
 
-            # Card ID is the cloze deletions + BearID
-            return simple_hash(f"{cloze}{self.basename()}")
+            return hash_value
 
         else:  # If not cloze
             # Q/A cards should be unique from their phrasing. Now it's not tied to a given note.
@@ -356,8 +353,8 @@ def compile_field(fieldtext, is_markdown):
 def string_has_cloze(string):
     if (
         len(re.findall(r"{.*}", string)) > 0
-        and not "BearID" in string
-        and not "$$" in string
+        and "BearID" not in string
+        and "$$" not in string
     ):
         return True
     return False
