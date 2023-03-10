@@ -15,8 +15,8 @@ def markdown_to_ankicard(
     dir_path: Optional[Path] = None,
     file_path: Optional[Path] = None,
     extractors: Sequence[Any] = (
-        QAPromptExtractor(),
-        ClozePromptExtractor(),
+        QAPromptExtractor(),  # noqa: B008
+        ClozePromptExtractor(),  # noqa: B008
     ),
 ) -> List[AnkiCard]:
 

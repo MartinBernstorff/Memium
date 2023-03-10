@@ -1,13 +1,13 @@
 import hashlib
 import re
-from typing import List
+from typing import Any, List, Optional
 
 from personal_mnemonic_medium.note_factories.note import Document
 from personal_mnemonic_medium.prompt_extractors.prompt import Prompt
 
 
 class ClozePrompt(Prompt):
-    def __init__(self, content: str, *args, **kwargs) -> None:
+    def __init__(self, content: str, *args: Any, **kwargs: Any):
         super().__init__(*args, **kwargs)
         self.content = content
 
@@ -32,7 +32,10 @@ class ClozePromptExtractor:
         return False
 
     @staticmethod
-    def replace_cloze_id_with_unique(string, selected_cloze=None) -> str:
+    def replace_cloze_id_with_unique(
+        string: str,
+        selected_cloze: Optional[str] = None,
+    ) -> str:
         """Each cloze deletion in a note is numbered sequentially.
 
         This function ensures that the numbering is based on the content of the cloze deletion, essentially ensuring that if you modify the contents of a cloze, only the scheduling of that specific cloze is changed.
@@ -48,9 +51,11 @@ class ClozePromptExtractor:
             selected_clozes = re.findall(r"{(?!BearID).[^}]*}", string)
 
         for cloze in selected_clozes:
-            hash = int(hashlib.sha256(cloze.encode("utf-8")).hexdigest(), 16) % 10**3
+            output_hash = (
+                int(hashlib.sha256(cloze.encode("utf-8")).hexdigest(), 16) % 10**3
+            )
 
-            new_cloze = f"{{{{c{hash}::{cloze[1:-1]}}}}}"
+            new_cloze = f"{{{{c{output_hash}::{cloze[1:-1]}}}}}"
 
             string = string.replace(cloze, new_cloze)
 

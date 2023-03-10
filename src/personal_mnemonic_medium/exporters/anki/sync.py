@@ -1,6 +1,7 @@
 import json
 import urllib.request
 from pathlib import Path
+from typing import Any, Dict
 
 from genanki import Model
 from wasabi import msg
@@ -9,12 +10,12 @@ anki_connect_url = "http://localhost:8765"
 
 
 # helper for creating anki connect requests
-def request(action, **params):
+def request(action: Any, **params: Any) -> Dict[str, Any]:
     return {"action": action, "params": params, "version": 6}
 
 
 # helper for invoking actions with anki-connect
-def invoke(action, **params):
+def invoke(action: Any, **params: Any) -> Any:
     """Helper for invoking actions with anki-connect
     Args:
         action (string): the action to invoke
@@ -23,7 +24,6 @@ def invoke(action, **params):
     Returns:
         Any: the response from anki connect
     """
-    global anki_connect_url
     requestJson = json.dumps(request(action, **params)).encode("utf-8")
     response = json.load(
         urllib.request.urlopen(urllib.request.Request(anki_connect_url, requestJson)),
@@ -39,13 +39,11 @@ def invoke(action, **params):
     return response["result"]
 
 
-def anki_connect_is_live():
-    global anki_connect_url
+def anki_connect_is_live() -> bool:
     try:
         if urllib.request.urlopen(anki_connect_url).getcode() == 200:
             return True
-        else:
-            raise Exception
+        raise Exception
     except Exception:
         msg.good(
             "Unable to reach anki connect. Make sure anki is running and the Anki Connect addon is installed.",

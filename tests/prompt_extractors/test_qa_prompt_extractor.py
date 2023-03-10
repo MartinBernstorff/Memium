@@ -4,7 +4,7 @@ from personal_mnemonic_medium.prompt_extractors.qa_extractor import QAPromptExtr
 
 
 @pytest.fixture()
-def qa_extractor():
+def qa_extractor() -> QAPromptExtractor:
     return QAPromptExtractor()
 
 
@@ -26,7 +26,7 @@ A. This is the prompt!
     assert len([p for p in prompts if p.source_note is None]) == 0
 
 
-def test_has_qa_matches(qa_extractor):
+def test_has_qa_matches(qa_extractor: QAPromptExtractor):
     example_strings = [
         "QD. Testing something something",
         "QA. Testing something else, even with QA in it!",
@@ -37,7 +37,7 @@ def test_has_qa_matches(qa_extractor):
     assert len(matches) == 3
 
 
-def test_has_qa_does_not_match(qa_extractor):
+def test_has_qa_does_not_match(qa_extractor: QAPromptExtractor):
     example_strings = ["\nQ.E.D.", "> A question like this, or", "::Q. A comment!::"]
 
     matches = 0
