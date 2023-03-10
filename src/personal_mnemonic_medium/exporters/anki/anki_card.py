@@ -112,7 +112,7 @@ class AnkiCard(object):
     def card_id(self):  # The identifier for cards
         if self.model_type == "Cloze":
             prompt_field = self.fields[0]
-            cloze_fields = re.findall(r"{{c.+}", prompt_field)
+            cloze_fields = re.findall(r"{{c.+?}", prompt_field)
 
             cloze = cloze_fields[0]
 
