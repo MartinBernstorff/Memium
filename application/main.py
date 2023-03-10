@@ -32,15 +32,15 @@ from time import sleep
 import misaka
 import yaml
 from docopt import docopt
-from wasabi import msg
-
 from personal_mnemonic_medium.exporters.anki.globals import *
 from personal_mnemonic_medium.exporters.anki.package_generator import PackageGenerator
+from personal_mnemonic_medium.markdown_to_ankicard import markdown_to_ankicard
 from personal_mnemonic_medium.note_factories.markdown import MarkdownNoteFactory
 from personal_mnemonic_medium.prompt_extractors.cloze_extractor import (
     ClozePromptExtractor,
 )
 from personal_mnemonic_medium.prompt_extractors.qa_extractor import QAPromptExtractor
+from wasabi import msg
 
 ANKI_CONNECT_URL = "http://localhost:8765"
 
@@ -329,18 +329,9 @@ def main():
         datetime.now().strftime("%Y.%m/%d_%H:%M")
     )  # Init as global to avoid each card getting separate times
 
-    notes = MarkdownNoteFactory().get_notes_from_dir(dir_path=recur_dir)
-
-    qa_extractor = QAPromptExtractor(question_prefix="Q.", answer_prefix="A.")
-    qa_prompts = [qa_extractor.extract_prompts(note) for note in notes]
-
-    cloze_extractor = ClozePromptExtractor()
-    cloze_prompts = [cloze_extractor.extract_prompts(note) for note in notes]
-
-    # Flatten list of lists
-    prompts = [item for sublist in qa_prompts + cloze_prompts for item in sublist]
-
-    cards = PackageGenerator().prompts_to_cards(prompts=prompts)
+    cards = markdown_to_ankicard(
+        dir_path=recur_dir, extractors=[QAPromptExtractor(), ClozePromptExtractor()]
+    )
     package_path = PackageGenerator().cards_to_package(cards=cards, output_path=pkg_arg)
 
     sync_package(package_path)
