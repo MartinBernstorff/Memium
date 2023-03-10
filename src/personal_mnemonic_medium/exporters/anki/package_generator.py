@@ -80,6 +80,7 @@ class PackageGenerator:
                     model_type="QA",
                     source_markdown=prompt.source_note.content,
                     source_note=prompt.source_note,
+                    source_prompt=prompt,
                 )
             elif isinstance(prompt, ClozePrompt):
                 card = AnkiCard(
@@ -88,6 +89,7 @@ class PackageGenerator:
                     model_type="Cloze",
                     source_markdown=prompt.source_note.content,
                     source_note=prompt.source_note,
+                    source_prompt=prompt,
                 )
 
             cards += [card]

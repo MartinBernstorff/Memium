@@ -74,7 +74,7 @@ class ClozePromptExtractor:
                         ClozePrompt(
                             content=prompt_content,
                             tags=note.tags,
-                            uuid=note.uuid,
+                            note_uuid=note.uuid,
                             source_note=note,
                         )
                     )

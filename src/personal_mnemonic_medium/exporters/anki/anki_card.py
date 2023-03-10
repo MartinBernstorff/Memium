@@ -7,6 +7,7 @@ import genanki
 
 from personal_mnemonic_medium.exporters.anki.globals import CONFIG
 from personal_mnemonic_medium.note_factories.note import Note
+from personal_mnemonic_medium.prompt_extractors.prompt import Prompt
 
 
 class AnkiCard(object):
@@ -18,12 +19,15 @@ class AnkiCard(object):
         source_markdown: str,
         tags: List[str],
         model_type: Literal["QA", "Cloze", "QA_DK"],
+        source_prompt: Prompt,
         source_note: Note,
     ):
         self.fields = fields
         self.source_markdown = source_markdown
         self.tags = tags
+        self.model_type = model_type
         self.model = self.model_string_to_genanki_model(model_type=model_type)
+        self.source_prompt = source_prompt
         self.source_note = source_note
         self.uuid = self.card_id()
 
@@ -106,12 +110,16 @@ class AnkiCard(object):
             return uid
 
     def card_id(self):  # The identifier for cards
-        if len(re.findall(r"{(?!BearID).[^}]*}", self.fields[0])) > 0:
-            # Excludes bearID. We don't want clozes to update just because the surrounding information did.
-            cloze = re.findall(r"{(?!BearID).[^}]*}", self.fields[0])[0]
+        if self.model_type == "Cloze":
+            prompt_field = self.fields[0]
+            cloze_fields = re.findall(r"{{c.+}", prompt_field)
 
-            # Card ID is the cloze deletions + BearID
-            return simple_hash(f"{cloze}{self.basename()}")
+            cloze = cloze_fields[0]
+
+            basename = self.source_note.uuid
+            hash_value = simple_hash(f"{cloze}{basename}")
+
+            return hash_value
 
         else:  # If not cloze
             # Q/A cards should be unique from the phrasing of the question.

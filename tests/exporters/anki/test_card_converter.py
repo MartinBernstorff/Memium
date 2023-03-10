@@ -59,3 +59,16 @@ def test_cloze_uuid_generation():
     cloze_reference_guids = {3001245253, 952903559}
     cloze_generated_guids = {card.uuid for card in cloze_cards}
     assert cloze_reference_guids == cloze_generated_guids
+
+
+def test_get_bear_id():
+    factory = MarkdownNoteFactory()
+    note_str = r"Q. A card with a GUID.\nA. And here is its answer.\n\nQS. How about a card like this?\nA. Yes, an answer too.\n\nQ. How about multiline questions?\n* Like this\n* Or this?\nA. What is the hash?\n\nAnd some {cloze} deletions? For sure! Multipe {even}.\n\n<!-- {BearID:7696CDCD-803A-40BC-88D8-855DDBEC56CA-31546-000054DF17EAE2C1} -->"
+
+    expected_id = (
+        r"<!-- {BearID:7696CDCD-803A-40BC-88D8-855DDBEC56CA-31546-000054DF17EAE2C1} -->"
+    )
+
+    extracted_id = factory.get_bear_id(note_str)
+
+    assert extracted_id == expected_id

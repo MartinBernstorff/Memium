@@ -27,7 +27,7 @@ class MarkdownNoteFactory:
         return guid
 
     def get_bear_id(self, file_string: str) -> str:
-        return re.findall(r"BearID:.+", file_string)[0]
+        return re.findall(r"<!-- {BearID:.+", file_string)[0]
 
     def get_note_from_file(self, file_path: Path) -> Optional[Note]:
         with open(file_path, "r", encoding="utf8") as f:
