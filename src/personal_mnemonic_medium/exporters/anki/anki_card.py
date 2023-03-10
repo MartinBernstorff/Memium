@@ -115,7 +115,7 @@ class AnkiCard(object):
 
         else:  # If not cloze
             # Q/A cards should be unique from their phrasing. Now it's not tied to a given note.
-            hash_string = self.fields[0]
+            hash_string = " " + self.fields[0] + "\n"
             hash = simple_hash(f"{hash_string}")
             return hash  #
 

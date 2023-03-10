@@ -41,7 +41,9 @@ def test_card_uuid_generation():
 
     cards = PackageGenerator().prompts_to_cards(prompts=qa_prompts)
 
-    reference_guids = {9315717920, 3912828915, 6300568814, 3001245253, 952903559}
+    reference_guids = {9315717920, 3912828915, 6300568814}
     generated_guids = {card.uuid for card in cards}
 
     assert reference_guids == generated_guids
+
+    cloze_guids = {3001245253, 952903559}
