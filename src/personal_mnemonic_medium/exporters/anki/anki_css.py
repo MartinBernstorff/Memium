@@ -23,7 +23,7 @@ CARD_MODEL_CSS = """
             font-size: 0.7em;
             line-height: 100%;
             color: rgba(255, 255, 255, 0.4);
-	        margin-bottom: 1.4em;
+            margin-bottom: 1.4em;
         }
         div.extra {
             color: rgba(255, 0, 0, 0.1) ;
