@@ -1,16 +1,15 @@
 import pytest
-
-from personal_mnemonic_medium.note_factories.note import Note
+from personal_mnemonic_medium.note_factories.note import Document
 from personal_mnemonic_medium.prompt_extractors.qa_extractor import QAPromptExtractor
 
 
-@pytest.fixture(scope="function")
+@pytest.fixture()
 def qa_extractor():
     return QAPromptExtractor()
 
 
 def test_qa_prompt_extractor():
-    note_object = Note(
+    note_object = Document(
         title="Test note",
         content="""Test content. 
 Q. What is the first test prompt?
@@ -31,7 +30,7 @@ def test_has_qa_matches(qa_extractor):
     example_strings = [
         "QD. Testing something something",
         "QA. Testing something else, even with QA in it!",
-        "\Q. Testing newlines as well!",
+        "\\Q. Testing newlines as well!",
     ]
     matches = [string for string in example_strings if qa_extractor.has_qa(string)]
 

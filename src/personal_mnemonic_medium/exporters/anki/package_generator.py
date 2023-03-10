@@ -7,7 +7,7 @@ import hashlib
 from collections.abc import Sequence
 from pathlib import Path
 from shutil import copyfile
-from typing import Union
+from typing import Any, List, Union
 
 import genanki
 
@@ -26,7 +26,7 @@ def simple_hash(text: str) -> int:
 class DeckCollection(dict):
     """Defaultdict for decks, but with stored name."""
 
-    def __getitem__(self, deckname):
+    def __getitem__(self, deckname: str) -> Any:
         if deckname not in self:
             deck_id = simple_hash(deckname)
             self[deckname] = genanki.Deck(deck_id, deckname)
@@ -40,7 +40,7 @@ class PackageGenerator:
         pass
 
     @staticmethod
-    def cards_to_package(cards: list[AnkiCard], output_path: Path) -> Path:
+    def cards_to_package(cards: List[AnkiCard], output_path: Path) -> Path:
         """Take an iterable prompts, output an .apkg in a file called output_name.
         NOTE: We _must_ be in a temp directory.
         """
@@ -70,7 +70,7 @@ class PackageGenerator:
     def prompts_to_cards(
         self,
         prompts: Sequence[Union[QAPrompt, ClozePrompt]],
-    ) -> list[AnkiCard]:
+    ) -> List[AnkiCard]:
         """Takes an iterable of prompts and turns them into AnkiCards"""
 
         cards = []

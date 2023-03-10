@@ -1,5 +1,6 @@
 # Anki 2.1 has mathjax built in, but ankidroid and other clients don't.
 import textwrap
+from typing import Any, Dict
 
 from personal_mnemonic_medium.exporters.anki.anki_css import CARD_MODEL_CSS
 
@@ -57,7 +58,7 @@ CONFIG = {
     "card_model_template_cloze": CLOZE_MODEL_TEMPLATE,
 }
 
-VERSION_LOG = {}
+VERSION_LOG: Dict[Any, Any] = {}
 Q_TYPE_TAG = {
     "G": "med/type/1_GP",
     "A": "med/type/2_Acute_care",

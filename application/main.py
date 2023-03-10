@@ -25,7 +25,7 @@ import urllib.request
 from datetime import datetime
 from pathlib import Path
 from time import sleep
-from typing import Any
+from typing import Any, Dict
 
 import yaml  # type: ignore
 from docopt import docopt
@@ -45,7 +45,7 @@ from wasabi import msg
 ANKI_CONNECT_URL = "http://localhost:8765"
 
 # helper for creating anki connect requests
-def request(action: Any, **params: Any) -> dict"str, Any":
+def request(action: Any, **params: Any) -> Dict[str, Any]:
     return {"action": action, "params": params, "version": 6}
 
 

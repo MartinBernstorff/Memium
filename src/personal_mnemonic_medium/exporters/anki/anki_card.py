@@ -1,13 +1,58 @@
 import hashlib
 import os
 import re
-from typing import Literal, Optional
+from pathlib import Path
+from typing import Any, List, Literal, Optional, Tuple
 
 import genanki
+import misaka
 
 from personal_mnemonic_medium.exporters.anki.globals import CONFIG
-from personal_mnemonic_medium.note_factories.note import Note
+from personal_mnemonic_medium.note_factories.note import Document
 from personal_mnemonic_medium.prompt_extractors.prompt import Prompt
+
+
+def strip_header(string: str) -> str:
+    """Strip first occurrence of a markdown level 1 header"""
+    return re.sub(r"^#.*\n", "", string)
+
+
+def field_to_html(field: Any) -> str:
+    # Math processing
+    """
+    Need to extract the math in brackets so that it doesn't get markdowned.
+    If math is separated with dollar sign it is converted to brackets.
+    """
+    if CONFIG["dollar"]:
+        for (sep, (op, cl)) in [("$$", (r"\\[", r"\\]")), ("$", (r"\\(", r"\\)"))]:
+            escaped_sep = sep.replace(r"$", r"\$")
+            # ignore escaped dollar signs when splitting the field
+            field = re.split(rf"(?<!\\){escaped_sep}", field)
+            # add op(en) and cl(osing) brackets to every second element of the list
+            field[1::2] = [op + e + cl for e in field[1::2]]
+            field = "".join(field)
+    else:
+        for bracket in ["(", ")", "[", "]"]:
+            field = field.replace(rf"\{bracket}", rf"\\{bracket}")
+            # backslashes, man.
+
+    for token in ["*", "/"]:
+        if token == "/":
+            replacement = "*"
+        elif token == "*":
+            replacement = "**"
+
+        pattern = f"\\{token}[^<>\\-\n]+\\{token}"
+
+        token_instances = re.findall(pattern, field)
+
+        for instance in token_instances:
+            field = field.replace(instance, replacement + instance[1:-1] + replacement)
+
+    # Make sure every \n converts into a newline
+    field = field.replace("\n", "  \n")
+
+    return misaka.html(field, extensions=("fenced-code", "math"))
 
 
 class AnkiCard:
@@ -15,12 +60,12 @@ class AnkiCard:
 
     def __init__(
         self,
-        fields: list[str],
+        fields: List[str],
         source_markdown: str,
         source_prompt: Prompt,
-        source_note: Note,
+        source_note: Document,
         model_type: Literal["QA", "Cloze", "QA_DK"],
-        tags: Optional[list[str]] = None,
+        tags: Optional[List[str]] = None,
     ):
         self.fields = fields
         self.source_markdown = source_markdown
@@ -28,7 +73,7 @@ class AnkiCard:
         self.model_type = model_type
         self.model = self.model_string_to_genanki_model(model_type=model_type)
         self.source_prompt = source_prompt
-        self.source_note = source_note
+        self.source_document = source_note
         self.uuid = self.card_id()
 
         if self.has_subdeck_tag(self.source_markdown):
@@ -36,15 +81,12 @@ class AnkiCard:
         else:
             self.subdeck = "Default"
 
-    def get_deck_dir(self):
-        return os.path.dirname(self.filepath)
-
     @staticmethod
-    def has_subdeck_tag(input_str) -> bool:
+    def has_subdeck_tag(input_str: str) -> bool:
         return len(re.findall(r"#anki\/deck\/\S+", input_str)) != 0
 
     @staticmethod
-    def get_subdeck_name(input_str) -> str:
+    def get_subdeck_name(input_str: str) -> str:
         return (
             re.findall(r"#anki\/deck\/\S+", input_str)[0][11:]
             .replace("/", "::")
@@ -86,70 +128,45 @@ class AnkiCard:
                 css=CONFIG["card_model_css"],
                 model_type=GENANKI_QA_MODEL_TYPE,
             )
-        else:
-            raise ValueError("model_type must be either Cloze or QA")
+        raise ValueError("model_type must be either Cloze or QA")
 
-    def deckname(self):
+    def deckname(self) -> str:
         try:
             if len(self.subdeck) > 0:
                 return (
                     "0. Don't click me::1. Active::Personal Mnemonic Medium::"
                     + self.subdeck
                 )
-            else:
-                raise ValueError(
-                    "Subdeck length is 0",
-                )  # This is purposefully non-valid code
-        except:
+            raise ValueError(
+                "Subdeck length is 0",
+            )  # This is purposefully non-valid code
+        except:  # noqa
             return "0. Don't click me::1. Active::Personal Mnemonic Medium"
 
-    def basename(self):
-        with open(self.filepath, encoding="utf8") as file:
-            full_string = ""
-
-            for line in file.readlines():
-                full_string += line
-
-            uid = re.findall(r"<!-- {BearID:.+} -->", full_string)[0]
-            return uid
-
-    def card_id(self):  # The identifier for cards
+    def card_id(self) -> int:  # The identifier for cards
         if self.model_type == "Cloze":
             prompt_field = self.fields[0]
             cloze_fields = re.findall(r"{{c.+?}", prompt_field)
 
             cloze = cloze_fields[0]
 
-            basename = self.source_note.uuid
+            basename = self.source_document.uuid
             hash_value = simple_hash(f"{cloze}{basename}")
 
             return hash_value
 
-        else:  # If not cloze
-            # Q/A cards should be unique from the phrasing of the question.
-            # A bunch of this is to maintain backwards compatability with a prior version of the code, ensuring that the hash is the same.
-            hash_string = self.fields[0] + "\n"
+        # Q/A cards should be unique from the phrasing of the question.
+        # A bunch of this is to maintain backwards compatability with a prior version of the code, ensuring that the hash is the same.
+        hash_string = self.fields[0] + "\n"
 
-            if hash_string[0] != " ":
-                hash_string = " " + hash_string
+        if hash_string[0] != " ":
+            hash_string = " " + hash_string
 
-            hash = simple_hash(f"{hash_string}")
-            return hash  #
+        output_hash = simple_hash(f"{hash_string}")
+        return output_hash  #
 
-    def note_uuid(self):  # The identifier for notes
-        return (
-            self.card_id()
-        )  # This is now the hash of the BearID and the cloze or question side
-
-    def add_field(self, field, is_markdown=True):
+    def add_field(self, field: Any, is_markdown: bool = True):
         self.fields.append(compile_field(field, is_markdown))
-        self.source_markdown.append(field)
-
-    def has_cloze(self):
-        return len(self.fields) > 0 and any("{" in s for s in self.fields)
-
-    def has_front_and_back(self):
-        return len(self.fields) >= 2
 
     def finalize(self):
         """Ensure proper shape, for extraction into result formats."""
@@ -159,24 +176,27 @@ class AnkiCard:
             while len(self.fields) < 3:
                 self.fields.append("")
 
-    def to_genanki_note(self):
+    def to_genanki_note(self) -> Document:
         """Produce a genanki.Note with the specified guid."""
         return genanki.Note(
             model=self.model,
             fields=self.fields,
-            guid=self.note_uuid,
+            guid=self.uuid,
             tags=self.tags,
         )
 
-    def make_ref_pair(self, filename):
+    def make_ref_pair(self, filename: str) -> Tuple[Path, str]:
         """Take a filename relative to the card, and make it absolute."""
         newname = "%".join(filename.split(os.sep))
 
-        if os.path.isabs(filename):
-            abspath = filename
+        if os.path.isabs(filename):  # noqa
+            abspath = Path(filename)
         else:
-            abspath = os.path.normpath(os.path.join(self.get_deck_dir(), filename))
+            abspath = Path(self.get_deck_dir()) / filename
         return (abspath, newname)
+
+    def get_deck_dir(self) -> Path:
+        return Path(self.source_document.source_path).parent
 
     def determine_media_references(self):
         """Find all media references in a card"""
@@ -187,10 +207,10 @@ class AnkiCard:
             ]:  # TODO not sure how this should work:, r'\[sound:(.*?)\]']:
                 results = []
 
-                def process_match(m):
+                def process_match(m) -> str:  # noqa
                     initial_contents = m.group(1)
                     abspath, newpath = self.make_ref_pair(initial_contents)
-                    results.append((abspath, newpath))
+                    results.append((abspath, newpath))  # noqa
                     return r'src="' + newpath + '"'
 
                 current_stage = re.sub(regex, process_match, current_stage)
@@ -202,7 +222,7 @@ class AnkiCard:
             self.fields[i] = re.sub(r'alt="[^"]*?"', "", current_stage)
 
 
-def compile_field(fieldtext, is_markdown):
+def compile_field(fieldtext: str, is_markdown: bool) -> str:
     """Turn source markdown into an HTML field suitable for Anki."""
     fieldtext_sans_wiki = fieldtext.replace("[[", "<u>").replace("]]", "</u>")
 
@@ -210,8 +230,8 @@ def compile_field(fieldtext, is_markdown):
 
     if is_markdown == 0:
         return fieldtext
-    else:
-        return field_to_html(fieldtext_sans_headers)
+
+    return field_to_html(fieldtext_sans_headers)
 
 
 def simple_hash(text: str) -> int:

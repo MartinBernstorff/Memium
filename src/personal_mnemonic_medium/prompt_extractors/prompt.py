@@ -1,14 +1,14 @@
-from typing import Optional
+from typing import List, Optional
 
-from personal_mnemonic_medium.note_factories.note import Note
+from personal_mnemonic_medium.note_factories.note import Document
 
 
 class Prompt:
     def __init__(
         self,
         note_uuid: str,
-        source_note: Note,
-        tags: Optional[list[str]] = None,
+        source_note: Document,
+        tags: Optional[List[str]] = None,
     ):
         self.tags = tags
         self.note_uuid = note_uuid

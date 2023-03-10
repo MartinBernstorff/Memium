@@ -4,7 +4,7 @@ import genanki
 from personal_mnemonic_medium.exporters.anki.anki_card import AnkiCard
 from personal_mnemonic_medium.markdown_to_ankicard import markdown_to_ankicard
 from personal_mnemonic_medium.note_factories.markdown import MarkdownNoteFactory
-from personal_mnemonic_medium.note_factories.note import Note
+from personal_mnemonic_medium.note_factories.note import Document
 from personal_mnemonic_medium.prompt_extractors.cloze_extractor import (
     ClozePromptExtractor,
 )
@@ -15,7 +15,7 @@ from personal_mnemonic_medium.prompt_extractors.qa_extractor import (
 
 
 def test_custom_card_to_genanki_card():
-    source_note = Note(title="Test", content="Test", uuid="1234")
+    source_note = Document(title="Test", content="Test", uuid="1234")
     genanki_note = AnkiCard(
         fields=["Q. What is the capital of France?", "A. Paris"],
         source_markdown="Q. What is the capital of France?\nA. Paris",
@@ -34,7 +34,7 @@ def test_custom_card_to_genanki_card():
 
 
 def test_get_subtags():
-    source_note = Note(title="Test", content="Test", uuid="1234")
+    source_note = Document(title="Test", content="Test", uuid="1234")
 
     card = AnkiCard(
         fields=[""],

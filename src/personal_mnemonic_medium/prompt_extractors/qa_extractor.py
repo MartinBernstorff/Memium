@@ -1,11 +1,12 @@
 import re
+from typing import Any, List
 
-from personal_mnemonic_medium.note_factories.note import Note
+from personal_mnemonic_medium.note_factories.note import Document
 from personal_mnemonic_medium.prompt_extractors.prompt import Prompt
 
 
 class QAPrompt(Prompt):
-    def __init__(self, question: str, answer: str, *args, **kwargs) -> None:
+    def __init__(self, question: str, answer: str, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
         self.question = question
         self.answer = answer
@@ -38,7 +39,7 @@ class QAPromptExtractor:
         return answer[len(self.answer_prefix) + 2 :].rstrip()
 
     @staticmethod
-    def break_string_by_two_or_more_newlines(string: str) -> list[str]:
+    def break_string_by_two_or_more_newlines(string: str) -> List[str]:
         """Break string into a list by 2+ newlines in a row."""
         return re.split(r"(\n\n)+", string)
 
@@ -57,7 +58,7 @@ class QAPromptExtractor:
             return True
         return False
 
-    def extract_prompts(self, note: Note) -> list[QAPrompt]:
+    def extract_prompts(self, note: Document) -> List[QAPrompt]:
         prompts = []
 
         blocks = self.break_string_by_two_or_more_newlines(note.content)

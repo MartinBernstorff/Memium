@@ -2,7 +2,7 @@ import hashlib
 import re
 from typing import List
 
-from personal_mnemonic_medium.note_factories.note import Note
+from personal_mnemonic_medium.note_factories.note import Document
 from personal_mnemonic_medium.prompt_extractors.prompt import Prompt
 
 
@@ -56,7 +56,7 @@ class ClozePromptExtractor:
 
         return string
 
-    def extract_prompts(self, note: Note) -> List[ClozePrompt]:
+    def extract_prompts(self, note: Document) -> List[ClozePrompt]:
         prompts = []
 
         blocks = self.break_string_by_two_or_more_newlines(note.content)
@@ -67,7 +67,8 @@ class ClozePromptExtractor:
 
                 for selected_cloze in clozes:
                     prompt_content = self.replace_cloze_id_with_unique(
-                        block_string, selected_cloze=selected_cloze
+                        block_string,
+                        selected_cloze=selected_cloze,
                     )
 
                     prompts.append(
@@ -76,7 +77,7 @@ class ClozePromptExtractor:
                             tags=note.tags,
                             note_uuid=note.uuid,
                             source_note=note,
-                        )
+                        ),
                     )
 
         return prompts

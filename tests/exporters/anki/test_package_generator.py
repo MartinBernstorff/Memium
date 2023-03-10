@@ -1,11 +1,11 @@
 from personal_mnemonic_medium.exporters.anki.anki_card import AnkiCard
 from personal_mnemonic_medium.exporters.anki.package_generator import PackageGenerator
-from personal_mnemonic_medium.note_factories.note import Note
+from personal_mnemonic_medium.note_factories.note import Document
 from personal_mnemonic_medium.prompt_extractors.qa_extractor import QAPrompt
 
 
 def test_package_generators():
-    source_note = Note(title="Test", content="Test", uuid="1234")
+    source_note = Document(title="Test", content="Test", uuid="1234")
 
     genanki_notes = [
         AnkiCard(
