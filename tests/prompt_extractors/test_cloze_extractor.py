@@ -7,7 +7,7 @@ from personal_mnemonic_medium.prompt_extractors.cloze_extractor import (
 def test_cloze_with_hits():
     note_with_cloze = Document(
         title="Test note",
-        content=r"""Test content. 
+        content=r"""Test content.
 {Cloze deletions} are part of the {game}. Right?
 Even after newlines.
 

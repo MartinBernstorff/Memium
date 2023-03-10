@@ -3,8 +3,6 @@ import re
 from pathlib import Path
 from typing import List
 
-from numpy import source
-
 
 class Document:
     def __init__(

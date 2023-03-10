@@ -55,6 +55,25 @@ def field_to_html(field: Any) -> str:
     return misaka.html(field, extensions=("fenced-code", "math"))
 
 
+def compile_field(fieldtext: str, is_markdown: bool) -> str:
+    """Turn source markdown into an HTML field suitable for Anki."""
+    fieldtext_sans_wiki = fieldtext.replace("[[", "<u>").replace("]]", "</u>")
+
+    fieldtext_sans_headers = strip_header(fieldtext_sans_wiki)
+
+    if is_markdown == 0:
+        return fieldtext
+
+    return field_to_html(fieldtext_sans_headers)
+
+
+def simple_hash(text: str) -> int:
+    """MD5 of text, mod 2^63. Probably not a great hash function."""
+    comp_hash = int(hashlib.sha256(text.encode("utf-8")).hexdigest(), 16) % 10**10
+
+    return comp_hash
+
+
 class AnkiCard:
     """A single anki card."""
 
@@ -220,22 +239,3 @@ class AnkiCard:
 
             # Anki seems to hate alt tags :(
             self.fields[i] = re.sub(r'alt="[^"]*?"', "", current_stage)
-
-
-def compile_field(fieldtext: str, is_markdown: bool) -> str:
-    """Turn source markdown into an HTML field suitable for Anki."""
-    fieldtext_sans_wiki = fieldtext.replace("[[", "<u>").replace("]]", "</u>")
-
-    fieldtext_sans_headers = strip_header(fieldtext_sans_wiki)
-
-    if is_markdown == 0:
-        return fieldtext
-
-    return field_to_html(fieldtext_sans_headers)
-
-
-def simple_hash(text: str) -> int:
-    """MD5 of text, mod 2^63. Probably not a great hash function."""
-    comp_hash = int(hashlib.sha256(text.encode("utf-8")).hexdigest(), 16) % 10**10
-
-    return comp_hash

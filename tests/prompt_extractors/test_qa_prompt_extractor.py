@@ -11,7 +11,7 @@ def qa_extractor():
 def test_qa_prompt_extractor():
     note_object = Document(
         title="Test note",
-        content="""Test content. 
+        content="""Test content.
 Q. What is the first test prompt?
 A. This is the prompt!
         """,
