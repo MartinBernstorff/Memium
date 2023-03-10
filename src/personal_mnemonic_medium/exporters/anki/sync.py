@@ -1,9 +1,9 @@
 import json
-import typing as t
 import urllib.request
 from pathlib import Path
 
 from genanki import Model
+from wasabi import msg
 
 anki_connect_url = "http://localhost:8765"
 
@@ -26,7 +26,7 @@ def invoke(action, **params):
     global anki_connect_url
     requestJson = json.dumps(request(action, **params)).encode("utf-8")
     response = json.load(
-        urllib.request.urlopen(urllib.request.Request(anki_connect_url, requestJson))
+        urllib.request.urlopen(urllib.request.Request(anki_connect_url, requestJson)),
     )
     if len(response) != 2:
         raise Exception("response has an unexpected number of fields")
@@ -45,9 +45,9 @@ def anki_connect_is_live():
         if urllib.request.urlopen(anki_connect_url).getcode() == 200:
             return True
         else:
-            raise Exception()
+            raise Exception
     except Exception:
-        print_error(
+        msg.good(
             "Unable to reach anki connect. Make sure anki is running and the Anki Connect addon is installed.",
         )
 
@@ -69,14 +69,14 @@ def sync_package(pathToDeckPackage: Path):
 
 # synchronize the model and styling in the deck
 def sync_model(model: Model):
-    model_names_to_ids = dict()
+    model_names_to_ids = {}
     try:
         model_names_to_ids = invoke("modelNamesAndIds")
         if model.name not in model_names_to_ids:
             return
     except Exception as e:
-        print_error("\tUnable to fetch existing model names and ids from anki")
-        print_error(f"\t\t{e}")
+        msg.good("\tUnable to fetch existing model names and ids from anki")
+        msg.good(f"\t\t{e}")
 
     if anki_connect_is_live():
         try:
@@ -93,10 +93,10 @@ def sync_model(model: Model):
                     },
                 },
             )
-            print_success(f"\tUpdated model {model.name} template")
+            msg.good(f"\tUpdated model {model.name} template")
         except Exception as e:
-            print_error(f"\tUnable to update model {model.name} template")
-            print_error(f"\t\t{e}")
+            msg.good(f"\tUnable to update model {model.name} template")
+            msg.good(f"\t\t{e}")
 
         try:
             invoke(
@@ -106,7 +106,7 @@ def sync_model(model: Model):
                     "css": model.css,
                 },
             )
-            print_success(f"\tUpdated model {model.name} css")
+            msg.good(f"\tUpdated model {model.name} css")
         except Exception as e:
-            print_error(f"\tUnable to update model {model.name} css")
-            print_error(f"\t\t{e}")
+            msg.good(f"\tUnable to update model {model.name} css")
+            msg.good(f"\t\t{e}")

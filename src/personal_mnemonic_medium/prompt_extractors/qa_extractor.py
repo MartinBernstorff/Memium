@@ -19,7 +19,9 @@ class QAPromptExtractor:
 
     def get_first_question(self, string: str) -> str:
         question = re.findall(
-            self.question_prefix + r"{0,1}\.(?:(?!A\.).)*", string, flags=re.DOTALL
+            self.question_prefix + r"{0,1}\.(?:(?!A\.).)*",
+            string,
+            flags=re.DOTALL,
         )[0]
 
         return question[len(self.question_prefix) + 1 :].rstrip()
@@ -29,13 +31,15 @@ class QAPromptExtractor:
         string_padded = f"{string.rstrip()}\n\n"
 
         answer = re.findall(
-            r"\n" + self.answer_prefix + r"[ \n]+\n*.+", string_padded, re.DOTALL
+            r"\n" + self.answer_prefix + r"[ \n]+\n*.+",
+            string_padded,
+            re.DOTALL,
         )[0]
 
         return answer[len(self.answer_prefix) + 2 :].rstrip()
 
     @staticmethod
-    def break_string_by_two_or_more_newlines(string: str) -> List[str]:
+    def break_string_by_two_or_more_newlines(string: str) -> list[str]:
         """Break string into a list by 2+ newlines in a row."""
         return re.split(r"(\n\n)+", string)
 
@@ -47,14 +51,14 @@ class QAPromptExtractor:
                     r"^(?![:>]).*" + self.question_prefix + r"{0,1}\. ",
                     string,
                     flags=re.DOTALL,
-                )
+                ),
             )
             != 0
         ):
             return True
         return False
 
-    def extract_prompts(self, note: Note) -> List[QAPrompt]:
+    def extract_prompts(self, note: Note) -> list[QAPrompt]:
         prompts = []
 
         blocks = self.break_string_by_two_or_more_newlines(note.content)
@@ -71,7 +75,7 @@ class QAPromptExtractor:
                         tags=note.tags,
                         note_uuid=note.uuid,
                         source_note=note,
-                    )
+                    ),
                 )
 
         return prompts

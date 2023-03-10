@@ -27,14 +27,15 @@ import urllib.request
 from datetime import datetime
 from pathlib import Path
 from time import sleep
-from typing import Any, Dict
+from typing import Any, Dict, Union
 
 import misaka
-import yaml
+import yaml  # type: ignore
 from docopt import docopt
 from personal_mnemonic_medium.exporters.anki.globals import (
     CONFIG,
     Q_TYPE_TAG,
+    VERSION,
     VERSION_LOG,
 )
 from personal_mnemonic_medium.exporters.anki.package_generator import PackageGenerator
@@ -53,16 +54,16 @@ def request(action: Any, **params: Any) -> dict[str, Any]:
 
 
 # helper for invoking actions with anki-connect
-def invoke(action, **params):
+def invoke(action: Any, **params: Any) -> Any:
     """Helper for invoking actions with anki-connect
     Args:
-        action (string): the action to invoke
+        action (string: str): the action to invoke
     Raises:
         Exception: invalid fields provided
     Returns:
         Any: the response from anki connect
     """
-    global ANKI_CONNECT_URL
+    global ANKI_CONNECT_URL  # noqa
     requestJson = json.dumps(request(action, **params)).encode("utf-8")
     response = json.load(
         urllib.request.urlopen(urllib.request.Request(ANKI_CONNECT_URL, requestJson)),
@@ -78,13 +79,12 @@ def invoke(action, **params):
     return response["result"]
 
 
-def anki_connect_is_live():
-    global ANKI_CONNECT_URL
+def anki_connect_is_live() -> bool:
+    global ANKI_CONNECT_URL  # noqa
     try:
         if urllib.request.urlopen(ANKI_CONNECT_URL).getcode() == 200:
             return True
-        else:
-            raise Exception
+        raise Exception
     except Exception:
         return False
 
@@ -113,167 +113,13 @@ def sync_package(pathToDeckPackage: Path):
             sleep(sleep_length)
 
 
-def field_to_html(field):
-    # Math processing
-    """
-    Need to extract the math in brackets so that it doesn't get markdowned.
-    If math is separated with dollar sign it is converted to brackets.
-    """
-    if CONFIG["dollar"]:
-        for (sep, (op, cl)) in [("$$", (r"\\[", r"\\]")), ("$", (r"\\(", r"\\)"))]:
-            escaped_sep = sep.replace(r"$", r"\$")
-            # ignore escaped dollar signs when splitting the field
-            field = re.split(rf"(?<!\\){escaped_sep}", field)
-            # add op(en) and cl(osing) brackets to every second element of the list
-            field[1::2] = [op + e + cl for e in field[1::2]]
-            field = "".join(field)
-    else:
-        for bracket in ["(", ")", "[", "]"]:
-            field = field.replace(rf"\{bracket}", rf"\\{bracket}")
-            # backslashes, man.
-
-    for token in ["*", "/"]:
-        if token == "/":
-            replacement = "*"
-        elif token == "*":
-            replacement = "**"
-
-        pattern = f"\\{token}[^<>\\-\n]+\\{token}"
-
-        token_instances = re.findall(pattern, field)
-
-        for instance in token_instances:
-            field = field.replace(instance, replacement + instance[1:-1] + replacement)
-
-    # Make sure every \n converts into a newline
-    field = field.replace("\n", "  \n")
-
-    return misaka.html(field, extensions=("fenced-code", "math"))
-
-
-def strip_header(string):
-    """Strip first occurrence of a markdown level 1 header"""
-    return re.sub(r"^#.*\n", "", string)
-
-
-def compile_field(fieldtext, is_markdown):
-    """Turn source markdown into an HTML field suitable for Anki."""
-    fieldtext_sans_wiki = fieldtext.replace("[[", "<u>").replace("]]", "</u>")
-
-    fieldtext_sans_headers = strip_header(fieldtext_sans_wiki)
-
-    if is_markdown == 0:
-        return fieldtext
-    else:
-        return field_to_html(fieldtext_sans_headers)
-
-
-def string_has_cloze(string):
-    if (
-        len(re.findall(r"{.*}", string)) > 0
-        and "BearID" not in string
-        and "$$" not in string
-    ):
-        return True
-    return False
-
-
-def has_qa(string):
-    if len(re.findall(r"^(?![:>]).*Q.{0,1}\. ", string, flags=re.DOTALL)) != 0:
-        return True
-    return False
-
-
-def is_md_list(string):
-    return bool(re.search(r"\d+\.", string))
-
-
-def encode_string(string):
-    return string.replace(" ", "%20").replace("/", "%2F")
-
-
-def has_subdeck_tag(string):
-    return len(re.findall(r"#anki\/deck\/\S+", string)) != 0
-
-
-def get_first_question(string) -> str:
-    """
-    Find the Anki question in a string.
-
-    """
-    question = re.findall(r"Q.{0,1}\.(?:(?!A\.).)*", string, flags=re.DOTALL)[0]
-
-    return question
-
-
-def get_first_answer(string) -> str:
-    """
-    Find the Anki answer in a string.
-
-    Returns:
-        String
-    """
-    # I have to use positive lookahead to match code-blocks - to ensure the last answer is matched as well, I add 2 newlines to string. A little hacky.
-
-    string_padded = f"{string.rstrip()}\n\n"
-
-    answer = re.findall(r"\nA\.[ \n]+\n*.+", string_padded, re.DOTALL)[0]
-
-    return answer
-
-
-def gen_bear_button_html(filepath):
-    bear_base = "bear://x-callback-url/open-note?title="
-
-    filename = os.path.basename(filepath)[:-3]
-    file_url = urllib.parse.quote(filename)
-
-    bear_extension = "&show_window=yes&new_window=yes&edit=yes"
-
-    href = bear_base + file_url + bear_extension
-
-    return f'<h4 class="right"><a href="{href}">Bear</a></h4>'
-
-
-def get_q_type_tag(question_string):
-    q_type_letter = re.findall(r"Q\w{0,1}\.", question_string)[0][1]
-    return Q_TYPE_TAG[q_type_letter]
-
-
-def get_content_only(string):
-    string_stripped = strip_header(strip_backlinks(string))
-
-    return string_stripped
-
-
-def complex_hash(text):
-    """MD5 of text, mod 2^63. Probably not a great hash function."""
-    return int(hashlib.sha256(text.encode("utf-8")).hexdigest(), 16) % 10**15
-
-
-def line_prepender(filename, line):
-    with open(filename, "r+") as f:
-        content = f.read()
-        f.seek(0, 0)
-        f.write(line.rstrip("\r\n") + "\n" + content)
-
-
-def add_uid(filepath):
-    with open(filepath, encoding="utf8") as f:
-        prefix = f.readline()[0:5]
-        if prefix != "#####":
-            file_id = complex_hash(filepath)
-            line_prepender(filepath, "###### " + str(file_id))
-            return
-
-
-def apply_arguments(arguments):
-    global CONFIG
+def apply_arguments(arguments: Any) -> None:
+    global CONFIG  # noqa
     if arguments.get("--configFile") is not None:
-        config_file_path = os.path.abspath(
-            os.path.expanduser(arguments.get("--configFile")),
+        config_file_path = Path.resolve(
+            Path.expanduser(arguments.get("--configFile")),
         )
-        with open(config_file_path) as config_file:
+        with Path(config_file_path).open() as config_file:
             CONFIG.update(yaml.load(config_file))
     if arguments.get("--config") is not None:
         CONFIG.update(yaml.load(arguments.get("--config")))
@@ -288,13 +134,12 @@ def apply_arguments(arguments):
 def main():
     """Run the thing."""
     apply_arguments(docopt(__doc__, version=VERSION))
-    # print(yaml.dump(CONFIG))
-    initial_dir = os.getcwd()
-    recur_dir = os.path.abspath(os.path.expanduser(CONFIG["recur_dir"]))
-    pkg_arg = os.path.abspath(os.path.expanduser(CONFIG["pkg_arg"]))
-    version_log = os.path.abspath(os.path.expanduser(CONFIG["version_log"]))
+    initial_dir = Path.getcwd()
+    recur_dir = Path.resolve(Path.expanduser(CONFIG["recur_dir"]))
+    pkg_arg = Path.resolve(Path.expanduser(CONFIG["pkg_arg"]))
+    version_log = Path.resolve(Path.expanduser(CONFIG["version_log"]))
 
-    global IMPORT_TIME
+    global IMPORT_TIME  # noqa
     IMPORT_TIME = "{}".format(
         datetime.now().strftime("%Y.%m/%d_%H:%M"),
     )  # Init as global to avoid each card getting separate times
@@ -308,7 +153,7 @@ def main():
     sync_package(package_path)
     os.chdir(initial_dir)
 
-    json.dump(VERSION_LOG, open(version_log, "w"))
+    json.dump(VERSION_LOG, Path(version_log).open("w"))
 
 
 if __name__ == "__main__":

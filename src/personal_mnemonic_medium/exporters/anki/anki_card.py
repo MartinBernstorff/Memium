@@ -1,7 +1,7 @@
 import hashlib
 import os
 import re
-from typing import List, Literal
+from typing import List, Literal, Optional
 
 import genanki
 
@@ -10,17 +10,17 @@ from personal_mnemonic_medium.note_factories.note import Note
 from personal_mnemonic_medium.prompt_extractors.prompt import Prompt
 
 
-class AnkiCard(object):
+class AnkiCard:
     """A single anki card."""
 
     def __init__(
         self,
-        fields: List[str],
+        fields: list[str],
         source_markdown: str,
-        tags: List[str],
-        model_type: Literal["QA", "Cloze", "QA_DK"],
         source_prompt: Prompt,
         source_note: Note,
+        model_type: Literal["QA", "Cloze", "QA_DK"],
+        tags: Optional[list[str]] = None,
     ):
         self.fields = fields
         self.source_markdown = source_markdown
@@ -51,9 +51,11 @@ class AnkiCard(object):
             .replace("#", "")
         )
 
-    def model_string_to_genanki_model(self, model_type="Cloze") -> genanki.Model:
+    def model_string_to_genanki_model(self, model_type: str = "Cloze") -> genanki.Model:
         GENANKI_QA_MODEL_TYPE = 1
         GENANKI_CLOZE_MODEL_TYPE = 1
+
+        CONFIG: dict[str, str]  # type: ignore
 
         if model_type == "Cloze":
             return genanki.Model(
@@ -64,7 +66,8 @@ class AnkiCard(object):
                 css=CONFIG["card_model_css"],
                 model_type=GENANKI_CLOZE_MODEL_TYPE,  # This is the model_type number for genanki, takes 0 for QA or 1 for cloze
             )
-        elif model_type == "QA":
+
+        if model_type == "QA":
             return genanki.Model(
                 model_id=simple_hash(CONFIG["card_model_name_qa"]),
                 name=CONFIG["card_model_name_qa"],
@@ -73,7 +76,8 @@ class AnkiCard(object):
                 css=CONFIG["card_model_css"],
                 model_type=GENANKI_QA_MODEL_TYPE,
             )
-        elif model_type == "QA_DA":
+
+        if model_type == "QA_DA":
             return genanki.Model(
                 model_id=simple_hash(CONFIG["card_model_name_qa_da"]),
                 name=CONFIG["card_model_name_qa_da"],
@@ -94,13 +98,13 @@ class AnkiCard(object):
                 )
             else:
                 raise ValueError(
-                    "Subdeck length is 0"
+                    "Subdeck length is 0",
                 )  # This is purposefully non-valid code
         except:
             return "0. Don't click me::1. Active::Personal Mnemonic Medium"
 
     def basename(self):
-        with open(self.filepath, "r", encoding="utf8") as file:
+        with open(self.filepath, encoding="utf8") as file:
             full_string = ""
 
             for line in file.readlines():
@@ -126,7 +130,7 @@ class AnkiCard(object):
             # A bunch of this is to maintain backwards compatability with a prior version of the code, ensuring that the hash is the same.
             hash_string = self.fields[0] + "\n"
 
-            if not hash_string[0] == " ":
+            if hash_string[0] != " ":
                 hash_string = " " + hash_string
 
             hash = simple_hash(f"{hash_string}")
@@ -158,7 +162,10 @@ class AnkiCard(object):
     def to_genanki_note(self):
         """Produce a genanki.Note with the specified guid."""
         return genanki.Note(
-            model=self.model, fields=self.fields, guid=self.note_uuid, tags=self.tags
+            model=self.model,
+            fields=self.fields,
+            guid=self.note_uuid,
+            tags=self.tags,
         )
 
     def make_ref_pair(self, filename):
@@ -176,7 +183,7 @@ class AnkiCard(object):
         for i, field in enumerate(self.fields):
             current_stage = field
             for regex in [
-                r'src="([^"]*?)"'
+                r'src="([^"]*?)"',
             ]:  # TODO not sure how this should work:, r'\[sound:(.*?)\]']:
                 results = []
 

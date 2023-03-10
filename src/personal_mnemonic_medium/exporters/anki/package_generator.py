@@ -4,9 +4,10 @@ Can take an arbitrary amount of post-processing steps to be applied.
 """
 
 import hashlib
+from collections.abc import Sequence
 from pathlib import Path
 from shutil import copyfile
-from typing import List, Sequence, Union
+from typing import List, Union
 
 import genanki
 
@@ -39,7 +40,7 @@ class PackageGenerator:
         pass
 
     @staticmethod
-    def cards_to_package(cards: List[AnkiCard], output_path: Path) -> Path:
+    def cards_to_package(cards: list[AnkiCard], output_path: Path) -> Path:
         """Take an iterable prompts, output an .apkg in a file called output_name.
         NOTE: We _must_ be in a temp directory.
         """
@@ -51,7 +52,8 @@ class PackageGenerator:
             card.finalize()
             for abspath, newpath in card.determine_media_references():
                 copyfile(
-                    abspath, newpath
+                    abspath,
+                    newpath,
                 )  # This is inefficient but definitely works on all platforms.
                 media.add(newpath)
             decks[card.deckname()].add_note(card.to_genanki_note())
@@ -66,8 +68,9 @@ class PackageGenerator:
         return Path(output_path)
 
     def prompts_to_cards(
-        self, prompts: Sequence[Union[QAPrompt, ClozePrompt]]
-    ) -> List[AnkiCard]:
+        self,
+        prompts: Sequence[Union[QAPrompt, ClozePrompt]],
+    ) -> list[AnkiCard]:
         """Takes an iterable of prompts and turns them into AnkiCards"""
 
         cards = []

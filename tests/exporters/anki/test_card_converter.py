@@ -5,31 +5,50 @@ from personal_mnemonic_medium.exporters.anki.anki_card import AnkiCard
 from personal_mnemonic_medium.exporters.anki.package_generator import PackageGenerator
 from personal_mnemonic_medium.markdown_to_ankicard import markdown_to_ankicard
 from personal_mnemonic_medium.note_factories.markdown import MarkdownNoteFactory
+from personal_mnemonic_medium.note_factories.note import Note
 from personal_mnemonic_medium.prompt_extractors.cloze_extractor import (
     ClozePromptExtractor,
 )
-from personal_mnemonic_medium.prompt_extractors.qa_extractor import QAPromptExtractor
+from personal_mnemonic_medium.prompt_extractors.qa_extractor import (
+    QAPrompt,
+    QAPromptExtractor,
+)
 
 
 def test_custom_card_to_genanki_card():
+    source_note = Note(title="Test", content="Test", uuid="1234")
     genanki_note = AnkiCard(
         fields=["Q. What is the capital of France?", "A. Paris"],
         source_markdown="Q. What is the capital of France?\nA. Paris",
         tags=["test"],
         model_type="QA",
-        note_uuid="1234",
+        source_prompt=QAPrompt(
+            question="What is the capital of France?",
+            answer="Paris",
+            note_uuid="1234",
+            source_note=source_note,
+        ),
+        source_note=source_note,
     ).to_genanki_note()
 
     assert isinstance(genanki_note, genanki.Note)
 
 
 def test_get_subtags():
+    source_note = Note(title="Test", content="Test", uuid="1234")
+
     card = AnkiCard(
         fields=[""],
         source_markdown="Testing subdeck extraction, #anki/deck/Medicine, #anki/tag/med/Endocrinology",
         tags=["test"],
         model_type="QA",
-        note_uuid="1234",
+        source_prompt=QAPrompt(
+            question="What is the capital of France?",
+            answer="Paris",
+            note_uuid="1234",
+            source_note=source_note,
+        ),
+        source_note=source_note,
     )
 
     assert "Medicine" in card.subdeck
@@ -51,7 +70,8 @@ def test_cloze_uuid_generation():
         Path(__file__).parent.parent.parent / "test_md_files" / "test_card_guid.md"
     )
     cloze_cards = markdown_to_ankicard(
-        file_path=file_path, extractors=[ClozePromptExtractor()]
+        file_path=file_path,
+        extractors=[ClozePromptExtractor()],
     )
 
     cloze_generated_guids = {card.uuid for card in cloze_cards}

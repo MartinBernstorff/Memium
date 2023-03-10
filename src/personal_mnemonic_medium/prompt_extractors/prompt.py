@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 
 from personal_mnemonic_medium.note_factories.note import Note
 
@@ -6,9 +6,9 @@ from personal_mnemonic_medium.note_factories.note import Note
 class Prompt:
     def __init__(
         self,
-        tags: List[str],
         note_uuid: str,
         source_note: Note,
+        tags: Optional[list[str]] = None,
     ):
         self.tags = tags
         self.note_uuid = note_uuid
