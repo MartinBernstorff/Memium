@@ -6,14 +6,12 @@ Can take an arbitrary amount of post-processing steps to be applied.
 import hashlib
 from pathlib import Path
 from shutil import copyfile
-from typing import List, Optional, Sequence, Union
+from typing import List, Sequence, Union
 
 import genanki
-from wasabi import msg
 
 from personal_mnemonic_medium.exporters.anki.anki_card import AnkiCard
 from personal_mnemonic_medium.prompt_extractors.cloze_extractor import ClozePrompt
-from personal_mnemonic_medium.prompt_extractors.prompt import Prompt
 from personal_mnemonic_medium.prompt_extractors.qa_extractor import QAPrompt
 
 
@@ -81,7 +79,7 @@ class PackageGenerator:
                     tags=prompt.tags,
                     model_type="QA",
                     source_markdown=prompt.source_note.content,
-                    note_uuid=prompt.uuid,
+                    note_uuid=prompt.note_uuid,
                 )
             elif isinstance(prompt, ClozePrompt):
                 card = AnkiCard(
@@ -89,7 +87,7 @@ class PackageGenerator:
                     tags=prompt.tags,
                     model_type="Cloze",
                     source_markdown=prompt.source_note.content,
-                    note_uuid=prompt.uuid,
+                    note_uuid=prompt.note_uuid,
                 )
 
             cards += [card]

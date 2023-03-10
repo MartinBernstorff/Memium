@@ -69,7 +69,7 @@ class QAPromptExtractor:
                         question=question,
                         answer=answer,
                         tags=note.tags,
-                        uuid=note.uuid,
+                        note_uuid=note.uuid,
                         source_note=note,
                     )
                 )
