@@ -25,8 +25,9 @@ class ClozePromptExtractor:
     def has_cloze(string: str) -> bool:
         if (
             len(re.findall(r"{.*}", string)) > 0
-            and "BearID" not in string
-            and "$$" not in string
+            and "BearID" not in string  # Exclude BearID
+            and "$$" not in string  # Exclude math
+            and r"```" not in string  # Exclude code
         ):
             return True
         return False
