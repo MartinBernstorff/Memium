@@ -55,16 +55,10 @@ def field_to_html(field: Any) -> str:
     return misaka.html(field, extensions=("fenced-code", "math"))
 
 
-def compile_field(fieldtext: str, is_markdown: bool) -> str:
+def compile_field(fieldtext: str) -> str:
     """Turn source markdown into an HTML field suitable for Anki."""
     fieldtext_sans_wiki = fieldtext.replace("[[", "<u>").replace("]]", "</u>")
-
-    fieldtext_sans_headers = strip_header(fieldtext_sans_wiki)
-
-    if is_markdown == 0:
-        return fieldtext
-
-    return field_to_html(fieldtext_sans_headers)
+    return field_to_html(fieldtext_sans_wiki)
 
 
 def simple_hash(text: str) -> int:
@@ -86,7 +80,7 @@ class AnkiCard:
         model_type: Literal["QA", "Cloze", "QA_DK"],
         tags: Optional[List[str]] = None,
     ):
-        self.fields = fields
+        self.fields = [compile_field(field) for field in fields]
         self.source_markdown = source_markdown
         self.tags = tags
         self.model_type = model_type
