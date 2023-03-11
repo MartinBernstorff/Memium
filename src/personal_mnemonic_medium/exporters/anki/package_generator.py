@@ -50,12 +50,17 @@ class PackageGenerator:
 
         for card in cards:
             card.finalize()
+
             for abspath, newpath in card.determine_media_references():
-                copyfile(
-                    abspath,
-                    newpath,
-                )  # This is inefficient but definitely works on all platforms.
-                media.add(newpath)
+                try:
+                    copyfile(
+                        abspath,
+                        newpath,
+                    )  # This is inefficient but definitely works on all platforms.
+                    media.add(newpath)
+                except FileNotFoundError as e:
+                    print(f"Could not find file {abspath} for media, {e}.")
+
             decks[card.deckname()].add_note(card.to_genanki_note())
 
         if len(decks) == 0:
