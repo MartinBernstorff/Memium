@@ -129,10 +129,10 @@ def apply_arguments(arguments: Any) -> None:
 def main():
     """Run the thing."""
     apply_arguments(docopt(__doc__, version=VERSION))
-    initial_dir = Path.getcwd()
-    recur_dir = Path.resolve(Path.expanduser(CONFIG["recur_dir"]))
-    pkg_arg = Path.resolve(Path.expanduser(CONFIG["pkg_arg"]))
-    version_log = Path.resolve(Path.expanduser(CONFIG["version_log"]))
+    initial_dir = Path(__file__).parent
+    recur_dir = Path(CONFIG["recur_dir"])
+    pkg_arg = Path(CONFIG["pkg_arg"])
+    version_log = Path(CONFIG["version_log"])
 
     cards = markdown_to_ankicard(
         dir_path=recur_dir,

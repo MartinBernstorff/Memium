@@ -1,4 +1,5 @@
 import re
+from multiprocessing.sharedctypes import Value
 from typing import Any, List
 
 from personal_mnemonic_medium.note_factories.note import Document
@@ -66,7 +67,13 @@ class QAPromptExtractor:
         for block_string in blocks:
             if self.has_qa(block_string):
                 question = self.get_first_question(block_string)
-                answer = self.get_first_answer(block_string)
+                try:
+                    answer = self.get_first_answer(block_string)
+                except IndexError as e:
+                    print(
+                        f"Could not find answer in {note.title} for {question}",
+                    )
+                    continue
 
                 prompts.append(
                     QAPrompt(

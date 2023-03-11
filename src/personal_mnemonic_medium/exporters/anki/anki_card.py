@@ -113,7 +113,7 @@ class AnkiCard:
         )
 
     def model_string_to_genanki_model(self, model_type: str = "Cloze") -> genanki.Model:
-        GENANKI_QA_MODEL_TYPE = 1
+        GENANKI_QA_MODEL_TYPE = 0
         GENANKI_CLOZE_MODEL_TYPE = 1
 
         global CONFIG  # noqa
