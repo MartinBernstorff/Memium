@@ -31,7 +31,6 @@ jobs:
           else
             echo "Cruft check failed"
             echo "export CRUFT_FAILED=1" >> $GITHUB_ENV
-            exit 0
           fi
       - uses: mshick/add-pr-comment@v2
         if: env.cruft_failed == '1'
