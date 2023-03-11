@@ -16,10 +16,10 @@ VERSION = "0.1"
 QA_MODEL_TEMPLATE = [
     {
         "name": "Ankdown QA DK Card",
-        "qfmt": '<div class="front">{{{{Question}}}}{{{{tts da_DK  speed=1.4:Question}}}}\n{}</div>\n<div class="extra">{{{{Extra}}}}</div>'.format(
+        "qfmt": '<div class="front">{{{{Question}}}}\n{}</div>\n<div class="extra">{{{{Extra}}}}</div>'.format(
             CARD_MATHJAX_CONTENT,
         ),
-        "afmt": '<div class="back"><div class="question">{{{{Question}}}}</div><div class="answer">{{{{Answer}}}}{{{{tts da_DK speed=1.4:Answer}}}}</div>\n\n<div class="extra">{{{{Extra}}}}</div>{}</div>'.format(
+        "afmt": '<div class="back"><div class="question">{{{{Question}}}}</div><div class="answer">{{{{Answer}}}}</div>\n\n<div class="extra">{{{{Extra}}}}</div>{}</div>'.format(
             CARD_MATHJAX_CONTENT,
         ),
     },
