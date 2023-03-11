@@ -1,5 +1,4 @@
 import re
-from multiprocessing.sharedctypes import Value
 from typing import Any, List
 
 from personal_mnemonic_medium.note_factories.note import Document
@@ -69,7 +68,7 @@ class QAPromptExtractor:
                 question = self.get_first_question(block_string)
                 try:
                     answer = self.get_first_answer(block_string)
-                except IndexError as e:
+                except IndexError:
                     print(
                         f"Could not find answer in {note.title} for {question}",
                     )
