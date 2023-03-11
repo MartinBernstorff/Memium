@@ -115,3 +115,5 @@ ENV/
 *.apkg
 
 .pytest_cache
+pytest.xml
+pytest-coverage.txt

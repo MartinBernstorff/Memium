@@ -10,3 +10,5 @@ This holds doubly true if you can put the information into contex, for example u
 This thinking is largely inspired by Andy Matuschak's [Personal Mnemonic Medium](https://notes.andymatuschak.org/The_mnemonic_medium_can_be_extended_to_one%E2%80%99s_personal_notes), and the code is based on the unmaintained [Ankdown](https://github.com/benwr/ankdown).
 
 This is FYI-style open source, in the sense that the code has idiosyncrasies for my specific implementation. If you want to generalise it, feel free to do so!
+
+<!-- {BearID:15521d460dcfdfc1500f28ce9525bf6eef5a8d8220e3d0b1efab11a4a0a511c6} -->
