@@ -30,11 +30,11 @@ jobs:
             echo "Cruft check passed"
           else
             echo "Cruft check failed"
-            existing_comment=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/comments" | jq -r '.[] | select(.body | test("Cruft check failed.")) | .id')
+            existing_comment=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/comments" | jq -r '.[] | select(.body | test("Cruft check failed.") | .id')
             if [ -z "$existing_comment" ]; then
               curl -XPOST -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" -d '{"body": "Cruft check failed. This means that the template this repo is based on, which contains continuous integration etc., has been updated. Feel free to either 1) Ignore it or, if you're feeling extra helpful, 2) Running `cruft update` to merge any issues."}' "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/comments"
             else
-              echo "Cruft check failed comment already exists"
+              echo "Comment already exists"
             fi
             exit 1
           fi
