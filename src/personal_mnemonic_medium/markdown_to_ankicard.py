@@ -36,7 +36,7 @@ def markdown_to_ankicard(
 
     for extractor in extractors:
         for note in notes:
-            collected_prompts += extractor.extract_prompts(note)  # type: ignore
+            collected_prompts += extractor.extract_prompts(note)
 
     cards = PackageGenerator().prompts_to_cards(prompts=collected_prompts)
     return cards
