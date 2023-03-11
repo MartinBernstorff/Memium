@@ -179,8 +179,8 @@ class AnkiCard:
         output_hash = simple_hash(f"{hash_string}")
         return output_hash
 
-    def add_field(self, field: Any, is_markdown: bool = True):
-        self.compiled_fields.append(compile_field(field, is_markdown))
+    def add_field(self, field: Any):
+        self.compiled_fields.append(compile_field(field))
 
     def finalize(self):
         """Ensure proper shape, for extraction into result formats."""
