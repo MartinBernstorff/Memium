@@ -80,7 +80,8 @@ class AnkiCard:
         model_type: Literal["QA", "Cloze", "QA_DK"],
         tags: Optional[List[str]] = None,
     ):
-        self.fields = [compile_field(field) for field in fields]
+        self.markdown_fields = fields
+        self.compiled_fields = [compile_field(field) for field in fields]
         self.source_markdown = source_markdown
         self.tags = tags
         self.model_type = model_type
@@ -158,7 +159,7 @@ class AnkiCard:
 
     def card_id(self) -> int:  # The identifier for cards
         if self.model_type == "Cloze":
-            prompt_field = self.fields[0]
+            prompt_field = self.compiled_fields[0]
             cloze_fields = re.findall(r"{{c.+?}", prompt_field)
 
             cloze = cloze_fields[0]
@@ -170,30 +171,30 @@ class AnkiCard:
 
         # Q/A cards should be unique from the phrasing of the question.
         # A bunch of this is to maintain backwards compatability with a prior version of the code, ensuring that the hash is the same.
-        hash_string = self.fields[0] + "\n"
+        hash_string = self.markdown_fields[0] + "\n"
 
         if hash_string[0] != " ":
             hash_string = " " + hash_string
 
         output_hash = simple_hash(f"{hash_string}")
-        return output_hash  #
+        return output_hash
 
     def add_field(self, field: Any, is_markdown: bool = True):
-        self.fields.append(compile_field(field, is_markdown))
+        self.compiled_fields.append(compile_field(field, is_markdown))
 
     def finalize(self):
         """Ensure proper shape, for extraction into result formats."""
-        if len(self.fields) > 3:
-            self.fields = self.fields[:3]
+        if len(self.compiled_fields) > 3:
+            self.compiled_fields = self.compiled_fields[:3]
         else:
-            while len(self.fields) < 3:
-                self.fields.append("")
+            while len(self.compiled_fields) < 3:
+                self.compiled_fields.append("")
 
     def to_genanki_note(self) -> Document:
         """Produce a genanki.Note with the specified guid."""
         return genanki.Note(
             model=self.model,
-            fields=self.fields,
+            fields=self.compiled_fields,
             guid=self.uuid,
             tags=self.tags,
         )
@@ -213,7 +214,7 @@ class AnkiCard:
 
     def determine_media_references(self):
         """Find all media references in a card"""
-        for i, field in enumerate(self.fields):
+        for i, field in enumerate(self.compiled_fields):
             current_stage = field
             for regex in [
                 r'src="([^"]*?)"',
@@ -232,4 +233,4 @@ class AnkiCard:
                     yield r
 
             # Anki seems to hate alt tags :(
-            self.fields[i] = re.sub(r'alt="[^"]*?"', "", current_stage)
+            self.compiled_fields[i] = re.sub(r'alt="[^"]*?"', "", current_stage)
