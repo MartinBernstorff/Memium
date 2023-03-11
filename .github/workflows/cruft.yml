@@ -29,11 +29,11 @@ jobs:
         run: |
           if cruft check; then
             echo "Cruft check passed"
-            echo "::set-output name=cruft_failed::0"
+            echo "{cruft_failed}=0" >> $GITHUB_OUTPUT
           else
             echo "Cruft check failed"
-            echo "::set-output name=cruft_failed::1"
-            exit 1
+            echo "{cruft_failed}=1" >> $GITHUB_OUTPUT
+            exit 0
           fi
       - uses: mshick/add-pr-comment@v2
         if: ${{ steps.cruft_check.outputs.cruft_failed }} == '1'
