@@ -39,4 +39,6 @@ jobs:
         if: ${{ steps.cruft_check.outputs.cruft_failed }} == '1'
         with:
           message: |
-            Cruft check failed. Feel free to either disregard or, if you're feeling extra helpful, run `cruft update` and merge in the updates.
+            ✨Cruft check failed. This means that there's a newer version of contious integration files or other tooling in the template this project was generated from ✨
+
+            Feel free to either disregard or, if you're feeling extra helpful, run `cruft update` and merge in the updates 🧠
