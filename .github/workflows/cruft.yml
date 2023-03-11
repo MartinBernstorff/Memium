@@ -25,15 +25,18 @@ jobs:
         run: pip install cruft
 
       - name: Run Cruft Check
+        id: cruft_check
         run: |
           if cruft check; then
             echo "Cruft check passed"
+            echo "::set-output name=cruft_failed::0"
           else
             echo "Cruft check failed"
-            echo "export CRUFT_FAILED=1" >> $GITHUB_ENV
+            echo "::set-output name=cruft_failed::1"
+            exit 1
           fi
       - uses: mshick/add-pr-comment@v2
-        if: env.cruft_failed == '1'
+        if: ${{ steps.cruft_check.outputs.cruft_failed }} == '1'
         with:
           message: |
             Cruft check failed. Feel free to either disregard or, if you're feeling extra helpful, run `cruft update` and merge in the updates.
