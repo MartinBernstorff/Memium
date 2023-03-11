@@ -15,7 +15,12 @@ from personal_mnemonic_medium.prompt_extractors.qa_extractor import (
 
 
 def test_custom_card_to_genanki_card():
-    source_note = Document(title="Test", content="Test", uuid="1234")
+    source_note = Document(
+        title="Test",
+        content="Test",
+        uuid="1234",
+        source_path=Path(__file__),
+    )
     genanki_note = AnkiCard(
         fields=["Q. What is the capital of France?", "A. Paris"],
         source_markdown="Q. What is the capital of France?\nA. Paris",
@@ -34,7 +39,12 @@ def test_custom_card_to_genanki_card():
 
 
 def test_get_subtags():
-    source_note = Document(title="Test", content="Test", uuid="1234")
+    source_note = Document(
+        title="Test",
+        content="Test",
+        uuid="1234",
+        source_path=Path(__file__),
+    )
 
     card = AnkiCard(
         fields=[""],

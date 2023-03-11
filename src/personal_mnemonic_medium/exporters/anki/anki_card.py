@@ -116,11 +116,11 @@ class AnkiCard:
         GENANKI_QA_MODEL_TYPE = 1
         GENANKI_CLOZE_MODEL_TYPE = 1
 
-        CONFIG: dict[str, str]  # type: ignore
+        global CONFIG  # noqa
 
         if model_type == "Cloze":
             return genanki.Model(
-                model_id=simple_hash(CONFIG["card_model_name_cloze"]),
+                model_id=simple_hash(CONFIG["card_model_name_cloze"]),  # type: ignore
                 name=CONFIG["card_model_name_cloze"],
                 fields=CONFIG["card_model_fields_cloze"],
                 templates=CONFIG["card_model_template_cloze"],
@@ -130,7 +130,7 @@ class AnkiCard:
 
         if model_type == "QA":
             return genanki.Model(
-                model_id=simple_hash(CONFIG["card_model_name_qa"]),
+                model_id=simple_hash(CONFIG["card_model_name_qa"]),  # type: ignore
                 name=CONFIG["card_model_name_qa"],
                 fields=CONFIG["card_model_fields_qa"],
                 templates=CONFIG["card_model_template_qa"],
@@ -140,7 +140,7 @@ class AnkiCard:
 
         if model_type == "QA_DA":
             return genanki.Model(
-                model_id=simple_hash(CONFIG["card_model_name_qa_da"]),
+                model_id=simple_hash(CONFIG["card_model_name_qa_da"]),  # type: ignore
                 name=CONFIG["card_model_name_qa_da"],
                 fields=CONFIG["card_model_fields_qa"],
                 templates=CONFIG["card_model_template_qa_da"],

@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from personal_mnemonic_medium.note_factories.note import Document
 from personal_mnemonic_medium.prompt_extractors.cloze_extractor import (
     ClozePromptExtractor,
@@ -14,6 +16,7 @@ Even after newlines.
 Even after new blocks. They should {all} be found.
         """,
         uuid="1234",
+        source_path=Path(__file__),
     )
 
     prompts = ClozePromptExtractor().extract_prompts(note_with_cloze)
@@ -26,6 +29,7 @@ def test_cloze_no_hits():
         title="Test note",
         content=r"""Test content.""",
         uuid="1234",
+        source_path=Path(__file__),
     )
 
     prompts = ClozePromptExtractor().extract_prompts(note_without_cloze)
