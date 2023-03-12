@@ -117,3 +117,4 @@ ENV/
 .pytest_cache
 pytest.xml
 pytest-coverage.txt
+BearImages*
