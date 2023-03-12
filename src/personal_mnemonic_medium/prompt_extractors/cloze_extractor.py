@@ -28,6 +28,8 @@ class ClozePromptExtractor:
             and "BearID" not in string  # Exclude BearID
             and "$$" not in string  # Exclude math
             and r"```" not in string  # Exclude code
+            and "Q." not in string  # Exclude Q&A
+            and "A." not in string  # Exclude Q&A
         ):
             return True
         return False
