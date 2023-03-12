@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.2.0 (2023-03-12)
+### Feature
+* Exclude q. and a. fields from cloze prompts ([`5b2d6cd`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/5b2d6cda3825582381444b36c6ef1dbc8779d4af))
+
 ## v0.1.0 (2023-03-11)
 ### Feature
 * Ignore cloze-likes in code blocks ([`80b0888`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/80b0888839ea8206fc1697674be4ac2e42e0627f))
