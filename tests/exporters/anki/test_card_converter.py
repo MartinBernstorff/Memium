@@ -96,6 +96,6 @@ def test_get_bear_id():
         r"<!-- {BearID:7696CDCD-803A-40BC-88D8-855DDBEC56CA-31546-000054DF17EAE2C1} -->"
     )
 
-    extracted_id = factory.get_bear_id(note_str)
+    extracted_id = factory.get_note_id(note_str)
 
     assert extracted_id == expected_id
