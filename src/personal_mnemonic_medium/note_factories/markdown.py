@@ -18,7 +18,7 @@ class MarkdownNoteFactory:
         self.cut_note_after = cut_note_after
 
     def get_and_append_new_uuid(self, file_path: Path) -> str:
-        guid = os.urandom(32).hex()
+        guid = os.urandom(32).hex()[0:32]
 
         with file_path.open("a", encoding="utf8") as f:
             f.write("\n")
@@ -26,7 +26,7 @@ class MarkdownNoteFactory:
 
         return guid
 
-    def get_bear_id(self, file_string: str) -> str:
+    def get_note_id(self, file_string: str) -> str:
         return re.findall(r"<!-- {BearID:.+", file_string)[0]
 
     def get_note_from_file(self, file_path: Path) -> Optional[Document]:
@@ -34,7 +34,7 @@ class MarkdownNoteFactory:
             file_contents = f.read()
 
             try:
-                uuid = self.get_bear_id(file_contents)
+                uuid = self.get_note_id(file_contents)
             except IndexError:
                 uuid = self.get_and_append_new_uuid(file_path)
 
