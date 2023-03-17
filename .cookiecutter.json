@@ -11,5 +11,6 @@
     "license": "MIT",
     "package_name": "personal_mnemonic_medium",
     "project_name": "personal-mnemonic-medium",
+    "setup_for_dev_bash_script": "y",
     "version": "0.0.0"
 }
