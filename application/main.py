@@ -26,7 +26,7 @@ from pathlib import Path
 from time import sleep
 from typing import Any, Dict
 
-import yaml  # type: ignore
+import yaml
 from docopt import docopt
 from personal_mnemonic_medium.exporters.anki.globals import (
     CONFIG,
