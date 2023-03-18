@@ -26,7 +26,6 @@ from pathlib import Path
 from time import sleep
 from typing import Any, Dict
 
-import yaml  # type: ignore
 from docopt import docopt
 from personal_mnemonic_medium.exporters.anki.globals import (
     CONFIG,
@@ -110,14 +109,6 @@ def sync_package(pathToDeckPackage: Path):
 
 def apply_arguments(arguments: Any) -> None:
     global CONFIG  # noqa
-    if arguments.get("--configFile") is not None:
-        config_file_path = Path.resolve(
-            Path.expanduser(arguments.get("--configFile")),
-        )
-        with Path(config_file_path).open() as config_file:
-            CONFIG.update(yaml.load(config_file))
-    if arguments.get("--config") is not None:
-        CONFIG.update(yaml.load(arguments.get("--config")))
     if arguments.get("-p") is not None:
         CONFIG["pkg_arg"] = arguments.get("-p")
     if arguments.get("-r") is not None:
