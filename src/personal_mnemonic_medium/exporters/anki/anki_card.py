@@ -77,7 +77,7 @@ class AnkiCard:
         source_markdown: str,
         source_prompt: Prompt,
         source_note: Document,
-        model_type: Literal["QA", "Cloze", "QA_DK"],
+        model_type: Literal["QA", "Cloze"],
         tags: Optional[List[str]] = None,
     ):
         self.markdown_fields = fields
@@ -129,16 +129,6 @@ class AnkiCard:
                 name=CONFIG["card_model_name_qa"],
                 fields=CONFIG["card_model_fields_qa"],
                 templates=CONFIG["card_model_template_qa"],
-                css=CONFIG["card_model_css"],
-                model_type=GENANKI_QA_MODEL_TYPE,
-            )
-
-        if model_type == "QA_DA":
-            return genanki.Model(
-                model_id=simple_hash(CONFIG["card_model_name_qa_da"]),  # type: ignore
-                name=CONFIG["card_model_name_qa_da"],
-                fields=CONFIG["card_model_fields_qa"],
-                templates=CONFIG["card_model_template_qa_da"],
                 css=CONFIG["card_model_css"],
                 model_type=GENANKI_QA_MODEL_TYPE,
             )

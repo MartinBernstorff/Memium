@@ -15,7 +15,7 @@ VERSION = "0.1"
 
 QA_MODEL_TEMPLATE = [
     {
-        "name": "Ankdown QA DK Card",
+        "name": "Ankdown QA Card",
         "qfmt": '<div class="front">{{{{Question}}}}\n{}</div>\n<div class="extra">{{{{Extra}}}}</div>'.format(
             CARD_MATHJAX_CONTENT,
         ),
@@ -54,7 +54,6 @@ CONFIG = {
         {"name": "Extra"},
     ],
     "card_model_template_qa": QA_MODEL_TEMPLATE,
-    "card_model_template_qa_da": CLOZE_MODEL_TEMPLATE,
     "card_model_template_cloze": CLOZE_MODEL_TEMPLATE,
 }
 
