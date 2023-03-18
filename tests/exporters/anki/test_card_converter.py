@@ -109,3 +109,7 @@ def test_alias_wiki_link_substitution():
     no_alias = "Here I am [[wiki link]] and another [[wiki link2]]"
     output = Document._replace_alias_wiki_links(no_alias)
     assert output == "Here I am [[wiki link]] and another [[wiki link2]]"
+
+    test_3 = "How was ice climbing [[Franz Josef]] with [[Vibeke Christiansen|Vibeke]]?"
+    output = Document._replace_alias_wiki_links(test_3)
+    assert output == "How was ice climbing [[Franz Josef]] with [[Vibeke]]?"

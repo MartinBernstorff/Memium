@@ -14,7 +14,7 @@ class Document:
     ):
         self.title = title
         self.uuid = uuid
-        self.content = content
+        self.content = self._replace_alias_wiki_links(content)
         self.source_path = source_path
 
         import_time_formatted = datetime.datetime.now().strftime("%Y-%m-%d")
@@ -23,9 +23,24 @@ class Document:
 
     @staticmethod
     def _replace_alias_wiki_links(text: str) -> str:
-        pattern = r"\[\[(.*?)\|(.*?)\]\]"
-        replace = r"[[\2]]"
-        return re.sub(pattern, replace, text)
+        regex_pattern = r"\[\[[\w|\s|\d]+\|[\w|\s|\d]+\]\]"
+        pattern_matches = re.findall(
+            pattern=regex_pattern,
+            string=text,
+            flags=re.DOTALL,
+        )
+
+        for match in pattern_matches:
+            link_name = (
+                re.findall(pattern=r"\|[\w|\s|\d]+\]\]", string=match)[0]
+                .replace("|", "")
+                .replace("]", "")
+            )
+
+            replacement_str = f"[[{link_name}]]"
+            text = text.replace(match, replacement_str)
+
+        return text
 
     def get_tags(self, input_str: str, import_time: str) -> List[str]:
         file_tags = [import_time]
