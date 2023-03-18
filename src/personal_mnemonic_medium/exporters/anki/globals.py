@@ -45,7 +45,6 @@ CONFIG = {
     "version_log": ".mdvlog",
     "card_model_name_cloze": "Ankdown Cloze",
     "card_model_name_qa": "Ankdown QA",
-    "card_model_name_qa_da": "Ankdown QA DA",
     "card_model_css": CARD_MODEL_CSS,
     "card_model_fields_cloze": [{"name": "Text"}, {"name": "Extra"}, {"name": "Tags"}],
     "card_model_fields_qa": [
