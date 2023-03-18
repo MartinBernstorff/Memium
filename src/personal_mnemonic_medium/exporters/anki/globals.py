@@ -12,26 +12,48 @@ CARD_MATHJAX_CONTENT = textwrap.dedent(
 
 VERSION = "0.1"
 
+QUESTION_STR = r"{{ Question }}"
+ANSWER_STR = r"{{ Answer }}"
+EXTRA_STR = r"{{ Extra }}"
+TTS_QUESTION_STR = r"{{ tts en_US voices=Apple_Samantha speed=1.05:Question }}"
+TTS_ANSWER_STR = r"{{ tts en_US voices=Apple_Samantha speed=1.05:Answer }}"
 
 QA_MODEL_TEMPLATE = [
     {
         "name": "Ankdown QA Card",
-        "qfmt": r'<div class="front">{{tts en_GB voices=Apple_Daniel:Question}}\n{}</div>\n<div class="extra">{{Extra}}</div>'.format(
-            CARD_MATHJAX_CONTENT,
-        ),
-        "afmt": r'<div class="back"><div class="question">{{Question}}</div><div class="answer">{{tts en_GB voices=Apple_Daniel:Answer}}</div>\n\n<div class="extra">{{Extra}}</div>{}</div>'.format(
-            CARD_MATHJAX_CONTENT,
-        ),
+        "qfmt":
+            f"""
+<div class="front">
+    {QUESTION_STR}{TTS_QUESTION_STR}
+</div>
+<div class="extra">
+    {EXTRA_STR}
+</div>
+            """,
+        "afmt":
+            f"""
+<div class="back">
+    <div class="question">
+        {QUESTION_STR}
+    </div>
+    <div class="answer">
+        {ANSWER_STR}{TTS_ANSWER_STR}
+    </div>
+    <div class="extra">
+        {EXTRA_STR}
+    </div>
+</div>
+            """,
     },
 ]
 
 CLOZE_MODEL_TEMPLATE = [
     {
         "name": "Ankdown Cloze Card",
-        "qfmt": r"{{cloze:Text}}\n<div class='extra'>{{Extra}}</div>\n{}".format(
+        "qfmt": r"{{{{cloze:Text}}}}\n<div class='extra'>{{{{Extra}}}}</div>\n{}".format(
             CARD_MATHJAX_CONTENT,
         ),
-        "afmt": r"{{cloze:Text}}\n<div class='extra'>{{Extra}}</div>\n{}".format(
+        "afmt": r"{{{{cloze:Text}}}}\n<div class='extra'>{{{{Extra}}}}</div>\n{}".format(
             CARD_MATHJAX_CONTENT,
         ),
     },
