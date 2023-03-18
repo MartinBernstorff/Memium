@@ -16,10 +16,10 @@ VERSION = "0.1"
 QA_MODEL_TEMPLATE = [
     {
         "name": "Ankdown QA Card",
-        "qfmt": '<div class="front">{{{{Question}}}}\n{}</div>\n<div class="extra">{{{{Extra}}}}</div>'.format(
+        "qfmt": r'<div class="front">{{tts en_GB voices=Apple_Daniel:Question}}\n{}</div>\n<div class="extra">{{Extra}}</div>'.format(
             CARD_MATHJAX_CONTENT,
         ),
-        "afmt": '<div class="back"><div class="question">{{{{Question}}}}</div><div class="answer">{{{{Answer}}}}</div>\n\n<div class="extra">{{{{Extra}}}}</div>{}</div>'.format(
+        "afmt": r'<div class="back"><div class="question">{{Question}}</div><div class="answer">{{tts en_GB voices=Apple_Daniel:Answer}}</div>\n\n<div class="extra">{{Extra}}</div>{}</div>'.format(
             CARD_MATHJAX_CONTENT,
         ),
     },
@@ -28,10 +28,10 @@ QA_MODEL_TEMPLATE = [
 CLOZE_MODEL_TEMPLATE = [
     {
         "name": "Ankdown Cloze Card",
-        "qfmt": "{{{{cloze:Text}}}}\n<div class='extra'>{{{{Extra}}}}</div>\n{}".format(
+        "qfmt": r"{{cloze:Text}}\n<div class='extra'>{{Extra}}</div>\n{}".format(
             CARD_MATHJAX_CONTENT,
         ),
-        "afmt": "{{{{cloze:Text}}}}\n<div class='extra'>{{{{Extra}}}}</div>\n{}".format(
+        "afmt": r"{{cloze:Text}}\n<div class='extra'>{{Extra}}</div>\n{}".format(
             CARD_MATHJAX_CONTENT,
         ),
     },
