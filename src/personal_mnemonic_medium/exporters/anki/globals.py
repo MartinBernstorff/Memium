@@ -21,8 +21,7 @@ TTS_ANSWER_STR = r"{{ tts en_US voices=Apple_Samantha speed=1.05:Answer }}"
 QA_MODEL_TEMPLATE = [
     {
         "name": "Ankdown QA Card",
-        "qfmt":
-            f"""
+        "qfmt": f"""
 <div class="front">
     {QUESTION_STR}{TTS_QUESTION_STR}
 </div>
@@ -30,8 +29,7 @@ QA_MODEL_TEMPLATE = [
     {EXTRA_STR}
 </div>
             """,
-        "afmt":
-            f"""
+        "afmt": f"""
 <div class="back">
     <div class="question">
         {QUESTION_STR}
