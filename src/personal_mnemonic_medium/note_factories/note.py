@@ -21,6 +21,12 @@ class Document:
 
         self.tags = self.get_tags(self.content, import_time=import_time_formatted)
 
+    @staticmethod
+    def _replace_alias_wiki_links(text: str) -> str:
+        pattern = r"\[\[(.*?)\|(.*?)\]\]"
+        replace = r"[[\2]]"
+        return re.sub(pattern, replace, text)
+
     def get_tags(self, input_str: str, import_time: str) -> List[str]:
         file_tags = [import_time]
 

@@ -99,3 +99,13 @@ def test_get_bear_id():
     extracted_id = factory.get_note_id(note_str)
 
     assert extracted_id == expected_id
+
+
+def test_alias_wiki_link_substitution():
+    alias = "Here I am [[alias|wiki link]], and another [[alias2|wiki link2]]"
+    output = Document._replace_alias_wiki_links(alias)
+    assert output == "Here I am [[wiki link]], and another [[wiki link2]]"
+
+    no_alias = "Here I am [[wiki link]] and another [[wiki link2]]"
+    output = Document._replace_alias_wiki_links(no_alias)
+    assert output == "Here I am [[wiki link]] and another [[wiki link2]]"
