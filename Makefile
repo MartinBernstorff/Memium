@@ -41,7 +41,7 @@ update: ## Update dependencies
 	$(PYTHON) -m pip install --upgrade -e ".[dev,tests]" \
 
 test:
-	@pytest -x -n 4 -rfE -p no:typeguard -p no:cov
+	@pytest -x -n 4 -rfE --failed-first -p no:typeguard -p no:cov
 
 lint: ## Lint and static check
 	@$(MAKE) pre_commit
