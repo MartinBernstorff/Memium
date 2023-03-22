@@ -118,3 +118,4 @@ ENV/
 pytest.xml
 pytest-coverage.txt
 BearImages*
+test_package

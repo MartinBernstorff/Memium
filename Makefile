@@ -41,25 +41,30 @@ update: ## Update dependencies
 	$(PYTHON) -m pip install --upgrade -e ".[dev,tests]"
 
 test:
-	@pytest -x 4 -rfE -p no:typeguard -p no:cov
+	@pytest -x -n 4 -rfE -p no:typeguard -p no:cov
 
 lint: ## Lint and static check
 	@$(MAKE) mypy
 	@$(MAKE) pre_commit
 
 pr: ## Create a PR, then run linting and tests
-	@gh pr create
 	@$(MAKE) lint
 	@$(MAKE) test
-
+	
+	@if [ `gh pr list | wc -l` -gt 0 ]; then \
+		echo "✈️ Pushing to existing PR..."; \
+		git push; \
+	else \
+		gh pr create --web; \
+	fi
 
 mypy:
 	@echo "\n––– 🧹 Running mypy –––"
-	@$(PYTHON) -m mypy . || true
+	@$(PYTHON) -m mypy .
 
 pre_commit:
 	@echo "\n––– 🧹 Running pre-commit checks –––"
-	@pre-commit run --all-files || true
+	@pre-commit run --all-files
 
 help: ## Show help message
 	@IFS=$$'\n' ; \
