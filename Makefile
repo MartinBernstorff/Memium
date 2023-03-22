@@ -45,7 +45,7 @@ test:
 
 lint: ## Lint and static check
 	@$(MAKE) mypy
-	@$(MAKE) lint
+	@$(MAKE) pre_commit
 
 pr: ## Create a PR, then run linting and tests
 	@$(MAKE) lint
@@ -64,7 +64,7 @@ mypy:
 	@echo "\n––– 🧹 Running mypy –––"
 	@$(PYTHON) -m mypy .
 
-lint:
+pre_commit: 
 	@echo "\n––– 🧹 Running pre-commit checks –––"
 	@pre-commit run --all-files
 
