@@ -63,13 +63,13 @@ pr: ## Run linting and tests. If they pass, create a PR.
 	@$(MAKE) test
 	
 	@if [ `gh pr list | wc -l` -gt 0 ]; then \
-		echo "✈️ Pushing to existing PR..."; \
+		echo "🚂 Pushing to existing PR..."; \
 		git push; \
 	else \
 		gh pr create --web; \
 	fi
 
-	@echo "✅ PR up-to-date!"
+	@echo "🎉 PR up-to-date!"
 
 mypy:
 	@echo "\n––– 🧹 Running mypy –––"
