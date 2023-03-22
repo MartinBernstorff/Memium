@@ -58,6 +58,8 @@ pr: ## Create a PR, then run linting and tests
 		gh pr create --web; \
 	fi
 
+	@echo "✅ PR up-to-date!"
+
 mypy:
 	@echo "\n––– 🧹 Running mypy –––"
 	@$(PYTHON) -m mypy .
