@@ -41,7 +41,18 @@ update: ## Update dependencies
 	$(PYTHON) -m pip install --upgrade -e ".[dev,tests]" \
 
 test:
-	@pytest -x -n 4 -rfE --failed-first -p no:typeguard -p no:cov
+	@echo "\n––– 🧪 Running tests –––"
+	@$(PYTHON) -m pytest -x -n 4 -rfE --failed-first -p no:typeguard -p no:cov --disable-warnings | tee tests/.pytest_results || true
+
+	@if [ `cat tests/.pytest_results | grep -c "failed"` -gt 0 ]; then \
+		echo "\n\n\n"; \
+		echo "––– 🚨 Test failure! 🚨 –––"; \
+		cat tests/.pytest_results | grep --color=always "^FAILED" | sed 's/.*test_/FAILURE #test_/' || true; \
+		echo "\n"; \
+		exit 1; \
+	else \
+		echo "\n✅ All tests passed!"; \
+	fi
 
 lint: ## Lint and static check
 	@$(MAKE) pre_commit
