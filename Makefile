@@ -37,7 +37,7 @@ install: ## Install the project as editable, ready for dev
 	$(PYTHON) -m pip install -e ".[dev,tests]"; \
 
 update: ## Update dependencies
-	@echo 🔨 Updating project... \
+	@echo 🔨 Updating project... \	
 	$(PYTHON) -m pip install --upgrade -e ".[dev,tests]" \
 
 test:
@@ -47,7 +47,7 @@ lint: ## Lint and static check
 	@$(MAKE) pre_commit
 	@$(MAKE) mypy
 
-pr: ## Create a PR, then run linting and tests
+pr: ## Run linting and tests. If they pass, create a PR.
 	@$(MAKE) lint
 	@$(MAKE) test
 	
