@@ -44,8 +44,8 @@ test:
 	@pytest -x -n 4 -rfE -p no:typeguard -p no:cov
 
 lint: ## Lint and static check
-	@$(MAKE) mypy
 	@$(MAKE) pre_commit
+	@$(MAKE) mypy
 
 pr: ## Create a PR, then run linting and tests
 	@$(MAKE) lint
