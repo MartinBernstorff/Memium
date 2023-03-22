@@ -28,10 +28,6 @@ dependencies = [
   "genanki>=0.13.0"
 ]
 
-[project.license]
-file = "LICENSE"
-name = "MIT"
-
 [project.optional-dependencies]
 dev = [
   "cruft",
