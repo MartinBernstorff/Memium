@@ -37,8 +37,8 @@ install: ## Install the project as editable, ready for dev
 	$(PYTHON) -m pip install -e ".[dev,tests]"; \
 
 update: ## Update dependencies
-	@echo 🔨 Updating project... 
-	$(PYTHON) -m pip install --upgrade -e ".[dev,tests]"
+	@echo 🔨 Updating project... \
+	$(PYTHON) -m pip install --upgrade -e ".[dev,tests]" \
 
 test:
 	@pytest -x -n 4 -rfE -p no:typeguard -p no:cov
