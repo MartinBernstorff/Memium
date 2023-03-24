@@ -135,7 +135,7 @@ def push_or_create_pr(c: Context):
     else:
         print("🚂 Pushing to existing PR...")
         c.run("git push")
-        open_web = input("🔨 PR already exists. Open in browser? [y/n] ")
+        open_web = input("Open in browser? [y/n] ")
         if "y" in open_web.lower():
             c.run("gh pr view --web", pty=True)
 
@@ -143,7 +143,7 @@ def push_or_create_pr(c: Context):
 def create_pr(c: Context):
     echo_header("🔨 Creating PR")
     # Check if branch already exists on remote, if not, push it
-    if branch_exists_on_remote(c):
+    if not branch_exists_on_remote(c):
         echo_header("🚂 Pushing new branch to remote")
         c.run("git push --set-upstream origin HEAD")
 
