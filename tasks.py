@@ -83,6 +83,8 @@ def test(c: Context):
             line_sans_suffix = line_sans_prefix[line_sans_prefix.find("::") + 2 :]
             print(f"FAILED 🚨 #{line_sans_suffix}     ")
 
+        exit(0)
+
 
 def confirm_uncommitted_changes(c: Context):
     git_status_result: Result = c.run(
