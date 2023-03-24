@@ -90,7 +90,7 @@ def add_commit(c: Context):
     print("🔨 Adding and committing changes")
     c.run("git add .")
     commit_msg = input("Commit message: ")
-    c.run(f"git commit -m '{commit_msg}'")
+    c.run(f'git commit -m "{commit_msg}"')
 
 
 def confirm_uncommitted_changes(c: Context):
