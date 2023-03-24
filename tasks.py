@@ -143,12 +143,9 @@ def create_pr(c: Context):
     echo_header("🔨 Creating PR")
     # Check if branch already exists on remote, if not, push it
     branch_name = Path(".git/HEAD").read_text().split("/")[-1].strip()
+
     branch_exists_result: Result = c.run(
         f"git ls-remote --heads origin {branch_name}",
-        warn=True,
-        pty=True,
-        hide=True,
-        timeout=2,
     )
 
     if branch_exists_result.stdout == "":
