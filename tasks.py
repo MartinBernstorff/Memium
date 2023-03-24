@@ -1,4 +1,6 @@
+import tty
 from pathlib import Path
+from socket import timeout
 
 from invoke import Context, Result, task
 
@@ -148,6 +150,7 @@ def create_pr(c: Context):
         warn=True,
         pty=True,
         hide=True,
+        timeout=2,
     )
 
     if branch_exists_result.stdout == "":
@@ -158,6 +161,7 @@ def create_pr(c: Context):
     echo_header("🔨 Creating PR")
     c.run(
         "gh pr create --web",
+        tty=True,
     )
 
 
