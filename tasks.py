@@ -140,6 +140,7 @@ def sync_pr(c: Context):
     pr_result: Result = c.run(
         "gh pr list --state OPEN",
         pty=False,
+        hide=True,
     )
 
     if branch_name not in pr_result.stdout:
