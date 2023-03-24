@@ -96,8 +96,8 @@ def add_commit(c: Context):
 def confirm_uncommitted_changes(c: Context):
     git_status_result: Result = c.run(
         "git status --porcelain",
-        warn=True,
         pty=True,
+        hide=True,
     )
 
     uncommitted_changes = git_status_result.stdout != ""
@@ -105,11 +105,12 @@ def confirm_uncommitted_changes(c: Context):
 
     if uncommitted_changes:
         echo_header(
-            "🚧 Uncommitted changes detected:",
+            "🚧 Uncommitted changes detected",
         )
-        print(
-            f"{uncommitted_changes_descr}\n",
-        )
+
+        for line in uncommitted_changes_descr.splitlines():
+            print(f"    {line.strip()}")
+        print("\n")
         add_commit(c)
 
 
@@ -118,20 +119,22 @@ def pr(c: Context):
     confirm_uncommitted_changes(c)
     lint(c)
     test(c)
-    sync_with_git_origin(c)
+
+    sync_with_git_remote(c)
     sync_pr(c)
 
 
-def sync_with_git_origin(c: Context):
+def sync_with_git_remote(c: Context):
+    echo_header("🚂 Syncing branch with remote")
+
     if not branch_exists_on_remote(c):
-        echo_header("🚂 Pushing new branch to remote")
         c.run("git push --set-upstream origin HEAD")
     else:
-        print("🚂 Pushing to existing PR...")
         c.run("git push")
 
 
 def sync_pr(c: Context):
+    echo_header("💬 Syncing PR")
     # Get current branch name
     branch_name = Path(".git/HEAD").read_text().split("/")[-1].strip()
     pr_result: Result = c.run(
@@ -151,7 +154,7 @@ def create_pr(c: Context):
     # Check if branch already exists on remote, if not, push it
 
     # Create PR
-    echo_header("🔨 Creating PR")
+    echo_header("🔨 Creating PR in browser")
     c.run(
         "gh pr create --web",
         pty=True,
