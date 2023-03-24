@@ -151,10 +151,6 @@ def sync_pr(c: Context):
 
 
 def create_pr(c: Context):
-    # Check if branch already exists on remote, if not, push it
-
-    # Create PR
-    echo_header("🔨 Creating PR in browser")
     c.run(
         "gh pr create --web",
         pty=True,
