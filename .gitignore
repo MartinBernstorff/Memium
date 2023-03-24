@@ -84,7 +84,7 @@ celerybeat-schedule
 .env
 
 # virtualenv
-.venv
+.*venv*
 venv/
 ENV/
 
@@ -118,3 +118,5 @@ ENV/
 pytest.xml
 pytest-coverage.txt
 BearImages*
+test_package
+.pytest_results
