@@ -126,19 +126,39 @@ def pr(c: Context):
         "gh pr list --state OPEN --search $(git rev-parse --abbrev-ref HEAD)",
         warn=True,
         pty=True,
+        hide=True,
     )
 
     if branch_name not in pr_result.stdout:
-        echo_header("🔨 Creating PR")
-        c.run(
-            "gh pr create --web",
-        )
+        create_pr(c)
     else:
         print("🚂 Pushing to existing PR...")
         c.run("git push")
         open_web = input("🔨 PR already exists. Open in browser? [y/n] ")
         if "y" in open_web.lower():
             c.run("gh pr view --web", pty=True)
+
+
+def create_pr(c: Context):
+    echo_header("🔨 Creating PR")
+    # Check if branch already exists on remote, if not, push it
+    branch_name = Path(".git/HEAD").read_text().split("/")[-1].strip()
+    branch_exists_result: Result = c.run(
+        f"git ls-remote --heads origin {branch_name}",
+        warn=True,
+        pty=True,
+        hide=True,
+    )
+
+    if branch_exists_result.stdout == "":
+        echo_header("🚂 Pushing new branch to remote")
+        c.run("git push --set-upstream origin HEAD")
+
+    # Create PR
+    echo_header("🔨 Creating PR")
+    c.run(
+        "gh pr create --web",
+    )
 
 
 @task
