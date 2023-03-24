@@ -93,7 +93,7 @@ def add_commit(c: Context):
     c.run(f'git commit -m "{commit_msg}"')
 
 
-def confirm_uncommitted_changes(c: Context):
+def add_and_commit(c: Context):
     git_status_result: Result = c.run(
         "git status --porcelain",
         pty=True,
@@ -116,10 +116,9 @@ def confirm_uncommitted_changes(c: Context):
 
 @task
 def pr(c: Context):
-    confirm_uncommitted_changes(c)
+    add_and_commit(c)
     lint(c)
     test(c)
-
     sync_with_git_remote(c)
     sync_pr(c)
 
