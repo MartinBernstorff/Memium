@@ -78,13 +78,50 @@ def test(c: Context):
             print(f"FAILED 🚨 #{line_sans_suffix}     ")
 
 
+def confirm_uncommitted_changes(c: Context):
+    git_status_result: Result = c.run(
+        "git status --porcelain",
+        warn=True,
+        pty=True,
+    )
+
+    uncommitted_changes = git_status_result.stdout != ""
+    uncommitted_changes_descr = git_status_result.stdout
+
+    if uncommitted_changes:
+        echo_header(
+            "🚧 Uncommitted changes detected:",
+        )
+        print(f"{uncommitted_changes_descr}\nContinue? [y/n] ")
+        if "y" not in input().lower():
+            exit(1)
+
+
 @task
 def pr(c: Context):
+    confirm_uncommitted_changes(c)
     lint(c)
     test(c)
 
-    # Check if pull request exists from current branch using github CLI
-    # If none, create one
+    # Get current branch name
+    branch_name = Path(".git/HEAD").read_text().split("/")[-1].strip()
+
+    pr_result: Result = c.run(
+        "gh pr list --state OPEN --search $(git rev-parse --abbrev-ref HEAD)",
+        warn=True,
+        pty=True,
+    )
+
+    if branch_name not in pr_result.stdout:
+        echo_header("🔨 Creating PR")
+        c.run(
+            "gh pr create -w",
+            pty=True,
+        )
+    else:
+        open_web = input("🔨 PR already exists. Open in browser? [y/n] ")
+        if "y" in open_web.lower():
+            c.run("gh pr view --web", pty=True)
 
 
 @task
