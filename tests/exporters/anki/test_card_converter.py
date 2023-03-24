@@ -113,3 +113,4 @@ def test_alias_wiki_link_substitution():
     test_3 = "How was ice climbing [[Franz Josef]] with [[Vibeke Christiansen|Vibeke]]?"
     output = Document._replace_alias_wiki_links(test_3)
     assert output == "How was ice climbing [[Franz Josef]] with [[Vibeke]]?"
+    raise ValueError("Test")
