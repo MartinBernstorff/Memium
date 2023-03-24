@@ -8,12 +8,12 @@ def echo_header(msg: str):
 
 
 @task
-def setup(c: Context):
+def setup(c: Context, python_version: str = "3.9"):
     git_init(c)
-    setup_venv(c)
+    setup_venv(c, python_version=python_version)
+    install(c)
 
 
-@task
 def git_init(c: Context):
     # If no .git directory exits
     if not Path(".git").exists():
@@ -26,14 +26,20 @@ def git_init(c: Context):
         print("✅ Git repository already initialized")
 
 
-@task
-def setup_venv(c: Context):
-    if not Path(".venv").exists():
+def setup_venv(
+    c: Context,
+    python_version: str,
+):
+    venv_name = f'.venv{python_version.replace(".", "")}'
+
+    if not Path(venv_name).exists():
         echo_header("🔨 Creating virtual environment")
-        c.run("python3.9 -m venv .venv")
+        c.run(f"python{python_version} -m venv {venv_name}")
         print("✅ Virtual environment created")
     else:
         print("✅ Virtual environment already exists")
+
+    c.run(f"source {venv_name}/bin/activate")
 
 
 @task
@@ -130,13 +136,11 @@ def lint(c: Context):
     mypy(c)
 
 
-@task
 def pre_commit(c: Context):
     echo_header("🧹 Running pre-commit checks")
     c.run("pre-commit run --all-files", pty=True)
 
 
-@task
 def mypy(c: Context):
     echo_header("🧹 Running mypy")
     c.run("mypy .", pty=True)
