@@ -118,15 +118,16 @@ def pr(c: Context):
     confirm_uncommitted_changes(c)
     lint(c)
     test(c)
+    push_or_create_pr(c)
 
+
+def push_or_create_pr(c: Context):
     # Get current branch name
     branch_name = Path(".git/HEAD").read_text().split("/")[-1].strip()
 
     pr_result: Result = c.run(
         "gh pr list --state OPEN --search $(git rev-parse --abbrev-ref HEAD)",
-        warn=True,
-        pty=True,
-        hide=True,
+        pty=False,
     )
 
     if branch_name not in pr_result.stdout:
@@ -142,13 +143,7 @@ def pr(c: Context):
 def create_pr(c: Context):
     echo_header("🔨 Creating PR")
     # Check if branch already exists on remote, if not, push it
-    branch_name = Path(".git/HEAD").read_text().split("/")[-1].strip()
-
-    branch_exists_result: Result = c.run(
-        f"git ls-remote --heads origin {branch_name}",
-    )
-
-    if branch_exists_result.stdout == "":
+    if branch_exists_on_remote(c):
         echo_header("🚂 Pushing new branch to remote")
         c.run("git push --set-upstream origin HEAD")
 
@@ -156,8 +151,18 @@ def create_pr(c: Context):
     echo_header("🔨 Creating PR")
     c.run(
         "gh pr create --web",
-        tty=True,
+        pty=True,
     )
+
+
+def branch_exists_on_remote(c: Context) -> bool:
+    branch_name = Path(".git/HEAD").read_text().split("/")[-1].strip()
+
+    branch_exists_result: Result = c.run(
+        f"git ls-remote --heads origin {branch_name}",
+    )
+
+    return branch_name in branch_exists_result.stdout
 
 
 @task
