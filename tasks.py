@@ -131,10 +131,11 @@ def pr(c: Context):
     if branch_name not in pr_result.stdout:
         echo_header("🔨 Creating PR")
         c.run(
-            "gh pr create -w",
-            pty=True,
+            "gh pr create --web",
         )
     else:
+        print("🚂 Pushing to existing PR...")
+        c.run("git push")
         open_web = input("🔨 PR already exists. Open in browser? [y/n] ")
         if "y" in open_web.lower():
             c.run("gh pr view --web", pty=True)
