@@ -118,13 +118,22 @@ def pr(c: Context):
     confirm_uncommitted_changes(c)
     lint(c)
     test(c)
+    sync_with_git_origin(c)
     sync_pr(c)
+
+
+def sync_with_git_origin(c: Context):
+    if not branch_exists_on_remote(c):
+        echo_header("🚂 Pushing new branch to remote")
+        c.run("git push --set-upstream origin HEAD")
+    else:
+        print("🚂 Pushing to existing PR...")
+        c.run("git push")
 
 
 def sync_pr(c: Context):
     # Get current branch name
     branch_name = Path(".git/HEAD").read_text().split("/")[-1].strip()
-
     pr_result: Result = c.run(
         "gh pr list --state OPEN --search $(git rev-parse --abbrev-ref HEAD)",
         pty=False,
@@ -133,8 +142,6 @@ def sync_pr(c: Context):
     if branch_name not in pr_result.stdout:
         create_pr(c)
     else:
-        print("🚂 Pushing to existing PR...")
-        c.run("git push")
         open_web = input("Open in browser? [y/n] ")
         if "y" in open_web.lower():
             c.run("gh pr view --web", pty=True)
@@ -142,9 +149,6 @@ def sync_pr(c: Context):
 
 def create_pr(c: Context):
     # Check if branch already exists on remote, if not, push it
-    if not branch_exists_on_remote(c):
-        echo_header("🚂 Pushing new branch to remote")
-        c.run("git push --set-upstream origin HEAD")
 
     # Create PR
     echo_header("🔨 Creating PR")
