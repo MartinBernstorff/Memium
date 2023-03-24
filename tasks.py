@@ -1,6 +1,4 @@
-import tty
 from pathlib import Path
-from socket import timeout
 
 from invoke import Context, Result, task
 
