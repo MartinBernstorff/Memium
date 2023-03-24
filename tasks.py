@@ -129,6 +129,7 @@ def sync_with_git_remote(c: Context):
     if not branch_exists_on_remote(c):
         c.run("git push --set-upstream origin HEAD")
     else:
+        c.run("git pull")
         c.run("git push")
 
 
