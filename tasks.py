@@ -138,7 +138,7 @@ def sync_pr(c: Context):
     # Get current branch name
     branch_name = Path(".git/HEAD").read_text().split("/")[-1].strip()
     pr_result: Result = c.run(
-        "gh pr list --state OPEN --search $(git rev-parse --abbrev-ref HEAD)",
+        "gh pr list --state OPEN",
         pty=False,
     )
 
