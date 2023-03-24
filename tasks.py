@@ -118,10 +118,10 @@ def pr(c: Context):
     confirm_uncommitted_changes(c)
     lint(c)
     test(c)
-    push_or_create_pr(c)
+    sync_pr(c)
 
 
-def push_or_create_pr(c: Context):
+def sync_pr(c: Context):
     # Get current branch name
     branch_name = Path(".git/HEAD").read_text().split("/")[-1].strip()
 
@@ -141,7 +141,6 @@ def push_or_create_pr(c: Context):
 
 
 def create_pr(c: Context):
-    echo_header("🔨 Creating PR")
     # Check if branch already exists on remote, if not, push it
     if not branch_exists_on_remote(c):
         echo_header("🚂 Pushing new branch to remote")
