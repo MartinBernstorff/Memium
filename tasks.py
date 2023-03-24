@@ -163,6 +163,7 @@ def branch_exists_on_remote(c: Context) -> bool:
 
     branch_exists_result: Result = c.run(
         f"git ls-remote --heads origin {branch_name}",
+        hide=True,
     )
 
     return branch_name in branch_exists_result.stdout
