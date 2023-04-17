@@ -1,5 +1,4 @@
 .DEFAULT_GOAL := help
-.PHONY: coverage deps help lint publish push test tox
 help: 
 	@echo "This project uses Invoke (pyinvoke.org) for task management."
 	@echo Install it via 
