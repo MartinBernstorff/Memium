@@ -18,9 +18,10 @@ If you do not wish to use invoke you can simply delete this file.
 
 import platform
 import re
+from collections.abc import Sequence
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Optional, Sequence
+from typing import Optional
 
 from invoke import Context, Result, task
 
@@ -30,6 +31,7 @@ SUPPORTED_PYTHON_VERSIONS = [
     for line in Path("pyproject.toml").read_text().splitlines()
     if "Programming Language :: Python ::" in line
 ]
+
 
 def echo_header(msg: str):
     print(f"\n--- {msg} ---")
@@ -245,18 +247,18 @@ def update(c: Context):
 def test(c: Context, python_versions: Optional[Sequence[str]] = None):
     """Run tests"""
     echo_header(f"{Emo.TEST} Running tests")
-    
+
     pytest_flags = "-n auto -rfE --failed-first -p no:cov --disable-warnings -q"
-    
+
     if python_versions is None:
         tox_command = f"pytest {pytest_flags}"
     else:
-        python_versions = [f"-e py{v}".replace(".", "") for v in python_versions] 
+        python_versions = [f"-e py{v}".replace(".", "") for v in python_versions]
         # To maintain consistency in inputs, but outputs should match tox.ini, we remove the period
-        
+
         tox_command = f"tox {' '.join(python_versions)} -- {pytest_flags}"
         print(tox_command)
-    
+
     test_result: Result = c.run(
         tox_command,
         warn=True,
