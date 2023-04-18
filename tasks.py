@@ -264,7 +264,7 @@ def test(
         tox_env_string = " ".join(tox_environments)
         # To maintain consistency in inputs, but outputs should match tox.ini, we remove the period
 
-        tox_command = f"tox {tox_env_string} -- {pytest_flags}"
+        tox_command = f"tox p {tox_env_string} -- {pytest_flags}"
         print(tox_command)
 
     test_result: Result = c.run(
@@ -274,8 +274,9 @@ def test(
     )
 
     failed_tests = [line for line in test_result.stdout if line.startswith("FAILED")]
+    
+    print(failed_tests)
 
-    # If "failed" in the pytest results
     if len(failed_tests) > 0:
         print("\n\n\n")
         echo_header("Failed tests")
