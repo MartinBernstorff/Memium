@@ -272,10 +272,8 @@ def test(
         warn=True,
         pty=True,
     )
-    
-    failed_tests = [
-        line for line in test_result.stdout if line.startswith("FAILED")
-    ]
+
+    failed_tests = [line for line in test_result.stdout if line.startswith("FAILED")]
 
     # If "failed" in the pytest results
     if len(failed_tests) > 0:
@@ -283,7 +281,6 @@ def test(
         echo_header("Failed tests")
 
         # Get lines with "FAILED" in them from the .pytest_results file
-        
 
         for line in failed_tests:
             # Remove from start of line until /test_
