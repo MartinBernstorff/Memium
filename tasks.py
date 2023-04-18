@@ -274,7 +274,7 @@ def test(
     )
 
     failed_tests = [line for line in test_result.stdout if line.startswith("FAILED")]
-    
+
     print(failed_tests)
 
     if len(failed_tests) > 0:
