@@ -55,7 +55,7 @@ docs = [
   "sphinx_togglebutton>=0.2.3,<0.4.0"
 ]
 tutorials = [
-  "jupyter>=1.0.0,<1.1.0"
+  "jupyter>=1.0.0,<1.1.0",
   "sphinx_togglebutton>=0.2.3,<0.4.0",
   "myst-nb>=0.6.0,<1.17.0",  # for rendering notebooks
   "jupyter>=1.0.0,<1.1.0",  # for tutorials
