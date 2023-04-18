@@ -244,7 +244,12 @@ def update(c: Context):
 
 
 @task
-def test(c: Context, python_versions: Sequence[Optional[str]] = [None,]):
+def test(
+    c: Context,
+    python_versions: Sequence[Optional[str]] = [
+        None,
+    ],
+):
     """Run tests"""
     # Weird default for python_versions is for invoke to infer that python-versions
     # is an iterable. Default has to be a string, tuples are not supported.
@@ -256,7 +261,7 @@ def test(c: Context, python_versions: Sequence[Optional[str]] = [None,]):
         tox_command = f"pytest {pytest_flags}"
     else:
         tox_environments = [f"-e py{v}".replace(".", "") for v in python_versions]
-        tox_env_string = ' '.join(tox_environments)
+        tox_env_string = " ".join(tox_environments)
         # To maintain consistency in inputs, but outputs should match tox.ini, we remove the period
 
         tox_command = f"tox {tox_env_string} -- {pytest_flags}"
