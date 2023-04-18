@@ -24,6 +24,12 @@ from typing import Optional, Sequence
 
 from invoke import Context, Result, task
 
+# Extract supported python versions from the pyproject.toml classifiers key
+SUPPORTED_PYTHON_VERSIONS = [
+    line.split("::")[-1].strip()
+    for line in Path("pyproject.toml").read_text().splitlines()
+    if "Programming Language :: Python ::" in line
+]
 
 def echo_header(msg: str):
     print(f"\n--- {msg} ---")
@@ -236,19 +242,19 @@ def update(c: Context):
 
 
 @task
-def test(c: Context, python_versions: Optional[Sequence[str]] = ("3.9",)):
+def test(c: Context, python_versions: Optional[Sequence[str]] = None):
     """Run tests"""
     echo_header(f"{Emo.TEST} Running tests")
     
     pytest_flags = "-n auto -rfE --failed-first -p no:cov --disable-warnings -q"
     
     if python_versions is None:
-        tox_command = f"tox -- {pytest_flags}"
+        tox_command = f"pytest {pytest_flags}"
     else:
-        python_versions = [v.replace(".", "") for v in python_versions] 
+        python_versions = [f"-e py{v}".replace(".", "") for v in python_versions] 
         # To maintain consistency in inputs, but outputs should match tox.ini, we remove the period
         
-        tox_command = f"tox {' -e py'.join(python_versions)} -- {pytest_flags}"
+        tox_command = f"tox {' '.join(python_versions)} -- {pytest_flags}"
         print(tox_command)
     
     test_result: Result = c.run(
@@ -304,7 +310,7 @@ def pr(c: Context, auto_fix: bool = False):
     """Run all checks and update the PR."""
     add_and_commit(c)
     lint(c, auto_fix=auto_fix)
-    test(c)
+    test(c, python_versions=SUPPORTED_PYTHON_VERSIONS)
     update_branch(c)
     update_pr(c)
 
