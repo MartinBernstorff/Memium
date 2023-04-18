@@ -253,10 +253,10 @@ def test(c: Context, python_versions: Optional[Sequence[str]] = None):
     if python_versions is None:
         tox_command = f"pytest {pytest_flags}"
     else:
-        python_versions = [f"-e py{v}".replace(".", "") for v in python_versions]
+        tox_environments = [f"-e py{v}".replace(".", "") for v in python_versions]
         # To maintain consistency in inputs, but outputs should match tox.ini, we remove the period
 
-        tox_command = f"tox {' '.join(python_versions)} -- {pytest_flags}"
+        tox_command = f"tox {' '.join(tox_environments)} -- {pytest_flags}"
         print(tox_command)
 
     test_result: Result = c.run(
