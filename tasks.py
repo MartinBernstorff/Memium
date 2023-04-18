@@ -260,11 +260,11 @@ def test(
     if python_versions[0] is None:
         tox_command = f"pytest {pytest_flags}"
     else:
-        tox_environments = [f"-e py{v}".replace(".", "") for v in python_versions]
-        tox_env_string = " ".join(tox_environments)
+        tox_environments = [f"py{v}".replace(".", "") for v in python_versions]
+        tox_env_string = ",".join(tox_environments)
         # To maintain consistency in inputs, but outputs should match tox.ini, we remove the period
 
-        tox_command = f"tox p {tox_env_string} -- {pytest_flags}"
+        tox_command = f"tox p -e {tox_env_string} -- {pytest_flags}"
         print(tox_command)
 
     test_result: Result = c.run(
