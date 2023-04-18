@@ -244,19 +244,22 @@ def update(c: Context):
 
 
 @task
-def test(c: Context, python_versions: Optional[Sequence[str]] = None):
+def test(c: Context, python_versions: Sequence[Optional[str]] = [None,]):
     """Run tests"""
+    # Weird default for python_versions is for invoke to infer that python-versions
+    # is an iterable. Default has to be a string, tuples are not supported.
     echo_header(f"{Emo.TEST} Running tests")
 
     pytest_flags = "-n auto -rfE --failed-first -p no:cov --disable-warnings -q"
 
-    if python_versions is None:
+    if python_versions[0] is None:
         tox_command = f"pytest {pytest_flags}"
     else:
         tox_environments = [f"-e py{v}".replace(".", "") for v in python_versions]
+        tox_env_string = ' '.join(tox_environments)
         # To maintain consistency in inputs, but outputs should match tox.ini, we remove the period
 
-        tox_command = f"tox {' '.join(tox_environments)} -- {pytest_flags}"
+        tox_command = f"tox {tox_env_string} -- {pytest_flags}"
         print(tox_command)
 
     test_result: Result = c.run(
