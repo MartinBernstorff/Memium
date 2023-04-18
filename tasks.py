@@ -162,6 +162,8 @@ def create_pr(c: Context):
 
 def branch_exists_on_remote(c: Context) -> bool:
     branch_name = Path(".git/HEAD").read_text().split("/")[-1].strip()
+    
+    print(branch_name)
 
     branch_exists_result: Result = c.run(
         f"git ls-remote --heads origin {branch_name}",
