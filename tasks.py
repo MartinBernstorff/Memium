@@ -27,7 +27,7 @@ from invoke import Context, Result, task
 
 # Extract supported python versions from the pyproject.toml classifiers key
 SUPPORTED_PYTHON_VERSIONS = [
-    line.split("::")[-1].replace("\"", "").strip()
+    line.split("::")[-1].replace('"', "").strip()
     for line in Path("pyproject.toml").read_text().splitlines()
     if "Programming Language :: Python ::" in line
 ]
