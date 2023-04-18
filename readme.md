@@ -1,6 +1,6 @@
 # Personal Mnemonic Medium
 ## What This Is
-[![Tests](https://github.com/MartinBernstorff/personal-mnemonic-medium/actions/workflows/tests.yml/badge.svg)][tests]
+![Tests](https://github.com/MartinBernstorff/personal-mnemonic-medium/actions/workflows/tests.yml/badge.svg)
 
 [Anki](https://apps.ankiweb.net) is awesome. It allows you to retain information for much longer than you would have before. 
 Beyond the boring memorisation many of us were taught in school, committing things to long-term memory allows much greater fluency, since you don't have to pause and look things up.. 
