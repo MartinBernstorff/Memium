@@ -9,8 +9,8 @@ def test_get_notes_from_dir():
     notes = MarkdownNoteFactory().get_notes_from_dir(
         PROJECT_ROOT / "tests" / "test_md_files",
     )
-    
-    raise ValueError()
+
+    raise ValueError
 
     assert len(notes) == 4
     assert len([note for note in notes if note.title == "test_card_guid"]) == 1
