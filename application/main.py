@@ -33,6 +33,7 @@ from personal_mnemonic_medium.exporters.anki.globals import (
     VERSION_LOG,
 )
 from personal_mnemonic_medium.exporters.anki.package_generator import PackageGenerator
+from personal_mnemonic_medium.exporters.anki.sync import sync_package
 from personal_mnemonic_medium.markdown_to_ankicard import markdown_to_ankicard
 from personal_mnemonic_medium.prompt_extractors.cloze_extractor import (
     ClozePromptExtractor,
@@ -81,30 +82,6 @@ def anki_connect_is_live() -> bool:
         raise Exception
     except Exception:
         return False
-
-
-# synchronize the deck with markdown
-# Borrowed from https://github.com/lukesmurray/markdown-anki-decks/blob/de6556d7ecd2d39335607c05171f8a9c39c8f422/markdown_anki_decks/sync.py#L64
-def sync_package(pathToDeckPackage: Path):
-    sleep_length = 1
-
-    for i in range(300):
-        if anki_connect_is_live():
-            sleep(1)  # Sleep for a second to allow ankiconnect to fully start
-
-            pathToDeckPackage = pathToDeckPackage.resolve()
-            try:
-                invoke("importPackage", path=str(pathToDeckPackage))
-                msg.good(f"Imported {pathToDeckPackage}!")
-                break
-            except Exception as e:
-                msg.warn(f"Unable to import {pathToDeckPackage} to anki")
-                msg.warn(f"\t{e}")
-        else:
-            msg.warn(
-                f"{i}: Anki connect is not live, sleeping for {sleep_length} seconds",
-            )
-            sleep(sleep_length)
 
 
 def apply_arguments(arguments: Any) -> None:

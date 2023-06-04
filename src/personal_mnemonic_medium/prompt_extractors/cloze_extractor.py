@@ -43,7 +43,6 @@ class ClozePromptExtractor:
 
         This function ensures that the numbering is based on the content of the cloze deletion, essentially ensuring that if you modify the contents of a cloze, only the scheduling of that specific cloze is changed.
 
-
         Args:
             string (str): The string to replace the cloze id with a unique id.
             selected_cloze (str, optional): If you only want to replace a specific cloze, pass it here. Defaults to None.
