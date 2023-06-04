@@ -33,7 +33,7 @@ from personal_mnemonic_medium.exporters.anki.globals import (
     VERSION_LOG,
 )
 from personal_mnemonic_medium.exporters.anki.package_generator import PackageGenerator
-from personal_mnemonic_medium.exporters.anki.sync import sync_package
+from personal_mnemonic_medium.exporters.anki.sync import sync_deck
 from personal_mnemonic_medium.markdown_to_ankicard import markdown_to_ankicard
 from personal_mnemonic_medium.prompt_extractors.cloze_extractor import (
     ClozePromptExtractor,
@@ -108,7 +108,7 @@ def main():
     )
     package_path = PackageGenerator().cards_to_package(cards=cards, output_path=pkg_arg)
 
-    sync_package(package_path)
+    sync_deck(package_path)
     os.chdir(initial_dir)
 
     json.dump(VERSION_LOG, Path(version_log).open("w"))

@@ -37,6 +37,7 @@ def test_cards_to_decks():
     decks, media = PackageGenerator().cards_to_decks(cards=genanki_notes)
     
     assert type(decks) == DeckCollection
+    assert type(media) == set
 
 def test_package_generators():
     source_note = Document(

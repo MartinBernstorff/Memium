@@ -1,13 +1,17 @@
 import json
 import urllib.request
 from pathlib import Path
+from time import sleep
 from typing import Any, Dict, List
 
-from genanki import Model
-from wasabi import msg
+import genanki
+from genanki import Model, Note
 
 anki_connect_url = "http://localhost:8765"
 
+from wasabi import Printer
+
+msg = Printer(timestamp=True)
 
 # helper for creating anki connect requests
 def request(action: Any, **params: Any) -> Dict[str, Any]:
@@ -54,13 +58,12 @@ def anki_connect_is_live() -> bool:
 
 # synchronize the deck with markdown
 # Borrowed from https://github.com/lukesmurray/markdown-anki-decks/blob/de6556d7ecd2d39335607c05171f8a9c39c8f422/markdown_anki_decks/sync.py#L64
-def sync_package(pathToDeckPackage: Path, delete_cards: bool):
+def sync_deck(pathToDeckPackage: Path, deck: genanki.Deck, delete_cards: bool):
     for _ in range(600):
         if anki_connect_is_live():
             break
-        else:
-            print("Waiting for anki connect to start...")
-            sleep(0.5)
+        print("Waiting for anki connect to start...")
+        sleep(0.5)
 
     if anki_connect_is_live():
         pathToDeckPackage = pathToDeckPackage.resolve()
@@ -104,10 +107,10 @@ def sync_package(pathToDeckPackage: Path, delete_cards: bool):
                         anki_note_info_by_guid[g]["noteId"] for g in guids_to_delete
                     ],
                 )
-                print_success("deleted removed notes")
+                msg.good("deleted removed notes")
         except Exception as e:
-            print_error(f"Unable to sync removed cards from {deck.name}")
-            print_error(f"\t{e}")
+            msg.fail(f"Unable to sync removed cards from {deck.name}")
+            msg.fail(f"\t{e}")
 
 
 # synchronize the model and styling in the deck
