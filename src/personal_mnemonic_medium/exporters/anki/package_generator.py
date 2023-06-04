@@ -38,16 +38,13 @@ class PackageGenerator:
 
     def __init__(self) -> None:
         pass
-
+    
     @staticmethod
-    def cards_to_package(cards: List[AnkiCard], output_path: Path) -> Path:
-        """Take an iterable prompts, output an .apkg in a file called output_name.
-        NOTE: We _must_ be in a temp directory.
-        """
-        decks = DeckCollection()
-
+    def cards_to_decks(cards: Sequence[AnkiCard]) -> tuple[List[genanki.Deck], Sequence[str]]:
         media = set()
-
+        
+        decks = DeckCollection()
+        
         for card in cards:
             card.finalize()
 
@@ -65,6 +62,16 @@ class PackageGenerator:
 
         if len(decks) == 0:
             raise ValueError("No decks were generated.")
+        
+        return decks, media
+
+    @staticmethod
+    def cards_to_package(cards: List[AnkiCard], output_path: Path) -> Path:
+        """Take an iterable prompts, output an .apkg in a file called output_name.
+        NOTE: We _must_ be in a temp directory.
+        """
+        
+        decks, media = PackageGenerator.cards_to_decks(cards)
 
         package = genanki.Package(deck_or_decks=decks.values(), media_files=list(media))
 
