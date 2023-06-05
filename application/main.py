@@ -23,7 +23,6 @@ import json
 import os
 import urllib.request
 from pathlib import Path
-from time import sleep
 from typing import Any, Dict
 
 from docopt import docopt
@@ -39,7 +38,6 @@ from personal_mnemonic_medium.prompt_extractors.cloze_extractor import (
     ClozePromptExtractor,
 )
 from personal_mnemonic_medium.prompt_extractors.qa_extractor import QAPromptExtractor
-from wasabi import msg
 
 ANKI_CONNECT_URL = "http://localhost:8765"
 
@@ -106,9 +104,9 @@ def main():
         dir_path=recur_dir,
         extractors=[QAPromptExtractor(), ClozePromptExtractor()],
     )
-    package_path = PackageGenerator().cards_to_package(cards=cards, output_path=pkg_arg)
+    deck_bundles = PackageGenerator().cards_to_deck_bundle(cards=cards, media=media)
 
-    sync_deck(package_path)
+    sync_deck(deck_bundle=deck_bundles, dir_path=initial_dir)
     os.chdir(initial_dir)
 
     json.dump(VERSION_LOG, Path(version_log).open("w"))

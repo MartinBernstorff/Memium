@@ -34,10 +34,11 @@ def test_cards_to_decks():
         for _ in range(4)
     ]
 
-    decks, media = PackageGenerator().cards_to_decks(cards=genanki_notes)
-    
+    decks, media = PackageGenerator().cards_to_deck(cards=genanki_notes)
+
     assert type(decks) == DeckCollection
     assert type(media) == set
+
 
 def test_package_generators():
     source_note = Document(
@@ -64,4 +65,4 @@ def test_package_generators():
         for _ in range(4)
     ]
 
-    PackageGenerator().cards_to_package(cards=genanki_notes, output_path="test_package")
+    PackageGenerator().cards_to_deck_bundle(cards=genanki_notes, output_path="test_package")

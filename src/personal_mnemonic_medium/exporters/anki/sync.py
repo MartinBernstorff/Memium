@@ -4,8 +4,9 @@ from pathlib import Path
 from time import sleep
 from typing import Any, Dict, List
 
-import genanki
 from genanki import Model, Note
+
+from personal_mnemonic_medium.exporters.anki.package_generator import DeckBundle
 
 anki_connect_url = "http://localhost:8765"
 
@@ -58,27 +59,26 @@ def anki_connect_is_live() -> bool:
 
 # synchronize the deck with markdown
 # Borrowed from https://github.com/lukesmurray/markdown-anki-decks/blob/de6556d7ecd2d39335607c05171f8a9c39c8f422/markdown_anki_decks/sync.py#L64
-def sync_deck(pathToDeckPackage: Path, deck: genanki.Deck, delete_cards: bool):
+def sync_deck(deck_bundle: DeckBundle, dir_path: Path, delete_cards: bool = True):
     for _ in range(600):
         if anki_connect_is_live():
             break
         print("Waiting for anki connect to start...")
         sleep(0.5)
 
-    if anki_connect_is_live():
-        pathToDeckPackage = pathToDeckPackage.resolve()
-        try:
-            invoke("importPackage", path=str(pathToDeckPackage))
-            print(f"Imported {pathToDeckPackage}!")
-        except Exception as e:
-            print(f"Unable to import {pathToDeckPackage} to anki")
-            print(f"\t{e}")
+    package_path = deck_bundle.save_deck_to_file(dir_path / "deck.apkg")
+    try:
+        invoke("importPackage", path=str(package_path))
+        print(f"Imported {package_path}!")
+    except Exception as e:
+        print(f"Unable to import {package_path} to anki")
+        print(f"\t{e}")
 
     if delete_cards:
         # delete removed cards
         try:
             # get a list of anki cards in the deck
-            anki_card_ids: List[int] = invoke("findCards", query=f'"deck:{deck.name}"')
+            anki_card_ids: List[int] = invoke("findCards", query=f'"deck:{deck_bundle.deck.name}"')
 
             # get a list of anki notes in the deck
             anki_note_ids: List[int] = invoke("cardsToNotes", cards=anki_card_ids)
@@ -95,7 +95,7 @@ def sync_deck(pathToDeckPackage: Path, deck: genanki.Deck, delete_cards: bool):
             anki_note_guids = anki_note_info_by_guid.keys()
 
             # get the unique guids of the md notes
-            md_notes: List[Note] = deck.notes
+            md_notes: List[Note] = deck_bundle.deck.notes
             md_note_guids = {n.guid for n in md_notes}
 
             # find the guids to delete
@@ -109,7 +109,7 @@ def sync_deck(pathToDeckPackage: Path, deck: genanki.Deck, delete_cards: bool):
                 )
                 msg.good("deleted removed notes")
         except Exception as e:
-            msg.fail(f"Unable to sync removed cards from {deck.name}")
+            msg.fail(f"Unable to sync removed cards from {deck_bundle.deck.name}")
             msg.fail(f"\t{e}")
 
 
