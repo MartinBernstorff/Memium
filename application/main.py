@@ -22,8 +22,8 @@ Options:
 import json
 import os
 import urllib.request
+from collections import defaultdict
 from pathlib import Path
-from time import sleep
 from typing import Any, Dict
 
 from docopt import docopt
@@ -33,14 +33,19 @@ from personal_mnemonic_medium.exporters.anki.globals import (
     VERSION_LOG,
 )
 from personal_mnemonic_medium.exporters.anki.package_generator import PackageGenerator
+from personal_mnemonic_medium.exporters.anki.sync import sync_deck
 from personal_mnemonic_medium.markdown_to_ankicard import markdown_to_ankicard
 from personal_mnemonic_medium.prompt_extractors.cloze_extractor import (
     ClozePromptExtractor,
 )
 from personal_mnemonic_medium.prompt_extractors.qa_extractor import QAPromptExtractor
-from wasabi import msg
 
 ANKI_CONNECT_URL = "http://localhost:8765"
+
+from wasabi import Printer
+
+msg = Printer(timestamp=True)
+
 
 # helper for creating anki connect requests
 def request(action: Any, **params: Any) -> Dict[str, Any]:
@@ -83,30 +88,6 @@ def anki_connect_is_live() -> bool:
         return False
 
 
-# synchronize the deck with markdown
-# Borrowed from https://github.com/lukesmurray/markdown-anki-decks/blob/de6556d7ecd2d39335607c05171f8a9c39c8f422/markdown_anki_decks/sync.py#L64
-def sync_package(pathToDeckPackage: Path):
-    sleep_length = 1
-
-    for i in range(300):
-        if anki_connect_is_live():
-            sleep(1)  # Sleep for a second to allow ankiconnect to fully start
-
-            pathToDeckPackage = pathToDeckPackage.resolve()
-            try:
-                invoke("importPackage", path=str(pathToDeckPackage))
-                msg.good(f"Imported {pathToDeckPackage}!")
-                break
-            except Exception as e:
-                msg.warn(f"Unable to import {pathToDeckPackage} to anki")
-                msg.warn(f"\t{e}")
-        else:
-            msg.warn(
-                f"{i}: Anki connect is not live, sleeping for {sleep_length} seconds",
-            )
-            sleep(sleep_length)
-
-
 def apply_arguments(arguments: Any) -> None:
     global CONFIG  # noqa
     if arguments.get("-p") is not None:
@@ -122,18 +103,24 @@ def main():
     apply_arguments(docopt(__doc__, version=VERSION))
     initial_dir = Path(__file__).parent
     recur_dir = Path(CONFIG["recur_dir"])
-    pkg_arg = Path(CONFIG["pkg_arg"])
     version_log = Path(CONFIG["version_log"])
 
     cards = markdown_to_ankicard(
         dir_path=recur_dir,
         extractors=[QAPromptExtractor(), ClozePromptExtractor()],
     )
-    package_path = PackageGenerator().cards_to_package(cards=cards, output_path=pkg_arg)
 
-    sync_package(package_path)
+    decks = defaultdict(list)
+
+    for card in cards:
+        decks[card.deckname] += [card]
+
+    for deck in decks:
+        deck_bundle = PackageGenerator().cards_to_deck_bundle(cards=decks[deck])
+        sync_deck(deck_bundle=deck_bundle, dir_path=initial_dir)
+        msg.good(f"Syncing {deck}...")
+
     os.chdir(initial_dir)
-
     json.dump(VERSION_LOG, Path(version_log).open("w"))
 
 

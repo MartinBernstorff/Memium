@@ -3,6 +3,7 @@ PROJECT="$(dirname "${0}")"
 # If Anki.app is not already running, launch it
 open -a Anki
 echo "🧠 Updating personal mnemonic medium"
+echo $PROJECT
 cd $PROJECT
 source .venv39/bin/activate
 

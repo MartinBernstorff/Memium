@@ -34,3 +34,5 @@
 * Ensure guids match cloze ([`694f701`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/694f701aa44a1962168cb3256062f70371aef1cd))
 * Match guide for first test case ([`ee41799`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/ee41799941a027792588821f22003fc2a4c99171))
 * Better support for TTS ([`78032e7`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/78032e761e7661e1974d5595f39eaf43b8965264))
+
+<!-- {BearID:b414da9a1847c7771a269b56b5ee2f3f} -->

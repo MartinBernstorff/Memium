@@ -1,12 +1,18 @@
 import json
 import urllib.request
 from pathlib import Path
-from typing import Any, Dict
+from time import sleep
+from typing import Any, Dict, List
 
-from genanki import Model
-from wasabi import msg
+from genanki import Model, Note
+
+from personal_mnemonic_medium.exporters.anki.package_generator import DeckBundle
 
 anki_connect_url = "http://localhost:8765"
+
+from wasabi import Printer
+
+msg = Printer(timestamp=True)
 
 
 # helper for creating anki connect requests
@@ -54,15 +60,68 @@ def anki_connect_is_live() -> bool:
 
 # synchronize the deck with markdown
 # Borrowed from https://github.com/lukesmurray/markdown-anki-decks/blob/de6556d7ecd2d39335607c05171f8a9c39c8f422/markdown_anki_decks/sync.py#L64
-def sync_package(pathToDeckPackage: Path):
-    if anki_connect_is_live():
-        pathToDeckPackage = pathToDeckPackage.resolve()
-        try:
-            invoke("importPackage", path=str(pathToDeckPackage))
-            print(f"Imported {pathToDeckPackage}!")
-        except Exception as e:
-            print(f"Unable to import {pathToDeckPackage} to anki")
-            print(f"\t{e}")
+def sync_deck(deck_bundle: DeckBundle, dir_path: Path, delete_cards: bool = True):
+    for _ in range(600):
+        if anki_connect_is_live():
+            break
+        print("Waiting for anki connect to start...")
+        sleep(0.5)
+
+    package_path = deck_bundle.save_deck_to_file(dir_path / "deck.apkg")
+
+    try:
+        invoke("importPackage", path=str(package_path))
+        print(f"Imported {package_path}!")
+
+        if delete_cards:
+            # delete removed cards
+            try:
+                # get a list of anki cards in the deck
+                anki_card_ids: List[int] = invoke(
+                    "findCards",
+                    query=f'"deck:{deck_bundle.deck.name}"',
+                )
+
+                # get a list of anki notes in the deck
+                anki_note_ids: List[int] = invoke("cardsToNotes", cards=anki_card_ids)
+
+                # get the note info for the notes in the deck
+                anki_notes_info = invoke("notesInfo", notes=anki_note_ids)
+
+                # convert the note info into a dictionary of guid to note info
+                anki_note_info_by_guid = {
+                    n["fields"]["UUID"]["value"]
+                    .replace("<p>", "")
+                    .replace("</p>", "")
+                    .strip(): n
+                    for n in anki_notes_info
+                }
+
+                # get the unique guids of the anki notes
+                anki_note_guids = anki_note_info_by_guid.keys()
+
+                # get the unique guids of the md notes
+                md_notes: List[Note] = deck_bundle.deck.notes
+                md_note_guids = {str(n.guid) for n in md_notes}
+
+                # find the guids to delete
+                guids_to_delete = anki_note_guids - md_note_guids
+
+                if guids_to_delete:
+                    invoke(
+                        "deleteNotes",
+                        notes=[
+                            anki_note_info_by_guid[g]["noteId"] for g in guids_to_delete
+                        ],
+                    )
+                    msg.good(f"Deleted {len(guids_to_delete)} notes")
+            except Exception as e:
+                msg.fail(f"Unable to remove {deck_bundle.deck.name}")
+                msg.fail(f"\t{e}")
+
+    except Exception as e:
+        print(f"Unable to import {package_path} to anki")
+        print(f"\t{e}")
 
 
 # synchronize the model and styling in the deck

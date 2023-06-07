@@ -30,8 +30,9 @@
      * Require status checks to pass before merging
        * Require branches to be up to date before merging
        * Status checks that are required:
-         * mypy (type hinting)
+         * static_type_checks (type hinting)
          * pre-commit (formatting)
          * pytest (tests)
          * check_for_rej (check for residual cruft updates)
      * Require conversation resolution before merging
+<!-- {BearID:6950e351a47a064b1c013f1a5b3a1d9f} -->
