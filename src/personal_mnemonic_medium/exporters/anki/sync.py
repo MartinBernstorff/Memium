@@ -4,7 +4,6 @@ from pathlib import Path
 from time import sleep
 from typing import Any, Dict, List
 
-import genanki
 from genanki import Model, Note
 
 from personal_mnemonic_medium.exporters.anki.package_generator import DeckBundle
@@ -79,7 +78,8 @@ def sync_deck(deck_bundle: DeckBundle, dir_path: Path, delete_cards: bool = True
             try:
                 # get a list of anki cards in the deck
                 anki_card_ids: List[int] = invoke(
-                    "findCards", query=f'"deck:{deck_bundle.deck.name}"'
+                    "findCards",
+                    query=f'"deck:{deck_bundle.deck.name}"',
                 )
 
                 # get a list of anki notes in the deck

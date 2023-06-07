@@ -58,3 +58,5 @@ This project was generated from the [Swift Python Cookiecutter] template.
 [file an issue]: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues
 [sphinx]: https://www.sphinx-doc.org/en/master/index.html
 [Furo]: https://github.com/pradyunsg/furo
+
+<!-- {BearID:97e16f747fdcee297b2731424e096e10} -->

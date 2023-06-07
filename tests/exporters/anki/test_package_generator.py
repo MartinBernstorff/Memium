@@ -65,4 +65,6 @@ def test_package_generators():
         for _ in range(4)
     ]
 
-    PackageGenerator().cards_to_deck_bundle(cards=genanki_notes, output_path="test_package")
+    PackageGenerator().cards_to_deck_bundle(
+        cards=genanki_notes, output_path="test_package",
+    )

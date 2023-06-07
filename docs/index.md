@@ -89,3 +89,5 @@ api/docs_example
 Changelog <https://github.com/MartinBernstorff/personal-mnemonic-medium/changelog.md>
 GitHub <https://github.com/MartinBernstorff/personal-mnemonic-medium>
 ```
+
+<!-- {BearID:1c01c44bd9bb3f5c49ed08153362bfcf} -->

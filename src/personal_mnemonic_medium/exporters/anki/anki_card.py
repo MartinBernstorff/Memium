@@ -170,14 +170,14 @@ class AnkiCard:
         output_hash = simple_hash(f"{hash_string}")
         return output_hash
 
-    def add_field(self, field: Any, compile: bool = True):
+    def add_field(self, field: Any):
         self.compiled_fields.append(compile_field(field))
 
     def to_genanki_note(self) -> genanki.Note:
         """Produce a genanki.Note with the specified guid."""
         if len(self.compiled_fields) > len(self.model.fields):
             raise ValueError(
-                f"Too many fields for model {self.model.name}: {self.compiled_fields}"
+                f"Too many fields for model {self.model.name}: {self.compiled_fields}",
             )
 
         if len(self.compiled_fields) < len(self.model.fields):
@@ -186,7 +186,7 @@ class AnkiCard:
                 self.compiled_fields.append("")
 
         # Add the card_uuid as the last field
-        self.add_field(str(self.card_uuid), compile=False)
+        self.add_field(str(self.card_uuid))
 
         return genanki.Note(
             model=self.model,
