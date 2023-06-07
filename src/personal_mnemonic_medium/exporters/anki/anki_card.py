@@ -173,6 +173,13 @@ class AnkiCard:
     def add_field(self, field: Any):
         self.compiled_fields.append(compile_field(field))
 
+    def get_obsidian_uri(self) -> str:
+        """Get the obsidian URI for the source document."""
+        vault = self.source_document.source_path.parent.name
+        file = self.source_document.source_path.name
+
+        return f'<h4 class="right"><a href="obsidian://open?vault={vault}&file={file}">Open</a></h4>'
+
     def to_genanki_note(self) -> genanki.Note:
         """Produce a genanki.Note with the specified guid."""
         if len(self.compiled_fields) > len(self.model.fields):
@@ -181,12 +188,17 @@ class AnkiCard:
             )
 
         if len(self.compiled_fields) < len(self.model.fields):
-            while len(self.compiled_fields) < len(self.model.fields) - 1:
-                # Minus one to be ready for the card_uuid
-                self.compiled_fields.append("")
+            while len(self.compiled_fields) < len(self.model.fields):
+                before_extras_field = len(self.compiled_fields) == 2
+                before_uuid_field = len(self.compiled_fields) == 3
 
-        # Add the card_uuid as the last field
-        self.add_field(str(self.card_uuid))
+                if before_extras_field:
+                    self.add_field(self.get_obsidian_uri())
+
+                if before_uuid_field:
+                    self.add_field(str(self.card_uuid))
+
+                self.compiled_fields.append("")
 
         return genanki.Note(
             model=self.model,
