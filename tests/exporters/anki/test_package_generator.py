@@ -66,5 +66,6 @@ def test_package_generators():
     ]
 
     PackageGenerator().cards_to_deck_bundle(
-        cards=genanki_notes, output_path="test_package",
+        cards=genanki_notes,
+        output_path="test_package",
     )
