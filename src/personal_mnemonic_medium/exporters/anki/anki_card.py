@@ -176,8 +176,8 @@ class AnkiCard:
 
     def get_obsidian_uri(self) -> str:
         """Get the obsidian URI for the source document."""
-        vault = urllib.parse.quote(self.source_document.source_path.parent.name)
-        file = urllib.parse.quote(self.source_document.source_path.name)
+        vault = urllib.parse.quote(self.source_document.source_path.parent.name)  # type: ignore
+        file = urllib.parse.quote(self.source_document.source_path.name)  # type: ignore
 
         href = f"obsidian://open?vault={vault}&file={file}"
 
