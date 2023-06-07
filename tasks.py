@@ -22,7 +22,7 @@ import shutil
 from pathlib import Path
 from typing import List, Optional
 
-from invoke import Context, Result, task
+from invoke import Context, Result, task  # type: ignore
 
 # Extract supported python versions from the pyproject.toml classifiers key
 SUPPORTED_PYTHON_VERSIONS = [
@@ -329,7 +329,7 @@ def update(c: Context):
 @task(iterable="pytest_args")
 def test(
     c: Context,
-    python_versions: List[str] = (SUPPORTED_PYTHON_VERSIONS[0],),
+    python_versions: List[str] = (SUPPORTED_PYTHON_VERSIONS[0],),  # type: ignore
     pytest_args: List[str] = [],  # noqa
 ):
     """Run tests"""

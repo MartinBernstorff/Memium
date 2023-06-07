@@ -122,6 +122,6 @@ class PackageGenerator:
                     source_prompt=prompt,
                 )
 
-            cards += [card]
+            cards += [card]  # type: ignore
 
         return cards

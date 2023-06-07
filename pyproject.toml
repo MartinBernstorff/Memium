@@ -68,7 +68,7 @@ repository = "https://github.com/MartinBernstorff/personal-mnemonic-medium"
 documentation = "https://MartinBernstorff.github.io/personal-mnemonic-medium/"
 
 [tool.pyright]
-exclude = [".*venv*", ".tox"]
+exclude = [".*venv*", ".tox", "*.apkg"]
 pythonPlatform = "Darwin"
 
 [tool.ruff]
