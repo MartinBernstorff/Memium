@@ -1,5 +1,6 @@
 from pathlib import Path
 
+import genanki
 from personal_mnemonic_medium.exporters.anki.anki_card import AnkiCard
 from personal_mnemonic_medium.exporters.anki.package_generator import (
     DeckCollection,
@@ -34,9 +35,9 @@ def test_cards_to_decks():
         for _ in range(4)
     ]
 
-    decks, media = PackageGenerator().cards_to_deck(cards=genanki_notes)
+    deck, media = PackageGenerator().cards_to_deck(cards=genanki_notes)
 
-    assert type(decks) == DeckCollection
+    assert type(deck) == genanki.Deck
     assert type(media) == set
 
 
@@ -67,5 +68,4 @@ def test_package_generators():
 
     PackageGenerator().cards_to_deck_bundle(
         cards=genanki_notes,
-        output_path="test_package",
     )
