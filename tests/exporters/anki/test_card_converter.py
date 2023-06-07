@@ -70,7 +70,7 @@ def test_qa_uuid_generation():
     cards = markdown_to_ankicard(file_path=file_path, extractors=[QAPromptExtractor()])
 
     reference_guids = {9315717920, 3912828915, 6300568814}
-    generated_guids = {card.uuid for card in cards}
+    generated_guids = {card.card_uuid for card in cards}
     assert reference_guids == generated_guids
 
 
@@ -83,7 +83,7 @@ def test_cloze_uuid_generation():
         extractors=[ClozePromptExtractor()],
     )
 
-    cloze_generated_guids = {card.uuid for card in cloze_cards}
+    cloze_generated_guids = {card.card_uuid for card in cloze_cards}
     cloze_reference_guids = {3001245253, 952903559}
     assert cloze_reference_guids == cloze_generated_guids
 
