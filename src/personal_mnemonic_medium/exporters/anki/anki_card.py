@@ -24,7 +24,7 @@ def field_to_html(field: Any) -> str:
     If math is separated with dollar sign it is converted to brackets.
     """
     if CONFIG["dollar"]:
-        for (sep, (op, cl)) in [("$$", (r"\\[", r"\\]")), ("$", (r"\\(", r"\\)"))]:
+        for sep, (op, cl) in [("$$", (r"\\[", r"\\]")), ("$", (r"\\(", r"\\)"))]:
             escaped_sep = sep.replace(r"$", r"\$")
             # ignore escaped dollar signs when splitting the field
             field = re.split(rf"(?<!\\){escaped_sep}", field)
@@ -88,7 +88,6 @@ class AnkiCard:
         self.model = self.model_string_to_genanki_model(model_type=model_type)
         self.source_prompt = source_prompt
         self.source_document = source_note
-        self.uuid = self.card_id()
 
         if self.has_subdeck_tag(self.source_markdown):
             self.subdeck = self.get_subdeck_name(self.source_markdown)
@@ -134,6 +133,7 @@ class AnkiCard:
             )
         raise ValueError("model_type must be either Cloze or QA")
 
+    @property
     def deckname(self) -> str:
         try:
             if len(self.subdeck) > 0:
@@ -147,7 +147,8 @@ class AnkiCard:
         except:  # noqa
             return "0. Don't click me::1. Active::Personal Mnemonic Medium"
 
-    def card_id(self) -> int:  # The identifier for cards
+    @property
+    def card_uuid(self) -> int:  # The identifier for cards
         if self.model_type == "Cloze":
             prompt_field = self.compiled_fields[0]
             cloze_fields = re.findall(r"{{c.+?}", prompt_field)
@@ -169,23 +170,28 @@ class AnkiCard:
         output_hash = simple_hash(f"{hash_string}")
         return output_hash
 
-    def add_field(self, field: Any):
+    def add_field(self, field: Any, compile: bool = True):
         self.compiled_fields.append(compile_field(field))
 
-    def finalize(self):
-        """Ensure proper shape, for extraction into result formats."""
-        if len(self.compiled_fields) > 3:
-            self.compiled_fields = self.compiled_fields[:3]
-        else:
-            while len(self.compiled_fields) < 3:
+    def to_genanki_note(self) -> genanki.Note:
+        """Produce a genanki.Note with the specified guid."""
+        if len(self.compiled_fields) > len(self.model.fields):
+            raise ValueError(
+                f"Too many fields for model {self.model.name}: {self.compiled_fields}"
+            )
+
+        if len(self.compiled_fields) < len(self.model.fields):
+            while len(self.compiled_fields) < len(self.model.fields) - 1:
+                # Minus one to be ready for the card_uuid
                 self.compiled_fields.append("")
 
-    def to_genanki_note(self) -> Document:
-        """Produce a genanki.Note with the specified guid."""
+        # Add the card_uuid as the last field
+        self.add_field(str(self.card_uuid), compile=False)
+
         return genanki.Note(
             model=self.model,
             fields=self.compiled_fields,
-            guid=self.uuid,
+            guid=self.card_uuid,
             tags=self.tags,
         )
 

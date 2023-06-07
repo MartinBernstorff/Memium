@@ -33,20 +33,19 @@ class DeckCollection(dict):
             self[deckname] = genanki.Deck(deck_id, deckname)
         return super().__getitem__(deckname)
 
+
 @dataclass(frozen=True)
 class DeckBundle:
-    deck: DeckCollection
+    deck: genanki.Deck
     media: Set[str]
 
     def get_package(self) -> genanki.Package:
         return genanki.Package(deck_or_decks=self.deck, media_files=list(self.media))
-    
-    def save_package_to_file(self, output_path: Path) -> None:
+
+    def save_deck_to_file(self, output_path: Path) -> Path:
         package = self.get_package()
         package.write_to_file(output_path)
-    
-    def save_deck_to_file(self, output_path: Path) -> None:
-        self.package.write_to_file(output_path)
+        return output_path
 
 
 class PackageGenerator:
@@ -56,12 +55,12 @@ class PackageGenerator:
         pass
 
     @staticmethod
-    def cards_to_deck_bundle(cards: List[AnkiCard], media: Set) -> DeckBundle:
+    def cards_to_deck_bundle(cards: List[AnkiCard]) -> DeckBundle:
         """Take an iterable prompts, output an .apkg in a file called output_name.
         NOTE: We _must_ be in a temp directory.
         """
-        deck, media = PackageGenerator.cards_to_deck(cards=cards, media=media)
-        
+        deck, media = PackageGenerator.cards_to_deck(cards=cards)
+
         return DeckBundle(
             deck=deck,
             media=media,
@@ -70,13 +69,14 @@ class PackageGenerator:
     @staticmethod
     def cards_to_deck(
         cards: Sequence[AnkiCard],
-        media: Set[str],
-    ) -> tuple[DeckCollection, Set[str]]:
-        media = media
-        deck = DeckCollection()
-        for card in cards:
-            card.finalize()
+    ) -> tuple[genanki.Deck, Set[str]]:
+        media = set()
 
+        deck_name = cards[0].deckname
+        deck_id = simple_hash(deck_name)
+        deck = genanki.Deck(deck_id=deck_id, name=deck_name)
+
+        for card in cards:
             for abspath, newpath in card.determine_media_references():
                 try:
                     copyfile(
@@ -87,7 +87,7 @@ class PackageGenerator:
                 except FileNotFoundError as e:
                     print(f"Could not find file {abspath} for media, {e}.")
 
-            deck[card.deckname()].add_note(card.to_genanki_note())
+            deck.add_note(card.to_genanki_note())
 
         return deck, media
 
@@ -102,7 +102,10 @@ class PackageGenerator:
         for prompt in prompts:
             if isinstance(prompt, QAPrompt):
                 card = AnkiCard(
-                    fields=[prompt.question, prompt.answer],
+                    fields=[
+                        prompt.question,
+                        prompt.answer,
+                    ],
                     tags=prompt.tags,
                     model_type="QA",
                     source_markdown=prompt.source_note.content,

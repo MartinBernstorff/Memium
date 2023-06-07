@@ -22,6 +22,7 @@ Options:
 import json
 import os
 import urllib.request
+from collections import defaultdict
 from pathlib import Path
 from typing import Any, Dict
 
@@ -40,6 +41,11 @@ from personal_mnemonic_medium.prompt_extractors.cloze_extractor import (
 from personal_mnemonic_medium.prompt_extractors.qa_extractor import QAPromptExtractor
 
 ANKI_CONNECT_URL = "http://localhost:8765"
+
+from wasabi import Printer
+
+msg = Printer(timestamp=True)
+
 
 # helper for creating anki connect requests
 def request(action: Any, **params: Any) -> Dict[str, Any]:
@@ -97,18 +103,24 @@ def main():
     apply_arguments(docopt(__doc__, version=VERSION))
     initial_dir = Path(__file__).parent
     recur_dir = Path(CONFIG["recur_dir"])
-    pkg_arg = Path(CONFIG["pkg_arg"])
     version_log = Path(CONFIG["version_log"])
 
     cards = markdown_to_ankicard(
         dir_path=recur_dir,
         extractors=[QAPromptExtractor(), ClozePromptExtractor()],
     )
-    deck_bundles = PackageGenerator().cards_to_deck_bundle(cards=cards, media=media)
 
-    sync_deck(deck_bundle=deck_bundles, dir_path=initial_dir)
+    decks = defaultdict(list)
+
+    for card in cards:
+        decks[card.deckname] += [card]
+
+    for deck in decks:
+        deck_bundle = PackageGenerator().cards_to_deck_bundle(cards=decks[deck])
+        sync_deck(deck_bundle=deck_bundle, dir_path=initial_dir)
+        msg.good(f"Syncing {deck}...")
+
     os.chdir(initial_dir)
-
     json.dump(VERSION_LOG, Path(version_log).open("w"))
 
 
