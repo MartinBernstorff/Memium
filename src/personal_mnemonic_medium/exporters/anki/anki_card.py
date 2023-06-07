@@ -1,6 +1,7 @@
 import hashlib
 import os
 import re
+import urllib
 from pathlib import Path
 from typing import Any, List, Literal, Optional, Tuple
 
@@ -175,10 +176,12 @@ class AnkiCard:
 
     def get_obsidian_uri(self) -> str:
         """Get the obsidian URI for the source document."""
-        vault = self.source_document.source_path.parent.name
-        file = self.source_document.source_path.name
+        vault = urllib.parse.quote(self.source_document.source_path.parent.name)
+        file = urllib.parse.quote(self.source_document.source_path.name)
 
-        return f'<h4 class="right"><a href="obsidian://open?vault={vault}&file={file}">Open</a></h4>'
+        href = f"obsidian://open?vault={vault}&file={file}"
+
+        return f'<h4 class="right"><a href="{href}">Open</a></h4>'
 
     def to_genanki_note(self) -> genanki.Note:
         """Produce a genanki.Note with the specified guid."""
