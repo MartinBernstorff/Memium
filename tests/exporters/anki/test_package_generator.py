@@ -3,7 +3,6 @@ from pathlib import Path
 import genanki
 from personal_mnemonic_medium.exporters.anki.anki_card import AnkiCard
 from personal_mnemonic_medium.exporters.anki.package_generator import (
-    DeckCollection,
     PackageGenerator,
 )
 from personal_mnemonic_medium.note_factories.note import Document
