@@ -30,6 +30,10 @@ CARD_MODEL_CSS = """
             font-weight: 0;
             font-style: italic;
             font-size: 0.7em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
         }
         div.extra h4.left {
             text-align: left;
@@ -37,10 +41,10 @@ CARD_MODEL_CSS = """
             width: 60%;
         }
         h4 {
-            color: rgba(255, 255, 255, 0);
+            color: rgba(120, 105, 200, 0);
             font-weight: 0;
             font-style: italic;
-            font-size: 0.3em;
+            font-size: 0.4em;
             line-height: 120%;
         }
         div.extra h4.right {
@@ -52,9 +56,9 @@ CARD_MODEL_CSS = """
             text-align: right;
             float: right;
             color: rgba(255, 255, 255, 0.25) !important;
-            background-color: rgba(255, 40, 35, 0.15) !important;
+            background-color: rgba(100, 100, 100, 0.25) !important;
             border: none;
-            padding: 5px 8px;
+            padding: 7px 12px;
             text-align: center;
             text-decoration: none;
             display: inline-block;

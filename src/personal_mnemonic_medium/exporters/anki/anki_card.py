@@ -1,6 +1,7 @@
 import hashlib
 import os
 import re
+import urllib
 from pathlib import Path
 from typing import Any, List, Literal, Optional, Tuple
 
@@ -173,20 +174,34 @@ class AnkiCard:
     def add_field(self, field: Any):
         self.compiled_fields.append(compile_field(field))
 
+    def get_obsidian_uri(self) -> str:
+        """Get the obsidian URI for the source document."""
+        vault = urllib.parse.quote(self.source_document.source_path.parent.name)  # type: ignore
+        file = urllib.parse.quote(self.source_document.source_path.name)  # type: ignore
+
+        href = f"obsidian://open?vault={vault}&file={file}"
+
+        return f'<h4 class="right"><a href="{href}">Open</a></h4>'
+
     def to_genanki_note(self) -> genanki.Note:
-        """Produce a genanki.Note with the specified guid."""
+        """Produce a genanki. Note with the specified guid."""
         if len(self.compiled_fields) > len(self.model.fields):
             raise ValueError(
                 f"Too many fields for model {self.model.name}: {self.compiled_fields}",
             )
 
         if len(self.compiled_fields) < len(self.model.fields):
-            while len(self.compiled_fields) < len(self.model.fields) - 1:
-                # Minus one to be ready for the card_uuid
-                self.compiled_fields.append("")
+            while len(self.compiled_fields) < len(self.model.fields):
+                before_extras_field = len(self.compiled_fields) == 2
+                before_uuid_field = len(self.compiled_fields) == 3
 
-        # Add the card_uuid as the last field
-        self.add_field(str(self.card_uuid))
+                if before_extras_field:
+                    self.add_field(self.get_obsidian_uri())
+
+                if before_uuid_field:
+                    self.add_field(str(self.card_uuid))
+
+                self.compiled_fields.append("")
 
         return genanki.Note(
             model=self.model,
@@ -206,6 +221,7 @@ class AnkiCard:
         return (abspath, newname)
 
     def get_deck_dir(self) -> Path:
+        # This is all it takes
         return Path(self.source_document.source_path).parent
 
     def determine_media_references(self):
