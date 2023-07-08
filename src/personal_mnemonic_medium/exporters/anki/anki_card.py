@@ -184,7 +184,7 @@ class AnkiCard:
         return f'<h4 class="right"><a href="{href}">Open</a></h4>'
 
     def to_genanki_note(self) -> genanki.Note:
-        """Produce a genanki.Note with the specified guid."""
+        """Produce a genanki. Note with the specified guid."""
         if len(self.compiled_fields) > len(self.model.fields):
             raise ValueError(
                 f"Too many fields for model {self.model.name}: {self.compiled_fields}",
@@ -221,6 +221,7 @@ class AnkiCard:
         return (abspath, newname)
 
     def get_deck_dir(self) -> Path:
+        # This is all it takes
         return Path(self.source_document.source_path).parent
 
     def determine_media_references(self):
