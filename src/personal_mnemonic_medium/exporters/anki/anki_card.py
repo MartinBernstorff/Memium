@@ -53,7 +53,7 @@ def field_to_html(field: Any) -> str:
     # Make sure every \n converts into a newline
     field = field.replace("\n", "  \n")
 
-    return misaka.html(field, extensions=("fenced-code", "math"))
+    return misaka.html(field, extensions=("fenced-code", "math"))  # type: ignore
 
 
 def compile_field(fieldtext: str) -> str:
