@@ -53,7 +53,7 @@ def field_to_html(field: Any) -> str:
     # Make sure every \n converts into a newline
     field = field.replace("\n", "  \n")
 
-    return misaka.html(field, extensions=("fenced-code", "math"))
+    return misaka.html(field, extensions=("fenced-code", "math"))  # type: ignore
 
 
 def compile_field(fieldtext: str) -> str:
@@ -193,13 +193,14 @@ class AnkiCard:
         if len(self.compiled_fields) < len(self.model.fields):
             while len(self.compiled_fields) < len(self.model.fields):
                 before_extras_field = len(self.compiled_fields) == 2
-                before_uuid_field = len(self.compiled_fields) == 3
-
                 if before_extras_field:
                     self.add_field(self.get_obsidian_uri())
+                    continue
 
+                before_uuid_field = len(self.compiled_fields) == 3
                 if before_uuid_field:
                     self.add_field(str(self.card_uuid))
+                    continue
 
                 self.compiled_fields.append("")
 

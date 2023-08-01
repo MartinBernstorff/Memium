@@ -1,4 +1,5 @@
 import json
+import traceback
 import urllib.request
 from pathlib import Path
 from time import sleep
@@ -115,9 +116,10 @@ def sync_deck(deck_bundle: DeckBundle, dir_path: Path, delete_cards: bool = True
                         ],
                     )
                     msg.good(f"Deleted {len(guids_to_delete)} notes")
-            except Exception as e:
-                msg.fail(f"Unable to remove {deck_bundle.deck.name}")
-                msg.fail(f"\t{e}")
+            except Exception:
+                msg.fail(f"Unable to delete cards in {deck_bundle.deck.name}")
+                # Print full stack trace
+                traceback.print_exc()
 
     except Exception as e:
         print(f"Unable to import {package_path} to anki")

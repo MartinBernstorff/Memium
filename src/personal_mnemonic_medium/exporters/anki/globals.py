@@ -20,7 +20,7 @@ TTS_ANSWER_STR = r"{{ tts en_US voices=Apple_Samantha speed=1.05:Answer }}"
 
 QA_MODEL_TEMPLATE = [
     {
-        "name": "Ankdown QA Card",
+        "name": "Ankdown QA Card with UUID",
         "qfmt": f"""
 <div class="front">
     {QUESTION_STR}{TTS_QUESTION_STR}
@@ -47,7 +47,7 @@ QA_MODEL_TEMPLATE = [
 
 CLOZE_MODEL_TEMPLATE = [
     {
-        "name": "Ankdown Cloze Card",
+        "name": "Ankdown Cloze Card with UUID",
         "qfmt": r"{{{{cloze:Text}}}}\n<div class='extra'>{{{{Extra}}}}</div>\n{}".format(
             CARD_MATHJAX_CONTENT,
         ),
@@ -63,8 +63,8 @@ CONFIG = {
     "dollar": False,
     "updated_only": False,
     "version_log": ".mdvlog",
-    "card_model_name_cloze": "Ankdown Cloze with GUID",
-    "card_model_name_qa": "Ankdown QA with GUID",
+    "card_model_name_cloze": "Ankdown Cloze with UUID",
+    "card_model_name_qa": "Ankdown QA with UUID",
     "card_model_css": CARD_MODEL_CSS,
     "card_model_fields_cloze": [
         {"name": "Text"},

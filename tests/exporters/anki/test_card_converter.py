@@ -68,10 +68,13 @@ def test_qa_uuid_generation():
         Path(__file__).parent.parent.parent / "test_md_files" / "test_card_guid.md"
     )
     cards = markdown_to_ankicard(file_path=file_path, extractors=[QAPromptExtractor()])
+    notes = [c.to_genanki_note() for c in cards]
 
+    field_guids = {note.guid for note in notes}
     reference_guids = {9315717920, 3912828915, 6300568814}
     generated_guids = {card.card_uuid for card in cards}
-    assert reference_guids == generated_guids
+
+    assert reference_guids == generated_guids == field_guids
 
 
 def test_cloze_uuid_generation():
