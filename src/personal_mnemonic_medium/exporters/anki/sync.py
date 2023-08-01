@@ -116,7 +116,7 @@ def sync_deck(deck_bundle: DeckBundle, dir_path: Path, delete_cards: bool = True
                         ],
                     )
                     msg.good(f"Deleted {len(guids_to_delete)} notes")
-            except Exception as e:
+            except Exception:
                 msg.fail(f"Unable to delete cards in {deck_bundle.deck.name}")
                 # Print full stack trace
                 traceback.print_exc()
