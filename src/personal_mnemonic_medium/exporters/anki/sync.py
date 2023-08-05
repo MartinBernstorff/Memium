@@ -119,13 +119,13 @@ def sync_deck(deck_bundle: DeckBundle, dir_path: Path, delete_cards: bool = True
         print("\n")
 
 
-def get_md_note_infos(deck_bundle: DeckBundle):
+def get_md_note_infos(deck_bundle: DeckBundle) -> set[str]:
     md_notes: List[Note] = deck_bundle.deck.notes
     md_note_guids = {str(n.guid) for n in md_notes}
     return md_note_guids
 
 
-def get_anki_note_infos(deck_bundle: DeckBundle):
+def get_anki_note_infos(deck_bundle: DeckBundle) -> tuple[dict[str, Any], set[str]]:
     anki_card_ids: List[int] = invoke(
         "findCards",
         query=f'"deck:{deck_bundle.deck.name}"',
@@ -144,7 +144,7 @@ def get_anki_note_infos(deck_bundle: DeckBundle):
     }
 
     # get the unique guids of the anki notes
-    anki_note_guids = anki_note_info_by_guid.keys()
+    anki_note_guids = set(anki_note_info_by_guid.keys())
     return anki_note_info_by_guid, anki_note_guids
 
 
