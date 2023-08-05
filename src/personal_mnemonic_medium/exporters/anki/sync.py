@@ -70,60 +70,82 @@ def sync_deck(deck_bundle: DeckBundle, dir_path: Path, delete_cards: bool = True
 
     package_path = deck_bundle.save_deck_to_file(dir_path / "deck.apkg")
 
-    try:
-        invoke("importPackage", path=str(package_path))
-        print(f"Imported {package_path}!")
+    # get a list of anki cards in the deck
+    anki_note_info_by_guid, anki_note_guids = get_anki_note_infos(deck_bundle)
 
-        if delete_cards:
-            # delete removed cards
-            try:
-                # get a list of anki cards in the deck
-                anki_card_ids: List[int] = invoke(
-                    "findCards",
-                    query=f'"deck:{deck_bundle.deck.name}"',
-                )
+    # get the unique guids of the md notes
+    md_note_guids = get_md_note_infos(deck_bundle)
 
-                # get a list of anki notes in the deck
-                anki_note_ids: List[int] = invoke("cardsToNotes", cards=anki_card_ids)
+    note_diff = md_note_guids.symmetric_difference(anki_note_guids)
+    if note_diff:
+        msg.info(" Syncing deck: ")
+        msg.info(f"\t{deck_bundle.deck.name}")
+        msg.info("\tNotes added: ")
+        msg.info(f"\t\t{md_note_guids - anki_note_guids}")
 
-                # get the note info for the notes in the deck
-                anki_notes_info = invoke("notesInfo", notes=anki_note_ids)
+        msg.info("\tNotes removed: ")
+        msg.info(f"\t\t{anki_note_guids - md_note_guids}")
 
-                # convert the note info into a dictionary of guid to note info
-                anki_note_info_by_guid = {
-                    n["fields"]["UUID"]["value"]
-                    .replace("<p>", "")
-                    .replace("</p>", "")
-                    .strip(): n
-                    for n in anki_notes_info
-                }
+        try:
+            invoke("importPackage", path=str(package_path))
+            print(f"Imported {deck_bundle.deck.name}!")
 
-                # get the unique guids of the anki notes
-                anki_note_guids = anki_note_info_by_guid.keys()
+            if delete_cards:
+                try:
+                    guids_to_delete = anki_note_guids - md_note_guids
+                    if guids_to_delete:
+                        note_ids = [
+                            anki_note_info_by_guid[guid]["noteId"]
+                            for guid in guids_to_delete
+                        ]
 
-                # get the unique guids of the md notes
-                md_notes: List[Note] = deck_bundle.deck.notes
-                md_note_guids = {str(n.guid) for n in md_notes}
+                        invoke(
+                            "deleteNotes",
+                            notes=note_ids,
+                        )
+                        msg.good(f"Deleted {len(guids_to_delete)} notes")
 
-                # find the guids to delete
-                guids_to_delete = anki_note_guids - md_note_guids
+                except Exception:
+                    msg.fail(f"Unable to delete cards in {deck_bundle.deck.name}")
+                    # Print full stack trace
+                    traceback.print_exc()
+        except Exception as e:
+            print(f"Unable to sync {package_path} to anki")
+            print(f"\t{e}")
+    else:
+        msg.info("Skipped")
+        msg.info(f"{deck_bundle.deck.name}")
+        msg.info("\tNo notes added or removed")
+        print("\n")
 
-                if guids_to_delete:
-                    invoke(
-                        "deleteNotes",
-                        notes=[
-                            anki_note_info_by_guid[g]["noteId"] for g in guids_to_delete
-                        ],
-                    )
-                    msg.good(f"Deleted {len(guids_to_delete)} notes")
-            except Exception:
-                msg.fail(f"Unable to delete cards in {deck_bundle.deck.name}")
-                # Print full stack trace
-                traceback.print_exc()
 
-    except Exception as e:
-        print(f"Unable to import {package_path} to anki")
-        print(f"\t{e}")
+def get_md_note_infos(deck_bundle: DeckBundle):
+    md_notes: List[Note] = deck_bundle.deck.notes
+    md_note_guids = {str(n.guid) for n in md_notes}
+    return md_note_guids
+
+
+def get_anki_note_infos(deck_bundle: DeckBundle):
+    anki_card_ids: List[int] = invoke(
+        "findCards",
+        query=f'"deck:{deck_bundle.deck.name}"',
+    )
+
+    # get a list of anki notes in the deck
+    anki_note_ids: List[int] = invoke("cardsToNotes", cards=anki_card_ids)
+
+    # get the note info for the notes in the deck
+    anki_notes_info = invoke("notesInfo", notes=anki_note_ids)
+
+    # convert the note info into a dictionary of guid to note info
+    anki_note_info_by_guid = {
+        n["fields"]["UUID"]["value"].replace("<p>", "").replace("</p>", "").strip(): n
+        for n in anki_notes_info
+    }
+
+    # get the unique guids of the anki notes
+    anki_note_guids = anki_note_info_by_guid.keys()
+    return anki_note_info_by_guid, anki_note_guids
 
 
 # synchronize the model and styling in the deck
