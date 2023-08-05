@@ -51,21 +51,24 @@ class MarkdownNoteFactory:
             )
 
     def get_notes_from_dir(self, dir_path: Path) -> List[Document]:
-        notes = []
+        notes: list[Document] = []
 
         for parent_dir, _, files in os.walk(dir_path):
-            with tqdm(total=len(files)) as pbar:
-                for file_name in sorted(files):
-                    if file_name.endswith(".md") or file_name.endswith(  # noqa
-                        ".markdown",
-                    ):
-                        file_path = Path(parent_dir) / file_name
+            md_files = list(filter(self.is_markdown_file, files))
+            if not md_files:
+                continue
 
-                        note = self.get_note_from_file(file_path)
+            with tqdm(total=len(md_files)) as pbar:
+                for file_name in sorted(md_files):
+                    file_path = Path(parent_dir) / file_name
+                    note = self.get_note_from_file(file_path)
 
-                        if note is not None:
-                            notes.append(note)
+                    if note is not None:
+                        notes.append(note)
 
-                        pbar.update(1)
+                    pbar.update(1)
 
         return notes
+
+    def is_markdown_file(self, string: str) -> bool:
+        return string.endswith((".md", ".markdown"))
