@@ -93,8 +93,8 @@ def sync_deck(deck_bundle: DeckBundle, dir_path: Path, delete_cards: bool = True
             msg.info("\tNotes removed: ")
             msg.info(f"\t\t{removed_note_guids}")
 
+        package_path = deck_bundle.save_deck_to_file(dir_path / "deck.apkg")
         try:
-            package_path = deck_bundle.save_deck_to_file(dir_path / "deck.apkg")
             invoke("importPackage", path=str(package_path))
             print(f"Imported {deck_bundle.deck.name}!")
 
