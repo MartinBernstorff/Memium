@@ -62,7 +62,7 @@ def anki_connect_is_live() -> bool:
 # synchronize the deck with markdown
 # Borrowed from https://github.com/lukesmurray/markdown-anki-decks/blob/de6556d7ecd2d39335607c05171f8a9c39c8f422/markdown_anki_decks/sync.py#L64
 def sync_deck(deck_bundle: DeckBundle, dir_path: Path, delete_cards: bool = True):
-    if "Medicine" in deck_bundle.deck.name:
+    if "Medicine" in deck_bundle.deck.name:  # type: ignore
         msg.fail("Skipping Medicine deck to save resources")
         return
 
@@ -87,10 +87,6 @@ def sync_deck(deck_bundle: DeckBundle, dir_path: Path, delete_cards: bool = True
         if added_note_guids:
             msg.info("\tNotes added: ")
             msg.info(f"\t\t{added_note_guids}")
-
-            notes: List[Note] = deck_bundle.deck.notes
-            note_infos = [note.info for note in notes if note.guid in added_note_guids]
-            msg.info(f"{note_infos}")
 
         removed_note_guids = anki_note_guids - md_note_guids
         if removed_note_guids:
