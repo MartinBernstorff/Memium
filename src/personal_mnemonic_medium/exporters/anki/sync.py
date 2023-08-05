@@ -62,13 +62,15 @@ def anki_connect_is_live() -> bool:
 # synchronize the deck with markdown
 # Borrowed from https://github.com/lukesmurray/markdown-anki-decks/blob/de6556d7ecd2d39335607c05171f8a9c39c8f422/markdown_anki_decks/sync.py#L64
 def sync_deck(deck_bundle: DeckBundle, dir_path: Path, delete_cards: bool = True):
+    if "Medicine" in deck_bundle.deck.name:
+        msg.fail("Skipping Medicine deck to save resources")
+        return
+
     for _ in range(600):
         if anki_connect_is_live():
             break
         print("Waiting for anki connect to start...")
         sleep(0.5)
-
-    package_path = deck_bundle.save_deck_to_file(dir_path / "deck.apkg")
 
     # get a list of anki cards in the deck
     anki_note_info_by_guid, anki_note_guids = get_anki_note_infos(deck_bundle)
@@ -80,13 +82,23 @@ def sync_deck(deck_bundle: DeckBundle, dir_path: Path, delete_cards: bool = True
     if note_diff:
         msg.info(" Syncing deck: ")
         msg.info(f"\t{deck_bundle.deck.name}")
-        msg.info("\tNotes added: ")
-        msg.info(f"\t\t{md_note_guids - anki_note_guids}")
 
-        msg.info("\tNotes removed: ")
-        msg.info(f"\t\t{anki_note_guids - md_note_guids}")
+        added_note_guids = md_note_guids - anki_note_guids
+        if added_note_guids:
+            msg.info("\tNotes added: ")
+            msg.info(f"\t\t{added_note_guids}")
+
+            notes: List[Note] = deck_bundle.deck.notes
+            note_infos = [note.info for note in notes if note.guid in added_note_guids]
+            msg.info(f"{note_infos}")
+
+        removed_note_guids = anki_note_guids - md_note_guids
+        if removed_note_guids:
+            msg.info("\tNotes removed: ")
+            msg.info(f"\t\t{removed_note_guids}")
 
         try:
+            package_path = deck_bundle.save_deck_to_file(dir_path / "deck.apkg")
             invoke("importPackage", path=str(package_path))
             print(f"Imported {deck_bundle.deck.name}!")
 
