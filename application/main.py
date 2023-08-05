@@ -117,7 +117,11 @@ def main():
 
     for deck in decks:
         deck_bundle = PackageGenerator().cards_to_deck_bundle(cards=decks[deck])
-        sync_deck(deck_bundle=deck_bundle, dir_path=initial_dir)
+        sync_deck(
+            deck_bundle=deck_bundle,
+            dir_path=initial_dir,
+            max_wait_for_ankiconnect=30,
+        )
 
     os.chdir(initial_dir)
     json.dump(VERSION_LOG, Path(version_log).open("w"))
