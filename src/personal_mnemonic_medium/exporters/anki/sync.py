@@ -61,16 +61,24 @@ def anki_connect_is_live() -> bool:
 
 # synchronize the deck with markdown
 # Borrowed from https://github.com/lukesmurray/markdown-anki-decks/blob/de6556d7ecd2d39335607c05171f8a9c39c8f422/markdown_anki_decks/sync.py#L64
-def sync_deck(deck_bundle: DeckBundle, dir_path: Path, delete_cards: bool = True):
+def sync_deck(
+    deck_bundle: DeckBundle,
+    dir_path: Path,
+    delete_cards: bool = True,
+    max_wait_for_ankiconnect: int = 30,
+):
     if "Medicine" in deck_bundle.deck.name:  # type: ignore
         msg.fail("Skipping Medicine deck to save resources")
         return
 
-    for _ in range(600):
+    for _ in range(max_wait_for_ankiconnect):
         if anki_connect_is_live():
             break
         print("Waiting for anki connect to start...")
         sleep(0.5)
+    else:
+        msg.fail("Unable to connect to anki")
+        return
 
     # get a list of anki cards in the deck
     anki_note_info_by_guid, anki_note_guids = get_anki_note_infos(deck_bundle)
