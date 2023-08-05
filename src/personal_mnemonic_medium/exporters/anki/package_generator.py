@@ -4,6 +4,7 @@ Can take an arbitrary amount of post-processing steps to be applied.
 """
 
 import hashlib
+import logging
 from collections.abc import Sequence
 from dataclasses import dataclass
 from pathlib import Path
@@ -15,6 +16,14 @@ import genanki
 from personal_mnemonic_medium.exporters.anki.anki_card import AnkiCard
 from personal_mnemonic_medium.prompt_extractors.cloze_extractor import ClozePrompt
 from personal_mnemonic_medium.prompt_extractors.qa_extractor import QAPrompt
+
+log = logging.getLogger(__name__)
+# Log to disk, not to console.
+logging.basicConfig(
+    filename="anki_package_generator.log",
+    filemode="w",
+    level=logging.DEBUG,
+)
 
 
 def simple_hash(text: str) -> int:
@@ -85,7 +94,7 @@ class PackageGenerator:
                     )  # This is inefficient but definitely works on all platforms.
                     media.add(newpath)
                 except FileNotFoundError as e:
-                    print(f"Could not find file {abspath} for media, {e}.")
+                    log.debug(f"Could not find file {abspath} for media, {e}.")
 
             deck.add_note(card.to_genanki_note())
 

@@ -59,7 +59,9 @@ def field_to_html(field: Any) -> str:
 def compile_field(fieldtext: str) -> str:
     """Turn source markdown into an HTML field suitable for Anki."""
     fieldtext_sans_wiki = fieldtext.replace("[[", "<u>").replace("]]", "</u>")
-    return field_to_html(fieldtext_sans_wiki)
+    fieldtext_sans_comments = re.sub(r"<!--.+-->", "", fieldtext_sans_wiki)
+
+    return field_to_html(fieldtext_sans_comments)
 
 
 def simple_hash(text: str) -> int:

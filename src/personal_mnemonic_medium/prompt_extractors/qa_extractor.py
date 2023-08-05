@@ -1,8 +1,17 @@
+import logging
 import re
 from typing import Any, List
 
 from personal_mnemonic_medium.note_factories.note import Document
 from personal_mnemonic_medium.prompt_extractors.prompt import Prompt
+
+log = logging.getLogger(__name__)
+# Log to disk, not to console.
+logging.basicConfig(
+    filename="qa_extractor.log",
+    filemode="w",
+    level=logging.DEBUG,
+)
 
 
 class QAPrompt(Prompt):
@@ -69,7 +78,7 @@ class QAPromptExtractor:
                 try:
                     answer = self.get_first_answer(block_string)
                 except IndexError:
-                    print(
+                    logging.warn(
                         f"Could not find answer in {note.title} for {question}",
                     )
                     continue
