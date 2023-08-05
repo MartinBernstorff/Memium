@@ -3,7 +3,6 @@ import re
 from pathlib import Path
 from typing import List, Optional
 
-from genanki import Note
 from tqdm import tqdm
 
 from personal_mnemonic_medium.note_factories.note import Document
