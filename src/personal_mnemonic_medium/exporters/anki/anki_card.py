@@ -178,9 +178,9 @@ class AnkiCard:
 
     def get_1writer_uri(self) -> str:
         """Get the obsidian URI for the source document."""
-        dir = urllib.parse.quote("/iCloud/Life Lessons iCloud")  # type: ignore
+        directory = urllib.parse.quote("/iCloud/Life Lessons iCloud")  # type: ignore
         file = urllib.parse.quote(self.source_document.source_path.name)  # type: ignore
-        full_path = urllib.parse.quote(f"{dir}/{file}")  # type: ignore
+        full_path = urllib.parse.quote(f"{directory}/{file}")  # type: ignore
 
         href = f"onewriter:://x-callback-url/open?path={full_path}"
         return f'<h4 class="right"><a href="{href}">Open</a></h4>'
