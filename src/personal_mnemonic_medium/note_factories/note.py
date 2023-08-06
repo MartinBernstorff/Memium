@@ -23,7 +23,7 @@ class Document:
 
     @staticmethod
     def _replace_alias_wiki_links(text: str) -> str:
-        regex_pattern = r"\[\[[\w|\s|\d]+\|[\w|\s|\d]+\]\]"
+        regex_pattern = r"\[\[[\w|\s|\d|\(|\)]+\|[\w|\s|\d]+\]\]"
         pattern_matches = re.findall(
             pattern=regex_pattern,
             string=text,

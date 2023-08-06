@@ -176,6 +176,15 @@ class AnkiCard:
     def add_field(self, field: Any):
         self.compiled_fields.append(compile_field(field))
 
+    def get_1writer_uri(self) -> str:
+        """Get the obsidian URI for the source document."""
+        directory = urllib.parse.quote("/iCloud/Life Lessons iCloud")  # type: ignore
+        file = urllib.parse.quote(self.source_document.source_path.name)  # type: ignore
+        full_path = urllib.parse.quote(f"{directory}/{file}")  # type: ignore
+
+        href = f"onewriter:://x-callback-url/open?path={full_path}"
+        return f'<h4 class="right"><a href="{href}">Open</a></h4>'
+
     def get_obsidian_uri(self) -> str:
         """Get the obsidian URI for the source document."""
         vault = urllib.parse.quote(self.source_document.source_path.parent.name)  # type: ignore
@@ -196,7 +205,7 @@ class AnkiCard:
             while len(self.compiled_fields) < len(self.model.fields):
                 before_extras_field = len(self.compiled_fields) == 2
                 if before_extras_field:
-                    self.add_field(self.get_obsidian_uri())
+                    self.add_field(self.get_1writer_uri())
                     continue
 
                 before_uuid_field = len(self.compiled_fields) == 3
