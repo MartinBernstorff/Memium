@@ -120,3 +120,7 @@ def test_alias_wiki_link_substitution():
     alias = "[[Isolation (database design)|Isolation]]"
     output = Document._replace_alias_wiki_links(alias)
     assert output == "[[Isolation]]"
+
+    alias = "[[test-test|test-]]"
+    output = Document._replace_alias_wiki_links(alias)
+    assert output == "[[test-]]"

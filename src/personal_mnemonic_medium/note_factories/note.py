@@ -23,7 +23,8 @@ class Document:
 
     @staticmethod
     def _replace_alias_wiki_links(text: str) -> str:
-        regex_pattern = r"\[\[[\w|\s|\d|\(|\)]+\|[\w|\s|\d]+\]\]"
+        tokens_in_link = r"[\w|\s|\d|\(|\)\-]"
+        regex_pattern = rf"\[\[{tokens_in_link}+\|{tokens_in_link}+\]\]"
         pattern_matches = re.findall(
             pattern=regex_pattern,
             string=text,
@@ -32,7 +33,7 @@ class Document:
 
         for match in pattern_matches:
             link_name = (
-                re.findall(pattern=r"\|[\w|\s|\d]+\]\]", string=match)[0]
+                re.findall(pattern=rf"\|{tokens_in_link}+\]\]", string=match)[0]
                 .replace("|", "")
                 .replace("]", "")
             )
