@@ -205,7 +205,7 @@ class AnkiCard:
             while len(self.compiled_fields) < len(self.model.fields):
                 before_extras_field = len(self.compiled_fields) == 2
                 if before_extras_field:
-                    self.add_field(self.get_1writer_uri())
+                    self.add_field(self.get_obsidian_uri())
                     continue
 
                 before_uuid_field = len(self.compiled_fields) == 3
