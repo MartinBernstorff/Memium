@@ -3,7 +3,7 @@ import os
 import re
 from abc import ABC, abstractmethod
 from pathlib import Path
-from typing import Any, Callable, List, Literal, Optional, Tuple
+from typing import Any, Callable, List, Optional, Tuple
 
 import genanki
 from personal_mnemonic_medium.exporters.anki.globals import CONFIG  # noqa
@@ -15,7 +15,6 @@ from personal_mnemonic_medium.exporters.url_generators.obsidian_url import (
 )
 from personal_mnemonic_medium.note_factories.note import Document
 from personal_mnemonic_medium.prompt_extractors.prompt import Prompt
-from personal_mnemonic_medium.utils.hasher import simple_hash
 
 
 class AnkiCard(ABC):
