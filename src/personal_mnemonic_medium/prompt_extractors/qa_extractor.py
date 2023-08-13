@@ -72,7 +72,7 @@ class QAPromptExtractor:
 
         blocks = self.break_string_by_two_or_more_newlines(note.content)
 
-        block_starting_line_nr = 0
+        block_starting_line_nr = 1
         for block_string in blocks:
             if self.has_qa(block_string):
                 question = self.get_first_question(block_string)
