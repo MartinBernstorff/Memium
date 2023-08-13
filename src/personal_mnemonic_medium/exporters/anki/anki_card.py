@@ -1,75 +1,21 @@
 import copy
-import hashlib
 import os
 import re
-import urllib
 from pathlib import Path
-from typing import Any, List, Literal, Tuple
+from typing import Any, Callable, List, Literal, Optional, Tuple
 
 import genanki
-import misaka
 
-from personal_mnemonic_medium.exporters.anki.globals import CONFIG
+from personal_mnemonic_medium.exporters.anki.globals import CONFIG  # noqa
+from personal_mnemonic_medium.exporters.markdown_to_html.html_compiler import (
+    compile_field,
+)
+from personal_mnemonic_medium.exporters.url_generators.obsidian_url import (
+    get_obsidian_url,
+)
 from personal_mnemonic_medium.note_factories.note import Document
 from personal_mnemonic_medium.prompt_extractors.prompt import Prompt
-
-
-def strip_header(string: str) -> str:
-    """Strip first occurrence of a markdown level 1 header"""
-    return re.sub(r"^#.*\n", "", string)
-
-
-def field_to_html(field: Any) -> str:
-    # Math processing
-    """
-    Need to extract the math in brackets so that it doesn't get markdowned.
-    If math is separated with dollar sign it is converted to brackets.
-    """
-    if CONFIG["dollar"]:
-        for sep, (op, cl) in [("$$", (r"\\[", r"\\]")), ("$", (r"\\(", r"\\)"))]:
-            escaped_sep = sep.replace(r"$", r"\$")
-            # ignore escaped dollar signs when splitting the field
-            field = re.split(rf"(?<!\\){escaped_sep}", field)
-            # add op(en) and cl(osing) brackets to every second element of the list
-            field[1::2] = [op + e + cl for e in field[1::2]]
-            field = "".join(field)
-    else:
-        for bracket in ["(", ")", "[", "]"]:
-            field = field.replace(rf"\{bracket}", rf"\\{bracket}")
-            # backslashes, man.
-
-    for token in ["*", "/"]:
-        if token == "/":
-            replacement = "*"
-        elif token == "*":
-            replacement = "**"
-
-        pattern = f"\\{token}[^<>\\-\n]+\\{token}"
-
-        token_instances = re.findall(pattern, field)
-
-        for instance in token_instances:
-            field = field.replace(instance, replacement + instance[1:-1] + replacement)  # type: ignore
-
-    # Make sure every \n converts into a newline
-    field = field.replace("\n", "  \n")
-
-    return misaka.html(field, extensions=("fenced-code", "math"))  # type: ignore
-
-
-def compile_field(fieldtext: str) -> str:
-    """Turn source markdown into an HTML field suitable for Anki."""
-    fieldtext_sans_wiki = fieldtext.replace("[[", "<u>").replace("]]", "</u>")
-    fieldtext_sans_comments = re.sub(r"<!--.+-->", "", fieldtext_sans_wiki)
-
-    return field_to_html(fieldtext_sans_comments)
-
-
-def simple_hash(text: str) -> int:
-    """MD5 of text, mod 2^63. Probably not a great hash function."""
-    comp_hash = int(hashlib.sha256(text.encode("utf-8")).hexdigest(), 16) % 10**10
-
-    return comp_hash
+from personal_mnemonic_medium.utils.hasher import simple_hash
 
 
 class AnkiCard:
@@ -80,10 +26,14 @@ class AnkiCard:
         fields: List[str],
         source_prompt: Prompt,
         model_type: Literal["QA", "Cloze"],
+        url_generator: Callable[[Path, Optional[int]], str] = get_obsidian_url,
+        html_compiler: Callable[[str], str] = compile_field,
     ):
         self.markdown_fields = fields
         self.model_type = model_type
         self.model = self.model_string_to_genanki_model(model_type=model_type)
+        self.html_compiler = html_compiler
+        self.url_generator = url_generator
 
         self.source_prompt = copy.deepcopy(source_prompt)
 
@@ -93,7 +43,7 @@ class AnkiCard:
 
     @property
     def html_fields(self) -> List[str]:
-        return list(map(compile_field, self.markdown_fields))
+        return list(map(self.html_compiler, self.markdown_fields))
 
     @property
     def tags(self) -> List[str]:
@@ -189,26 +139,14 @@ class AnkiCard:
     def add_field(self, field: Any):
         self.markdown_fields.append(field)
 
-    def get_1writer_uri(self) -> str:
-        """Get the obsidian URI for the source document."""
-        directory = urllib.parse.quote("/iCloud/Life Lessons iCloud")  # type: ignore
-        file = urllib.parse.quote(self.source_document.source_path.name)  # type: ignore
-        full_path = urllib.parse.quote(f"{directory}/{file}")  # type: ignore
-
-        href = f"onewriter:://x-callback-url/open?path={full_path}"
-        return f'<h4 class="right"><a href="{href}">Open</a></h4>'
-
-    def get_obsidian_uri(self) -> str:
-        """Get the obsidian URI for the source document."""
-        vault = urllib.parse.quote(self.source_doc.source_path.parent.name)  # type: ignore
-        file = urllib.parse.quote(self.source_doc.source_path.name)  # type: ignore
-
-        href = f"obsidian://advanced-uri?vault={vault}&filepath={file}"
-        line_nr = self.source_prompt.line_nr
-        if line_nr is not None:
-            href += f"&line={line_nr}"
-
-        return f'<h4 class="right"><a href="{href}">Open</a></h4>'
+    def get_source_button(self) -> str:
+        """Get the button to open the source document."""
+        url = self.url_generator(
+            self.source_doc.source_path,
+            self.source_prompt.line_nr,
+        )
+        html = f'<h4 class="right"><a href="{url}">Open</a></h4>'
+        return html
 
     def to_genanki_note(self) -> genanki.Note:
         """Produce a genanki. Note with the specified guid."""
@@ -221,7 +159,7 @@ class AnkiCard:
             while len(self.html_fields) < len(self.model.fields):
                 before_extras_field = len(self.html_fields) == 2
                 if before_extras_field:
-                    self.add_field(self.get_obsidian_uri())
+                    self.add_field(self.get_source_button())
                     continue
 
                 before_uuid_field = len(self.html_fields) == 3
