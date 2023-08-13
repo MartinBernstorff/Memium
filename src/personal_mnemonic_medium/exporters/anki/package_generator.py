@@ -3,7 +3,6 @@
 Can take an arbitrary amount of post-processing steps to be applied.
 """
 
-import hashlib
 import logging
 from collections.abc import Sequence
 from dataclasses import dataclass

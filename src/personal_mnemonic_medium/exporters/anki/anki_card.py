@@ -1,13 +1,11 @@
 import copy
 import os
 import re
-import urllib
 from pathlib import Path
 from typing import Any, Callable, List, Literal, Optional, Tuple
 
 import genanki
 
-from personal_mnemonic_medium.exporters.anki.globals import CONFIG
 from personal_mnemonic_medium.exporters.markdown_to_html.html_compiler import (
     compile_field,
 )
@@ -143,7 +141,7 @@ class AnkiCard:
     def get_source_button(self) -> str:
         """Get the button to open the source document."""
         url = self.url_generator(
-            self.source_doc.source_path, self.source_prompt.line_nr
+            self.source_doc.source_path, self.source_prompt.line_nr,
         )
         html = f'<h4 class="right"><a href="{url}">Open</a></h4>'
         return html
