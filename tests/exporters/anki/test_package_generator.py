@@ -1,7 +1,8 @@
 from pathlib import Path
 
 import genanki
-from personal_mnemonic_medium.exporters.anki.anki_card import AnkiCard
+from personal_mnemonic_medium.exporters.anki.card_types.base import AnkiCard
+from personal_mnemonic_medium.exporters.anki.card_types.qa import AnkiQA
 from personal_mnemonic_medium.exporters.anki.package_generator import (
     AnkiPackageGenerator,
 )
@@ -18,9 +19,8 @@ def test_cards_to_decks():
     )
 
     genanki_notes = [
-        AnkiCard(
+        AnkiQA(
             fields=["Q. What is the capital of France?", "A. Paris"],
-            model_type="QA",
             source_prompt=QAPrompt(
                 question="What is the capital of France?",
                 answer="Paris",
@@ -45,10 +45,9 @@ def test_package_generators():
         source_path=Path(__file__),
     )
 
-    genanki_notes = [
-        AnkiCard(
+    genanki_notes: list[AnkiCard] = [
+        AnkiQA(
             fields=["Q. What is the capital of France?", "A. Paris"],
-            model_type="QA",
             source_prompt=QAPrompt(
                 question="What is the capital of France?",
                 answer="Paris",

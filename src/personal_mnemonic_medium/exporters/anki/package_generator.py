@@ -12,7 +12,9 @@ from typing import Any, List, Set, Union
 
 import genanki
 
-from personal_mnemonic_medium.exporters.anki.anki_card import AnkiCard
+from personal_mnemonic_medium.exporters.anki.card_types.base import AnkiCard
+from personal_mnemonic_medium.exporters.anki.card_types.cloze import AnkiCloze
+from personal_mnemonic_medium.exporters.anki.card_types.qa import AnkiQA
 from personal_mnemonic_medium.prompt_extractors.cloze_extractor import ClozePrompt
 from personal_mnemonic_medium.prompt_extractors.qa_extractor import QAPrompt
 from personal_mnemonic_medium.utils.hasher import simple_hash
@@ -103,18 +105,16 @@ class AnkiPackageGenerator:
 
         for prompt in prompts:
             if isinstance(prompt, QAPrompt):
-                card = AnkiCard(
+                card = AnkiQA(
                     fields=[
                         prompt.question,
                         prompt.answer,
                     ],
-                    model_type="QA",
                     source_prompt=prompt,
                 )
             elif isinstance(prompt, ClozePrompt):
-                card = AnkiCard(
+                card = AnkiCloze(
                     fields=[prompt.content],
-                    model_type="Cloze",
                     source_prompt=prompt,
                 )
 
