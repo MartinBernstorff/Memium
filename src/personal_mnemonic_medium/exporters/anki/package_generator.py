@@ -116,14 +116,12 @@ class PackageGenerator:
                         prompt.answer,
                     ],
                     model_type="QA",
-                    source_doc=prompt.source_note,
                     source_prompt=prompt,
                 )
             elif isinstance(prompt, ClozePrompt):
                 card = AnkiCard(
                     fields=[prompt.content],
                     model_type="Cloze",
-                    source_doc=prompt.source_note,
                     source_prompt=prompt,
                 )
 
