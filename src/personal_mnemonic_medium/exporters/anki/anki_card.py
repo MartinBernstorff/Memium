@@ -141,7 +141,8 @@ class AnkiCard:
     def get_source_button(self) -> str:
         """Get the button to open the source document."""
         url = self.url_generator(
-            self.source_doc.source_path, self.source_prompt.line_nr,
+            self.source_doc.source_path,
+            self.source_prompt.line_nr,
         )
         html = f'<h4 class="right"><a href="{url}">Open</a></h4>'
         return html
