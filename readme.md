@@ -11,4 +11,14 @@ This holds doubly true if you can put the information into contex, for example u
 This thinking is largely inspired by Andy Matuschak's [Personal Mnemonic Medium](https://notes.andymatuschak.org/The_mnemonic_medium_can_be_extended_to_one%E2%80%99s_personal_notes), and the code is based on the unmaintained [Ankdown](https://github.com/benwr/ankdown).
 
 This is FYI-style open source, maintenance is not guaranteed.
+
+## Pipeline
+```mermaid
+
+graph TD 
+	FD["File on disk"]
+	FD -- Note factory --> Note
+	Note -- Extractor --> Prompt
+	Prompt -- Exporter --> Card 
+ ```
 <!-- {BearID:ffeb2eba865d16361b47d522f39c3563} -->
