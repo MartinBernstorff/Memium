@@ -3,9 +3,8 @@ import hashlib
 import os
 import re
 import urllib
-from dataclasses import field
 from pathlib import Path
-from typing import Any, List, Literal, Optional, Tuple
+from typing import Any, List, Literal, Tuple
 
 import genanki
 import misaka
