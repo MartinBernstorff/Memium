@@ -32,7 +32,9 @@ from personal_mnemonic_medium.exporters.anki.globals import (
     VERSION,
     VERSION_LOG,
 )
-from personal_mnemonic_medium.exporters.anki.package_generator import PackageGenerator
+from personal_mnemonic_medium.exporters.anki.package_generator import (
+    AnkiPackageGenerator,
+)
 from personal_mnemonic_medium.exporters.anki.sync import sync_deck
 from personal_mnemonic_medium.markdown_to_ankicard import markdown_to_ankicard
 from personal_mnemonic_medium.prompt_extractors.cloze_extractor import (
@@ -116,7 +118,7 @@ def main():
         decks[card.deckname] += [card]
 
     for deck in decks:
-        deck_bundle = PackageGenerator().cards_to_deck_bundle(cards=decks[deck])
+        deck_bundle = AnkiPackageGenerator().cards_to_deck_bundle(cards=decks[deck])
         sync_deck(
             deck_bundle=deck_bundle,
             dir_path=initial_dir,
