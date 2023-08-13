@@ -2,6 +2,7 @@ import hashlib
 import os
 import re
 import urllib
+from dataclasses import field
 from pathlib import Path
 from typing import Any, List, Literal, Optional, Tuple
 
@@ -77,25 +78,36 @@ class AnkiCard:
     def __init__(
         self,
         fields: List[str],
-        source_markdown: str,
         source_prompt: Prompt,
-        source_note: Document,
+        source_doc: Document,
         model_type: Literal["QA", "Cloze"],
-        tags: Optional[List[str]] = None,
     ):
         self.markdown_fields = fields
-        self.compiled_fields = [compile_field(field) for field in fields]
-        self.source_markdown = source_markdown
-        self.tags = tags
+
         self.model_type = model_type
         self.model = self.model_string_to_genanki_model(model_type=model_type)
-        self.source_prompt = source_prompt
-        self.source_document = source_note
 
+        self.source_prompt = source_prompt
+        self.source_document = source_doc
+
+    @property
+    def source_markdown(self) -> str:
+        return self.source_document.content
+
+    @property
+    def html_fields(self) -> List[str]:
+        return list(map(compile_field, self.markdown_fields))
+
+    @property
+    def tags(self) -> List[str]:
+        return self.source_document.tags
+
+    @property
+    def subdeck(self) -> str:
         if self.has_subdeck_tag(self.source_markdown):
-            self.subdeck = self.get_subdeck_name(self.source_markdown)
-        else:
-            self.subdeck = "Default"
+            return self.get_subdeck_name(self.source_markdown)
+
+        return "Default"
 
     @staticmethod
     def has_subdeck_tag(input_str: str) -> bool:
@@ -153,7 +165,7 @@ class AnkiCard:
     @property
     def card_uuid(self) -> int:  # The identifier for cards
         if self.model_type == "Cloze":
-            prompt_field = self.compiled_fields[0]
+            prompt_field = self.html_fields[0]
             cloze_fields = re.findall(r"{{c.+?}", prompt_field)
 
             cloze = cloze_fields[0]
@@ -174,7 +186,7 @@ class AnkiCard:
         return output_hash
 
     def add_field(self, field: Any):
-        self.compiled_fields.append(compile_field(field))
+        self.html_fields.append(compile_field(field))
 
     def get_1writer_uri(self) -> str:
         """Get the obsidian URI for the source document."""
@@ -199,28 +211,28 @@ class AnkiCard:
 
     def to_genanki_note(self) -> genanki.Note:
         """Produce a genanki. Note with the specified guid."""
-        if len(self.compiled_fields) > len(self.model.fields):
+        if len(self.html_fields) > len(self.model.fields):
             raise ValueError(
-                f"Too many fields for model {self.model.name}: {self.compiled_fields}",
+                f"Too many fields for model {self.model.name}: {self.html_fields}",
             )
 
-        if len(self.compiled_fields) < len(self.model.fields):
-            while len(self.compiled_fields) < len(self.model.fields):
-                before_extras_field = len(self.compiled_fields) == 2
+        if len(self.html_fields) < len(self.model.fields):
+            while len(self.html_fields) < len(self.model.fields):
+                before_extras_field = len(self.html_fields) == 2
                 if before_extras_field:
                     self.add_field(self.get_obsidian_uri())
                     continue
 
-                before_uuid_field = len(self.compiled_fields) == 3
+                before_uuid_field = len(self.html_fields) == 3
                 if before_uuid_field:
                     self.add_field(str(self.card_uuid))
                     continue
 
-                self.compiled_fields.append("")
+                self.html_fields.append("")
 
         return genanki.Note(
             model=self.model,
-            fields=self.compiled_fields,
+            fields=self.html_fields,
             guid=self.card_uuid,
             tags=self.tags,
         )
@@ -241,7 +253,7 @@ class AnkiCard:
 
     def determine_media_references(self):
         """Find all media references in a card"""
-        for i, field in enumerate(self.compiled_fields):
+        for i, field in enumerate(self.html_fields):
             current_stage = field
             for regex in [
                 r'src="([^"]*?)"',
@@ -260,4 +272,4 @@ class AnkiCard:
                     yield r
 
             # Anki seems to hate alt tags :(
-            self.compiled_fields[i] = re.sub(r'alt="[^"]*?"', "", current_stage)
+            self.html_fields[i] = re.sub(r'alt="[^"]*?"', "", current_stage)

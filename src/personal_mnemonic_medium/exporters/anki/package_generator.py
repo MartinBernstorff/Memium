@@ -118,7 +118,7 @@ class PackageGenerator:
                     tags=prompt.tags,
                     model_type="QA",
                     source_markdown=prompt.source_note.content,
-                    source_note=prompt.source_note,
+                    source_doc=prompt.source_note,
                     source_prompt=prompt,
                 )
             elif isinstance(prompt, ClozePrompt):
@@ -127,7 +127,7 @@ class PackageGenerator:
                     tags=prompt.tags,
                     model_type="Cloze",
                     source_markdown=prompt.source_note.content,
-                    source_note=prompt.source_note,
+                    source_doc=prompt.source_note,
                     source_prompt=prompt,
                 )
 

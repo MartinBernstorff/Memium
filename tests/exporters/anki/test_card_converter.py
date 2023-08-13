@@ -32,7 +32,7 @@ def test_custom_card_to_genanki_card():
             note_uuid="1234",
             source_note=source_note,
         ),
-        source_note=source_note,
+        source_doc=source_note,
     ).to_genanki_note()
 
     assert isinstance(genanki_note, genanki.Note)
@@ -57,7 +57,7 @@ def test_get_subtags():
             note_uuid="1234",
             source_note=source_note,
         ),
-        source_note=source_note,
+        source_doc=source_note,
     )
 
     assert "Medicine" in card.subdeck

@@ -29,7 +29,7 @@ def test_cards_to_decks():
                 note_uuid="1234",
                 source_note=source_note,
             ),
-            source_note=source_note,
+            source_doc=source_note,
         )
         for _ in range(4)
     ]
@@ -60,7 +60,7 @@ def test_package_generators():
                 note_uuid="1234",
                 source_note=source_note,
             ),
-            source_note=source_note,
+            source_doc=source_note,
         )
         for _ in range(4)
     ]
