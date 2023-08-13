@@ -9,7 +9,9 @@ class Prompt:
         note_uuid: str,
         source_note: Document,
         tags: Optional[List[str]] = None,
+        line_nr: Optional[int] = None,
     ):
         self.tags = tags
         self.note_uuid = note_uuid
         self.source_note = source_note
+        self.line_nr = line_nr
