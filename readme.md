@@ -26,7 +26,7 @@ graph TD
  
 	MD["Markdown file"]
 	 Prompts["[QAPrompt | ClozePrompt]"]
-  Cards["[AnkiCard]"]
+  Cards["[AnkiQA | AnkiCloze]"]
  
 	MD -- MarkdownNoteFactory --> Document
 	Document -- "[QAExtractor, \nClozeExtractor]" --> Prompts
