@@ -1,3 +1,4 @@
+import copy
 import hashlib
 import os
 import re
@@ -79,20 +80,17 @@ class AnkiCard:
         self,
         fields: List[str],
         source_prompt: Prompt,
-        source_doc: Document,
         model_type: Literal["QA", "Cloze"],
     ):
         self.markdown_fields = fields
-
         self.model_type = model_type
         self.model = self.model_string_to_genanki_model(model_type=model_type)
 
-        self.source_prompt = source_prompt
-        self.source_document = source_doc
+        self.source_prompt = copy.deepcopy(source_prompt)
 
     @property
     def source_markdown(self) -> str:
-        return self.source_document.content
+        return self.source_doc.content
 
     @property
     def html_fields(self) -> List[str]:
@@ -100,7 +98,7 @@ class AnkiCard:
 
     @property
     def tags(self) -> List[str]:
-        return self.source_document.tags
+        return self.source_doc.tags
 
     @property
     def subdeck(self) -> str:
@@ -108,6 +106,10 @@ class AnkiCard:
             return self.get_subdeck_name(self.source_markdown)
 
         return "Default"
+
+    @property
+    def source_doc(self) -> Document:
+        return self.source_prompt.source_note
 
     @staticmethod
     def has_subdeck_tag(input_str: str) -> bool:
@@ -170,7 +172,7 @@ class AnkiCard:
 
             cloze = cloze_fields[0]
 
-            basename = self.source_document.uuid
+            basename = self.source_doc.uuid
             hash_value = simple_hash(f"{cloze}{basename}")
 
             return hash_value
@@ -186,7 +188,7 @@ class AnkiCard:
         return output_hash
 
     def add_field(self, field: Any):
-        self.html_fields.append(compile_field(field))
+        self.markdown_fields.append(field)
 
     def get_1writer_uri(self) -> str:
         """Get the obsidian URI for the source document."""
@@ -199,8 +201,8 @@ class AnkiCard:
 
     def get_obsidian_uri(self) -> str:
         """Get the obsidian URI for the source document."""
-        vault = urllib.parse.quote(self.source_document.source_path.parent.name)  # type: ignore
-        file = urllib.parse.quote(self.source_document.source_path.name)  # type: ignore
+        vault = urllib.parse.quote(self.source_doc.source_path.parent.name)  # type: ignore
+        file = urllib.parse.quote(self.source_doc.source_path.name)  # type: ignore
 
         href = f"obsidian://advanced-uri?vault={vault}&filepath={file}"
         line_nr = self.source_prompt.line_nr
@@ -249,7 +251,7 @@ class AnkiCard:
 
     def get_deck_dir(self) -> Path:
         # This is all it takes
-        return Path(self.source_document.source_path).parent
+        return Path(self.source_doc.source_path).parent
 
     def determine_media_references(self):
         """Find all media references in a card"""
