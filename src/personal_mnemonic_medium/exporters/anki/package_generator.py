@@ -16,6 +16,7 @@ import genanki
 from personal_mnemonic_medium.exporters.anki.anki_card import AnkiCard
 from personal_mnemonic_medium.prompt_extractors.cloze_extractor import ClozePrompt
 from personal_mnemonic_medium.prompt_extractors.qa_extractor import QAPrompt
+from personal_mnemonic_medium.utils.hasher import simple_hash
 
 log = logging.getLogger(__name__)
 # Log to disk, not to console.
@@ -24,13 +25,6 @@ logging.basicConfig(
     filemode="w",
     level=logging.DEBUG,
 )
-
-
-def simple_hash(text: str) -> int:
-    """MD5 of text, mod 2^63. Probably not a great hash function."""
-    comp_hash = int(hashlib.sha256(text.encode("utf-8")).hexdigest(), 16) % 10**10
-
-    return comp_hash
 
 
 class DeckCollection(dict):
