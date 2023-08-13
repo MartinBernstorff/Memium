@@ -13,12 +13,23 @@ This thinking is largely inspired by Andy Matuschak's [Personal Mnemonic Medium]
 This is FYI-style open source, maintenance is not guaranteed.
 
 ## Pipeline
+The left path describes the abstract pipeline, the right path the instance of the pipeline I'm currently using. 
+
 ```mermaid
 
 graph TD 
 	FD["File on disk"]
-	FD -- Note factory --> Note
-	Note -- Extractor --> Prompt
+	FD -- Document factory --> Document
+	Document -- Extractor --> Prompt
 	Prompt -- Exporter --> Card 
+ 
+	MD["Markdown file"]
+	 Prompts["[QAPrompt | ClozePrompt]"]
+  Cards["[AnkiCard]"]
+ 
+	MD -- MarkdownNoteFactory --> Document
+	Document -- "[QAExtractor, \nClozeExtractor]" --> Prompts
+	Prompts -- AnkiPackageGenerator --> Cards
  ```
+
 <!-- {BearID:ffeb2eba865d16361b47d522f39c3563} -->
