@@ -50,7 +50,7 @@ class DeckBundle:
         return output_path
 
 
-class PackageGenerator:
+class AnkiPackageGenerator:
     """Generates an anki package from a list of anki cards"""
 
     def __init__(self) -> None:
@@ -61,7 +61,7 @@ class PackageGenerator:
         """Take an iterable prompts, output an .apkg in a file called output_name.
         NOTE: We _must_ be in a temp directory.
         """
-        deck, media = PackageGenerator.cards_to_deck(cards=cards)
+        deck, media = AnkiPackageGenerator.cards_to_deck(cards=cards)
 
         return DeckBundle(
             deck=deck,

@@ -3,7 +3,9 @@ from pathlib import Path
 from typing import Any, List, Optional
 
 from personal_mnemonic_medium.exporters.anki.anki_card import AnkiCard
-from personal_mnemonic_medium.exporters.anki.package_generator import PackageGenerator
+from personal_mnemonic_medium.exporters.anki.package_generator import (
+    AnkiPackageGenerator,
+)
 from personal_mnemonic_medium.note_factories.markdown import MarkdownNoteFactory
 from personal_mnemonic_medium.prompt_extractors.cloze_extractor import (
     ClozePromptExtractor,
@@ -19,7 +21,6 @@ def markdown_to_ankicard(
         ClozePromptExtractor(),  # noqa: B008
     ),
 ) -> List[AnkiCard]:
-
     if dir_path is None and file_path is None:
         raise ValueError("At least one of dir_path or file_path must be specified")
 
@@ -38,5 +39,5 @@ def markdown_to_ankicard(
         for note in notes:
             collected_prompts += extractor.extract_prompts(note)
 
-    cards = PackageGenerator().prompts_to_cards(prompts=collected_prompts)
+    cards = AnkiPackageGenerator().prompts_to_cards(prompts=collected_prompts)
     return cards
