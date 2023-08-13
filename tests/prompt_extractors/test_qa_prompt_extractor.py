@@ -50,3 +50,26 @@ def test_has_qa_does_not_match(qa_extractor: QAPromptExtractor):
             matches += 1
 
     assert matches == 0
+
+
+def test_line_indexing(qa_extractor: QAPromptExtractor):
+    note_object = Document(
+        title="Test note",
+        uuid="1234",
+        source_path=Path(__file__),
+        content="""Test content.
+
+Q. What is the first test prompt?
+A. This is the prompt!
+
+Block line 1
+
+Q. What is the second test prompt?
+A. This is the second prompt!
+""",
+    )
+
+    prompts = qa_extractor.extract_prompts(note_object)
+
+    assert prompts[0].line_nr == 3
+    assert prompts[1].line_nr == 8

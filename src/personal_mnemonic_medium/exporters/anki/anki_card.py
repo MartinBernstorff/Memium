@@ -190,7 +190,10 @@ class AnkiCard:
         vault = urllib.parse.quote(self.source_document.source_path.parent.name)  # type: ignore
         file = urllib.parse.quote(self.source_document.source_path.name)  # type: ignore
 
-        href = f"obsidian://open?vault={vault}&file={file}"
+        href = f"obsidian://advanced-uri?vault={vault}&filepath={file}"
+        line_nr = self.source_prompt.line_nr
+        if line_nr is not None:
+            href += f"&line={line_nr}"
 
         return f'<h4 class="right"><a href="{href}">Open</a></h4>'
 

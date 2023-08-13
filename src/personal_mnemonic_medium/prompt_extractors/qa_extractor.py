@@ -72,6 +72,7 @@ class QAPromptExtractor:
 
         blocks = self.break_string_by_two_or_more_newlines(note.content)
 
+        block_starting_line_nr = 1
         for block_string in blocks:
             if self.has_qa(block_string):
                 question = self.get_first_question(block_string)
@@ -90,7 +91,11 @@ class QAPromptExtractor:
                         tags=note.tags,
                         note_uuid=note.uuid,
                         source_note=note,
+                        line_nr=block_starting_line_nr,
                     ),
                 )
+
+            block_lines = len(re.findall(r"\n", block_string, flags=re.DOTALL))
+            block_starting_line_nr += block_lines
 
         return prompts
