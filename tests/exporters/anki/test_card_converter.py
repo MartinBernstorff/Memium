@@ -17,14 +17,12 @@ from personal_mnemonic_medium.prompt_extractors.qa_extractor import (
 def test_custom_card_to_genanki_card():
     source_note = Document(
         title="Test",
-        content="Test",
+        content="Q. What is the capital of France?\nA. Paris",
         uuid="1234",
         source_path=Path(__file__),
     )
     genanki_note = AnkiCard(
         fields=["Q. What is the capital of France?", "A. Paris"],
-        source_markdown="Q. What is the capital of France?\nA. Paris",
-        tags=["test"],
         model_type="QA",
         source_prompt=QAPrompt(
             question="What is the capital of France?",
@@ -32,7 +30,6 @@ def test_custom_card_to_genanki_card():
             note_uuid="1234",
             source_note=source_note,
         ),
-        source_note=source_note,
     ).to_genanki_note()
 
     assert isinstance(genanki_note, genanki.Note)
@@ -41,15 +38,13 @@ def test_custom_card_to_genanki_card():
 def test_get_subtags():
     source_note = Document(
         title="Test",
-        content="Test",
+        content="Testing subdeck extraction, #anki/deck/Medicine, #anki/tag/med/Endocrinology",
         uuid="1234",
         source_path=Path(__file__),
     )
 
     card = AnkiCard(
         fields=[""],
-        source_markdown="Testing subdeck extraction, #anki/deck/Medicine, #anki/tag/med/Endocrinology",
-        tags=["test"],
         model_type="QA",
         source_prompt=QAPrompt(
             question="What is the capital of France?",
@@ -57,7 +52,6 @@ def test_get_subtags():
             note_uuid="1234",
             source_note=source_note,
         ),
-        source_note=source_note,
     )
 
     assert "Medicine" in card.subdeck

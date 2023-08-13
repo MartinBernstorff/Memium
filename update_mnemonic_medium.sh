@@ -13,7 +13,7 @@ while true; do
 
     echo "🧠 Updating personal mnemonic medium with scripts in $PROJECT"
     cd $PROJECT
-    source .venv39/bin/activate
+    source .venv/bin/activate
 
     echo "🧠 \"$LESSONS_DIR\""
     python application/main.py -r "$LESSONS_DIR" -p "$PROJECT/Life.apkg"
