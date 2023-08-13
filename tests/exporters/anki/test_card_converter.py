@@ -1,7 +1,7 @@
 from pathlib import Path
 
 import genanki
-from personal_mnemonic_medium.exporters.anki.anki_card import AnkiCard
+from personal_mnemonic_medium.exporters.anki.card_types.qa import AnkiQA
 from personal_mnemonic_medium.markdown_to_ankicard import markdown_to_ankicard
 from personal_mnemonic_medium.note_factories.markdown import MarkdownNoteFactory
 from personal_mnemonic_medium.note_factories.note import Document
@@ -21,9 +21,8 @@ def test_custom_card_to_genanki_card():
         uuid="1234",
         source_path=Path(__file__),
     )
-    genanki_note = AnkiCard(
+    genanki_note = AnkiQA(
         fields=["Q. What is the capital of France?", "A. Paris"],
-        model_type="QA",
         source_prompt=QAPrompt(
             question="What is the capital of France?",
             answer="Paris",
@@ -43,9 +42,8 @@ def test_get_subtags():
         source_path=Path(__file__),
     )
 
-    card = AnkiCard(
+    card = AnkiQA(
         fields=[""],
-        model_type="QA",
         source_prompt=QAPrompt(
             question="What is the capital of France?",
             answer="Paris",

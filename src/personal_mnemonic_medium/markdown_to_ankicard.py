@@ -2,7 +2,7 @@ from collections.abc import Sequence
 from pathlib import Path
 from typing import Any, List, Optional
 
-from personal_mnemonic_medium.exporters.anki.anki_card import AnkiCard
+from personal_mnemonic_medium.exporters.anki.card_types.base import AnkiCard
 from personal_mnemonic_medium.exporters.anki.package_generator import (
     AnkiPackageGenerator,
 )
