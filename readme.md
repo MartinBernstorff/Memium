@@ -14,7 +14,7 @@ This thinking is largely inspired by Andy Matuschak's [Personal Mnemonic Medium]
 FYI-style open source, maintenance is not guaranteed.
 
 ## Pipeline
-The left path describes the abstract pipeline, the right path the instance of the pipeline I'm currently using. 
+The left path describes the abstract pipeline, the right path the current instantiation in this repo. 
 
 ```mermaid
 
