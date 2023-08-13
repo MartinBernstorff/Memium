@@ -3,13 +3,16 @@ import os
 import re
 import urllib
 from pathlib import Path
-from typing import Any, Callable, List, Literal, Tuple
+from typing import Any, Callable, List, Literal, Optional, Tuple
 
 import genanki
 
 from personal_mnemonic_medium.exporters.anki.globals import CONFIG
 from personal_mnemonic_medium.exporters.markdown_to_html.html_compiler import (
     compile_field,
+)
+from personal_mnemonic_medium.exporters.url_generators.obsidian_url import (
+    get_obsidian_url,
 )
 from personal_mnemonic_medium.note_factories.note import Document
 from personal_mnemonic_medium.prompt_extractors.prompt import Prompt
@@ -24,12 +27,14 @@ class AnkiCard:
         fields: List[str],
         source_prompt: Prompt,
         model_type: Literal["QA", "Cloze"],
-        html_compiler: Callable[[str], str],
-        url_generator: Callable[[str], str],
+        url_generator: Callable[[Path, Optional[int]], str] = get_obsidian_url,
+        html_compiler: Callable[[str], str] = compile_field,
     ):
         self.markdown_fields = fields
         self.model_type = model_type
         self.model = self.model_string_to_genanki_model(model_type=model_type)
+        self.html_compiler = html_compiler
+        self.url_generator = url_generator
 
         self.source_prompt = copy.deepcopy(source_prompt)
 
@@ -39,7 +44,7 @@ class AnkiCard:
 
     @property
     def html_fields(self) -> List[str]:
-        return list(map(compile_field, self.markdown_fields))
+        return list(map(self.html_compiler, self.markdown_fields))
 
     @property
     def tags(self) -> List[str]:
@@ -135,26 +140,13 @@ class AnkiCard:
     def add_field(self, field: Any):
         self.markdown_fields.append(field)
 
-    def get_1writer_uri(self) -> str:
-        """Get the obsidian URI for the source document."""
-        directory = urllib.parse.quote("/iCloud/Life Lessons iCloud")  # type: ignore
-        file = urllib.parse.quote(self.source_document.source_path.name)  # type: ignore
-        full_path = urllib.parse.quote(f"{directory}/{file}")  # type: ignore
-
-        href = f"onewriter:://x-callback-url/open?path={full_path}"
-        return f'<h4 class="right"><a href="{href}">Open</a></h4>'
-
-    def get_obsidian_uri(self) -> str:
-        """Get the obsidian URI for the source document."""
-        vault = urllib.parse.quote(self.source_doc.source_path.parent.name)  # type: ignore
-        file = urllib.parse.quote(self.source_doc.source_path.name)  # type: ignore
-
-        href = f"obsidian://advanced-uri?vault={vault}&filepath={file}"
-        line_nr = self.source_prompt.line_nr
-        if line_nr is not None:
-            href += f"&line={line_nr}"
-
-        return f'<h4 class="right"><a href="{href}">Open</a></h4>'
+    def get_source_button(self) -> str:
+        """Get the button to open the source document."""
+        url = self.url_generator(
+            self.source_doc.source_path, self.source_prompt.line_nr
+        )
+        html = f'<h4 class="right"><a href="{url}">Open</a></h4>'
+        return html
 
     def to_genanki_note(self) -> genanki.Note:
         """Produce a genanki. Note with the specified guid."""
@@ -167,7 +159,7 @@ class AnkiCard:
             while len(self.html_fields) < len(self.model.fields):
                 before_extras_field = len(self.html_fields) == 2
                 if before_extras_field:
-                    self.add_field(self.get_obsidian_uri())
+                    self.add_field(self.get_source_button())
                     continue
 
                 before_uuid_field = len(self.html_fields) == 3
