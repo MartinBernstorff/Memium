@@ -123,7 +123,7 @@ class AnkiCard(ABC):
                     self.add_field(str(self.card_uuid))
                     continue
 
-                self.html_fields.append("")
+                self.add_field("")
 
         return genanki.Note(
             model=self.genanki_model,
