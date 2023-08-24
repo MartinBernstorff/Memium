@@ -91,7 +91,10 @@ class AnkiPackageGenerator:
                 except FileNotFoundError as e:
                     log.debug(f"Could not find file {abspath} for media, {e}.")
 
-            deck.add_note(card.to_genanki_note())
+            try:
+                deck.add_note(card.to_genanki_note())
+            except IndexError as e:
+                log.debug(f"Could not add card {card} to deck {deck_name}, {e}.")
 
         return deck, media
 

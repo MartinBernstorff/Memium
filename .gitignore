@@ -108,7 +108,6 @@ ENV/
 .idea/
 
 # VSCode
-.vscode
 *.code-workspace
 
 *.mdvlog
