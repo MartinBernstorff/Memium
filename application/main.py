@@ -27,6 +27,7 @@ from pathlib import Path
 from typing import Any, Dict
 
 from docopt import docopt
+from personal_mnemonic_medium.card_pipeline import CardPipeline
 from personal_mnemonic_medium.exporters.anki.globals import (
     CONFIG,
     VERSION,
@@ -36,7 +37,8 @@ from personal_mnemonic_medium.exporters.anki.package_generator import (
     AnkiPackageGenerator,
 )
 from personal_mnemonic_medium.exporters.anki.sync import sync_deck
-from personal_mnemonic_medium.markdown_to_ankicard import markdown_to_ankicard
+from personal_mnemonic_medium.note_factories.base import DocumentFactory
+from personal_mnemonic_medium.note_factories.markdown import MarkdownNoteFactory
 from personal_mnemonic_medium.prompt_extractors.cloze_extractor import (
     ClozePromptExtractor,
 )
@@ -107,9 +109,12 @@ def main():
     recur_dir = Path(CONFIG["recur_dir"])
     version_log = Path(CONFIG["version_log"])
 
-    cards = markdown_to_ankicard(
-        dir_path=recur_dir,
-        extractors=[QAPromptExtractor(), ClozePromptExtractor()],
+    cards = CardPipeline(
+        document_factory=MarkdownNoteFactory(),
+        prompt_extractors=[QAPromptExtractor(), ClozePromptExtractor()],
+        card_exporter=AnkiPackageGenerator(),
+    ).run(
+        input_path=recur_dir,
     )
 
     decks = defaultdict(list)

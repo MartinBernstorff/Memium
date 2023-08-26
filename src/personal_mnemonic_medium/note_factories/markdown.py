@@ -1,14 +1,15 @@
 import os
 import re
 from pathlib import Path
-from typing import List, Optional
+from typing import List, Optional, Sequence
 
 from tqdm import tqdm
 
+from personal_mnemonic_medium.note_factories.base import DocumentFactory
 from personal_mnemonic_medium.note_factories.note import Document
 
 
-class MarkdownNoteFactory:
+class MarkdownNoteFactory(DocumentFactory):
     def __init__(self, cut_note_after: str = "# Backlinks"):
         """Create a new MarkdownNoteFactory.
 
@@ -50,7 +51,7 @@ class MarkdownNoteFactory:
                 source_path=file_path,
             )
 
-    def get_notes_from_dir(self, dir_path: Path) -> List[Document]:
+    def get_notes_from_dir(self, dir_path: Path) -> Sequence[Document]:
         notes: list[Document] = []
 
         for parent_dir, _, files in os.walk(dir_path):

@@ -1,8 +1,9 @@
 import hashlib
 import re
-from typing import Any, List, Optional
+from typing import Any, List, Optional, Sequence
 
 from personal_mnemonic_medium.note_factories.note import Document
+from personal_mnemonic_medium.prompt_extractors.base import PromptExtractor
 from personal_mnemonic_medium.prompt_extractors.prompt import Prompt
 
 
@@ -12,17 +13,17 @@ class ClozePrompt(Prompt):
         self.content = content
 
 
-class ClozePromptExtractor:
+class ClozePromptExtractor(PromptExtractor):
     def __init__(self) -> None:
         pass
 
     @staticmethod
-    def break_string_by_two_or_more_newlines(string: str) -> List[str]:
+    def _break_string_by_two_or_more_newlines(string: str) -> List[str]:
         """Break string into a list by 2+ newlines in a row."""
         return re.split(r"(\n\n)+", string)
 
     @staticmethod
-    def has_cloze(string: str) -> bool:
+    def _has_cloze(string: str) -> bool:
         if (
             len(re.findall(r"{.*}", string)) > 0
             and "BearID" not in string  # Exclude BearID
@@ -35,7 +36,7 @@ class ClozePromptExtractor:
         return False
 
     @staticmethod
-    def replace_cloze_id_with_unique(
+    def _replace_cloze_id_with_unique(
         string: str,
         selected_cloze: Optional[str] = None,
     ) -> str:
@@ -63,17 +64,17 @@ class ClozePromptExtractor:
 
         return string
 
-    def extract_prompts(self, note: Document) -> List[ClozePrompt]:
+    def extract_prompts(self, note: Document) -> Sequence[ClozePrompt]:
         prompts = []
 
-        blocks = self.break_string_by_two_or_more_newlines(note.content)
+        blocks = self._break_string_by_two_or_more_newlines(note.content)
 
         for block_string in blocks:
-            if self.has_cloze(block_string):
+            if self._has_cloze(block_string):
                 clozes = re.findall(r"{(?!BearID).[^}]*}", block_string)
 
                 for selected_cloze in clozes:
-                    prompt_content = self.replace_cloze_id_with_unique(
+                    prompt_content = self._replace_cloze_id_with_unique(
                         block_string,
                         selected_cloze=selected_cloze,
                     )
