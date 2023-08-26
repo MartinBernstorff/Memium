@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
+from collections.abc import Sequence
 from pathlib import Path
-from typing import Sequence
 
 from personal_mnemonic_medium.note_factories.note import Document
 

@@ -1,5 +1,6 @@
+from collections.abc import Sequence
 from pathlib import Path
-from typing import List, Sequence
+from typing import List
 
 import genanki
 from personal_mnemonic_medium.card_pipeline import CardPipeline
@@ -93,7 +94,7 @@ def test_qa_uuid_generation():
         Path(__file__).parent.parent.parent / "test_md_files" / "test_card_guid.md"
     )
     cards = TestCardPipeline(prompt_extractors=[QAPromptExtractor()]).run(
-        input_path=file_path
+        input_path=file_path,
     )
     notes = [c.to_genanki_note() for c in cards]
 

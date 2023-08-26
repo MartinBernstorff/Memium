@@ -8,7 +8,7 @@ from collections.abc import Sequence
 from dataclasses import dataclass
 from pathlib import Path
 from shutil import copyfile
-from typing import Any, List, Set, Union
+from typing import Any, List, Set
 
 import genanki
 

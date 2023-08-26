@@ -1,6 +1,7 @@
 import logging
 import re
-from typing import Any, List, Sequence
+from collections.abc import Sequence
+from typing import Any, List
 
 from personal_mnemonic_medium.note_factories.note import Document
 from personal_mnemonic_medium.prompt_extractors.base import PromptExtractor

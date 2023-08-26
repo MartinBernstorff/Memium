@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import Sequence
+from collections.abc import Sequence
 
 from personal_mnemonic_medium.exporters.anki.card_types.base import AnkiCard
 from personal_mnemonic_medium.prompt_extractors.prompt import Prompt
