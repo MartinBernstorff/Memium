@@ -104,14 +104,15 @@ def apply_arguments(arguments: Any) -> None:
 def main():
     """Run the thing."""
     apply_arguments(docopt(__doc__, version=VERSION))
-    initial_dir = Path(__file__).parent
     recur_dir = Path(CONFIG["recur_dir"])
-    version_log = Path(CONFIG["version_log"])
 
     cards = CardPipeline(
-        document_factory=MarkdownNoteFactory(),
-        prompt_extractors=[QAPromptExtractor(), ClozePromptExtractor()],
-        card_exporter=AnkiPackageGenerator(),
+        document_factory=MarkdownNoteFactory(),  # Step 1, get the documents
+        prompt_extractors=[  # Step 2, get the prompts from the documents
+            QAPromptExtractor(),
+            ClozePromptExtractor(),
+        ],
+        card_exporter=AnkiPackageGenerator(),  # Step 3, get the cards from the prompts
     ).run(
         input_path=recur_dir,
     )
@@ -125,12 +126,9 @@ def main():
         deck_bundle = AnkiPackageGenerator().cards_to_deck_bundle(cards=decks[deck])
         sync_deck(
             deck_bundle=deck_bundle,
-            dir_path=initial_dir,
+            dir_path=Path(__file__).parent,
             max_wait_for_ankiconnect=30,
         )
-
-    os.chdir(initial_dir)
-    json.dump(VERSION_LOG, Path(version_log).open("w"))
 
 
 if __name__ == "__main__":
