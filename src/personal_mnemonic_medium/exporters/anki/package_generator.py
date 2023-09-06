@@ -8,14 +8,16 @@ from collections.abc import Sequence
 from dataclasses import dataclass
 from pathlib import Path
 from shutil import copyfile
-from typing import Any, List, Set, Union
+from typing import Any, List, Set
 
 import genanki
 
 from personal_mnemonic_medium.exporters.anki.card_types.base import AnkiCard
 from personal_mnemonic_medium.exporters.anki.card_types.cloze import AnkiCloze
 from personal_mnemonic_medium.exporters.anki.card_types.qa import AnkiQA
+from personal_mnemonic_medium.exporters.base import CardExporter
 from personal_mnemonic_medium.prompt_extractors.cloze_extractor import ClozePrompt
+from personal_mnemonic_medium.prompt_extractors.prompt import Prompt
 from personal_mnemonic_medium.prompt_extractors.qa_extractor import QAPrompt
 from personal_mnemonic_medium.utils.hasher import simple_hash
 
@@ -52,7 +54,7 @@ class DeckBundle:
         return output_path
 
 
-class AnkiPackageGenerator:
+class AnkiPackageGenerator(CardExporter):
     """Generates an anki package from a list of anki cards"""
 
     def __init__(self) -> None:
@@ -100,11 +102,11 @@ class AnkiPackageGenerator:
 
     def prompts_to_cards(
         self,
-        prompts: Sequence[Union[QAPrompt, ClozePrompt]],
+        prompts: Sequence[Prompt],
     ) -> List[AnkiCard]:
         """Takes an iterable of prompts and turns them into AnkiCards"""
 
-        cards = []
+        cards: list[AnkiCard] = []
 
         for prompt in prompts:
             if isinstance(prompt, QAPrompt):
@@ -120,7 +122,9 @@ class AnkiPackageGenerator:
                     fields=[prompt.content],
                     source_prompt=prompt,
                 )
+            else:
+                raise NotImplementedError(f"Prompt type {type(prompt)} not supported.")
 
-            cards += [card]  # type: ignore
+            cards += [card]
 
         return cards

@@ -1,10 +1,19 @@
+from collections.abc import Sequence
 from pathlib import Path
+from typing import List
 
 import genanki
+from personal_mnemonic_medium.card_pipeline import CardPipeline
+from personal_mnemonic_medium.exporters.anki.card_types.base import AnkiCard
 from personal_mnemonic_medium.exporters.anki.card_types.qa import AnkiQA
-from personal_mnemonic_medium.markdown_to_ankicard import markdown_to_ankicard
+from personal_mnemonic_medium.exporters.anki.package_generator import (
+    AnkiPackageGenerator,
+)
+from personal_mnemonic_medium.exporters.base import CardExporter
+from personal_mnemonic_medium.note_factories.base import DocumentFactory
 from personal_mnemonic_medium.note_factories.markdown import MarkdownNoteFactory
 from personal_mnemonic_medium.note_factories.note import Document
+from personal_mnemonic_medium.prompt_extractors.base import PromptExtractor
 from personal_mnemonic_medium.prompt_extractors.cloze_extractor import (
     ClozePromptExtractor,
 )
@@ -12,6 +21,31 @@ from personal_mnemonic_medium.prompt_extractors.qa_extractor import (
     QAPrompt,
     QAPromptExtractor,
 )
+
+
+class TestCardPipeline(CardPipeline):
+    def __init__(
+        self,
+        document_factory: DocumentFactory = MarkdownNoteFactory(),  # noqa: B008
+        prompt_extractors: Sequence[PromptExtractor] = [
+            QAPromptExtractor(),  # noqa: B008
+            ClozePromptExtractor(),  # noqa: B008
+        ],
+        card_exporter: CardExporter = AnkiPackageGenerator(),  # noqa: B008
+    ) -> None:
+        super().__init__(
+            document_factory=document_factory,
+            prompt_extractors=prompt_extractors,
+            card_exporter=card_exporter,
+        )
+
+    def test_card_pipeline(
+        self,
+        input_path: Path,
+    ) -> List[AnkiCard]:
+        return self.run(
+            input_path=input_path,
+        )
 
 
 def test_custom_card_to_genanki_card():
@@ -59,7 +93,9 @@ def test_qa_uuid_generation():
     file_path = (
         Path(__file__).parent.parent.parent / "test_md_files" / "test_card_guid.md"
     )
-    cards = markdown_to_ankicard(file_path=file_path, extractors=[QAPromptExtractor()])
+    cards = TestCardPipeline(prompt_extractors=[QAPromptExtractor()]).run(
+        input_path=file_path,
+    )
     notes = [c.to_genanki_note() for c in cards]
 
     field_guids = {note.guid for note in notes}
@@ -73,9 +109,8 @@ def test_cloze_uuid_generation():
     file_path = (
         Path(__file__).parent.parent.parent / "test_md_files" / "test_card_guid.md"
     )
-    cloze_cards = markdown_to_ankicard(
-        file_path=file_path,
-        extractors=[ClozePromptExtractor()],
+    cloze_cards = TestCardPipeline(prompt_extractors=[ClozePromptExtractor()]).run(
+        input_path=file_path,
     )
 
     cloze_generated_guids = {card.card_uuid for card in cloze_cards}

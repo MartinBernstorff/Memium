@@ -20,23 +20,22 @@ Options:
 """
 
 import json
-import os
 import urllib.request
 from collections import defaultdict
 from pathlib import Path
 from typing import Any, Dict
 
 from docopt import docopt
+from personal_mnemonic_medium.card_pipeline import CardPipeline
 from personal_mnemonic_medium.exporters.anki.globals import (
     CONFIG,
     VERSION,
-    VERSION_LOG,
 )
 from personal_mnemonic_medium.exporters.anki.package_generator import (
     AnkiPackageGenerator,
 )
 from personal_mnemonic_medium.exporters.anki.sync import sync_deck
-from personal_mnemonic_medium.markdown_to_ankicard import markdown_to_ankicard
+from personal_mnemonic_medium.note_factories.markdown import MarkdownNoteFactory
 from personal_mnemonic_medium.prompt_extractors.cloze_extractor import (
     ClozePromptExtractor,
 )
@@ -103,13 +102,17 @@ def apply_arguments(arguments: Any) -> None:
 def main():
     """Run the thing."""
     apply_arguments(docopt(__doc__, version=VERSION))
-    initial_dir = Path(__file__).parent
     recur_dir = Path(CONFIG["recur_dir"])
-    version_log = Path(CONFIG["version_log"])
 
-    cards = markdown_to_ankicard(
-        dir_path=recur_dir,
-        extractors=[QAPromptExtractor(), ClozePromptExtractor()],
+    cards = CardPipeline(
+        document_factory=MarkdownNoteFactory(),  # Step 1, get the documents
+        prompt_extractors=[  # Step 2, get the prompts from the documents
+            QAPromptExtractor(),
+            ClozePromptExtractor(),
+        ],
+        card_exporter=AnkiPackageGenerator(),  # Step 3, get the cards from the prompts
+    ).run(
+        input_path=recur_dir,
     )
 
     decks = defaultdict(list)
@@ -121,12 +124,9 @@ def main():
         deck_bundle = AnkiPackageGenerator().cards_to_deck_bundle(cards=decks[deck])
         sync_deck(
             deck_bundle=deck_bundle,
-            dir_path=initial_dir,
+            dir_path=Path(__file__).parent,
             max_wait_for_ankiconnect=30,
         )
-
-    os.chdir(initial_dir)
-    json.dump(VERSION_LOG, Path(version_log).open("w"))
 
 
 if __name__ == "__main__":
