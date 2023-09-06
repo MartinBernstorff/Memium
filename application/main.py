@@ -20,7 +20,6 @@ Options:
 """
 
 import json
-import os
 import urllib.request
 from collections import defaultdict
 from pathlib import Path
@@ -31,7 +30,6 @@ from personal_mnemonic_medium.card_pipeline import CardPipeline
 from personal_mnemonic_medium.exporters.anki.globals import (
     CONFIG,
     VERSION,
-    VERSION_LOG,
 )
 from personal_mnemonic_medium.exporters.anki.package_generator import (
     AnkiPackageGenerator,
