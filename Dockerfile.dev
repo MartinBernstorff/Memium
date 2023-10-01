@@ -1,0 +1,13 @@
+# Use an official Python runtime as a parent image
+FROM python:3.11
+
+# Set the working directory to /app
+WORKDIR /app
+
+# Install deps
+COPY pyproject.toml /app/
+RUN pip install -e .[dev]
+
+# Install the entire app
+COPY . /app
+RUN pip install -e .[dev]
