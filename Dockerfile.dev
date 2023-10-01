@@ -7,6 +7,8 @@ WORKDIR /app
 # Install deps
 COPY pyproject.toml /app/
 RUN pip install .[dev]
+RUN pre-commit install-hooks
+
 RUN pip install .[tests]
 
 # Install the entire app
