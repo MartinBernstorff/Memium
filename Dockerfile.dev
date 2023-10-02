@@ -1,5 +1,5 @@
 # Use an official Python runtime as a parent image
-FROM python:3.9
+FROM python:3.9-bullseye
 
 # Set the working directory to /app
 WORKDIR /app
@@ -12,12 +12,17 @@ RUN pip install .[tests]
 # Setup dev env
 RUN git init && pre-commit install
 
-RUN type -p curl >/dev/null || (apt update && apt install curl -y)
-curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
-&& chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
-&& echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
-&& apt update \
-&& apt install gh -y
+RUN LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')  \
+    && curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz" \
+    && tar xf lazygit.tar.gz lazygit \
+    && install lazygit /usr/local/bin 
+RUN mkdir -p ~/.config/lazygit/ && touch ~/.config/lazygit/config.yml && echo "disableStartupPopups: true" >> ~/.config/lazygit/config.yml
+
+RUN type -p curl >/dev/null || (apt update && apt install curl -y) && curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \ 
+    && chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
+    && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
+    && apt update \
+    && apt install gh -y
 
 # Install the entire app
 COPY . /app
