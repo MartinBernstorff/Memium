@@ -23,6 +23,7 @@ dependencies = [
   "wasabi>=0.9.1",
   "tqdm>=4.64.1",
   "genanki>=0.13.0",
+  "sentry-sdk==2.0.5",
 ]
 
 [project.optional-dependencies]
