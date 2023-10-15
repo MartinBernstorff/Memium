@@ -12,7 +12,7 @@ validate:
 	make lint & make test & make type-check
 
 install:
-	pip install --upgrade -e .[dev,test]
+	pip install --upgrade -e .[dev,tests]
 
 pr:
 	make validate
