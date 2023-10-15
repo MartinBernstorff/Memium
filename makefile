@@ -7,8 +7,11 @@ test:
 type-check:
 	pyright .
 
-pr:
+validate:
 	make lint & make test & make type-check
+
+pr:
+	make validate
 	git push
 	gh pr create
 	gh pr merge --auto --merge
