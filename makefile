@@ -9,5 +9,6 @@ type-check:
 
 pr:
 	make lint & make test & make type-check
+	git push
 	gh pr create
 	gh pr merge --auto --merge
