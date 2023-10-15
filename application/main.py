@@ -94,7 +94,7 @@ def main():
         profiles_sample_rate=1.0,
     )
 
-    apply_arguments(docopt(__doc__, version=VERSION))
+    apply_arguments(docopt(__doc__, version=VERSION))  # type: ignore
     recur_dir = Path(CONFIG["recur_dir"])
 
     cards = CardPipeline(
