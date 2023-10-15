@@ -13,9 +13,9 @@ classifiers = [
   "Operating System :: POSIX :: Linux",
   "Operating System :: MacOS :: MacOS X",
   "Operating System :: Microsoft :: Windows",
-  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.11",
 ]
-requires-python = ">=3.8"
+requires-python = ">=3.11"
 dependencies = [
   "misaka>=2.1.1",
   "genanki>=0.13.0",
@@ -28,7 +28,7 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
   "cruft>=2.0.0",
-  "pyright==1.1.330.post0",
+  "pyright==1.1.331",
   "pyright-polite>=0.0.1",
   "pre-commit>=2.20.0",
   "ruff>=0.0.254",
@@ -42,21 +42,6 @@ tests = [
   "pytest-xdist>=3.0.0",
   "pytest-sugar>=0.9.4",
   "tox>=4.5.0",
-]
-docs = [
-  "sphinx>=5.3.0,<7.3.0",
-  "furo>=2022.12.7,<2023.9.11",        # theme
-  "sphinx-copybutton>=0.5.1,<0.5.2",
-  "sphinxext-opengraph>=0.7.3,<0.8.2",
-  "sphinx_design>=0.3.0,<0.5.1",
-  "myst-nb>=0.6.0,<1.17.0",
-  "sphinx_togglebutton>=0.2.3,<0.4.0",
-]
-tutorials = [
-  "jupyter>=1.0.0,<1.1.0",
-  "sphinx_togglebutton>=0.2.3,<0.4.0",
-  "myst-nb>=0.6.0,<1.17.0",            # for rendering notebooks
-  "jupyter>=1.0.0,<1.1.0",             # for tutorials
 ]
 
 [project.urls]

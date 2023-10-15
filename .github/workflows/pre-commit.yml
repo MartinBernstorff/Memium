@@ -9,55 +9,27 @@ on:
     branches: [main]
 
 jobs:
-  pre-commit:
-    permissions:
-      pull-requests: write
+  build:
     concurrency:
       group: "${{ github.workflow }} @ ${{ github.ref }}"
       cancel-in-progress: true
-    if: ${{ github.actor != 'dependabot[bot]' }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout (GitHub)
+        uses: actions/checkout@v3
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v2 
         with:
-          repository: ${{ github.event.pull_request.head.repo.full_name }}
-          ref: ${{ github.event.pull_request.head.ref }}
-          token: ${{ secrets.PAT }}
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: actions/setup-python@v4
+      - name: Pre-build dev container image
+        uses: devcontainers/ci@v0.3
         with:
-          python-version: "3.9"
-
-      - name: Install pre-commit
-        run: pip install pre-commit
-
-      - name: Run pre-commit
-        id: pre_commit
-        continue-on-error: true
-        run: |
-          if pre-commit run --color always --all-files; then
-            echo "Pre-commit check passed"
-            echo "pre_commit_failed=0" >> $GITHUB_OUTPUT
-          else
-            echo "Pre-commit check failed"
-            echo "pre_commit_failed=1" >> $GITHUB_OUTPUT
-            exit 1
-          fi
-
-      # Have this step before commit in case the PR is from a fork. In this case, we want the
-      # add-pr-comment to fail, because it makes it means that the contributer is directed here,
-      # and are given the informative error message, instead of directed to a "could not commit error message".
-      - uses: mshick/add-pr-comment@v2
-        if: ${{ steps.pre_commit.outputs.pre_commit_failed == 1 && github.event_name == 'pull_request' }}
-        id: add_comment
-        with:
-          message: |
-            Looks like some formatting rules failed. You can:
-
-            🏎️ Fix locally by running `inv pr`
-
-            We also recommend setting up the `ruff` and `black` extensions to auto-format on save in your chosen editor.
-
-      - name: Fail workflow
-        if: ${{ steps.pre_commit.outputs.pre_commit_failed == 1 && github.event_name == 'pull_request' }}
-        run: exit 1
+          imageName: ghcr.io/MartinBernstorff/personal-mnemonic-medium/
+          cacheFrom: ghcr.io/MartinBernstorff/personal-mnemonic-medium/
+          push: never
+          runCmd:
+            make lint
