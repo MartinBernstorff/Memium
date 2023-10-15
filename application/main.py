@@ -1,30 +1,11 @@
 #!/usr/bin/env python3
-"""Ankdown: Convert Markdown files into anki decks.
-
-Usage:
-    ankdown.py [-r DIR] [-p PACKAGENAME] [--updatedOnly] [--config CONFIG_STRING] [--configFile CONFIG_FILE_PATH]
-
-Options:
-    -h --help     Show this help message
-    --version     Show version
-
-    -r DIR        Recursively visit DIR, accumulating cards from `.md` files.
-
-    -p PACKAGE    Instead of a .txt file, produce a .apkg file. recommended.
-
-    --updatedOnly  Only generate cards from updated `.md` files
-
-    --config CONFIG_STRING  ankdown configuration as YAML string
-
-    --configFile CONFIG_FILE_PATH   path to ankdown configuration as YAML file
-"""
-
 import json
 import urllib.request
 from collections import defaultdict
 from pathlib import Path
 from typing import Any, Dict
 
+import sentry_sdk
 from docopt import docopt
 from personal_mnemonic_medium.card_pipeline import CardPipeline
 from personal_mnemonic_medium.exporters.anki.globals import (
@@ -101,7 +82,19 @@ def apply_arguments(arguments: Any) -> None:
 
 def main():
     """Run the thing."""
-    apply_arguments(docopt(__doc__, version=VERSION))
+
+    sentry_sdk.init(
+        dsn="https://37f17d6aa7742424652663a04154e032@o4506053997166592.ingest.sentry.io/4506053999984640",
+        # Set traces_sample_rate to 1.0 to capture 100%
+        # of transactions for performance monitoring.
+        traces_sample_rate=1.0,
+        # Set profiles_sample_rate to 1.0 to profile 100%
+        # of sampled transactions.
+        # We recommend adjusting this value in production.
+        profiles_sample_rate=1.0,
+    )
+
+    apply_arguments(docopt(__doc__, version=VERSION))  # type: ignore
     recur_dir = Path(CONFIG["recur_dir"])
 
     cards = CardPipeline(
