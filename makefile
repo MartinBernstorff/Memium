@@ -8,7 +8,11 @@ type-check:
 	pyright .
 
 validate:
+	make install
 	make lint & make test & make type-check
+
+install:
+	pip install --upgrade -e .[dev,tests]
 
 pr:
 	make validate
