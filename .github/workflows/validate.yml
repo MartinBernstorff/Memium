@@ -28,8 +28,8 @@ jobs:
       - name: Pre-build dev container image
         uses: devcontainers/ci@v0.3
         with:
-          imageName: ghcr.io/MartinBernstorff/personal-mnemonic-medium
-          cacheFrom: ghcr.io/MartinBernstorff/personal-mnemonic-medium
+          imageName: ghcr.io/martinbernstorff/personal-mnemonic-medium
+          cacheFrom: ghcr.io/martinbernstorff/personal-mnemonic-medium
           push: never
           runCmd:
             make validate
