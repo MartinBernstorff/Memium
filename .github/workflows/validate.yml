@@ -1,14 +1,12 @@
-# This workflow will install Python dependencies, run pytests and run notebooks
-# then it will in python 3.9 (ubuntu-latest) create a badge with the coverage
-# and add it to the PR. This badge will be updated if the PR is updated.
+# GitHub action to check if pre-commit has been run. Runs from .pre-commit-config.yaml, where the pre-commit actions are.
 
-name: Tests
+name: run-pre-commit
+
 on:
-  push:
-    branches: [main]
   pull_request:
     branches: [main]
-
+  push:
+    branches: [main]
 
 jobs:
   build:
@@ -34,4 +32,4 @@ jobs:
           cacheFrom: ghcr.io/MartinBernstorff/personal-mnemonic-medium/
           push: never
           runCmd:
-            make test
+            make validate
