@@ -1,6 +1,6 @@
 # GitHub action to check if pre-commit has been run. Runs from .pre-commit-config.yaml, where the pre-commit actions are.
 
-name: run-pre-commit
+name: validate
 
 on:
   pull_request:
@@ -30,6 +30,6 @@ jobs:
         with:
           imageName: ghcr.io/martinbernstorff/personal-mnemonic-medium
           cacheFrom: ghcr.io/martinbernstorff/personal-mnemonic-medium
-          push: never
+          push: always
           runCmd:
             make validate
