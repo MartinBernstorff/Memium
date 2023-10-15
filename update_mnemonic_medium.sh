@@ -18,26 +18,37 @@ log() {
     echo "$USER - $TIME_STAMP - $1"
 }
 
-while true; do
-    # If Anki.app is not already running, launch it
-    ANKI_COUNT=$(ps -ax | grep -c "Applications\/Anki.app")
-    if (($ANKI_COUNT == 0));
-    then
-        log "🧠 Launching Anki"
-        open -a Anki
+alert_if_fails() {
+    "$@"
+    if [ $? -ne 0 ]; then
+        osascript -e 'display alert "Personal mnemonic execution failed!" message "Check in the logs for error messages"'
     fi
+}
 
-    log "🧠 Updating personal mnemonic medium with scripts in $PROJECT"
-    cd $PROJECT
-    source .venv/bin/activate
+main() {
+    while true; do
+        # If Anki.app is not already running, launch it
+        ANKI_COUNT=$(ps -ax | grep -c "Applications\/Anki.app")
+        if (($ANKI_COUNT == 0));
+        then
+            log "🧠 Launching Anki"
+            open -a Anki
+        fi
 
-    log "🧠 \"$LESSONS_DIR\""
-    python application/main.py -r "$LESSONS_DIR" -p "$PROJECT/Life.apkg"
+        log "🧠 Updating personal mnemonic medium with scripts in $PROJECT"
+        cd $PROJECT
+        source .venv/bin/activate
 
-    # Send "y" keypress to Anki.app to start sync
-    # osascript -e 'tell application "Anki" to activate' 
-    # osascript -e 'tell application "System Events" to keystroke "y"'
-    log "🧠 Finished syncing"
-    sleep $RUN_EVERY_N_SECONDS
-done
+        log "🧠 \"$LESSONS_DIR\""
+        python application/main.py -r "$LESSONS_DIR" -p "$PROJECT/Life.apkg"
+
+        # Send "y" keypress to Anki.app to start sync
+        # osascript -e 'tell application "Anki" to activate' 
+        # osascript -e 'tell application "System Events" to keystroke "y"'
+        log "🧠 Finished syncing"
+        sleep $RUN_EVERY_N_SECONDS
+    done
+}
+
+alert_if_fails main
 
