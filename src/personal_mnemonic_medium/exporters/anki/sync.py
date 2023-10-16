@@ -6,12 +6,10 @@ from time import sleep
 from typing import Any, Dict, List
 
 from genanki import Model, Note
-
-from personal_mnemonic_medium.exporters.anki.package_generator import DeckBundle
-
-anki_connect_url = "http://localhost:8765"
-
 from wasabi import Printer
+
+from personal_mnemonic_medium.exporters.anki.globals import ANKICONNECT_URL
+from personal_mnemonic_medium.exporters.anki.package_generator import DeckBundle
 
 msg = Printer(timestamp=True)
 
@@ -33,7 +31,7 @@ def invoke(action: Any, **params: Any) -> Any:
     """
     requestJson = json.dumps(request(action, **params)).encode("utf-8")
     response = json.load(
-        urllib.request.urlopen(urllib.request.Request(anki_connect_url, requestJson)),
+        urllib.request.urlopen(urllib.request.Request(ANKICONNECT_URL, requestJson)),
     )
     if len(response) != 2:
         raise Exception("response has an unexpected number of fields")
@@ -48,13 +46,15 @@ def invoke(action: Any, **params: Any) -> Any:
 
 def anki_connect_is_live() -> bool:
     try:
-        if urllib.request.urlopen(anki_connect_url).getcode() == 200:
+        if urllib.request.urlopen(ANKICONNECT_URL).getcode() == 200:
             return True
         raise Exception
-    except Exception:
-        msg.good(
-            "Unable to reach anki connect. Make sure anki is running and the Anki Connect addon is installed.",
+    except Exception as err:
+        msg.info(f"Attempted connection on {ANKICONNECT_URL}")
+        msg.info(
+            "Unable to reach anki connect. Make sure anki is running and the Anki Connect addon is installed."
         )
+        msg.fail(f"Error was {err}")
 
     return False
 

@@ -4,6 +4,8 @@ from typing import Any, Dict
 
 from personal_mnemonic_medium.exporters.anki.anki_css import CARD_MODEL_CSS
 
+ANKICONNECT_URL = "http://host.docker.internal:8765"  # On host machine, port is 8765
+
 CARD_MATHJAX_CONTENT = textwrap.dedent(
     """\
 

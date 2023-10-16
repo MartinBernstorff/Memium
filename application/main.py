@@ -1,17 +1,13 @@
-#!/usr/bin/env python3
 import json
 import urllib.request
 from collections import defaultdict
 from pathlib import Path
-from typing import Any, Dict
+from time import sleep
+from typing import Annotated, Any, Dict
 
 import sentry_sdk
-from docopt import docopt
+import typer
 from personal_mnemonic_medium.card_pipeline import CardPipeline
-from personal_mnemonic_medium.exporters.anki.globals import (
-    CONFIG,
-    VERSION,
-)
 from personal_mnemonic_medium.exporters.anki.package_generator import (
     AnkiPackageGenerator,
 )
@@ -21,9 +17,6 @@ from personal_mnemonic_medium.prompt_extractors.cloze_extractor import (
     ClozePromptExtractor,
 )
 from personal_mnemonic_medium.prompt_extractors.qa_extractor import QAPromptExtractor
-
-ANKI_CONNECT_URL = "http://localhost:8765"
-
 from wasabi import Printer
 
 msg = Printer(timestamp=True)
@@ -70,17 +63,14 @@ def anki_connect_is_live() -> bool:
         return False
 
 
-def apply_arguments(arguments: Any) -> None:
-    global CONFIG  # noqa
-    if arguments.get("-p") is not None:
-        CONFIG["pkg_arg"] = arguments.get("-p")
-    if arguments.get("-r") is not None:
-        CONFIG["recur_dir"] = arguments.get("-r")
-    if arguments.get("--updatedOnly"):
-        CONFIG["updated_only"] = True
-
-
-def main():
+def main(
+    recur_dir: Path,
+    project_dir: Path,
+    watch: Annotated[
+        bool,
+        typer.Option(help="Keep running, updating Anki deck every 15 seconds"),
+    ],
+):
     """Run the thing."""
 
     sentry_sdk.init(
@@ -93,9 +83,6 @@ def main():
         # We recommend adjusting this value in production.
         profiles_sample_rate=1.0,
     )
-
-    apply_arguments(docopt(__doc__, version=VERSION))  # type: ignore
-    recur_dir = Path(CONFIG["recur_dir"])
 
     cards = CardPipeline(
         document_factory=MarkdownNoteFactory(),  # Step 1, get the documents
@@ -121,6 +108,12 @@ def main():
             max_wait_for_ankiconnect=30,
         )
 
+    if watch:
+        sleep_seconds = 60
+        msg.good(f"Sync complete, sleeping for {sleep_seconds} seconds")
+        sleep(sleep_seconds)
+        main(recur_dir=recur_dir, project_dir=project_dir, watch=watch)
+
 
 if __name__ == "__main__":
-    main()
+    typer.run(main)
