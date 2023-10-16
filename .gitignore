@@ -119,3 +119,4 @@ pytest-coverage.txt
 BearImages*
 test_package
 .pytest_results
+.devcontainer/devcontainer.json
