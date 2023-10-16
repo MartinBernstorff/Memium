@@ -23,9 +23,6 @@
 	"features": {
 		"ghcr.io/devcontainers/features/github-cli:1": {}
 	},
-	"mounts": [
-		"source=${localEnv:HOME}${localEnv:USERPROFILE}/Library/Mobile Documents/iCloud~md~obsidian/Documents/Life Lessons iCloud,target=/input,type=bind,consistency=cached"
-	],
 	"postStartCommand": "pip install -e ."
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
