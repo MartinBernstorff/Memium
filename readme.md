@@ -33,4 +33,10 @@ graph TD
 	Prompts -- AnkiPackageGenerator --> Cards
  ```
 
+## Contributing
+To get a full 
+
+## Running through docker
+To build and run the container, see `docker_cmd.sh`.
+
 <!-- {BearID:ffeb2eba865d16361b47d522f39c3563} -->

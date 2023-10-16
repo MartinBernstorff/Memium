@@ -11,12 +11,9 @@
             "program": "${file}",
             "console": "integratedTerminal",
             "args": [
-                "-r",
-                "${userHome}/Library/Mobile Documents/iCloud~md~obsidian/Documents/Life Lessons iCloud",
-                "-p",
+                "/input/",
                 "Life.apkg"
             ],
-            "justMyCode": true
         }
     ]
 }
