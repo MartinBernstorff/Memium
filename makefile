@@ -19,9 +19,7 @@ install:
 validate:
 	@echo ––– Ensuring dependencies are up to date. This will take a few moments ---
 	@make install > /dev/null
-	@make lint
-	@make type-check
-	@make test 
+	@make lint && make type-check && make test
 
 pr:
 	make validate
