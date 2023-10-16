@@ -52,7 +52,7 @@ def anki_connect_is_live() -> bool:
     except Exception as err:
         msg.info(f"Attempted connection on {ANKICONNECT_URL}")
         msg.info(
-            "Unable to reach anki connect. Make sure anki is running and the Anki Connect addon is installed."
+            "Unable to reach anki connect. Make sure anki is running and the Anki Connect addon is installed.",
         )
         msg.fail(f"Error was {err}")
 
