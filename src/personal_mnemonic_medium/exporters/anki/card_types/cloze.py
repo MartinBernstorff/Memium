@@ -4,7 +4,7 @@ from typing import Callable, List, Optional
 
 import genanki
 from personal_mnemonic_medium.exporters.anki.card_types.base import AnkiCard
-from personal_mnemonic_medium.exporters.anki.globals import CONFIG  # noqa
+from personal_mnemonic_medium.exporters.anki.globals import CONFIG
 from personal_mnemonic_medium.exporters.markdown_to_html.html_compiler import (
     compile_field,
 )

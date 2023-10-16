@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Any, Callable, List, Optional, Tuple
 
 import genanki
-from personal_mnemonic_medium.exporters.anki.globals import CONFIG  # noqa
+from personal_mnemonic_medium.exporters.anki.globals import CONFIG
 from personal_mnemonic_medium.exporters.markdown_to_html.html_compiler import (
     compile_field,
 )
