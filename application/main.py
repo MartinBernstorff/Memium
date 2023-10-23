@@ -27,7 +27,6 @@ def request(action: Any, **params: Any) -> Dict[str, Any]:
 
 def main(
     recur_dir: Path,
-    project_dir: Path,
     watch: Annotated[
         bool,
         typer.Option(help="Keep running, updating Anki deck every 15 seconds"),
@@ -74,7 +73,7 @@ def main(
         sleep_seconds = 60
         msg.good(f"Sync complete, sleeping for {sleep_seconds} seconds")
         sleep(sleep_seconds)
-        main(recur_dir=recur_dir, project_dir=project_dir, watch=watch)
+        main(recur_dir=recur_dir, watch=watch)
 
 
 if __name__ == "__main__":
