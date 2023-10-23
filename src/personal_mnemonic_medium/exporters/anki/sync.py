@@ -63,7 +63,8 @@ def anki_connect_is_live() -> bool:
 # Borrowed from https://github.com/lukesmurray/markdown-anki-decks/blob/de6556d7ecd2d39335607c05171f8a9c39c8f422/markdown_anki_decks/sync.py#L64
 def sync_deck(
     deck_bundle: DeckBundle,
-    dir_path: Path,
+    save_dir_path: Path,
+    sync_dir_path: Path,
     delete_cards: bool = True,
     max_wait_for_ankiconnect: int = 30,
 ):
@@ -101,9 +102,10 @@ def sync_deck(
             msg.info("\tNotes removed: ")
             msg.info(f"\t\t{removed_note_guids}")
 
-        package_path = deck_bundle.save_deck_to_file(dir_path / "deck.apkg")
+        package_path = deck_bundle.save_deck_to_file(save_dir_path / "deck.apkg")
         try:
-            invoke("importPackage", path=str(package_path))
+            sync_path = str(sync_dir_path / "deck.apkg")
+            invoke("importPackage", path=sync_path)
             print(f"Imported {deck_bundle.deck.name}!")
 
             if delete_cards:
@@ -127,7 +129,8 @@ def sync_deck(
                     traceback.print_exc()
         except Exception as e:
             print(f"Unable to sync {package_path} to anki")
-            print(f"\t{e}")
+            print(f"{e}")
+            traceback.print_exc()
     else:
         msg.info("Skipped")
         msg.info(f"{deck_bundle.deck.name}")

@@ -26,14 +26,20 @@ def request(action: Any, **params: Any) -> Dict[str, Any]:
 
 
 def main(
-    recur_dir: Path,
-    project_dir: Path,
+    input_dir: Path,
+    host_output_dir: Path,
     watch: Annotated[
         bool,
         typer.Option(help="Keep running, updating Anki deck every 15 seconds"),
     ],
 ):
     """Run the thing."""
+    if not input_dir.exists():
+        raise FileNotFoundError(f"Input directory {input_dir} does not exist")
+
+    if not host_output_dir.exists():
+        msg.info(f"Creating output directory {host_output_dir}")
+        host_output_dir.mkdir(parents=True, exist_ok=True)
 
     sentry_sdk.init(
         dsn="https://37f17d6aa7742424652663a04154e032@o4506053997166592.ingest.sentry.io/4506053999984640",
@@ -54,7 +60,7 @@ def main(
         ],
         card_exporter=AnkiPackageGenerator(),  # Step 3, get the cards from the prompts
     ).run(
-        input_path=recur_dir,
+        input_path=input_dir,
     )
 
     decks = defaultdict(list)
@@ -66,7 +72,8 @@ def main(
         deck_bundle = AnkiPackageGenerator().cards_to_deck_bundle(cards=decks[deck])
         sync_deck(
             deck_bundle=deck_bundle,
-            dir_path=Path(__file__).parent,
+            sync_dir_path=host_output_dir,
+            save_dir_path=Path("/output"),
             max_wait_for_ankiconnect=30,
         )
 
@@ -74,7 +81,7 @@ def main(
         sleep_seconds = 60
         msg.good(f"Sync complete, sleeping for {sleep_seconds} seconds")
         sleep(sleep_seconds)
-        main(recur_dir=recur_dir, project_dir=project_dir, watch=watch)
+        main(input_dir=input_dir, watch=watch)
 
 
 if __name__ == "__main__":
