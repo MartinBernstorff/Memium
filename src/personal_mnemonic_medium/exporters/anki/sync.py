@@ -127,7 +127,8 @@ def sync_deck(
                     traceback.print_exc()
         except Exception as e:
             print(f"Unable to sync {package_path} to anki")
-            print(f"\t{e}")
+            print(f"{e}")
+            traceback.print_exc()
     else:
         msg.info("Skipped")
         msg.info(f"{deck_bundle.deck.name}")
