@@ -22,7 +22,7 @@ validate:
 	@make lint && make type-check && make test
 
 pr:
+	gh pr create -w
 	make validate
 	git push
-	gh pr create
 	gh pr merge --auto --merge
