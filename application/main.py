@@ -83,6 +83,6 @@ def main(
         sleep(sleep_seconds)
         main(input_dir=input_dir, watch=watch, host_output_dir=host_output_dir)
 
-
+  
 if __name__ == "__main__":
     typer.run(main)
