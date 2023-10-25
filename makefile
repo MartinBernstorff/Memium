@@ -9,14 +9,14 @@ install:
 	pip install -e .
 
 test: ## Run tests
-	pytest {{cookiecutter.package_name}}
+	pytest src
 
 lint: ## Format code
-	ruff check {{cookiecutter.package_name}} --fix
-	ruff format {{cookiecutter.package_name}}
+	ruff check src --fix
+	ruff format src
 
 type-check: ## Type-check code
-	pyright {{cookiecutter.package_name}}
+	pyright src
 
 validate: ## Run all checks
 	make lint
