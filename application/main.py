@@ -81,7 +81,7 @@ def main(
         sleep_seconds = 60
         msg.good(f"Sync complete, sleeping for {sleep_seconds} seconds")
         sleep(sleep_seconds)
-        main(input_dir=input_dir, watch=watch)
+        main(input_dir=input_dir, watch=watch, host_output_dir=host_output_dir)
 
 
 if __name__ == "__main__":
