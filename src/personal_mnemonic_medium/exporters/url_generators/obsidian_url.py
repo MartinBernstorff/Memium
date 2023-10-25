@@ -3,7 +3,7 @@ from pathlib import Path
 from typing import Optional
 
 
-def get_obsidian_url(source_path: Path, line_nr: Optional[int] = None) -> str:
+def get_obsidian_url(source_path: Path, line_nr: int | None = None) -> str:
     """Get the obsidian URI for the source document."""
     vault: str = urllib.parse.quote(source_path.parent.name)  # type: ignore
     file: str = urllib.parse.quote(source_path.name)  # type: ignore

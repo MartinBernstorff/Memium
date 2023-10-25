@@ -1,7 +1,7 @@
 import hashlib
 import re
 from collections.abc import Sequence
-from typing import Any, List, Optional
+from typing import Any
 
 from personal_mnemonic_medium.note_factories.note import Document
 from personal_mnemonic_medium.prompt_extractors.base import PromptExtractor
@@ -19,7 +19,7 @@ class ClozePromptExtractor(PromptExtractor):
         pass
 
     @staticmethod
-    def _break_string_by_two_or_more_newlines(string: str) -> List[str]:
+    def _break_string_by_two_or_more_newlines(string: str) -> list[str]:
         """Break string into a list by 2+ newlines in a row."""
         return re.split(r"(\n\n)+", string)
 
@@ -39,7 +39,7 @@ class ClozePromptExtractor(PromptExtractor):
     @staticmethod
     def _replace_cloze_id_with_unique(
         string: str,
-        selected_cloze: Optional[str] = None,
+        selected_cloze: str | None = None,
     ) -> str:
         """Each cloze deletion in a note is numbered sequentially.
 

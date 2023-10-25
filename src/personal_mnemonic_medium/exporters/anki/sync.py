@@ -3,19 +3,18 @@ import traceback
 import urllib.request
 from pathlib import Path
 from time import sleep
-from typing import Any, Dict, List
+from typing import Any
 
 from genanki import Model, Note
-from wasabi import Printer
-
 from personal_mnemonic_medium.exporters.anki.globals import ANKICONNECT_URL
 from personal_mnemonic_medium.exporters.anki.package_generator import DeckBundle
+from wasabi import Printer
 
 msg = Printer(timestamp=True)
 
 
 # helper for creating anki connect requests
-def request(action: Any, **params: Any) -> Dict[str, Any]:
+def request(action: Any, **params: Any) -> dict[str, Any]:
     return {"action": action, "params": params, "version": 6}
 
 
@@ -139,19 +138,19 @@ def sync_deck(
 
 
 def get_md_note_infos(deck_bundle: DeckBundle) -> set[str]:
-    md_notes: List[Note] = deck_bundle.deck.notes
+    md_notes: list[Note] = deck_bundle.deck.notes
     md_note_guids = {str(n.guid) for n in md_notes}
     return md_note_guids
 
 
 def get_anki_note_infos(deck_bundle: DeckBundle) -> tuple[dict[str, Any], set[str]]:
-    anki_card_ids: List[int] = invoke(
+    anki_card_ids: list[int] = invoke(
         "findCards",
         query=f'"deck:{deck_bundle.deck.name}"',
     )
 
     # get a list of anki notes in the deck
-    anki_note_ids: List[int] = invoke("cardsToNotes", cards=anki_card_ids)
+    anki_note_ids: list[int] = invoke("cardsToNotes", cards=anki_card_ids)
 
     # get the note info for the notes in the deck
     anki_notes_info = invoke("notesInfo", notes=anki_note_ids)

@@ -60,7 +60,7 @@ select = [
   "SIM",
   "W",
 ]
-ignore = ["ANN101", "ANN401", "E402", "E501", "F401", "F841", "UP006", "RET504"]
+ignore = ["ANN101", "ANN401", "E402", "E501", "F401", "F841", "RET504", "COM812", "COM819", "Q000", "Q001", "Q002", "Q003", "W191"]
 # Allow autofix for all enabled rules (when `--fix`) is provided.
 unfixable = ["ERA"]
 # Exclude a variety of commonly ignored directories.

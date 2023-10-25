@@ -8,10 +8,9 @@ from collections.abc import Sequence
 from dataclasses import dataclass
 from pathlib import Path
 from shutil import copyfile
-from typing import Any, List, Set
+from typing import Any
 
 import genanki
-
 from personal_mnemonic_medium.exporters.anki.card_types.base import AnkiCard
 from personal_mnemonic_medium.exporters.anki.card_types.cloze import AnkiCloze
 from personal_mnemonic_medium.exporters.anki.card_types.qa import AnkiQA
@@ -43,7 +42,7 @@ class DeckCollection(dict):
 @dataclass(frozen=True)
 class DeckBundle:
     deck: genanki.Deck
-    media: Set[str]
+    media: set[str]
 
     def get_package(self) -> genanki.Package:
         return genanki.Package(deck_or_decks=self.deck, media_files=list(self.media))
@@ -61,7 +60,7 @@ class AnkiPackageGenerator(CardExporter):
         pass
 
     @staticmethod
-    def cards_to_deck_bundle(cards: List[AnkiCard]) -> DeckBundle:
+    def cards_to_deck_bundle(cards: list[AnkiCard]) -> DeckBundle:
         """Take an iterable prompts, output an .apkg in a file called output_name.
         NOTE: We _must_ be in a temp directory.
         """
@@ -75,7 +74,7 @@ class AnkiPackageGenerator(CardExporter):
     @staticmethod
     def cards_to_deck(
         cards: Sequence[AnkiCard],
-    ) -> tuple[genanki.Deck, Set[str]]:
+    ) -> tuple[genanki.Deck, set[str]]:
         media = set()
 
         deck_name = cards[0].deckname
@@ -103,7 +102,7 @@ class AnkiPackageGenerator(CardExporter):
     def prompts_to_cards(
         self,
         prompts: Sequence[Prompt],
-    ) -> List[AnkiCard]:
+    ) -> list[AnkiCard]:
         """Takes an iterable of prompts and turns them into AnkiCards"""
 
         cards: list[AnkiCard] = []

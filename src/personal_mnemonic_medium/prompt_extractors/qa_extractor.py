@@ -1,7 +1,7 @@
 import logging
 import re
 from collections.abc import Sequence
-from typing import Any, List
+from typing import Any
 
 from personal_mnemonic_medium.note_factories.note import Document
 from personal_mnemonic_medium.prompt_extractors.base import PromptExtractor
@@ -50,7 +50,7 @@ class QAPromptExtractor(PromptExtractor):
         return answer[len(self.answer_prefix) + 2 :].rstrip()
 
     @staticmethod
-    def _break_string_by_two_or_more_newlines(string: str) -> List[str]:
+    def _break_string_by_two_or_more_newlines(string: str) -> list[str]:
         """Break string into a list by 2+ newlines in a row."""
         return re.split(r"(\n\n)+", string)
 

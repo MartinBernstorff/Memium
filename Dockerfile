@@ -1,18 +1,20 @@
-# Use an official Python runtime as a parent image
-FROM python:3.11-bookworm
+FROM python:3.11-bullseye
 
 # Set the working directory to /app
 WORKDIR /app
 
-# Install deps
+# Dev experience
+COPY makefile ./
+
+COPY dev-requirements.txt ./
+RUN make install-dev
+
+COPY requirements.txt ./
+RUN make install-deps
+
 COPY pyproject.toml ./
-RUN pip install .[dev]
-RUN pip install .[tests]
+RUN make type-check
 
-# Ensure pyright builds correctly. 
-# If run in make validate, it is run in parallel, which breaks its installation.
-RUN pyright .
-
-# Install the entire app
+# Install the app
 COPY . /app
-RUN pip install -e .
+RUN pip install .

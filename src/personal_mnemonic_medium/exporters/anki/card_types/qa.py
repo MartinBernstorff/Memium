@@ -1,5 +1,5 @@
+from collections.abc import Callable
 from pathlib import Path
-from typing import Callable, List, Optional
 
 import genanki
 from personal_mnemonic_medium.exporters.anki.card_types.base import AnkiCard
@@ -17,9 +17,9 @@ from personal_mnemonic_medium.utils.hasher import simple_hash
 class AnkiQA(AnkiCard):
     def __init__(
         self,
-        fields: List[str],
+        fields: list[str],
         source_prompt: Prompt,
-        url_generator: Callable[[Path, Optional[int]], str] = get_obsidian_url,
+        url_generator: Callable[[Path, int | None], str] = get_obsidian_url,
         html_compiler: Callable[[str], str] = compile_field,
     ):
         super().__init__(
