@@ -2,6 +2,23 @@
 
 
 
+## v0.4.0 (2023-10-27)
+
+### Feature
+
+* feat: add build command ([`d6cb133`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/d6cb1330cbc7b7fbc4babc2e9e480da6a37bb5b0))
+
+### Fix
+
+* fix: duplicate version toml ([`8526eed`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/8526eed202a59021c15b258fcdf422172f7972b7))
+
+### Unknown
+
+* Merge pull request #174 from MartinBernstorff/mb/critical-mockingbird
+
+feat: add build command ([`94af2bf`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/94af2bf7c8a178c476adbc553774b64f22b78aab))
+
+
 ## v0.3.0 (2023-10-27)
 
 ### Build
