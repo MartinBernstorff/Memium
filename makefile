@@ -1,28 +1,43 @@
-lint:
-	@echo Running black
-	black .
+SRC_PATH = personal_mnemonic_medium
 
-	@echo Running ruff
-	ruff check . --fix
+install-dev:
+	pip install -r dev-requirements.txt
 
-test:
-	@echo ––– Testing –––
-	pytest -n auto -rfE --failed-first --disable-warnings -q
-
-type-check:
-	@echo ––– Running static type checks –––
-	pyright .
+install-deps:
+	pip install -r requirements.txt
 
 install:
-	pip install --upgrade -e .[dev,tests]
+	make install-deps
+	make install-dev
+	pip install -e .
 
-validate:
-	@echo ––– Ensuring dependencies are up to date. This will take a few moments ---
-	@make install > /dev/null
-	@make lint && make type-check && make test
+test: ## Run tests
+	pytest $(SRC_PATH)
 
-pr:
-	gh pr create -w
-	make validate
+lint: ## Format code
+	ruff check . --fix
+	ruff format . 
+
+type-check: ## Type-check code
+	pyright $(SRC_PATH)
+
+validate: ## Run all checks
+	make lint
+	make type-check
+	make test
+
+sync-pr:
+	git push --set-upstream origin HEAD
 	git push
-	gh pr merge --auto --merge
+
+create-pr:
+	gh pr create -w || true
+
+merge-pr:
+	gh pr merge --auto --merge --delete-branch
+
+pr: ## Run relevant tests before PR
+	make sync-pr
+	make create-pr
+	make validate
+	make merge-pr

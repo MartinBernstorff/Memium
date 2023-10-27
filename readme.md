@@ -1,5 +1,18 @@
 # Personal Mnemonic Medium
-[![Open in Dev Containers](https://img.shields.io/static/v1?label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/MartinBernstorff/personal-mnemonic-medium/)
+
+[![PyPI](https://img.shields.io/pypi/v/personal-mnemonic-medium.svg)][pypi status]
+[![Python Version](https://img.shields.io/pypi/pyversions/personal-mnemonic-medium)][pypi status]
+[![documentation](https://github.com/MartinBernstorff/personal-mnemonic-medium/actions/workflows/documentation.yml/badge.svg)][documentation]
+[![Tests](https://github.com/MartinBernstorff/personal-mnemonic-medium/actions/workflows/tests.yml/badge.svg)][tests]
+[![Black](https://img.shields.io/badge/code%20style-black-000000.svg)][black]
+
+[pypi status]: https://pypi.org/project/personal-mnemonic-medium/
+[documentation]: https://MartinBernstorff.github.io/personal-mnemonic-medium/
+[tests]: https://github.com/MartinBernstorff/personal-mnemonic-medium/actions?workflow=Tests
+[black]: https://github.com/psf/black
+
+
+<!-- start short-description -->
 
 Extracting spaced repetition prompts (flashcards) from documents.
 
@@ -11,7 +24,10 @@ A [Zettelkasten](https://medium.com/@martinbernstorf/why-you-need-an-idea-manage
 
 This thinking is largely inspired by Andy Matuschak's [Personal Mnemonic Medium](https://notes.andymatuschak.org/The_mnemonic_medium_can_be_extended_to_one%E2%80%99s_personal_notes), and the code is based on the unmaintained [Ankdown](https://github.com/benwr/ankdown).
 
-FYI-style open source, maintenance is not guaranteed.
+<!-- end short-description -->
+
+## Installation
+
 
 ## Pipeline
 The left path describes the abstract pipeline, the right path the current instantiation in this repo. 
@@ -33,10 +49,44 @@ graph TD
 	Prompts -- AnkiPackageGenerator --> Cards
  ```
 
-## Contributing
-To get a full 
+### Setting up a dev environment
+1. Install [Orbstack](https://orbstack.dev/) or Docker Desktop. Make sure to complete the full install process before continuing.
+2. If not installed, install VSCode
+3. Press this [link](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/Aarhus-Psychiatry-Research/psycop-common)
+4. Complete the setup process
 
-## Running through docker
-To build and run the container, see `docker_cmd.sh`.
+## Usage
 
-<!-- {BearID:ffeb2eba865d16361b47d522f39c3563} -->
+TODO: Add minimal usage example
+
+To see more examples, see the [documentation].
+
+# 📖 Documentation
+
+| Documentation         |                                                          |
+| --------------------- | -------------------------------------------------------- |
+| 🔧 **[Installation]**  | Installation instructions on how to install this package |
+| 📖 **[Documentation]** | A minimal and developing documentation                   |
+| 👩‍💻 **[Tutorials]**     | Tutorials for using this package                         |
+| 🎛️ **[API Reference]** | API reference for this package                           |
+| 📚 **[FAQ]**           | Frequently asked questions                               |
+
+
+# 💬 Where to ask questions
+
+| Type                           |                        |
+| ------------------------------ | ---------------------- |
+| 📚 **FAQ**                      | [FAQ]                  |
+| 🚨 **Bug Reports**              | [GitHub Issue Tracker] |
+| 🎁 **Feature Requests & Ideas** | [GitHub Issue Tracker] |
+| 👩‍💻 **Usage Questions**          | [GitHub Discussions]   |
+| 🗯 **General Discussion**       | [GitHub Discussions]   |
+
+[Documentation]: https://MartinBernstorff.github.io/personal-mnemonic-medium/index.html
+[Installation]: https://MartinBernstorff.github.io/personal-mnemonic-medium/installation.html
+[Tutorials]: https://MartinBernstorff.github.io/personal-mnemonic-medium/tutorials.html
+[API Reference]: https://MartinBernstorff.github.io/personal-mnemonic-medium/references.html
+[FAQ]: https://MartinBernstorff.github.io/personal-mnemonic-medium/faq.html
+[github issue tracker]: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues
+[github discussions]: https://github.com/MartinBernstorff/personal-mnemonic-medium/discussions
+

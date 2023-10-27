@@ -1,6 +1,6 @@
 {
-  "template": "https://github.com/MartinBernstorff/swift-python-cookiecutter",
-  "commit": "525b1f682621953d7ef9deb6ad6cf7359ebd43c8",
+  "template": "https://github.com/MartinBernstorff/nimble-python-cookiecutter",
+  "commit": "d65d50c7215714a4e6df85be23c5cd9066db9cc0",
   "checkout": null,
   "context": {
     "cookiecutter": {
@@ -8,15 +8,16 @@
       "package_name": "personal_mnemonic_medium",
       "friendly_name": "Personal Mnemonic Medium",
       "author": "Martin Bernstorff",
-      "email": "martinbernstorfff@gmail.com",
+      "email": "martinbernstorff@gmail.com",
       "github_user": "MartinBernstorff",
+      "github_repo": "personal-mnemonic-medium",
       "version": "0.0.0",
       "copyright_year": "2023",
       "license": "MIT",
       "_copy_without_render": [
         "*.github"
       ],
-      "_template": "https://github.com/MartinBernstorff/swift-python-cookiecutter"
+      "_template": "https://github.com/MartinBernstorff/nimble-python-cookiecutter"
     }
   },
   "directory": null
