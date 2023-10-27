@@ -12,9 +12,7 @@ from personal_mnemonic_medium.prompt_extractors.prompt import Prompt
 log = logging.getLogger(__name__)
 # Log to disk, not to console.
 logging.basicConfig(
-    filename="qa_extractor.log",
-    filemode="w",
-    level=logging.DEBUG,
+    filename="qa_extractor.log", filemode="w", level=logging.DEBUG
 )
 
 
@@ -72,7 +70,7 @@ class QAPromptExtractor(PromptExtractor):
                     + r"{0,1}\. ",
                     string,
                     flags=re.DOTALL,
-                ),
+                )
             )
             != 0
         ):
@@ -94,7 +92,7 @@ class QAPromptExtractor(PromptExtractor):
                     answer = self._get_first_answer(block_string)
                 except IndexError:
                     logging.warn(
-                        f"Could not find answer in {note.title} for {question}",
+                        f"Could not find answer in {note.title} for {question}"
                     )
                     continue
 
@@ -106,7 +104,7 @@ class QAPromptExtractor(PromptExtractor):
                         note_uuid=note.uuid,
                         source_note=note,
                         line_nr=block_starting_line_nr,
-                    ),
+                    )
                 )
 
             block_lines = len(

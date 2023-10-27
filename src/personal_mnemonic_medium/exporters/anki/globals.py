@@ -13,7 +13,7 @@ ANKICONNECT_URL = (
 CARD_MATHJAX_CONTENT = textwrap.dedent(
     """\
 
-""",
+"""
 )
 
 VERSION = "0.1"
@@ -52,19 +52,19 @@ QA_MODEL_TEMPLATE = [
     </div>
 </div>
             """,
-    },
+    }
 ]
 
 CLOZE_MODEL_TEMPLATE = [
     {
         "name": "Ankdown Cloze Card with UUID",
         "qfmt": r"{{{{cloze:Text}}}}\n<div class='extra'>{{{{Extra}}}}</div>\n{}".format(
-            CARD_MATHJAX_CONTENT,
+            CARD_MATHJAX_CONTENT
         ),
         "afmt": r"{{{{cloze:Text}}}}\n<div class='extra'>{{{{Extra}}}}</div>\n{}".format(
-            CARD_MATHJAX_CONTENT,
+            CARD_MATHJAX_CONTENT
         ),
-    },
+    }
 ]
 
 CONFIG = {

@@ -9,7 +9,7 @@ from personal_mnemonic_medium.note_factories.markdown import (
 
 def test_get_notes_from_dir():
     notes = MarkdownNoteFactory().get_notes_from_dir(
-        PROJECT_ROOT / "tests" / "test_md_files",
+        PROJECT_ROOT / "tests" / "test_md_files"
     )
 
     assert len(notes) == 4

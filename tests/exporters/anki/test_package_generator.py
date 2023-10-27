@@ -66,6 +66,4 @@ def test_package_generators():
         for _ in range(4)
     ]
 
-    AnkiPackageGenerator().cards_to_deck_bundle(
-        cards=genanki_notes,
-    )
+    AnkiPackageGenerator().cards_to_deck_bundle(cards=genanki_notes)

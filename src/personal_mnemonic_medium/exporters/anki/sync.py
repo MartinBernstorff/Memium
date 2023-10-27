@@ -39,7 +39,7 @@ def invoke(action: Any, **params: Any) -> Any:
     response = json.load(
         urllib.request.urlopen(
             urllib.request.Request(ANKICONNECT_URL, requestJson)
-        ),
+        )
     )
     if len(response) != 2:
         raise Exception("response has an unexpected number of fields")
@@ -60,7 +60,7 @@ def anki_connect_is_live() -> bool:
     except Exception as err:
         msg.info(f"Attempted connection on {ANKICONNECT_URL}")
         msg.info(
-            "Unable to reach anki connect. Make sure anki is running and the Anki Connect addon is installed.",
+            "Unable to reach anki connect. Make sure anki is running and the Anki Connect addon is installed."
         )
         msg.fail(f"Error was {err}")
 
@@ -129,10 +129,7 @@ def sync_deck(
                             for guid in guids_to_delete
                         ]
 
-                        invoke(
-                            "deleteNotes",
-                            notes=note_ids,
-                        )
+                        invoke("deleteNotes", notes=note_ids)
                         msg.good(
                             f"Deleted {len(guids_to_delete)} notes"
                         )
@@ -164,8 +161,7 @@ def get_anki_note_infos(
     deck_bundle: DeckBundle
 ) -> tuple[dict[str, Any], set[str]]:
     anki_card_ids: list[int] = invoke(
-        "findCards",
-        query=f'"deck:{deck_bundle.deck.name}"',
+        "findCards", query=f'"deck:{deck_bundle.deck.name}"'
     )
 
     # get a list of anki notes in the deck
@@ -228,10 +224,7 @@ def sync_model(model: Model):
         try:
             invoke(
                 "updateModelStyling",
-                model={
-                    "name": model.name,
-                    "css": model.css,
-                },
+                model={"name": model.name, "css": model.css},
             )
             msg.good(f"\tUpdated model {model.name} css")
         except Exception as e:

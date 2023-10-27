@@ -48,13 +48,8 @@ class TestCardPipeline(CardPipeline):
             card_exporter=card_exporter,
         )
 
-    def test_card_pipeline(
-        self,
-        input_path: Path,
-    ) -> list[AnkiCard]:
-        return self.run(
-            input_path=input_path,
-        )
+    def test_card_pipeline(self, input_path: Path) -> list[AnkiCard]:
+        return self.run(input_path=input_path)
 
 
 def test_custom_card_to_genanki_card():
@@ -106,9 +101,7 @@ def test_qa_uuid_generation():
     )
     cards = TestCardPipeline(
         prompt_extractors=[QAPromptExtractor()]
-    ).run(
-        input_path=file_path,
-    )
+    ).run(input_path=file_path)
     notes = [c.to_genanki_note() for c in cards]
 
     field_guids = {note.guid for note in notes}
@@ -126,9 +119,7 @@ def test_cloze_uuid_generation():
     )
     cloze_cards = TestCardPipeline(
         prompt_extractors=[ClozePromptExtractor()]
-    ).run(
-        input_path=file_path,
-    )
+    ).run(input_path=file_path)
 
     cloze_generated_guids = {card.card_uuid for card in cloze_cards}
     cloze_reference_guids = {3001245253, 952903559}

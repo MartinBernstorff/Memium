@@ -26,10 +26,7 @@ class CardPipeline:
         self.prompt_extractors = prompt_extractors
         self.card_exporter = card_exporter
 
-    def run(
-        self,
-        input_path: Path,
-    ) -> list[AnkiCard]:
+    def run(self, input_path: Path) -> list[AnkiCard]:
         notes: list[Document] = []
         if input_path.is_dir():
             notes += list(
@@ -40,7 +37,7 @@ class CardPipeline:
 
         if not input_path.is_dir():
             note_from_file = self.document_factory.get_note_from_file(
-                file_path=input_path,
+                file_path=input_path
             )
             notes.append(note_from_file)
 
@@ -51,6 +48,6 @@ class CardPipeline:
                 collected_prompts += extractor.extract_prompts(note)
 
         cards: list[AnkiCard] = self.card_exporter.prompts_to_cards(
-            prompts=collected_prompts,
+            prompts=collected_prompts
         )
         return cards

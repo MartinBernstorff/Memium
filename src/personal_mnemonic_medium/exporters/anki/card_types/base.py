@@ -84,7 +84,7 @@ class AnkiCard(ABC):
                     + self.subdeck
                 )
             raise ValueError(
-                "Subdeck length is 0",
+                "Subdeck length is 0"
             )  # This is purposefully non-valid code
         except:  # noqa
             return "0. Don't click me::1. Active::Personal Mnemonic Medium"
@@ -100,8 +100,7 @@ class AnkiCard(ABC):
     def get_source_button(self) -> str:
         """Get the button to open the source document."""
         url = self.url_generator(
-            self.source_doc.source_path,
-            self.source_prompt.line_nr,
+            self.source_doc.source_path, self.source_prompt.line_nr
         )
         html = f'<h4 class="right"><a href="{url}">Open</a></h4>'
         return html
@@ -110,7 +109,7 @@ class AnkiCard(ABC):
         """Produce a genanki. Note with the specified guid."""
         if len(self.html_fields) > len(self.genanki_model.fields):  # type: ignore
             raise ValueError(
-                f"Too many fields for model {self.genanki_model.name}: {self.html_fields}",  # type: ignore
+                f"Too many fields for model {self.genanki_model.name}: {self.html_fields}"  # type: ignore
             )
 
         if len(self.html_fields) < len(self.genanki_model.fields):  # type: ignore
@@ -157,7 +156,7 @@ class AnkiCard(ABC):
         for i, field in enumerate(self.html_fields):
             current_stage = field
             for regex in [
-                r'src="([^"]*?)"',
+                r'src="([^"]*?)"'
             ]:  # TODO not sure how this should work:, r'\[sound:(.*?)\]']:
                 results = []
 

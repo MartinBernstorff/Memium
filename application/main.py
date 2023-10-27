@@ -67,9 +67,7 @@ def main(
             ClozePromptExtractor(),
         ],
         card_exporter=AnkiPackageGenerator(),  # Step 3, get the cards from the prompts
-    ).run(
-        input_path=input_dir,
-    )
+    ).run(input_path=input_dir)
 
     grouped_cards = (
         Seq(cards).group_by(lambda card: card.deckname).to_iter()

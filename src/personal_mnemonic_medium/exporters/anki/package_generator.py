@@ -68,14 +68,11 @@ class AnkiPackageGenerator(CardExporter):
         """
         deck, media = AnkiPackageGenerator.cards_to_deck(cards=cards)
 
-        return DeckBundle(
-            deck=deck,
-            media=media,
-        )
+        return DeckBundle(deck=deck, media=media)
 
     @staticmethod
     def cards_to_deck(
-        cards: Sequence[AnkiCard],
+        cards: Sequence[AnkiCard]
     ) -> tuple[genanki.Deck, set[str]]:
         media = set()
 
@@ -87,8 +84,7 @@ class AnkiPackageGenerator(CardExporter):
             for abspath, newpath in card.determine_media_references():
                 try:
                     copyfile(
-                        abspath,
-                        newpath,
+                        abspath, newpath
                     )  # This is inefficient but definitely works on all platforms.
                     media.add(newpath)
                 except FileNotFoundError as e:
@@ -106,8 +102,7 @@ class AnkiPackageGenerator(CardExporter):
         return deck, media
 
     def prompts_to_cards(
-        self,
-        prompts: Sequence[Prompt],
+        self, prompts: Sequence[Prompt]
     ) -> list[AnkiCard]:
         """Takes an iterable of prompts and turns them into AnkiCards"""
 
@@ -116,16 +111,12 @@ class AnkiPackageGenerator(CardExporter):
         for prompt in prompts:
             if isinstance(prompt, QAPrompt):
                 card = AnkiQA(
-                    fields=[
-                        prompt.question,
-                        prompt.answer,
-                    ],
+                    fields=[prompt.question, prompt.answer],
                     source_prompt=prompt,
                 )
             elif isinstance(prompt, ClozePrompt):
                 card = AnkiCloze(
-                    fields=[prompt.content],
-                    source_prompt=prompt,
+                    fields=[prompt.content], source_prompt=prompt
                 )
             else:
                 raise NotImplementedError(

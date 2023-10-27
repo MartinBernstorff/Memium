@@ -5,11 +5,7 @@ from pathlib import Path
 
 class Document:
     def __init__(
-        self,
-        title: str,
-        content: str,
-        uuid: str,
-        source_path: Path,
+        self, title: str, content: str, uuid: str, source_path: Path
     ):
         self.title = title
         self.uuid = uuid
@@ -31,9 +27,7 @@ class Document:
             rf"\[\[{tokens_in_link}+\|{tokens_in_link}+\]\]"
         )
         pattern_matches = re.findall(
-            pattern=regex_pattern,
-            string=text,
-            flags=re.DOTALL,
+            pattern=regex_pattern, string=text, flags=re.DOTALL
         )
 
         for match in pattern_matches:
