@@ -1,15 +1,14 @@
 # Personal Mnemonic Medium
 
+[![Open in Dev Container](https://img.shields.io/static/v1?label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)][dev container]
 [![PyPI](https://img.shields.io/pypi/v/personal-mnemonic-medium.svg)][pypi status]
 [![Python Version](https://img.shields.io/pypi/pyversions/personal-mnemonic-medium)][pypi status]
-[![documentation](https://github.com/MartinBernstorff/personal-mnemonic-medium/actions/workflows/documentation.yml/badge.svg)][documentation]
 [![Tests](https://github.com/MartinBernstorff/personal-mnemonic-medium/actions/workflows/tests.yml/badge.svg)][tests]
-[![Black](https://img.shields.io/badge/code%20style-black-000000.svg)][black]
 
+[dev container]: https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/MartinBernstorff/personal-mnemonic-medium/
 [pypi status]: https://pypi.org/project/personal-mnemonic-medium/
 [documentation]: https://MartinBernstorff.github.io/personal-mnemonic-medium/
 [tests]: https://github.com/MartinBernstorff/personal-mnemonic-medium/actions?workflow=Tests
-[black]: https://github.com/psf/black
 
 
 <!-- start short-description -->
@@ -52,7 +51,7 @@ graph TD
 ### Setting up a dev environment
 1. Install [Orbstack](https://orbstack.dev/) or Docker Desktop. Make sure to complete the full install process before continuing.
 2. If not installed, install VSCode
-3. Press this [link](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/Aarhus-Psychiatry-Research/psycop-common)
+3. Press this [link](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/MartinBernstorff/personal-mnemonic-medium/)
 4. Complete the setup process
 
 ## Usage
