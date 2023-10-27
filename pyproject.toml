@@ -75,7 +75,6 @@ select = [
   "PLW",
   "PT",
   "UP",
-  "Q",
   "PTH",
   "RSE",
   "RET",
@@ -93,10 +92,6 @@ ignore = [
   "RET504",
   "COM812",
   "COM819",
-  "Q000",
-  "Q001",
-  "Q002",
-  "Q003",
   "W191",
 ]
 ignore-init-module-imports = true
