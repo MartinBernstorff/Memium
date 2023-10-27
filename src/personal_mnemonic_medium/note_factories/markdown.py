@@ -2,11 +2,12 @@ import os
 import re
 from collections.abc import Sequence
 from pathlib import Path
-from typing import Optional
 
 from tqdm import tqdm
 
-from personal_mnemonic_medium.note_factories.base import DocumentFactory
+from personal_mnemonic_medium.note_factories.base import (
+    DocumentFactory,
+)
 from personal_mnemonic_medium.note_factories.note import Document
 
 
@@ -31,7 +32,7 @@ class MarkdownNoteFactory(DocumentFactory):
     def get_note_id(self, file_string: str) -> str:
         return re.findall(r"<!-- {BearID:.+", file_string)[0]
 
-    def get_note_from_file(self, file_path: Path) -> Optional[Document]:
+    def get_note_from_file(self, file_path: Path) -> Document:
         with file_path.open(encoding="utf8") as f:
             file_contents = f.read()
 
@@ -43,7 +44,9 @@ class MarkdownNoteFactory(DocumentFactory):
             note_title = file_path.stem
 
             if self.cut_note_after in file_contents:
-                file_contents = file_contents.split(self.cut_note_after)[0]
+                file_contents = file_contents.split(
+                    self.cut_note_after
+                )[0]
 
             return Document(
                 title=note_title,
@@ -52,7 +55,9 @@ class MarkdownNoteFactory(DocumentFactory):
                 source_path=file_path,
             )
 
-    def get_notes_from_dir(self, dir_path: Path) -> Sequence[Document]:
+    def get_notes_from_dir(
+        self, dir_path: Path
+    ) -> Sequence[Document]:
         notes: list[Document] = []
 
         for parent_dir, _, files in os.walk(dir_path):
@@ -65,9 +70,7 @@ class MarkdownNoteFactory(DocumentFactory):
                     file_path = Path(parent_dir) / file_name
                     note = self.get_note_from_file(file_path)
 
-                    if note is not None:
-                        notes.append(note)
-
+                    notes.append(note)
                     pbar.update(1)
 
         return notes

@@ -1,30 +1,34 @@
 import logging
 import re
 from collections.abc import Sequence
-from typing import Any, List
+from typing import Any
 
 from personal_mnemonic_medium.note_factories.note import Document
-from personal_mnemonic_medium.prompt_extractors.base import PromptExtractor
+from personal_mnemonic_medium.prompt_extractors.base import (
+    PromptExtractor,
+)
 from personal_mnemonic_medium.prompt_extractors.prompt import Prompt
 
 log = logging.getLogger(__name__)
 # Log to disk, not to console.
 logging.basicConfig(
-    filename="qa_extractor.log",
-    filemode="w",
-    level=logging.DEBUG,
+    filename="qa_extractor.log", filemode="w", level=logging.DEBUG
 )
 
 
 class QAPrompt(Prompt):
-    def __init__(self, question: str, answer: str, *args: Any, **kwargs: Any) -> None:
+    def __init__(
+        self, question: str, answer: str, *args: Any, **kwargs: Any
+    ) -> None:
         super().__init__(*args, **kwargs)
         self.question = question
         self.answer = answer
 
 
 class QAPromptExtractor(PromptExtractor):
-    def __init__(self, question_prefix: str = "Q.", answer_prefix: str = "A.") -> None:
+    def __init__(
+        self, question_prefix: str = "Q.", answer_prefix: str = "A."
+    ) -> None:
         self.question_prefix = question_prefix
         self.answer_prefix = answer_prefix
 
@@ -50,7 +54,9 @@ class QAPromptExtractor(PromptExtractor):
         return answer[len(self.answer_prefix) + 2 :].rstrip()
 
     @staticmethod
-    def _break_string_by_two_or_more_newlines(string: str) -> List[str]:
+    def _break_string_by_two_or_more_newlines(
+        string: str
+    ) -> list[str]:
         """Break string into a list by 2+ newlines in a row."""
         return re.split(r"(\n\n)+", string)
 
@@ -59,10 +65,12 @@ class QAPromptExtractor(PromptExtractor):
         if (
             len(
                 re.findall(
-                    r"^(?![:>]).*" + self.question_prefix + r"{0,1}\. ",
+                    r"^(?![:>]).*"
+                    + self.question_prefix
+                    + r"{0,1}\. ",
                     string,
                     flags=re.DOTALL,
-                ),
+                )
             )
             != 0
         ):
@@ -72,7 +80,9 @@ class QAPromptExtractor(PromptExtractor):
     def extract_prompts(self, note: Document) -> Sequence[QAPrompt]:
         prompts = []
 
-        blocks = self._break_string_by_two_or_more_newlines(note.content)
+        blocks = self._break_string_by_two_or_more_newlines(
+            note.content
+        )
 
         block_starting_line_nr = 1
         for block_string in blocks:
@@ -82,11 +92,11 @@ class QAPromptExtractor(PromptExtractor):
                     answer = self._get_first_answer(block_string)
                 except IndexError:
                     logging.warn(
-                        f"Could not find answer in {note.title} for {question}",
+                        f"Could not find answer in {note.title} for {question}"
                     )
                     continue
 
-                prompts.append(
+                prompts.append(  # type: ignore
                     QAPrompt(
                         question=question,
                         answer=answer,
@@ -94,10 +104,12 @@ class QAPromptExtractor(PromptExtractor):
                         note_uuid=note.uuid,
                         source_note=note,
                         line_nr=block_starting_line_nr,
-                    ),
+                    )
                 )
 
-            block_lines = len(re.findall(r"\n", block_string, flags=re.DOTALL))
+            block_lines = len(
+                re.findall(r"\n", block_string, flags=re.DOTALL)
+            )
             block_starting_line_nr += block_lines
 
-        return prompts
+        return prompts  # type: ignore

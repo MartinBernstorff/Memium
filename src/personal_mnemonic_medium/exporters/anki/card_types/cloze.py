@@ -1,9 +1,11 @@
 import re
+from collections.abc import Callable
 from pathlib import Path
-from typing import Callable, List, Optional
 
 import genanki
-from personal_mnemonic_medium.exporters.anki.card_types.base import AnkiCard
+from personal_mnemonic_medium.exporters.anki.card_types.base import (
+    AnkiCard,
+)
 from personal_mnemonic_medium.exporters.anki.globals import CONFIG
 from personal_mnemonic_medium.exporters.markdown_to_html.html_compiler import (
     compile_field,
@@ -18,9 +20,11 @@ from personal_mnemonic_medium.utils.hasher import simple_hash
 class AnkiCloze(AnkiCard):
     def __init__(
         self,
-        fields: List[str],
+        fields: list[str],
         source_prompt: Prompt,
-        url_generator: Callable[[Path, Optional[int]], str] = get_obsidian_url,
+        url_generator: Callable[
+            [Path, int | None], str
+        ] = get_obsidian_url,
         html_compiler: Callable[[str], str] = compile_field,
     ):
         super().__init__(
@@ -32,13 +36,12 @@ class AnkiCloze(AnkiCard):
 
     @property
     def genanki_model(self) -> genanki.Model:
-        global CONFIG  # noqa
         return genanki.Model(
             model_id=simple_hash(CONFIG["card_model_name_cloze"]),  # type: ignore
             name=CONFIG["card_model_name_cloze"],
             fields=CONFIG["card_model_fields_cloze"],
             templates=CONFIG["card_model_template_cloze"],
-            css=CONFIG["card_model_css"],
+            css=CONFIG["card_model_css"],  # type: ignore
             model_type=1,  # This is the model_type number for genanki, takes 0 for QA or 1 for cloze
         )
 

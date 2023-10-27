@@ -2,7 +2,9 @@ from pathlib import Path
 
 import pytest
 from personal_mnemonic_medium.note_factories.note import Document
-from personal_mnemonic_medium.prompt_extractors.qa_extractor import QAPromptExtractor
+from personal_mnemonic_medium.prompt_extractors.qa_extractor import (
+    QAPromptExtractor,
+)
 
 
 @pytest.fixture()
@@ -35,18 +37,26 @@ def test_has_qa_matches(qa_extractor: QAPromptExtractor):
         "QA. Testing something else, even with QA in it!",
         "\\Q. Testing newlines as well!",
     ]
-    matches = [string for string in example_strings if qa_extractor._has_qa(string)]
+    matches = [
+        string
+        for string in example_strings
+        if qa_extractor._has_qa(string)  # type: ignore
+    ]
 
     assert len(matches) == 3
 
 
 def test_has_qa_does_not_match(qa_extractor: QAPromptExtractor):
-    example_strings = ["\nQ.E.D.", "> A question like this, or", "::Q. A comment!::"]
+    example_strings = [
+        "\nQ.E.D.",
+        "> A question like this, or",
+        "::Q. A comment!::",
+    ]
 
     matches = 0
 
     for string in example_strings:
-        if qa_extractor._has_qa(string):
+        if qa_extractor._has_qa(string):  # type: ignore
             matches += 1
 
     assert matches == 0

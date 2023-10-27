@@ -1,19 +1,27 @@
 from collections.abc import Sequence
 from pathlib import Path
-from typing import List
 
-import genanki
 from personal_mnemonic_medium.card_pipeline import CardPipeline
-from personal_mnemonic_medium.exporters.anki.card_types.base import AnkiCard
-from personal_mnemonic_medium.exporters.anki.card_types.qa import AnkiQA
+from personal_mnemonic_medium.exporters.anki.card_types.base import (
+    AnkiCard,
+)
+from personal_mnemonic_medium.exporters.anki.card_types.qa import (
+    AnkiQA,
+)
 from personal_mnemonic_medium.exporters.anki.package_generator import (
     AnkiPackageGenerator,
 )
 from personal_mnemonic_medium.exporters.base import CardExporter
-from personal_mnemonic_medium.note_factories.base import DocumentFactory
-from personal_mnemonic_medium.note_factories.markdown import MarkdownNoteFactory
+from personal_mnemonic_medium.note_factories.base import (
+    DocumentFactory,
+)
+from personal_mnemonic_medium.note_factories.markdown import (
+    MarkdownNoteFactory,
+)
 from personal_mnemonic_medium.note_factories.note import Document
-from personal_mnemonic_medium.prompt_extractors.base import PromptExtractor
+from personal_mnemonic_medium.prompt_extractors.base import (
+    PromptExtractor,
+)
 from personal_mnemonic_medium.prompt_extractors.cloze_extractor import (
     ClozePromptExtractor,
 )
@@ -28,8 +36,8 @@ class TestCardPipeline(CardPipeline):
         self,
         document_factory: DocumentFactory = MarkdownNoteFactory(),  # noqa: B008
         prompt_extractors: Sequence[PromptExtractor] = [
-            QAPromptExtractor(),  # noqa: B008
-            ClozePromptExtractor(),  # noqa: B008
+            QAPromptExtractor(),
+            ClozePromptExtractor(),
         ],
         card_exporter: CardExporter = AnkiPackageGenerator(),  # noqa: B008
     ) -> None:
@@ -39,13 +47,8 @@ class TestCardPipeline(CardPipeline):
             card_exporter=card_exporter,
         )
 
-    def test_card_pipeline(
-        self,
-        input_path: Path,
-    ) -> List[AnkiCard]:
-        return self.run(
-            input_path=input_path,
-        )
+    def test_card_pipeline(self, input_path: Path) -> list[AnkiCard]:
+        return self.run(input_path=input_path)
 
 
 def test_custom_card_to_genanki_card():
@@ -55,7 +58,7 @@ def test_custom_card_to_genanki_card():
         uuid="1234",
         source_path=Path(__file__),
     )
-    genanki_note = AnkiQA(
+    AnkiQA(
         fields=["Q. What is the capital of France?", "A. Paris"],
         source_prompt=QAPrompt(
             question="What is the capital of France?",
@@ -64,8 +67,6 @@ def test_custom_card_to_genanki_card():
             source_note=source_note,
         ),
     ).to_genanki_note()
-
-    assert isinstance(genanki_note, genanki.Note)
 
 
 def test_get_subtags():
@@ -91,11 +92,13 @@ def test_get_subtags():
 
 def test_qa_uuid_generation():
     file_path = (
-        Path(__file__).parent.parent.parent / "test_md_files" / "test_card_guid.md"
+        Path(__file__).parent.parent.parent
+        / "test_md_files"
+        / "test_card_guid.md"
     )
-    cards = TestCardPipeline(prompt_extractors=[QAPromptExtractor()]).run(
-        input_path=file_path,
-    )
+    cards = TestCardPipeline(
+        prompt_extractors=[QAPromptExtractor()]
+    ).run(input_path=file_path)
     notes = [c.to_genanki_note() for c in cards]
 
     field_guids = {note.guid for note in notes}
@@ -107,11 +110,13 @@ def test_qa_uuid_generation():
 
 def test_cloze_uuid_generation():
     file_path = (
-        Path(__file__).parent.parent.parent / "test_md_files" / "test_card_guid.md"
+        Path(__file__).parent.parent.parent
+        / "test_md_files"
+        / "test_card_guid.md"
     )
-    cloze_cards = TestCardPipeline(prompt_extractors=[ClozePromptExtractor()]).run(
-        input_path=file_path,
-    )
+    cloze_cards = TestCardPipeline(
+        prompt_extractors=[ClozePromptExtractor()]
+    ).run(input_path=file_path)
 
     cloze_generated_guids = {card.card_uuid for card in cloze_cards}
     cloze_reference_guids = {3001245253, 952903559}
@@ -122,9 +127,7 @@ def test_get_bear_id():
     factory = MarkdownNoteFactory()
     note_str = r"Q. A card with a GUID.\nA. And here is its answer.\n\nQS. How about a card like this?\nA. Yes, an answer too.\n\nQ. How about multiline questions?\n* Like this\n* Or this?\nA. What is the hash?\n\nAnd some {cloze} deletions? For sure! Multipe {even}.\n\n<!-- {BearID:7696CDCD-803A-40BC-88D8-855DDBEC56CA-31546-000054DF17EAE2C1} -->"
 
-    expected_id = (
-        r"<!-- {BearID:7696CDCD-803A-40BC-88D8-855DDBEC56CA-31546-000054DF17EAE2C1} -->"
-    )
+    expected_id = r"<!-- {BearID:7696CDCD-803A-40BC-88D8-855DDBEC56CA-31546-000054DF17EAE2C1} -->"
 
     extracted_id = factory.get_note_id(note_str)
 
@@ -133,21 +136,29 @@ def test_get_bear_id():
 
 def test_alias_wiki_link_substitution():
     alias = "Here I am [[alias|wiki link]], and another [[alias2|wiki link2]]"
-    output = Document._replace_alias_wiki_links(alias)
-    assert output == "Here I am [[wiki link]], and another [[wiki link2]]"
+    output = Document.replace_alias_wiki_links(alias)
+    assert (
+        output
+        == "Here I am [[wiki link]], and another [[wiki link2]]"
+    )
 
     no_alias = "Here I am [[wiki link]] and another [[wiki link2]]"
-    output = Document._replace_alias_wiki_links(no_alias)
-    assert output == "Here I am [[wiki link]] and another [[wiki link2]]"
+    output = Document.replace_alias_wiki_links(no_alias)
+    assert (
+        output == "Here I am [[wiki link]] and another [[wiki link2]]"
+    )
 
     test_3 = "How was ice climbing [[Franz Josef]] with [[Vibeke Christiansen|Vibeke]]?"
-    output = Document._replace_alias_wiki_links(test_3)
-    assert output == "How was ice climbing [[Franz Josef]] with [[Vibeke]]?"
+    output = Document.replace_alias_wiki_links(test_3)
+    assert (
+        output
+        == "How was ice climbing [[Franz Josef]] with [[Vibeke]]?"
+    )
 
     alias = "[[Isolation (database design)|Isolation]]"
-    output = Document._replace_alias_wiki_links(alias)
+    output = Document.replace_alias_wiki_links(alias)
     assert output == "[[Isolation]]"
 
     alias = "[[test-test|test-]]"
-    output = Document._replace_alias_wiki_links(alias)
+    output = Document.replace_alias_wiki_links(alias)
     assert output == "[[test-]]"

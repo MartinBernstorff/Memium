@@ -2,11 +2,11 @@ import copy
 import os
 import re
 from abc import ABC, abstractmethod
+from collections.abc import Callable, Iterator
 from pathlib import Path
-from typing import Any, Callable, List, Optional, Tuple
+from typing import Any
 
 import genanki
-from personal_mnemonic_medium.exporters.anki.globals import CONFIG
 from personal_mnemonic_medium.exporters.markdown_to_html.html_compiler import (
     compile_field,
 )
@@ -22,9 +22,11 @@ class AnkiCard(ABC):
 
     def __init__(
         self,
-        fields: List[str],
+        fields: list[str],
         source_prompt: Prompt,
-        url_generator: Callable[[Path, Optional[int]], str] = get_obsidian_url,
+        url_generator: Callable[
+            [Path, int | None], str
+        ] = get_obsidian_url,
         html_compiler: Callable[[str], str] = compile_field,
     ):
         self.markdown_fields = fields
@@ -38,11 +40,11 @@ class AnkiCard(ABC):
         return self.source_doc.content
 
     @property
-    def html_fields(self) -> List[str]:
+    def html_fields(self) -> list[str]:
         return list(map(self.html_compiler, self.markdown_fields))
 
     @property
-    def tags(self) -> List[str]:
+    def tags(self) -> list[str]:
         return self.source_doc.tags
 
     @property
@@ -82,7 +84,7 @@ class AnkiCard(ABC):
                     + self.subdeck
                 )
             raise ValueError(
-                "Subdeck length is 0",
+                "Subdeck length is 0"
             )  # This is purposefully non-valid code
         except:  # noqa
             return "0. Don't click me::1. Active::Personal Mnemonic Medium"
@@ -98,21 +100,22 @@ class AnkiCard(ABC):
     def get_source_button(self) -> str:
         """Get the button to open the source document."""
         url = self.url_generator(
-            self.source_doc.source_path,
-            self.source_prompt.line_nr,
+            self.source_doc.source_path, self.source_prompt.line_nr
         )
         html = f'<h4 class="right"><a href="{url}">Open</a></h4>'
         return html
 
     def to_genanki_note(self) -> genanki.Note:
         """Produce a genanki. Note with the specified guid."""
-        if len(self.html_fields) > len(self.genanki_model.fields):
+        if len(self.html_fields) > len(self.genanki_model.fields):  # type: ignore
             raise ValueError(
-                f"Too many fields for model {self.genanki_model.name}: {self.html_fields}",
+                f"Too many fields for model {self.genanki_model.name}: {self.html_fields}"  # type: ignore
             )
 
-        if len(self.html_fields) < len(self.genanki_model.fields):
-            while len(self.html_fields) < len(self.genanki_model.fields):
+        if len(self.html_fields) < len(self.genanki_model.fields):  # type: ignore
+            while len(self.html_fields) < len(
+                self.genanki_model.fields  # type: ignore
+            ):  # type: ignore
                 before_extras_field = len(self.html_fields) == 2
                 if before_extras_field:
                     self.add_field(self.get_source_button())
@@ -132,9 +135,9 @@ class AnkiCard(ABC):
             tags=self.tags,
         )
 
-    def make_ref_pair(self, filename: str) -> Tuple[Path, str]:
+    def make_ref_pair(self, filename: str) -> tuple[Path, str]:
         """Take a filename relative to the card, and make it absolute."""
-        newname = "%".join(filename.split(os.sep))
+        newname = "%".join(filename.split(os.sep))  # type: ignore  # noqa: PTH206
 
         if os.path.isabs(filename):  # noqa
             abspath = Path(filename)
@@ -146,25 +149,34 @@ class AnkiCard(ABC):
         # This is all it takes
         return Path(self.source_doc.source_path).parent
 
-    def determine_media_references(self):
+    def determine_media_references(
+        self
+    ) -> Iterator[tuple[Path, Path]]:
         """Find all media references in a card"""
         for i, field in enumerate(self.html_fields):
             current_stage = field
             for regex in [
-                r'src="([^"]*?)"',
+                r'src="([^"]*?)"'
             ]:  # TODO not sure how this should work:, r'\[sound:(.*?)\]']:
                 results = []
 
-                def process_match(m) -> str:  # noqa
-                    initial_contents = m.group(1)
-                    abspath, newpath = self.make_ref_pair(initial_contents)
-                    results.append((abspath, newpath))  # noqa
+                def process_match(m) -> str:  # noqa # type: ignore
+                    initial_contents = m.group(1)  # type: ignore
+                    abspath, newpath = self.make_ref_pair(
+                        initial_contents  # type: ignore
+                    )  # type: ignore
+                    results.append((abspath, newpath))  # noqa # type: ignore
                     return r'src="' + newpath + '"'
 
-                current_stage = re.sub(regex, process_match, current_stage)
+                current_stage = re.sub(
+                    regex,
+                    process_match,
+                    current_stage,  # type: ignore
+                )  # type: ignore
 
-                for r in results:
-                    yield r
+                yield from results
 
             # Anki seems to hate alt tags :(
-            self.html_fields[i] = re.sub(r'alt="[^"]*?"', "", current_stage)
+            self.html_fields[i] = re.sub(
+                r'alt="[^"]*?"', "", current_stage
+            )

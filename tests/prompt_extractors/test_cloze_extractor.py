@@ -32,6 +32,8 @@ def test_cloze_no_hits():
         source_path=Path(__file__),
     )
 
-    prompts = ClozePromptExtractor().extract_prompts(note_without_cloze)
+    prompts = ClozePromptExtractor().extract_prompts(
+        note_without_cloze
+    )
 
     assert len(prompts) == 0

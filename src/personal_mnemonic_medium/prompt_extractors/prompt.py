@@ -1,5 +1,3 @@
-from typing import List, Optional
-
 from personal_mnemonic_medium.note_factories.note import Document
 
 
@@ -8,8 +6,8 @@ class Prompt:
         self,
         note_uuid: str,
         source_note: Document,
-        tags: Optional[List[str]] = None,
-        line_nr: Optional[int] = None,
+        tags: list[str] | None = None,
+        line_nr: int | None = None,
     ):
         self.tags = tags
         self.note_uuid = note_uuid
