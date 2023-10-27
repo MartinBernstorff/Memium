@@ -1,10 +1,11 @@
 from collections import defaultdict
 from pathlib import Path
 from time import sleep
-from typing import Annotated, Any, Dict
+from typing import Annotated, Any
 
 import sentry_sdk
 import typer
+from functionalpy import Seq
 from personal_mnemonic_medium.card_pipeline import CardPipeline
 from personal_mnemonic_medium.exporters.anki.package_generator import (
     AnkiPackageGenerator,
@@ -63,13 +64,11 @@ def main(
         input_path=input_dir,
     )
 
-    decks = defaultdict(list)
+    grouped_cards = Seq(cards).group_by(lambda card: card.deckname).to_iter()
 
-    for card in cards:
-        decks[card.deckname] += [card]
-
-    for deck in decks:
-        deck_bundle = AnkiPackageGenerator().cards_to_deck_bundle(cards=decks[deck])
+    for group in grouped_cards:
+        cards = group.group_contents.to_list()
+        deck_bundle = AnkiPackageGenerator().cards_to_deck_bundle(cards=cards)
         sync_deck(
             deck_bundle=deck_bundle,
             sync_dir_path=host_output_dir,
