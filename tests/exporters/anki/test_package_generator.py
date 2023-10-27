@@ -33,8 +33,8 @@ def test_cards_to_decks():
 
     deck, media = AnkiPackageGenerator().cards_to_deck(cards=genanki_notes)
 
-    assert type(deck) == genanki.Deck
-    assert type(media) == set
+    assert isinstance(deck, genanki.Deck)
+    assert isinstance(media, set)
 
 
 def test_package_generators():

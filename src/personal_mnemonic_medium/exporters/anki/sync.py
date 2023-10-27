@@ -3,7 +3,7 @@ import traceback
 import urllib.request
 from pathlib import Path
 from time import sleep
-from typing import Any, Dict, List
+from typing import Any
 
 from genanki import Model, Note
 from wasabi import Printer

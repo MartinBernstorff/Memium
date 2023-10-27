@@ -25,7 +25,7 @@ class AnkiCard(ABC):
         self,
         fields: list[str],
         source_prompt: Prompt,
-        url_generator: Callable[[Path, Optional[int]], str] = get_obsidian_url,
+        url_generator: Callable[[Path, int | None], str] = get_obsidian_url,
         html_compiler: Callable[[str], str] = compile_field,
     ):
         self.markdown_fields = fields
@@ -164,8 +164,7 @@ class AnkiCard(ABC):
 
                 current_stage = re.sub(regex, process_match, current_stage)
 
-                for r in results:
-                    yield r
+                yield from results
 
             # Anki seems to hate alt tags :(
             self.html_fields[i] = re.sub(r'alt="[^"]*?"', "", current_stage)

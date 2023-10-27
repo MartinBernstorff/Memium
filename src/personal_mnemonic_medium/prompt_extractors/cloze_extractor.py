@@ -39,7 +39,7 @@ class ClozePromptExtractor(PromptExtractor):
     @staticmethod
     def _replace_cloze_id_with_unique(
         string: str,
-        selected_cloze: Optional[str] = None,
+        selected_cloze: str | None = None,
     ) -> str:
         """Each cloze deletion in a note is numbered sequentially.
 
