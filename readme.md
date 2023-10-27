@@ -58,8 +58,6 @@ graph TD
 
 TODO: Add minimal usage example
 
-To see more examples, see the [documentation].
-
 # 💬 Where to ask questions
 
 | Type                           |                        |
