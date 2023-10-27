@@ -26,7 +26,9 @@ class CardPipeline:
     ) -> list[AnkiCard]:
         notes: list[Document] = []
         if input_path.is_dir():
-            notes += list(self.document_factory.get_notes_from_dir(dir_path=input_path))
+            notes += list(
+                self.document_factory.get_notes_from_dir(dir_path=input_path)
+            )
 
         if not input_path.is_dir():
             note_from_file = self.document_factory.get_note_from_file(

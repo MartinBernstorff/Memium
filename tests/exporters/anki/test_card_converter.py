@@ -90,7 +90,9 @@ def test_get_subtags():
 
 def test_qa_uuid_generation():
     file_path = (
-        Path(__file__).parent.parent.parent / "test_md_files" / "test_card_guid.md"
+        Path(__file__).parent.parent.parent
+        / "test_md_files"
+        / "test_card_guid.md"
     )
     cards = TestCardPipeline(prompt_extractors=[QAPromptExtractor()]).run(
         input_path=file_path,
@@ -106,9 +108,13 @@ def test_qa_uuid_generation():
 
 def test_cloze_uuid_generation():
     file_path = (
-        Path(__file__).parent.parent.parent / "test_md_files" / "test_card_guid.md"
+        Path(__file__).parent.parent.parent
+        / "test_md_files"
+        / "test_card_guid.md"
     )
-    cloze_cards = TestCardPipeline(prompt_extractors=[ClozePromptExtractor()]).run(
+    cloze_cards = TestCardPipeline(
+        prompt_extractors=[ClozePromptExtractor()]
+    ).run(
         input_path=file_path,
     )
 
@@ -121,9 +127,7 @@ def test_get_bear_id():
     factory = MarkdownNoteFactory()
     note_str = r"Q. A card with a GUID.\nA. And here is its answer.\n\nQS. How about a card like this?\nA. Yes, an answer too.\n\nQ. How about multiline questions?\n* Like this\n* Or this?\nA. What is the hash?\n\nAnd some {cloze} deletions? For sure! Multipe {even}.\n\n<!-- {BearID:7696CDCD-803A-40BC-88D8-855DDBEC56CA-31546-000054DF17EAE2C1} -->"
 
-    expected_id = (
-        r"<!-- {BearID:7696CDCD-803A-40BC-88D8-855DDBEC56CA-31546-000054DF17EAE2C1} -->"
-    )
+    expected_id = r"<!-- {BearID:7696CDCD-803A-40BC-88D8-855DDBEC56CA-31546-000054DF17EAE2C1} -->"
 
     extracted_id = factory.get_note_id(note_str)
 

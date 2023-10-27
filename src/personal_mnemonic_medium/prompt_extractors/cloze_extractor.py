@@ -56,7 +56,8 @@ class ClozePromptExtractor(PromptExtractor):
 
         for cloze in selected_clozes:
             output_hash = (
-                int(hashlib.sha256(cloze.encode("utf-8")).hexdigest(), 16) % 10**3
+                int(hashlib.sha256(cloze.encode("utf-8")).hexdigest(), 16)
+                % 10**3
             )
 
             new_cloze = f"{{{{c{output_hash}::{cloze[1:-1]}}}}}"

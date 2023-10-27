@@ -17,14 +17,18 @@ logging.basicConfig(
 
 
 class QAPrompt(Prompt):
-    def __init__(self, question: str, answer: str, *args: Any, **kwargs: Any) -> None:
+    def __init__(
+        self, question: str, answer: str, *args: Any, **kwargs: Any
+    ) -> None:
         super().__init__(*args, **kwargs)
         self.question = question
         self.answer = answer
 
 
 class QAPromptExtractor(PromptExtractor):
-    def __init__(self, question_prefix: str = "Q.", answer_prefix: str = "A.") -> None:
+    def __init__(
+        self, question_prefix: str = "Q.", answer_prefix: str = "A."
+    ) -> None:
         self.question_prefix = question_prefix
         self.answer_prefix = answer_prefix
 

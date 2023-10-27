@@ -31,7 +31,9 @@ def invoke(action: Any, **params: Any) -> Any:
     """
     requestJson = json.dumps(request(action, **params)).encode("utf-8")
     response = json.load(
-        urllib.request.urlopen(urllib.request.Request(ANKICONNECT_URL, requestJson)),
+        urllib.request.urlopen(
+            urllib.request.Request(ANKICONNECT_URL, requestJson)
+        ),
     )
     if len(response) != 2:
         raise Exception("response has an unexpected number of fields")
@@ -102,7 +104,9 @@ def sync_deck(
             msg.info("\tNotes removed: ")
             msg.info(f"\t\t{removed_note_guids}")
 
-        package_path = deck_bundle.save_deck_to_file(save_dir_path / "deck.apkg")
+        package_path = deck_bundle.save_deck_to_file(
+            save_dir_path / "deck.apkg"
+        )
         try:
             sync_path = str(sync_dir_path / "deck.apkg")
             invoke("importPackage", path=sync_path)
@@ -124,7 +128,9 @@ def sync_deck(
                         msg.good(f"Deleted {len(guids_to_delete)} notes")
 
                 except Exception:
-                    msg.fail(f"Unable to delete cards in {deck_bundle.deck.name}")
+                    msg.fail(
+                        f"Unable to delete cards in {deck_bundle.deck.name}"
+                    )
                     # Print full stack trace
                     traceback.print_exc()
         except Exception as e:
@@ -144,7 +150,9 @@ def get_md_note_infos(deck_bundle: DeckBundle) -> set[str]:
     return md_note_guids
 
 
-def get_anki_note_infos(deck_bundle: DeckBundle) -> tuple[dict[str, Any], set[str]]:
+def get_anki_note_infos(
+    deck_bundle: DeckBundle
+) -> tuple[dict[str, Any], set[str]]:
     anki_card_ids: list[int] = invoke(
         "findCards",
         query=f'"deck:{deck_bundle.deck.name}"',
@@ -158,7 +166,10 @@ def get_anki_note_infos(deck_bundle: DeckBundle) -> tuple[dict[str, Any], set[st
 
     # convert the note info into a dictionary of guid to note info
     anki_note_info_by_guid = {
-        n["fields"]["UUID"]["value"].replace("<p>", "").replace("</p>", "").strip(): n
+        n["fields"]["UUID"]["value"]
+        .replace("<p>", "")
+        .replace("</p>", "")
+        .strip(): n
         for n in anki_notes_info
     }
 

@@ -106,13 +106,13 @@ class AnkiCard(ABC):
 
     def to_genanki_note(self) -> genanki.Note:
         """Produce a genanki. Note with the specified guid."""
-        if len(self.html_fields) > len(self.genanki_model.fields): # type: ignore
+        if len(self.html_fields) > len(self.genanki_model.fields):  # type: ignore
             raise ValueError(
-                f"Too many fields for model {self.genanki_model.name}: {self.html_fields}", # type: ignore
+                f"Too many fields for model {self.genanki_model.name}: {self.html_fields}",  # type: ignore
             )
 
-        if len(self.html_fields) < len(self.genanki_model.fields): # type: ignore
-            while len(self.html_fields) < len(self.genanki_model.fields): # type: ignore
+        if len(self.html_fields) < len(self.genanki_model.fields):  # type: ignore
+            while len(self.html_fields) < len(self.genanki_model.fields):  # type: ignore
                 before_extras_field = len(self.html_fields) == 2
                 if before_extras_field:
                     self.add_field(self.get_source_button())
@@ -156,12 +156,12 @@ class AnkiCard(ABC):
                 results = []
 
                 def process_match(m) -> str:  # noqa # type: ignore
-                    initial_contents = m.group(1) # type: ignore
-                    abspath, newpath = self.make_ref_pair(initial_contents) # type: ignore
+                    initial_contents = m.group(1)  # type: ignore
+                    abspath, newpath = self.make_ref_pair(initial_contents)  # type: ignore
                     results.append((abspath, newpath))  # noqa # type: ignore
                     return r'src="' + newpath + '"'
 
-                current_stage = re.sub(regex, process_match, current_stage) # type: ignore
+                current_stage = re.sub(regex, process_match, current_stage)  # type: ignore
 
                 yield from results
 

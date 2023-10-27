@@ -18,7 +18,9 @@ class Document:
 
         import_time_formatted = datetime.datetime.now().strftime("%Y-%m-%d")
 
-        self.tags = self.get_tags(self.content, import_time=import_time_formatted)
+        self.tags = self.get_tags(
+            self.content, import_time=import_time_formatted
+        )
 
     @staticmethod
     def replace_alias_wiki_links(text: str) -> str:

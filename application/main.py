@@ -14,7 +14,9 @@ from personal_mnemonic_medium.note_factories.markdown import MarkdownNoteFactory
 from personal_mnemonic_medium.prompt_extractors.cloze_extractor import (
     ClozePromptExtractor,
 )
-from personal_mnemonic_medium.prompt_extractors.qa_extractor import QAPromptExtractor
+from personal_mnemonic_medium.prompt_extractors.qa_extractor import (
+    QAPromptExtractor,
+)
 from wasabi import Printer
 
 msg = Printer(timestamp=True)
