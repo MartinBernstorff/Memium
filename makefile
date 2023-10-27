@@ -15,7 +15,7 @@ test: ## Run tests
 	pytest $(SRC_PATH)
 
 lint: ## Format code
-	ruff . --fix
+	ruff . --fix --extend-select F401
 	ruff format . 
 
 type-check: ## Type-check code

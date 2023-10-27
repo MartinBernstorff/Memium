@@ -1,6 +1,5 @@
 import urllib
 from pathlib import Path
-from typing import Optional
 
 
 def get_obsidian_url(source_path: Path, line_nr: int | None = None) -> str:

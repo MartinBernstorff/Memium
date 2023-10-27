@@ -1,6 +1,6 @@
 # Anki 2.1 has mathjax built in, but ankidroid and other clients don't.
 import textwrap
-from typing import Any, Dict
+from typing import Any
 
 from personal_mnemonic_medium.exporters.anki.anki_css import CARD_MODEL_CSS
 

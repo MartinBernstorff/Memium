@@ -1,6 +1,5 @@
 from collections.abc import Sequence
 from pathlib import Path
-from typing import List
 
 import genanki
 from personal_mnemonic_medium.card_pipeline import CardPipeline
@@ -28,8 +27,8 @@ class TestCardPipeline(CardPipeline):
         self,
         document_factory: DocumentFactory = MarkdownNoteFactory(),  # noqa: B008
         prompt_extractors: Sequence[PromptExtractor] = [
-            QAPromptExtractor(),  # noqa: B008
-            ClozePromptExtractor(),  # noqa: B008
+            QAPromptExtractor(),
+            ClozePromptExtractor(),
         ],
         card_exporter: CardExporter = AnkiPackageGenerator(),  # noqa: B008
     ) -> None:

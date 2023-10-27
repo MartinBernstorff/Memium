@@ -2,7 +2,6 @@ import os
 import re
 from collections.abc import Sequence
 from pathlib import Path
-from typing import Optional
 
 from tqdm import tqdm
 

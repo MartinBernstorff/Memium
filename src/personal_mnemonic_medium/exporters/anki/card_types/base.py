@@ -2,12 +2,11 @@ import copy
 import os
 import re
 from abc import ABC, abstractmethod
-from collections.abc import Callable
+from collections.abc import Callable, Iterator
 from pathlib import Path
-from typing import Any, List, Optional, Tuple
+from typing import Any
 
 import genanki
-from personal_mnemonic_medium.exporters.anki.globals import CONFIG
 from personal_mnemonic_medium.exporters.markdown_to_html.html_compiler import (
     compile_field,
 )
@@ -107,13 +106,13 @@ class AnkiCard(ABC):
 
     def to_genanki_note(self) -> genanki.Note:
         """Produce a genanki. Note with the specified guid."""
-        if len(self.html_fields) > len(self.genanki_model.fields):
+        if len(self.html_fields) > len(self.genanki_model.fields): # type: ignore
             raise ValueError(
-                f"Too many fields for model {self.genanki_model.name}: {self.html_fields}",
+                f"Too many fields for model {self.genanki_model.name}: {self.html_fields}", # type: ignore
             )
 
-        if len(self.html_fields) < len(self.genanki_model.fields):
-            while len(self.html_fields) < len(self.genanki_model.fields):
+        if len(self.html_fields) < len(self.genanki_model.fields): # type: ignore
+            while len(self.html_fields) < len(self.genanki_model.fields): # type: ignore
                 before_extras_field = len(self.html_fields) == 2
                 if before_extras_field:
                     self.add_field(self.get_source_button())
@@ -147,7 +146,7 @@ class AnkiCard(ABC):
         # This is all it takes
         return Path(self.source_doc.source_path).parent
 
-    def determine_media_references(self):
+    def determine_media_references(self) -> Iterator[tuple[Path, Path]]:
         """Find all media references in a card"""
         for i, field in enumerate(self.html_fields):
             current_stage = field
@@ -156,13 +155,13 @@ class AnkiCard(ABC):
             ]:  # TODO not sure how this should work:, r'\[sound:(.*?)\]']:
                 results = []
 
-                def process_match(m) -> str:  # noqa
-                    initial_contents = m.group(1)
-                    abspath, newpath = self.make_ref_pair(initial_contents)
-                    results.append((abspath, newpath))  # noqa
+                def process_match(m) -> str:  # noqa # type: ignore
+                    initial_contents = m.group(1) # type: ignore
+                    abspath, newpath = self.make_ref_pair(initial_contents) # type: ignore
+                    results.append((abspath, newpath))  # noqa # type: ignore
                     return r'src="' + newpath + '"'
 
-                current_stage = re.sub(regex, process_match, current_stage)
+                current_stage = re.sub(regex, process_match, current_stage) # type: ignore
 
                 yield from results
 

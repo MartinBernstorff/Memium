@@ -8,7 +8,6 @@ from collections.abc import Sequence
 from dataclasses import dataclass
 from pathlib import Path
 from shutil import copyfile
-from typing import Any, List, Set
 
 import genanki
 
@@ -28,16 +27,6 @@ logging.basicConfig(
     filemode="w",
     level=logging.DEBUG,
 )
-
-
-class DeckCollection(dict):
-    """Defaultdict for decks, but with stored name."""
-
-    def __getitem__(self, deckname: str) -> Any:
-        if deckname not in self:
-            deck_id = simple_hash(deckname)
-            self[deckname] = genanki.Deck(deck_id, deckname)
-        return super().__getitem__(deckname)
 
 
 @dataclass(frozen=True)
