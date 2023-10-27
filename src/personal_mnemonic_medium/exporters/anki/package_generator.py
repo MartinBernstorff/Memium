@@ -74,7 +74,7 @@ class AnkiPackageGenerator(CardExporter):
     def cards_to_deck(
         cards: Sequence[AnkiCard]
     ) -> tuple[genanki.Deck, set[str]]:
-        media = set()
+        media = set() # type: ignore
 
         deck_name = cards[0].deckname
         deck_id = simple_hash(deck_name)
@@ -86,7 +86,7 @@ class AnkiPackageGenerator(CardExporter):
                     copyfile(
                         abspath, newpath
                     )  # This is inefficient but definitely works on all platforms.
-                    media.add(newpath)
+                    media.add(newpath) # type: ignore
                 except FileNotFoundError as e:
                     log.debug(
                         f"Could not find file {abspath} for media, {e}."
@@ -99,7 +99,7 @@ class AnkiPackageGenerator(CardExporter):
                     f"Could not add card {card} to deck {deck_name}, {e}."
                 )
 
-        return deck, media
+        return deck, media # type: ignore
 
     def prompts_to_cards(
         self, prompts: Sequence[Prompt]

@@ -40,7 +40,7 @@ def test_has_qa_matches(qa_extractor: QAPromptExtractor):
     matches = [
         string
         for string in example_strings
-        if qa_extractor._has_qa(string)
+        if qa_extractor._has_qa(string) # type: ignore
     ]
 
     assert len(matches) == 3
@@ -56,7 +56,7 @@ def test_has_qa_does_not_match(qa_extractor: QAPromptExtractor):
     matches = 0
 
     for string in example_strings:
-        if qa_extractor._has_qa(string):
+        if qa_extractor._has_qa(string): # type: ignore
             matches += 1
 
     assert matches == 0
