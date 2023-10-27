@@ -12,7 +12,7 @@ install:
 	pip install -e .
 
 test: ## Run tests
-	pytest $(SRC_PATH)
+	pytest tests
 
 lint: ## Format code
 	ruff format . 
