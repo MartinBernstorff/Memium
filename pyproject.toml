@@ -9,9 +9,9 @@ authors = [{ name = "Martin Bernstorff", email = "martinbernstorff@gmail.com" }]
 description = "Personal Mnemonic Medium"
 classifiers = ["Programming Language :: Python :: 3.11"]
 requires-python = ">=3.11"
+
 [project.license]
 file = "LICENSE"
-name = "MIT"
 
 [project.readme]
 file = "README.md"
@@ -48,7 +48,7 @@ repository = "https://github.com/MartinBernstorff/personal-mnemonic-medium"
 documentation = "https://MartinBernstorff.github.io/personal-mnemonic-medium/"
 
 [tool.pyright]
-exclude = [".*venv*", ".tox"]
+exclude = [".*venv*"]
 pythonPlatform = "Darwin"
 reportMissingTypeStubs = false
 

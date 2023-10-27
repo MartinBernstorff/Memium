@@ -1,13 +1,9 @@
 SRC_PATH = src/personal_mnemonic_medium
 
 install-dev:
-	pip install -r dev-requirements.txt
-
-install-deps:
-	pip install -r requirements.txt
+	pip install --upgrade .[dev]
 
 install:
-	make install-deps
 	make install-dev
 	pip install -e .
 

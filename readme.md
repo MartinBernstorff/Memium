@@ -61,32 +61,15 @@ TODO: Add minimal usage example
 
 To see more examples, see the [documentation].
 
-# 📖 Documentation
-
-| Documentation         |                                                          |
-| --------------------- | -------------------------------------------------------- |
-| 🔧 **[Installation]**  | Installation instructions on how to install this package |
-| 📖 **[Documentation]** | A minimal and developing documentation                   |
-| 👩‍💻 **[Tutorials]**     | Tutorials for using this package                         |
-| 🎛️ **[API Reference]** | API reference for this package                           |
-| 📚 **[FAQ]**           | Frequently asked questions                               |
-
-
 # 💬 Where to ask questions
 
 | Type                           |                        |
 | ------------------------------ | ---------------------- |
-| 📚 **FAQ**                      | [FAQ]                  |
 | 🚨 **Bug Reports**              | [GitHub Issue Tracker] |
 | 🎁 **Feature Requests & Ideas** | [GitHub Issue Tracker] |
 | 👩‍💻 **Usage Questions**          | [GitHub Discussions]   |
 | 🗯 **General Discussion**       | [GitHub Discussions]   |
 
-[Documentation]: https://MartinBernstorff.github.io/personal-mnemonic-medium/index.html
-[Installation]: https://MartinBernstorff.github.io/personal-mnemonic-medium/installation.html
-[Tutorials]: https://MartinBernstorff.github.io/personal-mnemonic-medium/tutorials.html
-[API Reference]: https://MartinBernstorff.github.io/personal-mnemonic-medium/references.html
-[FAQ]: https://MartinBernstorff.github.io/personal-mnemonic-medium/faq.html
 [github issue tracker]: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues
 [github discussions]: https://github.com/MartinBernstorff/personal-mnemonic-medium/discussions
 
