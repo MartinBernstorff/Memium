@@ -1,6 +1,6 @@
 {
   "template": "https://github.com/MartinBernstorff/nimble-python-cookiecutter",
-  "commit": "80b90f37d8ce87ffb1ab97cf2b518fc0fd431dfb",
+  "commit": "5a729f8039fb1444652177ddd964d1560c0b941d",
   "checkout": null,
   "context": {
     "cookiecutter": {
