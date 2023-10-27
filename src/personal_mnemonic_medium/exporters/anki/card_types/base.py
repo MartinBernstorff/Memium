@@ -2,8 +2,9 @@ import copy
 import os
 import re
 from abc import ABC, abstractmethod
+from collections.abc import Callable
 from pathlib import Path
-from typing import Any, Callable, List, Optional, Tuple
+from typing import Any, List, Optional, Tuple
 
 import genanki
 from personal_mnemonic_medium.exporters.anki.globals import CONFIG
@@ -22,7 +23,7 @@ class AnkiCard(ABC):
 
     def __init__(
         self,
-        fields: List[str],
+        fields: list[str],
         source_prompt: Prompt,
         url_generator: Callable[[Path, Optional[int]], str] = get_obsidian_url,
         html_compiler: Callable[[str], str] = compile_field,
@@ -38,11 +39,11 @@ class AnkiCard(ABC):
         return self.source_doc.content
 
     @property
-    def html_fields(self) -> List[str]:
+    def html_fields(self) -> list[str]:
         return list(map(self.html_compiler, self.markdown_fields))
 
     @property
-    def tags(self) -> List[str]:
+    def tags(self) -> list[str]:
         return self.source_doc.tags
 
     @property
@@ -132,7 +133,7 @@ class AnkiCard(ABC):
             tags=self.tags,
         )
 
-    def make_ref_pair(self, filename: str) -> Tuple[Path, str]:
+    def make_ref_pair(self, filename: str) -> tuple[Path, str]:
         """Take a filename relative to the card, and make it absolute."""
         newname = "%".join(filename.split(os.sep))
 

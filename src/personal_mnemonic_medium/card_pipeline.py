@@ -24,8 +24,8 @@ class CardPipeline:
     def run(
         self,
         input_path: Path,
-    ) -> List[AnkiCard]:
-        notes: List[Document] = []
+    ) -> list[AnkiCard]:
+        notes: list[Document] = []
         if input_path.is_dir():
             notes += list(self.document_factory.get_notes_from_dir(dir_path=input_path))
 

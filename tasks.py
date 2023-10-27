@@ -329,7 +329,7 @@ def update(c: Context):
 @task(iterable="pytest_args")
 def test(
     c: Context,
-    python_versions: List[str] = (SUPPORTED_PYTHON_VERSIONS[0],),  # type: ignore
+    python_versions: list[str] = (SUPPORTED_PYTHON_VERSIONS[0],),  # type: ignore
     pytest_args: List[str] = [],  # noqa
 ):
     """Run tests"""
@@ -382,7 +382,7 @@ def test(
 
 def test_for_rej():
     # Get all paths in current directory or subdirectories that end in .rej
-    rej_files = list(Path(".").rglob("*.rej"))
+    rej_files = list(Path().rglob("*.rej"))
 
     if len(rej_files) > 0:
         print(f"\n{msg_type.FAIL} Found .rej files leftover from cruft update.\n")

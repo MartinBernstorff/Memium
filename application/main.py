@@ -21,7 +21,7 @@ msg = Printer(timestamp=True)
 
 
 # helper for creating anki connect requests
-def request(action: Any, **params: Any) -> Dict[str, Any]:
+def request(action: Any, **params: Any) -> dict[str, Any]:
     return {"action": action, "params": params, "version": 6}
 
 
@@ -83,6 +83,6 @@ def main(
         sleep(sleep_seconds)
         main(input_dir=input_dir, watch=watch, host_output_dir=host_output_dir)
 
-  
+
 if __name__ == "__main__":
     typer.run(main)

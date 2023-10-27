@@ -84,7 +84,7 @@ CONFIG = {
     "card_model_template_cloze": CLOZE_MODEL_TEMPLATE,
 }
 
-VERSION_LOG: Dict[Any, Any] = {}
+VERSION_LOG: dict[Any, Any] = {}
 Q_TYPE_TAG = {
     "G": "med/type/1_GP",
     "A": "med/type/2_Acute_care",

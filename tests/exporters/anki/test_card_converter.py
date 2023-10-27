@@ -28,8 +28,8 @@ class TestCardPipeline(CardPipeline):
         self,
         document_factory: DocumentFactory = MarkdownNoteFactory(),  # noqa: B008
         prompt_extractors: Sequence[PromptExtractor] = [
-            QAPromptExtractor(),  # noqa: B008
-            ClozePromptExtractor(),  # noqa: B008
+            QAPromptExtractor(),
+            ClozePromptExtractor(),
         ],
         card_exporter: CardExporter = AnkiPackageGenerator(),  # noqa: B008
     ) -> None:
@@ -42,7 +42,7 @@ class TestCardPipeline(CardPipeline):
     def test_card_pipeline(
         self,
         input_path: Path,
-    ) -> List[AnkiCard]:
+    ) -> list[AnkiCard]:
         return self.run(
             input_path=input_path,
         )

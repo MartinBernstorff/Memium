@@ -8,7 +8,7 @@ class Prompt:
         self,
         note_uuid: str,
         source_note: Document,
-        tags: Optional[List[str]] = None,
+        tags: Optional[list[str]] = None,
         line_nr: Optional[int] = None,
     ):
         self.tags = tags

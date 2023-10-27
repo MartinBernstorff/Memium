@@ -43,7 +43,7 @@ class Document:
 
         return text
 
-    def get_tags(self, input_str: str, import_time: str) -> List[str]:
+    def get_tags(self, input_str: str, import_time: str) -> list[str]:
         file_tags = [import_time]
 
         if self.has_supplementary_tags(input_str):
