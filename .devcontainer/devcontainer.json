@@ -9,7 +9,6 @@
         "dockerfile": "../Dockerfile",
         "cacheFrom": "ghcr.io/martinbernstorff/personal-mnemonic-medium-devcontainer:latest"
     },
-    // "features": {},
     "customizations": {
         "vscode": {
             "extensions": [
@@ -23,9 +22,15 @@
             ]
         }
     },
+    "mounts": [
+        "source=${localEnv:HOME}/.config/gh/hosts.yml,target=/root/.config/gh/hosts.yml,type=bind,consistency=cache", // GitHub CLI authentication login
+    ],
     "features": {
         "ghcr.io/devcontainers/features/github-cli:1": {}
     },
+    "mounts": [
+        "source=${localEnv:HOME}/.config/gh/hosts.yml,target=/root/.config/gh/hosts.yml,type=bind,consistency=cache",
+    ],
     "postStartCommand": "make install"
     // Features to add to the dev container. More info: https://containers.dev/features.
     // "features": {},
