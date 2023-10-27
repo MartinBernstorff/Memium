@@ -96,7 +96,7 @@ class QAPromptExtractor(PromptExtractor):
                     )
                     continue
 
-                prompts.append( # type: ignore
+                prompts.append(  # type: ignore
                     QAPrompt(
                         question=question,
                         answer=answer,
@@ -112,4 +112,4 @@ class QAPromptExtractor(PromptExtractor):
             )
             block_starting_line_nr += block_lines
 
-        return prompts # type: ignore
+        return prompts  # type: ignore

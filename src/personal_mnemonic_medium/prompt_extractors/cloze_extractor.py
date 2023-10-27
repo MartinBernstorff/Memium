@@ -97,7 +97,7 @@ class ClozePromptExtractor(PromptExtractor):
                         )
                     )
 
-                    prompts.append( # type: ignore
+                    prompts.append(  # type: ignore
                         ClozePrompt(
                             content=prompt_content,
                             tags=note.tags,
@@ -106,4 +106,4 @@ class ClozePromptExtractor(PromptExtractor):
                         )
                     )
 
-        return prompts # type: ignore
+        return prompts  # type: ignore

@@ -1,4 +1,4 @@
-SRC_PATH = personal_mnemonic_medium
+SRC_PATH = src/personal_mnemonic_medium
 
 install-dev:
 	pip install -r dev-requirements.txt

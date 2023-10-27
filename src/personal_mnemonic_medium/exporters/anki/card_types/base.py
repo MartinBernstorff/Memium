@@ -114,7 +114,7 @@ class AnkiCard(ABC):
 
         if len(self.html_fields) < len(self.genanki_model.fields):  # type: ignore
             while len(self.html_fields) < len(
-                self.genanki_model.fields # type: ignore
+                self.genanki_model.fields  # type: ignore
             ):  # type: ignore
                 before_extras_field = len(self.html_fields) == 2
                 if before_extras_field:
@@ -137,7 +137,7 @@ class AnkiCard(ABC):
 
     def make_ref_pair(self, filename: str) -> tuple[Path, str]:
         """Take a filename relative to the card, and make it absolute."""
-        newname = "%".join(filename.split(os.sep)) # type: ignore  # noqa: PTH206
+        newname = "%".join(filename.split(os.sep))  # type: ignore  # noqa: PTH206
 
         if os.path.isabs(filename):  # noqa
             abspath = Path(filename)
@@ -163,13 +163,15 @@ class AnkiCard(ABC):
                 def process_match(m) -> str:  # noqa # type: ignore
                     initial_contents = m.group(1)  # type: ignore
                     abspath, newpath = self.make_ref_pair(
-                        initial_contents # type: ignore
+                        initial_contents  # type: ignore
                     )  # type: ignore
                     results.append((abspath, newpath))  # noqa # type: ignore
                     return r'src="' + newpath + '"'
 
                 current_stage = re.sub(
-                    regex, process_match, current_stage # type: ignore
+                    regex,
+                    process_match,
+                    current_stage,  # type: ignore
                 )  # type: ignore
 
                 yield from results

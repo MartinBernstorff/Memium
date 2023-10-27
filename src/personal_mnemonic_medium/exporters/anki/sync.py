@@ -110,7 +110,7 @@ def sync_deck(
         )
     else:
         msg.info("Skipped")
-        msg.info(f"{deck_bundle.deck.name}") # type: ignore
+        msg.info(f"{deck_bundle.deck.name}")  # type: ignore
         msg.info("\tNo notes added or removed")
         print("\n")
 
@@ -125,7 +125,7 @@ def _sync_deck(
     md_note_guids: set[str],
 ):
     msg.info(" Syncing deck: ")
-    msg.info(f"\t{deck_bundle.deck.name}") # type: ignore
+    msg.info(f"\t{deck_bundle.deck.name}")  # type: ignore
 
     added_note_guids = md_note_guids - anki_note_guids
     if added_note_guids:
@@ -143,7 +143,7 @@ def _sync_deck(
     try:
         sync_path = str(sync_dir_path / "deck.apkg")
         invoke("importPackage", path=sync_path)
-        print(f"Imported {deck_bundle.deck.name}!") # type: ignore
+        print(f"Imported {deck_bundle.deck.name}!")  # type: ignore
 
         if delete_cards:
             try:
@@ -159,7 +159,7 @@ def _sync_deck(
 
             except Exception:
                 msg.fail(
-                    f"Unable to delete cards in {deck_bundle.deck.name}" # type: ignore
+                    f"Unable to delete cards in {deck_bundle.deck.name}"  # type: ignore
                 )
                 # Print full stack trace
                 traceback.print_exc()
@@ -170,7 +170,7 @@ def _sync_deck(
 
 
 def get_md_note_infos(deck_bundle: DeckBundle) -> set[str]:
-    md_notes: list[Note] = deck_bundle.deck.notes # type: ignore
+    md_notes: list[Note] = deck_bundle.deck.notes  # type: ignore
     md_note_guids = {str(n.guid) for n in md_notes}
     return md_note_guids
 
@@ -179,7 +179,8 @@ def get_anki_note_infos(
     deck_bundle: DeckBundle
 ) -> tuple[dict[str, Any], set[str]]:
     anki_card_ids: list[int] = invoke(
-        "findCards", query=f'"deck:{deck_bundle.deck.name}"' # type: ignore
+        "findCards",
+        query=f'"deck:{deck_bundle.deck.name}"',  # type: ignore
     )
 
     # get a list of anki notes in the deck
@@ -209,7 +210,7 @@ def sync_model(model: Model):
     model_names_to_ids = {}
     try:
         model_names_to_ids = invoke("modelNamesAndIds")
-        if model.name not in model_names_to_ids: # type: ignore
+        if model.name not in model_names_to_ids:  # type: ignore
             return
     except Exception as e:
         msg.good(
@@ -222,29 +223,29 @@ def sync_model(model: Model):
             invoke(
                 "updateModelTemplates",
                 model={
-                    "name": model.name, # type: ignore
+                    "name": model.name,  # type: ignore
                     "templates": {
                         t["name"]: {
                             "qfmt": t["qfmt"],
                             "afmt": t["afmt"],
                         }
-                        for t in model.templates # type: ignore
+                        for t in model.templates  # type: ignore
                     },
                 },
             )
-            msg.good(f"\tUpdated model {model.name} template") # type: ignore
+            msg.good(f"\tUpdated model {model.name} template")  # type: ignore
         except Exception as e:
             msg.good(
-                f"\tUnable to update model {model.name} template" # type: ignore
+                f"\tUnable to update model {model.name} template"  # type: ignore
             )
             msg.good(f"\t\t{e}")
 
         try:
             invoke(
                 "updateModelStyling",
-                model={"name": model.name, "css": model.css}, # type: ignore
+                model={"name": model.name, "css": model.css},  # type: ignore
             )
-            msg.good(f"\tUpdated model {model.name} css") # type: ignore
+            msg.good(f"\tUpdated model {model.name} css")  # type: ignore
         except Exception as e:
-            msg.good(f"\tUnable to update model {model.name} css") # type: ignore
+            msg.good(f"\tUnable to update model {model.name} css")  # type: ignore
             msg.good(f"\t\t{e}")

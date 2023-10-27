@@ -6,6 +6,7 @@ import genanki
 from personal_mnemonic_medium.exporters.anki.card_types.base import (
     AnkiCard,
 )
+from personal_mnemonic_medium.exporters.anki.globals import CONFIG
 from personal_mnemonic_medium.exporters.markdown_to_html.html_compiler import (
     compile_field,
 )
@@ -35,13 +36,12 @@ class AnkiCloze(AnkiCard):
 
     @property
     def genanki_model(self) -> genanki.Model:
-        global CONFIG  # noqa
         return genanki.Model(
             model_id=simple_hash(CONFIG["card_model_name_cloze"]),  # type: ignore
             name=CONFIG["card_model_name_cloze"],
             fields=CONFIG["card_model_fields_cloze"],
             templates=CONFIG["card_model_template_cloze"],
-            css=CONFIG["card_model_css"],
+            css=CONFIG["card_model_css"],  # type: ignore
             model_type=1,  # This is the model_type number for genanki, takes 0 for QA or 1 for cloze
         )
 

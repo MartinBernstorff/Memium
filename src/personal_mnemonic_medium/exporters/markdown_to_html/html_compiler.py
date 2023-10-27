@@ -39,7 +39,8 @@ def field_to_html(field: Any) -> str:
 
         for instance in token_instances:
             field = field.replace(
-                instance, replacement + instance[1:-1] + replacement
+                instance,
+                replacement + instance[1:-1] + replacement,  # type: ignore
             )  # type: ignore
 
     # Make sure every \n converts into a newline
