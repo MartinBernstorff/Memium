@@ -8,7 +8,7 @@
 name: Release
 on:
   workflow_run:
-    workflows: ["tests"]
+    workflows: ["Tests"]
     types:
       - completed
 jobs:
