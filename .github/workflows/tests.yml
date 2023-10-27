@@ -31,7 +31,7 @@ jobs:
         uses: devcontainers/ci@v0.3
         with:
           imageName: ghcr.io/martinbernstorff/personal-mnemonic-medium-devcontainer
-          # cacheFrom: ghcr.io/martinbernstorff/personal-mnemonic-medium-devcontainer:latest
+          cacheFrom: ghcr.io/martinbernstorff/personal-mnemonic-medium-devcontainer:latest
           push: filter
           refFilterForPush: refs/heads/main
           runCmd:
