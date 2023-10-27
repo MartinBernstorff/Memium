@@ -140,5 +140,10 @@ split-on-trailing-comma = false
 # Unlike Flake8, default to a complexity level of 10.
 max-complexity = 10
 
+[tool.semantic_release]
+branch = "main"
+version_toml = ["pyproject.toml:project.version"]
+build_command = "python -m pip install build; python -m build"
+
 [tool.setuptools]
 include-package-data = true
