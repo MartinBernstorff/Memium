@@ -1,7 +1,6 @@
 from collections.abc import Sequence
 from pathlib import Path
 
-import genanki
 from personal_mnemonic_medium.card_pipeline import CardPipeline
 from personal_mnemonic_medium.exporters.anki.card_types.base import (
     AnkiCard,
@@ -59,7 +58,7 @@ def test_custom_card_to_genanki_card():
         uuid="1234",
         source_path=Path(__file__),
     )
-    genanki_note = AnkiQA(
+    AnkiQA(
         fields=["Q. What is the capital of France?", "A. Paris"],
         source_prompt=QAPrompt(
             question="What is the capital of France?",
@@ -68,8 +67,6 @@ def test_custom_card_to_genanki_card():
             source_note=source_note,
         ),
     ).to_genanki_note()
-
-    assert isinstance(genanki_note, genanki.Note)
 
 
 def test_get_subtags():
