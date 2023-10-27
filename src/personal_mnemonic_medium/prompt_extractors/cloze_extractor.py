@@ -4,7 +4,9 @@ from collections.abc import Sequence
 from typing import Any
 
 from personal_mnemonic_medium.note_factories.note import Document
-from personal_mnemonic_medium.prompt_extractors.base import PromptExtractor
+from personal_mnemonic_medium.prompt_extractors.base import (
+    PromptExtractor,
+)
 from personal_mnemonic_medium.prompt_extractors.prompt import Prompt
 
 
@@ -19,7 +21,9 @@ class ClozePromptExtractor(PromptExtractor):
         pass
 
     @staticmethod
-    def _break_string_by_two_or_more_newlines(string: str) -> list[str]:
+    def _break_string_by_two_or_more_newlines(
+        string: str
+    ) -> list[str]:
         """Break string into a list by 2+ newlines in a row."""
         return re.split(r"(\n\n)+", string)
 
@@ -52,11 +56,16 @@ class ClozePromptExtractor(PromptExtractor):
         if selected_cloze is not None:
             selected_clozes = [selected_cloze]
         else:
-            selected_clozes = re.findall(r"{(?!BearID).[^}]*}", string)
+            selected_clozes = re.findall(
+                r"{(?!BearID).[^}]*}", string
+            )
 
         for cloze in selected_clozes:
             output_hash = (
-                int(hashlib.sha256(cloze.encode("utf-8")).hexdigest(), 16)
+                int(
+                    hashlib.sha256(cloze.encode("utf-8")).hexdigest(),
+                    16,
+                )
                 % 10**3
             )
 
@@ -66,19 +75,27 @@ class ClozePromptExtractor(PromptExtractor):
 
         return string
 
-    def extract_prompts(self, note: Document) -> Sequence[ClozePrompt]:
+    def extract_prompts(
+        self, note: Document
+    ) -> Sequence[ClozePrompt]:
         prompts = []
 
-        blocks = self._break_string_by_two_or_more_newlines(note.content)
+        blocks = self._break_string_by_two_or_more_newlines(
+            note.content
+        )
 
         for block_string in blocks:
             if self._has_cloze(block_string):
-                clozes = re.findall(r"{(?!BearID).[^}]*}", block_string)
+                clozes = re.findall(
+                    r"{(?!BearID).[^}]*}", block_string
+                )
 
                 for selected_cloze in clozes:
-                    prompt_content = self._replace_cloze_id_with_unique(
-                        block_string,
-                        selected_cloze=selected_cloze,
+                    prompt_content = (
+                        self._replace_cloze_id_with_unique(
+                            block_string,
+                            selected_cloze=selected_cloze,
+                        )
                     )
 
                     prompts.append(

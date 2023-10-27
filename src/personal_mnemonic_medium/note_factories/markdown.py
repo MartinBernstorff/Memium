@@ -5,7 +5,9 @@ from pathlib import Path
 
 from tqdm import tqdm
 
-from personal_mnemonic_medium.note_factories.base import DocumentFactory
+from personal_mnemonic_medium.note_factories.base import (
+    DocumentFactory,
+)
 from personal_mnemonic_medium.note_factories.note import Document
 
 
@@ -42,7 +44,9 @@ class MarkdownNoteFactory(DocumentFactory):
             note_title = file_path.stem
 
             if self.cut_note_after in file_contents:
-                file_contents = file_contents.split(self.cut_note_after)[0]
+                file_contents = file_contents.split(
+                    self.cut_note_after
+                )[0]
 
             return Document(
                 title=note_title,
@@ -51,7 +55,9 @@ class MarkdownNoteFactory(DocumentFactory):
                 source_path=file_path,
             )
 
-    def get_notes_from_dir(self, dir_path: Path) -> Sequence[Document]:
+    def get_notes_from_dir(
+        self, dir_path: Path
+    ) -> Sequence[Document]:
         notes: list[Document] = []
 
         for parent_dir, _, files in os.walk(dir_path):

@@ -38,7 +38,9 @@ def test_has_qa_matches(qa_extractor: QAPromptExtractor):
         "\\Q. Testing newlines as well!",
     ]
     matches = [
-        string for string in example_strings if qa_extractor._has_qa(string)
+        string
+        for string in example_strings
+        if qa_extractor._has_qa(string)
     ]
 
     assert len(matches) == 3

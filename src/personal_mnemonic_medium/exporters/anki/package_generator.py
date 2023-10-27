@@ -11,15 +11,23 @@ from shutil import copyfile
 
 import genanki
 
-from personal_mnemonic_medium.exporters.anki.card_types.base import AnkiCard
-from personal_mnemonic_medium.exporters.anki.card_types.cloze import AnkiCloze
-from personal_mnemonic_medium.exporters.anki.card_types.qa import AnkiQA
+from personal_mnemonic_medium.exporters.anki.card_types.base import (
+    AnkiCard,
+)
+from personal_mnemonic_medium.exporters.anki.card_types.cloze import (
+    AnkiCloze,
+)
+from personal_mnemonic_medium.exporters.anki.card_types.qa import (
+    AnkiQA,
+)
 from personal_mnemonic_medium.exporters.base import CardExporter
 from personal_mnemonic_medium.prompt_extractors.cloze_extractor import (
     ClozePrompt,
 )
 from personal_mnemonic_medium.prompt_extractors.prompt import Prompt
-from personal_mnemonic_medium.prompt_extractors.qa_extractor import QAPrompt
+from personal_mnemonic_medium.prompt_extractors.qa_extractor import (
+    QAPrompt,
+)
 from personal_mnemonic_medium.utils.hasher import simple_hash
 
 log = logging.getLogger(__name__)
@@ -84,7 +92,9 @@ class AnkiPackageGenerator(CardExporter):
                     )  # This is inefficient but definitely works on all platforms.
                     media.add(newpath)
                 except FileNotFoundError as e:
-                    log.debug(f"Could not find file {abspath} for media, {e}.")
+                    log.debug(
+                        f"Could not find file {abspath} for media, {e}."
+                    )
 
             try:
                 deck.add_note(card.to_genanki_note())

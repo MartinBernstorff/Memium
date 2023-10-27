@@ -2,7 +2,9 @@
 import textwrap
 from typing import Any
 
-from personal_mnemonic_medium.exporters.anki.anki_css import CARD_MODEL_CSS
+from personal_mnemonic_medium.exporters.anki.anki_css import (
+    CARD_MODEL_CSS,
+)
 
 ANKICONNECT_URL = (
     "http://host.docker.internal:8765"
@@ -19,8 +21,12 @@ VERSION = "0.1"
 QUESTION_STR = r"{{ Question }}"
 ANSWER_STR = r"{{ Answer }}"
 EXTRA_STR = r"{{ Extra }}"
-TTS_QUESTION_STR = r"{{ tts en_US voices=Apple_Samantha speed=1.05:Question }}"
-TTS_ANSWER_STR = r"{{ tts en_US voices=Apple_Samantha speed=1.05:Answer }}"
+TTS_QUESTION_STR = (
+    r"{{ tts en_US voices=Apple_Samantha speed=1.05:Question }}"
+)
+TTS_ANSWER_STR = (
+    r"{{ tts en_US voices=Apple_Samantha speed=1.05:Answer }}"
+)
 
 QA_MODEL_TEMPLATE = [
     {

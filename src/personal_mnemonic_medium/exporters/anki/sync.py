@@ -8,8 +8,12 @@ from typing import Any
 from genanki import Model, Note
 from wasabi import Printer
 
-from personal_mnemonic_medium.exporters.anki.globals import ANKICONNECT_URL
-from personal_mnemonic_medium.exporters.anki.package_generator import DeckBundle
+from personal_mnemonic_medium.exporters.anki.globals import (
+    ANKICONNECT_URL,
+)
+from personal_mnemonic_medium.exporters.anki.package_generator import (
+    DeckBundle,
+)
 
 msg = Printer(timestamp=True)
 
@@ -29,7 +33,9 @@ def invoke(action: Any, **params: Any) -> Any:
     Returns:
         Any: the response from anki connect
     """
-    requestJson = json.dumps(request(action, **params)).encode("utf-8")
+    requestJson = json.dumps(request(action, **params)).encode(
+        "utf-8"
+    )
     response = json.load(
         urllib.request.urlopen(
             urllib.request.Request(ANKICONNECT_URL, requestJson)
@@ -84,7 +90,9 @@ def sync_deck(
         return
 
     # get a list of anki cards in the deck
-    anki_note_info_by_guid, anki_note_guids = get_anki_note_infos(deck_bundle)
+    anki_note_info_by_guid, anki_note_guids = get_anki_note_infos(
+        deck_bundle
+    )
 
     # get the unique guids of the md notes
     md_note_guids = get_md_note_infos(deck_bundle)
@@ -125,7 +133,9 @@ def sync_deck(
                             "deleteNotes",
                             notes=note_ids,
                         )
-                        msg.good(f"Deleted {len(guids_to_delete)} notes")
+                        msg.good(
+                            f"Deleted {len(guids_to_delete)} notes"
+                        )
 
                 except Exception:
                     msg.fail(
@@ -159,7 +169,9 @@ def get_anki_note_infos(
     )
 
     # get a list of anki notes in the deck
-    anki_note_ids: list[int] = invoke("cardsToNotes", cards=anki_card_ids)
+    anki_note_ids: list[int] = invoke(
+        "cardsToNotes", cards=anki_card_ids
+    )
 
     # get the note info for the notes in the deck
     anki_notes_info = invoke("notesInfo", notes=anki_note_ids)
@@ -186,7 +198,9 @@ def sync_model(model: Model):
         if model.name not in model_names_to_ids:
             return
     except Exception as e:
-        msg.good("\tUnable to fetch existing model names and ids from anki")
+        msg.good(
+            "\tUnable to fetch existing model names and ids from anki"
+        )
         msg.good(f"\t\t{e}")
 
     if anki_connect_is_live():
@@ -206,7 +220,9 @@ def sync_model(model: Model):
             )
             msg.good(f"\tUpdated model {model.name} template")
         except Exception as e:
-            msg.good(f"\tUnable to update model {model.name} template")
+            msg.good(
+                f"\tUnable to update model {model.name} template"
+            )
             msg.good(f"\t\t{e}")
 
         try:

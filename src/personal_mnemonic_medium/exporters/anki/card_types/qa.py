@@ -2,7 +2,9 @@ from collections.abc import Callable
 from pathlib import Path
 
 import genanki
-from personal_mnemonic_medium.exporters.anki.card_types.base import AnkiCard
+from personal_mnemonic_medium.exporters.anki.card_types.base import (
+    AnkiCard,
+)
 from personal_mnemonic_medium.exporters.markdown_to_html.html_compiler import (
     compile_field,
 )
@@ -18,7 +20,9 @@ class AnkiQA(AnkiCard):
         self,
         fields: list[str],
         source_prompt: Prompt,
-        url_generator: Callable[[Path, int | None], str] = get_obsidian_url,
+        url_generator: Callable[
+            [Path, int | None], str
+        ] = get_obsidian_url,
         html_compiler: Callable[[str], str] = compile_field,
     ):
         super().__init__(

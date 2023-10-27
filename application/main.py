@@ -10,7 +10,9 @@ from personal_mnemonic_medium.exporters.anki.package_generator import (
     AnkiPackageGenerator,
 )
 from personal_mnemonic_medium.exporters.anki.sync import sync_deck
-from personal_mnemonic_medium.note_factories.markdown import MarkdownNoteFactory
+from personal_mnemonic_medium.note_factories.markdown import (
+    MarkdownNoteFactory,
+)
 from personal_mnemonic_medium.prompt_extractors.cloze_extractor import (
     ClozePromptExtractor,
 )
@@ -32,12 +34,16 @@ def main(
     host_output_dir: Path,
     watch: Annotated[
         bool,
-        typer.Option(help="Keep running, updating Anki deck every 15 seconds"),
+        typer.Option(
+            help="Keep running, updating Anki deck every 15 seconds"
+        ),
     ],
 ):
     """Run the thing."""
     if not input_dir.exists():
-        raise FileNotFoundError(f"Input directory {input_dir} does not exist")
+        raise FileNotFoundError(
+            f"Input directory {input_dir} does not exist"
+        )
 
     if not host_output_dir.exists():
         msg.info(f"Creating output directory {host_output_dir}")
@@ -65,11 +71,15 @@ def main(
         input_path=input_dir,
     )
 
-    grouped_cards = Seq(cards).group_by(lambda card: card.deckname).to_iter()
+    grouped_cards = (
+        Seq(cards).group_by(lambda card: card.deckname).to_iter()
+    )
 
     for group in grouped_cards:
         cards = group.group_contents.to_list()
-        deck_bundle = AnkiPackageGenerator().cards_to_deck_bundle(cards=cards)
+        deck_bundle = AnkiPackageGenerator().cards_to_deck_bundle(
+            cards=cards
+        )
         sync_deck(
             deck_bundle=deck_bundle,
             sync_dir_path=host_output_dir,
@@ -79,9 +89,15 @@ def main(
 
     if watch:
         sleep_seconds = 60
-        msg.good(f"Sync complete, sleeping for {sleep_seconds} seconds")
+        msg.good(
+            f"Sync complete, sleeping for {sleep_seconds} seconds"
+        )
         sleep(sleep_seconds)
-        main(input_dir=input_dir, watch=watch, host_output_dir=host_output_dir)
+        main(
+            input_dir=input_dir,
+            watch=watch,
+            host_output_dir=host_output_dir,
+        )
 
 
 if __name__ == "__main__":

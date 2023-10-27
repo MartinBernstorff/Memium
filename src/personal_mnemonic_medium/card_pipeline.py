@@ -1,11 +1,17 @@
 from collections.abc import Sequence
 from pathlib import Path
 
-from personal_mnemonic_medium.exporters.anki.card_types.base import AnkiCard
+from personal_mnemonic_medium.exporters.anki.card_types.base import (
+    AnkiCard,
+)
 from personal_mnemonic_medium.exporters.base import CardExporter
-from personal_mnemonic_medium.note_factories.base import DocumentFactory
+from personal_mnemonic_medium.note_factories.base import (
+    DocumentFactory,
+)
 from personal_mnemonic_medium.note_factories.note import Document
-from personal_mnemonic_medium.prompt_extractors.base import PromptExtractor
+from personal_mnemonic_medium.prompt_extractors.base import (
+    PromptExtractor,
+)
 from personal_mnemonic_medium.prompt_extractors.prompt import Prompt
 
 
@@ -27,7 +33,9 @@ class CardPipeline:
         notes: list[Document] = []
         if input_path.is_dir():
             notes += list(
-                self.document_factory.get_notes_from_dir(dir_path=input_path)
+                self.document_factory.get_notes_from_dir(
+                    dir_path=input_path
+                )
             )
 
         if not input_path.is_dir():

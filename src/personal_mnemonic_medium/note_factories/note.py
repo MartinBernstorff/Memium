@@ -16,7 +16,9 @@ class Document:
         self.content = self.replace_alias_wiki_links(content)
         self.source_path = source_path
 
-        import_time_formatted = datetime.datetime.now().strftime("%Y-%m-%d")
+        import_time_formatted = datetime.datetime.now().strftime(
+            "%Y-%m-%d"
+        )
 
         self.tags = self.get_tags(
             self.content, import_time=import_time_formatted
@@ -25,7 +27,9 @@ class Document:
     @staticmethod
     def replace_alias_wiki_links(text: str) -> str:
         tokens_in_link = r"[\w|\s|\d|\(|\)\-]"
-        regex_pattern = rf"\[\[{tokens_in_link}+\|{tokens_in_link}+\]\]"
+        regex_pattern = (
+            rf"\[\[{tokens_in_link}+\|{tokens_in_link}+\]\]"
+        )
         pattern_matches = re.findall(
             pattern=regex_pattern,
             string=text,
@@ -34,7 +38,9 @@ class Document:
 
         for match in pattern_matches:
             link_name = (
-                re.findall(pattern=rf"\|{tokens_in_link}+\]\]", string=match)[0]
+                re.findall(
+                    pattern=rf"\|{tokens_in_link}+\]\]", string=match
+                )[0]
                 .replace("|", "")
                 .replace("]", "")
             )

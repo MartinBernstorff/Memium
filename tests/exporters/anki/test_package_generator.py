@@ -1,13 +1,19 @@
 from pathlib import Path
 
 import genanki
-from personal_mnemonic_medium.exporters.anki.card_types.base import AnkiCard
-from personal_mnemonic_medium.exporters.anki.card_types.qa import AnkiQA
+from personal_mnemonic_medium.exporters.anki.card_types.base import (
+    AnkiCard,
+)
+from personal_mnemonic_medium.exporters.anki.card_types.qa import (
+    AnkiQA,
+)
 from personal_mnemonic_medium.exporters.anki.package_generator import (
     AnkiPackageGenerator,
 )
 from personal_mnemonic_medium.note_factories.note import Document
-from personal_mnemonic_medium.prompt_extractors.qa_extractor import QAPrompt
+from personal_mnemonic_medium.prompt_extractors.qa_extractor import (
+    QAPrompt,
+)
 
 
 def test_cards_to_decks():
@@ -31,7 +37,9 @@ def test_cards_to_decks():
         for _ in range(4)
     ]
 
-    deck, media = AnkiPackageGenerator().cards_to_deck(cards=genanki_notes)
+    deck, media = AnkiPackageGenerator().cards_to_deck(
+        cards=genanki_notes
+    )
 
     assert isinstance(deck, genanki.Deck)
     assert isinstance(media, set)

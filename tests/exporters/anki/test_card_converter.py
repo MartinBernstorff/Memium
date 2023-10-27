@@ -3,16 +3,26 @@ from pathlib import Path
 
 import genanki
 from personal_mnemonic_medium.card_pipeline import CardPipeline
-from personal_mnemonic_medium.exporters.anki.card_types.base import AnkiCard
-from personal_mnemonic_medium.exporters.anki.card_types.qa import AnkiQA
+from personal_mnemonic_medium.exporters.anki.card_types.base import (
+    AnkiCard,
+)
+from personal_mnemonic_medium.exporters.anki.card_types.qa import (
+    AnkiQA,
+)
 from personal_mnemonic_medium.exporters.anki.package_generator import (
     AnkiPackageGenerator,
 )
 from personal_mnemonic_medium.exporters.base import CardExporter
-from personal_mnemonic_medium.note_factories.base import DocumentFactory
-from personal_mnemonic_medium.note_factories.markdown import MarkdownNoteFactory
+from personal_mnemonic_medium.note_factories.base import (
+    DocumentFactory,
+)
+from personal_mnemonic_medium.note_factories.markdown import (
+    MarkdownNoteFactory,
+)
 from personal_mnemonic_medium.note_factories.note import Document
-from personal_mnemonic_medium.prompt_extractors.base import PromptExtractor
+from personal_mnemonic_medium.prompt_extractors.base import (
+    PromptExtractor,
+)
 from personal_mnemonic_medium.prompt_extractors.cloze_extractor import (
     ClozePromptExtractor,
 )
@@ -94,7 +104,9 @@ def test_qa_uuid_generation():
         / "test_md_files"
         / "test_card_guid.md"
     )
-    cards = TestCardPipeline(prompt_extractors=[QAPromptExtractor()]).run(
+    cards = TestCardPipeline(
+        prompt_extractors=[QAPromptExtractor()]
+    ).run(
         input_path=file_path,
     )
     notes = [c.to_genanki_note() for c in cards]
@@ -137,15 +149,23 @@ def test_get_bear_id():
 def test_alias_wiki_link_substitution():
     alias = "Here I am [[alias|wiki link]], and another [[alias2|wiki link2]]"
     output = Document.replace_alias_wiki_links(alias)
-    assert output == "Here I am [[wiki link]], and another [[wiki link2]]"
+    assert (
+        output
+        == "Here I am [[wiki link]], and another [[wiki link2]]"
+    )
 
     no_alias = "Here I am [[wiki link]] and another [[wiki link2]]"
     output = Document.replace_alias_wiki_links(no_alias)
-    assert output == "Here I am [[wiki link]] and another [[wiki link2]]"
+    assert (
+        output == "Here I am [[wiki link]] and another [[wiki link2]]"
+    )
 
     test_3 = "How was ice climbing [[Franz Josef]] with [[Vibeke Christiansen|Vibeke]]?"
     output = Document.replace_alias_wiki_links(test_3)
-    assert output == "How was ice climbing [[Franz Josef]] with [[Vibeke]]?"
+    assert (
+        output
+        == "How was ice climbing [[Franz Josef]] with [[Vibeke]]?"
+    )
 
     alias = "[[Isolation (database design)|Isolation]]"
     output = Document.replace_alias_wiki_links(alias)

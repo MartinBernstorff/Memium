@@ -7,7 +7,9 @@ from personal_mnemonic_medium.note_factories.note import Document
 
 class DocumentFactory(ABC):
     @abstractmethod
-    def get_notes_from_dir(self, dir_path: Path) -> Sequence[Document]:
+    def get_notes_from_dir(
+        self, dir_path: Path
+    ) -> Sequence[Document]:
         pass
 
     @abstractmethod
