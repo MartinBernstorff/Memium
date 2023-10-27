@@ -13,11 +13,11 @@
 
 <!-- start short-description -->
 
-Extracting spaced repetition prompts (flashcards) from documents.
+Extracting spaced repetition prompts (flashcards) from written notes.
 
-Adding knowledge to long-term memory builds fluency, since you don't have to pause and look things up. And being fluent at something makes it much more fun! The faster you can get from crawling to running, the more enjoyable it is. This means you can bootstrap into a new field rapidly.  
+When you have to stop and look things up, it breaks up your flow. Adding this knowledge to long-term memory builds fluency, and being fluent at something makes it much more fun! The faster you can get from crawling to running, the more enjoyable it is. This means you can bootstrap into a new field rapidly.  
 
-[Anki](https://apps.ankiweb.net) enables that is awesome. It's automated spaced repetition, allowing you to retain information for much longer than you would have before. But it's user interface isn't great, and not at all conducive to maintaining a cohesive set of knowledge.
+[Anki](https://apps.ankiweb.net) enables rapid bootstrapping. It's automated [spaced repetition](https://notes.andymatuschak.org/Spaced_repetition_memory_systems_make_memory_a_choice), allowing you to retain information for much longer with much fewer repetitions. But Anki's user interface isn't great, and not at all conducive to maintaining a cohesive set of knowledge.
 
 A [Zettelkasten](https://medium.com/@martinbernstorf/why-you-need-an-idea-management-system-defb5de44746) solves this problem! The present package extracts Anki prompts from (markdown) documents.
 
