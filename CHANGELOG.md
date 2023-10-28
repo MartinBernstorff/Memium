@@ -2,6 +2,21 @@
 
 
 
+## v0.5.1 (2023-10-28)
+
+### Fix
+
+* fix: docker deploy should be lowercase ([`56d0517`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/56d0517da01ba25c950e5c01e13e190fd4bbeabe))
+
+### Unknown
+
+* Merge pull request #176 from MartinBernstorff/mb/fix_deploy
+
+fix: docker deploy should be lowercase ([`be9b35d`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/be9b35d84405b0067e6b4caed08fa8c8e92a2eeb))
+
+* Update readme.md ([`25c38cc`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/25c38cc1135e8027d2158014942c40c2bfd18e63))
+
+
 ## v0.5.0 (2023-10-28)
 
 ### Ci
