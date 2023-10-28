@@ -76,6 +76,18 @@ graph TD
 3. Press this [link](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/MartinBernstorff/personal-mnemonic-medium/)
 4. Complete the setup process
 
+### Submitting a PR
+Feel free to submit pull requests! If you want to run the entire pipeline locally, run:
+
+```bash
+make validate
+```
+
+And, if you have the github CLI installed, we can even create the PR in your browser for you:
+```bash
+make pr
+```
+
 # 💬 Where to ask questions
 
 | Type                           |                        |
