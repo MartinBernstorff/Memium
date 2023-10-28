@@ -2,6 +2,45 @@
 
 
 
+## v0.5.0 (2023-10-28)
+
+### Ci
+
+* ci: add docker deploy ([`a658f15`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/a658f15e9818449262f123ddc63d6ae64e1b4bbe))
+
+* ci: support multiline comment ([`273d2c9`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/273d2c980b67e0b12a52246e1d98e1144cc5111a))
+
+* ci: remove unused section ([`79bb2d2`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/79bb2d21327e243398ffbe56a17055e9e44f4b10))
+
+* ci: make integration test unique ([`85753df`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/85753df8d6270f53fa85eaf8496e456e0efb5631))
+
+* ci: build prod image as part of tests ([`b595956`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/b59595611de1bc208501cdb09c630d20cfbc7728))
+
+### Documentation
+
+* docs: update contribution ([`a804fc7`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/a804fc7627e330cfa21fc92c0a0c360d0da88175))
+
+* docs: update readme ([`704ae21`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/704ae21840118a826d0e8a4d3ce38e93e8a261fe))
+
+### Feature
+
+* feat: add integration test ([`e0526b6`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/e0526b60bfb06f2e0d75d0c52ebb8d1ed5d7966c))
+
+* feat: add prod docker image ([`ed5f350`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/ed5f35099d7d79295726967545b6bce87b0927d2))
+
+### Unknown
+
+* Merge pull request #175 from MartinBernstorff/add-prod-dockerfile
+
+feat: add prod dockerfile ([`99a6795`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/99a679573a927bbc7c8ca0854b0288f95593d67c))
+
+* misc: type ignores ([`7e89279`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/7e89279b0dda4ccac8f1f0d5d8d9dd9755de87ad))
+
+* Update readme.md ([`37dafbc`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/37dafbc394c4e08e801ff1e2b1f211d992ac045a))
+
+* Update readme.md ([`5126fc0`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/5126fc082eea65de81b1e677c6ba64451dd55d84))
+
+
 ## v0.4.0 (2023-10-27)
 
 ### Feature
