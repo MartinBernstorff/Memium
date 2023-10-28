@@ -23,6 +23,7 @@ validate: ## Run all checks
 	make lint
 	make type-check
 	make test
+	docker build . -t personal-mnemonic-medium:latest -f Dockerfile
 
 sync-pr:
 	git push --set-upstream origin HEAD
