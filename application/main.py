@@ -38,6 +38,12 @@ def main(
             help="Keep running, updating Anki deck every 15 seconds"
         ),
     ],
+    use_anki_connect: Annotated[
+        bool,
+        typer.Option(
+            help="Use AnkiConnect to sync with Anki. If not set, will just write to the output directory"
+        ),
+    ],
 ):
     """Run the thing."""
     if not input_dir.exists():
@@ -83,6 +89,7 @@ def main(
             sync_dir_path=host_output_dir,
             save_dir_path=Path("/output"),
             max_wait_for_ankiconnect=30,
+            use_anki_connect=use_anki_connect,
         )
 
     if watch:

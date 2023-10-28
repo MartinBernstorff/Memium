@@ -52,6 +52,7 @@ documentation = "https://MartinBernstorff.github.io/personal-mnemonic-medium/"
 exclude = [".*venv*"]
 pythonPlatform = "Darwin"
 reportMissingTypeStubs = false
+typeCheckingMode = "strict"
 
 [tool.ruff]
 # Enable pycodestyle (`E`) and Pyflakes (`F`) codes by default.

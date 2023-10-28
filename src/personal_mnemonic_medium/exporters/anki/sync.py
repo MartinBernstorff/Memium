@@ -73,6 +73,7 @@ def sync_deck(
     deck_bundle: DeckBundle,
     save_dir_path: Path,
     sync_dir_path: Path,
+    use_anki_connect: bool,
     delete_cards: bool = True,
     max_wait_for_ankiconnect: int = 30,
 ):
@@ -80,19 +81,23 @@ def sync_deck(
         msg.fail("Skipping Medicine deck to save resources")
         return
 
-    for _ in range(max_wait_for_ankiconnect):
-        if anki_connect_is_live():
-            break
-        print("Waiting for anki connect to start...")
-        sleep(0.5)
-    else:
-        msg.fail("Unable to connect to anki")
-        return
+    if use_anki_connect:
+        for _ in range(max_wait_for_ankiconnect):
+            if anki_connect_is_live():
+                break
+            print("Waiting for anki connect to start...")
+            sleep(0.5)
+        else:
+            msg.fail("Unable to connect to anki")
+            return
 
-    # get a list of anki cards in the deck
-    anki_note_info_by_guid, anki_note_guids = get_anki_note_infos(
-        deck_bundle
-    )
+        # get a list of anki cards in the deck
+        anki_note_info_by_guid, anki_note_guids = get_anki_note_infos(
+            deck_bundle
+        )
+    else:
+        anki_note_info_by_guid = None
+        anki_note_guids: set[str] = set()
 
     # get the unique guids of the md notes
     md_note_guids = get_md_note_infos(deck_bundle)
@@ -107,6 +112,7 @@ def sync_deck(
             anki_note_info_by_guid=anki_note_info_by_guid,
             anki_note_guids=anki_note_guids,
             md_note_guids=md_note_guids,
+            use_anki_connect=use_anki_connect,
         )
     else:
         msg.info("Skipped")
@@ -120,9 +126,10 @@ def _sync_deck(
     save_dir_path: Path,
     sync_dir_path: Path,
     delete_cards: bool,
-    anki_note_info_by_guid: dict[str, Any],
+    anki_note_info_by_guid: dict[str, Any] | None,
     anki_note_guids: set[str],
     md_note_guids: set[str],
+    use_anki_connect: bool,
 ):
     msg.info(" Syncing deck: ")
     msg.info(f"\t{deck_bundle.deck.name}")  # type: ignore
@@ -140,33 +147,36 @@ def _sync_deck(
     package_path = deck_bundle.save_deck_to_file(
         save_dir_path / "deck.apkg"
     )
-    try:
-        sync_path = str(sync_dir_path / "deck.apkg")
-        invoke("importPackage", path=sync_path)
-        print(f"Imported {deck_bundle.deck.name}!")  # type: ignore
+    if use_anki_connect:
+        try:
+            sync_path = str(sync_dir_path / "deck.apkg")
+            invoke("importPackage", path=sync_path)
+            print(f"Imported {deck_bundle.deck.name}!")  # type: ignore
 
-        if delete_cards:
-            try:
-                guids_to_delete = anki_note_guids - md_note_guids
-                if guids_to_delete:
-                    note_ids = [
-                        anki_note_info_by_guid[guid]["noteId"]
-                        for guid in guids_to_delete
-                    ]
+            if delete_cards:
+                try:
+                    guids_to_delete = anki_note_guids - md_note_guids
+                    if guids_to_delete:
+                        note_ids = [
+                            anki_note_info_by_guid[guid]["noteId"]  # type: ignore
+                            for guid in guids_to_delete
+                        ]
 
-                    invoke("deleteNotes", notes=note_ids)
-                    msg.good(f"Deleted {len(guids_to_delete)} notes")
+                        invoke("deleteNotes", notes=note_ids)
+                        msg.good(
+                            f"Deleted {len(guids_to_delete)} notes"
+                        )
 
-            except Exception:
-                msg.fail(
-                    f"Unable to delete cards in {deck_bundle.deck.name}"  # type: ignore
-                )
-                # Print full stack trace
-                traceback.print_exc()
-    except Exception as e:
-        print(f"Unable to sync {package_path} to anki")
-        print(f"{e}")
-        traceback.print_exc()
+                except Exception:
+                    msg.fail(
+                        f"Unable to delete cards in {deck_bundle.deck.name}"  # type: ignore
+                    )
+                    # Print full stack trace
+                    traceback.print_exc()
+        except Exception as e:
+            print(f"Unable to sync {package_path} to anki")
+            print(f"{e}")
+            traceback.print_exc()
 
 
 def get_md_note_infos(deck_bundle: DeckBundle) -> set[str]:
