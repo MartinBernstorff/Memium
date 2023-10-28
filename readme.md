@@ -29,8 +29,7 @@ This thinking is largely inspired by Andy Matuschak's [Personal Mnemonic Medium]
 If you want to sync markdown notes to Anki, here's how to get started!
 
 1. In Anki, install the [AnkiConnect](https://ankiweb.net/shared/info/2055492159) add-on
-2. Install [Orbstack](https://orbstack.dev/) or Docker Desktop
-Then run:
+2. Install [Orbstack](https://orbstack.dev/) or Docker Desktop. Then run:
 ```bash
 docker run -itd \
   -v YOUR_INPUT_FOLDER_HERE:/input \
@@ -40,7 +39,7 @@ docker run -itd \
   python application/main.py /input/ $HOME/ankidecks --watch
 ```
 
-This will start a docker container which watches YOUR_INPUT_FOLDER_HERE every 60 seconds. In case of updated files, it will sync the difference (create new prompts and delete deleted prompts) to Anki.
+This will start a docker container which watches `YOUR_INPUT_FOLDER_HERE` every 60 seconds. In case of updated files, it will sync the difference (create new prompts and delete deleted prompts) to Anki.
 
 ## Use as library
 If you would like to build build your own Python application on top of the abstractions added here, you can install the library from pypi:
