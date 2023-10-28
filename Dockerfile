@@ -1,18 +1,14 @@
-# Use an official Python runtime as a parent image
-FROM python:3.11-bookworm
-
-# Set the working directory to /app
+FROM python:3.11-bookworm as builder
 WORKDIR /app
-RUN pip install pyright
-RUN pyright .
 
-# Install deps
-COPY pyproject.toml ./
-RUN pip install --upgrade .[dev]
-RUN pip install --upgrade .[tests]
+# Install build utilities and python requirements
+COPY ./src pyproject.toml ./
+RUN pip install --user --no-cache-dir .
+COPY ./ ./
 
-# Ensure pyright builds correctly. 
-# If run in make validate, it is run in parallel, which breaks its installation.
-# Install the entire app
-COPY . /app
-RUN pip install -e .
+# Stage 2: Production
+FROM python:3.11-slim-bookworm
+WORKDIR /app
+COPY --from=builder /root/.local /root/.local
+ENV PATH=/root/.local/bin:${PATH}
+COPY --from=builder /app .

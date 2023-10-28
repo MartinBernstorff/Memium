@@ -25,11 +25,32 @@ This thinking is largely inspired by Andy Matuschak's [Personal Mnemonic Medium]
 
 <!-- end short-description -->
 
-## Installation
+## Use as an application
+If you want to sync markdown notes to Anki, here's how to get started!
+
+1. In Anki, install the [AnkiConnect](https://ankiweb.net/shared/info/2055492159) add-on
+2. Install [Orbstack](https://orbstack.dev/) or Docker Desktop
+Then run:
+```bash
+docker run -itd \
+  -v YOUR_INPUT_FOLDER_HERE:/input \
+  -v $HOME/ankidecks:/output \
+  --restart unless-stopped \
+  ghcr.io/personal-mnemonic-medium/personal-mnemonic-medium:latest \
+  python application/main.py /input/ $HOME/ankidecks --watch
+```
+
+This will start a docker container which watches YOUR_INPUT_FOLDER_HERE every 60 seconds. In case of updated files, it will sync the difference (create new prompts and delete deleted prompts) to Anki.
+
+## Use as library
+If you would like to build build your own Python application on top of the abstractions added here, you can install the library from pypi:
+```bash
+pip install personal-mnemonic-medium
+```
 
 
-## Pipeline
-The left path describes the abstract pipeline, the right path the current instantiation in this repo. 
+### Pipeline abstractions
+The library is built as a pipeline illustrated below. The left path describes the abstract pipeline, defined by abstract interfaces. The right path describes implementation I use, and which is part of this repo. 
 
 ```mermaid
 
@@ -48,15 +69,24 @@ graph TD
 	Prompts -- AnkiPackageGenerator --> Cards
  ```
 
+## Contributing
 ### Setting up a dev environment
 1. Install [Orbstack](https://orbstack.dev/) or Docker Desktop. Make sure to complete the full install process before continuing.
 2. If not installed, install VSCode
 3. Press this [link](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/MartinBernstorff/personal-mnemonic-medium/)
 4. Complete the setup process
 
-## Usage
+### Submitting a PR
+Feel free to submit pull requests! If you want to run the entire pipeline locally, run:
 
-TODO: Add minimal usage example
+```bash
+make validate
+```
+
+And, if you have the github CLI installed, we can even create the PR in your browser for you:
+```bash
+make pr
+```
 
 # 💬 Where to ask questions
 

@@ -18,6 +18,7 @@ dependencies = [
   "wasabi==1.1.2",
   "tqdm==4.66.1",
   "sentry-sdk==1.32.0",
+  "cffi==1.16.0",
 ]
 
 [project.license]
@@ -51,6 +52,7 @@ documentation = "https://MartinBernstorff.github.io/personal-mnemonic-medium/"
 exclude = [".*venv*"]
 pythonPlatform = "Darwin"
 reportMissingTypeStubs = false
+typeCheckingMode = "strict"
 
 [tool.ruff]
 # Enable pycodestyle (`E`) and Pyflakes (`F`) codes by default.

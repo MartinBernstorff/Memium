@@ -51,7 +51,7 @@ class DeckBundle:
 
     def save_deck_to_file(self, output_path: Path) -> Path:
         package = self.get_package()
-        package.write_to_file(output_path)
+        package.write_to_file(output_path)  # type: ignore
         return output_path
 
 
@@ -93,7 +93,7 @@ class AnkiPackageGenerator(CardExporter):
                     )
 
             try:
-                deck.add_note(card.to_genanki_note())
+                deck.add_note(card.to_genanki_note())  # type: ignore
             except IndexError as e:
                 log.debug(
                     f"Could not add card {card} to deck {deck_name}, {e}."

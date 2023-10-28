@@ -1,5 +1,8 @@
 SRC_PATH = src/personal_mnemonic_medium
 
+deploy:
+	./docker_cmd.sh
+
 install-dev:
 	pip install --upgrade .[dev]
 
@@ -23,6 +26,7 @@ validate: ## Run all checks
 	make lint
 	make type-check
 	make test
+	make build
 
 sync-pr:
 	git push --set-upstream origin HEAD

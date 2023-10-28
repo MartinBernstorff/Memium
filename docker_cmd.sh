@@ -1,4 +1,4 @@
-docker build . -t personal-mnemonic-medium -f Dockerfile
+docker build . -t personal-mnemonic-medium:latest -f Dockerfile
 
 docker volume create ankidecks
 

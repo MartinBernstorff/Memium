@@ -42,7 +42,7 @@ class AnkiQA(AnkiCard):
             name=CONFIG["card_model_name_qa"],
             fields=CONFIG["card_model_fields_qa"],
             templates=CONFIG["card_model_template_qa"],
-            css=CONFIG["card_model_css"],
+            css=CONFIG["card_model_css"],  # type: ignore
             model_type=0,
         )
 
