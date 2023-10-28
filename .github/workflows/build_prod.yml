@@ -2,7 +2,7 @@
 # then it will in python 3.9 (ubuntu-latest) create a badge with the coverage
 # and add it to the PR. This badge will be updated if the PR is updated.
 
-name: Tests
+name: Integration test and build prod
 on:
   push:
     branches: [main]
@@ -10,7 +10,7 @@ on:
     branches: [main]
 
 jobs:
-  build-and-test:
+  integration-test:
     permissions: write-all
     concurrency:
       group: "${{ github.workflow }} @ ${{ github.ref }}"
@@ -32,6 +32,11 @@ jobs:
         run:
           chmod +x ./tests/integration_test.sh
           ./tests/integration_test.sh
+  build-prod:
+    permissions: write-all
+    concurrency: 
+      group: "${{ github.workflow }} @ ${{ github.ref }}"
+      cancel-in-progress: true
         
       
      
