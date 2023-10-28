@@ -32,11 +32,3 @@ jobs:
         run:
           chmod +x ./tests/integration_test.sh
           ./tests/integration_test.sh
-  build-prod:
-    permissions: write-all
-    concurrency: 
-      group: "${{ github.workflow }} @ ${{ github.ref }}"
-      cancel-in-progress: true
-        
-      
-     
