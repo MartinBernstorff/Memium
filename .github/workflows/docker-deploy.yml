@@ -32,4 +32,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/${{ github.repository }}/personal-mnemonic-medium:latest
+          tags: ghcr.io/martinbernstorff/personal-mnemonic-medium:latest

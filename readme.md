@@ -36,7 +36,7 @@ docker run -itd \
   -v YOUR_INPUT_FOLDER_HERE:/input \
   -v $HOME/ankidecks:/output \
   --restart unless-stopped \
-  ghcr.io/personal-mnemonic-medium/personal-mnemonic-medium:latest \
+  ghcr.io/martinbernstorff/personal-mnemonic-medium:latest \
   python application/main.py /input/ $HOME/ankidecks --watch
 ```
 
