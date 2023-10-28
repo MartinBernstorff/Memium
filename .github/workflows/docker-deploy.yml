@@ -1,0 +1,35 @@
+# This workflow will
+# - Find the latest version tag based on the commit history
+#   - Create a git tag for the new version
+#   - Update the version number in pyproject.toml based on the commit history
+# - Upload the package to PyPI
+# - Create a release on GitHub
+
+name: docker-deploy
+on:
+  workflow_run:
+    workflows: ["docker-integration-test"]
+    types:
+      - completed
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    concurrency: deploy
+
+    if: ${{ github.ref == 'refs/heads/main' && github.event.workflow_run.conclusion == 'success'}}
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: ghcr.io/${{ github.repository }}/personal-mnemonic-medium:latest
