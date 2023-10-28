@@ -3,12 +3,10 @@
 [![Open in Dev Container](https://img.shields.io/static/v1?label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)][dev container]
 [![PyPI](https://img.shields.io/pypi/v/personal-mnemonic-medium.svg)][pypi status]
 [![Python Version](https://img.shields.io/pypi/pyversions/personal-mnemonic-medium)][pypi status]
-[![Tests](https://github.com/MartinBernstorff/personal-mnemonic-medium/actions/workflows/tests.yml/badge.svg)][tests]
 
 [dev container]: https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/MartinBernstorff/personal-mnemonic-medium/
 [pypi status]: https://pypi.org/project/personal-mnemonic-medium/
 [documentation]: https://MartinBernstorff.github.io/personal-mnemonic-medium/
-[tests]: https://github.com/MartinBernstorff/personal-mnemonic-medium/actions?workflow=Tests
 
 
 <!-- start short-description -->
