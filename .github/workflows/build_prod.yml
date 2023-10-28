@@ -29,6 +29,6 @@ jobs:
       
       - name: Run integration test
         shell: bash
-        run:
+        run: |
           chmod +x ./tests/integration_test.sh
           ./tests/integration_test.sh
