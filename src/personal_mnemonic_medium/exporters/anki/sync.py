@@ -157,7 +157,7 @@ def _sync_deck(
                 try:
                     guids_to_delete = anki_note_guids - md_note_guids
                     if guids_to_delete:
-                        note_ids = [
+                        note_ids = [  # type: ignore
                             anki_note_info_by_guid[guid]["noteId"]  # type: ignore
                             for guid in guids_to_delete
                         ]
@@ -181,7 +181,7 @@ def _sync_deck(
 
 def get_md_note_infos(deck_bundle: DeckBundle) -> set[str]:
     md_notes: list[Note] = deck_bundle.deck.notes  # type: ignore
-    md_note_guids = {str(n.guid) for n in md_notes}
+    md_note_guids = {str(n.guid) for n in md_notes}  # type: ignore
     return md_note_guids
 
 

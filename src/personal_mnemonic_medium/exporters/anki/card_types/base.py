@@ -170,7 +170,7 @@ class AnkiCard(ABC):
 
                 current_stage = re.sub(
                     regex,
-                    process_match,
+                    process_match,  # type: ignore
                     current_stage,  # type: ignore
                 )  # type: ignore
 
