@@ -93,7 +93,7 @@ def main(
         )
 
     if watch:
-        sleep_seconds = 60
+        sleep_seconds = 62
         msg.good(
             f"Sync complete, sleeping for {sleep_seconds} seconds"
         )
