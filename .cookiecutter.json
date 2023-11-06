@@ -12,5 +12,6 @@
     "license": "MIT",
     "package_name": "personal_mnemonic_medium",
     "project_name": "personal-mnemonic-medium",
+    "release_to_pypi": "no",
     "version": "0.0.0"
 }

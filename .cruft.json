@@ -1,6 +1,6 @@
 {
   "template": "https://github.com/MartinBernstorff/nimble-python-cookiecutter",
-  "commit": "8e9cf68661d4bc94541db5aa7c4988b81bf4067e",
+  "commit": "a68bfa18605c0fe171e2f9e8b4f047b786e93b56",
   "checkout": null,
   "context": {
     "cookiecutter": {
@@ -13,6 +13,7 @@
       "github_repo": "personal-mnemonic-medium",
       "version": "0.0.0",
       "copyright_year": "2023",
+      "release_to_pypi": "no",
       "license": "MIT",
       "_copy_without_render": [
         "*.github"
