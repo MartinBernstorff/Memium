@@ -5,7 +5,7 @@
 # - Upload the package to PyPI
 # - Create a release on GitHub
 
-name: docker-deploy
+name: docker-publish
 on:
   workflow_run:
     workflows: ["docker-integration-test"]
@@ -32,4 +32,5 @@ jobs:
         with:
           context: .
           push: true
+          platforms: linux/amd64,linux/arm64
           tags: ghcr.io/martinbernstorff/personal-mnemonic-medium:latest
