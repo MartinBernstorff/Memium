@@ -102,6 +102,7 @@ def main(
             input_dir=input_dir,
             watch=watch,
             host_output_dir=host_output_dir,
+            use_anki_connect=use_anki_connect,
         )
 
 

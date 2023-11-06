@@ -1,4 +1,5 @@
 SRC_PATH = src/personal_mnemonic_medium
+APPLICATION_PATH = application
 
 deploy:
 	./docker_cmd.sh
@@ -20,6 +21,7 @@ lint: ## Format code
 		--extend-select F841
 
 type-check: ## Type-check code
+	pyright $(APPLICATION_PATH)
 	pyright $(SRC_PATH)
 
 validate: ## Run all checks
