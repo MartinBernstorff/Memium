@@ -13,7 +13,9 @@
         "**/CVS": true,
         "**/.DS_Store": true,
         "**/Thumbs.db": true,
-        "**/BUILD": true
+        "**/BUILD": true,
+        "*.egg-info": true,
+        "*.pytest_cache": true,
     },
     "python.analysis.diagnosticMode": "workspace"
 }
