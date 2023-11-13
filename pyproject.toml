@@ -13,7 +13,7 @@ requires-python = ">=3.11"
 dependencies = [
   "functionalpy==0.6.0",
   "misaka==2.1.1",
-  "genanki==0.13.0",
+  "genanki==0.13.1",
   "typer==0.9.0",
   "wasabi==1.1.2",
   "tqdm==4.66.1",
