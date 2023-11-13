@@ -34,7 +34,7 @@ docker run -itd \
   -v $HOME/ankidecks:/output \
   --restart unless-stopped \
   ghcr.io/martinbernstorff/personal-mnemonic-medium:latest \
-  python application/main.py /input/ $HOME/ankidecks --watch
+  python application/main.py /input/ $HOME/ankidecks --watch --use-anki-connect
 ```
 
 This will start a docker container which watches `YOUR_INPUT_FOLDER_HERE` every 60 seconds. In case of updated files, it will sync the difference (create new prompts and delete deleted prompts) to Anki.
