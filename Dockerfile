@@ -2,7 +2,7 @@ FROM python:3.11-bookworm as builder
 WORKDIR /app
 
 # Install build utilities and python requirements
-COPY ./src pyproject.toml ./
+COPY pyproject.toml ./
 RUN pip install --user --no-cache-dir .
 COPY ./ ./
 
