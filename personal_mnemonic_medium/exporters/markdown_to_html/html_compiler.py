@@ -2,6 +2,7 @@ import re
 from typing import Any
 
 import misaka
+
 from personal_mnemonic_medium.exporters.anki.globals import CONFIG
 
 

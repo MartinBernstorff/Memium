@@ -134,6 +134,9 @@ def _sync_deck(
     msg.info(" Syncing deck: ")
     msg.info(f"\t{deck_bundle.deck.name}")  # type: ignore
 
+    msg.info(f"Anki note guids: {anki_note_guids}")
+    msg.info(f".md note guids: {md_note_guids}")
+
     added_note_guids = md_note_guids - anki_note_guids
     if added_note_guids:
         msg.info("\tNotes added: ")

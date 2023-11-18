@@ -8,3 +8,5 @@ docker run -itd \
   --restart unless-stopped \
   personal-mnemonic-medium \
   python personal_mnemonic_medium/cli.py /input/ $HOME/ankidecks --watch --use-anki-connect
+
+lazydocker

@@ -3,6 +3,7 @@ from collections.abc import Callable
 from pathlib import Path
 
 import genanki
+
 from personal_mnemonic_medium.exporters.anki.card_types.base import (
     AnkiCard,
 )

@@ -1,6 +1,7 @@
 from pathlib import Path
 
 import pytest
+
 from personal_mnemonic_medium.note_factories.note import Document
 from personal_mnemonic_medium.prompt_extractors.qa_extractor import (
     QAPromptExtractor,

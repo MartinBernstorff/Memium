@@ -11,7 +11,7 @@ install:
 	pip install -e .
 
 test: ## Run tests
-	pytest tests
+	pytest personal_mnemonic_medium/tests
 
 lint: ## Format code
 	ruff format . 

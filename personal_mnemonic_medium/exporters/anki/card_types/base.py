@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Any
 
 import genanki
+
 from personal_mnemonic_medium.exporters.markdown_to_html.html_compiler import (
     compile_field,
 )
