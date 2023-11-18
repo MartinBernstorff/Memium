@@ -2,6 +2,83 @@
 
 
 
+## v0.6.0 (2023-11-18)
+
+### Build
+
+* build: update dockerfile for new dir structure ([`0f1e8c0`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/0f1e8c0f3bfbc1610c159ea6e0f0c40cc86bd1b1))
+
+### Ci
+
+* ci: fix integration tests with new path (#200)
+
+Auto-created ([`b734f9e`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/b734f9ee8f103586cdf7718ae13a50bf9dc5eb12))
+
+* ci: run docker publish independently of integration test ([`d1402c6`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/d1402c6a29d5ef2878ed8342ca237edb5d3b5ae5))
+
+* ci: run type checks on application script as well ([`849c0f5`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/849c0f552ae9ae785bdb515d480dca811f0436ef))
+
+* ci: setup multiplatform conditions (#192) ([`5120b18`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/5120b18685cce3af0930473d8981d5f87e0016c0))
+
+* ci: add arm64 to deploy ([`a6fb2c5`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/a6fb2c58b1ef39ead800263a33b2e56210c8f9dc))
+
+* ci: update docker build action ([`6724cd4`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/6724cd4c6475924d5780420d6446e5d869c82cda))
+
+### Feature
+
+* feat: move cli to separate file ([`f91216b`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/f91216b9cf9fdd04eb7227de4b7d497472dc4ccd))
+
+### Fix
+
+* fix: do not mount input dir on remote (#201)
+
+Auto-created ([`83cedae`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/83cedaeb83c918248d52ad2f09233232761972b6))
+
+* fix: add mounts points for devcontainer ([`c2497ee`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/c2497eeb7a0cc76763d45db4694b1a0c9d6d55ac))
+
+### Refactor
+
+* refactor: rename pipeline to not hit test ([`1b5cbf2`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/1b5cbf2ed84aa1459853cf143509f690ede4ea79))
+
+### Unknown
+
+* misc. ([`b81c54a`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/b81c54a8dfc946adc83547d66f1b6c858336814e))
+
+* misc. ([`cb6d386`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/cb6d3866efa654ecd182f27161eaae090fe19f20))
+
+* misc. ([`c877343`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/c877343a1bc7994f2bffd8cba88006bfddd65cc2))
+
+* misc. ([`47a1c58`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/47a1c58413967dfe346e331677658fd490e7483b))
+
+* misc. ([`cc03bcb`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/cc03bcbaefe8313b522d8ab6198b210b51744bf8))
+
+* misc. ([`9e5f776`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/9e5f776dad634b8de14d100e318f6d82d1ec0a31))
+
+* dev: mount shared dir for ankicard generation ([`f872ed0`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/f872ed0e21e2f5848552290a695978cf06bb3826))
+
+* dev: remove unneeded install in dockerfile ([`ed6f51c`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/ed6f51c8f1957701fc0084b93b765ea0a297c272))
+
+* dev: update cruft (#191)
+
+Auto-created ([`e6fd14d`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/e6fd14d75d29d09dba84042e9d8045c51008c903))
+
+* Merge pull request #190 from MartinBernstorff/mbern_dependent-flamingo
+
+ci: add arm64 to deploy ([`f2529bc`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/f2529bc5b1112df0959bf1abd58b54c879e8901a))
+
+* Update readme.md ([`6ec8a1a`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/6ec8a1a5cddb1b6d7327abcb56338a0b18b676e8))
+
+* Merge pull request #177 from MartinBernstorff/mb/fix_deploy
+
+ci: update docker build action ([`a11a7c2`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/a11a7c253d1b96a4aa69c576a9995f006fc2ee79))
+
+* Update readme.md ([`0a0b577`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/0a0b57711d59bfadae504f546b7345aa9c913162))
+
+* Update readme.md ([`b8e5041`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/b8e50417740f8907ca091f58eb35c30fb904f4c6))
+
+* Merge branch &#39;main&#39; into mb/fix_deploy ([`9e27591`](https://github.com/MartinBernstorff/personal-mnemonic-medium/commit/9e275919f68e1ba7b172f315ea1c2124aafa5fb8))
+
+
 ## v0.5.1 (2023-10-28)
 
 ### Fix
