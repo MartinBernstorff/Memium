@@ -30,6 +30,8 @@ jobs:
       - name: Create github hosts file
         run: | # If this file is not created, the dev container fails because of non-existant mount
           mkdir -p ~/.config/gh
+          mkdir -p ~/ankidecks
+          mkdir -p /Users/Shared/life-lessons/docs/life-lessons/
           touch ~/.config/gh/hosts.yml
 
       - name: Pre-build dev container image
