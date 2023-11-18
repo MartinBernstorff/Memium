@@ -31,7 +31,7 @@ from personal_mnemonic_medium.prompt_extractors.qa_extractor import (
 )
 
 
-class TestCardPipeline(CardPipeline):
+class MockCardPipeline(CardPipeline):
     def __init__(
         self,
         document_factory: DocumentFactory = MarkdownNoteFactory(),  # noqa: B008
@@ -96,7 +96,7 @@ def test_qa_uuid_generation():
         / "test_md_files"
         / "test_card_guid.md"
     )
-    cards = TestCardPipeline(
+    cards = MockCardPipeline(
         prompt_extractors=[QAPromptExtractor()]
     ).run(input_path=file_path)
     notes = [c.to_genanki_note() for c in cards]
@@ -114,7 +114,7 @@ def test_cloze_uuid_generation():
         / "test_md_files"
         / "test_card_guid.md"
     )
-    cloze_cards = TestCardPipeline(
+    cloze_cards = MockCardPipeline(
         prompt_extractors=[ClozePromptExtractor()]
     ).run(input_path=file_path)
 
