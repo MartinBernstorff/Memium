@@ -7,4 +7,4 @@ docker run -itd \
   -v $HOME/ankidecks:/output \
   --restart unless-stopped \
   personal-mnemonic-medium \
-  python application/cli.py /input/ $HOME/ankidecks --watch
+  python personal_mnemonic_medium/cli.py /input/ $HOME/ankidecks --watch --use-anki-connect
