@@ -3,6 +3,9 @@ SRC_PATH = personal_mnemonic_medium
 deploy:
 	./docker_cmd.sh
 
+install-test:
+	pip install --upgrade .[dev,tests]
+
 install-dev:
 	pip install --upgrade .[dev]
 

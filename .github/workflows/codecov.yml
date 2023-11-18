@@ -22,7 +22,7 @@ jobs:
           architecture: x64
 
       - name: Install
-        run: make install
+        run: make install-test
 
       - name: Run tests and collect coverage
         run: make test-cov
