@@ -30,5 +30,6 @@ jobs:
       - name: Run integration test
         shell: bash
         run: |
-          chmod +x ./tests/integration_test.sh
-          ./tests/integration_test.sh
+          TEST_PATH=./personal_mnemonic_medium/tests/integration_test.sh
+          chmod +x $TEST_PATH
+          $TEST_PATH

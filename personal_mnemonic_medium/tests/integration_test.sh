@@ -1,3 +1,4 @@
+set -e
 docker build . -t personal-mnemonic-medium:latest -f Dockerfile
 docker volume create ankidecks
 
@@ -12,7 +13,7 @@ docker run -itd \
   -v $OUTPUT_DIR:/output \
   --restart unless-stopped \
   personal-mnemonic-medium \
-  python application/main.py /input/ $OUTPUT_DIR \
+  python personal_mnemonic_medium/cli.py /input/ $OUTPUT_DIR \
   --watch \
   --no-use-anki-connect
 
