@@ -7,4 +7,4 @@ docker run -itd \
   -v $HOME/ankidecks:/output \
   --restart unless-stopped \
   personal-mnemonic-medium \
-  python application/main.py /input/ $HOME/ankidecks --watch
+  python application/cli.py /input/ $HOME/ankidecks --watch
