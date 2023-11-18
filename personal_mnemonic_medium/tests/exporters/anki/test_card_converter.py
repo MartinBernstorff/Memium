@@ -101,7 +101,7 @@ def test_qa_uuid_generation():
     ).run(input_path=file_path)
     notes = [c.to_genanki_note() for c in cards]
 
-    field_guids = {note.guid for note in notes}
+    field_guids: set[str] = {note.guid for note in notes}  # type: ignore
     reference_guids = {9315717920, 3912828915, 6300568814}
     generated_guids = {card.card_uuid for card in cards}
 

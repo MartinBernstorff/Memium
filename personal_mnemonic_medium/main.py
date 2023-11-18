@@ -5,6 +5,8 @@ from typing import Annotated, Any
 
 import sentry_sdk
 import typer
+from wasabi import Printer
+
 from personal_mnemonic_medium.card_pipeline import CardPipeline
 from personal_mnemonic_medium.exporters.anki.card_types.base import (
     AnkiCard,
@@ -22,7 +24,6 @@ from personal_mnemonic_medium.prompt_extractors.cloze_extractor import (
 from personal_mnemonic_medium.prompt_extractors.qa_extractor import (
     QAPromptExtractor,
 )
-from wasabi import Printer
 
 msg = Printer(timestamp=True)
 
