@@ -24,13 +24,12 @@
     },
     "mounts": [
         "source=${localEnv:HOME}/.config/gh/hosts.yml,target=/root/.config/gh/hosts.yml,type=bind,consistency=cache", // GitHub CLI authentication login
+        "source=${localEnv:HOME}/ankidecks,target=/output/,type=bind,consistency=cache",
+        "source=/Users/Shared/life-lessons/docs/life-lessons/,target=/input/,type=bind,consistency=cache",
     ],
     "features": {
         "ghcr.io/devcontainers/features/github-cli:1": {}
     },
-    "mounts": [
-        "source=${localEnv:HOME}/.config/gh/hosts.yml,target=/root/.config/gh/hosts.yml,type=bind,consistency=cache",
-    ],
     "postStartCommand": "make install"
     // Features to add to the dev container. More info: https://containers.dev/features.
     // "features": {},
