@@ -13,6 +13,9 @@ install:
 test: ## Run tests
 	pytest personal_mnemonic_medium/tests
 
+test-cov: ## Run tests with coverage
+	pytest --cov=personal_mnemonic_medium --cov-report=term-missing personal_mnemonic_medium/tests
+
 lint: ## Format code
 	ruff format . 
 	ruff . --fix \
