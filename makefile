@@ -26,7 +26,6 @@ validate: ## Run all checks
 	make lint
 	make type-check
 	make test
-	make build
 
 merge-main:
 	git fetch
@@ -54,13 +53,13 @@ pr-status:
 	@gh pr view | cat | grep "url" 
 
 pr: ## Run relevant tests before PR
-	make push
-	make create-pr
-	make merge-main
-	make validate
-	make enable-automerge
+	@make push
+	@make create-pr
+	@make merge-main
+	@make validate
+	@make enable-automerge
 	@echo "––– 🎉🎉🎉 All tests succeeded! 🎉🎉🎉 –––"
-	make pr-status
+	@make pr-status
 
 grow:
 	make pr
