@@ -18,14 +18,15 @@ install:
 	@make install-dev
 	@pip install -e .
 
-test: ## Run tests
-	@echo "––– Testing –––"
-	@pytest personal_mnemonic_medium
-	@echo "✅✅✅ Tests passed ✅✅✅"
+generate_coverage:
+	@pytest --cov=personal_mnemonic_medium personal_mnemonic_medium --cov-report=xml
 
-test-cov: ## Run tests with coverage
-	# TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/209 Fix coverage and add it to make pr
-	@pytest --cov=personal_mnemonic_medium --cov-report=term-missing personal_mnemonic_medium
+test: ## Run tests with coverage
+	@echo "––– Testing –––"
+	@make generate_coverage
+	@diff-cover coverage.xml --fail-under=100
+	@git add coverage.xml && git commit --amend --no-edit
+	@echo "✅✅✅ Tests passed ✅✅✅"
 
 lint: ## Format code
 	@echo "––– Linting –––"
@@ -45,6 +46,13 @@ validate: ## Run all checks
 	@make lint
 	@make types
 	@make test
+
+validate_ci: ## Run all checks
+	@echo "––– Running all checks –––"
+	@make lint
+	@make types
+## CI doesn't support local coverage report, so skipping full tests
+	@make generate_coverage 
 
 merge-main:
 	@echo "––– Merging main –––"

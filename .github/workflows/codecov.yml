@@ -25,7 +25,7 @@ jobs:
         run: make install-test
 
       - name: Run tests and collect coverage
-        run: make test-cov
+        run: make generate_coverage
       
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
