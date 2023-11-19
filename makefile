@@ -74,6 +74,12 @@ pr-status:
 	@gh pr view | cat | grep "title" 
 	@gh pr view | cat | grep "url" 
 
+setup-pr: ## Update everything and setup the PR
+	@make merge-main
+	@make push
+	@make create-pr
+	@make enable-automerge
+
 pr: ## Run relevant tests before PR
 	@make merge-main
 	@make push
