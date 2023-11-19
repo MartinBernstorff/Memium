@@ -9,11 +9,19 @@
     "python.analysis.diagnosticMode": "workspace",
     "githubIssues.queries": [
         {
+            "label": "No milestone",
+            "query": "repo:${owner}/${repository} is:open is:issue  no:milestone sort:updated-asc"
+        },
+        {
             "label": "🔥",
             "query": "repo:${owner}/${repository} is:open is:issue milestone:🔥  sort:updated-asc"
         },
         {
             "label": "Extra important",
+            "query": "repo:${owner}/${repository} is:open is:issue milestone:extra-important sort:updated-asc"
+        },
+        {
+            "label": "Important",
             "query": "repo:${owner}/${repository} is:open is:issue milestone:extra-important sort:updated-asc"
         },
     ],
