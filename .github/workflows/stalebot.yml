@@ -10,8 +10,8 @@ jobs:
     steps:
       - uses: actions/stale@v6
         with:
-          days-before-issue-stale: 14
-          days-before-issue-close: 7
+          days-before-issue-stale: 9999
+          days-before-issue-close: 9999
           stale-issue-message: "This issue is stale because it has been open for 14 days with no activity. Feel free to either 1) remove the stale label or 2) comment. If nothing happens, this will be closed in 7 days."
           close-issue-message: "This issue was closed automatically. Feel free to re-open it if it's important."
           days-before-pr-stale: 2

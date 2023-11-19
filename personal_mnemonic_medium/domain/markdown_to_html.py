@@ -3,7 +3,9 @@ from typing import Any
 
 import misaka
 
-from personal_mnemonic_medium.exporters.anki.globals import CONFIG
+from personal_mnemonic_medium.data_access.exporters.anki.globals import (
+    CONFIG,
+)
 
 
 def field_to_html(field: Any) -> str:

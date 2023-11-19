@@ -1,31 +1,35 @@
 from collections.abc import Sequence
 from pathlib import Path
 
-from personal_mnemonic_medium.card_pipeline import CardPipeline
-from personal_mnemonic_medium.exporters.anki.card_types.base import (
-    AnkiCard,
-)
-from personal_mnemonic_medium.exporters.anki.card_types.qa import (
-    AnkiQA,
-)
-from personal_mnemonic_medium.exporters.anki.package_generator import (
-    AnkiPackageGenerator,
-)
-from personal_mnemonic_medium.exporters.base import CardExporter
-from personal_mnemonic_medium.note_factories.base import (
+from personal_mnemonic_medium.data_access.document_ingesters.base import (
     DocumentFactory,
 )
-from personal_mnemonic_medium.note_factories.markdown import (
+from personal_mnemonic_medium.data_access.document_ingesters.document import (
+    Document,
+)
+from personal_mnemonic_medium.data_access.document_ingesters.markdown_ingester import (
     MarkdownNoteFactory,
 )
-from personal_mnemonic_medium.note_factories.note import Document
-from personal_mnemonic_medium.prompt_extractors.base import (
+from personal_mnemonic_medium.data_access.exporters.anki.card_types.base import (
+    AnkiCard,
+)
+from personal_mnemonic_medium.data_access.exporters.anki.card_types.qa import (
+    AnkiQA,
+)
+from personal_mnemonic_medium.data_access.exporters.anki.package_generator import (
+    AnkiPackageGenerator,
+)
+from personal_mnemonic_medium.data_access.exporters.base import (
+    CardExporter,
+)
+from personal_mnemonic_medium.domain.card_pipeline import CardPipeline
+from personal_mnemonic_medium.domain.prompt_extractors.base import (
     PromptExtractor,
 )
-from personal_mnemonic_medium.prompt_extractors.cloze_extractor import (
+from personal_mnemonic_medium.domain.prompt_extractors.cloze_extractor import (
     ClozePromptExtractor,
 )
-from personal_mnemonic_medium.prompt_extractors.qa_extractor import (
+from personal_mnemonic_medium.domain.prompt_extractors.qa_extractor import (
     QAPrompt,
     QAPromptExtractor,
 )
@@ -91,11 +95,8 @@ def test_get_subtags():
 
 
 def test_qa_uuid_generation():
-    file_path = (
-        Path(__file__).parent.parent.parent
-        / "test_md_files"
-        / "test_card_guid.md"
-    )
+    # TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/204 Remove dependency on test_md_files
+    file_path = Path(__file__).parent / "test_cards.md"
     cards = MockCardPipeline(
         prompt_extractors=[QAPromptExtractor()]
     ).run(input_path=file_path)
@@ -109,11 +110,7 @@ def test_qa_uuid_generation():
 
 
 def test_cloze_uuid_generation():
-    file_path = (
-        Path(__file__).parent.parent.parent
-        / "test_md_files"
-        / "test_card_guid.md"
-    )
+    file_path = Path(__file__).parent / "test_cards.md"
     cloze_cards = MockCardPipeline(
         prompt_extractors=[ClozePromptExtractor()]
     ).run(input_path=file_path)

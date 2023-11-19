@@ -1,5 +1,9 @@
 SRC_PATH = personal_mnemonic_medium
 
+# TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/205 Decrease makefile verbosity
+# E.g. entering/leaving directory
+# Or showing each command when running make pr
+
 deploy:
 	./docker_cmd.sh
 
@@ -14,11 +18,11 @@ install:
 	pip install -e .
 
 test: ## Run tests
-	pytest personal_mnemonic_medium/tests
+	pytest personal_mnemonic_medium
 
 test-cov: ## Run tests with coverage
 	# TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/209 Fix coverage and add it to make pr
-	pytest --cov=personal_mnemonic_medium --cov-report=term-missing personal_mnemonic_medium/tests
+	pytest --cov=personal_mnemonic_medium --cov-report=term-missing personal_mnemonic_medium
 
 lint: ## Format code
 	ruff format . 
@@ -26,12 +30,12 @@ lint: ## Format code
 		--extend-select F401 \
 		--extend-select F841
 
-type-check: ## Type-check code
+types: ## Type-check code
 	pyright $(SRC_PATH)
 
 validate: ## Run all checks
 	make lint
-	make type-check
+	make types
 	make test
 
 merge-main:

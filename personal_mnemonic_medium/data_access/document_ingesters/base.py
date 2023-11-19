@@ -2,7 +2,9 @@ from abc import ABC, abstractmethod
 from collections.abc import Sequence
 from pathlib import Path
 
-from personal_mnemonic_medium.note_factories.note import Document
+from personal_mnemonic_medium.data_access.document_ingesters.document import (
+    Document,
+)
 
 
 class DocumentFactory(ABC):
