@@ -95,11 +95,8 @@ def test_get_subtags():
 
 
 def test_qa_uuid_generation():
-    file_path = (
-        Path(__file__).parent.parent.parent
-        / "test_md_files"
-        / "test_card_guid.md"
-    )
+    # TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/204 Remove dependency on test_md_files
+    file_path = Path(__file__).parent / "test_cards.md"
     cards = MockCardPipeline(
         prompt_extractors=[QAPromptExtractor()]
     ).run(input_path=file_path)
@@ -113,11 +110,7 @@ def test_qa_uuid_generation():
 
 
 def test_cloze_uuid_generation():
-    file_path = (
-        Path(__file__).parent.parent.parent
-        / "test_md_files"
-        / "test_card_guid.md"
-    )
+    file_path = Path(__file__).parent / "test_cards.md"
     cloze_cards = MockCardPipeline(
         prompt_extractors=[ClozePromptExtractor()]
     ).run(input_path=file_path)
