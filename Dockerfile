@@ -3,7 +3,7 @@ WORKDIR /app
 
 # Install build utilities and python requirements
 COPY pyproject.toml ./
-RUN --mount=type=cache,target=/root/.cache/pip pip install . --no-compile
+RUN --mount=type=cache,target=/root/.cache/pip pip install --user . --no-compile
 COPY ./ ./
 
 # Stage 2: Production
