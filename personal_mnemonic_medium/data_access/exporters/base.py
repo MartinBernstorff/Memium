@@ -12,5 +12,5 @@ from personal_mnemonic_medium.domain.prompt_extractors.prompt import (
 class CardExporter(Protocol):
     def prompts_to_cards(
         self, prompts: Sequence[Prompt]
-    ) -> list[AnkiCard]:
-        pass
+    ) -> Sequence[AnkiCard]:
+        ...
