@@ -15,7 +15,7 @@ from personal_mnemonic_medium.domain.prompt_extractors.prompt import (
     Prompt,
 )
 from personal_mnemonic_medium.utils.hasher import simple_hash
-from personal_mnemonic_medium.data_access.exporters.anki.config import (  # noqa
+from personal_mnemonic_medium.data_access.exporters.anki.globals import (  # noqa
     CONFIG,
 )
 
