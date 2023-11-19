@@ -47,6 +47,13 @@ validate: ## Run all checks
 	@make types
 	@make test
 
+validate_ci: ## Run all checks
+	@echo "––– Running all checks –––"
+	@make lint
+	@make types
+## CI doesn't support local coverage report, so skipping full tests
+	@make generate_coverage 
+
 merge-main:
 	@echo "––– Merging main –––"
 	@git fetch

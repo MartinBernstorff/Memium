@@ -41,4 +41,4 @@ jobs:
           push: filter
           refFilterForPush: refs/heads/main
           runCmd:
-            make lint && make types && make generate_coverage
+            make validate_ci
