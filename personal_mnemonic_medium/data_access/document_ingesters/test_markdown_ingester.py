@@ -18,12 +18,19 @@ Test content
         encoding="utf8",
     )
 
-    value = MarkdownIngester(
+    subdir = tmpdir / "subdir"
+    Path(subdir).mkdir(exist_ok=True, parents=True)
+    (subdir / "test2.md").write_text("""UUID: 123""", encoding="utf8")
+
+    notes = MarkdownIngester(
         uuid_extractor=lambda x: re.findall(r"UUID: (\d+)", x)[0],
         cut_note_after="# Delete after me",
         uuid_generator=None,
-    ).get_note_from_file(Path(tmpdir) / "test.md")
+    ).get_notes_from_dir(Path(tmpdir))
 
-    content = value.content
-    assert "Test content" not in content
-    assert value.uuid == "123"
+    assert len(notes) == 2
+    test_note = notes[0]
+    assert test_note.title == "test"
+    assert "# File title" in test_note.content
+    assert "Test content" not in test_note.content
+    assert test_note.uuid == "123"
