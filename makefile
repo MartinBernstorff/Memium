@@ -19,10 +19,9 @@ install:
 	@pip install -e .
 
 test: ## Run tests with coverage
-	# TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/209 Fix coverage and add it to make pr
 	@echo "––– Testing –––"
 	@pytest --cov=personal_mnemonic_medium personal_mnemonic_medium --cov-report=xml
-	@diff-cover coverage.xml
+	@diff-cover coverage.xml --fail-under=100
 	@echo "✅✅✅ Tests passed ✅✅✅"
 
 lint: ## Format code
