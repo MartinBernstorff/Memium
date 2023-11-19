@@ -23,9 +23,9 @@ def extract_bear_guid(file_contents: str) -> str:
 
 
 def append_guid(
-    file_path: Path, guid_str_generator: Callable[[], str]
+    file_path: Path, uuid_generator: Callable[[], str]
 ) -> str:
-    guid_str = guid_str_generator()
+    guid_str = uuid_generator()
 
     log.info(f"{file_path}: appending {guid_str}")
 

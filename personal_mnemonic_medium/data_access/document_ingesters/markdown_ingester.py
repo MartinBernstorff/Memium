@@ -15,8 +15,6 @@ from personal_mnemonic_medium.data_access.document_ingesters.uuid_handling impor
 
 
 class MarkdownNoteFactory(DocumentFactory):
-    # TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/206 Split stateful and non-stateful markdown note operations.
-    # Also add tests
     def __init__(
         self,
         uuid_extractor: Callable[[str], str],
@@ -30,27 +28,29 @@ class MarkdownNoteFactory(DocumentFactory):
             cut_note_after: Cut everything in the note after this string.
             uuid_generator: A function that generates a UUID string. If specified and UUIDs are missing, the UUID will be appended to the note.
         """
-        self.cut_note_after = cut_note_after
-        self.uuid_extractor = uuid_extractor
-        self.uuid_generator = uuid_generator
+        self._cut_note_after = cut_note_after
+        self._uuid_extractor = uuid_extractor
+        self._uuid_generator = uuid_generator
 
     def get_note_from_file(self, file_path: Path) -> Document:
         with file_path.open(encoding="utf8") as f:
             file_contents = f.read()
 
             try:
-                uuid = self.uuid_extractor(file_contents)
+                uuid = self._uuid_extractor(file_contents)
             except IndexError as e:
-                if self.uuid_generator is None:
+                if self._uuid_generator is None:
                     raise ValueError(
                         f"Could not find UUID in {file_path}"
                     ) from e
 
-                uuid = append_guid(file_path, self.uuid_generator)
+                uuid = append_guid(
+                    file_path, uuid_generator=self._uuid_generator
+                )
 
-            if self.cut_note_after in file_contents:
+            if self._cut_note_after in file_contents:
                 file_contents = file_contents.split(
-                    self.cut_note_after
+                    self._cut_note_after
                 )[0]
 
             return Document(
@@ -73,9 +73,3 @@ class MarkdownNoteFactory(DocumentFactory):
                 pbar.update(1)
 
         return notes
-
-
-def is_markdown_file(filepath: Path) -> bool:
-    return any(
-        suffix == filepath.suffix for suffix in (".md", ".markdown")
-    )
