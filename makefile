@@ -62,7 +62,7 @@ push:
 
 create-pr:
 	@echo "––– Creating PR –––"
-	@gh pr create --title "$$(git log -1 --pretty=%B)" --body "Auto-created" || true
+	@gh pr create --title "$$(git rev-parse --abbrev-ref HEAD | tr -d '[:digit:]' | tr '-' ' ')" --body "Auto-created" || true
 
 enable-automerge:
 	@gh pr merge --auto --squash --delete-branch
@@ -83,7 +83,10 @@ setup-pr: ## Update everything and setup the PR
 	@make merge-main
 	@make push
 	@make create-pr
+
+finalise-pr:
 	@make enable-automerge
+	@make pr-status
 
 pr: ## Run relevant tests before PR
 	@make merge-main
