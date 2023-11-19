@@ -18,15 +18,12 @@ install:
 	@make install-dev
 	@pip install -e .
 
-test: ## Run tests
-	@echo "––– Testing –––"
-	@pytest personal_mnemonic_medium
-	@echo "✅✅✅ Tests passed ✅✅✅"
-
-test-cov: ## Run tests with coverage
+test: ## Run tests with coverage
 	# TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/209 Fix coverage and add it to make pr
+	@echo "––– Testing –––"
 	@pytest --cov=personal_mnemonic_medium personal_mnemonic_medium --cov-report=xml
 	@diff-cover coverage.xml
+	@echo "✅✅✅ Tests passed ✅✅✅"
 
 lint: ## Format code
 	@echo "––– Linting –––"
