@@ -1,17 +1,16 @@
 import re
+import textwrap
 from collections.abc import Callable
 from pathlib import Path
-import textwrap
 
 import genanki
+
 from personal_mnemonic_medium.data_access.exporters.anki.anki_css import (
     CARD_MODEL_CSS,
 )
-
 from personal_mnemonic_medium.data_access.exporters.anki.card_types.base import (
     AnkiCard,
 )
-
 from personal_mnemonic_medium.domain.markdown_to_html import (
     compile_field,
 )

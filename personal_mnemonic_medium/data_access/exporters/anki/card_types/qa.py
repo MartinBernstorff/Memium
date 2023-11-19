@@ -2,6 +2,9 @@ from collections.abc import Callable  # noqa: I001
 from pathlib import Path
 
 import genanki
+from personal_mnemonic_medium.data_access.exporters.anki.anki_css import (
+    CARD_MODEL_CSS,
+)
 from personal_mnemonic_medium.data_access.exporters.anki.card_types.base import (
     AnkiCard,
 )
@@ -85,7 +88,7 @@ class AnkiQA(AnkiCard):
             name=("Ankdown QA with UUID"),
             fields=model_fields,
             templates=model_template,
-            css=CONFIG["card_model_css"],  # type: ignore
+            css=CARD_MODEL_CSS,
             model_type=0,
         )
         # TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/203 Refactor the CONFIG to be a dataclass
