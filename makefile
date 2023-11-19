@@ -19,7 +19,7 @@ lint: ## Format code
 		--extend-select F401 \
 		--extend-select F841
 
-type-check: ## Type-check code
+types: ## Type-check code
 	pyright $(SRC_PATH)
 
 validate: ## Run all checks
