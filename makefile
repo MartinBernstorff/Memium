@@ -18,9 +18,13 @@ install:
 	@make install-dev
 	@pip install -e .
 
+generate_coverage:
+	@pytest --cov=personal_mnemonic_medium personal_mnemonic_medium --cov-report=xml
+	
+
 test: ## Run tests with coverage
 	@echo "––– Testing –––"
-	@pytest --cov=personal_mnemonic_medium personal_mnemonic_medium --cov-report=xml
+	@make generate_coverage
 	@diff-cover coverage.xml --fail-under=100
 	@git add coverage.xml && git commit --amend --no-edit
 	@echo "✅✅✅ Tests passed ✅✅✅"
