@@ -32,27 +32,33 @@ class MarkdownIngester(DocumentIngester):
         self._uuid_extractor = uuid_extractor
         self._uuid_generator = uuid_generator
 
+    def _cut_contents(self, file_contents: str) -> str:
+        return file_contents.split(self._cut_note_after)[0]
+
+    def _get_uuid(self, file_path: Path, file_contents: str) -> str:
+        try:
+            uuid = self._uuid_extractor(file_contents)
+        except IndexError as e:
+            if self._uuid_generator is None:
+                raise ValueError(
+                    f"Could not find UUID in {file_path}"
+                ) from e
+
+            uuid = append_guid(
+                file_path=file_path,
+                uuid_generator=self._uuid_generator,
+            )
+
+        return uuid
+
     def get_note_from_file(self, file_path: Path) -> Document:
         with file_path.open(encoding="utf8") as f:
             file_contents = f.read()
 
-            try:
-                uuid = self._uuid_extractor(file_contents)
-            except IndexError as e:
-                if self._uuid_generator is None:
-                    raise ValueError(
-                        f"Could not find UUID in {file_path}"
-                    ) from e
-
-                uuid = append_guid(
-                    file_path=file_path,
-                    uuid_generator=self._uuid_generator,
-                )
+            uuid = self._get_uuid(file_path, file_contents)
 
             if self._cut_note_after in file_contents:
-                file_contents = file_contents.split(
-                    self._cut_note_after
-                )[0]
+                file_contents = self._cut_contents(file_contents)
 
             return Document(
                 title=file_path.stem,
@@ -69,8 +75,7 @@ class MarkdownIngester(DocumentIngester):
 
         with tqdm(total=len(md_files)) as pbar:
             for filepath in md_files:
-                note = self.get_note_from_file(filepath)
-                notes.append(note)
+                notes.append(self.get_note_from_file(filepath))
                 pbar.update(1)
 
         return notes
