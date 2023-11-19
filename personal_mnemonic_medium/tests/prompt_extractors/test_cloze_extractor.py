@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from personal_mnemonic_medium.note_factories.note import Document
+from personal_mnemonic_medium.document_ingesters.note import Document
 from personal_mnemonic_medium.prompt_extractors.cloze_extractor import (
     ClozePromptExtractor,
 )

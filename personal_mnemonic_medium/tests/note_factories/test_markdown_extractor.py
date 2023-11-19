@@ -2,7 +2,7 @@ from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).parent.parent.parent
 
-from personal_mnemonic_medium.note_factories.markdown import (
+from personal_mnemonic_medium.document_ingesters.markdown import (
     MarkdownNoteFactory,
 )
 

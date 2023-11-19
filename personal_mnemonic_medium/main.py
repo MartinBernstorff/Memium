@@ -15,7 +15,7 @@ from personal_mnemonic_medium.exporters.anki.package_generator import (
     AnkiPackageGenerator,
 )
 from personal_mnemonic_medium.exporters.anki.sync import sync_deck
-from personal_mnemonic_medium.note_factories.markdown import (
+from personal_mnemonic_medium.document_ingesters.markdown import (
     MarkdownNoteFactory,
 )
 from personal_mnemonic_medium.prompt_extractors.cloze_extractor import (

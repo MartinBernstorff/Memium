@@ -14,7 +14,7 @@ from personal_mnemonic_medium.exporters.markdown_to_html.html_compiler import (
 from personal_mnemonic_medium.exporters.url_generators.obsidian_url import (
     get_obsidian_url,
 )
-from personal_mnemonic_medium.note_factories.note import Document
+from personal_mnemonic_medium.document_ingesters.note import Document
 from personal_mnemonic_medium.prompt_extractors.prompt import Prompt
 
 

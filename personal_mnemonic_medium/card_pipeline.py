@@ -1,14 +1,14 @@
 from collections.abc import Sequence
 from pathlib import Path
 
+from personal_mnemonic_medium.document_ingesters.base import (
+    DocumentFactory,
+)
+from personal_mnemonic_medium.document_ingesters.note import Document
 from personal_mnemonic_medium.exporters.anki.card_types.base import (
     AnkiCard,
 )
 from personal_mnemonic_medium.exporters.base import CardExporter
-from personal_mnemonic_medium.note_factories.base import (
-    DocumentFactory,
-)
-from personal_mnemonic_medium.note_factories.note import Document
 from personal_mnemonic_medium.prompt_extractors.base import (
     PromptExtractor,
 )
