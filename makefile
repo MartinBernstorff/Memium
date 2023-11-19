@@ -82,7 +82,10 @@ setup-pr: ## Update everything and setup the PR
 	@make merge-main
 	@make push
 	@make create-pr
+
+finalise-pr:
 	@make enable-automerge
+	@make pr-status
 
 pr: ## Run relevant tests before PR
 	@make merge-main

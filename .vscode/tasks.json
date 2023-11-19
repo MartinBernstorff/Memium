@@ -7,7 +7,7 @@
         {
             "label": "PR",
             "type": "shell",
-            "command": "make pr-status",
+            "command": "make finalise-pr",
             "group": "test",
             "dependsOn": [
                 "Setup PR",
