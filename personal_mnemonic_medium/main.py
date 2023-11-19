@@ -12,7 +12,7 @@ from personal_mnemonic_medium.data_access.document_ingesters.markdown_ingester i
 from personal_mnemonic_medium.data_access.exporters.anki.package_generator import (
     AnkiPackageGenerator,
 )
-from personal_mnemonic_medium.data_access.exporters.anki.sync import (
+from personal_mnemonic_medium.data_access.exporters.anki.sync.anki_sync import (
     sync_decks,
 )
 from personal_mnemonic_medium.domain.card_pipeline import CardPipeline

@@ -24,7 +24,7 @@ generate_coverage:
 test: ## Run tests with coverage
 	@echo "––– Testing –––"
 	@make generate_coverage
-	@diff-cover coverage.xml --fail-under=100
+	@diff-cover .coverage.xml --fail-under=100
 	@echo "✅✅✅ Tests passed ✅✅✅"
 
 lint: ## Format code

@@ -78,7 +78,7 @@ def anki_connect_is_live() -> bool:
 # synchronize the deck with markdown
 # Borrowed from https://github.com/lukesmurray/markdown-anki-decks/blob/de6556d7ecd2d39335607c05171f8a9c39c8f422/markdown_anki_decks/sync.py#L64
 def sync_deck(
-    deck_bundle: DeckBundle,
+    cards: Sequence[AnkiCard],
     save_dir_path: Path,
     sync_dir_path: Path,
     use_anki_connect: bool,
@@ -86,6 +86,11 @@ def sync_deck(
     max_wait_for_ankiconnect: int = 30,
 ):
     # TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/210 feat: log which cards are added to disk
+
+    deck_bundle = AnkiPackageGenerator().cards_to_deck_bundle(
+        cards=cards
+    )
+
     if "Medicine" in deck_bundle.deck.name:  # type: ignore
         msg.fail("Skipping Medicine deck to save resources")
         return
@@ -279,20 +284,24 @@ def sync_decks(
     use_anki_connect: bool,
     cards: Sequence[AnkiCard],
 ):
-    decks: dict[str, list[AnkiCard]] = defaultdict(list)
+    decks = _cards_to_decks(cards)
 
-    for card in cards:
-        decks[card.deckname] += [card]
-
-    for deck in decks:
-        cards = decks[deck]
-        deck_bundle = AnkiPackageGenerator().cards_to_deck_bundle(
-            cards=cards
-        )
+    for cards in decks.values():
         sync_deck(
-            deck_bundle=deck_bundle,
+            cards=cards,
             sync_dir_path=host_output_dir,
             save_dir_path=Path("/output"),
             max_wait_for_ankiconnect=30,
             use_anki_connect=use_anki_connect,
         )
+
+
+def _cards_to_decks(
+    cards: Sequence[AnkiCard]
+) -> dict[str, list[AnkiCard]]:
+    decks: dict[str, list[AnkiCard]] = defaultdict(list)
+
+    for card in cards:
+        decks[card.deckname] += [card]
+
+    return decks
