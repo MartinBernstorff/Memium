@@ -1,10 +1,12 @@
 from abc import ABC, abstractmethod
 from collections.abc import Sequence
 
-from personal_mnemonic_medium.exporters.anki.card_types.base import (
+from personal_mnemonic_medium.data_access.exporters.anki.card_types.base import (
     AnkiCard,
 )
-from personal_mnemonic_medium.prompt_extractors.prompt import Prompt
+from personal_mnemonic_medium.domain.prompt_extractors.prompt import (
+    Prompt,
+)
 
 
 class CardExporter(ABC):
