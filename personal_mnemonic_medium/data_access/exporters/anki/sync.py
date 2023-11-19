@@ -1,6 +1,8 @@
 import json
 import traceback
 import urllib.request
+from collections import defaultdict
+from collections.abc import Sequence
 from pathlib import Path
 from time import sleep
 from typing import Any
@@ -8,10 +10,14 @@ from typing import Any
 from genanki import Model, Note
 from wasabi import Printer
 
+from personal_mnemonic_medium.data_access.exporters.anki.card_types.base import (
+    AnkiCard,
+)
 from personal_mnemonic_medium.data_access.exporters.anki.globals import (
     ANKICONNECT_URL,
 )
 from personal_mnemonic_medium.data_access.exporters.anki.package_generator import (
+    AnkiPackageGenerator,
     DeckBundle,
 )
 
@@ -265,3 +271,28 @@ def sync_model(model: Model):
         except Exception as e:
             msg.good(f"\tUnable to update model {model.name} css")  # type: ignore
             msg.good(f"\t\t{e}")
+
+
+# TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/240 refactor: sync decks into functional core, imperative shell
+def sync_decks(
+    host_output_dir: Path,
+    use_anki_connect: bool,
+    cards: Sequence[AnkiCard],
+):
+    decks: dict[str, list[AnkiCard]] = defaultdict(list)
+
+    for card in cards:
+        decks[card.deckname] += [card]
+
+    for deck in decks:
+        cards = decks[deck]
+        deck_bundle = AnkiPackageGenerator().cards_to_deck_bundle(
+            cards=cards
+        )
+        sync_deck(
+            deck_bundle=deck_bundle,
+            sync_dir_path=host_output_dir,
+            save_dir_path=Path("/output"),
+            max_wait_for_ankiconnect=30,
+            use_anki_connect=use_anki_connect,
+        )

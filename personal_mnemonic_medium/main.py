@@ -1,7 +1,6 @@
-from collections import defaultdict
 from pathlib import Path
 from time import sleep
-from typing import Annotated, Any
+from typing import Annotated
 
 import sentry_sdk
 import typer
@@ -10,14 +9,11 @@ from wasabi import Printer
 from personal_mnemonic_medium.data_access.document_ingesters.markdown_ingester import (
     MarkdownNoteFactory,
 )
-from personal_mnemonic_medium.data_access.exporters.anki.card_types.base import (
-    AnkiCard,
-)
 from personal_mnemonic_medium.data_access.exporters.anki.package_generator import (
     AnkiPackageGenerator,
 )
 from personal_mnemonic_medium.data_access.exporters.anki.sync import (
-    sync_deck,
+    sync_decks,
 )
 from personal_mnemonic_medium.domain.card_pipeline import CardPipeline
 from personal_mnemonic_medium.domain.prompt_extractors.cloze_extractor import (
@@ -30,12 +26,6 @@ from personal_mnemonic_medium.domain.prompt_extractors.qa_extractor import (
 msg = Printer(timestamp=True)
 
 
-# helper for creating anki connect requests
-def request(action: Any, **params: Any) -> dict[str, Any]:
-    return {"action": action, "params": params, "version": 6}
-
-
-# TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/208 Refactor main to only handle stateful operations and calls into functional core
 def main(
     input_dir: Path,
     host_output_dir: Path,
@@ -52,7 +42,6 @@ def main(
         ),
     ],
 ):
-    """Run the thing."""
     if not input_dir.exists():
         raise FileNotFoundError(
             f"Input directory {input_dir} does not exist"
@@ -63,14 +52,7 @@ def main(
         host_output_dir.mkdir(parents=True, exist_ok=True)
 
     sentry_sdk.init(
-        dsn="https://37f17d6aa7742424652663a04154e032@o4506053997166592.ingest.sentry.io/4506053999984640",
-        # Set traces_sample_rate to 1.0 to capture 100%
-        # of transactions for performance monitoring.
-        traces_sample_rate=1.0,
-        # Set profiles_sample_rate to 1.0 to profile 100%
-        # of sampled transactions.
-        # We recommend adjusting this value in production.
-        profiles_sample_rate=1.0,
+        dsn="https://37f17d6aa7742424652663a04154e032@o4506053997166592.ingest.sentry.io/4506053999984640"
     )
 
     cards = CardPipeline(
@@ -82,23 +64,7 @@ def main(
         card_exporter=AnkiPackageGenerator(),  # Step 3, get the cards from the prompts
     ).run(input_path=input_dir)
 
-    decks: dict[str, list[AnkiCard]] = defaultdict(list)
-
-    for card in cards:
-        decks[card.deckname] += [card]
-
-    for deck in decks:
-        cards = decks[deck]
-        deck_bundle = AnkiPackageGenerator().cards_to_deck_bundle(
-            cards=cards
-        )
-        sync_deck(
-            deck_bundle=deck_bundle,
-            sync_dir_path=host_output_dir,
-            save_dir_path=Path("/output"),
-            max_wait_for_ankiconnect=30,
-            use_anki_connect=use_anki_connect,
-        )
+    sync_decks(host_output_dir, use_anki_connect, cards)
 
     if watch:
         sleep_seconds = 60
