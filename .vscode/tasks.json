@@ -9,13 +9,15 @@
             "command": "make pr-status",
             "group": "test",
             "dependsOn": [
+                "Setup PR",
                 "Lint",
                 "Test",
                 "Static type check",
-                "Setup PR",
             ],
             "presentation": {
                 "reveal": "always",
+                "clear": true,
+                "showReuseMessage": false,
                 "group": "pr"
             }
         },
@@ -25,6 +27,8 @@
             "command": "make lint",
             "presentation": {
                 "reveal": "always",
+                "clear": true,
+                "showReuseMessage": false,
                 "group": "pr"
             },
             "problemMatcher": []
@@ -35,6 +39,8 @@
             "command": "make setup-pr",
             "presentation": {
                 "reveal": "always",
+                "clear": true,
+                "showReuseMessage": false,
                 "group": "pr"
             },
             "problemMatcher": []
@@ -45,6 +51,8 @@
             "command": "make test",
             "presentation": {
                 "reveal": "always",
+                "clear": true,
+                "showReuseMessage": false,
                 "group": "pr"
             },
         },
@@ -54,6 +62,8 @@
             "command": "make types",
             "presentation": {
                 "reveal": "always",
+                "clear": true,
+                "showReuseMessage": false,
                 "group": "pr"
             }
         }

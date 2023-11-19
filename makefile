@@ -21,6 +21,7 @@ install:
 test: ## Run tests
 	@echo "––– Testing –––"
 	@pytest personal_mnemonic_medium
+	@echo "✅✅✅ Tests passed ✅✅✅"
 
 test-cov: ## Run tests with coverage
 	# TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/209 Fix coverage and add it to make pr
@@ -32,10 +33,12 @@ lint: ## Format code
 	@ruff . --fix \
 		--extend-select F401 \
 		--extend-select F841
+	@echo "✅✅✅ Lint ✅✅✅"
 
 types: ## Type-check code
 	@echo "––– Type-checking –––"
 	@pyright $(SRC_PATH)
+	@echo "✅✅✅ Types ✅✅✅"
 
 validate: ## Run all checks
 	@echo "––– Running all checks –––"
@@ -73,6 +76,7 @@ create-random-branch:
 pr-status:
 	@gh pr view | cat | grep "title" 
 	@gh pr view | cat | grep "url" 
+	@echo "✅✅✅ PR created ✅✅✅"
 
 setup-pr: ## Update everything and setup the PR
 	@make merge-main
