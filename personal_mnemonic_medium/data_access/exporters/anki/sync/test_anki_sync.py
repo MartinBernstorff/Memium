@@ -1,4 +1,3 @@
-import uuid
 from dataclasses import dataclass
 
 import genanki
@@ -21,7 +20,7 @@ class MockAnkiCard(AnkiCard):
 
     @property
     def card_uuid(self) -> int:
-        return int(uuid.uuid4())
+        ...
 
 
 def test_cards_to_decks():
