@@ -1,7 +1,7 @@
 from collections.abc import Sequence
 from pathlib import Path
 
-from personal_mnemonic_medium.card_pipeline import CardPipeline
+from personal_mnemonic_medium.domain.card_pipeline import CardPipeline
 from personal_mnemonic_medium.document_ingesters.base import (
     DocumentFactory,
 )

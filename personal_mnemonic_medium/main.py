@@ -7,7 +7,7 @@ import sentry_sdk
 import typer
 from wasabi import Printer
 
-from personal_mnemonic_medium.card_pipeline import CardPipeline
+from personal_mnemonic_medium.domain.card_pipeline import CardPipeline
 from personal_mnemonic_medium.exporters.anki.card_types.base import (
     AnkiCard,
 )
