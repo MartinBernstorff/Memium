@@ -39,7 +39,12 @@ class MockCardPipeline(CardPipeline):
         prompt_extractors = (
             prompt_extractors
             if prompt_extractors is not None
-            else [QAPromptExtractor(), ClozePromptExtractor()]
+            else [
+                QAPromptExtractor(
+                    question_prefix="Q.", answer_prefix="A."
+                ),
+                ClozePromptExtractor(),
+            ]
         )
 
         super().__init__(
@@ -55,7 +60,6 @@ class MockCardPipeline(CardPipeline):
 
 def test_custom_card_to_genanki_card():
     source_note = Document(
-        title="Test",
         content="Q. What is the capital of France?\nA. Paris",
         uuid="1234",
         source_path=Path(__file__),
@@ -65,7 +69,6 @@ def test_custom_card_to_genanki_card():
         source_prompt=QAPrompt(
             question="What is the capital of France?",
             answer="Paris",
-            note_uuid="1234",
             source_note=source_note,
         ),
     ).to_genanki_note()
@@ -73,7 +76,6 @@ def test_custom_card_to_genanki_card():
 
 def test_get_subtags():
     source_note = Document(
-        title="Test",
         content="Testing subdeck extraction, #anki/deck/Medicine, #anki/tag/med/Endocrinology",
         uuid="1234",
         source_path=Path(__file__),
@@ -84,7 +86,6 @@ def test_get_subtags():
         source_prompt=QAPrompt(
             question="What is the capital of France?",
             answer="Paris",
-            note_uuid="1234",
             source_note=source_note,
         ),
     )
@@ -96,7 +97,11 @@ def test_qa_uuid_generation():
     # TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/204 Remove dependency on test_md_files
     file_path = Path(__file__).parent / "test_cards.md"
     cards = MockCardPipeline(
-        prompt_extractors=[QAPromptExtractor()]
+        prompt_extractors=[
+            QAPromptExtractor(
+                question_prefix="Q.", answer_prefix="A."
+            )
+        ]
     ).run(input_path=file_path)
     notes = [c.to_genanki_note() for c in cards]
 

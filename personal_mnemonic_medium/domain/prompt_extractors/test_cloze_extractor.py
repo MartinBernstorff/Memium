@@ -10,7 +10,6 @@ from personal_mnemonic_medium.domain.prompt_extractors.cloze_extractor import (
 
 def test_cloze_with_hits():
     note_with_cloze = Document(
-        title="Test note",
         content=r"""Test content.
 {Cloze deletions} are part of the {game}. Right?
 Even after newlines.
@@ -28,7 +27,6 @@ Even after new blocks. They should {all} be found.
 
 def test_cloze_no_hits():
     note_without_cloze = Document(
-        title="Test note",
         content=r"""Test content.""",
         uuid="1234",
         source_path=Path(__file__),

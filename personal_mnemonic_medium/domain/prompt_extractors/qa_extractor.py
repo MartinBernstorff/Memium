@@ -24,16 +24,22 @@ logging.basicConfig(
 class QAPrompt(Prompt):
     question: str
     answer: str
-    note_uuid: str
     source_note: Document
-    tags: list[str] | None = None
     line_nr: int | None = None
+
+    @property
+    def note_uuid(self) -> str:
+        return self.source_note.uuid
+
+    @property
+    def tags(self) -> Sequence[str]:
+        return self.source_note.tags
 
 
 # TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/245 remove defaults from extractors to make signature easier to understand
 class QAPromptExtractor(PromptExtractor):
     def __init__(
-        self, question_prefix: str = "Q.", answer_prefix: str = "A."
+        self, question_prefix: str, answer_prefix: str
     ) -> None:
         self.question_prefix = question_prefix
         self.answer_prefix = answer_prefix
@@ -84,7 +90,7 @@ class QAPromptExtractor(PromptExtractor):
         return False
 
     def extract_prompts(self, note: Document) -> Sequence[QAPrompt]:
-        prompts = []
+        prompts: list[QAPrompt] = []
 
         blocks = self._break_string_by_two_or_more_newlines(
             note.content
@@ -102,12 +108,10 @@ class QAPromptExtractor(PromptExtractor):
                     )
                     continue
 
-                prompts.append(  # type: ignore
+                prompts.append(
                     QAPrompt(
                         question=question,
                         answer=answer,
-                        tags=note.tags,
-                        note_uuid=note.uuid,
                         source_note=note,
                         line_nr=block_starting_line_nr,
                     )
