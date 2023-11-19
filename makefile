@@ -1,5 +1,9 @@
 SRC_PATH = personal_mnemonic_medium
 
+# TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/205 Decrease makefile verbosity
+# E.g. entering/leaving directory
+# Or showing each command when running make pr
+
 deploy:
 	./docker_cmd.sh
 
