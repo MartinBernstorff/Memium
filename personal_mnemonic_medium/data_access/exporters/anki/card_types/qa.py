@@ -15,9 +15,6 @@ from personal_mnemonic_medium.domain.prompt_extractors.prompt import (
     Prompt,
 )
 from personal_mnemonic_medium.utils.hasher import simple_hash
-from personal_mnemonic_medium.data_access.exporters.anki.globals import (  # noqa
-    CONFIG,
-)
 
 
 class AnkiQA(AnkiCard):
@@ -39,12 +36,55 @@ class AnkiQA(AnkiCard):
 
     @property
     def genanki_model(self) -> genanki.Model:
-        global CONFIG  # noqa
+        model_fields = [
+            {"name": "Question"},
+            {"name": "Answer"},
+            {"name": "Extra"},
+            {"name": "UUID"},
+        ]
+
+        QUESTION_STR = r"{{ Question }}"
+        TTS_QUESTION_STR = r"{{ tts en_US voices=Apple_Samantha speed=1.05:Question }}"
+
+        ANSWER_STR = r"{{ Answer }}"
+        TTS_ANSWER_STR = (
+            r"{{ tts en_US voices=Apple_Samantha speed=1.05:Answer }}"
+        )
+
+        EXTRA_STR = r"{{ Extra }}"
+
+        model_template = [
+            {
+                "name": "Ankdown QA Card with UUID",
+                "qfmt": f"""
+<div class="front">
+    {QUESTION_STR}{TTS_QUESTION_STR}
+</div>
+<div class="extra">
+    {EXTRA_STR}
+</div>
+            """,
+                "afmt": f"""
+<div class="back">
+    <div class="question">
+        {QUESTION_STR}
+    </div>
+    <div class="answer">
+        {ANSWER_STR}{TTS_ANSWER_STR}
+    </div>
+    <div class="extra">
+        {EXTRA_STR}
+    </div>
+</div>
+            """,
+            }
+        ]
+
         return genanki.Model(
-            model_id=simple_hash(CONFIG["card_model_name_qa"]),  # type: ignore
-            name=CONFIG["card_model_name_qa"],  # type: ignore
-            fields=CONFIG["card_model_fields_qa"],  # type: ignore
-            templates=CONFIG["card_model_template_qa"],  # type: ignore
+            model_id=simple_hash("Ankdown QA with UUID"),
+            name=("Ankdown QA with UUID"),
+            fields=model_fields,
+            templates=model_template,
             css=CONFIG["card_model_css"],  # type: ignore
             model_type=0,
         )

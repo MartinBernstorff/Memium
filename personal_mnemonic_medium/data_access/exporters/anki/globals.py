@@ -6,6 +6,8 @@ from personal_mnemonic_medium.data_access.exporters.anki.anki_css import (
     CARD_MODEL_CSS,
 )
 
+# TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/222 refactor: remove globals.py
+
 ANKICONNECT_URL = (
     "http://host.docker.internal:8765"
 )  # On host machine, port is 8765
@@ -17,43 +19,6 @@ CARD_MATHJAX_CONTENT = textwrap.dedent(
 )
 
 VERSION = "0.1"
-
-QUESTION_STR = r"{{ Question }}"
-ANSWER_STR = r"{{ Answer }}"
-EXTRA_STR = r"{{ Extra }}"
-TTS_QUESTION_STR = (
-    r"{{ tts en_US voices=Apple_Samantha speed=1.05:Question }}"
-)
-TTS_ANSWER_STR = (
-    r"{{ tts en_US voices=Apple_Samantha speed=1.05:Answer }}"
-)
-
-QA_MODEL_TEMPLATE = [
-    {
-        "name": "Ankdown QA Card with UUID",
-        "qfmt": f"""
-<div class="front">
-    {QUESTION_STR}{TTS_QUESTION_STR}
-</div>
-<div class="extra">
-    {EXTRA_STR}
-</div>
-            """,
-        "afmt": f"""
-<div class="back">
-    <div class="question">
-        {QUESTION_STR}
-    </div>
-    <div class="answer">
-        {ANSWER_STR}{TTS_ANSWER_STR}
-    </div>
-    <div class="extra">
-        {EXTRA_STR}
-    </div>
-</div>
-            """,
-    }
-]
 
 CLOZE_MODEL_TEMPLATE = [
     {
