@@ -9,10 +9,10 @@
             "command": "make pr-status",
             "group": "test",
             "dependsOn": [
+                "Setup PR",
                 "Lint",
                 "Test",
                 "Static type check",
-                "Setup PR",
             ],
             "presentation": {
                 "reveal": "always",
