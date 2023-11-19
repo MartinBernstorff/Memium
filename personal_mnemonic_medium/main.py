@@ -7,7 +7,11 @@ import typer
 from wasabi import Printer
 
 from personal_mnemonic_medium.data_access.document_ingesters.markdown_ingester import (
-    MarkdownNoteFactory,
+    MarkdownIngester,
+)
+from personal_mnemonic_medium.data_access.document_ingesters.uuid_handling import (
+    extract_bear_guid,
+    generate_bear_guid,
 )
 from personal_mnemonic_medium.data_access.exporters.anki.package_generator import (
     AnkiPackageGenerator,
@@ -56,9 +60,15 @@ def main(
     )
 
     cards = CardPipeline(
-        document_factory=MarkdownNoteFactory(),  # Step 1, get the documents
+        document_factory=MarkdownIngester(
+            cut_note_after="# Backlinks",
+            uuid_extractor=extract_bear_guid,
+            uuid_generator=generate_bear_guid,
+        ),  # Step 1, get the documents
         prompt_extractors=[  # Step 2, get the prompts from the documents
-            QAPromptExtractor(),
+            QAPromptExtractor(
+                question_prefix="Q.", answer_prefix="A."
+            ),
             ClozePromptExtractor(),
         ],
         card_exporter=AnkiPackageGenerator(),  # Step 3, get the cards from the prompts

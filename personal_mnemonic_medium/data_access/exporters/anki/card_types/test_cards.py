@@ -1,26 +1,22 @@
 from collections.abc import Sequence
 from pathlib import Path
 
-from personal_mnemonic_medium.data_access.document_ingesters.base import (
-    DocumentFactory,
-)
+import pytest
+
 from personal_mnemonic_medium.data_access.document_ingesters.document import (
     Document,
 )
 from personal_mnemonic_medium.data_access.document_ingesters.markdown_ingester import (
-    MarkdownNoteFactory,
+    MarkdownIngester,
 )
-from personal_mnemonic_medium.data_access.exporters.anki.card_types.base import (
-    AnkiCard,
+from personal_mnemonic_medium.data_access.document_ingesters.uuid_handling import (
+    extract_bear_guid,
 )
 from personal_mnemonic_medium.data_access.exporters.anki.card_types.qa import (
     AnkiQA,
 )
 from personal_mnemonic_medium.data_access.exporters.anki.package_generator import (
     AnkiPackageGenerator,
-)
-from personal_mnemonic_medium.data_access.exporters.base import (
-    CardExporter,
 )
 from personal_mnemonic_medium.domain.card_pipeline import CardPipeline
 from personal_mnemonic_medium.domain.prompt_extractors.base import (
@@ -38,23 +34,23 @@ from personal_mnemonic_medium.domain.prompt_extractors.qa_extractor import (
 class MockCardPipeline(CardPipeline):
     def __init__(
         self,
-        document_factory: DocumentFactory = MarkdownNoteFactory(),  # noqa: B008
-        prompt_extractors: Sequence[PromptExtractor] = [
-            QAPromptExtractor(),
-            ClozePromptExtractor(),
-        ],
-        card_exporter: CardExporter = AnkiPackageGenerator(),  # noqa: B008
+        prompt_extractors: Sequence[PromptExtractor] | None = None,
     ) -> None:
-        super().__init__(
-            document_factory=document_factory,
-            prompt_extractors=prompt_extractors,
-            card_exporter=card_exporter,
+        prompt_extractors = (
+            prompt_extractors
+            if prompt_extractors is not None
+            else [QAPromptExtractor(), ClozePromptExtractor()]
         )
 
-    def test_card_pipeline(
-        self, input_path: Path
-    ) -> Sequence[AnkiCard]:
-        return self.run(input_path=input_path)
+        super().__init__(
+            document_factory=MarkdownIngester(
+                cut_note_after="# Backlinks",
+                uuid_extractor=extract_bear_guid,
+                uuid_generator=None,
+            ),
+            prompt_extractors=prompt_extractors,
+            card_exporter=AnkiPackageGenerator(),
+        )
 
 
 def test_custom_card_to_genanki_card():
@@ -123,41 +119,39 @@ def test_cloze_uuid_generation():
 
 
 def test_get_bear_id():
-    factory = MarkdownNoteFactory()
     note_str = r"Q. A card with a GUID.\nA. And here is its answer.\n\nQS. How about a card like this?\nA. Yes, an answer too.\n\nQ. How about multiline questions?\n* Like this\n* Or this?\nA. What is the hash?\n\nAnd some {cloze} deletions? For sure! Multipe {even}.\n\n<!-- {BearID:7696CDCD-803A-40BC-88D8-855DDBEC56CA-31546-000054DF17EAE2C1} -->"
 
     expected_id = r"<!-- {BearID:7696CDCD-803A-40BC-88D8-855DDBEC56CA-31546-000054DF17EAE2C1} -->"
 
-    extracted_id = factory.get_note_id(note_str)
+    extracted_id = extract_bear_guid(note_str)
 
     assert extracted_id == expected_id
 
 
-def test_alias_wiki_link_substitution():
-    alias = "Here I am [[alias|wiki link]], and another [[alias2|wiki link2]]"
-    output = Document.replace_alias_wiki_links(alias)
-    assert (
-        output
-        == "Here I am [[wiki link]], and another [[wiki link2]]"
-    )
-
-    no_alias = "Here I am [[wiki link]] and another [[wiki link2]]"
-    output = Document.replace_alias_wiki_links(no_alias)
-    assert (
-        output == "Here I am [[wiki link]] and another [[wiki link2]]"
-    )
-
-    test_3 = "How was ice climbing [[Franz Josef]] with [[Vibeke Christiansen|Vibeke]]?"
-    output = Document.replace_alias_wiki_links(test_3)
-    assert (
-        output
-        == "How was ice climbing [[Franz Josef]] with [[Vibeke]]?"
-    )
-
-    alias = "[[Isolation (database design)|Isolation]]"
-    output = Document.replace_alias_wiki_links(alias)
-    assert output == "[[Isolation]]"
-
-    alias = "[[test-test|test-]]"
-    output = Document.replace_alias_wiki_links(alias)
-    assert output == "[[test-]]"
+@pytest.mark.parametrize(
+    ("example_name", "example", "replaced"),
+    [
+        (
+            "Two links",
+            "Here I am [[alias|wiki link]], and another [[alias2|wiki link2]]",
+            "Here I am [[wiki link]], and another [[wiki link2]]",
+        ),
+        (
+            "Capitalization",
+            "How was ice climbing [[Franz Josef]] with [[Vibeke Christiansen|Vibeke]]?",
+            "How was ice climbing [[Franz Josef]] with [[Vibeke]]?",
+        ),
+        (
+            "Parentheses",
+            "[[Isolation (database design)|Isolation]]",
+            "[[Isolation]]",
+        ),
+        ("Dashes", "[[test-test|test-]]", "[[test-]]"),
+    ],
+)
+def test_alias_wiki_link_substitution(
+    example_name: str,  # noqa: ARG001
+    example: str,
+    replaced: str,
+):
+    assert Document.replace_alias_wiki_links(example) == replaced

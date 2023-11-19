@@ -30,6 +30,7 @@ class QAPrompt(Prompt):
     line_nr: int | None = None
 
 
+# TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/245 remove defaults from extractors to make signature easier to understand
 class QAPromptExtractor(PromptExtractor):
     def __init__(
         self, question_prefix: str = "Q.", answer_prefix: str = "A."

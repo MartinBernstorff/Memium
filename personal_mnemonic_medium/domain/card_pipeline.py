@@ -2,7 +2,7 @@ from collections.abc import Sequence
 from pathlib import Path
 
 from personal_mnemonic_medium.data_access.document_ingesters.base import (
-    DocumentFactory,
+    DocumentIngester,
 )
 from personal_mnemonic_medium.data_access.document_ingesters.document import (
     Document,
@@ -24,7 +24,7 @@ from personal_mnemonic_medium.domain.prompt_extractors.prompt import (
 class CardPipeline:
     def __init__(
         self,
-        document_factory: DocumentFactory,
+        document_factory: DocumentIngester,
         prompt_extractors: Sequence[PromptExtractor],
         card_exporter: CardExporter,
     ) -> None:

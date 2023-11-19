@@ -7,7 +7,7 @@ from personal_mnemonic_medium.data_access.document_ingesters.document import (
 )
 
 
-class DocumentFactory(ABC):
+class DocumentIngester(ABC):
     @abstractmethod
     def get_notes_from_dir(
         self, dir_path: Path
