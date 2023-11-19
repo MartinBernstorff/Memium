@@ -12,6 +12,8 @@ from personal_mnemonic_medium.note_factories.note import Document
 
 
 class MarkdownNoteFactory(DocumentFactory):
+    # TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/206 Split stateful and non-stateful markdown note operations.
+    # Also add tests
     def __init__(self, cut_note_after: str = "# Backlinks"):
         """Create a new MarkdownNoteFactory.
 
