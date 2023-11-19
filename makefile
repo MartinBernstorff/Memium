@@ -20,7 +20,6 @@ install:
 
 generate_coverage:
 	@pytest --cov=personal_mnemonic_medium personal_mnemonic_medium --cov-report=xml
-	
 
 test: ## Run tests with coverage
 	@echo "––– Testing –––"
