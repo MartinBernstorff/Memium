@@ -25,7 +25,6 @@ test: ## Run tests with coverage
 	@echo "––– Testing –––"
 	@make generate_coverage
 	@diff-cover coverage.xml --fail-under=100
-	@git add coverage.xml && git commit --amend --no-edit
 	@echo "✅✅✅ Tests passed ✅✅✅"
 
 lint: ## Format code
