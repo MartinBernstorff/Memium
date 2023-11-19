@@ -1,7 +1,7 @@
 import hashlib
 import re
 from collections.abc import Sequence
-from typing import Any
+from dataclasses import dataclass
 
 from personal_mnemonic_medium.data_access.document_ingesters.document import (
     Document,
@@ -14,10 +14,13 @@ from personal_mnemonic_medium.domain.prompt_extractors.prompt import (
 )
 
 
+@dataclass
 class ClozePrompt(Prompt):
-    def __init__(self, content: str, *args: Any, **kwargs: Any):
-        super().__init__(*args, **kwargs)
-        self.content = content
+    content: str
+    note_uuid: str
+    source_note: Document
+    tags: list[str] | None = None
+    line_nr: int | None = None
 
 
 class ClozePromptExtractor(PromptExtractor):

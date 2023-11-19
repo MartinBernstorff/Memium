@@ -1,7 +1,7 @@
 import logging
 import re
 from collections.abc import Sequence
-from typing import Any
+from dataclasses import dataclass
 
 from personal_mnemonic_medium.data_access.document_ingesters.document import (
     Document,
@@ -20,13 +20,14 @@ logging.basicConfig(
 )
 
 
+@dataclass
 class QAPrompt(Prompt):
-    def __init__(
-        self, question: str, answer: str, *args: Any, **kwargs: Any
-    ) -> None:
-        super().__init__(*args, **kwargs)
-        self.question = question
-        self.answer = answer
+    question: str
+    answer: str
+    note_uuid: str
+    source_note: Document
+    tags: list[str] | None = None
+    line_nr: int | None = None
 
 
 class QAPromptExtractor(PromptExtractor):
