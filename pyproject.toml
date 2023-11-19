@@ -41,6 +41,7 @@ tests = [
   "pytest-cov==3.0.0",
   "pytest-xdist==3.3.1",
   "pytest-sugar==0.9.7",
+  "diff-cover==8.0.1",
 ]
 
 [project.urls]

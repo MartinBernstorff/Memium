@@ -25,7 +25,8 @@ test: ## Run tests
 
 test-cov: ## Run tests with coverage
 	# TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/209 Fix coverage and add it to make pr
-	@pytest --cov=personal_mnemonic_medium --cov-report=term-missing personal_mnemonic_medium
+	@pytest --cov=personal_mnemonic_medium personal_mnemonic_medium --cov-report=xml
+	@diff-cover coverage.xml
 
 lint: ## Format code
 	@echo "––– Linting –––"
