@@ -72,7 +72,7 @@ create-pr:
 	@gh pr create --title "$$(git rev-parse --abbrev-ref HEAD | tr -d '[:digit:]' | tr '-' ' ')" --body "Auto-created" || true
 
 enable-automerge:
-	@gh pr merge --auto --squash --delete-branch
+	@gh pr merge --auto --merge --delete-branch
 
 squash-from-parent:
 	@git fetch
