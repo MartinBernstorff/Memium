@@ -15,6 +15,8 @@ from personal_mnemonic_medium.data_access.exporters.anki.package_generator impor
     DeckBundle,
 )
 
+# TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/207 Refactor deck sync. Functional core, imperative shell
+
 msg = Printer(timestamp=True)
 
 
@@ -77,6 +79,7 @@ def sync_deck(
     delete_cards: bool = True,
     max_wait_for_ankiconnect: int = 30,
 ):
+    # TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/210 feat: log which cards are added to disk
     if "Medicine" in deck_bundle.deck.name:  # type: ignore
         msg.fail("Skipping Medicine deck to save resources")
         return

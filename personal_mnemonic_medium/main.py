@@ -35,6 +35,7 @@ def request(action: Any, **params: Any) -> dict[str, Any]:
     return {"action": action, "params": params, "version": 6}
 
 
+# TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/208 Refactor main to only handle stateful operations and calls into functional core
 def main(
     input_dir: Path,
     host_output_dir: Path,
