@@ -66,7 +66,7 @@ class AnkiPackageGenerator(CardExporter):
         pass
 
     @staticmethod
-    def cards_to_deck_bundle(cards: list[AnkiCard]) -> DeckBundle:
+    def cards_to_deck_bundle(cards: Sequence[AnkiCard]) -> DeckBundle:
         """Take an iterable prompts, output an .apkg in a file called output_name.
         NOTE: We _must_ be in a temp directory.
         """

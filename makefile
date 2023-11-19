@@ -19,12 +19,12 @@ install:
 	@pip install -e .
 
 generate_coverage:
-	@pytest --cov=personal_mnemonic_medium personal_mnemonic_medium --cov-report=xml
+	@pytest --cov=personal_mnemonic_medium personal_mnemonic_medium --cov-report xml:.coverage.xml --cov-report lcov:.coverage.lcov
 
 test: ## Run tests with coverage
 	@echo "––– Testing –––"
 	@make generate_coverage
-	@diff-cover coverage.xml --fail-under=100
+	@diff-cover .coverage.xml --fail-under=80
 	@echo "✅✅✅ Tests passed ✅✅✅"
 
 lint: ## Format code

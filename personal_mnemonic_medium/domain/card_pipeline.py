@@ -32,7 +32,7 @@ class CardPipeline:
         self.prompt_extractors = prompt_extractors
         self.card_exporter = card_exporter
 
-    def run(self, input_path: Path) -> list[AnkiCard]:
+    def run(self, input_path: Path) -> Sequence[AnkiCard]:
         notes: list[Document] = []
         if input_path.is_dir():
             notes += list(
@@ -53,7 +53,9 @@ class CardPipeline:
             for note in notes:
                 collected_prompts += extractor.extract_prompts(note)
 
-        cards: list[AnkiCard] = self.card_exporter.prompts_to_cards(
+        cards: Sequence[
+            AnkiCard
+        ] = self.card_exporter.prompts_to_cards(
             prompts=collected_prompts
         )
         return cards

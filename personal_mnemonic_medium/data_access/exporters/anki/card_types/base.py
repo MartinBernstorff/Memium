@@ -22,6 +22,7 @@ from personal_mnemonic_medium.domain.url_generators.obsidian_url import (
 )
 
 
+# TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/242 refactor: decrease amount of logic in AnkiCard
 class AnkiCard(ABC):
     """A single anki card."""
 
