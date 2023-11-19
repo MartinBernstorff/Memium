@@ -1,6 +1,10 @@
 SRC_PATH = personal_mnemonic_medium
 MAKEFLAGS = --no-print-directory
 
+# TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/205 Decrease makefile verbosity
+# E.g. entering/leaving directory
+# Or showing each command when running make pr
+
 deploy:
 	./docker_cmd.sh
 
@@ -16,11 +20,11 @@ install:
 
 test: ## Run tests
 	@echo "––– Testing –––"
-	@pytest personal_mnemonic_medium/tests
+	@pytest personal_mnemonic_medium
 
 test-cov: ## Run tests with coverage
 	# TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/209 Fix coverage and add it to make pr
-	@pytest --cov=personal_mnemonic_medium --cov-report=term-missing personal_mnemonic_medium/tests
+	@pytest --cov=personal_mnemonic_medium --cov-report=term-missing personal_mnemonic_medium
 
 lint: ## Format code
 	@echo "––– Linting –––"

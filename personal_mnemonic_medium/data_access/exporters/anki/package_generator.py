@@ -11,21 +11,25 @@ from shutil import copyfile
 
 import genanki
 
-from personal_mnemonic_medium.exporters.anki.card_types.base import (
+from personal_mnemonic_medium.data_access.exporters.anki.card_types.base import (
     AnkiCard,
 )
-from personal_mnemonic_medium.exporters.anki.card_types.cloze import (
+from personal_mnemonic_medium.data_access.exporters.anki.card_types.cloze import (
     AnkiCloze,
 )
-from personal_mnemonic_medium.exporters.anki.card_types.qa import (
+from personal_mnemonic_medium.data_access.exporters.anki.card_types.qa import (
     AnkiQA,
 )
-from personal_mnemonic_medium.exporters.base import CardExporter
-from personal_mnemonic_medium.prompt_extractors.cloze_extractor import (
+from personal_mnemonic_medium.data_access.exporters.base import (
+    CardExporter,
+)
+from personal_mnemonic_medium.domain.prompt_extractors.cloze_extractor import (
     ClozePrompt,
 )
-from personal_mnemonic_medium.prompt_extractors.prompt import Prompt
-from personal_mnemonic_medium.prompt_extractors.qa_extractor import (
+from personal_mnemonic_medium.domain.prompt_extractors.prompt import (
+    Prompt,
+)
+from personal_mnemonic_medium.domain.prompt_extractors.qa_extractor import (
     QAPrompt,
 )
 from personal_mnemonic_medium.utils.hasher import simple_hash

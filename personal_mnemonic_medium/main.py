@@ -7,21 +7,23 @@ import sentry_sdk
 import typer
 from wasabi import Printer
 
-from personal_mnemonic_medium.card_pipeline import CardPipeline
-from personal_mnemonic_medium.exporters.anki.card_types.base import (
-    AnkiCard,
-)
-from personal_mnemonic_medium.exporters.anki.package_generator import (
-    AnkiPackageGenerator,
-)
-from personal_mnemonic_medium.exporters.anki.sync import sync_deck
-from personal_mnemonic_medium.note_factories.markdown import (
+from personal_mnemonic_medium.data_access.document_ingesters.markdown_ingester import (
     MarkdownNoteFactory,
 )
-from personal_mnemonic_medium.prompt_extractors.cloze_extractor import (
+from personal_mnemonic_medium.data_access.exporters.anki.card_types.base import (
+    AnkiCard,
+)
+from personal_mnemonic_medium.data_access.exporters.anki.package_generator import (
+    AnkiPackageGenerator,
+)
+from personal_mnemonic_medium.data_access.exporters.anki.sync import (
+    sync_deck,
+)
+from personal_mnemonic_medium.domain.card_pipeline import CardPipeline
+from personal_mnemonic_medium.domain.prompt_extractors.cloze_extractor import (
     ClozePromptExtractor,
 )
-from personal_mnemonic_medium.prompt_extractors.qa_extractor import (
+from personal_mnemonic_medium.domain.prompt_extractors.qa_extractor import (
     QAPromptExtractor,
 )
 

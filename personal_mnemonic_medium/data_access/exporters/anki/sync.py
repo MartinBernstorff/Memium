@@ -8,10 +8,10 @@ from typing import Any
 from genanki import Model, Note
 from wasabi import Printer
 
-from personal_mnemonic_medium.exporters.anki.globals import (
+from personal_mnemonic_medium.data_access.exporters.anki.globals import (
     ANKICONNECT_URL,
 )
-from personal_mnemonic_medium.exporters.anki.package_generator import (
+from personal_mnemonic_medium.data_access.exporters.anki.package_generator import (
     DeckBundle,
 )
 

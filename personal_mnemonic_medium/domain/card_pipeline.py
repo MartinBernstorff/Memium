@@ -1,18 +1,24 @@
 from collections.abc import Sequence
 from pathlib import Path
 
-from personal_mnemonic_medium.exporters.anki.card_types.base import (
-    AnkiCard,
-)
-from personal_mnemonic_medium.exporters.base import CardExporter
-from personal_mnemonic_medium.note_factories.base import (
+from personal_mnemonic_medium.data_access.document_ingesters.base import (
     DocumentFactory,
 )
-from personal_mnemonic_medium.note_factories.note import Document
-from personal_mnemonic_medium.prompt_extractors.base import (
+from personal_mnemonic_medium.data_access.document_ingesters.document import (
+    Document,
+)
+from personal_mnemonic_medium.data_access.exporters.anki.card_types.base import (
+    AnkiCard,
+)
+from personal_mnemonic_medium.data_access.exporters.base import (
+    CardExporter,
+)
+from personal_mnemonic_medium.domain.prompt_extractors.base import (
     PromptExtractor,
 )
-from personal_mnemonic_medium.prompt_extractors.prompt import Prompt
+from personal_mnemonic_medium.domain.prompt_extractors.prompt import (
+    Prompt,
+)
 
 
 class CardPipeline:
