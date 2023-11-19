@@ -17,10 +17,16 @@ from personal_mnemonic_medium.domain.prompt_extractors.prompt import (
 @dataclass
 class ClozePrompt(Prompt):
     content: str
-    note_uuid: str
     source_note: Document
-    tags: list[str] | None = None
     line_nr: int | None = None
+
+    @property
+    def note_uuid(self) -> str:
+        return self.source_note.uuid
+
+    @property
+    def tags(self) -> Sequence[str]:
+        return self.source_note.tags
 
 
 class ClozePromptExtractor(PromptExtractor):
@@ -106,10 +112,7 @@ class ClozePromptExtractor(PromptExtractor):
 
                     prompts.append(  # type: ignore
                         ClozePrompt(
-                            content=prompt_content,
-                            tags=note.tags,
-                            note_uuid=note.uuid,
-                            source_note=note,
+                            content=prompt_content, source_note=note
                         )
                     )
 

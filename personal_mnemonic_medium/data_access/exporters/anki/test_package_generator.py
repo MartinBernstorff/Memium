@@ -3,9 +3,6 @@ from pathlib import Path
 from personal_mnemonic_medium.data_access.document_ingesters.document import (
     Document,
 )
-from personal_mnemonic_medium.data_access.exporters.anki.card_types.base import (
-    AnkiCard,
-)
 from personal_mnemonic_medium.data_access.exporters.anki.card_types.qa import (
     AnkiQA,
 )
@@ -19,7 +16,6 @@ from personal_mnemonic_medium.domain.prompt_extractors.qa_extractor import (
 
 def test_cards_to_decks():
     source_note = Document(
-        title="Test",
         content="Q. What is the capital of France?\nA. Paris",
         uuid="1234",
         source_path=Path(__file__),
@@ -31,7 +27,6 @@ def test_cards_to_decks():
             source_prompt=QAPrompt(
                 question="What is the capital of France?",
                 answer="Paris",
-                note_uuid="1234",
                 source_note=source_note,
             ),
         )
@@ -43,19 +38,17 @@ def test_cards_to_decks():
 
 def test_package_generators():
     source_note = Document(
-        title="Test",
         content="Q. What is the capital of France?\nA. Paris",
         uuid="1234",
         source_path=Path(__file__),
     )
 
-    genanki_notes: list[AnkiCard] = [
+    genanki_notes: list[AnkiQA] = [
         AnkiQA(
             fields=["Q. What is the capital of France?", "A. Paris"],
             source_prompt=QAPrompt(
                 question="What is the capital of France?",
                 answer="Paris",
-                note_uuid="1234",
                 source_note=source_note,
             ),
         )

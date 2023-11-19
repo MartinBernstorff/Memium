@@ -100,7 +100,7 @@ def sync_deck(
             if anki_connect_is_live():
                 break
             print("Waiting for anki connect to start...")
-            sleep(0.5)
+            sleep(secs=0.5)
         else:
             msg.fail("Unable to connect to anki")
             return

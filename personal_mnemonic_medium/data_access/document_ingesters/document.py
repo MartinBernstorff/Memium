@@ -4,10 +4,7 @@ from pathlib import Path
 
 
 class Document:
-    def __init__(
-        self, title: str, content: str, uuid: str, source_path: Path
-    ):
-        self.title = title
+    def __init__(self, content: str, uuid: str, source_path: Path):
         self.uuid = uuid
         self.content = self.replace_alias_wiki_links(content)
         self.source_path = source_path
@@ -19,6 +16,10 @@ class Document:
         self.tags = self.get_tags(
             self.content, import_time=import_time_formatted
         )
+
+    @property
+    def title(self) -> str:
+        return self.source_path.stem
 
     @staticmethod
     def replace_alias_wiki_links(text: str) -> str:

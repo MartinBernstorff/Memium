@@ -28,6 +28,7 @@ class MarkdownIngester(DocumentIngester):
             cut_note_after: Cut everything in the note after this string.
             uuid_generator: A function that generates a UUID string. If specified and UUIDs are missing, the UUID will be appended to the note.
         """
+        # TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/247 Remove all state from the MarkdownIngester class
         self._cut_note_after = cut_note_after
         self._uuid_extractor = uuid_extractor
         self._uuid_generator = uuid_generator
@@ -44,6 +45,7 @@ class MarkdownIngester(DocumentIngester):
                     f"Could not find UUID in {file_path}"
                 ) from e
 
+            # TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/248 Make GUID-appending part of the function signature
             uuid = append_guid(
                 file_path=file_path,
                 uuid_generator=self._uuid_generator,
@@ -61,7 +63,6 @@ class MarkdownIngester(DocumentIngester):
                 file_contents = self._cut_contents(file_contents)
 
             return Document(
-                title=file_path.stem,
                 content=file_contents,
                 uuid=uuid,
                 source_path=file_path,
