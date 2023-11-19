@@ -2,7 +2,7 @@
 import textwrap
 from typing import Any
 
-from personal_mnemonic_medium.exporters.anki.anki_css import (
+from personal_mnemonic_medium.data_access.exporters.anki.anki_css import (
     CARD_MODEL_CSS,
 )
 

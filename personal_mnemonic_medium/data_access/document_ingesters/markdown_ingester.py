@@ -5,10 +5,12 @@ from pathlib import Path
 
 from tqdm import tqdm
 
-from personal_mnemonic_medium.document_ingesters.base import (
+from personal_mnemonic_medium.data_access.document_ingesters.base import (
     DocumentFactory,
 )
-from personal_mnemonic_medium.document_ingesters.note import Document
+from personal_mnemonic_medium.data_access.document_ingesters.document import (
+    Document,
+)
 
 
 class MarkdownNoteFactory(DocumentFactory):

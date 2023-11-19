@@ -1,4 +1,6 @@
-from personal_mnemonic_medium.document_ingesters.note import Document
+from personal_mnemonic_medium.data_access.document_ingesters.document import (
+    Document,
+)
 
 
 class Prompt:

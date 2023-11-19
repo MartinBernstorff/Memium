@@ -3,11 +3,15 @@ import re
 from collections.abc import Sequence
 from typing import Any
 
-from personal_mnemonic_medium.document_ingesters.note import Document
-from personal_mnemonic_medium.prompt_extractors.base import (
+from personal_mnemonic_medium.data_access.document_ingesters.document import (
+    Document,
+)
+from personal_mnemonic_medium.domain.prompt_extractors.base import (
     PromptExtractor,
 )
-from personal_mnemonic_medium.prompt_extractors.prompt import Prompt
+from personal_mnemonic_medium.domain.prompt_extractors.prompt import (
+    Prompt,
+)
 
 log = logging.getLogger(__name__)
 # Log to disk, not to console.
