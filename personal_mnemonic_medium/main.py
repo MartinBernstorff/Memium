@@ -7,7 +7,7 @@ import typer
 from wasabi import Printer
 
 from personal_mnemonic_medium.data_access.document_ingesters.markdown_ingester import (
-    MarkdownNoteFactory,
+    MarkdownIngester,
 )
 from personal_mnemonic_medium.data_access.document_ingesters.uuid_handling import (
     extract_bear_guid,
@@ -60,7 +60,7 @@ def main(
     )
 
     cards = CardPipeline(
-        document_factory=MarkdownNoteFactory(
+        document_factory=MarkdownIngester(
             cut_note_after="# Backlinks",
             uuid_extractor=extract_bear_guid,
             uuid_generator=generate_bear_guid,

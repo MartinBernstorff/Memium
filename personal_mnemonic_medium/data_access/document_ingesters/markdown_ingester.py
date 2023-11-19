@@ -4,7 +4,7 @@ from pathlib import Path
 from tqdm import tqdm
 
 from personal_mnemonic_medium.data_access.document_ingesters.base import (
-    DocumentFactory,
+    DocumentIngester,
 )
 from personal_mnemonic_medium.data_access.document_ingesters.document import (
     Document,
@@ -14,7 +14,7 @@ from personal_mnemonic_medium.data_access.document_ingesters.uuid_handling impor
 )
 
 
-class MarkdownNoteFactory(DocumentFactory):
+class MarkdownIngester(DocumentIngester):
     def __init__(
         self,
         uuid_extractor: Callable[[str], str],
