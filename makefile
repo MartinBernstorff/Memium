@@ -17,7 +17,7 @@ test: ## Run tests
 	pytest personal_mnemonic_medium
 
 test-cov: ## Run tests with coverage
-	pytest --cov=personal_mnemonic_medium --cov-report=term-missing personal_mnemonic_medium/tests
+	pytest --cov=personal_mnemonic_medium --cov-report=term-missing personal_mnemonic_medium
 
 lint: ## Format code
 	ruff format . 
