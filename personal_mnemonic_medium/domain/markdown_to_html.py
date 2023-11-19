@@ -3,10 +3,6 @@ from typing import Any
 
 import misaka
 
-from personal_mnemonic_medium.data_access.exporters.anki.globals import (
-    CONFIG,
-)
-
 
 def field_to_html(field: Any) -> str:
     # Math processing
@@ -14,21 +10,9 @@ def field_to_html(field: Any) -> str:
     Need to extract the math in brackets so that it doesn't get markdowned.
     If math is separated with dollar sign it is converted to brackets.
     """
-    if CONFIG["dollar"]:
-        for sep, (op, cl) in [
-            ("$$", (r"\\[", r"\\]")),
-            ("$", (r"\\(", r"\\)")),
-        ]:
-            escaped_sep = sep.replace(r"$", r"\$")
-            # ignore escaped dollar signs when splitting the field
-            field = re.split(rf"(?<!\\){escaped_sep}", field)
-            # add op(en) and cl(osing) brackets to every second element of the list
-            field[1::2] = [op + e + cl for e in field[1::2]]
-            field = "".join(field)
-    else:
-        for bracket in ["(", ")", "[", "]"]:
-            field = field.replace(rf"\{bracket}", rf"\\{bracket}")
-            # backslashes, man.
+    for bracket in ["(", ")", "[", "]"]:
+        field = field.replace(rf"\{bracket}", rf"\\{bracket}")
+        # backslashes, man.
 
     for token in ["*", "/"]:
         if token == "/":
