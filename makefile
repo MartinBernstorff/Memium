@@ -62,6 +62,7 @@ push:
 create-pr:
 	@echo "––– Creating PR –––"
 	@gh pr create --title "$$(git log -1 --pretty=%B)" --body "Auto-created" || true
+	# TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/225 dev: use branch title for PR title
 
 enable-automerge:
 	@gh pr merge --auto --squash --delete-branch
