@@ -18,8 +18,11 @@ Test content
         encoding="utf8",
     )
 
+    # Test globbing through subdirs
     subdir = tmpdir / "subdir"
     Path(subdir).mkdir(exist_ok=True, parents=True)
+
+    # Test UUID appending
     (subdir / "test2.md").write_text("""UUID: """, encoding="utf8")
 
     notes = MarkdownIngester(
