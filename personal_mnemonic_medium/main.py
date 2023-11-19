@@ -74,7 +74,9 @@ def main(
     )
 
     cards = CardPipeline(
-        document_factory=MarkdownNoteFactory(),  # Step 1, get the documents
+        document_factory=MarkdownNoteFactory(
+            cut_note_after="# Backlinks"
+        ),  # Step 1, get the documents
         prompt_extractors=[  # Step 2, get the prompts from the documents
             QAPromptExtractor(),
             ClozePromptExtractor(),
