@@ -1,14 +1,15 @@
 import re
+import textwrap
 from collections.abc import Callable
 from pathlib import Path
 
 import genanki
 
+from personal_mnemonic_medium.data_access.exporters.anki.anki_css import (
+    CARD_MODEL_CSS,
+)
 from personal_mnemonic_medium.data_access.exporters.anki.card_types.base import (
     AnkiCard,
-)
-from personal_mnemonic_medium.data_access.exporters.anki.globals import (
-    CONFIG,
 )
 from personal_mnemonic_medium.domain.markdown_to_html import (
     compile_field,
@@ -41,12 +42,35 @@ class AnkiCloze(AnkiCard):
 
     @property
     def genanki_model(self) -> genanki.Model:
+        model_name = "Ankdown Cloze with UUID"
+        CARD_MATHJAX_CONTENT = textwrap.dedent(
+            """\
+
+"""
+        )
+        # TODO: refactor: remove mathjax if tests keep passing
+
         return genanki.Model(
-            model_id=simple_hash(CONFIG["card_model_name_cloze"]),  # type: ignore
-            name=CONFIG["card_model_name_cloze"],
-            fields=CONFIG["card_model_fields_cloze"],
-            templates=CONFIG["card_model_template_cloze"],
-            css=CONFIG["card_model_css"],  # type: ignore
+            model_id=simple_hash(model_name),
+            name=model_name,
+            fields=[
+                {"name": "Text"},
+                {"name": "Extra"},
+                {"name": "Tags"},
+                {"name": "UUID"},
+            ],
+            templates=[
+                {
+                    "name": "Ankdown Cloze Card with UUID",
+                    "qfmt": r"{{{{cloze:Text}}}}\n<div class='extra'>{{{{Extra}}}}</div>\n{}".format(
+                        CARD_MATHJAX_CONTENT
+                    ),
+                    "afmt": r"{{{{cloze:Text}}}}\n<div class='extra'>{{{{Extra}}}}</div>\n{}".format(
+                        CARD_MATHJAX_CONTENT
+                    ),
+                }
+            ],
+            css=CARD_MODEL_CSS,
             model_type=1,  # This is the model_type number for genanki, takes 0 for QA or 1 for cloze
         )
 
