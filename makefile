@@ -30,7 +30,7 @@ types: ## Type-check code
 
 validate: ## Run all checks
 	make lint
-	make type-check
+	make types
 	make test
 
 merge-main:
