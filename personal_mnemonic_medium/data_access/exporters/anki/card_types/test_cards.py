@@ -53,7 +53,9 @@ class MockCardPipeline(CardPipeline):
             card_exporter=card_exporter,
         )
 
-    def test_card_pipeline(self, input_path: Path) -> list[AnkiCard]:
+    def test_card_pipeline(
+        self, input_path: Path
+    ) -> Sequence[AnkiCard]:
         return self.run(input_path=input_path)
 
 

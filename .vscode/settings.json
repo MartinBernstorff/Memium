@@ -16,5 +16,13 @@
             "label": "Extra important",
             "query": "repo:${owner}/${repository} is:open is:issue milestone:extra-important sort:updated-asc"
         },
+        {
+            "label": "No milestone",
+            "query": "repo:${owner}/${repository} is:open is:issue  no:milestone sort:updated-asc"
+        },
+        {
+            "label": "Important",
+            "query": "repo:${owner}/${repository} is:open is:issue milestone:extra-important sort:updated-asc"
+        },
     ],
 }

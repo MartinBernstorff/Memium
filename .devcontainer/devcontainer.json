@@ -12,14 +12,15 @@
     "customizations": {
         "vscode": {
             "extensions": [
-                "GitHub.copilot",
-                "charliermarsh.ruff",
-                "ms-python.python",
-                "ms-python.vscode-pylance",
-                "GitHub.vscode-pull-request-github",
-                "ms-vscode.makefile-tools",
-                "github.vscode-github-actions",
-            ]
+				"GitHub.copilot",
+				"charliermarsh.ruff",
+				"ms-python.python",
+				"ms-python.vscode-pylance",
+				"GitHub.vscode-pull-request-github",
+				"ms-vscode.makefile-tools",
+				"github.vscode-github-actions",
+				"markis.code-coverage"
+			]
         }
     },
     "mounts": [
