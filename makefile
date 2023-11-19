@@ -1,4 +1,5 @@
 SRC_PATH = personal_mnemonic_medium
+MAKEFLAGS = --no-print-directory
 
 deploy:
 	./docker_cmd.sh
@@ -14,6 +15,7 @@ install:
 	@pip install -e .
 
 test: ## Run tests
+	@echo "––– Testing –––"
 	@pytest personal_mnemonic_medium/tests
 
 test-cov: ## Run tests with coverage
@@ -21,20 +23,24 @@ test-cov: ## Run tests with coverage
 	@pytest --cov=personal_mnemonic_medium --cov-report=term-missing personal_mnemonic_medium/tests
 
 lint: ## Format code
+	@echo "––– Linting –––"
 	@ruff format . 
 	@ruff . --fix \
 		--extend-select F401 \
 		--extend-select F841
 
-type-check: ## Type-check code
+types: ## Type-check code
+	@echo "––– Type-checking –––"
 	@pyright $(SRC_PATH)
 
 validate: ## Run all checks
+	@echo "––– Running all checks –––"
 	@make lint
-	@make type-check
+	@make types
 	@make test
 
 merge-main:
+	@echo "––– Merging main –––"
 	@git fetch
 	@git merge --no-edit origin/main
 
@@ -42,10 +48,12 @@ mm:
 	@make merge-main
 
 push:
+	@echo "––– Pushing to origin/main –––"
 	@git push --set-upstream origin HEAD
 	@git push
 
 create-pr:
+	@echo "––– Creating PR –––"
 	@gh pr create --title "$$(git log -1 --pretty=%B)" --body "Auto-created" || true
 
 enable-automerge:
@@ -63,12 +71,12 @@ pr-status:
 	@gh pr view | cat | grep "url" 
 
 pr: ## Run relevant tests before PR
+	@make merge-main
 	@make push
 	@make create-pr
-	@make merge-main
 	@make validate
 	@make enable-automerge
-	@echo "––– 🎉🎉🎉 All tests succeeded! 🎉🎉🎉 –––"
+	@echo "––– 🎉🎉🎉 All validation succeeded! 🎉🎉🎉 –––"
 	@make pr-status
 
 grow:
