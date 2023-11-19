@@ -7,7 +7,7 @@ from personal_mnemonic_medium.data_access.exporters.anki.card_types.base import 
     AnkiCard,
 )
 from personal_mnemonic_medium.data_access.exporters.anki.sync.anki_sync import (
-    _cards_to_decks,
+    _cards_to_decks,  # type: ignore
 )
 
 
