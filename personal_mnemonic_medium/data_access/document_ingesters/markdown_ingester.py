@@ -45,7 +45,8 @@ class MarkdownNoteFactory(DocumentFactory):
                     ) from e
 
                 uuid = append_guid(
-                    file_path, uuid_generator=self._uuid_generator
+                    file_path=file_path,
+                    uuid_generator=self._uuid_generator,
                 )
 
             if self._cut_note_after in file_contents:
