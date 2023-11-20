@@ -3,6 +3,7 @@ import traceback
 import urllib.request
 from collections import defaultdict
 from collections.abc import Sequence
+from dataclasses import dataclass
 from pathlib import Path
 from time import sleep
 from typing import Any
@@ -24,6 +25,13 @@ from personal_mnemonic_medium.data_access.exporters.anki.package_generator impor
 # TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/207 Refactor deck sync. Functional core, imperative shell
 
 msg = Printer(timestamp=True)
+
+
+@dataclass(frozen=True)
+class AnkiConnectParams:
+    apkg_dir: Path
+    max_wait_seconds: int
+    delete_cards: bool
 
 
 # helper for creating anki connect requests
@@ -79,11 +87,8 @@ def anki_connect_is_live() -> bool:
 # Borrowed from https://github.com/lukesmurray/markdown-anki-decks/blob/de6556d7ecd2d39335607c05171f8a9c39c8f422/markdown_anki_decks/sync.py#L64
 def sync_deck(
     cards: Sequence[AnkiCard],
-    save_dir_path: Path,
-    sync_dir_path: Path,
-    use_anki_connect: bool,
-    delete_cards: bool = True,
-    max_wait_for_ankiconnect: int = 30,
+    anki_connect: AnkiConnectParams | None,
+    local_output_dir: Path,
 ):
     # TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/210 feat: log which cards are added to disk
 
@@ -95,8 +100,8 @@ def sync_deck(
         msg.fail("Skipping Medicine deck to save resources")
         return
 
-    if use_anki_connect:
-        for _ in range(max_wait_for_ankiconnect):
+    if anki_connect:
+        for _ in range(anki_connect.max_wait_seconds):
             if anki_connect_is_live():
                 break
             print("Waiting for anki connect to start...")
@@ -117,16 +122,15 @@ def sync_deck(
     md_note_guids = get_md_note_infos(deck_bundle)
 
     note_diff = md_note_guids.symmetric_difference(anki_note_guids)
+
     if note_diff:
         _sync_deck(
             deck_bundle=deck_bundle,
-            save_dir_path=save_dir_path,
-            sync_dir_path=sync_dir_path,
-            delete_cards=delete_cards,
+            apkg_output_filepath=local_output_dir,
+            anki_connect=anki_connect,
             anki_note_info_by_guid=anki_note_info_by_guid,
             anki_note_guids=anki_note_guids,
             md_note_guids=md_note_guids,
-            use_anki_connect=use_anki_connect,
         )
     else:
         msg.info("Skipped")
@@ -137,13 +141,11 @@ def sync_deck(
 
 def _sync_deck(
     deck_bundle: DeckBundle,
-    save_dir_path: Path,
-    sync_dir_path: Path,
-    delete_cards: bool,
+    apkg_output_filepath: Path,
+    anki_connect: AnkiConnectParams | None,
     anki_note_info_by_guid: dict[str, Any] | None,
     anki_note_guids: set[str],
     md_note_guids: set[str],
-    use_anki_connect: bool,
 ):
     msg.info(" Syncing deck: ")
     msg.info(f"\t{deck_bundle.deck.name}")  # type: ignore
@@ -161,16 +163,15 @@ def _sync_deck(
         msg.info("\tNotes removed: ")
         msg.info(f"\t\t{removed_note_guids}")
 
-    package_path = deck_bundle.save_deck_to_file(
-        save_dir_path / "deck.apkg"
-    )
-    if use_anki_connect:
+    msg.info(f"Saving deck to {apkg_output_filepath}")
+    package_path = deck_bundle.save_deck_to_file(apkg_output_filepath)
+    if anki_connect:
         try:
-            sync_path = str(sync_dir_path / "deck.apkg")
+            sync_path = str(anki_connect.apkg_dir / "deck.apkg")
             invoke("importPackage", path=sync_path)
             print(f"Imported {deck_bundle.deck.name}!")  # type: ignore
 
-            if delete_cards:
+            if anki_connect.delete_cards:
                 try:
                     guids_to_delete = anki_note_guids - md_note_guids
                     if guids_to_delete:
@@ -280,8 +281,8 @@ def sync_model(model: Model):
 
 # TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/240 refactor: sync decks into functional core, imperative shell
 def sync_decks(
-    host_output_dir: Path,
-    use_anki_connect: bool,
+    local_output_dir: Path,
+    anki_connect: AnkiConnectParams | None,
     cards: Sequence[AnkiCard],
 ):
     decks = _cards_to_decks(cards)
@@ -289,10 +290,8 @@ def sync_decks(
     for cards in decks.values():
         sync_deck(
             cards=cards,
-            sync_dir_path=host_output_dir,
-            save_dir_path=Path("/output"),
-            max_wait_for_ankiconnect=30,
-            use_anki_connect=use_anki_connect,
+            anki_connect=anki_connect,
+            local_output_dir=local_output_dir,
         )
 
 

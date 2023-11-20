@@ -17,6 +17,7 @@ from personal_mnemonic_medium.data_access.exporters.anki.package_generator impor
     AnkiPackageGenerator,
 )
 from personal_mnemonic_medium.data_access.exporters.anki.sync.anki_sync import (
+    AnkiConnectParams,
     sync_decks,
 )
 from personal_mnemonic_medium.domain.card_pipeline import CardPipeline
@@ -32,7 +33,8 @@ msg = Printer(timestamp=True)
 
 def main(
     input_dir: Path,
-    host_output_dir: Path,
+    apkg_output_filepath: Path,
+    ankiconnect_sync_from_dir: Path,
     watch: Annotated[
         bool,
         typer.Option(
@@ -51,9 +53,11 @@ def main(
             f"Input directory {input_dir} does not exist"
         )
 
-    if not host_output_dir.exists():
-        msg.info(f"Creating output directory {host_output_dir}")
-        host_output_dir.mkdir(parents=True, exist_ok=True)
+    if not apkg_output_filepath.parent.exists():
+        apkg_output_filepath.parent.mkdir(exist_ok=True, parents=True)
+        msg.info(
+            f"Creating output directory {ankiconnect_sync_from_dir}"
+        )
 
     sentry_sdk.init(
         dsn="https://37f17d6aa7742424652663a04154e032@o4506053997166592.ingest.sentry.io/4506053999984640"
@@ -74,7 +78,17 @@ def main(
         card_exporter=AnkiPackageGenerator(),  # Step 3, get the cards from the prompts
     ).run(input_path=input_dir)
 
-    sync_decks(host_output_dir, use_anki_connect, cards)
+    sync_decks(
+        local_output_dir=apkg_output_filepath,
+        anki_connect=None
+        if not use_anki_connect
+        else AnkiConnectParams(
+            apkg_dir=ankiconnect_sync_from_dir,
+            max_wait_seconds=15,
+            delete_cards=True,
+        ),
+        cards=cards,
+    )
 
     if watch:
         sleep_seconds = 60
@@ -83,9 +97,10 @@ def main(
         )
         sleep(sleep_seconds)
         main(
+            apkg_output_filepath=apkg_output_filepath,
             input_dir=input_dir,
             watch=watch,
-            host_output_dir=host_output_dir,
+            ankiconnect_sync_from_dir=ankiconnect_sync_from_dir,
             use_anki_connect=use_anki_connect,
         )
 
@@ -93,7 +108,8 @@ def main(
 if __name__ == "__main__":
     main(
         input_dir=Path("/input"),
-        host_output_dir=Path("/Users/au484925/ankidecks/"),
+        ankiconnect_sync_from_dir=Path("/Users/au484925/ankidecks/"),
         watch=True,
         use_anki_connect=True,
+        apkg_output_filepath=Path("/output/deck.apkg"),
     )
