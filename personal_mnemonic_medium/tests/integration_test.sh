@@ -3,17 +3,21 @@ docker build . -t personal-mnemonic-medium:latest -f Dockerfile
 docker volume create ankidecks
 
 INPUT_DIR=$HOME/input/
-OUTPUT_DIR=$HOME/ankidecks/integration_test
+HOST_OUTPUT_DIR=$HOME/ankidecks/integration_test
+CONTAINER_APKG=/output/deck.apkg
 
 mkdir -p $INPUT_DIR
 echo -e "Q. Question here\nA. Answer!" >> $HOME/input/test.md
 
 docker run -itd \
   -v $INPUT_DIR:/input \
-  -v $OUTPUT_DIR:/output \
+  -v $HOST_OUTPUT_DIR:/output \
   --restart unless-stopped \
   personal-mnemonic-medium \
-  python personal_mnemonic_medium/presentation/cli.py /input/ $OUTPUT_DIR \
+  python personal_mnemonic_medium/presentation/cli.py \
+  /input/ \
+  $CONTAINER_APKG \
+  $HOST_OUTPUT_DIR \
   --watch \
   --no-use-anki-connect
 
@@ -24,8 +28,7 @@ for i in {1..15} ; do
   sleep 1
 done
 
-FILE="$OUTPUT_DIR/deck.apkg"
-if [ -f "$FILE" ]; then
+if [ -f "$CONTAINER_APKG" ]; then
     echo "File exists."
     
     # Get the file modification time in seconds from epoch

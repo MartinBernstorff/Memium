@@ -41,7 +41,7 @@ def get_env(default: str) -> str:
 def main(
     input_dir: Path,
     apkg_output_filepath: Path,
-    ankiconnect_sync_from_dir: Path,
+    host_ankiconnect_dir: Path,
     watch: Annotated[
         bool,
         typer.Option(
@@ -62,9 +62,7 @@ def main(
 
     if not apkg_output_filepath.parent.exists():
         apkg_output_filepath.parent.mkdir(exist_ok=True, parents=True)
-        msg.info(
-            f"Creating output directory {ankiconnect_sync_from_dir}"
-        )
+        msg.info(f"Creating output directory {host_ankiconnect_dir}")
 
     sentry_sdk.init(
         dsn="https://37f17d6aa7742424652663a04154e032@o4506053997166592.ingest.sentry.io/4506053999984640",
@@ -86,12 +84,14 @@ def main(
         card_exporter=AnkiPackageGenerator(),  # Step 3, get the cards from the prompts
     ).run(input_path=input_dir)
 
+    # TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/263 refactor: separate writing decks to disk and ankiconnect sync
+
     sync_decks(
         local_output_dir=apkg_output_filepath,
         anki_connect=None
         if not use_anki_connect
         else AnkiConnectParams(
-            apkg_dir=ankiconnect_sync_from_dir,
+            apkg_dir=host_ankiconnect_dir,
             max_wait_seconds=15,
             delete_cards=True,
         ),
@@ -108,7 +108,7 @@ def main(
             apkg_output_filepath=apkg_output_filepath,
             input_dir=input_dir,
             watch=watch,
-            ankiconnect_sync_from_dir=ankiconnect_sync_from_dir,
+            host_ankiconnect_dir=host_ankiconnect_dir,
             use_anki_connect=use_anki_connect,
         )
 
@@ -116,7 +116,7 @@ def main(
 if __name__ == "__main__":
     main(
         input_dir=Path("/input"),
-        ankiconnect_sync_from_dir=Path("/Users/au484925/ankidecks/"),
+        host_ankiconnect_dir=Path("/Users/au484925/ankidecks/"),
         watch=True,
         use_anki_connect=True,
         apkg_output_filepath=Path("/output/deck.apkg"),
