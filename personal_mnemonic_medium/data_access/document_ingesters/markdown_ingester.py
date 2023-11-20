@@ -36,28 +36,24 @@ class MarkdownIngester(DocumentIngester):
     def _cut_contents(self, file_contents: str) -> str:
         return file_contents.split(self._cut_note_after)[0]
 
-    def _get_uuid(self, file_path: Path, file_contents: str) -> str:
-        try:
-            uuid = self._uuid_extractor(file_contents)
-        except IndexError as e:
-            if self._uuid_generator is None:
-                raise ValueError(
-                    f"Could not find UUID in {file_path}"
-                ) from e
-
-            # TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/248 Make GUID-appending part of the function signature
-            uuid = append_guid(
-                file_path=file_path,
-                uuid_generator=self._uuid_generator,
-            )
-
-        return uuid
-
     def get_note_from_file(self, file_path: Path) -> Document:
         with file_path.open(encoding="utf8") as f:
             file_contents = f.read()
 
-            uuid = self._get_uuid(file_path, file_contents)
+            try:
+                uuid = self._uuid_extractor(file_contents)
+            except IndexError as e:
+                if self._uuid_generator is None:
+                    raise ValueError(
+                        f"Could not find UUID in {file_path}"
+                    ) from e
+
+                # TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/248 Make GUID-appending part of the function signature
+                uuid = append_guid(
+                    file_path=file_path,
+                    uuid_generator=self._uuid_generator,
+                )
+                file_contents += uuid
 
             if self._cut_note_after in file_contents:
                 file_contents = self._cut_contents(file_contents)
