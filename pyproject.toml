@@ -10,6 +10,7 @@ description = "Personal Mnemonic Medium"
 classifiers = ["Programming Language :: Python :: 3.11"]
 requires-python = ">=3.11"
 
+# TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/260 Setup dependabot automerge
 dependencies = [
   "functionalpy==0.6.0",
   "misaka==2.1.1",

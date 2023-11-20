@@ -13,3 +13,4 @@ COPY --from=builder /root/.local /root/.local
 ENV PATH=/root/.local/bin:${PATH}
 COPY --from=builder /app .
 RUN pip install -e .
+ENV ENV=production-container

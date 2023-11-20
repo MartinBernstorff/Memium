@@ -12,15 +12,15 @@
     "customizations": {
         "vscode": {
             "extensions": [
-				"GitHub.copilot",
-				"charliermarsh.ruff",
-				"ms-python.python",
-				"ms-python.vscode-pylance",
-				"GitHub.vscode-pull-request-github",
-				"ms-vscode.makefile-tools",
-				"github.vscode-github-actions",
-				"markis.code-coverage"
-			]
+                "GitHub.copilot",
+                "charliermarsh.ruff",
+                "ms-python.python",
+                "ms-python.vscode-pylance",
+                "GitHub.vscode-pull-request-github",
+                "ms-vscode.makefile-tools",
+                "github.vscode-github-actions",
+                "markis.code-coverage"
+            ]
         }
     },
     "mounts": [
@@ -31,7 +31,7 @@
     "features": {
         "ghcr.io/devcontainers/features/github-cli:1": {}
     },
-    "postStartCommand": "make install"
+    "postStartCommand": "make install && export ENV=dev-container"
     // Features to add to the dev container. More info: https://containers.dev/features.
     // "features": {},
     // Use 'forwardPorts' to make a list of ports inside the container available locally.
