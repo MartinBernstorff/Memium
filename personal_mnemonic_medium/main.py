@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 from time import sleep
 from typing import Annotated
@@ -31,6 +32,13 @@ from personal_mnemonic_medium.domain.prompt_extractors.qa_extractor import (
 msg = Printer(timestamp=True)
 
 
+def get_env(default: str) -> str:
+    if os.getenv("GITHUB_ACTIONS"):
+        return "GITHUB_ACTIONS"
+    else os.getenv("ENV"):
+        return os.getenv("ENV", default)
+
+
 def main(
     input_dir: Path,
     apkg_output_filepath: Path,
@@ -60,7 +68,8 @@ def main(
         )
 
     sentry_sdk.init(
-        dsn="https://37f17d6aa7742424652663a04154e032@o4506053997166592.ingest.sentry.io/4506053999984640"
+        dsn="https://37f17d6aa7742424652663a04154e032@o4506053997166592.ingest.sentry.io/4506053999984640",
+        environment=get_env(default="None"),
     )
 
     cards = CardPipeline(
