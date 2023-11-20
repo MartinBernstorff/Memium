@@ -34,8 +34,7 @@ msg = Printer(timestamp=True)
 def get_env(default: str) -> str:
     if os.getenv("GITHUB_ACTIONS"):
         return "GITHUB_ACTIONS"
-    else os.getenv("ENV"):
-        return os.getenv("ENV", default)
+    return os.getenv("ENV", default)
 
 
 def main(
