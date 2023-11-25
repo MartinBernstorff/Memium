@@ -93,7 +93,8 @@ def main(
                 apkg_dir=host_ankiconnect_dir,
                 max_wait_seconds=15,
                 delete_cards=True,
-            )
+            ),
+            write_apkg_dir=apkg_output_filepath.parent,
         ).sync_prompts(prompts=prompts)
     else:
         bundles = AnkiPackageGenerator().prompts_to_bundles(

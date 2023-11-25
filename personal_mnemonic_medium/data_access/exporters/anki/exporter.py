@@ -60,7 +60,10 @@ class NoteDiff:
 class AnkiExporter(PromptExporter):
     """Generates an anki package from a list of anki cards"""
 
-    def __init__(self, anki_connect: AnkiConnectParams) -> None:
+    def __init__(
+        self, anki_connect: AnkiConnectParams, write_apkg_dir: Path
+    ) -> None:
+        self.write_apkg_dir = write_apkg_dir
         self.anki_connect = anki_connect
 
     def get_anki_database_note_infos(
@@ -92,12 +95,11 @@ class AnkiExporter(PromptExporter):
             write_apkg_dir (Path): The path to write the apkg to
         """
         apkg_name = "deck.apkg"
-        container_path = self.anki_connect.apkg_dir / apkg_name)
-        deck_bundle.save_to_apkg(
-            output_path=container_path,
-        )
-        deck_name: str = deck_bundle.deck.name  # type: ignore
 
+        container_path = write_apkg_dir / apkg_name
+        deck_bundle.save_to_apkg(output_path=container_path)
+
+        deck_name: str = deck_bundle.deck.name  # type: ignore
         try:
             sync_path = str(self.anki_connect.apkg_dir / apkg_name)
             invoke("importPackage", path=sync_path)
@@ -105,8 +107,8 @@ class AnkiExporter(PromptExporter):
         except Exception:
             print(
                 f"""Unable to sync {deck_name}.
-    Path on host: {sync_path}
-    Path in container: {container_path}
+    Path written to: {container_path}
+    Path to sync from: {sync_path}
 """
             )
             traceback.print_exc()
@@ -140,7 +142,10 @@ class AnkiExporter(PromptExporter):
         for bundle in bundles:
             note_diff = self.get_note_diff(deck_bundle=bundle)
             if len(note_diff.symmetric_diff) > 0:
-                self.add_to_anki(deck_bundle=bundle)
+                self.add_to_anki(
+                    deck_bundle=bundle,
+                    write_apkg_dir=self.write_apkg_dir,
+                )
 
                 if self.anki_connect.delete_cards:
                     self.delete_diff(note_diff=note_diff)
