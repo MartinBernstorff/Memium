@@ -100,8 +100,8 @@ class AnkiExporter(PromptExporter):
         deck_bundle.save_to_apkg(output_path=container_path)
 
         deck_name: str = deck_bundle.deck.name  # type: ignore
+        sync_path = self.anki_connect.apkg_dir / apkg_name
         try:
-            sync_path = str(self.anki_connect.apkg_dir / apkg_name)
             invoke("importPackage", path=sync_path)
             print(f"Imported {deck_name}!")
         except Exception:
