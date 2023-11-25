@@ -1,6 +1,8 @@
 # helper for creating anki connect requests
 import json
 import urllib.request
+from dataclasses import dataclass
+from pathlib import Path
 from typing import Any
 
 from personal_mnemonic_medium.data_access.exporters.anki.globals import (
@@ -57,3 +59,10 @@ def anki_connect_is_live() -> bool:
         msg.fail(f"Error was {err}")
 
     return False
+
+
+@dataclass(frozen=True)
+class AnkiConnectParams:
+    apkg_dir: Path
+    max_wait_seconds: int
+    delete_cards: bool
