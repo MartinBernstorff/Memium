@@ -80,16 +80,35 @@ class AnkiExporter(PromptExporter):
             deck_bundle=deck_bundle,
         )
 
-    def add_to_anki(self, deck_bundle: DeckBundle) -> None:
-        package_path = deck_bundle.save_to_apkg(
-            output_path=Path("anki_package.apkg")
+    def add_to_anki(
+        self, deck_bundle: DeckBundle, write_apkg_dir: Path
+    ) -> None:
+        """Adds a deck bundle to anki, and syncs it to the anki server.
+
+        Takes two paths to handle containerisation. Within the container, write to write_apkg_path. Outside of the container, import from import_apkg_from_path.
+
+        Args:
+            deck_bundle (DeckBundle): The deck bundle to add to anki
+            write_apkg_dir (Path): The path to write the apkg to
+        """
+        apkg_name = "deck.apkg"
+        container_path = self.anki_connect.apkg_dir / apkg_name)
+        deck_bundle.save_to_apkg(
+            output_path=container_path,
         )
+        deck_name: str = deck_bundle.deck.name  # type: ignore
+
         try:
-            sync_path = str(self.anki_connect.apkg_dir / "deck.apkg")
+            sync_path = str(self.anki_connect.apkg_dir / apkg_name)
             invoke("importPackage", path=sync_path)
-            print(f"Imported {deck_bundle.deck.name}!")  # type: ignore
+            print(f"Imported {deck_name}!")
         except Exception:
-            print(f"Unable to sync {package_path} to anki")
+            print(
+                f"""Unable to sync {deck_name}.
+    Path on host: {sync_path}
+    Path in container: {container_path}
+"""
+            )
             traceback.print_exc()
 
     def delete_diff(self, note_diff: NoteDiff):
