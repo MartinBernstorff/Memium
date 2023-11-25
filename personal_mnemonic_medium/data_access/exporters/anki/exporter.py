@@ -56,6 +56,7 @@ class NoteDiff:
 
 
 # TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/272 refactor: create pydantic class for noteinfo
+# TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/273 Add AnkiConnect gateway, using all stateful operations
 class AnkiExporter(PromptExporter):
     """Generates an anki package from a list of anki cards"""
 
