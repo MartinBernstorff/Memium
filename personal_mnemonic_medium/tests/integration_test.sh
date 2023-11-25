@@ -4,6 +4,7 @@ docker volume create ankidecks
 
 INPUT_DIR=$HOME/input/
 HOST_OUTPUT_DIR=$HOME/ankidecks/integration_test
+HOST_OUTPUT_FILE=$HOST_OUTPUT_DIR/deck.apkg
 ANKICONNECT_SYNC_APKG=/output/deck.apkg
 
 mkdir -p $INPUT_DIR
@@ -18,17 +19,12 @@ docker run -it \
   /input/ \
   $ANKICONNECT_SYNC_APKG \
   $HOST_OUTPUT_DIR \
-  --watch \
+  --no-watch \
   --no-use-anki-connect
 
-echo "Waiting for Anki package to be created..."
-echo "Waiting for 15 seconds..."
-for i in {1..15} ; do
-  echo "$i"
-  sleep 1
-done
+echo "Checking if file exists at $HOST_OUTPUT_FILE"
 
-if [ -f "$ANKICONNECT_SYNC_APKG" ]; then
+if [ -f "$HOST_OUTPUT_FILE" ]; then
     echo "File exists."
     
     # Get the file modification time in seconds from epoch
