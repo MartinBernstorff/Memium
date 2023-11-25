@@ -4,19 +4,19 @@ docker volume create ankidecks
 
 INPUT_DIR=$HOME/input/
 HOST_OUTPUT_DIR=$HOME/ankidecks/integration_test
-CONTAINER_APKG=/output/deck.apkg
+ANKICONNECT_SYNC_APKG=/output/deck.apkg
 
 mkdir -p $INPUT_DIR
 echo -e "Q. Question here\nA. Answer!" >> $HOME/input/test.md
 
-docker run -itd \
+docker run -it \
   -v $INPUT_DIR:/input \
   -v $HOST_OUTPUT_DIR:/output \
   --restart unless-stopped \
   personal-mnemonic-medium \
   python personal_mnemonic_medium/presentation/cli.py \
   /input/ \
-  $CONTAINER_APKG \
+  $ANKICONNECT_SYNC_APKG \
   $HOST_OUTPUT_DIR \
   --watch \
   --no-use-anki-connect
@@ -28,7 +28,7 @@ for i in {1..15} ; do
   sleep 1
 done
 
-if [ -f "$CONTAINER_APKG" ]; then
+if [ -f "$ANKICONNECT_SYNC_APKG" ]; then
     echo "File exists."
     
     # Get the file modification time in seconds from epoch
