@@ -14,7 +14,7 @@ from personal_mnemonic_medium.data_access.document_ingesters.uuid_handling impor
     extract_bear_guid,
     generate_bear_guid,
 )
-from personal_mnemonic_medium.data_access.exporters.anki.package_generator import (
+from personal_mnemonic_medium.data_access.exporters.anki.anki_exporter import (
     AnkiPackageGenerator,
 )
 from personal_mnemonic_medium.data_access.exporters.anki.sync.anki_sync import (

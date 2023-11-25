@@ -5,23 +5,25 @@ from pathlib import Path
 from time import sleep
 from typing import Any
 
-from genanki import Model, Note
+from genanki import Model
 from wasabi import Printer
 
-from personal_mnemonic_medium.data_access.exporters.anki.card_types.base import (
-    AnkiCard,
-)
-from personal_mnemonic_medium.data_access.exporters.anki.package_generator import (
+from personal_mnemonic_medium.data_access.exporters.anki.anki_exporter import (
     AnkiPackageGenerator,
     DeckBundle,
 )
-from personal_mnemonic_medium.data_access.exporters.anki.sync.ankiconnect.ankiconnect_utils import (
+from personal_mnemonic_medium.data_access.exporters.anki.card_types.base import (
+    AnkiCard,
+)
+from personal_mnemonic_medium.data_access.exporters.anki.sync.gateway.ankiconnect_utils import (
     AnkiConnectParams,
     anki_connect_is_live,
     invoke,
 )
 
 msg = Printer(timestamp=True)
+
+# TODO: refactor: add ankiconnect gateway for injection
 
 
 # synchronize the deck with markdown
@@ -52,15 +54,16 @@ def sync_deck(
             return
 
         # get a list of anki cards in the deck
-        anki_note_info_by_guid, anki_note_guids = get_anki_note_infos(
+        anki_note_info_by_guid = get_anki_server_guid2noteinfo(
             deck_bundle
         )
+        anki_note_guids: set[str] = set(anki_note_info_by_guid.keys())
     else:
         anki_note_info_by_guid = None
         anki_note_guids: set[str] = set()
 
     # get the unique guids of the md notes
-    md_note_guids = get_md_note_infos(deck_bundle)
+    md_note_guids = deck_bundle.note_guids()
 
     note_diff = md_note_guids.symmetric_difference(anki_note_guids)
 
@@ -138,15 +141,10 @@ def _sync_deck(
             traceback.print_exc()
 
 
-def get_md_note_infos(deck_bundle: DeckBundle) -> set[str]:
-    md_notes: list[Note] = deck_bundle.deck.notes  # type: ignore
-    md_note_guids = {str(n.guid) for n in md_notes}  # type: ignore
-    return md_note_guids
-
-
-def get_anki_note_infos(
+# TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/272 refactor: create pydantic class for noteinfo
+def get_anki_server_guid2noteinfo(
     deck_bundle: DeckBundle
-) -> tuple[dict[str, Any], set[str]]:
+) -> dict[str, Any]:
     anki_card_ids: list[int] = invoke(
         "findCards",
         query=f'"deck:{deck_bundle.deck.name}"',  # type: ignore
@@ -161,17 +159,14 @@ def get_anki_note_infos(
     anki_notes_info = invoke("notesInfo", notes=anki_note_ids)
 
     # convert the note info into a dictionary of guid to note info
-    anki_note_info_by_guid = {
-        n["fields"]["UUID"]["value"]
+    guid2note_info = {
+        info["fields"]["UUID"]["value"]
         .replace("<p>", "")
         .replace("</p>", "")
-        .strip(): n
-        for n in anki_notes_info
+        .strip(): info
+        for info in anki_notes_info
     }
-
-    # get the unique guids of the anki notes
-    anki_note_guids = set(anki_note_info_by_guid.keys())
-    return anki_note_info_by_guid, anki_note_guids
+    return guid2note_info
 
 
 # synchronize the model and styling in the deck

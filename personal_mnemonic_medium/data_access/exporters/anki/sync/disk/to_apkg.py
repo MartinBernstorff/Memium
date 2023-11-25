@@ -7,7 +7,7 @@ from wasabi import Printer
 from personal_mnemonic_medium.data_access.exporters.anki.card_types.base import (
     AnkiCard,
 )
-from personal_mnemonic_medium.data_access.exporters.anki.package_generator import (
+from personal_mnemonic_medium.data_access.exporters.anki.anki_exporter import (
     AnkiPackageGenerator,
 )
 

@@ -27,3 +27,4 @@ class Prompt(Protocol):
         line_nr: int | None = None,
     ):
         ...
+        # refactor: simplify init by using properties of the source_note

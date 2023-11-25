@@ -12,11 +12,11 @@ from personal_mnemonic_medium.data_access.document_ingesters.markdown_ingester i
 from personal_mnemonic_medium.data_access.document_ingesters.uuid_handling import (
     extract_bear_guid,
 )
+from personal_mnemonic_medium.data_access.exporters.anki.anki_exporter import (
+    AnkiPackageGenerator,
+)
 from personal_mnemonic_medium.data_access.exporters.anki.card_types.qa import (
     AnkiQA,
-)
-from personal_mnemonic_medium.data_access.exporters.anki.package_generator import (
-    AnkiPackageGenerator,
 )
 from personal_mnemonic_medium.domain.card_pipeline import CardPipeline
 from personal_mnemonic_medium.domain.prompt_extractors.base import (
@@ -25,10 +25,39 @@ from personal_mnemonic_medium.domain.prompt_extractors.base import (
 from personal_mnemonic_medium.domain.prompt_extractors.cloze_extractor import (
     ClozePromptExtractor,
 )
+from personal_mnemonic_medium.domain.prompt_extractors.prompt import (
+    Prompt,
+)
 from personal_mnemonic_medium.domain.prompt_extractors.qa_extractor import (
     QAPrompt,
     QAPromptExtractor,
 )
+
+
+class MockPrompt(Prompt):
+    def __init__(
+        self,
+        content: str = "Ignore",  # noqa: ARG002
+        note_uuid: str = "Ignore",  # noqa: ARG002
+        source_note: Document = Document(  # noqa: B008
+            content="", uuid="1234", source_path=Path(__file__)
+        ),
+        tags: list[str] | None = None,
+        line_nr: int | None = None,
+    ):
+        if tags is None:
+            tags = ["tag1"]
+
+        self.source_note = source_note
+        self.line_nr = line_nr
+
+    @property
+    def tags(self) -> Sequence[str]:
+        return self.source_note.tags
+
+    @property
+    def note_uuid(self) -> str:
+        return self.source_note.uuid
 
 
 class MockCardPipeline(CardPipeline):
@@ -93,23 +122,24 @@ def test_get_subtags():
     assert "Medicine" in card.subdeck
 
 
-def test_qa_uuid_generation():
-    # TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/204 Remove dependency on test_md_files
-    file_path = Path(__file__).parent / "test_cards.md"
-    cards = MockCardPipeline(
-        prompt_extractors=[
-            QAPromptExtractor(
-                question_prefix="Q.", answer_prefix="A."
-            )
-        ]
-    ).run(input_path=file_path)
-    notes = [c.to_genanki_note() for c in cards]
+@pytest.mark.parametrize(
+    ("question", "answer", "UUID", "reference_guid"),
+    [
+        ("What is the capital of France?", "Paris", 1),
+        ("What *bold* [[Value]] is this?", "A. [[Bold value]].", 2),
+    ],
+)
+def test_qa_prompt_uuid(
+    question: str, answer: str, reference_guid: int
+):
+    source_prompt = MockPrompt()
+    card = AnkiQA(
+        fields=[question, answer, "extra", source_prompt.note_uuid],
+        source_prompt=source_prompt,
+    )
 
-    field_guids: set[str] = {note.guid for note in notes}  # type: ignore
-    reference_guids = {9315717920, 3912828915, 6300568814}
-    generated_guids = {card.card_uuid for card in cards}
-
-    assert reference_guids == generated_guids == field_guids
+    generated_guid = card.card_uuid
+    assert reference_guid == generated_guid
 
 
 def test_cloze_uuid_generation():

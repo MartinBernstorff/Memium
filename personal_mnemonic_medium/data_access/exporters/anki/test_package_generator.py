@@ -6,7 +6,7 @@ from personal_mnemonic_medium.data_access.document_ingesters.document import (
 from personal_mnemonic_medium.data_access.exporters.anki.card_types.qa import (
     AnkiQA,
 )
-from personal_mnemonic_medium.data_access.exporters.anki.package_generator import (
+from personal_mnemonic_medium.data_access.exporters.anki.anki_exporter import (
     AnkiPackageGenerator,
 )
 from personal_mnemonic_medium.domain.prompt_extractors.qa_extractor import (
