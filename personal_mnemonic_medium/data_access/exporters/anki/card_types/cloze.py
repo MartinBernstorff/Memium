@@ -23,6 +23,7 @@ from personal_mnemonic_medium.domain.url_generators.obsidian_url import (
 from personal_mnemonic_medium.utils.hasher import simple_hash
 
 
+# TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/268 Refactor AnkiCloze to have explicit fields in the constructor
 class AnkiCloze(AnkiCard):
     def __init__(
         self,

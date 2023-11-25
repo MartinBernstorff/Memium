@@ -1,6 +1,5 @@
 import os
 from pathlib import Path
-from time import sleep
 from typing import Annotated
 
 import sentry_sdk
@@ -14,14 +13,18 @@ from personal_mnemonic_medium.data_access.document_ingesters.uuid_handling impor
     extract_bear_guid,
     generate_bear_guid,
 )
-from personal_mnemonic_medium.data_access.exporters.anki.package_generator import (
+from personal_mnemonic_medium.data_access.exporters.anki.exporter import (
+    AnkiExporter,
+)
+from personal_mnemonic_medium.data_access.exporters.anki.sync.bundle_generator import (
     AnkiPackageGenerator,
 )
-from personal_mnemonic_medium.data_access.exporters.anki.sync.anki_sync import (
+from personal_mnemonic_medium.data_access.exporters.anki.sync.gateway_utils import (
     AnkiConnectParams,
-    sync_decks,
 )
-from personal_mnemonic_medium.domain.card_pipeline import CardPipeline
+from personal_mnemonic_medium.domain.card_pipeline import (
+    extract_prompts,
+)
 from personal_mnemonic_medium.domain.prompt_extractors.cloze_extractor import (
     ClozePromptExtractor,
 )
@@ -69,41 +72,42 @@ def main(
         environment=get_env(default="None"),
     )
 
-    cards = CardPipeline(
-        document_factory=MarkdownIngester(
+    prompts = extract_prompts(
+        input_dir=input_dir,
+        document_ingester=MarkdownIngester(
             cut_note_after="# Backlinks",
             uuid_extractor=extract_bear_guid,
             uuid_generator=generate_bear_guid,
-        ),  # Step 1, get the documents
-        prompt_extractors=[  # Step 2, get the prompts from the documents
+        ),
+        prompt_extractors=[
             QAPromptExtractor(
                 question_prefix="Q.", answer_prefix="A."
             ),
             ClozePromptExtractor(),
         ],
-        card_exporter=AnkiPackageGenerator(),  # Step 3, get the cards from the prompts
-    ).run(input_path=input_dir)
-
-    # TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/263 refactor: separate writing decks to disk and ankiconnect sync
-
-    sync_decks(
-        local_output_dir=apkg_output_filepath,
-        anki_connect=None
-        if not use_anki_connect
-        else AnkiConnectParams(
-            apkg_dir=host_ankiconnect_dir,
-            max_wait_seconds=15,
-            delete_cards=True,
-        ),
-        cards=cards,
     )
+
+    if use_anki_connect:
+        AnkiExporter(
+            anki_connect=AnkiConnectParams(
+                apkg_dir=host_ankiconnect_dir,
+                max_wait_seconds=15,
+                delete_cards=True,
+            ),
+            write_apkg_dir=apkg_output_filepath.parent,
+        ).sync_prompts(prompts=prompts)
+    else:
+        bundles = AnkiPackageGenerator().prompts_to_bundles(
+            prompts=prompts
+        )
+        for bundle in bundles:
+            bundle.save_to_apkg(output_path=apkg_output_filepath)
 
     if watch:
         sleep_seconds = 60
         msg.good(
             f"Sync complete, sleeping for {sleep_seconds} seconds"
         )
-        sleep(sleep_seconds)
         main(
             apkg_output_filepath=apkg_output_filepath,
             input_dir=input_dir,

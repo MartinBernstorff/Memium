@@ -20,6 +20,7 @@ from personal_mnemonic_medium.domain.prompt_extractors.prompt import (
 from personal_mnemonic_medium.utils.hasher import simple_hash
 
 
+# TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/267 Refactor AnkiQA to have explicit fields in the constructor
 class AnkiQA(AnkiCard):
     def __init__(
         self,
@@ -91,7 +92,6 @@ class AnkiQA(AnkiCard):
             css=CARD_MODEL_CSS,
             model_type=0,
         )
-        # TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/203 Refactor the CONFIG to be a dataclass
 
     @property
     def card_uuid(self) -> int:

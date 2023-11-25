@@ -19,7 +19,8 @@
                 "GitHub.vscode-pull-request-github",
                 "ms-vscode.makefile-tools",
                 "github.vscode-github-actions",
-                "markis.code-coverage"
+                "markis.code-coverage",
+                "Gerrnperl.outline-map"
             ]
         }
     },
