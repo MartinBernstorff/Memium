@@ -5,7 +5,6 @@ Can take an arbitrary amount of post-processing steps to be applied.
 
 import logging
 import traceback
-from collections import defaultdict
 from collections.abc import Sequence
 from dataclasses import dataclass
 from pathlib import Path
@@ -13,10 +12,7 @@ from typing import Any
 
 from wasabi import Printer
 
-from personal_mnemonic_medium.data_access.exporters.anki.card_types.base import (
-    AnkiCard,
-)
-from personal_mnemonic_medium.data_access.exporters.anki.package_generator import (
+from personal_mnemonic_medium.data_access.exporters.anki.bundle_generator import (
     AnkiPackageGenerator,
     DeckBundle,
 )
@@ -130,14 +126,3 @@ class AnkiExporter(PromptExporter):
 
                 if self.anki_connect.delete_cards:
                     self.delete_diff(note_diff=note_diff)
-
-
-def group_cards_by_deck(
-    cards: Sequence[AnkiCard]
-) -> dict[str, list[AnkiCard]]:
-    decks: dict[str, list[AnkiCard]] = defaultdict(list)
-
-    for card in cards:
-        decks[card.deckname] += [card]
-
-    return decks

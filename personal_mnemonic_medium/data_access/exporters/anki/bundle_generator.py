@@ -1,3 +1,4 @@
+from collections import defaultdict
 from collections.abc import Sequence
 from dataclasses import dataclass
 from pathlib import Path
@@ -6,9 +7,6 @@ from shutil import copyfile
 import genanki
 from wasabi import Printer
 
-from personal_mnemonic_medium.data_access.exporters.anki.anki_exporter import (
-    group_cards_by_deck,
-)
 from personal_mnemonic_medium.data_access.exporters.anki.card_types.base import (
     AnkiCard,
 )
@@ -57,6 +55,17 @@ class DeckBundle:
         package = self.get_package()
         package.write_to_file(output_path)  # type: ignore
         return Path(output_path)
+
+
+def group_cards_by_deck(
+    cards: Sequence[AnkiCard]
+) -> dict[str, list[AnkiCard]]:
+    decks: dict[str, list[AnkiCard]] = defaultdict(list)
+
+    for card in cards:
+        decks[card.deckname] += [card]
+
+    return decks
 
 
 class AnkiPackageGenerator(CardExporter):

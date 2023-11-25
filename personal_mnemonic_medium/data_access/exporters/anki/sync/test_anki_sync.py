@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 import genanki
 
-from personal_mnemonic_medium.data_access.exporters.anki.anki_exporter import (
+from personal_mnemonic_medium.data_access.exporters.anki.bundle_generator import (
     group_cards_by_deck,  # type: ignore
 )
 from personal_mnemonic_medium.data_access.exporters.anki.card_types.base import (

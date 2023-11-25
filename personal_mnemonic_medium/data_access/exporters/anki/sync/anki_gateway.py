@@ -3,7 +3,7 @@ from typing import Any
 from genanki import Model
 from wasabi import Printer
 
-from personal_mnemonic_medium.data_access.exporters.anki.package_generator import (
+from personal_mnemonic_medium.data_access.exporters.anki.bundle_generator import (
     DeckBundle,
 )
 
