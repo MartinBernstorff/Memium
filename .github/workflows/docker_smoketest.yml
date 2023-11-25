@@ -2,7 +2,7 @@
 # then it will in python 3.9 (ubuntu-latest) create a badge with the coverage
 # and add it to the PR. This badge will be updated if the PR is updated.
 
-name: docker-integration-test
+name: docker-smoketest
 on:
   push:
     branches: [main]
@@ -10,7 +10,7 @@ on:
     branches: [main]
 
 jobs:
-  integration-test:
+  smoketest:
     permissions: write-all
     concurrency:
       group: "${{ github.workflow }} @ ${{ github.ref }}"
@@ -30,6 +30,6 @@ jobs:
       - name: Run integration test
         shell: bash
         run: |
-          TEST_PATH=./personal_mnemonic_medium/tests/integration_test.sh
+          TEST_PATH=./personal_mnemonic_medium/tests/smoketest.sh
           chmod +x $TEST_PATH
           $TEST_PATH

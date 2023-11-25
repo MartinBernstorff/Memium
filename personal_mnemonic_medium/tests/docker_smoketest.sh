@@ -3,7 +3,7 @@ docker build . -t personal-mnemonic-medium:latest -f Dockerfile
 docker volume create ankidecks
 
 INPUT_DIR=$HOME/input/
-HOST_OUTPUT_DIR=$HOME/ankidecks/integration_test
+HOST_OUTPUT_DIR=$HOME/ankidecks/smoketest
 HOST_OUTPUT_FILE=$HOST_OUTPUT_DIR/deck.apkg
 ANKICONNECT_SYNC_APKG=/output/deck.apkg
 
