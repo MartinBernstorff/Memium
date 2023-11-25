@@ -6,14 +6,8 @@ import pytest
 from personal_mnemonic_medium.data_access.document_ingesters.document import (
     Document,
 )
-from personal_mnemonic_medium.data_access.document_ingesters.markdown_ingester import (
-    MarkdownIngester,
-)
 from personal_mnemonic_medium.data_access.document_ingesters.uuid_handling import (
     extract_bear_guid,
-)
-from personal_mnemonic_medium.data_access.exporters.anki.anki_exporter import (
-    AnkiExporter,
 )
 from personal_mnemonic_medium.data_access.exporters.anki.card_types.cloze import (
     AnkiCloze,
@@ -21,19 +15,11 @@ from personal_mnemonic_medium.data_access.exporters.anki.card_types.cloze import
 from personal_mnemonic_medium.data_access.exporters.anki.card_types.qa import (
     AnkiQA,
 )
-from personal_mnemonic_medium.domain.card_pipeline import CardPipeline
-from personal_mnemonic_medium.domain.prompt_extractors.base import (
-    PromptExtractor,
-)
-from personal_mnemonic_medium.domain.prompt_extractors.cloze_extractor import (
-    ClozePromptExtractor,
-)
 from personal_mnemonic_medium.domain.prompt_extractors.prompt import (
     Prompt,
 )
 from personal_mnemonic_medium.domain.prompt_extractors.qa_extractor import (
     QAPrompt,
-    QAPromptExtractor,
 )
 
 
@@ -61,33 +47,6 @@ class MockPrompt(Prompt):
     @property
     def note_uuid(self) -> str:
         return self.source_note.uuid
-
-
-class MockCardPipeline(CardPipeline):
-    def __init__(
-        self,
-        prompt_extractors: Sequence[PromptExtractor] | None = None,
-    ) -> None:
-        prompt_extractors = (
-            prompt_extractors
-            if prompt_extractors is not None
-            else [
-                QAPromptExtractor(
-                    question_prefix="Q.", answer_prefix="A."
-                ),
-                ClozePromptExtractor(),
-            ]
-        )
-
-        super().__init__(
-            document_factory=MarkdownIngester(
-                cut_note_after="# Backlinks",
-                uuid_extractor=extract_bear_guid,
-                uuid_generator=None,
-            ),
-            prompt_extractors=prompt_extractors,
-            card_exporter=AnkiExporter(),
-        )
 
 
 def test_custom_card_to_genanki_card():

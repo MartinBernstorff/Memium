@@ -4,7 +4,11 @@ from pathlib import Path
 from shutil import copyfile
 
 import genanki
+from wasabi import Printer
 
+from personal_mnemonic_medium.data_access.exporters.anki.anki_exporter import (
+    group_cards_by_deck,
+)
 from personal_mnemonic_medium.data_access.exporters.anki.card_types.base import (
     AnkiCard,
 )
@@ -14,6 +18,7 @@ from personal_mnemonic_medium.data_access.exporters.anki.card_types.cloze import
 from personal_mnemonic_medium.data_access.exporters.anki.card_types.qa import (
     AnkiQA,
 )
+from personal_mnemonic_medium.domain.card_pipeline import CardExporter
 from personal_mnemonic_medium.domain.prompt_extractors.cloze_extractor import (
     ClozePrompt,
 )
@@ -24,6 +29,8 @@ from personal_mnemonic_medium.domain.prompt_extractors.qa_extractor import (
     QAPrompt,
 )
 from personal_mnemonic_medium.utils.hasher import simple_hash
+
+msg = Printer(timestamp=True)
 
 
 @dataclass(frozen=True)
@@ -46,15 +53,17 @@ class DeckBundle:
         md_note_guids = {str(n.guid) for n in md_notes}  # type: ignore
         return md_note_guids
 
-    def save_deck_to_file(self, output_path: Path) -> Path:
+    def save_to_apkg(self, output_path: Path) -> Path:
         package = self.get_package()
         package.write_to_file(output_path)  # type: ignore
         return Path(output_path)
 
 
-class AnkiPackageGenerator:
+class AnkiPackageGenerator(CardExporter):
     @staticmethod
-    def cards_to_deck_bundle(cards: Sequence[AnkiCard]) -> DeckBundle:
+    def grouped_cards_to_deck_bundle(
+        cards: Sequence[AnkiCard]
+    ) -> DeckBundle:
         media: set[str] = set()  # type: ignore
 
         deck_name = cards[0].deckname
@@ -69,14 +78,14 @@ class AnkiPackageGenerator:
                     )  # This is inefficient but definitely works on all platforms.
                     media.add(newpath)  # type: ignore
                 except FileNotFoundError as e:
-                    log.debug(
+                    msg.warn(
                         f"Could not find file {abspath} for media, {e}."
                     )
 
             try:
                 deck.add_note(card.to_genanki_note())  # type: ignore
             except IndexError as e:
-                log.debug(
+                msg.warn(
                     f"Could not add card {card} to deck {deck_name}, {e}."
                 )
 
@@ -109,3 +118,22 @@ class AnkiPackageGenerator:
             cards += [card]
 
         return cards
+
+    @staticmethod
+    def prompts_to_deck_bundles(
+        prompts: Sequence[Prompt]
+    ) -> Sequence[DeckBundle]:
+        deck_bundles: list[DeckBundle] = []
+        cards = AnkiPackageGenerator().prompts_to_cards(
+            prompts=prompts
+        )
+
+        decks = group_cards_by_deck(cards)
+        for cards in decks.values():
+            deck_bundles.append(
+                AnkiPackageGenerator().grouped_cards_to_deck_bundle(
+                    cards=cards
+                )
+            )
+
+        return deck_bundles

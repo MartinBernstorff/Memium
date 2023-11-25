@@ -2,11 +2,11 @@ from dataclasses import dataclass
 
 import genanki
 
+from personal_mnemonic_medium.data_access.exporters.anki.anki_exporter import (
+    group_cards_by_deck,  # type: ignore
+)
 from personal_mnemonic_medium.data_access.exporters.anki.card_types.base import (
     AnkiCard,
-)
-from personal_mnemonic_medium.data_access.exporters.anki.sync.anki_sync import (
-    _cards_to_decks,  # type: ignore
 )
 
 
@@ -30,7 +30,7 @@ def test_cards_to_decks():
         MockAnkiCard(deckname="Default::Subdeck2"),
     )
 
-    decks = _cards_to_decks(cards)
+    decks = group_cards_by_deck(cards)
 
     assert decks == {
         "Default::Subdeck1": [cards[0]],

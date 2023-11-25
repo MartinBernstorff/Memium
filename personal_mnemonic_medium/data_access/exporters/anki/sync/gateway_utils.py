@@ -14,6 +14,13 @@ from personal_mnemonic_medium.data_access.exporters.anki.globals import (
 msg = Printer(timestamp=True)
 
 
+@dataclass(frozen=True)
+class AnkiConnectParams:
+    apkg_dir: Path
+    max_wait_seconds: int
+    delete_cards: bool
+
+
 def request(action: Any, **params: Any) -> dict[str, Any]:
     return {"action": action, "params": params, "version": 6}
 
@@ -60,10 +67,3 @@ def anki_connect_is_live() -> bool:
         msg.fail(f"Error was {err}")
 
     return False
-
-
-@dataclass(frozen=True)
-class AnkiConnectParams:
-    apkg_dir: Path
-    max_wait_seconds: int
-    delete_cards: bool

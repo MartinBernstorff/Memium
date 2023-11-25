@@ -5,6 +5,7 @@ Can take an arbitrary amount of post-processing steps to be applied.
 
 import logging
 import traceback
+from collections import defaultdict
 from collections.abc import Sequence
 from dataclasses import dataclass
 from pathlib import Path
@@ -12,16 +13,15 @@ from typing import Any
 
 from wasabi import Printer
 
+from personal_mnemonic_medium.data_access.exporters.anki.card_types.base import (
+    AnkiCard,
+)
 from personal_mnemonic_medium.data_access.exporters.anki.package_generator import (
     AnkiPackageGenerator,
     DeckBundle,
 )
-from personal_mnemonic_medium.data_access.exporters.anki.sync.anki_sync import (
+from personal_mnemonic_medium.data_access.exporters.anki.sync.anki_gateway import (
     get_anki_server_guid2noteinfo,
-)
-from personal_mnemonic_medium.data_access.exporters.anki.sync.gateway.ankiconnect_utils import (
-    AnkiConnectParams,
-    invoke,
 )
 from personal_mnemonic_medium.data_access.exporters.base import (
     PromptExporter,
@@ -29,6 +29,8 @@ from personal_mnemonic_medium.data_access.exporters.base import (
 from personal_mnemonic_medium.domain.prompt_extractors.prompt import (
     Prompt,
 )
+
+from .sync.gateway_utils import AnkiConnectParams, invoke
 
 log = logging.getLogger(__name__)
 # Log to disk, not to console.
@@ -57,6 +59,7 @@ class NoteDiff:
         return self.anki_guids - self.deckbundle_guids
 
 
+# TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/272 refactor: create pydantic class for noteinfo
 class AnkiExporter(PromptExporter):
     """Generates an anki package from a list of anki cards"""
 
@@ -81,7 +84,7 @@ class AnkiExporter(PromptExporter):
         )
 
     def add_to_anki(self, deck_bundle: DeckBundle) -> None:
-        package_path = deck_bundle.save_deck_to_file(
+        package_path = deck_bundle.save_to_apkg(
             output_path=Path("anki_package.apkg")
         )
         try:
@@ -117,16 +120,24 @@ class AnkiExporter(PromptExporter):
             traceback.print_exc()
 
     def sync_prompts(self, prompts: Sequence[Prompt]):
-        cards = AnkiPackageGenerator().prompts_to_cards(
-            prompts=prompts
+        bundles = AnkiPackageGenerator().prompts_to_deck_bundles(
+            prompts
         )
-        deck_bundle = AnkiPackageGenerator().cards_to_deck_bundle(
-            cards=cards
-        )
-        note_diff = self.get_note_diff(deck_bundle=deck_bundle)
+        for bundle in bundles:
+            note_diff = self.get_note_diff(deck_bundle=bundle)
+            if len(note_diff.symmetric_diff) > 0:
+                self.add_to_anki(deck_bundle=bundle)
 
-        if len(note_diff.symmetric_diff) > 0:
-            self.add_to_anki(deck_bundle=deck_bundle)
+                if self.anki_connect.delete_cards:
+                    self.delete_diff(note_diff=note_diff)
 
-            if self.anki_connect.delete_cards:
-                self.delete_diff(note_diff=note_diff)
+
+def group_cards_by_deck(
+    cards: Sequence[AnkiCard]
+) -> dict[str, list[AnkiCard]]:
+    decks: dict[str, list[AnkiCard]] = defaultdict(list)
+
+    for card in cards:
+        decks[card.deckname] += [card]
+
+    return decks
