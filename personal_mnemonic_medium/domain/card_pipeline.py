@@ -11,7 +11,7 @@ from personal_mnemonic_medium.data_access.exporters.anki.card_types.base import 
     AnkiCard,
 )
 from personal_mnemonic_medium.data_access.exporters.base import (
-    CardExporter,
+    PromptExporter,
 )
 from personal_mnemonic_medium.domain.prompt_extractors.base import (
     PromptExtractor,
@@ -26,7 +26,7 @@ class CardPipeline:
         self,
         document_factory: DocumentIngester,
         prompt_extractors: Sequence[PromptExtractor],
-        card_exporter: CardExporter,
+        card_exporter: PromptExporter,
     ) -> None:
         self.document_factory = document_factory
         self.prompt_extractors = prompt_extractors

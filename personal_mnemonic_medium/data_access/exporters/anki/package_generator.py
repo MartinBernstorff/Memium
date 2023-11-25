@@ -21,7 +21,7 @@ from personal_mnemonic_medium.data_access.exporters.anki.card_types.qa import (
     AnkiQA,
 )
 from personal_mnemonic_medium.data_access.exporters.base import (
-    CardExporter,
+    PromptExporter,
 )
 from personal_mnemonic_medium.domain.prompt_extractors.cloze_extractor import (
     ClozePrompt,
@@ -64,7 +64,7 @@ class DeckBundle:
         # Tests return a local, so explicitly turning into path here
 
 
-class AnkiPackageGenerator(CardExporter):
+class AnkiPackageGenerator(PromptExporter):
     """Generates an anki package from a list of anki cards"""
 
     def __init__(self) -> None:

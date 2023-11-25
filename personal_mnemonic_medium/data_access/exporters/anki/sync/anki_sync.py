@@ -15,7 +15,7 @@ from personal_mnemonic_medium.data_access.exporters.anki.package_generator impor
     AnkiPackageGenerator,
     DeckBundle,
 )
-from personal_mnemonic_medium.data_access.exporters.anki.sync.ankiconnect.ankiconnect import (
+from personal_mnemonic_medium.data_access.exporters.anki.sync.ankiconnect.ankiconnect_utils import (
     AnkiConnectParams,
     anki_connect_is_live,
     invoke,
