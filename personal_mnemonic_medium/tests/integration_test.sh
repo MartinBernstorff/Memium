@@ -10,7 +10,7 @@ ANKICONNECT_SYNC_APKG=/output/deck.apkg
 mkdir -p $INPUT_DIR
 echo -e "Q. Question here\nA. Answer!" >> $HOME/input/test.md
 
-docker run -it \
+docker run -i \
   -v $INPUT_DIR:/input \
   -v $HOST_OUTPUT_DIR:/output \
   --restart unless-stopped \
