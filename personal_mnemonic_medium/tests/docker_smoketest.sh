@@ -27,10 +27,7 @@ echo "Checking if file exists at $HOST_OUTPUT_FILE"
 if [ -f "$HOST_OUTPUT_FILE" ]; then
     echo "File exists."
     
-    # Get the file modification time in seconds from epoch
-    FILE_TIMESTAMP=$(stat -c %Y "$FILE")
-
-    # Get the current time in seconds from epoch
+    FILE_TIMESTAMP=$(stat -c %Y "$HOST_OUTPUT_FILE")
     CURRENT_TIMESTAMP=$(date +%s)
 
     # Calculate the age of the file by subtracting file's timestamp from current timestamp
