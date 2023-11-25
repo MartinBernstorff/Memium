@@ -5,12 +5,13 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
+from wasabi import Printer
+
 from personal_mnemonic_medium.data_access.exporters.anki.globals import (
     ANKICONNECT_URL,
 )
-from personal_mnemonic_medium.data_access.exporters.anki.sync.anki_sync import (
-    msg,
-)
+
+msg = Printer(timestamp=True)
 
 
 def request(action: Any, **params: Any) -> dict[str, Any]:
