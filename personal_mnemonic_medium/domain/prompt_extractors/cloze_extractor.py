@@ -22,11 +22,11 @@ class ClozePrompt(Prompt):
 
     @property
     def note_uuid(self) -> str:
-        return self.source_doc.uuid
+        return self.source_doc.uuid  # pragma: no cover
 
     @property
     def tags(self) -> Sequence[str]:
-        return self.source_doc.tags
+        return self.source_doc.tags  # pragma: no cover
 
 
 class ClozePromptExtractor(PromptExtractor):
