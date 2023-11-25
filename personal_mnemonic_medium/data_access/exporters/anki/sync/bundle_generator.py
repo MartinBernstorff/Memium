@@ -129,7 +129,7 @@ class AnkiPackageGenerator(CardExporter):
         return cards
 
     @staticmethod
-    def prompts_to_deck_bundles(
+    def prompts_to_bundles(
         prompts: Sequence[Prompt]
     ) -> Sequence[DeckBundle]:
         deck_bundles: list[DeckBundle] = []

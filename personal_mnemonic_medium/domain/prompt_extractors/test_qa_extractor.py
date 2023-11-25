@@ -33,7 +33,7 @@ A. This is the prompt!
     prompt = prompts[0]
     assert prompt.question == "What is the first test prompt?"
     assert prompt.answer == "This is the prompt!"
-    assert isinstance(prompt.source_note, Document)
+    assert isinstance(prompt.source_doc, Document)
 
 
 def test_has_qa_matches(qa_extractor: QAPromptExtractor):

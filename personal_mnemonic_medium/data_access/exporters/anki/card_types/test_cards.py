@@ -37,16 +37,16 @@ class MockPrompt(Prompt):
         if tags is None:
             tags = ["tag1"]
 
-        self.source_note = source_note
+        self.source_doc = source_note
         self.line_nr = line_nr
 
     @property
     def tags(self) -> Sequence[str]:
-        return self.source_note.tags
+        return self.source_doc.tags
 
     @property
     def note_uuid(self) -> str:
-        return self.source_note.uuid
+        return self.source_doc.uuid
 
 
 def test_custom_card_to_genanki_card():
@@ -60,7 +60,7 @@ def test_custom_card_to_genanki_card():
         source_prompt=QAPrompt(
             question="What is the capital of France?",
             answer="Paris",
-            source_note=source_note,
+            source_doc=source_note,
         ),
     ).to_genanki_note()
 
@@ -77,7 +77,7 @@ def test_get_subtags():
         source_prompt=QAPrompt(
             question="What is the capital of France?",
             answer="Paris",
-            source_note=source_note,
+            source_doc=source_note,
         ),
     )
 

@@ -13,11 +13,11 @@ from personal_mnemonic_medium.data_access.document_ingesters.uuid_handling impor
     extract_bear_guid,
     generate_bear_guid,
 )
-from personal_mnemonic_medium.data_access.exporters.anki.bundle_generator import (
-    AnkiPackageGenerator,
-)
 from personal_mnemonic_medium.data_access.exporters.anki.exporter import (
     AnkiExporter,
+)
+from personal_mnemonic_medium.data_access.exporters.anki.sync.bundle_generator import (
+    AnkiPackageGenerator,
 )
 from personal_mnemonic_medium.data_access.exporters.anki.sync.gateway_utils import (
     AnkiConnectParams,
@@ -96,7 +96,7 @@ def main(
             )
         ).sync_prompts(prompts=prompts)
     else:
-        bundles = AnkiPackageGenerator().prompts_to_deck_bundles(
+        bundles = AnkiPackageGenerator().prompts_to_bundles(
             prompts=prompts
         )
         for bundle in bundles:

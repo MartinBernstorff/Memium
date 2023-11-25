@@ -7,7 +7,7 @@ from personal_mnemonic_medium.data_access.document_ingesters.document import (
 
 
 class Prompt(Protocol):
-    source_note: Document
+    source_doc: Document
     line_nr: int | None
 
     @property

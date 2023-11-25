@@ -24,16 +24,16 @@ logging.basicConfig(
 class QAPrompt(Prompt):
     question: str
     answer: str
-    source_note: Document
+    source_doc: Document
     line_nr: int | None = None
 
     @property
     def note_uuid(self) -> str:
-        return self.source_note.uuid
+        return self.source_doc.uuid
 
     @property
     def tags(self) -> Sequence[str]:
-        return self.source_note.tags
+        return self.source_doc.tags
 
 
 # TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/245 remove defaults from extractors to make signature easier to understand
@@ -112,7 +112,7 @@ class QAPromptExtractor(PromptExtractor):
                     QAPrompt(
                         question=question,
                         answer=answer,
-                        source_note=note,
+                        source_doc=note,
                         line_nr=block_starting_line_nr,
                     )
                 )

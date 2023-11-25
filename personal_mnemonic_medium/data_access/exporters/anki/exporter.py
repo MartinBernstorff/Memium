@@ -12,12 +12,12 @@ from typing import Any
 
 from wasabi import Printer
 
-from personal_mnemonic_medium.data_access.exporters.anki.bundle_generator import (
-    AnkiPackageGenerator,
-    DeckBundle,
-)
 from personal_mnemonic_medium.data_access.exporters.anki.sync.anki_gateway import (
     get_anki_server_guid2noteinfo,
+)
+from personal_mnemonic_medium.data_access.exporters.anki.sync.bundle_generator import (
+    AnkiPackageGenerator,
+    DeckBundle,
 )
 from personal_mnemonic_medium.data_access.exporters.base import (
     PromptExporter,
@@ -116,9 +116,7 @@ class AnkiExporter(PromptExporter):
             traceback.print_exc()
 
     def sync_prompts(self, prompts: Sequence[Prompt]):
-        bundles = AnkiPackageGenerator().prompts_to_deck_bundles(
-            prompts
-        )
+        bundles = AnkiPackageGenerator().prompts_to_bundles(prompts)
         for bundle in bundles:
             note_diff = self.get_note_diff(deck_bundle=bundle)
             if len(note_diff.symmetric_diff) > 0:

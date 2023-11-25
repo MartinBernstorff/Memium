@@ -62,7 +62,7 @@ class AnkiCard(ABC):
 
     @property
     def source_doc(self) -> Document:
-        return self.source_prompt.source_note
+        return self.source_prompt.source_doc
 
     @staticmethod
     def has_subdeck_tag(input_str: str) -> bool:
