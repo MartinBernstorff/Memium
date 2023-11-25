@@ -48,6 +48,10 @@ class DeckBundle:
     deck: genanki.Deck
     media: set[str]
 
+    @property
+    def deck_name(self) -> str:
+        return self.deck.name  # type: ignore
+
     def get_package(self) -> genanki.Package:
         return genanki.Package(
             deck_or_decks=self.deck, media_files=list(self.media)
@@ -56,7 +60,8 @@ class DeckBundle:
     def save_deck_to_file(self, output_path: Path) -> Path:
         package = self.get_package()
         package.write_to_file(output_path)  # type: ignore
-        return output_path
+        return Path(output_path)
+        # Tests return a local, so explicitly turning into path here
 
 
 class AnkiPackageGenerator(CardExporter):

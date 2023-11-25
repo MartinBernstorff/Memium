@@ -83,6 +83,7 @@ class AnkiCard(ABC):
 
     @property
     def deckname(self) -> str:
+        # TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/269 feat: default deck from CLI
         try:
             if len(self.subdeck) > 0:
                 return (
