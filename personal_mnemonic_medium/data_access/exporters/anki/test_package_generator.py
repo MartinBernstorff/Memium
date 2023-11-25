@@ -3,11 +3,11 @@ from pathlib import Path
 from personal_mnemonic_medium.data_access.document_ingesters.document import (
     Document,
 )
+from personal_mnemonic_medium.data_access.exporters.anki.anki_exporter import (
+    AnkiExporter,
+)
 from personal_mnemonic_medium.data_access.exporters.anki.card_types.qa import (
     AnkiQA,
-)
-from personal_mnemonic_medium.data_access.exporters.anki.anki_exporter import (
-    AnkiPackageGenerator,
 )
 from personal_mnemonic_medium.domain.prompt_extractors.qa_extractor import (
     QAPrompt,
@@ -33,7 +33,7 @@ def test_cards_to_decks():
         for _ in range(4)
     ]
 
-    AnkiPackageGenerator().cards_to_deck(cards=genanki_notes)
+    AnkiExporter().cards_to_deck(cards=genanki_notes)
 
 
 def test_package_generators():
@@ -55,4 +55,4 @@ def test_package_generators():
         for _ in range(4)
     ]
 
-    AnkiPackageGenerator().cards_to_deck_bundle(cards=genanki_notes)
+    AnkiExporter().cards_to_deck_bundle(cards=genanki_notes)

@@ -8,20 +8,13 @@ import traceback
 from collections.abc import Sequence
 from dataclasses import dataclass
 from pathlib import Path
-from shutil import copyfile
 from typing import Any
 
-import genanki
 from wasabi import Printer
 
-from personal_mnemonic_medium.data_access.exporters.anki.card_types.base import (
-    AnkiCard,
-)
-from personal_mnemonic_medium.data_access.exporters.anki.card_types.cloze import (
-    AnkiCloze,
-)
-from personal_mnemonic_medium.data_access.exporters.anki.card_types.qa import (
-    AnkiQA,
+from personal_mnemonic_medium.data_access.exporters.anki.package_generator import (
+    AnkiPackageGenerator,
+    DeckBundle,
 )
 from personal_mnemonic_medium.data_access.exporters.anki.sync.anki_sync import (
     get_anki_server_guid2noteinfo,
@@ -33,16 +26,9 @@ from personal_mnemonic_medium.data_access.exporters.anki.sync.gateway.ankiconnec
 from personal_mnemonic_medium.data_access.exporters.base import (
     PromptExporter,
 )
-from personal_mnemonic_medium.domain.prompt_extractors.cloze_extractor import (
-    ClozePrompt,
-)
 from personal_mnemonic_medium.domain.prompt_extractors.prompt import (
     Prompt,
 )
-from personal_mnemonic_medium.domain.prompt_extractors.qa_extractor import (
-    QAPrompt,
-)
-from personal_mnemonic_medium.utils.hasher import simple_hash
 
 log = logging.getLogger(__name__)
 # Log to disk, not to console.
@@ -52,33 +38,6 @@ logging.basicConfig(
     level=logging.DEBUG,
 )
 msg = Printer(timestamp=True)
-
-
-@dataclass(frozen=True)
-class DeckBundle:
-    deck: genanki.Deck
-    media: set[str]
-
-    @property
-    def deck_name(self) -> str:
-        return self.deck.name  # type: ignore
-
-    def get_package(self) -> genanki.Package:
-        return genanki.Package(
-            deck_or_decks=self.deck, media_files=list(self.media)
-        )
-
-    @property
-    def note_guids(self) -> set[str]:
-        md_notes: list[genanki.Note] = self.deck.notes  # type: ignore
-        md_note_guids = {str(n.guid) for n in md_notes}  # type: ignore
-        return md_note_guids
-
-    def save_deck_to_file(self, output_path: Path) -> Path:
-        package = self.get_package()
-        package.write_to_file(output_path)  # type: ignore
-        return Path(output_path)
-        # Tests return a local, so explicitly turning into path here
 
 
 @dataclass(frozen=True)
@@ -98,68 +57,11 @@ class NoteDiff:
         return self.anki_guids - self.deckbundle_guids
 
 
-class AnkiPackageGenerator(PromptExporter):
+class AnkiExporter(PromptExporter):
     """Generates an anki package from a list of anki cards"""
 
     def __init__(self, anki_connect: AnkiConnectParams) -> None:
         self.anki_connect = anki_connect
-
-    @staticmethod
-    def cards_to_deck_bundle(cards: Sequence[AnkiCard]) -> DeckBundle:
-        media: set[str] = set()  # type: ignore
-
-        deck_name = cards[0].deckname
-        deck_id = simple_hash(deck_name)
-        deck = genanki.Deck(deck_id=deck_id, name=deck_name)
-
-        for card in cards:
-            for abspath, newpath in card.determine_media_references():
-                try:
-                    copyfile(
-                        abspath, newpath
-                    )  # This is inefficient but definitely works on all platforms.
-                    media.add(newpath)  # type: ignore
-                except FileNotFoundError as e:
-                    log.debug(
-                        f"Could not find file {abspath} for media, {e}."
-                    )
-
-            try:
-                deck.add_note(card.to_genanki_note())  # type: ignore
-            except IndexError as e:
-                log.debug(
-                    f"Could not add card {card} to deck {deck_name}, {e}."
-                )
-
-        return DeckBundle(deck=deck, media=media)
-
-    def prompts_to_cards(
-        self, prompts: Sequence[Prompt]
-    ) -> Sequence[AnkiCard]:
-        """Takes an iterable of prompts and turns them into AnkiCards"""
-
-        cards: list[AnkiCard] = []
-
-        for prompt in prompts:
-            match prompt:
-                case QAPrompt():
-                    card = AnkiQA(
-                        fields=[prompt.question, prompt.answer],
-                        source_prompt=prompt,
-                    )
-                case ClozePrompt():
-                    card = AnkiCloze(
-                        fields=[prompt.content], source_prompt=prompt
-                    )
-                # TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/271 feat: ensure all prompt types are covered in anki_exporter
-                case _:
-                    raise NotImplementedError(
-                        f"Prompt type {type(prompt)} not supported."
-                    )
-
-            cards += [card]
-
-        return cards
 
     def get_anki_database_note_infos(
         self, deck_bundle: DeckBundle
@@ -215,8 +117,12 @@ class AnkiPackageGenerator(PromptExporter):
             traceback.print_exc()
 
     def sync_prompts(self, prompts: Sequence[Prompt]):
-        cards = self.prompts_to_cards(prompts=prompts)
-        deck_bundle = self.cards_to_deck_bundle(cards=cards)
+        cards = AnkiPackageGenerator().prompts_to_cards(
+            prompts=prompts
+        )
+        deck_bundle = AnkiPackageGenerator().cards_to_deck_bundle(
+            cards=cards
+        )
         note_diff = self.get_note_diff(deck_bundle=deck_bundle)
 
         if len(note_diff.symmetric_diff) > 0:

@@ -4,11 +4,11 @@ from pathlib import Path
 
 from wasabi import Printer
 
+from personal_mnemonic_medium.data_access.exporters.anki.anki_exporter import (
+    AnkiExporter,
+)
 from personal_mnemonic_medium.data_access.exporters.anki.card_types.base import (
     AnkiCard,
-)
-from personal_mnemonic_medium.data_access.exporters.anki.anki_exporter import (
-    AnkiPackageGenerator,
 )
 
 msg = Printer(timestamp=True)
@@ -25,9 +25,7 @@ def cards_to_apkg(
     output_dir: Path,
     skip_decks: Sequence[str] = (),
 ) -> Path | SkippedDeck:
-    deck_bundle = AnkiPackageGenerator().cards_to_deck_bundle(
-        cards=cards
-    )
+    deck_bundle = AnkiExporter().cards_to_deck_bundle(cards=cards)
 
     if any(d in deck_bundle.deck_name for d in skip_decks):
         msg.fail(

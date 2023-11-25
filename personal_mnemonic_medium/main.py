@@ -15,7 +15,7 @@ from personal_mnemonic_medium.data_access.document_ingesters.uuid_handling impor
     generate_bear_guid,
 )
 from personal_mnemonic_medium.data_access.exporters.anki.anki_exporter import (
-    AnkiPackageGenerator,
+    AnkiExporter,
 )
 from personal_mnemonic_medium.data_access.exporters.anki.sync.anki_sync import (
     AnkiConnectParams,
@@ -81,7 +81,7 @@ def main(
             ),
             ClozePromptExtractor(),
         ],
-        card_exporter=AnkiPackageGenerator(),  # Step 3, get the cards from the prompts
+        card_exporter=AnkiExporter(),  # Step 3, get the cards from the prompts
     ).run(input_path=input_dir)
 
     # TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/263 refactor: separate writing decks to disk and ankiconnect sync

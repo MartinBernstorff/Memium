@@ -8,12 +8,12 @@ from typing import Any
 from genanki import Model
 from wasabi import Printer
 
-from personal_mnemonic_medium.data_access.exporters.anki.anki_exporter import (
-    AnkiPackageGenerator,
-    DeckBundle,
-)
 from personal_mnemonic_medium.data_access.exporters.anki.card_types.base import (
     AnkiCard,
+)
+from personal_mnemonic_medium.data_access.exporters.anki.package_generator import (
+    AnkiPackageGenerator,
+    DeckBundle,
 )
 from personal_mnemonic_medium.data_access.exporters.anki.sync.gateway.ankiconnect_utils import (
     AnkiConnectParams,

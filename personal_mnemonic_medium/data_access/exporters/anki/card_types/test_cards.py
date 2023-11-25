@@ -13,7 +13,10 @@ from personal_mnemonic_medium.data_access.document_ingesters.uuid_handling impor
     extract_bear_guid,
 )
 from personal_mnemonic_medium.data_access.exporters.anki.anki_exporter import (
-    AnkiPackageGenerator,
+    AnkiExporter,
+)
+from personal_mnemonic_medium.data_access.exporters.anki.card_types.cloze import (
+    AnkiCloze,
 )
 from personal_mnemonic_medium.data_access.exporters.anki.card_types.qa import (
     AnkiQA,
@@ -83,7 +86,7 @@ class MockCardPipeline(CardPipeline):
                 uuid_generator=None,
             ),
             prompt_extractors=prompt_extractors,
-            card_exporter=AnkiPackageGenerator(),
+            card_exporter=AnkiExporter(),
         )
 
 
@@ -123,10 +126,14 @@ def test_get_subtags():
 
 
 @pytest.mark.parametrize(
-    ("question", "answer", "UUID", "reference_guid"),
+    ("question", "answer", "reference_guid"),
     [
-        ("What is the capital of France?", "Paris", 1),
-        ("What *bold* [[Value]] is this?", "A. [[Bold value]].", 2),
+        ("What is the capital of France?", "Paris", 363791134),
+        (
+            "What *bold* [[Value]] is this?",
+            "A. [[Bold value]].",
+            8054042674,
+        ),
     ],
 )
 def test_qa_prompt_uuid(
@@ -137,20 +144,19 @@ def test_qa_prompt_uuid(
         fields=[question, answer, "extra", source_prompt.note_uuid],
         source_prompt=source_prompt,
     )
-
-    generated_guid = card.card_uuid
-    assert reference_guid == generated_guid
+    assert reference_guid == card.card_uuid
 
 
-def test_cloze_uuid_generation():
-    file_path = Path(__file__).parent / "test_cards.md"
-    cloze_cards = MockCardPipeline(
-        prompt_extractors=[ClozePromptExtractor()]
-    ).run(input_path=file_path)
-
-    cloze_generated_guids = {card.card_uuid for card in cloze_cards}
-    cloze_reference_guids = {3001245253, 952903559}
-    assert cloze_reference_guids == cloze_generated_guids
+@pytest.mark.parametrize(
+    ("text", "reference_guid"), [(r"Test {{cloze}}", 6023539859)]
+)
+def test_cloze_uuid_generation(text: str, reference_guid: int):
+    source_prompt = MockPrompt()
+    card = AnkiCloze(
+        fields=[text, "Extra", "Tags", source_prompt.note_uuid],
+        source_prompt=source_prompt,
+    )
+    assert reference_guid == card.card_uuid
 
 
 def test_get_bear_id():
