@@ -17,7 +17,10 @@ ANKICONNECT_IS_RUNNING = anki_connect_is_live()
     reason="Tests require a running AnkiConnect server",
 )
 class TestAnkiConnect:
-    gateway = AnkiConnectGateway(ankiconnect_url=ANKICONNECT_URL)
+    gateway = AnkiConnectGateway(
+        ankiconnect_url=ANKICONNECT_URL,
+        deck_name="deck:0. Don't click me::1. Active::Personal Mnemonic Medium",
+    )
 
     def test_import_package(self):
         output_path = Path("/output")
