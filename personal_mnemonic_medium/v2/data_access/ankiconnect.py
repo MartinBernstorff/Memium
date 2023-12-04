@@ -1,4 +1,5 @@
 # helper for creating anki connect requests
+import datetime
 import json
 import traceback
 import urllib.request
@@ -10,14 +11,18 @@ from typing import Any
 import genanki
 import pydantic
 
-from personal_mnemonic_medium.data_access.exporters.anki.globals import (
-    ANKICONNECT_URL,
-)
+
+class AnkiField(pydantic.BaseModel):
+    value: str
+    order: int
 
 
 class NoteInfo(pydantic.BaseModel):
-    ...
-    # Remember to strip UUID, see ll. 95-100
+    noteId: int
+    tags: Sequence[str]
+    fields: dict[str, AnkiField]
+    modelName: str
+    cards: Sequence[int]
 
 
 class AnkiConnectCommand(Enum):
@@ -31,9 +36,7 @@ class AnkiConnectCommand(Enum):
 
 
 class AnkiConnectGateway:
-    def __init__(
-        self, ankiconnect_url: str = ANKICONNECT_URL
-    ) -> None:
+    def __init__(self, ankiconnect_url: str) -> None:
         self.ankiconnect_url = ankiconnect_url
 
     def update_model(self, model: genanki.Model) -> None:
@@ -53,19 +56,26 @@ class AnkiConnectGateway:
         )
 
     def import_package(
-        self, package: genanki.Package, tmp_path: Path
+        self,
+        package: genanki.Package,
+        tmp_write_dir: Path,
+        tmp_read_dir: Path,
     ) -> None:
-        output_path = tmp_path / f"{package.name}.apkg"  # type: ignore
+        apkg_name = datetime.datetime.now().strftime(
+            "%Y-%m-%d-%H-%M-%S"
+        )
+        output_path = tmp_write_dir / apkg_name
         package.write_to_file(output_path)  # type: ignore
 
         try:
+            read_path = tmp_read_dir / apkg_name
             self._invoke(
-                AnkiConnectCommand.IMPORT_PACKAGE, path=output_path
+                AnkiConnectCommand.IMPORT_PACKAGE, path=str(read_path)
             )
-            print(f"Imported from {output_path}!")
+            print(f"Imported from {read_path}!")
         except Exception:
             print(
-                f"""Unable to sync from {output_path}.
+                f"""Unable to sync from {read_path}.
 """
             )
             traceback.print_exc()
@@ -87,19 +97,11 @@ class AnkiConnectGateway:
         )
 
         # get the note info for the notes in the deck
-        anki_notes_info = self._invoke(
+        anki_notes_info: list[dict[str, Any]] = self._invoke(
             AnkiConnectCommand.GET_NOTE_INFOS, notes=anki_note_ids
         )
 
-        # convert the note info into a dictionary of guid to note info
-        guid2note_info = {
-            info["fields"]["UUID"]["value"]
-            .replace("<p>", "")
-            .replace("</p>", "")
-            .strip(): info
-            for info in anki_notes_info
-        }
-        return [NoteInfo(**info) for info in guid2note_info.values()]
+        return [NoteInfo(**info) for info in anki_notes_info]
 
     def _request(self, action: Any, **params: Any) -> dict[str, Any]:
         return {"action": action, "params": params, "version": 6}
