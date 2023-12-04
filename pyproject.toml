@@ -158,3 +158,6 @@ exclude_lines = [
     # Ignore lines containing '...'
     ".*[.]{3}.*",
 ]
+omit = [
+  "test_*.py",
+]
