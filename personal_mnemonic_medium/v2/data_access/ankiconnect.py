@@ -36,8 +36,9 @@ class AnkiConnectCommand(Enum):
 
 
 class AnkiConnectGateway:
-    def __init__(self, ankiconnect_url: str) -> None:
+    def __init__(self, ankiconnect_url: str, deck_name: str) -> None:
         self.ankiconnect_url = ankiconnect_url
+        self.deck_name = deck_name
 
     def update_model(self, model: genanki.Model) -> None:
         self._invoke(
@@ -83,9 +84,10 @@ class AnkiConnectGateway:
     def delete_notes(self, note_ids: Sequence[Any]) -> None:
         self._invoke(AnkiConnectCommand.DELETE_NOTES, notes=note_ids)
 
-    def get_note_infos(self, deck_name: str) -> Sequence[NoteInfo]:
+    def get_all_note_infos(self) -> Sequence[NoteInfo]:
         anki_card_ids: list[int] = self._invoke(
-            AnkiConnectCommand.FIND_CARDS, query=f'"deck:{deck_name}"'
+            AnkiConnectCommand.FIND_CARDS,
+            query=f'"deck:{self.deck_name}"',
         )
 
         # get a list of anki notes in the deck
@@ -131,3 +133,15 @@ class AnkiConnectGateway:
         if response["error"] is not None:
             raise Exception(response["error"])
         return response["result"]
+
+
+class FakeAnkiconnectGateway(AnkiConnectGateway):
+    def __init__(self):
+        self.deck_name = "FakeDeck"
+
+    def get_all_note_infos(self) -> Sequence[NoteInfo]:
+        return [
+            NoteInfo(
+                noteId=1, tags=[], fields={}, modelName="", cards=[]
+            )
+        ]

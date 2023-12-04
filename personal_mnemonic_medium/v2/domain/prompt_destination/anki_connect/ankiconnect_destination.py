@@ -14,17 +14,12 @@ from ..base_prompt_destination import PromptDestination
 
 
 class AnkiConnectDestination(PromptDestination):
-    def __init__(self, ankiconnect_url: str, deck_name: str):
-        self.gateway = AnkiConnectGateway(
-            ankiconnect_url=ankiconnect_url
-        )
-        self.deck_name = deck_name
+    def __init__(self, gateway: AnkiConnectGateway) -> None:
+        self.gateway = gateway
 
     def get_all_prompts(self) -> Sequence[Prompt]:
-        note_infos = self.gateway.get_note_infos(
-            deck_name=self.deck_name
-        )
-        return note_infos
+        note_infos = self.gateway.get_all_note_infos()
+        return note_infos  # type: ignore
 
     def _delete_prompts(self, prompts: Sequence[Prompt]) -> None:
         ...

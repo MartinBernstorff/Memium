@@ -1,13 +1,9 @@
-from .....data_access.exporters.anki.globals import ANKICONNECT_URL
+from ....data_access.ankiconnect import FakeAnkiconnectGateway
 from .ankiconnect_destination import AnkiConnectDestination
 
 
 def test_ankiconnect_get_all_prompts():
-    dest = AnkiConnectDestination(
-        ankiconnect_url=ANKICONNECT_URL,
-        deck_name="0. Don't click me::1. Active::Personal Mnemonic Medium",
-    )
-
+    dest = AnkiConnectDestination(gateway=FakeAnkiconnectGateway())
     prompts = dest.get_all_prompts()
 
-    assert len(prompts) == 0
+    assert len(prompts) > 0
