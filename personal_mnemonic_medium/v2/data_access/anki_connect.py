@@ -14,11 +14,10 @@ from personal_mnemonic_medium.data_access.exporters.anki.globals import (
     ANKICONNECT_URL,
 )
 
-from ...data_access.exporters.anki.card_types.base import AnkiCard
-
 
 class NoteInfo(pydantic.BaseModel):
     ...
+    # Remember to strip UUID, see ll. 95-100
 
 
 class AnkiConnectCommand(Enum):
@@ -27,6 +26,8 @@ class AnkiConnectCommand(Enum):
     FIND_CARDS = "findCards"
     GET_NOTE_INFOS = "notesInfo"
     IMPORT_PACKAGE = "importPackage"
+    UPDATE_MODEL_TEMPLATES = "updateModelTemplates"
+    UPDATE_MODEL_STYLING = "updateModelStyling"
 
 
 class AnkiConnectGateway:
@@ -35,13 +36,26 @@ class AnkiConnectGateway:
     ) -> None:
         self.ankiconnect_url = ankiconnect_url
 
-    def import_cards(
-        self, cards: Sequence[AnkiCard], tmp_path: Path
-    ) -> None:
-        decks = {c.subdeck for c in cards}
-        package = genanki.Package(deck_or_decks=decks, media_files=[])
+    def update_model(self, model: genanki.Model) -> None:
+        self._invoke(
+            AnkiConnectCommand.UPDATE_MODEL_TEMPLATES,
+            model={
+                "name": model.name,  # type: ignore
+                "templates": {
+                    t["name"]: {"qfmt": t["qfmt"], "afmt": t["afmt"]}
+                    for t in model.templates  # type: ignore
+                },
+            },
+        )
+        self._invoke(
+            AnkiConnectCommand.UPDATE_MODEL_STYLING,
+            model={"name": model.name, "css": model.css},  # type: ignore
+        )
 
-        output_path = tmp_path / "anki_package.apkg"
+    def import_deck(self, deck: genanki.Deck, tmp_path: Path) -> None:
+        package = genanki.Package(deck_or_decks=deck, media_files=[])
+
+        output_path = tmp_path / f"{deck.name}.apkg"  # type: ignore
         package.write_to_file(output_path)  # type: ignore
 
         try:
