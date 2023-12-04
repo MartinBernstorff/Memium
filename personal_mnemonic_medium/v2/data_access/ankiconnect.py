@@ -52,10 +52,10 @@ class AnkiConnectGateway:
             model={"name": model.name, "css": model.css},  # type: ignore
         )
 
-    def import_deck(self, deck: genanki.Deck, tmp_path: Path) -> None:
-        package = genanki.Package(deck_or_decks=deck, media_files=[])
-
-        output_path = tmp_path / f"{deck.name}.apkg"  # type: ignore
+    def import_package(
+        self, package: genanki.Package, tmp_path: Path
+    ) -> None:
+        output_path = tmp_path / f"{package.name}.apkg"  # type: ignore
         package.write_to_file(output_path)  # type: ignore
 
         try:
