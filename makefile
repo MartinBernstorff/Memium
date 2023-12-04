@@ -15,7 +15,7 @@ install-dev:
 	@pip install --upgrade .[dev]
 
 install:
-	@make install-dev
+	@make install-test
 	@pip install -e .
 
 generate_coverage:
