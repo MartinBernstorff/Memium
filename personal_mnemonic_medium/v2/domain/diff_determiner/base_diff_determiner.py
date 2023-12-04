@@ -4,7 +4,7 @@ from typing import Protocol
 from personal_mnemonic_medium.domain.prompt_extractors.prompt import (
     Prompt,
 )
-from personal_mnemonic_medium.v2.prompt_destination.base_prompt_destination import (
+from personal_mnemonic_medium.v2.domain.prompt_destination.base_prompt_destination import (
     PromptDestinationCommand,
 )
 
