@@ -2,7 +2,7 @@ from collections.abc import Sequence
 from dataclasses import dataclass
 from typing import Protocol
 
-from ...domain.prompt_extractors.prompt import Prompt
+from ....domain.prompt_extractors.prompt import Prompt
 
 
 class PromptDestinationCommand(Protocol):
