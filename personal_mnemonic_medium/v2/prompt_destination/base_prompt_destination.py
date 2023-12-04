@@ -5,19 +5,9 @@ from personal_mnemonic_medium.domain.prompt_extractors.prompt import (
     Prompt,
 )
 
-
-class PromptDestinationCommand(Protocol):
-    ...
-
-
-class DeletePrompts(PromptDestinationCommand):
-    def __init__(self, prompts: Sequence[Prompt]):
-        ...
-
-
-class PushPrompts(PromptDestinationCommand):
-    def __init__(self, prompts: Sequence[Prompt]):
-        ...
+from ..prompt_source.destination_commands import (
+    PromptDestinationCommand,
+)
 
 
 class BasePromptDestination(Protocol):

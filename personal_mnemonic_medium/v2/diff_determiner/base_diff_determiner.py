@@ -18,7 +18,7 @@ class BaseSyncer(Protocol):
         ...
 
 
-class FakeSyncer(BaseSyncer):
+class FakeDiffDeterminer(BaseSyncer):
     def sync(
         self,
         source_prompts: Sequence[Prompt],
