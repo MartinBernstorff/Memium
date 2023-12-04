@@ -67,8 +67,8 @@ class AnkiConnectGateway:
         output_path = tmp_write_dir / apkg_name
         package.write_to_file(output_path)  # type: ignore
 
+        read_path = tmp_read_dir / apkg_name
         try:
-            read_path = tmp_read_dir / apkg_name
             self._invoke(
                 AnkiConnectCommand.IMPORT_PACKAGE, path=str(read_path)
             )
