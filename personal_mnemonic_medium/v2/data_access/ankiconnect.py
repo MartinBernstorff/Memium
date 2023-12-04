@@ -74,10 +74,7 @@ class AnkiConnectGateway:
             )
             print(f"Imported from {read_path}!")
         except Exception:
-            print(
-                f"""Unable to sync from {read_path}.
-"""
-            )
+            print(f"""Unable to sync from {read_path}.""")
             traceback.print_exc()
 
         # Delete the package after importing it
