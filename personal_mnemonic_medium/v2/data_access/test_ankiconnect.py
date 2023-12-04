@@ -43,9 +43,7 @@ class TestAnkiConnect:
         self.gateway.delete_notes(note_ids=[1, 2, 3])
 
     def test_get_note_infos(self):
-        note_infos = self.gateway.get_all_note_infos(
-            deck_name="Default"
-        )
+        note_infos = self.gateway.get_all_note_infos()
 
         assert [
             isinstance(note_info, NoteInfo)
