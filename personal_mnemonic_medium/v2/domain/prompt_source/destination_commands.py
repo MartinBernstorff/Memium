@@ -1,19 +1,17 @@
 from collections.abc import Sequence
 from dataclasses import dataclass
-from typing import Protocol
 
 from ....domain.prompt_extractors.prompt import Prompt
 
 
-class PromptDestinationCommand(Protocol):
-    ...
-
-
 @dataclass(frozen=True)
-class DeletePrompts(PromptDestinationCommand):
+class DeletePrompts:
     prompts: Sequence[Prompt]
 
 
 @dataclass(frozen=True)
-class PushPrompts(PromptDestinationCommand):
+class PushPrompts:
     prompts: Sequence[Prompt]
+
+
+PromptDestinationCommand = DeletePrompts | PushPrompts

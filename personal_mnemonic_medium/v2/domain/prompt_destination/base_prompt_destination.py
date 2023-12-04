@@ -10,21 +10,21 @@ from ..prompt_source.destination_commands import (
 )
 
 
-class BasePromptDestination(Protocol):
+class PromptDestination(Protocol):
     def get_all_prompts(self) -> Sequence[Prompt]:
         ...
 
     def update(
-        self, command: Sequence[PromptDestinationCommand]
+        self, commands: Sequence[PromptDestinationCommand]
     ) -> None:
         ...
 
 
-class FakePromptDestination(BasePromptDestination):
+class FakePromptDestination(PromptDestination):
     def get_all_prompts(self) -> Sequence[Prompt]:
         ...
 
     def update(
-        self, command: Sequence[PromptDestinationCommand]
+        self, commands: Sequence[PromptDestinationCommand]
     ) -> None:
         ...
