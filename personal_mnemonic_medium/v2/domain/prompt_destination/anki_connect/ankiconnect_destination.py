@@ -22,7 +22,7 @@ class AnkiConnectDestination(PromptDestination):
         return note_infos  # type: ignore
 
     def _delete_prompts(self, prompts: Sequence[Prompt]) -> None:
-        prompt_ids = [int(prompt.note_uuid) for prompt in prompts]
+        prompt_ids = {int(prompt.note_uuid) for prompt in prompts}
 
         # TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/284 Figure out how NoteIDs are generated, and how they map to PromptIDs
         self.gateway.delete_notes(prompt_ids)
