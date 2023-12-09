@@ -26,7 +26,7 @@ class QAPrompt(BasePrompt):
 
 @dataclass(frozen=True)
 class QAPromptWithoutDoc(QAPrompt):
-    add_tags: Sequence[str] = ()
+    add_tags: Sequence[str]
 
     @property
     def tags(self) -> Sequence[str]:

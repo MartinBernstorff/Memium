@@ -1,17 +1,19 @@
+from collections.abc import Sequence
 from dataclasses import dataclass
 
 import genanki
 
-from .......data_access.exporters.anki.anki_css import CARD_MODEL_CSS
 from .....int_hash_str import int_hash_str
 from .....utils.clean_str import clean_str
-from .base_anki_prompt import AnkiPrompt
+from .base_anki_prompt import AnkiCard
 
 
 @dataclass(frozen=True)
-class AnkiCloze(AnkiPrompt):
+class AnkiCloze(AnkiCard):
+    deck: str
+    tags: Sequence[str]
     text: str
-    css: str = CARD_MODEL_CSS
+    css: str
 
     @property
     def uuid(self) -> int:
@@ -39,4 +41,16 @@ class AnkiCloze(AnkiPrompt):
             ],
             css=self.css,
             model_type=1,  # This is the model_type number for genanki, takes 0 for QA or 1 for cloze
+        )
+
+    def to_genanki_note(self) -> genanki.Note:
+        return genanki.Note(
+            guid=str(self.uuid),
+            model=self.genanki_model,
+            fields=[
+                self.text,
+                "",
+                " ".join(self.tags),
+                str(self.uuid),
+            ],
         )

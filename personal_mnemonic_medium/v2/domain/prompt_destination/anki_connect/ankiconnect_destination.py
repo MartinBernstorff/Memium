@@ -1,5 +1,6 @@
-from collections.abc import Sequence
+from collections.abc import Mapping, Sequence
 
+import genanki
 from functionalpy._sequence import Seq
 
 from personal_mnemonic_medium.v2.domain.prompt_source.destination_commands import (
@@ -19,6 +20,7 @@ from ..base_prompt_destination import PromptDestination
 from .prompt_converter.anki_prompt_converter import (
     AnkiPromptConverter,
 )
+from .prompt_converter.prompts.base_anki_prompt import AnkiCard
 
 
 class AnkiConnectDestination(PromptDestination):
@@ -64,8 +66,47 @@ class AnkiConnectDestination(PromptDestination):
         # TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/284 Figure out how NoteIDs are generated, and how they map to PromptIDs
         self.gateway.delete_notes(list(prompt_ids))
 
-    def _push_prompts(self, prompts: Sequence[BasePrompt]) -> None:
-        ...
+    def _grouped_cards_to_deck(
+        self, cards: Mapping[str, Sequence[AnkiCard]]
+    ) -> genanki.Deck:
+        deck_name = next(iter(cards.keys()))
+        deck = genanki.Deck(name=deck_name, deck_id=deck_name)
+
+        for card in cards[deck_name]:
+            deck.add_note(card.to_genanki_note())  # type: ignore
+
+        return deck
+
+    def _create_package(
+        self, cards: Sequence[AnkiCard]
+    ) -> genanki.Package:
+        cards_grouped_by_deck = Seq(cards).groupby(
+            lambda card: card.deck
+        )
+        decks = (
+            Seq([cards_grouped_by_deck])
+            .map(self._grouped_cards_to_deck)
+            .to_list()
+        )
+
+        return genanki.Package(deck_or_decks=decks)
+
+    def _push_prompts(self, command: PushPrompts) -> None:
+        cards = self.prompt_converter.prompts_to_cards(
+            command.prompts
+        )
+
+        models = {card.genanki_model for card in cards}
+        for model in models:
+            self.gateway.update_model(model)
+
+        package = self._create_package(cards)
+
+        self.gateway.import_package(
+            package,
+            tmp_write_dir=command.tmp_write_dir,
+            tmp_read_dir=command.tmp_read_dir,
+        )
 
     def update(
         self, commands: Sequence[PromptDestinationCommand]
@@ -75,4 +116,4 @@ class AnkiConnectDestination(PromptDestination):
                 case DeletePrompts(prompts):
                     self._delete_prompts(prompts)
                 case PushPrompts(prompts):
-                    self._push_prompts(prompts)
+                    self._push_prompts(command)
