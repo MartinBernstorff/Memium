@@ -95,17 +95,18 @@ class AnkiConnectDestination(PromptDestination):
         cards = self.prompt_converter.prompts_to_cards(
             command.prompts
         )
-        package = self._create_package(cards)
 
-        # XXX: Update Model Styling
-        # XXX: Update Model Templates
+        models = {card.genanki_model for card in cards}
+        for model in models:
+            self.gateway.update_model(model)
+
+        package = self._create_package(cards)
 
         self.gateway.import_package(
             package,
             tmp_write_dir=command.tmp_write_dir,
             tmp_read_dir=command.tmp_read_dir,
         )
-        ...
 
     def update(
         self, commands: Sequence[PromptDestinationCommand]

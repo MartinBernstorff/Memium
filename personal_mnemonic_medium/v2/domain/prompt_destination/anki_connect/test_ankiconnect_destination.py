@@ -1,12 +1,18 @@
 from collections.abc import Mapping
+from pathlib import Path
 
 import pytest
 
 from ....data_access.ankiconnect_gateway import (
     AnkiField,
-    FakeAnkiconnectGateway,
+    ImportPackage,
+    MockAnkiconnectGateway,
+    UpdateModel,
 )
 from ....data_access.test_ankiconnect import MockNoteInfo
+from ...prompt_source.destination_commands import PushPrompts
+from ...prompts.cloze_prompt import ClozePromptWithoutDoc
+from ...prompts.qa_prompt import QAPromptWithoutDoc
 from .ankiconnect_destination import AnkiConnectDestination
 from .prompt_converter.anki_prompt_converter import (
     AnkiPromptConverter,
@@ -31,7 +37,7 @@ from .prompt_converter.anki_prompt_converter import (
 )
 def test_ankiconnect_get_all_prompts(fields: Mapping[str, AnkiField]):
     dest = AnkiConnectDestination(
-        gateway=FakeAnkiconnectGateway(
+        gateway=MockAnkiconnectGateway(
             note_infos=[MockNoteInfo(fields=fields)]
         ),
         prompt_converter=AnkiPromptConverter(base_deck="FakeDeck"),
@@ -39,3 +45,38 @@ def test_ankiconnect_get_all_prompts(fields: Mapping[str, AnkiField]):
     prompts = dest.get_all_prompts()
 
     assert len(prompts) == 1
+
+
+def test_ankiconnect_push_prompts(tmpdir: Path):
+    gateway = MockAnkiconnectGateway()
+    dest = AnkiConnectDestination(
+        gateway=gateway,
+        prompt_converter=AnkiPromptConverter(base_deck="FakeDeck"),
+    )
+    dest.update(
+        [
+            PushPrompts(
+                prompts=[
+                    QAPromptWithoutDoc(
+                        question="FakeQuestion", answer="FakeAnswer"
+                    ),
+                    ClozePromptWithoutDoc(text="FakeText"),
+                ],
+                tmp_write_dir=tmpdir,
+                tmp_read_dir=tmpdir,
+            )
+        ]
+    )
+
+    expected_commands = [(ImportPackage, 1), (UpdateModel, 2)]
+    for command in expected_commands:
+        assert (
+            len(
+                [
+                    c
+                    for c in gateway.executed_commands
+                    if isinstance(c, command[0])
+                ]
+            )
+            == command[1]
+        )
