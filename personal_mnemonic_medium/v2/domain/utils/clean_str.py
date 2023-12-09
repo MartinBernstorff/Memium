@@ -8,7 +8,3 @@ def clean_str(input_str: str) -> str:
     ).replace(" ", "")
 
     return cleaned
-
-
-if __name__ == "__main__":
-    

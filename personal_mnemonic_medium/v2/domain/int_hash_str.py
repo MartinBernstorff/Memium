@@ -1,7 +1,7 @@
 import hashlib
 
 
-def int_hash_str(input_string: str) -> int:
+def int_hash_str(input_string: str, max_length: int = 10) -> int:
     # Convert the string to bytes
     bytes_string = input_string.encode()
 
@@ -10,5 +10,6 @@ def int_hash_str(input_string: str) -> int:
 
     # Hex digest the hash and convert it to an integer
     unique_int = int(hash_object.hexdigest(), 16)
+    shortened = unique_int % 10**max_length
 
-    return unique_int
+    return shortened

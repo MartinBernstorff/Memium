@@ -8,6 +8,9 @@ from ....data_access.ankiconnect_gateway import (
 )
 from ....data_access.test_ankiconnect import MockNoteInfo
 from .ankiconnect_destination import AnkiConnectDestination
+from .prompt_converter.anki_prompt_converter import (
+    AnkiPromptConverter,
+)
 
 
 @pytest.mark.parametrize(
@@ -30,7 +33,8 @@ def test_ankiconnect_get_all_prompts(fields: Mapping[str, AnkiField]):
     dest = AnkiConnectDestination(
         gateway=FakeAnkiconnectGateway(
             note_infos=[MockNoteInfo(fields=fields)]
-        )
+        ),
+        prompt_converter=AnkiPromptConverter(),
     )
     prompts = dest.get_all_prompts()
 

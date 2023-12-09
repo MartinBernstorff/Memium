@@ -13,8 +13,8 @@ from ....data_access.ankiconnect_gateway import (
     NoteInfo,
 )
 from ...prompts.base_prompt import BasePrompt
-from ...prompts.cloze_prompt import ClozePrompt
-from ...prompts.qa_prompt import QAPrompt
+from ...prompts.cloze_prompt import ClozePromptWithoutDoc
+from ...prompts.qa_prompt import QAPromptWithoutDoc
 from ..base_prompt_destination import PromptDestination
 from .prompt_converter.anki_prompt_converter import (
     AnkiPromptConverter,
@@ -35,14 +35,14 @@ class AnkiConnectDestination(PromptDestination):
             "Question" in note_info.fields
             and "Answer" in note_info.fields
         ):
-            return QAPrompt(
+            return QAPromptWithoutDoc(
                 question=note_info.fields["Question"].value,
                 answer=note_info.fields["Answer"].value,
                 add_tags=note_info.tags,
             )
 
         if "Text" in note_info.fields:
-            return ClozePrompt(
+            return ClozePromptWithoutDoc(
                 text=note_info.fields["Text"].value,
                 add_tags=note_info.tags,
             )

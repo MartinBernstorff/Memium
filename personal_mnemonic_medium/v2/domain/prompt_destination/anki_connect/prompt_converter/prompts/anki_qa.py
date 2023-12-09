@@ -6,13 +6,13 @@ from personal_mnemonic_medium.data_access.exporters.anki.anki_css import (
     CARD_MODEL_CSS,
 )
 
-from ....int_hash_str import int_hash_str
-from ....utils.clean_str import clean_str
-from .anki_prompt_converter import AnkiCard
+from .....int_hash_str import int_hash_str
+from .....utils.clean_str import clean_str
+from .base_anki_prompt import AnkiPrompt
 
 
 @dataclass(frozen=True)
-class AnkiQA(AnkiCard):
+class AnkiQA(AnkiPrompt):
     question: str
     answer: str
     css: str = CARD_MODEL_CSS
