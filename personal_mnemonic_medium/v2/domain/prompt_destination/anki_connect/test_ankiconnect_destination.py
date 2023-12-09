@@ -62,9 +62,13 @@ def test_ankiconnect_push_prompts(tmpdir: Path):
             PushPrompts(
                 prompts=[
                     QAPromptWithoutDoc(
-                        question="FakeQuestion", answer="FakeAnswer"
+                        question="FakeQuestion",
+                        answer="FakeAnswer",
+                        add_tags=["FakeTag"],
                     ),
-                    ClozePromptWithoutDoc(text="FakeText"),
+                    ClozePromptWithoutDoc(
+                        text="FakeText", add_tags=["FakeTag"]
+                    ),
                 ],
                 tmp_write_dir=tmpdir,
                 tmp_read_dir=tmpdir,

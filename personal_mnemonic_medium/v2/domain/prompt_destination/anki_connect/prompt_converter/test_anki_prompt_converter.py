@@ -1,42 +1,42 @@
-from collections.abc import Sequence
-from dataclasses import dataclass
-
 import pytest
 
 from ....prompts.base_prompt import BasePrompt
 from ....prompts.cloze_prompt import ClozePromptWithoutDoc
-from ....prompts.qa_prompt import QAPrompt
+from ....prompts.qa_prompt import QAPromptWithoutDoc
 from .anki_prompt_converter import AnkiPromptConverter
 from .prompts.anki_cloze import AnkiCloze
 from .prompts.anki_qa import AnkiQA
 from .prompts.base_anki_prompt import AnkiCard
 
+fake_anki_qa = AnkiQA(
+    question="FakeQuestion",
+    answer="FakeAnswer",
+    deck="FakeDeck",
+    tags=["FakeTag"],
+    css="FakeCSS",
+)
 
-@dataclass(frozen=True)
-class FakeAnkiQA(AnkiQA):
-    deck: str = "FakeDeck"
-    tags: Sequence[str] = ("FakeTag",)
-    css: str = "FakeCSS"
-    ...
-
-
-@dataclass(frozen=True)
-class FakeAnkiCloze(AnkiCloze):
-    deck: str = "FakeDeck"
-    tags: Sequence[str] = ("FakeTag",)
-    css: str = "FakeCSS"
+fake_anki_cloze = AnkiCloze(
+    text="FakeText", deck="FakeDeck", tags=["FakeTag"], css="FakeCSS"
+)
 
 
 @pytest.mark.parametrize(
     ("input_prompt", "expected_card"),
     [
         (
-            QAPrompt(question="FakeQuestion", answer="FakeAnswer"),
-            FakeAnkiQA(question="FakeQuestion", answer="FakeAnswer"),
+            QAPromptWithoutDoc(
+                question="FakeQuestion",
+                answer="FakeAnswer",
+                add_tags=["FakeTag"],
+            ),
+            fake_anki_qa,
         ),
         (
-            ClozePromptWithoutDoc(text="FakeText"),
-            FakeAnkiCloze(text="FakeText"),
+            ClozePromptWithoutDoc(
+                text="FakeText", add_tags=["FakeTag"]
+            ),
+            fake_anki_cloze,
         ),
     ],
 )
