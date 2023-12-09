@@ -10,9 +10,9 @@ from ....data_access.ankiconnect_gateway import (
     UpdateModel,
 )
 from ....data_access.test_ankiconnect import MockNoteInfo
-from ...prompt_source.destination_commands import PushPrompts
 from ...prompts.cloze_prompt import ClozePromptWithoutDoc
 from ...prompts.qa_prompt import QAPromptWithoutDoc
+from ..destination_commands import PushPrompts
 from .ankiconnect_destination import AnkiConnectDestination
 from .prompt_converter.anki_prompt_converter import (
     AnkiPromptConverter,
