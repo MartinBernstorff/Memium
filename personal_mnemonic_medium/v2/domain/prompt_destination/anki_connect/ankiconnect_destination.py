@@ -25,7 +25,7 @@ class AnkiConnectDestination(PromptDestination):
         prompt_ids = {int(prompt.note_uuid) for prompt in prompts}
 
         # TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/284 Figure out how NoteIDs are generated, and how they map to PromptIDs
-        self.gateway.delete_notes(prompt_ids)
+        self.gateway.delete_notes(list(prompt_ids))
 
     def _push_prompts(self, prompts: Sequence[Prompt]) -> None:
         ...
