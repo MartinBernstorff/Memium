@@ -1,7 +1,7 @@
 from collections.abc import Sequence
 from dataclasses import dataclass
 
-from personal_mnemonic_medium.v2.domain.prompts.hash_str import (
+from personal_mnemonic_medium.v2.domain.int_hash_str import (
     int_hash_str,
 )
 

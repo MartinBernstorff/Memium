@@ -16,11 +16,19 @@ from ...prompts.base_prompt import BasePrompt
 from ...prompts.cloze_prompt import ClozePrompt
 from ...prompts.qa_prompt import QAPrompt
 from ..base_prompt_destination import PromptDestination
+from .prompt_converter.anki_prompt_converter import (
+    AnkiPromptConverter,
+)
 
 
 class AnkiConnectDestination(PromptDestination):
-    def __init__(self, gateway: AnkiConnectGateway) -> None:
+    def __init__(
+        self,
+        gateway: AnkiConnectGateway,
+        prompt_converter: AnkiPromptConverter,
+    ) -> None:
         self.gateway = gateway
+        self.prompt_converter = prompt_converter
 
     def _note_info_to_prompt(self, note_info: NoteInfo) -> BasePrompt:
         if (

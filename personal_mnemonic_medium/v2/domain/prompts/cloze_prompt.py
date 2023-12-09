@@ -2,8 +2,8 @@ from collections.abc import Sequence
 from dataclasses import dataclass
 
 from ....data_access.document_ingesters.document import Document
+from ..int_hash_str import int_hash_str
 from .base_prompt import BasePrompt
-from .hash_str import int_hash_str
 
 
 @dataclass(frozen=True)
