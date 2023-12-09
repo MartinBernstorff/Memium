@@ -1,17 +1,14 @@
 from collections.abc import Sequence
 from typing import Protocol
 
-from personal_mnemonic_medium.domain.prompt_extractors.prompt import (
-    Prompt,
-)
-
+from ..prompts.base_prompt import BasePrompt
 from ..prompt_source.destination_commands import (
     PromptDestinationCommand,
 )
 
 
 class PromptDestination(Protocol):
-    def get_all_prompts(self) -> Sequence[Prompt]:
+    def get_all_prompts(self) -> Sequence[BasePrompt]:
         ...
 
     def update(
@@ -21,7 +18,7 @@ class PromptDestination(Protocol):
 
 
 class FakePromptDestination(PromptDestination):
-    def get_all_prompts(self) -> Sequence[Prompt]:
+    def get_all_prompts(self) -> Sequence[BasePrompt]:
         ...
 
     def update(
