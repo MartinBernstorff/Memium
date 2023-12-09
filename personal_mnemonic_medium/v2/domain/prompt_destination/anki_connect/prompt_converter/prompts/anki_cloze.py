@@ -3,7 +3,6 @@ from dataclasses import dataclass
 
 import genanki
 
-from .......data_access.exporters.anki.anki_css import CARD_MODEL_CSS
 from .....int_hash_str import int_hash_str
 from .....utils.clean_str import clean_str
 from .base_anki_prompt import AnkiCard
@@ -14,7 +13,7 @@ class AnkiCloze(AnkiCard):
     deck: str
     tags: Sequence[str]
     text: str
-    css: str = CARD_MODEL_CSS
+    css: str
 
     @property
     def uuid(self) -> int:

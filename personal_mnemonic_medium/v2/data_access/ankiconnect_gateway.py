@@ -156,8 +156,11 @@ class UpdateModel(FakeAnkiCommand):
 class SpieAnkiconnectGateway(AnkiConnectGateway):
     def __init__(self, note_infos: Sequence[NoteInfo] = ()) -> None:
         self.deck_name = "FakeDeck"
-        self.note_infos = note_infos
+        self.note_infos: list[NoteInfo] = list(note_infos)
         self.executed_commands: list[FakeAnkiCommand] = []
+
+    def add_note_infos(self, note_infos: Sequence[NoteInfo]) -> None:
+        self.note_infos = self.note_infos + list(note_infos)
 
     def get_all_note_infos(self) -> Sequence[NoteInfo]:
         return self.note_infos

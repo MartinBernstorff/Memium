@@ -31,7 +31,7 @@ class MockNoteInfo(NoteInfo):
     not ANKICONNECT_IS_RUNNING,
     reason="Tests require a running AnkiConnect server",
 )
-class TestAnkiConnect:
+class TestAnkiConnectGateway:
     gateway = AnkiConnectGateway(
         ankiconnect_url=ANKICONNECT_URL,
         deck_name="0. Don't click me::1. Active::Personal Mnemonic Medium",

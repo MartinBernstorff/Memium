@@ -19,10 +19,14 @@ from ....prompts.qa_prompt import QAPrompt
 
 class AnkiPromptConverter:
     def __init__(
-        self, base_deck: str, deck_prefix: str = "#anki_deck"
+        self,
+        base_deck: str,
+        card_css: str,
+        deck_prefix: str = "#anki_deck",
     ) -> None:
         self.base_deck = base_deck
         self.deck_prefix = deck_prefix
+        self.card_css = card_css
 
     def _prompt_to_card(self, prompt: BasePrompt) -> AnkiCard:
         deck_in_tags = [
@@ -39,10 +43,14 @@ class AnkiPromptConverter:
                     answer=prompt.answer,
                     deck=deck,
                     tags=prompt.tags,
+                    css=self.card_css,
                 )
             case ClozePromptWithoutDoc():
                 card = AnkiCloze(
-                    text=prompt.text, deck=deck, tags=prompt.tags
+                    text=prompt.text,
+                    deck=deck,
+                    tags=prompt.tags,
+                    css=self.card_css,
                 )
             case BasePrompt():
                 raise ValueError(

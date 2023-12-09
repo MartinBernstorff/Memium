@@ -40,7 +40,9 @@ def test_ankiconnect_get_all_prompts(fields: Mapping[str, AnkiField]):
         gateway=SpieAnkiconnectGateway(
             note_infos=[MockNoteInfo(fields=fields)]
         ),
-        prompt_converter=AnkiPromptConverter(base_deck="FakeDeck"),
+        prompt_converter=AnkiPromptConverter(
+            base_deck="FakeDeck", card_css="FakeCSS"
+        ),
     )
     prompts = dest.get_all_prompts()
 
@@ -51,7 +53,9 @@ def test_ankiconnect_push_prompts(tmpdir: Path):
     gateway = SpieAnkiconnectGateway()
     dest = AnkiConnectDestination(
         gateway=gateway,
-        prompt_converter=AnkiPromptConverter(base_deck="FakeDeck"),
+        prompt_converter=AnkiPromptConverter(
+            base_deck="FakeDeck", card_css="FakeCSS"
+        ),
     )
     dest.update(
         [

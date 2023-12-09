@@ -16,6 +16,7 @@ from .prompts.base_anki_prompt import AnkiCard
 class FakeAnkiQA(AnkiQA):
     deck: str = "FakeDeck"
     tags: Sequence[str] = ("FakeTag",)
+    css: str = "FakeCSS"
     ...
 
 
@@ -23,6 +24,7 @@ class FakeAnkiQA(AnkiQA):
 class FakeAnkiCloze(AnkiCloze):
     deck: str = "FakeDeck"
     tags: Sequence[str] = ("FakeTag",)
+    css: str = "FakeCSS"
 
 
 @pytest.mark.parametrize(
@@ -42,9 +44,9 @@ def test_anki_prompt_converter(
     input_prompt: BasePrompt, expected_card: AnkiCard
 ):
     """Tests the AnkiPromptConverter class"""
-    card = AnkiPromptConverter(base_deck="FakeDeck").prompts_to_cards(
-        [input_prompt]
-    )[0]
+    card = AnkiPromptConverter(
+        base_deck="FakeDeck", card_css="FakeCSS"
+    ).prompts_to_cards([input_prompt])[0]
 
     assert card.uuid == expected_card.uuid
     for attr in expected_card.__dict__:
