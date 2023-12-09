@@ -1,6 +1,6 @@
 from collections.abc import Sequence
 
-from functionalpy import Seq
+from functionalpy._sequence import Seq
 
 from personal_mnemonic_medium.v2.domain.prompt_source.destination_commands import (
     DeletePrompts,

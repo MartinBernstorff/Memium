@@ -1,10 +1,10 @@
 from collections.abc import Sequence
 from typing import Protocol
 
-from ..prompts.base_prompt import BasePrompt
 from ..prompt_source.destination_commands import (
     PromptDestinationCommand,
 )
+from ..prompts.base_prompt import BasePrompt
 
 
 class PromptDestination(Protocol):
