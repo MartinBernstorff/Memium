@@ -1,3 +1,4 @@
+from collections.abc import Mapping, Sequence
 from pathlib import Path
 
 import genanki
@@ -7,9 +8,23 @@ from ...data_access.exporters.anki.globals import ANKICONNECT_URL
 from ...data_access.exporters.anki.sync.gateway_utils import (
     anki_connect_is_live,
 )
-from .ankiconnect import AnkiConnectGateway, NoteInfo
+from .ankiconnect_gateway import (
+    AnkiConnectGateway,
+    AnkiField,
+    NoteInfo,
+)
 
 ANKICONNECT_IS_RUNNING = anki_connect_is_live()
+
+
+class MockNoteInfo(NoteInfo):
+    noteId: int = 1
+    tags: Sequence[str] = ["MockTag"]
+    fields: Mapping[str, AnkiField] = {
+        "Text": AnkiField(value="MockText", order=0)
+    }
+    modelName: str = "MockModel"
+    cards: Sequence[int] = [1]
 
 
 @pytest.mark.skipif(
