@@ -153,7 +153,7 @@ class UpdateModel(FakeAnkiCommand):
     model: genanki.Model
 
 
-class MockAnkiconnectGateway(AnkiConnectGateway):
+class SpieAnkiconnectGateway(AnkiConnectGateway):
     def __init__(self, note_infos: Sequence[NoteInfo] = ()) -> None:
         self.deck_name = "FakeDeck"
         self.note_infos = note_infos

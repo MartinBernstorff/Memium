@@ -6,7 +6,7 @@ import pytest
 from ....data_access.ankiconnect_gateway import (
     AnkiField,
     ImportPackage,
-    MockAnkiconnectGateway,
+    SpieAnkiconnectGateway,
     UpdateModel,
 )
 from ....data_access.test_ankiconnect import MockNoteInfo
@@ -37,7 +37,7 @@ from .prompt_converter.anki_prompt_converter import (
 )
 def test_ankiconnect_get_all_prompts(fields: Mapping[str, AnkiField]):
     dest = AnkiConnectDestination(
-        gateway=MockAnkiconnectGateway(
+        gateway=SpieAnkiconnectGateway(
             note_infos=[MockNoteInfo(fields=fields)]
         ),
         prompt_converter=AnkiPromptConverter(base_deck="FakeDeck"),
@@ -48,7 +48,7 @@ def test_ankiconnect_get_all_prompts(fields: Mapping[str, AnkiField]):
 
 
 def test_ankiconnect_push_prompts(tmpdir: Path):
-    gateway = MockAnkiconnectGateway()
+    gateway = SpieAnkiconnectGateway()
     dest = AnkiConnectDestination(
         gateway=gateway,
         prompt_converter=AnkiPromptConverter(base_deck="FakeDeck"),
