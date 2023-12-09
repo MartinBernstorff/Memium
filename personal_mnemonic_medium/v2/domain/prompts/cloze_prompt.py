@@ -2,11 +2,12 @@ from collections.abc import Sequence
 from dataclasses import dataclass
 
 from ....data_access.document_ingesters.document import Document
+from .base_prompt import BasePrompt
 from .hash_str import int_hash_str
 
 
 @dataclass(frozen=True)
-class ClozePrompt:
+class ClozePrompt(BasePrompt):
     text: str
     add_tags: Sequence[str]
 
