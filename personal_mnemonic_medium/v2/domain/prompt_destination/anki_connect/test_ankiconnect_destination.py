@@ -34,7 +34,7 @@ def test_ankiconnect_get_all_prompts(fields: Mapping[str, AnkiField]):
         gateway=FakeAnkiconnectGateway(
             note_infos=[MockNoteInfo(fields=fields)]
         ),
-        prompt_converter=AnkiPromptConverter(),
+        prompt_converter=AnkiPromptConverter(base_deck="FakeDeck"),
     )
     prompts = dest.get_all_prompts()
 

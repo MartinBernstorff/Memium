@@ -1,3 +1,6 @@
+from collections.abc import Sequence
+from dataclasses import dataclass
+
 import pytest
 
 from ....prompts.base_prompt import BasePrompt
@@ -6,7 +9,20 @@ from ....prompts.qa_prompt import QAPrompt
 from .anki_prompt_converter import AnkiPromptConverter
 from .prompts.anki_cloze import AnkiCloze
 from .prompts.anki_qa import AnkiQA
-from .prompts.base_anki_prompt import AnkiPrompt
+from .prompts.base_anki_prompt import AnkiCard
+
+
+@dataclass(frozen=True)
+class FakeAnkiQA(AnkiQA):
+    deck: str = "FakeDeck"
+    tags: Sequence[str] = ("FakeTag",)
+    ...
+
+
+@dataclass(frozen=True)
+class FakeAnkiCloze(AnkiCloze):
+    deck: str = "FakeDeck"
+    tags: Sequence[str] = ("FakeTag",)
 
 
 @pytest.mark.parametrize(
@@ -14,19 +30,21 @@ from .prompts.base_anki_prompt import AnkiPrompt
     [
         (
             QAPrompt(question="FakeQuestion", answer="FakeAnswer"),
-            AnkiQA(question="FakeQuestion", answer="FakeAnswer"),
+            FakeAnkiQA(question="FakeQuestion", answer="FakeAnswer"),
         ),
         (
             ClozePromptWithoutDoc(text="FakeText"),
-            AnkiCloze(text="FakeText"),
+            FakeAnkiCloze(text="FakeText"),
         ),
     ],
 )
 def test_anki_prompt_converter(
-    input_prompt: BasePrompt, expected_card: AnkiPrompt
+    input_prompt: BasePrompt, expected_card: AnkiCard
 ):
     """Tests the AnkiPromptConverter class"""
-    card = AnkiPromptConverter.prompts_to_cards([input_prompt])[0]
+    card = AnkiPromptConverter(base_deck="FakeDeck").prompts_to_cards(
+        [input_prompt]
+    )[0]
 
     assert card.uuid == expected_card.uuid
     for attr in expected_card.__dict__:
