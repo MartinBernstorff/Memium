@@ -1,16 +1,14 @@
 from collections.abc import Sequence
 from typing import Protocol
 
-from personal_mnemonic_medium.domain.prompt_extractors.prompt import (
-    Prompt,
-)
+from ..prompts.base_prompt import BasePrompt
 
 
 class BasePromptSource(Protocol):
-    def get_prompts(self) -> Sequence[Prompt]:
+    def get_prompts(self) -> Sequence[BasePrompt]:
         ...
 
 
 class FakePromptSource:
-    def get_prompts(self) -> Sequence[Prompt]:
+    def get_prompts(self) -> Sequence[BasePrompt]:
         ...

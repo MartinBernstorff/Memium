@@ -3,7 +3,7 @@ import datetime
 import json
 import traceback
 import urllib.request
-from collections.abc import Sequence
+from collections.abc import Mapping, Sequence
 from enum import Enum
 from pathlib import Path
 from typing import Any
@@ -20,7 +20,7 @@ class AnkiField(pydantic.BaseModel):
 class NoteInfo(pydantic.BaseModel):
     noteId: int
     tags: Sequence[str]
-    fields: dict[str, AnkiField]
+    fields: Mapping[str, AnkiField]
     modelName: str
     cards: Sequence[int]
 
@@ -136,12 +136,9 @@ class AnkiConnectGateway:
 
 
 class FakeAnkiconnectGateway(AnkiConnectGateway):
-    def __init__(self):
+    def __init__(self, note_infos: Sequence[NoteInfo]) -> None:
         self.deck_name = "FakeDeck"
+        self.note_infos = note_infos
 
     def get_all_note_infos(self) -> Sequence[NoteInfo]:
-        return [
-            NoteInfo(
-                noteId=1, tags=[], fields={}, modelName="", cards=[]
-            )
-        ]
+        return self.note_infos
