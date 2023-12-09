@@ -81,7 +81,7 @@ class AnkiConnectGateway:
         # Delete the package after importing it
         output_path.unlink()
 
-    def delete_notes(self, note_ids: Sequence[Any]) -> None:
+    def delete_notes(self, note_ids: Sequence[int]) -> None:
         self._invoke(AnkiConnectCommand.DELETE_NOTES, notes=note_ids)
 
     def get_all_note_infos(self) -> Sequence[NoteInfo]:
