@@ -7,7 +7,7 @@ from .base_document_extractor import BaseDocumentIngester
 from .document import Document
 
 
-class MarkdownGateway(BaseDocumentIngester):
+class MarkdownDocumentIngester(BaseDocumentIngester):
     def __init__(self, directory: Path) -> None:
         self.directory = directory
 

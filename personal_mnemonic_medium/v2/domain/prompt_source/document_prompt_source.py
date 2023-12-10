@@ -2,10 +2,10 @@ from collections.abc import Sequence
 
 from ..prompts.base_prompt import BasePrompt
 from .base_prompt_source import BasePromptSource
-from .document_extractors.base_document_extractor import (
+from .document_ingesters.base_document_extractor import (
     BaseDocumentIngester,
 )
-from .document_extractors.document import Document
+from .document_ingesters.document import Document
 from .prompt_extractors.base_prompt_extractor import (
     BasePromptExtractor,
 )
