@@ -3,7 +3,7 @@ from pathlib import Path
 
 from tqdm import tqdm
 
-from .base_document_extractor import BaseDocumentIngester
+from .base_document_ingester import BaseDocumentIngester
 from .document import Document
 
 
