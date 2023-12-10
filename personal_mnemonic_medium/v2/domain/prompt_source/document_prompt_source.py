@@ -27,7 +27,7 @@ class DocumentPromptSouce(BasePromptSource):
         prompts: list[BasePrompt] = []
         for extractor in self._prompt_extractors:
             extractor_prompts = list(
-                extractor.extract_prompts(document.content)
+                extractor.extract_prompts(document)
             )
             prompts += extractor_prompts
 
