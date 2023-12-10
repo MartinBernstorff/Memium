@@ -5,7 +5,7 @@ from ...prompts.base_prompt import BasePrompt
 from ..document_ingesters.document import Document
 
 
-# TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/294 Implement QA and Cloze promptextractors
+# TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/297 Implement ClozeExtractor
 class BasePromptExtractor(Protocol):
     def extract_prompts(
         self, document: Document
