@@ -2,7 +2,7 @@ from collections.abc import Sequence
 
 from ..prompts.base_prompt import BasePrompt
 from .base_prompt_source import BasePromptSource
-from .document_ingesters.base_document_extractor import (
+from .document_ingesters.base_document_ingester import (
     BaseDocumentIngester,
 )
 from .document_ingesters.document import Document
@@ -11,8 +11,7 @@ from .prompt_extractors.base_prompt_extractor import (
 )
 
 
-# TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/296 tests: test DocumentPromptSource
-class DocumentPromptSouce(BasePromptSource):
+class DocumentPromptSource(BasePromptSource):
     def __init__(
         self,
         document_ingester: BaseDocumentIngester,
