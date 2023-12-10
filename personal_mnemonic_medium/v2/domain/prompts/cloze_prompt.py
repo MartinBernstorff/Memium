@@ -1,12 +1,11 @@
 from collections.abc import Sequence
 from dataclasses import dataclass
 
-from personal_mnemonic_medium.v2.domain.prompts.doc_mixin import (
-    DocMixin,
-)
-
 from ..int_hash_str import int_hash_str
+from ..prompt_source.document_ingesters.document import Document
 from .base_prompt import BasePrompt
+
+# TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/299 refactor: clean up doc type inheritance
 
 
 @dataclass(frozen=True)
@@ -31,5 +30,15 @@ class ClozePromptWithoutDoc(ClozePrompt):
         return self.add_tags
 
 
-class ClozePromptFromDoc(ClozePrompt, DocMixin):
-    ...
+@dataclass(frozen=True)
+class ClozePromptFromDoc(ClozePrompt):
+    text: str
+    source_doc: Document
+
+    @property
+    def uid(self) -> int:
+        return int_hash_str(self.text)
+
+    @property
+    def tags(self) -> Sequence[str]:
+        return self.source_doc.tags
