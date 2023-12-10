@@ -1,8 +1,8 @@
 from collections.abc import Sequence
 from dataclasses import dataclass
 
-from ..int_hash_str import int_hash_str
 from ..prompt_source.document_ingesters.document import Document
+from ..utils.int_hash_str import int_hash_str
 from .base_prompt import BasePrompt
 
 # TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/299 refactor: clean up doc type inheritance

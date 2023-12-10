@@ -2,7 +2,7 @@ from collections.abc import Sequence
 
 from attr import dataclass
 
-from personal_mnemonic_medium.v2.domain.int_hash_str import (
+from personal_mnemonic_medium.v2.domain.utils.int_hash_str import (
     int_hash_str,
 )
 
