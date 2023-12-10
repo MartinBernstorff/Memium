@@ -11,6 +11,7 @@ from .prompt_extractors.base_prompt_extractor import (
 )
 
 
+# TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/296 tests: test DocumentPromptSource
 class DocumentPromptSouce(BasePromptSource):
     def __init__(
         self,
