@@ -63,11 +63,9 @@ class AnkiConnectGateway:
         tmp_write_dir: Path,
         tmp_read_dir: Path,
     ) -> None:
-        apkg_name = datetime.datetime.now().strftime(
-            "%Y-%m-%d-%H-%M-%S"
-        )
-        output_path = tmp_write_dir / apkg_name
-        package.write_to_file(output_path)  # type: ignore
+        apkg_name = f"{datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')}.apkg"
+        write_path = tmp_write_dir / apkg_name
+        package.write_to_file(write_path)  # type: ignore
 
         read_path = tmp_read_dir / apkg_name
         try:
@@ -75,12 +73,10 @@ class AnkiConnectGateway:
                 AnkiConnectCommand.IMPORT_PACKAGE, path=str(read_path)
             )
             print(f"Imported from {read_path}!")
+            write_path.unlink()
         except Exception:
             print(f"""Unable to sync from {read_path}.""")
             traceback.print_exc()
-
-        # Delete the package after importing it
-        output_path.unlink()
 
     def delete_notes(self, note_ids: Sequence[int]) -> None:
         self._invoke(AnkiConnectCommand.DELETE_NOTES, notes=note_ids)

@@ -14,8 +14,8 @@ from ....data_access.ankiconnect_gateway import (
     NoteInfo,
 )
 from ...prompts.base_prompt import BasePrompt
-from ...prompts.cloze_prompt import ClozePromptWithoutDoc
-from ...prompts.qa_prompt import QAPromptWithoutDoc
+from ...prompts.cloze_prompt import RemoteClozePrompt
+from ...prompts.qa_prompt import RemoteQAPrompt
 from ..base_prompt_destination import PromptDestination
 from .prompt_converter.anki_prompt_converter import (
     AnkiPromptConverter,
@@ -37,16 +37,18 @@ class AnkiConnectDestination(PromptDestination):
             "Question" in note_info.fields
             and "Answer" in note_info.fields
         ):
-            return QAPromptWithoutDoc(
+            return RemoteQAPrompt(
                 question=note_info.fields["Question"].value,
                 answer=note_info.fields["Answer"].value,
                 add_tags=note_info.tags,
+                remote_id=str(note_info.noteId),
             )
 
         if "Text" in note_info.fields:
-            return ClozePromptWithoutDoc(
+            return RemoteClozePrompt(
                 text=note_info.fields["Text"].value,
                 add_tags=note_info.tags,
+                remote_id=str(note_info.noteId),
             )
 
         raise ValueError(
@@ -62,8 +64,6 @@ class AnkiConnectDestination(PromptDestination):
 
     def _delete_prompts(self, prompts: Sequence[BasePrompt]) -> None:
         prompt_ids = {int(prompt.uid) for prompt in prompts}
-
-        # TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/284 Figure out how NoteIDs are generated, and how they map to PromptIDs
         self.gateway.delete_notes(list(prompt_ids))
 
     def _grouped_cards_to_deck(
