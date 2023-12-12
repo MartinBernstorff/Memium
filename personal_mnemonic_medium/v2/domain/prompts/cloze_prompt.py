@@ -22,15 +22,6 @@ class ClozePrompt(BasePrompt):
 
 
 @dataclass(frozen=True)
-class ClozePromptWithoutDoc(ClozePrompt):
-    add_tags: Sequence[str]
-
-    @property
-    def tags(self) -> Sequence[str]:
-        return self.add_tags
-
-
-@dataclass(frozen=True)
 class RemoteClozePrompt(ClozePrompt):
     remote_id: str
     add_tags: Sequence[str]
