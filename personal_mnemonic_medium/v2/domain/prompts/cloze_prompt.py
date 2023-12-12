@@ -1,6 +1,7 @@
 from collections.abc import Sequence
 from dataclasses import dataclass
 
+from ..prompt_destination.destination_prompt import DestinationPrompt
 from ..prompt_source.document_ingesters.document import Document
 from ..utils.int_hash_str import int_hash_str
 from .base_prompt import BasePrompt
@@ -22,7 +23,7 @@ class ClozePrompt(BasePrompt):
 
 
 @dataclass(frozen=True)
-class RemoteClozePrompt(ClozePrompt):
+class DestinationClozePrompt(ClozePrompt, DestinationPrompt):
     remote_id: str
     add_tags: Sequence[str]
 

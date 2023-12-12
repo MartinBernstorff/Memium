@@ -3,11 +3,12 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from ..prompts.base_prompt import BasePrompt
+from ..prompts.qa_prompt import DestinationQAPrompt
 
 
 @dataclass(frozen=True)
 class DeletePrompts:
-    prompts: Sequence[BasePrompt]
+    prompts: Sequence[DestinationQAPrompt | DestinationQAPrompt]
 
 
 @dataclass(frozen=True)

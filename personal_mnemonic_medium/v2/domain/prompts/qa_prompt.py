@@ -6,6 +6,7 @@ from personal_mnemonic_medium.v2.domain.utils.int_hash_str import (
     int_hash_str,
 )
 
+from ..prompt_destination.destination_prompt import DestinationPrompt
 from ..prompt_source.document_ingesters.document import Document
 from .base_prompt import BasePrompt
 
@@ -25,7 +26,7 @@ class QAPrompt(BasePrompt):
 
 
 @dataclass(frozen=True)
-class RemoteQAPrompt(QAPrompt):
+class DestinationQAPrompt(QAPrompt, DestinationPrompt):
     remote_id: str
     add_tags: Sequence[str]
 

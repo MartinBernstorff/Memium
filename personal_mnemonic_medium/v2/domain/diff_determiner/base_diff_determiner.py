@@ -11,6 +11,8 @@ from ..prompt_destination.destination_commands import (
     PushPrompts,
 )
 from ..prompts.base_prompt import BasePrompt
+from ..prompts.cloze_prompt import DestinationClozePrompt
+from ..prompts.qa_prompt import DestinationQAPrompt
 
 K = TypeVar("K")
 T = TypeVar("T")
@@ -60,7 +62,9 @@ class PromptDiffDeterminer(BaseDiffDeterminer):
     def sync(
         self,
         source_prompts: Sequence[BasePrompt],
-        destination_prompts: Sequence[BasePrompt],
+        destination_prompts: Sequence[
+            DestinationClozePrompt | DestinationQAPrompt
+        ],
     ) -> Sequence[PromptDestinationCommand]:
         syncer = GeneralSyncer(
             source={prompt.uid: prompt for prompt in source_prompts},
