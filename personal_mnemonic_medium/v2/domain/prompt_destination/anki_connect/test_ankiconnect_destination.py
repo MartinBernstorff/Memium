@@ -10,8 +10,8 @@ from ....data_access.ankiconnect_gateway import (
     UpdateModel,
 )
 from ....data_access.test_ankiconnect import MockNoteInfo
-from ...prompts.cloze_prompt import ClozePromptWithoutDoc
-from ...prompts.qa_prompt import QAPromptWithoutDoc
+from ...prompts.cloze_prompt import RemoteClozePrompt
+from ...prompts.qa_prompt import RemoteQAPrompt
 from ..destination_commands import PushPrompts
 from .ankiconnect_destination import AnkiConnectDestination
 from .prompt_converter.anki_prompt_converter import (
@@ -61,13 +61,16 @@ def test_ankiconnect_push_prompts(tmpdir: Path):
         [
             PushPrompts(
                 prompts=[
-                    QAPromptWithoutDoc(
+                    RemoteQAPrompt(
                         question="FakeQuestion",
                         answer="FakeAnswer",
                         add_tags=["FakeTag"],
+                        remote_id="1",
                     ),
-                    ClozePromptWithoutDoc(
-                        text="FakeText", add_tags=["FakeTag"]
+                    RemoteClozePrompt(
+                        text="FakeText",
+                        add_tags=["FakeTag"],
+                        remote_id="1",
                     ),
                 ],
                 tmp_write_dir=tmpdir,

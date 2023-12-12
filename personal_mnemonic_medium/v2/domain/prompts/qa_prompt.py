@@ -25,15 +25,6 @@ class QAPrompt(BasePrompt):
 
 
 @dataclass(frozen=True)
-class QAPromptWithoutDoc(QAPrompt):
-    add_tags: Sequence[str]
-
-    @property
-    def tags(self) -> Sequence[str]:
-        return self.add_tags
-
-
-@dataclass(frozen=True)
 class RemoteQAPrompt(QAPrompt):
     remote_id: str
     add_tags: Sequence[str]
