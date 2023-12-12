@@ -15,7 +15,7 @@ from personal_mnemonic_medium.data_access.exporters.anki.globals import (
 from ...main import get_env
 from ..data_access.ankiconnect_gateway import AnkiConnectGateway
 from ..domain.diff_determiner.base_diff_determiner import (
-    FakeDiffDeterminer,
+    PromptDiffDeterminer,
 )
 from ..domain.prompt_destination.anki_connect.ankiconnect_destination import (
     AnkiConnectDestination,
@@ -29,6 +29,7 @@ msg = Printer(timestamp=True)
 
 
 def _sync_deck(deck_name: str):
+    # TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/309 feat: use markdown promptsource
     source_prompts = FakePromptSource().get_prompts()
 
     destination = AnkiConnectDestination(
@@ -41,7 +42,9 @@ def _sync_deck(deck_name: str):
     )
     destination_prompts = destination.get_all_prompts()
 
-    update_commands = FakeDiffDeterminer().sync(
+    update_commands = PromptDiffDeterminer(
+        tmp_write_dir=Path("/tmp"), tmp_read_dir=Path("/tmp")
+    ).sync(
         source_prompts=source_prompts,
         destination_prompts=destination_prompts,
     )
