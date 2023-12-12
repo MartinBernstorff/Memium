@@ -33,8 +33,7 @@ class MockNoteInfo(NoteInfo):
 )
 class TestAnkiConnectGateway:
     gateway = AnkiConnectGateway(
-        ankiconnect_url=ANKICONNECT_URL,
-        deck_name="0. Don't click me::1. Active::Personal Mnemonic Medium",
+        ankiconnect_url=ANKICONNECT_URL, deck_name="Test deck"
     )
 
     def test_import_package(self):
@@ -44,9 +43,29 @@ class TestAnkiConnectGateway:
         for f in output_path.glob("*.apkg"):
             f.unlink()
 
-        package = genanki.Package(
-            deck_or_decks=genanki.Deck(deck_id=1, name="Test deck")
+        deck = genanki.Deck(deck_id=1, name="Test deck")
+        model = genanki.Model(
+            model_id=1,
+            name="Test model",
+            fields=[{"name": "Question"}, {"name": "Answer"}],
+            templates=[
+                {
+                    "name": "Card 1",
+                    "qfmt": "{{Question}}",
+                    "afmt": "{{FrontSide}}<hr id=answer>{{Answer}}",
+                }
+            ],
         )
+
+        deck.add_model(model)  # type: ignore
+        deck.add_note(  # type: ignore
+            genanki.Note(
+                model=model,
+                fields=["Capital of Argentina", "Buenos Aires"],
+            )
+        )
+
+        package = genanki.Package(deck_or_decks=deck)
         self.gateway.import_package(
             package=package,
             tmp_write_dir=Path("/output"),
