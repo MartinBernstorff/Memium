@@ -29,7 +29,10 @@ msg = Printer(timestamp=True)
 
 
 def _sync_deck(
-    deck_name: str, input_dir: Path, apkg_output_filepath: Path
+    deck_name: str,
+    input_dir: Path,
+    apkg_output_filepath: Path,
+    max_deletions_per_run: int,
 ):
     # TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/309 feat: use markdown promptsource
     source_prompts = FakePromptSource().get_prompts()
@@ -40,6 +43,7 @@ def _sync_deck(
             deck_name=deck_name,
             tmp_read_dir=input_dir,
             tmp_write_dir=apkg_output_filepath,
+            max_deletions_per_run=max_deletions_per_run,
         ),
         prompt_converter=AnkiPromptConverter(
             base_deck=deck_name, card_css=CARD_MODEL_CSS
@@ -66,8 +70,11 @@ def main(
         ),
     ],
     deck_name: str = typer.Option(
-        "0. Don't click me::1. Active::Personal Mnemonic Medium",
+        "Personal Mnemonic Medium",
         help="Name of the Anki deck to sync to",
+    ),
+    max_deletions_per_run: int = typer.Option(
+        50, help="Maximum number of cards to delete per sync"
     ),
 ):
     if not input_dir.exists():
@@ -88,6 +95,7 @@ def main(
         deck_name=deck_name,
         input_dir=input_dir,
         apkg_output_filepath=apkg_output_filepath,
+        max_deletions_per_run=max_deletions_per_run,
     )
 
     if watch:
@@ -99,6 +107,7 @@ def main(
             deck_name=deck_name,
             input_dir=input_dir,
             apkg_output_filepath=apkg_output_filepath,
+            max_deletions_per_run=max_deletions_per_run,
         )
 
 
