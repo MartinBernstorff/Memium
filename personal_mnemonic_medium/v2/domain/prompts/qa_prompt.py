@@ -26,7 +26,6 @@ class QAPrompt(BasePrompt):
 
 @dataclass(frozen=True)
 class QAWithoutDoc(QAPrompt):
-    remote_id: str
     add_tags: Sequence[str]
 
     @property
