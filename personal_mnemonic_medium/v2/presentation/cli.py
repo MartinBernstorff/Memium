@@ -23,7 +23,18 @@ from ..domain.prompt_destination.anki_connect.ankiconnect_destination import (
 from ..domain.prompt_destination.anki_connect.prompt_converter.anki_prompt_converter import (
     AnkiPromptConverter,
 )
-from ..domain.prompt_source.base_prompt_source import FakePromptSource
+from ..domain.prompt_source.document_ingesters.markdown_document_ingester import (
+    MarkdownDocumentIngester,
+)
+from ..domain.prompt_source.document_prompt_source import (
+    DocumentPromptSource,
+)
+from ..domain.prompt_source.prompt_extractors.cloze_prompt_extractor import (
+    ClozePromptExtractor,
+)
+from ..domain.prompt_source.prompt_extractors.qa_prompt_extractor import (
+    QAPromptExtractor,
+)
 
 msg = Printer(timestamp=True)
 
@@ -34,8 +45,17 @@ def _sync_deck(
     apkg_output_filepath: Path,
     max_deletions_per_run: int,
 ):
-    # TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/309 feat: use markdown promptsource
-    source_prompts = FakePromptSource().get_prompts()
+    source_prompts = DocumentPromptSource(
+        document_ingester=MarkdownDocumentIngester(
+            directory=input_dir
+        ),
+        prompt_extractors=[
+            QAPromptExtractor(
+                question_prefix="Q.", answer_prefix="A."
+            ),
+            ClozePromptExtractor(),
+        ],
+    ).get_prompts()
 
     destination = AnkiConnectDestination(
         gateway=AnkiConnectGateway(
