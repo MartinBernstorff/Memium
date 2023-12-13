@@ -33,7 +33,7 @@ class TestAnkiConnectGateway:
     output_path = Path("/output")
     gateway = AnkiConnectGateway(
         ankiconnect_url=ANKICONNECT_URL,
-        deck_name="Test deck",
+        base_deck="Test deck",
         tmp_read_dir=Path("/Users/Leisure/ankidecks"),
         tmp_write_dir=output_path,
         max_deletions_per_run=1,
@@ -86,7 +86,7 @@ class TestAnkiConnectGateway:
 def test_error_if_deleting_more_than_allowed():
     gateway = AnkiConnectGateway(
         ankiconnect_url=ANKICONNECT_URL,
-        deck_name="Test deck",
+        base_deck="Test deck",
         tmp_read_dir=Path("/tmp"),
         tmp_write_dir=Path("/tmp"),
         max_deletions_per_run=0,

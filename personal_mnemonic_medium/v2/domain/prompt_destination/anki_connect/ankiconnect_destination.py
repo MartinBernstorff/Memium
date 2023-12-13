@@ -16,6 +16,7 @@ from ....data_access.ankiconnect_gateway import (
 from ...prompts.base_prompt import DestinationPrompt
 from ...prompts.cloze_prompt import ClozeWithoutDoc
 from ...prompts.qa_prompt import QAWithoutDoc
+from ...utils.hash_cleaned_str import hash_cleaned_str
 from ..base_prompt_destination import PromptDestination
 from .prompt_converter.anki_prompt_converter import (
     AnkiPromptConverter,
@@ -80,7 +81,9 @@ class AnkiConnectDestination(PromptDestination):
         self, cards: Mapping[str, Sequence[AnkiCard]]
     ) -> genanki.Deck:
         deck_name = next(iter(cards.keys()))
-        deck = genanki.Deck(name=deck_name, deck_id=deck_name)
+        deck = genanki.Deck(
+            name=deck_name, deck_id=hash_cleaned_str(deck_name)
+        )
 
         for card in cards[deck_name]:
             deck.add_note(card.to_genanki_note())  # type: ignore
