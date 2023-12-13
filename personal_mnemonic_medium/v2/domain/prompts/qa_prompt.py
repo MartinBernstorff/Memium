@@ -2,11 +2,8 @@ from collections.abc import Sequence
 
 from attr import dataclass
 
-from personal_mnemonic_medium.v2.domain.utils.int_hash_str import (
-    int_hash_str,
-)
-
 from ..prompt_source.document_ingesters.document import Document
+from ..utils.hash_cleaned_str import hash_cleaned_str
 from .base_prompt import BasePrompt
 
 
@@ -17,7 +14,7 @@ class QAPrompt(BasePrompt):
 
     @property
     def uid(self) -> int:
-        return int_hash_str(self.question)
+        return hash_cleaned_str(self.question)
 
     @property
     def tags(self) -> Sequence[str]:

@@ -40,13 +40,13 @@ class AnkiConnectGateway:
     def __init__(
         self,
         ankiconnect_url: str,
-        deck_name: str,
+        base_deck: str,
         tmp_read_dir: Path,
         tmp_write_dir: Path,
         max_deletions_per_run: int,
     ) -> None:
         self.ankiconnect_url = ankiconnect_url
-        self.deck_name = deck_name
+        self.deck_name = base_deck
         self.tmp_read_dir = tmp_read_dir
         self.tmp_write_dir = tmp_write_dir
         self.max_deletions_per_run = max_deletions_per_run
