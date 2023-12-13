@@ -27,6 +27,7 @@ class ClozePrompt(BasePrompt):
 class ClozeFromDoc(ClozePrompt):
     text: str
     source_doc: Document
+    manual_tags: Sequence[str] = ()  # A bit hacky to have
 
     @property
     def uid(self) -> int:
@@ -35,3 +36,9 @@ class ClozeFromDoc(ClozePrompt):
     @property
     def tags(self) -> Sequence[str]:
         return self.source_doc.tags
+
+
+@dataclass(frozen=True)
+class FakeClozePrompt(ClozePrompt):
+    text: str = "FakeText"
+    manual_tags: Sequence[str] = ("FakeTag",)

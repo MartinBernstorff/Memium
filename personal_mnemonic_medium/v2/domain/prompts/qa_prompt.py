@@ -30,3 +30,10 @@ class QAFromDoc(QAPrompt):
     @property
     def tags(self) -> Sequence[str]:
         return self.parent_doc.tags
+
+
+@dataclass(frozen=True)
+class FakeQAPrompt(QAPrompt):
+    question: str = "FakeQuestion"
+    answer: str = "FakeAnswer"
+    manual_tags: Sequence[str] = ("FakeTag",)

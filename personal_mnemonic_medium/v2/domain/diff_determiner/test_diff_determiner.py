@@ -3,7 +3,7 @@ from ..prompt_destination.destination_commands import (
     PushPrompts,
 )
 from ..prompts.base_prompt import DestinationPrompt
-from ..prompts.qa_prompt import QAPrompt
+from ..prompts.qa_prompt import FakeQAPrompt
 from .base_diff_determiner import GeneralSyncer, PromptDiffDeterminer
 
 
@@ -20,15 +20,15 @@ def test_prompt_diff_determiner():
     syncer = PromptDiffDeterminer()
 
     source_prompts = [
-        QAPrompt(question="a", answer="a"),
-        QAPrompt(question="b", answer="b"),
+        FakeQAPrompt(question="a", answer="a"),
+        FakeQAPrompt(question="b", answer="b"),
     ]
     destination_prompts = [
         DestinationPrompt(
-            QAPrompt(question="b", answer="b"), destination_id="2"
+            FakeQAPrompt(question="b", answer="b"), destination_id="2"
         ),
         DestinationPrompt(
-            QAPrompt(question="c", answer="c"), destination_id="3"
+            FakeQAPrompt(question="c", answer="c"), destination_id="3"
         ),
     ]
 
@@ -40,10 +40,10 @@ def test_prompt_diff_determiner():
         DeletePrompts(
             [
                 DestinationPrompt(
-                    QAPrompt(question="c", answer="c"),
+                    FakeQAPrompt(question="c", answer="c"),
                     destination_id="3",
                 )
             ]
         ),
-        PushPrompts([QAPrompt(question="a", answer="a")]),
+        PushPrompts([FakeQAPrompt(question="a", answer="a")]),
     ]

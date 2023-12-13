@@ -43,7 +43,7 @@ class AnkiConnectDestination(PromptDestination):
                 QAPrompt(
                     question=note_info.fields["Question"].value,
                     answer=note_info.fields["Answer"].value,
-                    add_tags=note_info.tags,
+                    manual_tags=note_info.tags,
                 ),
                 destination_id=str(note_info.noteId),
             )
@@ -52,7 +52,7 @@ class AnkiConnectDestination(PromptDestination):
             return DestinationPrompt(
                 ClozePrompt(
                     text=note_info.fields["Text"].value,
-                    add_tags=note_info.tags,
+                    manual_tags=note_info.tags,
                 ),
                 destination_id=str(note_info.noteId),
             )
