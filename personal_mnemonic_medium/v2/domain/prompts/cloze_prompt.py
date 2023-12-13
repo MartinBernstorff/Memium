@@ -2,6 +2,7 @@ from collections.abc import Sequence
 from dataclasses import dataclass
 
 from ..prompt_source.document_ingesters.document import Document
+from ..utils.clean_str import hash_cleaned_str
 from ..utils.int_hash_str import int_hash_str
 from .base_prompt import BasePrompt
 
@@ -11,6 +12,7 @@ from .base_prompt import BasePrompt
 @dataclass(frozen=True)
 class ClozePrompt(BasePrompt):
     text: str
+    manual_tags: Sequence[str]
 
     @property
     def uid(self) -> int:
@@ -18,16 +20,7 @@ class ClozePrompt(BasePrompt):
 
     @property
     def tags(self) -> Sequence[str]:
-        return ()
-
-
-@dataclass(frozen=True)
-class ClozeWithoutDoc(ClozePrompt):
-    add_tags: Sequence[str]
-
-    @property
-    def tags(self) -> Sequence[str]:
-        return self.add_tags
+        return self.manual_tags
 
 
 @dataclass(frozen=True)
@@ -37,7 +30,7 @@ class ClozeFromDoc(ClozePrompt):
 
     @property
     def uid(self) -> int:
-        return int_hash_str(self.text)
+        return hash_cleaned_str(self.text)
 
     @property
     def tags(self) -> Sequence[str]:

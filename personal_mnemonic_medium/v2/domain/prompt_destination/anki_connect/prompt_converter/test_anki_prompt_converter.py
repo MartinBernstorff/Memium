@@ -1,8 +1,8 @@
 import pytest
 
 from ....prompts.base_prompt import BasePrompt
-from ....prompts.cloze_prompt import ClozeWithoutDoc
-from ....prompts.qa_prompt import QAWithoutDoc
+from ....prompts.cloze_prompt import ClozePrompt
+from ....prompts.qa_prompt import QAPrompt
 from .anki_prompt_converter import AnkiPromptConverter
 from .prompts.anki_cloze import AnkiCloze
 from .prompts.anki_qa import AnkiQA
@@ -25,7 +25,7 @@ fake_anki_cloze = AnkiCloze(
     ("input_prompt", "expected_card"),
     [
         (
-            QAWithoutDoc(
+            QAPrompt(
                 question="FakeQuestion",
                 answer="FakeAnswer",
                 add_tags=["FakeTag"],
@@ -33,7 +33,7 @@ fake_anki_cloze = AnkiCloze(
             fake_anki_qa,
         ),
         (
-            ClozeWithoutDoc(text="FakeText", add_tags=["FakeTag"]),
+            ClozePrompt(text="FakeText", add_tags=["FakeTag"]),
             fake_anki_cloze,
         ),
     ],

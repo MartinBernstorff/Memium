@@ -2,11 +2,8 @@ from collections.abc import Sequence
 
 from attr import dataclass
 
-from personal_mnemonic_medium.v2.domain.utils.int_hash_str import (
-    int_hash_str,
-)
-
 from ..prompt_source.document_ingesters.document import Document
+from ..utils.clean_str import hash_cleaned_str
 from .base_prompt import BasePrompt
 
 
@@ -14,23 +11,15 @@ from .base_prompt import BasePrompt
 class QAPrompt(BasePrompt):
     question: str
     answer: str
+    manual_tags: Sequence[str]
 
     @property
     def uid(self) -> int:
-        return int_hash_str(self.question)
+        return hash_cleaned_str(self.question)
 
     @property
     def tags(self) -> Sequence[str]:
-        return ()
-
-
-@dataclass(frozen=True)
-class QAWithoutDoc(QAPrompt):
-    add_tags: Sequence[str]
-
-    @property
-    def tags(self) -> Sequence[str]:
-        return self.add_tags
+        return self.manual_tags
 
 
 @dataclass(frozen=True)

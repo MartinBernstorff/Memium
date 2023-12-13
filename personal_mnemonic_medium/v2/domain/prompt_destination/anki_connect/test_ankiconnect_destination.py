@@ -9,8 +9,8 @@ from ....data_access.ankiconnect_gateway import (
     UpdateModel,
 )
 from ....data_access.test_ankiconnect import MockNoteInfo
-from ...prompts.cloze_prompt import ClozeWithoutDoc
-from ...prompts.qa_prompt import QAWithoutDoc
+from ...prompts.cloze_prompt import ClozePrompt
+from ...prompts.qa_prompt import QAPrompt
 from ..destination_commands import PushPrompts
 from .ankiconnect_destination import AnkiConnectDestination
 from .prompt_converter.anki_prompt_converter import (
@@ -60,12 +60,12 @@ def test_ankiconnect_push_prompts():
         [
             PushPrompts(
                 prompts=[
-                    QAWithoutDoc(
+                    QAPrompt(
                         question="FakeQuestion",
                         answer="FakeAnswer",
                         add_tags=["FakeTag"],
                     ),
-                    ClozeWithoutDoc(
+                    ClozePrompt(
                         text="FakeText", add_tags=["FakeTag"]
                     ),
                 ]
