@@ -32,15 +32,17 @@ class MockNoteInfo(NoteInfo):
     reason="Tests require a running AnkiConnect server",
 )
 class TestAnkiConnectGateway:
+    output_path = Path("/output")
     gateway = AnkiConnectGateway(
-        ankiconnect_url=ANKICONNECT_URL, deck_name="Test deck"
+        ankiconnect_url=ANKICONNECT_URL,
+        deck_name="Test deck",
+        tmp_read_dir=Path("/Users/Leisure/ankidecks"),
+        tmp_write_dir=output_path,
     )
 
-    def test_full_sequence(self):
-        # Setup
-        output_path = Path("/output")
-
-        for f in output_path.glob("*.apkg"):
+    def test_import_package(self):
+        # Delete all .apkg in the output directory
+        for f in self.output_path.glob("*.apkg"):
             f.unlink()
 
         deck = genanki.Deck(deck_id=1, name="Test deck")
@@ -68,11 +70,7 @@ class TestAnkiConnectGateway:
         package = genanki.Package(deck_or_decks=deck)
 
         # Phase 1: Importing
-        self.gateway.import_package(
-            package=package,
-            tmp_write_dir=Path("/output"),
-            tmp_read_dir=Path("/Users/Leisure/ankidecks"),
-        )
+        self.gateway.import_package(package=package)
         assert len(list(Path("/output").glob("*.apkg"))) == 0
 
         # Phase 2: Getting
