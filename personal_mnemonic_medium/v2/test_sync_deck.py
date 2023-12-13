@@ -44,4 +44,3 @@ A. Test answer!
         ankiconnect_read_apkg_from_dir=read_dir,
         max_deletions_per_run=1,
     )
-    pass
