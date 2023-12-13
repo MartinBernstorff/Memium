@@ -28,13 +28,18 @@ from ..domain.prompt_source.base_prompt_source import FakePromptSource
 msg = Printer(timestamp=True)
 
 
-def _sync_deck(deck_name: str):
+def _sync_deck(
+    deck_name: str, input_dir: Path, apkg_output_filepath: Path
+):
     # TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/309 feat: use markdown promptsource
     source_prompts = FakePromptSource().get_prompts()
 
     destination = AnkiConnectDestination(
         gateway=AnkiConnectGateway(
-            ankiconnect_url=ANKICONNECT_URL, deck_name=deck_name
+            ankiconnect_url=ANKICONNECT_URL,
+            deck_name=deck_name,
+            tmp_read_dir=input_dir,
+            tmp_write_dir=apkg_output_filepath,
         ),
         prompt_converter=AnkiPromptConverter(
             base_deck=deck_name, card_css=CARD_MODEL_CSS
@@ -81,14 +86,22 @@ def main(
         environment=get_env(default="None"),
     )
 
-    _sync_deck(deck_name)
+    _sync_deck(
+        deck_name=deck_name,
+        input_dir=input_dir,
+        apkg_output_filepath=apkg_output_filepath,
+    )
 
     if watch:
         sleep_seconds = 60
         msg.good(
             f"Sync complete, sleeping for {sleep_seconds} seconds"
         )
-        _sync_deck(deck_name)
+        _sync_deck(
+            deck_name=deck_name,
+            input_dir=input_dir,
+            apkg_output_filepath=apkg_output_filepath,
+        )
 
 
 if __name__ == "__main__":

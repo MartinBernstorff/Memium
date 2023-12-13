@@ -22,8 +22,7 @@ class ClozePrompt(BasePrompt):
 
 
 @dataclass(frozen=True)
-class RemoteClozePrompt(ClozePrompt):
-    remote_id: str
+class ClozeWithoutDoc(ClozePrompt):
     add_tags: Sequence[str]
 
     @property
@@ -32,7 +31,7 @@ class RemoteClozePrompt(ClozePrompt):
 
 
 @dataclass(frozen=True)
-class ClozePromptFromDoc(ClozePrompt):
+class ClozeFromDoc(ClozePrompt):
     text: str
     source_doc: Document
 
