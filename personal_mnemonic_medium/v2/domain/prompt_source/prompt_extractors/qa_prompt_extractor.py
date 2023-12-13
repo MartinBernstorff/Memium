@@ -2,7 +2,7 @@ import logging
 import re
 from collections.abc import Sequence
 
-from ...prompts.qa_prompt import QAPrompt, QAPromptFromDoc
+from ...prompts.qa_prompt import QAFromDoc, QAPrompt
 from ..document_ingesters.document import Document
 from .base_prompt_extractor import BasePromptExtractor
 
@@ -79,7 +79,7 @@ class QAPromptExtractor(BasePromptExtractor):
                     continue
 
                 prompts.append(
-                    QAPromptFromDoc(
+                    QAFromDoc(
                         question=question,
                         answer=answer,
                         parent_doc=document,

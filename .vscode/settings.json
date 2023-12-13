@@ -9,20 +9,8 @@
     "python.analysis.diagnosticMode": "workspace",
     "githubIssues.queries": [
         {
-            "label": "🔥",
-            "query": "repo:${owner}/${repository} is:open is:issue milestone:acute-🔥  sort:updated-asc"
-        },
-        {
-            "label": "🌿",
-            "query": "repo:${owner}/${repository} is:open is:issue milestone:important-🌿 sort:updated-asc"
-        },
-        {
-            "label": "No milestone",
-            "query": "repo:${owner}/${repository} is:open is:issue  no:milestone sort:updated-asc"
-        },
-        {
-            "label": "🌲",
-            "query": "repo:${owner}/${repository} is:open is:issue milestone:investment-🌲 sort:updated-asc"
+            "label": "Assigned to me",
+            "query": "repo:${owner}/${repository} project:martinbernstorff/2 assignee:MartinBernstorff is:open"
         },
     ],
 }

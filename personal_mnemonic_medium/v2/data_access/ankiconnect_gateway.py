@@ -65,17 +65,12 @@ class AnkiConnectGateway:
             model={"name": model.name, "css": model.css},  # type: ignore
         )
 
-    def import_package(
-        self,
-        package: genanki.Package,
-        tmp_write_dir: Path,
-        tmp_read_dir: Path,
-    ) -> None:
+    def import_package(self, package: genanki.Package) -> None:
         apkg_name = f"{datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')}.apkg"
-        write_path = tmp_write_dir / apkg_name
+        write_path = self.tmp_write_dir / apkg_name
         package.write_to_file(write_path)  # type: ignore
 
-        read_path = tmp_read_dir / apkg_name
+        read_path = self.tmp_read_dir / apkg_name
         try:
             self._invoke(
                 AnkiConnectCommand.IMPORT_PACKAGE, path=str(read_path)
@@ -157,8 +152,6 @@ class FakeAnkiCommand:
 @dataclass(frozen=True)
 class ImportPackage(FakeAnkiCommand):
     package: genanki.Package
-    tmp_write_dir: Path
-    tmp_read_dir: Path
 
 
 @dataclass(frozen=True)
@@ -178,16 +171,5 @@ class SpieAnkiconnectGateway(AnkiConnectGateway):
     def update_model(self, model: genanki.Model) -> None:
         self.executed_commands.append(UpdateModel(model=model))
 
-    def import_package(
-        self,
-        package: genanki.Package,
-        tmp_write_dir: Path,
-        tmp_read_dir: Path,
-    ) -> None:
-        self.executed_commands.append(
-            ImportPackage(
-                package=package,
-                tmp_write_dir=tmp_write_dir,
-                tmp_read_dir=tmp_read_dir,
-            )
-        )
+    def import_package(self, package: genanki.Package) -> None:
+        self.executed_commands.append(ImportPackage(package=package))

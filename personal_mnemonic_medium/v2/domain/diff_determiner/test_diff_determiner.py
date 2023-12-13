@@ -4,6 +4,7 @@ from ..prompt_destination.destination_commands import (
     DeletePrompts,
     PushPrompts,
 )
+from ..prompts.base_prompt import DestinationPrompt
 from ..prompts.qa_prompt import QAPrompt
 from .base_diff_determiner import GeneralSyncer, PromptDiffDeterminer
 
@@ -27,8 +28,12 @@ def test_prompt_diff_determiner(tmp_path: Path):
         QAPrompt(question="b", answer="b"),
     ]
     destination_prompts = [
-        QAPrompt(question="b", answer="b"),
-        QAPrompt(question="c", answer="c"),
+        DestinationPrompt(
+            QAPrompt(question="b", answer="b"), destination_id="2"
+        ),
+        DestinationPrompt(
+            QAPrompt(question="c", answer="c"), destination_id="3"
+        ),
     ]
 
     diff = syncer.sync(
@@ -36,7 +41,14 @@ def test_prompt_diff_determiner(tmp_path: Path):
         destination_prompts=destination_prompts,
     )
     assert diff == [
-        DeletePrompts([QAPrompt(question="c", answer="c")]),
+        DeletePrompts(
+            [
+                DestinationPrompt(
+                    QAPrompt(question="c", answer="c"),
+                    destination_id="3",
+                )
+            ]
+        ),
         PushPrompts(
             [QAPrompt(question="a", answer="a")],
             tmp_write_dir=tmp_path,

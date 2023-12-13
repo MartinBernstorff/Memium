@@ -13,9 +13,9 @@ from ....data_access.ankiconnect_gateway import (
     AnkiConnectGateway,
     NoteInfo,
 )
-from ...prompts.base_prompt import BasePrompt
-from ...prompts.cloze_prompt import RemoteClozePrompt
-from ...prompts.qa_prompt import RemoteQAPrompt
+from ...prompts.base_prompt import DestinationPrompt
+from ...prompts.cloze_prompt import ClozeWithoutDoc
+from ...prompts.qa_prompt import QAWithoutDoc
 from ..base_prompt_destination import PromptDestination
 from .prompt_converter.anki_prompt_converter import (
     AnkiPromptConverter,
@@ -32,38 +32,48 @@ class AnkiConnectDestination(PromptDestination):
         self.gateway = gateway
         self.prompt_converter = prompt_converter
 
-    def _note_info_to_prompt(self, note_info: NoteInfo) -> BasePrompt:
+    def _note_info_to_prompt(
+        self, note_info: NoteInfo
+    ) -> DestinationPrompt:
         if (
             "Question" in note_info.fields
             and "Answer" in note_info.fields
         ):
-            return RemoteQAPrompt(
-                question=note_info.fields["Question"].value,
-                answer=note_info.fields["Answer"].value,
-                add_tags=note_info.tags,
-                remote_id=str(note_info.noteId),
+            return DestinationPrompt(
+                QAWithoutDoc(
+                    question=note_info.fields["Question"].value,
+                    answer=note_info.fields["Answer"].value,
+                    add_tags=note_info.tags,
+                ),
+                destination_id=str(note_info.noteId),
             )
 
         if "Text" in note_info.fields:
-            return RemoteClozePrompt(
-                text=note_info.fields["Text"].value,
-                add_tags=note_info.tags,
-                remote_id=str(note_info.noteId),
+            return DestinationPrompt(
+                ClozeWithoutDoc(
+                    text=note_info.fields["Text"].value,
+                    add_tags=note_info.tags,
+                ),
+                destination_id=str(note_info.noteId),
             )
 
         raise ValueError(
             f"NoteInfo {note_info} has neither Question nor Text field"
         )
 
-    def get_all_prompts(self) -> Sequence[BasePrompt]:
+    def get_all_prompts(self) -> Sequence[DestinationPrompt]:
         return (
             Seq(self.gateway.get_all_note_infos())
             .map(self._note_info_to_prompt)
             .to_list()
         )
 
-    def _delete_prompts(self, prompts: Sequence[BasePrompt]) -> None:
-        prompt_ids = {int(prompt.uid) for prompt in prompts}
+    def _delete_prompts(
+        self, prompts: Sequence[DestinationPrompt]
+    ) -> None:
+        prompt_ids = {
+            int(remote_prompt.prompt.uid) for remote_prompt in prompts
+        }
         self.gateway.delete_notes(list(prompt_ids))
 
     def _grouped_cards_to_deck(
@@ -102,11 +112,7 @@ class AnkiConnectDestination(PromptDestination):
 
         package = self._create_package(cards)
 
-        self.gateway.import_package(
-            package,
-            tmp_write_dir=command.tmp_write_dir,
-            tmp_read_dir=command.tmp_read_dir,
-        )
+        self.gateway.import_package(package)
 
     def update(
         self, commands: Sequence[PromptDestinationCommand]

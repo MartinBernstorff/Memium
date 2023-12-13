@@ -3,7 +3,7 @@ import logging
 import re
 from collections.abc import Sequence
 
-from ...prompts.cloze_prompt import ClozePrompt, ClozePromptFromDoc
+from ...prompts.cloze_prompt import ClozeFromDoc, ClozePrompt
 from ..document_ingesters.document import Document
 from .base_prompt_extractor import BasePromptExtractor
 
@@ -68,7 +68,7 @@ class ClozePromptExtractor(BasePromptExtractor):
     def extract_prompts(
         self, document: Document
     ) -> Sequence[ClozePrompt]:
-        prompts: list[ClozePromptFromDoc] = []
+        prompts: list[ClozeFromDoc] = []
 
         blocks = self._break_string_by_two_or_more_newlines(
             document.content
@@ -90,7 +90,7 @@ class ClozePromptExtractor(BasePromptExtractor):
                     )
 
                     prompts.append(
-                        ClozePromptFromDoc(
+                        ClozeFromDoc(
                             text=prompt_content, source_doc=document
                         )
                     )
