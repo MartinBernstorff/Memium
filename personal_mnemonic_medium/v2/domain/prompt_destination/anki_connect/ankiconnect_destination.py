@@ -102,11 +102,7 @@ class AnkiConnectDestination(PromptDestination):
 
         package = self._create_package(cards)
 
-        self.gateway.import_package(
-            package,
-            tmp_write_dir=command.tmp_write_dir,
-            tmp_read_dir=command.tmp_read_dir,
-        )
+        self.gateway.import_package(package)
 
     def update(
         self, commands: Sequence[PromptDestinationCommand]
