@@ -73,7 +73,8 @@ class AnkiConnectDestination(PromptDestination):
         self, prompts: Sequence[DestinationPrompt]
     ) -> None:
         prompt_ids = {
-            int(remote_prompt.prompt.uid) for remote_prompt in prompts
+            int(remote_prompt.destination_id)
+            for remote_prompt in prompts
         }
         self.gateway.delete_notes(list(prompt_ids))
 
