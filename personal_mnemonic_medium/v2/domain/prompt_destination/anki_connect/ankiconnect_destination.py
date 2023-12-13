@@ -13,7 +13,7 @@ from ....data_access.ankiconnect_gateway import (
     AnkiConnectGateway,
     NoteInfo,
 )
-from ...prompts.base_prompt import RemotePrompt
+from ...prompts.base_prompt import DestinationPrompt
 from ...prompts.cloze_prompt import ClozeWithoutDoc
 from ...prompts.qa_prompt import QAWithoutDoc
 from ..base_prompt_destination import PromptDestination
@@ -34,34 +34,34 @@ class AnkiConnectDestination(PromptDestination):
 
     def _note_info_to_prompt(
         self, note_info: NoteInfo
-    ) -> RemotePrompt:
+    ) -> DestinationPrompt:
         if (
             "Question" in note_info.fields
             and "Answer" in note_info.fields
         ):
-            return RemotePrompt(
+            return DestinationPrompt(
                 QAWithoutDoc(
                     question=note_info.fields["Question"].value,
                     answer=note_info.fields["Answer"].value,
                     add_tags=note_info.tags,
                 ),
-                remote_id=str(note_info.noteId),
+                destination_id=str(note_info.noteId),
             )
 
         if "Text" in note_info.fields:
-            return RemotePrompt(
+            return DestinationPrompt(
                 ClozeWithoutDoc(
                     text=note_info.fields["Text"].value,
                     add_tags=note_info.tags,
                 ),
-                remote_id=str(note_info.noteId),
+                destination_id=str(note_info.noteId),
             )
 
         raise ValueError(
             f"NoteInfo {note_info} has neither Question nor Text field"
         )
 
-    def get_all_prompts(self) -> Sequence[RemotePrompt]:
+    def get_all_prompts(self) -> Sequence[DestinationPrompt]:
         return (
             Seq(self.gateway.get_all_note_infos())
             .map(self._note_info_to_prompt)
@@ -69,7 +69,7 @@ class AnkiConnectDestination(PromptDestination):
         )
 
     def _delete_prompts(
-        self, prompts: Sequence[RemotePrompt]
+        self, prompts: Sequence[DestinationPrompt]
     ) -> None:
         prompt_ids = {
             int(remote_prompt.prompt.uid) for remote_prompt in prompts

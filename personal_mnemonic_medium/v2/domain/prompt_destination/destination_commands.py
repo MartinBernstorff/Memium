@@ -2,12 +2,12 @@ from collections.abc import Sequence
 from dataclasses import dataclass
 from pathlib import Path
 
-from ..prompts.base_prompt import BasePrompt, RemotePrompt
+from ..prompts.base_prompt import BasePrompt, DestinationPrompt
 
 
 @dataclass(frozen=True)
 class DeletePrompts:
-    prompts: Sequence[RemotePrompt]
+    prompts: Sequence[DestinationPrompt]
 
 
 @dataclass(frozen=True)

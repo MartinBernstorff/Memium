@@ -16,6 +16,6 @@ from dataclasses import dataclass
 
 
 @dataclass(frozen=True)
-class RemotePrompt:
+class DestinationPrompt:
     prompt: BasePrompt
-    remote_id: str
+    destination_id: str

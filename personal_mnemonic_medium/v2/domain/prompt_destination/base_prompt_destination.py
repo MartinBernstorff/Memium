@@ -1,12 +1,12 @@
 from collections.abc import Sequence
 from typing import Protocol
 
-from ..prompts.base_prompt import RemotePrompt
+from ..prompts.base_prompt import DestinationPrompt
 from .destination_commands import PromptDestinationCommand
 
 
 class PromptDestination(Protocol):
-    def get_all_prompts(self) -> Sequence[RemotePrompt]:
+    def get_all_prompts(self) -> Sequence[DestinationPrompt]:
         ...
 
     def update(
@@ -16,7 +16,7 @@ class PromptDestination(Protocol):
 
 
 class FakePromptDestination(PromptDestination):
-    def get_all_prompts(self) -> Sequence[RemotePrompt]:
+    def get_all_prompts(self) -> Sequence[DestinationPrompt]:
         ...
 
     def update(
