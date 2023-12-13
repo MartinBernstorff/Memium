@@ -13,7 +13,7 @@ from personal_mnemonic_medium.v2.domain.prompt_destination.anki_connect.prompt_c
 )
 
 from ....prompts.base_prompt import BasePrompt
-from ....prompts.cloze_prompt import ClozeWithoutDoc
+from ....prompts.cloze_prompt import ClozePrompt
 from ....prompts.qa_prompt import QAPrompt
 
 
@@ -38,15 +38,15 @@ class AnkiPromptConverter:
 
         match prompt:
             case QAPrompt():
-                card = AnkiQA(
+                return AnkiQA(
                     question=prompt.question,
                     answer=prompt.answer,
                     deck=deck,
                     tags=prompt.tags,
                     css=self.card_css,
                 )
-            case ClozeWithoutDoc():
-                card = AnkiCloze(
+            case ClozePrompt():
+                return AnkiCloze(
                     text=prompt.text,
                     deck=deck,
                     tags=prompt.tags,
@@ -56,8 +56,6 @@ class AnkiPromptConverter:
                 raise ValueError(
                     "BasePrompt is the base class for all prompts, use a subclass"
                 )
-
-        return card
 
     def prompts_to_cards(
         self, prompts: Sequence[BasePrompt]
