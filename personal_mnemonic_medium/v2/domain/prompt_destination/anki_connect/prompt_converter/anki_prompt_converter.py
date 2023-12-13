@@ -13,7 +13,7 @@ from personal_mnemonic_medium.v2.domain.prompt_destination.anki_connect.prompt_c
 )
 
 from ....prompts.base_prompt import BasePrompt
-from ....prompts.cloze_prompt import RemoteClozePrompt
+from ....prompts.cloze_prompt import ClozeWithoutDoc
 from ....prompts.qa_prompt import QAPrompt
 
 
@@ -45,7 +45,7 @@ class AnkiPromptConverter:
                     tags=prompt.tags,
                     css=self.card_css,
                 )
-            case RemoteClozePrompt():
+            case ClozeWithoutDoc():
                 card = AnkiCloze(
                     text=prompt.text,
                     deck=deck,
