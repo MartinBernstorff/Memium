@@ -29,14 +29,11 @@ fake_anki_cloze = AnkiCloze(
                 question="FakeQuestion",
                 answer="FakeAnswer",
                 add_tags=["FakeTag"],
-                remote_id="1",
             ),
             fake_anki_qa,
         ),
         (
-            ClozeWithoutDoc(
-                text="FakeText", add_tags=["FakeTag"], remote_id="1"
-            ),
+            ClozeWithoutDoc(text="FakeText", add_tags=["FakeTag"]),
             fake_anki_cloze,
         ),
     ],

@@ -65,12 +65,9 @@ def test_ankiconnect_push_prompts(tmpdir: Path):
                         question="FakeQuestion",
                         answer="FakeAnswer",
                         add_tags=["FakeTag"],
-                        remote_id="1",
                     ),
                     ClozeWithoutDoc(
-                        text="FakeText",
-                        add_tags=["FakeTag"],
-                        remote_id="1",
+                        text="FakeText", add_tags=["FakeTag"]
                     ),
                 ],
                 tmp_write_dir=tmpdir,

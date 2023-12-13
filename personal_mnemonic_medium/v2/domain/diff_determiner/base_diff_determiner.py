@@ -21,7 +21,7 @@ class BaseDiffDeterminer(Protocol):
     def sync(
         self,
         source_prompts: Sequence[BasePrompt],
-        destination_prompts: Sequence[BasePrompt],
+        destination_prompts: Sequence[DestinationPrompt],
     ) -> Sequence[PromptDestinationCommand]:
         ...
 
@@ -65,7 +65,8 @@ class PromptDiffDeterminer(BaseDiffDeterminer):
         syncer = GeneralSyncer(
             source={prompt.uid: prompt for prompt in source_prompts},
             destination={
-                prompt.uid: prompt for prompt in destination_prompts
+                dest_prompt.prompt.uid: dest_prompt
+                for dest_prompt in destination_prompts
             },
         )
 
@@ -77,12 +78,3 @@ class PromptDiffDeterminer(BaseDiffDeterminer):
                 tmp_read_dir=self.tmp_read_dir,
             ),
         ]
-
-
-class FakeDiffDeterminer(BaseDiffDeterminer):
-    def sync(
-        self,
-        source_prompts: Sequence[BasePrompt],
-        destination_prompts: Sequence[BasePrompt],
-    ) -> Sequence[PromptDestinationCommand]:
-        ...
