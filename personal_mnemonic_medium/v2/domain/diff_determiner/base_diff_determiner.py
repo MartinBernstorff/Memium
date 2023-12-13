@@ -1,5 +1,4 @@
 from collections.abc import Mapping, Sequence
-from pathlib import Path
 from typing import Generic, Protocol, TypeVar
 
 from personal_mnemonic_medium.v2.domain.prompt_destination.base_prompt_destination import (
@@ -49,14 +48,6 @@ class GeneralSyncer(Generic[K, T, S]):
 
 
 class PromptDiffDeterminer(BaseDiffDeterminer):
-    def __init__(self, tmp_read_dir: Path, tmp_write_dir: Path):
-        # TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/308 refactor: get rid of tmp_read_dir and tmp_write_dir
-        self.tmp_read_dir = tmp_read_dir
-        self.tmp_read_dir.mkdir(exist_ok=True)
-
-        self.tmp_write_dir = tmp_write_dir
-        self.tmp_write_dir.mkdir(exist_ok=True)
-
     def sync(
         self,
         source_prompts: Sequence[BasePrompt],
@@ -71,18 +62,5 @@ class PromptDiffDeterminer(BaseDiffDeterminer):
 
         return [
             DeletePrompts(syncer.only_in_destination()),
-            PushPrompts(
-                syncer.only_in_source(),
-                tmp_write_dir=self.tmp_write_dir,
-                tmp_read_dir=self.tmp_read_dir,
-            ),
+            PushPrompts(syncer.only_in_source()),
         ]
-
-
-class FakeDiffDeterminer(BaseDiffDeterminer):
-    def sync(
-        self,
-        source_prompts: Sequence[BasePrompt],
-        destination_prompts: Sequence[BasePrompt],
-    ) -> Sequence[PromptDestinationCommand]:
-        ...

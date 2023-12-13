@@ -72,9 +72,7 @@ def test_ankiconnect_push_prompts(tmpdir: Path):
                         add_tags=["FakeTag"],
                         remote_id="1",
                     ),
-                ],
-                tmp_write_dir=tmpdir,
-                tmp_read_dir=tmpdir,
+                ]
             )
         ]
     )
