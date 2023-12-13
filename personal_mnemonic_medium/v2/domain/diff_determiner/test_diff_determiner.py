@@ -1,5 +1,3 @@
-from pathlib import Path
-
 from ..prompt_destination.destination_commands import (
     DeletePrompts,
     PushPrompts,
@@ -18,10 +16,8 @@ def test_diff_determiner():
     assert syncer.only_in_destination() == ["3"]
 
 
-def test_prompt_diff_determiner(tmp_path: Path):
-    syncer = PromptDiffDeterminer(
-        tmp_read_dir=tmp_path, tmp_write_dir=tmp_path
-    )
+def test_prompt_diff_determiner():
+    syncer = PromptDiffDeterminer()
 
     source_prompts = [
         QAPrompt(question="a", answer="a"),
@@ -49,9 +45,5 @@ def test_prompt_diff_determiner(tmp_path: Path):
                 )
             ]
         ),
-        PushPrompts(
-            [QAPrompt(question="a", answer="a")],
-            tmp_write_dir=tmp_path,
-            tmp_read_dir=tmp_path,
-        ),
+        PushPrompts([QAPrompt(question="a", answer="a")]),
     ]
