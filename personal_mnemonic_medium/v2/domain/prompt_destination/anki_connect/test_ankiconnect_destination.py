@@ -1,5 +1,4 @@
 from collections.abc import Mapping
-from pathlib import Path
 
 import pytest
 
@@ -49,7 +48,7 @@ def test_ankiconnect_get_all_prompts(fields: Mapping[str, AnkiField]):
     assert len(prompts) == 1
 
 
-def test_ankiconnect_push_prompts(tmpdir: Path):
+def test_ankiconnect_push_prompts():
     gateway = SpieAnkiconnectGateway()
     dest = AnkiConnectDestination(
         gateway=gateway,

@@ -47,9 +47,7 @@ def _sync_deck(
     )
     destination_prompts = destination.get_all_prompts()
 
-    update_commands = PromptDiffDeterminer(
-        tmp_write_dir=Path("/tmp"), tmp_read_dir=Path("/tmp")
-    ).sync(
+    update_commands = PromptDiffDeterminer().sync(
         source_prompts=source_prompts,
         destination_prompts=destination_prompts,
     )
