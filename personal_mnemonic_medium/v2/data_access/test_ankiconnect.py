@@ -68,16 +68,17 @@ class TestAnkiConnectGateway:
         )
 
         package = genanki.Package(deck_or_decks=deck)
+
+        # Phase 1: Importing
         self.gateway.import_package(package=package)
         assert len(list(Path("/output").glob("*.apkg"))) == 0
 
-    def test_delete_notes(self):
-        self.gateway.delete_notes(note_ids=[1, 2, 3])
+        # Phase 2: Getting
+        all_notes = self.gateway.get_all_note_infos()
+        assert len(all_notes) == 1
 
-    def test_get_note_infos(self):
-        note_infos = self.gateway.get_all_note_infos()
-
-        assert [
-            isinstance(note_info, NoteInfo)
-            for note_info in note_infos
-        ]
+        # Phase 3: Deleting
+        self.gateway.delete_notes(
+            note_ids=[n.noteId for n in all_notes]
+        )
+        assert len(self.gateway.get_all_note_infos()) == 0
