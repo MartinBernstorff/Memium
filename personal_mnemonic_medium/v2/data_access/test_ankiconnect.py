@@ -14,8 +14,6 @@ from .ankiconnect_gateway import (
     NoteInfo,
 )
 
-ANKICONNECT_IS_RUNNING = anki_connect_is_live()
-
 
 class MockNoteInfo(NoteInfo):
     noteId: int = 1
@@ -28,7 +26,7 @@ class MockNoteInfo(NoteInfo):
 
 
 @pytest.mark.skipif(
-    not ANKICONNECT_IS_RUNNING,
+    not anki_connect_is_live(),
     reason="Tests require a running AnkiConnect server",
 )
 class TestAnkiConnectGateway:
@@ -36,7 +34,9 @@ class TestAnkiConnectGateway:
     gateway = AnkiConnectGateway(
         ankiconnect_url=ANKICONNECT_URL,
         deck_name="Test deck",
-        warn_if_deleting_more_than_n=1,
+        tmp_read_dir=Path("/Users/Leisure/ankidecks"),
+        tmp_write_dir=output_path,
+        max_deletions_per_run=1,
     )
 
     def test_import_package(self):
@@ -81,3 +81,17 @@ class TestAnkiConnectGateway:
             note_ids=[n.noteId for n in all_notes]
         )
         assert len(self.gateway.get_all_note_infos()) == 0
+
+
+def test_error_if_deleting_more_than_allowed():
+    gateway = AnkiConnectGateway(
+        ankiconnect_url=ANKICONNECT_URL,
+        deck_name="Test deck",
+        tmp_read_dir=Path("/tmp"),
+        tmp_write_dir=Path("/tmp"),
+        max_deletions_per_run=0,
+    )
+    with pytest.raises(
+        ValueError, match="are scheduled for deletion"
+    ):
+        gateway.delete_notes(note_ids=[1])

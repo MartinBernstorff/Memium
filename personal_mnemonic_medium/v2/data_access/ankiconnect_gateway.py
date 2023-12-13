@@ -41,13 +41,15 @@ class AnkiConnectGateway:
         self,
         ankiconnect_url: str,
         deck_name: str,
-        warn_if_deleting_more_than_n: int,
+        tmp_read_dir: Path,
+        tmp_write_dir: Path,
+        max_deletions_per_run: int,
     ) -> None:
         self.ankiconnect_url = ankiconnect_url
         self.deck_name = deck_name
-        self.warn_if_deleting_more_than_n = (
-            warn_if_deleting_more_than_n
-        )
+        self.tmp_read_dir = tmp_read_dir
+        self.tmp_write_dir = tmp_write_dir
+        self.max_deletions_per_run = max_deletions_per_run
 
     def update_model(self, model: genanki.Model) -> None:
         self._invoke(
@@ -82,10 +84,10 @@ class AnkiConnectGateway:
             traceback.print_exc()
 
     def delete_notes(self, note_ids: Sequence[int]) -> None:
-        if len(note_ids) > self.warn_if_deleting_more_than_n:
-            print(
+        if len(note_ids) > self.max_deletions_per_run:
+            raise ValueError(
                 f"""{len(note_ids)} are scheduled for deletion,
-                which is more than the allowed of {self.warn_if_deleting_more_than_n}.
+                which is more than the allowed of {self.max_deletions_per_run}.
 
                 Change the option for the AnkiConnectGateway if you wish to proceed.
                 """
