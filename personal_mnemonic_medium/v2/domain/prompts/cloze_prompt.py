@@ -32,7 +32,7 @@ class ClozeWithoutDoc(ClozePrompt):
 
 
 @dataclass(frozen=True)
-class ClozePromptFromDoc(ClozePrompt):
+class ClozeFromDoc(ClozePrompt):
     text: str
     source_doc: Document
 

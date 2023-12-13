@@ -35,7 +35,7 @@ class QAWithoutDoc(QAPrompt):
 
 
 @dataclass(frozen=True)
-class QAPromptFromDoc(QAPrompt):
+class QAFromDoc(QAPrompt):
     parent_doc: Document
     line_nr: int
 
