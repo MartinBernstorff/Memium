@@ -14,8 +14,8 @@ from ....data_access.ankiconnect_gateway import (
     NoteInfo,
 )
 from ...prompts.base_prompt import BasePrompt
-from ...prompts.cloze_prompt import RemoteClozePrompt
-from ...prompts.qa_prompt import RemoteQAPrompt
+from ...prompts.cloze_prompt import ClozeWithoutDoc
+from ...prompts.qa_prompt import QAWithoutDoc
 from ..base_prompt_destination import PromptDestination
 from .prompt_converter.anki_prompt_converter import (
     AnkiPromptConverter,
@@ -37,7 +37,7 @@ class AnkiConnectDestination(PromptDestination):
             "Question" in note_info.fields
             and "Answer" in note_info.fields
         ):
-            return RemoteQAPrompt(
+            return QAWithoutDoc(
                 question=note_info.fields["Question"].value,
                 answer=note_info.fields["Answer"].value,
                 add_tags=note_info.tags,
@@ -45,7 +45,7 @@ class AnkiConnectDestination(PromptDestination):
             )
 
         if "Text" in note_info.fields:
-            return RemoteClozePrompt(
+            return ClozeWithoutDoc(
                 text=note_info.fields["Text"].value,
                 add_tags=note_info.tags,
                 remote_id=str(note_info.noteId),
