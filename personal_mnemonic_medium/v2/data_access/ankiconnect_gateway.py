@@ -37,9 +37,17 @@ class AnkiConnectCommand(Enum):
 
 
 class AnkiConnectGateway:
-    def __init__(self, ankiconnect_url: str, deck_name: str) -> None:
+    def __init__(
+        self,
+        ankiconnect_url: str,
+        deck_name: str,
+        warn_if_deleting_more_than_n: int,
+    ) -> None:
         self.ankiconnect_url = ankiconnect_url
         self.deck_name = deck_name
+        self.warn_if_deleting_more_than_n = (
+            warn_if_deleting_more_than_n
+        )
 
     def update_model(self, model: genanki.Model) -> None:
         self._invoke(
@@ -79,6 +87,15 @@ class AnkiConnectGateway:
             traceback.print_exc()
 
     def delete_notes(self, note_ids: Sequence[int]) -> None:
+        if len(note_ids) > self.warn_if_deleting_more_than_n:
+            print(
+                f"""{len(note_ids)} are scheduled for deletion,
+                which is more than the allowed of {self.warn_if_deleting_more_than_n}.
+
+                Change the option for the AnkiConnectGateway if you wish to proceed.
+                """
+            )
+
         self._invoke(AnkiConnectCommand.DELETE_NOTES, notes=note_ids)
 
     def get_all_note_infos(self) -> Sequence[NoteInfo]:

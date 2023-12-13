@@ -33,7 +33,9 @@ class MockNoteInfo(NoteInfo):
 )
 class TestAnkiConnectGateway:
     gateway = AnkiConnectGateway(
-        ankiconnect_url=ANKICONNECT_URL, deck_name="Test deck"
+        ankiconnect_url=ANKICONNECT_URL,
+        deck_name="Test deck",
+        warn_if_deleting_more_than_n=1,
     )
 
     def test_import_package(self):
