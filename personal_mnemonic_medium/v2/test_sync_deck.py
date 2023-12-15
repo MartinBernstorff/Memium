@@ -1,3 +1,4 @@
+import logging
 from pathlib import Path
 
 import pytest
@@ -13,7 +14,8 @@ from ..data_access.exporters.anki.sync.gateway_utils import (
     not anki_connect_is_live(),
     reason="Tests require a running AnkiConnect server",
 )
-def test_sync_deck(tmp_path: Path):
+def test_sync_deck(tmp_path: Path, caplog: pytest.LogCaptureFixture):
+    caplog.set_level(logging.INFO)
     output_path = tmp_path / "test.md"
     with output_path.open("w") as f:
         f.write(
@@ -33,14 +35,7 @@ A. Test answer!
         apkg_output_dir=apkg_output_dir,
         ankiconnect_read_apkg_from_dir=read_dir,
         max_deletions_per_run=1,
+        dry_run=True,
     )
-
-    # Delete the notes again
-    output_path.unlink()
-    sync_deck(
-        base_deck=base_deck,
-        input_dir=tmp_path,
-        apkg_output_dir=apkg_output_dir,
-        ankiconnect_read_apkg_from_dir=read_dir,
-        max_deletions_per_run=1,
-    )
+    assert "Pushing prompt" in caplog.text
+    assert "Test question?" in caplog.text

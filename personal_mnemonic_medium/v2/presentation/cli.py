@@ -36,17 +36,34 @@ def main(
             help="Keep running, updating Anki deck every 15 seconds"
         ),
     ],
-    deck_name: str = typer.Option(
-        "Personal Mnemonic Medium",
-        help="Anki path to deck, e.g. 'Parent deck::Child deck'",
-    ),
-    max_deletions_per_run: int = typer.Option(
-        50,
-        help="Maximum number of cards to delete per sync to avoid unintentional deletions. If exceeded, raises error.",
-    ),
-    log_file: Path = typer.Option(  # noqa: B008
-        None, help="File to log to. If None, log to stdout."
-    ),
+    deck_name: Annotated[
+        str,
+        typer.Option(
+            default="Personal Mnemonic Medium",
+            help="Anki path to deck, e.g. 'Parent deck::Child deck'",
+        ),
+    ],
+    max_deletions_per_run: Annotated[
+        int,
+        typer.Option(
+            default=50,
+            help="Maximum number of cards to delete per sync to avoid unintentional deletions. If exceeded, raises error.",
+        ),
+    ],
+    log_file: Annotated[
+        Path,
+        typer.Option(
+            default=None,
+            help="File to log to. If None, log to stdout.",
+        ),
+    ],
+    dry_run: Annotated[
+        bool,
+        typer.Option(
+            default=False,
+            help="Don't update via AnkiConnect, just log what would happen",
+        ),
+    ],
 ):
     logging.basicConfig(
         level=logging.INFO,
@@ -82,6 +99,7 @@ def main(
         apkg_output_dir=apkg_output_filepath,
         ankiconnect_read_apkg_from_dir=host_ankiconnect_dir,
         max_deletions_per_run=max_deletions_per_run,
+        dry_run=dry_run,
     )
 
     if watch:
@@ -95,6 +113,7 @@ def main(
             apkg_output_dir=apkg_output_filepath,
             ankiconnect_read_apkg_from_dir=host_ankiconnect_dir,
             max_deletions_per_run=max_deletions_per_run,
+            dry_run=dry_run,
         )
 
 
