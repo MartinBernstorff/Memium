@@ -1,15 +1,15 @@
+import logging
 from pathlib import Path
 from typing import Annotated
 
 import sentry_sdk
 import typer
-from wasabi import Printer
 
 from personal_mnemonic_medium.v2.sync_deck import sync_deck
 
 from ...main import get_env
 
-msg = Printer(timestamp=True)
+log = logging.getLogger(__name__)
 
 
 def main(
@@ -29,7 +29,21 @@ def main(
     max_deletions_per_run: int = typer.Option(
         50, help="Maximum number of cards to delete per sync"
     ),
+    dry_run: bool = typer.Option(
+        False,
+        help="Don't update via AnkiConnect, just log what would happen",
+    ),
+    log_file: Path | None = typer.Option(  # noqa: B008
+        None, help="File to log to, defaults to stdout"
+    ),
 ):
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+        datefmt="%Y/&m/%d %H:%M:%S",
+        filename=log_file,
+    )
+
     if not input_dir.exists():
         raise FileNotFoundError(
             f"Input directory {input_dir} does not exist"
@@ -37,7 +51,7 @@ def main(
 
     if not apkg_output_filepath.parent.exists():
         apkg_output_filepath.parent.mkdir(exist_ok=True, parents=True)
-        msg.info(f"Creating output directory {host_ankiconnect_dir}")
+        log.info(f"Creating output directory {host_ankiconnect_dir}")
 
     sentry_sdk.init(
         dsn="https://37f17d6aa7742424652663a04154e032@o4506053997166592.ingest.sentry.io/4506053999984640",
@@ -50,11 +64,12 @@ def main(
         apkg_output_dir=apkg_output_filepath,
         ankiconnect_read_apkg_from_dir=host_ankiconnect_dir,
         max_deletions_per_run=max_deletions_per_run,
+        dry_run=dry_run,
     )
 
     if watch:
         sleep_seconds = 60
-        msg.good(
+        log.info(
             f"Sync complete, sleeping for {sleep_seconds} seconds"
         )
         sync_deck(
@@ -63,6 +78,7 @@ def main(
             apkg_output_dir=apkg_output_filepath,
             ankiconnect_read_apkg_from_dir=host_ankiconnect_dir,
             max_deletions_per_run=max_deletions_per_run,
+            dry_run=dry_run,
         )
 
 

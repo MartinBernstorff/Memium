@@ -15,6 +15,9 @@ from .domain.prompt_destination.anki_connect.ankiconnect_destination import (
 from .domain.prompt_destination.anki_connect.prompt_converter.anki_prompt_converter import (
     AnkiPromptConverter,
 )
+from .domain.prompt_destination.dryrun_destination import (
+    DryRunDestination,
+)
 from .domain.prompt_source.document_ingesters.markdown_document_ingester import (
     MarkdownDocumentIngester,
 )
@@ -35,6 +38,7 @@ def sync_deck(
     apkg_output_dir: Path,
     ankiconnect_read_apkg_from_dir: Path,
     max_deletions_per_run: int,
+    dry_run: bool,
 ):
     source_prompts = DocumentPromptSource(
         document_ingester=MarkdownDocumentIngester(
@@ -48,7 +52,10 @@ def sync_deck(
         ],
     ).get_prompts()
 
-    destination = AnkiConnectDestination(
+    dest_class = (
+        AnkiConnectDestination if not dry_run else DryRunDestination
+    )
+    destination = dest_class(
         gateway=AnkiConnectGateway(
             ankiconnect_url=ANKICONNECT_URL,
             base_deck=base_deck,
