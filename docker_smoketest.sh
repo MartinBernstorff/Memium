@@ -17,7 +17,7 @@ docker run -i \
   -v $HOST_APKG_DIR:/output \
   --restart unless-stopped \
   personal-mnemonic-medium \
-  python personal_mnemonic_medium/v2/presentation/cli.py \
+  python personal_mnemonic_medium/cli.py \
   --input-dir /input/ \
   --apkg-output-dir $APKG_OUTPUT_DIR \
   --host-apkg-dir $HOST_APKG_DIR \
