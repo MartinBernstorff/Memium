@@ -5,43 +5,78 @@ from typing import Annotated
 import sentry_sdk
 import typer
 
+from personal_mnemonic_medium.main import get_env
 from personal_mnemonic_medium.v2.sync_deck import sync_deck
-
-from ...main import get_env
 
 log = logging.getLogger(__name__)
 
 
 def main(
-    input_dir: Path,
-    apkg_output_filepath: Path,
-    host_ankiconnect_dir: Path,
+    input_dir: Annotated[
+        Path,
+        typer.Option(
+            help="Directory containing markdown prompts to sync to Anki."
+        ),
+    ],
+    apkg_output_filepath: Annotated[
+        Path,
+        typer.Option(
+            help="Directory to use for temporary storage of .apkg while syncing."
+        ),
+    ],
+    host_ankiconnect_dir: Annotated[
+        Path,
+        typer.Option(
+            help="Directory in which AnkiConnect will look for the .apkg. Can be different from apkg_output_filepath in cases where the script is running in a Docker container. If None, defaults to apkg_output_filepath"
+        ),
+    ],
     watch: Annotated[
         bool,
         typer.Option(
             help="Keep running, updating Anki deck every 15 seconds"
         ),
     ],
-    deck_name: str = typer.Option(
-        "Personal Mnemonic Medium",
-        help="Name of the Anki deck to sync to",
-    ),
-    max_deletions_per_run: int = typer.Option(
-        50, help="Maximum number of cards to delete per sync"
-    ),
-    dry_run: bool = typer.Option(
-        False,
-        help="Don't update via AnkiConnect, just log what would happen",
-    ),
-    log_file: Path | None = typer.Option(  # noqa: B008
-        None, help="File to log to, defaults to stdout"
-    ),
+    deck_name: Annotated[
+        str,
+        typer.Option(
+            default="Personal Mnemonic Medium",
+            help="Anki path to deck, e.g. 'Parent deck::Child deck'",
+        ),
+    ],
+    max_deletions_per_run: Annotated[
+        int,
+        typer.Option(
+            default=50,
+            help="Maximum number of cards to delete per sync to avoid unintentional deletions. If exceeded, raises error.",
+        ),
+    ],
+    log_file: Annotated[
+        Path,
+        typer.Option(
+            default=None,
+            help="File to log to. If None, log to stdout.",
+        ),
+    ],
+    dry_run: Annotated[
+        bool,
+        typer.Option(
+            default=False,
+            help="Don't update via AnkiConnect, just log what would happen",
+        ),
+    ],
 ):
     logging.basicConfig(
         level=logging.INFO,
         format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
         datefmt="%Y/&m/%d %H:%M:%S",
         filename=log_file,
+    )
+
+    # Use apkg_output_filepath if host_ankiconnect_dir is not set
+    host_ankiconnect_dir = (
+        host_ankiconnect_dir
+        if host_ankiconnect_dir
+        else apkg_output_filepath
     )
 
     if not input_dir.exists():
