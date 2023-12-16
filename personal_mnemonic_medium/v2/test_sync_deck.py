@@ -5,9 +5,7 @@ import pytest
 
 from personal_mnemonic_medium.v2.sync_deck import sync_deck
 
-from ..data_access.exporters.anki.sync.gateway_utils import (
-    anki_connect_is_live,
-)
+from .data_access.ankiconnect_gateway import anki_connect_is_live
 
 
 @pytest.mark.skipif(

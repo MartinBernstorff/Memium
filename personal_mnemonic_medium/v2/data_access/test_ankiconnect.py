@@ -4,14 +4,12 @@ from pathlib import Path
 import genanki
 import pytest
 
-from ...data_access.exporters.anki.globals import ANKICONNECT_URL
-from ...data_access.exporters.anki.sync.gateway_utils import (
-    anki_connect_is_live,
-)
 from .ankiconnect_gateway import (
+    ANKICONNECT_URL,
     AnkiConnectGateway,
     AnkiField,
     NoteInfo,
+    anki_connect_is_live,
 )
 
 

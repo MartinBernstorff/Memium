@@ -1,6 +1,7 @@
 # helper for creating anki connect requests
 import datetime
 import json
+import logging
 import traceback
 import urllib.request
 from collections.abc import Mapping, Sequence
@@ -11,6 +12,8 @@ from typing import Any
 
 import genanki
 import pydantic
+
+log = logging.getLogger(__name__)
 
 
 class AnkiField(pydantic.BaseModel):
@@ -175,3 +178,25 @@ class SpieAnkiconnectGateway(AnkiConnectGateway):
 
     def import_package(self, package: genanki.Package) -> None:
         self.executed_commands.append(ImportPackage(package=package))
+
+
+# TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/222 refactor: remove globals.py
+
+ANKICONNECT_URL = (
+    "http://host.docker.internal:8765"
+)  # On host machine, port is 8765
+
+
+def anki_connect_is_live() -> bool:
+    try:
+        if urllib.request.urlopen(ANKICONNECT_URL).getcode() == 200:
+            return True
+        raise Exception
+    except Exception as err:
+        log.info(f"Attempted connection on {ANKICONNECT_URL}")
+        log.info(
+            "Unable to reach anki connect. Make sure anki is running and the Anki Connect addon is installed."
+        )
+        log.error(f"Error was {err}")
+
+    return False
