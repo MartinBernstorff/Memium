@@ -1,7 +1,5 @@
-from personal_mnemonic_medium.v2.domain.utils.clean_str import (
-    clean_str,
-)
-from personal_mnemonic_medium.v2.domain.utils.int_hash_str import (
+from personal_mnemonic_medium.domain.utils.clean_str import clean_str
+from personal_mnemonic_medium.domain.utils.int_hash_str import (
     int_hash_str,
 )
 

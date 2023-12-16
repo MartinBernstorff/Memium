@@ -6,7 +6,7 @@ from typing import Annotated
 import sentry_sdk
 import typer
 
-from personal_mnemonic_medium.v2.sync_deck import sync_deck
+from personal_mnemonic_medium.sync_deck import sync_deck
 
 log = logging.getLogger(__name__)
 

@@ -3,7 +3,7 @@ from collections.abc import Mapping, Sequence
 import genanki
 from functionalpy._sequence import Seq
 
-from personal_mnemonic_medium.v2.domain.prompt_destination.destination_commands import (
+from personal_mnemonic_medium.domain.prompt_destination.destination_commands import (
     DeletePrompts,
     PromptDestinationCommand,
     PushPrompts,

@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-from personal_mnemonic_medium.v2.sync_deck import sync_deck
+from personal_mnemonic_medium.sync_deck import sync_deck
 
 from .data_access.ankiconnect_gateway import anki_connect_is_live
 

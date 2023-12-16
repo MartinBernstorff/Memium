@@ -1,11 +1,13 @@
 from pathlib import Path
 
-from personal_mnemonic_medium.v2.domain.prompt_destination.anki_connect.anki_prompt_css import (
+from personal_mnemonic_medium.domain.prompt_destination.anki_connect.anki_prompt_css import (
     CARD_MODEL_CSS,
 )
 
-from .data_access.ankiconnect_gateway import ANKICONNECT_URL
-from .data_access.ankiconnect_gateway import AnkiConnectGateway
+from .data_access.ankiconnect_gateway import (
+    ANKICONNECT_URL,
+    AnkiConnectGateway,
+)
 from .domain.diff_determiner.base_diff_determiner import (
     PromptDiffDeterminer,
 )

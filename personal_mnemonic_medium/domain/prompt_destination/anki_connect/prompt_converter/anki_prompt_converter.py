@@ -2,13 +2,13 @@ from collections.abc import Sequence
 
 from functionalpy._sequence import Seq
 
-from personal_mnemonic_medium.v2.domain.prompt_destination.anki_connect.prompt_converter.prompts.anki_cloze import (
+from personal_mnemonic_medium.domain.prompt_destination.anki_connect.prompt_converter.prompts.anki_cloze import (
     AnkiCloze,
 )
-from personal_mnemonic_medium.v2.domain.prompt_destination.anki_connect.prompt_converter.prompts.anki_qa import (
+from personal_mnemonic_medium.domain.prompt_destination.anki_connect.prompt_converter.prompts.anki_qa import (
     AnkiQA,
 )
-from personal_mnemonic_medium.v2.domain.prompt_destination.anki_connect.prompt_converter.prompts.base_anki_prompt import (
+from personal_mnemonic_medium.domain.prompt_destination.anki_connect.prompt_converter.prompts.base_anki_prompt import (
     AnkiCard,
 )
 

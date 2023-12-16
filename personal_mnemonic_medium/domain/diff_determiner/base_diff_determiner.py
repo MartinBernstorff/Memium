@@ -1,7 +1,7 @@
 from collections.abc import Mapping, Sequence
 from typing import Generic, Protocol, TypeVar
 
-from personal_mnemonic_medium.v2.domain.prompt_destination.base_prompt_destination import (
+from personal_mnemonic_medium.domain.prompt_destination.base_prompt_destination import (
     PromptDestinationCommand,
 )
 
