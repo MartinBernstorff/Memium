@@ -1,4 +1,5 @@
 from collections.abc import Mapping, Sequence
+from time import sleep
 
 import genanki
 from functionalpy._sequence import Seq
@@ -12,6 +13,7 @@ from personal_mnemonic_medium.domain.prompt_destination.destination_commands imp
 from ....data_access.ankiconnect_gateway import (
     AnkiConnectGateway,
     NoteInfo,
+    anki_connect_is_live,
 )
 from ...prompts.base_prompt import DestinationPrompt
 from ...prompts.cloze_prompt import ClozeWithoutDoc
@@ -121,6 +123,10 @@ class AnkiConnectDestination(PromptDestination):
     def update(
         self, commands: Sequence[PromptDestinationCommand]
     ) -> None:
+        while not anki_connect_is_live():
+            print("AnkiConnect is not live, waiting 2 seconds...")
+            sleep(2)
+
         for command in commands:
             match command:
                 case DeletePrompts(prompts):
