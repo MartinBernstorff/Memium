@@ -1,6 +1,5 @@
 from collections.abc import Sequence
-
-from attr import dataclass
+from dataclasses import dataclass
 
 from ..prompt_source.document_ingesters.document import Document
 from ..utils.hash_cleaned_str import hash_cleaned_str

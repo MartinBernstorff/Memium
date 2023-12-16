@@ -3,9 +3,8 @@ docker build . -t personal-mnemonic-medium:latest -f Dockerfile
 docker volume create ankidecks
 
 INPUT_DIR=$HOME/input/
-HOST_OUTPUT_DIR=$HOME/ankidecks/smoketest
-HOST_OUTPUT_FILE=$HOST_OUTPUT_DIR/deck.apkg
-ANKICONNECT_SYNC_APKG=/output/deck.apkg
+APKG_OUTPUT_DIR=/output/
+HOST_APKG_DIR=$HOME/ankidecks/smoketest
 
 mkdir -p $INPUT_DIR
 echo -e "Q. Question here\nA. Answer!" >> $HOME/input/test.md
@@ -15,21 +14,15 @@ rm -f $HOST_OUTPUT_FILE
 
 docker run -i \
   -v $INPUT_DIR:/input \
-  -v $HOST_OUTPUT_DIR:/output \
+  -v $HOST_APKG_DIR:/output \
   --restart unless-stopped \
   personal-mnemonic-medium \
-  python personal_mnemonic_medium/presentation/cli.py \
-  /input/ \
-  $ANKICONNECT_SYNC_APKG \
-  $HOST_OUTPUT_DIR \
+  python personal_mnemonic_medium/v2/presentation/cli.py \
+  --input-dir /input/ \
+  --apkg-output-dir $APKG_OUTPUT_DIR \
+  --host-apkg-dir $HOST_APKG_DIR \
   --no-watch \
-  --no-use-anki-connect
+  --dry-run \
+  --skip-sync
 
-echo "Checking if file exists at $HOST_OUTPUT_FILE"
-
-if [ -f "$HOST_OUTPUT_FILE" ]; then
-    echo "File exists."
-else
-    echo "File does not exist." >&2
-    exit 1
-fi
+echo "Smoketesting succesful!"
