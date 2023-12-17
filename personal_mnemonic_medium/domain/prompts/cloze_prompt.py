@@ -3,7 +3,7 @@ from dataclasses import dataclass
 
 from ..prompt_source.document_ingesters.document import Document
 from ..utils.hash_cleaned_str import hash_cleaned_str
-from ..utils.int_hash_str import int_hash_str
+from ..utils.hash_cleaned_str import int_hash_str
 from .base_prompt import BasePrompt
 
 # TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/299 refactor: clean up doc type inheritance
