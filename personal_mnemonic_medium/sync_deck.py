@@ -64,6 +64,7 @@ def sync_deck(
             tmp_read_dir=ankiconnect_read_apkg_from_dir,
             tmp_write_dir=apkg_output_dir,
             max_deletions_per_run=max_deletions_per_run,
+            max_wait_seconds=0,
         ),
         prompt_converter=AnkiPromptConverter(
             base_deck=base_deck, card_css=CARD_MODEL_CSS

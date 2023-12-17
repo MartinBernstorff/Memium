@@ -35,6 +35,7 @@ class TestAnkiConnectGateway:
         tmp_read_dir=Path("/Users/Leisure/ankidecks"),
         tmp_write_dir=output_path,
         max_deletions_per_run=1,
+        max_wait_seconds=0,
     )
 
     def test_import_package(self):
@@ -88,6 +89,7 @@ def test_error_if_deleting_more_than_allowed():
         tmp_read_dir=Path("/tmp"),
         tmp_write_dir=Path("/tmp"),
         max_deletions_per_run=0,
+        max_wait_seconds=0,
     )
     with pytest.raises(
         ValueError, match="are scheduled for deletion"

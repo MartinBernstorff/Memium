@@ -48,7 +48,7 @@ class AnkiConnectGateway:
         tmp_read_dir: Path,
         tmp_write_dir: Path,
         max_deletions_per_run: int,
-        max_wait_seconds: int = 10,
+        max_wait_seconds: int,
     ) -> None:
         self.ankiconnect_url = ankiconnect_url
         self.deck_name = base_deck
