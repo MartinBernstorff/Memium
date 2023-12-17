@@ -29,6 +29,9 @@
         "source=${localEnv:HOME}/ankidecks,target=/output/,type=bind,consistency=cache",
         // "source=/Users/Shared/life-lessons/docs/life-lessons/,target=/input/,type=bind,consistency=cache",
     ],
+    "containerEnv": {
+        "HOST_HOME": "${localEnv:HOME}",
+    },
     "features": {
         "ghcr.io/devcontainers/features/github-cli:1": {}
     },
