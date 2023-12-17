@@ -13,7 +13,7 @@ class QAPrompt(BasePrompt):
 
     @property
     def uid(self) -> int:
-        return hash_cleaned_str(self.question)
+        return hash_cleaned_str(f"{self.question}_{self.answer}")
 
     @property
     def tags(self) -> Sequence[str]:
