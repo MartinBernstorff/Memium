@@ -31,9 +31,11 @@ class AnkiConnectDestination(PromptDestination):
         self,
         gateway: AnkiConnectGateway,
         prompt_converter: AnkiPromptConverter,
+        max_wait_seconds: int,
     ) -> None:
         self.gateway = gateway
         self.prompt_converter = prompt_converter
+        self.max_wait_seconds = max_wait_seconds
 
     def _note_info_to_prompt(
         self, note_info: NoteInfo
@@ -123,8 +125,13 @@ class AnkiConnectDestination(PromptDestination):
     def update(
         self, commands: Sequence[PromptDestinationCommand]
     ) -> None:
-        while not anki_connect_is_live():
+        waited_seconds = 0
+        while (
+            not anki_connect_is_live()
+            and waited_seconds < self.max_wait_seconds
+        ):
             print("AnkiConnect is not live, waiting 2 seconds...")
+            waited_seconds += 2
             sleep(2)
 
         for command in commands:

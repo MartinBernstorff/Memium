@@ -36,6 +36,7 @@ from .prompt_converter.anki_prompt_converter import (
 )
 def test_ankiconnect_get_all_prompts(fields: Mapping[str, AnkiField]):
     dest = AnkiConnectDestination(
+        max_wait_seconds=0,
         gateway=SpieAnkiconnectGateway(
             note_infos=[MockNoteInfo(fields=fields)]
         ),
