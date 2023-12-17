@@ -4,15 +4,19 @@ from personal_mnemonic_medium.domain.utils.hash_cleaned_str import (
 
 
 def test_hash_cleaned_str():
-    identical_strings = [
-        "This!",
-        "This ",
-        "this",
-        "this(",
-        "this.",
-        "this,",
-        "this:",
-        "this;",
+    strings_should_hash_to_identical = ["this", "This"]
+
+    punctuation = r"!().,:;/"
+    strings_should_hash_to_identical += [
+        f"{s}{punctuation}" for s in strings_should_hash_to_identical
     ]
 
-    assert len({hash_cleaned_str(s) for s in identical_strings}) == 1
+    assert (
+        len(
+            {
+                hash_cleaned_str(s)
+                for s in strings_should_hash_to_identical
+            }
+        )
+        == 1
+    )

@@ -3,8 +3,8 @@ from dataclasses import dataclass
 
 import genanki
 
-from .....utils.clean_str import clean_str
-from .....utils.int_hash_str import int_hash_str
+from .....utils.hash_cleaned_str import clean_str
+from .....utils.hash_cleaned_str import int_hash_str
 from .base_anki_prompt import AnkiCard
 
 
