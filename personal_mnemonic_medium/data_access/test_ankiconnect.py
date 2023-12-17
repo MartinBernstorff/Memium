@@ -11,6 +11,7 @@ from .ankiconnect_gateway import (
     NoteInfo,
     anki_connect_is_live,
 )
+from .environment import get_host_home_dir
 
 
 class MockNoteInfo(NoteInfo):
@@ -32,7 +33,7 @@ class TestAnkiConnectGateway:
     gateway = AnkiConnectGateway(
         ankiconnect_url=ANKICONNECT_URL,
         base_deck="Test deck",
-        tmp_read_dir=Path("/Users/Leisure/ankidecks"),
+        tmp_read_dir=(get_host_home_dir() / "ankidecks"),
         tmp_write_dir=output_path,
         max_deletions_per_run=1,
         max_wait_seconds=0,

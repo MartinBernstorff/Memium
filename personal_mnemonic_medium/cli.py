@@ -1,22 +1,16 @@
 import logging
-import os
 from pathlib import Path
 from typing import Annotated
 
 import sentry_sdk
 import typer
 
+from personal_mnemonic_medium.data_access.environment import get_env
 from personal_mnemonic_medium.sync_deck import sync_deck
 
 log = logging.getLogger(__name__)
 
 app = typer.Typer()
-
-
-def get_env(default: str) -> str:
-    if os.getenv("GITHUB_ACTIONS"):
-        return "GITHUB_ACTIONS"
-    return os.getenv("ENV", default)
 
 
 @app.command()
