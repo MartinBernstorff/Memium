@@ -30,6 +30,6 @@ jobs:
       - name: Run integration test
         shell: bash
         run: |
-          TEST_PATH=docker_smoketest.sh
+          TEST_PATH=./docker_smoketest.sh
           chmod +x $TEST_PATH
           $TEST_PATH
