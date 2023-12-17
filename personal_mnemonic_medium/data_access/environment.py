@@ -9,6 +9,6 @@ def get_env(default: str) -> str:
 
 
 def get_host_home_dir() -> Path:
-    host_home_dir = os.getenv("HOST_HOME_DIR")
+    host_home_dir = os.getenv("HOST_HOME")
     home_dir = os.getenv("HOME", ".")
     return Path(host_home_dir) if host_home_dir else Path(home_dir)
