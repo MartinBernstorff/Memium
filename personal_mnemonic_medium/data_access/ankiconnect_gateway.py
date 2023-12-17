@@ -8,6 +8,7 @@ from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 from enum import Enum
 from pathlib import Path
+from time import sleep
 from typing import Any
 
 import genanki
@@ -47,12 +48,25 @@ class AnkiConnectGateway:
         tmp_read_dir: Path,
         tmp_write_dir: Path,
         max_deletions_per_run: int,
+        max_wait_seconds: int = 10,
     ) -> None:
         self.ankiconnect_url = ankiconnect_url
         self.deck_name = base_deck
         self.tmp_read_dir = tmp_read_dir
         self.tmp_write_dir = tmp_write_dir
         self.max_deletions_per_run = max_deletions_per_run
+
+        seconds_waited = 0
+        while (
+            not anki_connect_is_live()
+            and seconds_waited < max_wait_seconds
+        ):
+            wait_seconds = 2
+            print(
+                f"AnkiConnect is not live, waiting {wait_seconds} seconds..."
+            )
+            seconds_waited += wait_seconds
+            sleep(wait_seconds)
 
     def update_model(self, model: genanki.Model) -> None:
         self._invoke(
