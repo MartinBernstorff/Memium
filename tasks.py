@@ -120,7 +120,7 @@ def select_next_issue(c: inv.Context):
 @inv.task(aliases=("submit",))  # type: ignore
 def submit_pr(c: inv.Context):
     c.run("gt sync --delete --no-interactive")
-    c.run("gt submit --restack -m --no-edit")
+    c.run("gt submit --stack --restack -m --no-edit")
 
 
 def get_issues_assigned_to_me(
