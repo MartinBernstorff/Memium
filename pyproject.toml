@@ -52,9 +52,10 @@ repository = "https://github.com/MartinBernstorff/personal-mnemonic-medium"
 documentation = "https://MartinBernstorff.github.io/personal-mnemonic-medium/"
 
 [tool.pyright]
-exclude = [".*venv*"]
+exclude = [".*venv*", "*subtasks*"]
 pythonPlatform = "Darwin"
 reportMissingTypeStubs = false
+reportPrivateImportUsage = false
 typeCheckingMode = "strict"
 
 [tool.ruff]
