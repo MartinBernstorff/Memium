@@ -5,6 +5,11 @@ from time import sleep
 
 import invoke as inv
 
+from .str_parsing import (
+    get_letter_alphabet_position,
+    get_letter_from_alphabet_position,
+)
+
 
 @dataclass(frozen=True)
 class GithubIssue:
@@ -32,7 +37,7 @@ def get_issues_assigned_to_me(
 
 def issue_dialog(my_issues: Sequence[GithubIssue]) -> int:
     issue_strings = [
-        f"[{get_letter(i)}] #{issue.number} {issue.title}"
+        f"[{get_letter_from_alphabet_position(i)}] #{issue.number} {issue.title}"
         for i, issue in enumerate(my_issues)
     ]
 
@@ -48,7 +53,7 @@ def issue_dialog(my_issues: Sequence[GithubIssue]) -> int:
 
     terminal_output = "\n".join(issue_strings)
     print(f"\n{terminal_output}\n")
-    issue_index = get_position(
+    issue_index = get_letter_alphabet_position(
         input(
             f"Which issue do you want to work on? [1-{len(my_issues)}]\n"
         )
