@@ -111,7 +111,9 @@ def select_next_issue(c: inv.Context):
     sanitised_title = sanitise_issue_title(selected_issue.title)
 
     branch_title = f"{selected_issue.number}-{sanitised_title}"
-    c.run(f"gt create {branch_title}")
+    c.run(
+        f"gt create {branch_title} --message 'Fixes #{selected_issue.title}'"
+    )
 
 
 def get_issues_assigned_to_me(
