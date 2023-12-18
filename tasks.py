@@ -1,5 +1,6 @@
 import json
 from collections.abc import Sequence
+from time import sleep
 
 import invoke as inv
 
@@ -119,8 +120,11 @@ def issue_dialog(my_issues: Sequence[GithubIssue]) -> int:
     n_issues = len(my_issues)
     if n_issues == 1:
         print(
-            f"Only one issue found, selecting:\n\t{issue_strings[0]}\n"
+            f"Only one issue found, selecting:\n\t{issue_strings[0]}\nin "
         )
+        for i in range(5, 0, -1):
+            print(f"{i}...")
+            sleep(1)
         return 0
 
     terminal_output = "\n".join(issue_strings)
