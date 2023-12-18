@@ -25,18 +25,24 @@
             "label": "Lint",
             "type": "shell",
             "command": "inv lint",
+            "dependsOn": [
+                "Update from ancestor"
+            ],
             "presentation": {
                 "reveal": "always",
                 "clear": true,
                 "showReuseMessage": false,
                 "group": "pr"
             },
-            "problemMatcher": []
+            "problemMatcher": [],
         },
         {
             "label": "Test",
             "type": "shell",
             "command": "inv test",
+            "dependsOn": [
+                "Update from ancestor"
+            ],
             "presentation": {
                 "reveal": "always",
                 "clear": true,
@@ -48,6 +54,20 @@
             "label": "Static type check",
             "type": "shell",
             "command": "inv types",
+            "dependsOn": [
+                "Update from ancestor"
+            ],
+            "presentation": {
+                "reveal": "always",
+                "clear": true,
+                "showReuseMessage": false,
+                "group": "pr"
+            }
+        },
+        {
+            "label": "Update from ancestor",
+            "type": "shell",
+            "command": "gt restack",
             "presentation": {
                 "reveal": "always",
                 "clear": true,
