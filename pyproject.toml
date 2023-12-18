@@ -14,7 +14,7 @@ requires-python = ">=3.11"
 dependencies = [
   "cffi==1.16.0",
   "functionalpy==0.14.0",
-  "genanki==0.13.0",
+  "genanki==0.13.1",
   "misaka==2.1.1",
   "pydantic==2.5.2",
   "sentry-sdk==1.32.0",
