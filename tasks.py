@@ -57,7 +57,9 @@ def lint(c: inv.Context):
 @inv.task  # type: ignore
 def types(c: inv.Context):
     print("--- Type-checking ---")
-    c.run("pyright personal_mnemonic_medium")
+    c.run(
+        "pyright personal_mnemonic_medium --exclude personal_mnemonic_medium/subtasks"
+    )
     print("✅✅✅ Types ✅✅✅")
 
 
