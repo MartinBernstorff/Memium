@@ -1,7 +1,7 @@
 import invoke as inv
 
-from .tasks.github import get_issues_assigned_to_me, issue_dialog
-from .tasks.graphite import create_branch_from_issue
+from .subtasks.github import get_issues_assigned_to_me, issue_dialog
+from .subtasks.graphite import create_branch_from_issue
 
 
 @inv.task(aliases=("new",))  # type: ignore
