@@ -1,7 +1,10 @@
 import invoke as inv
 
-from subtasks.github import get_issues_assigned_to_me, issue_dialog
-from subtasks.graphite import (
+from personal_mnemonic_medium.subtasks.github import (
+    get_issues_assigned_to_me,
+    issue_dialog,
+)
+from personal_mnemonic_medium.subtasks.graphite import (
     create_branch_from_issue,
     submit_pr,  # noqa: F401 # type: ignore
 )
