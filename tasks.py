@@ -1,7 +1,10 @@
 import invoke as inv
 
 from tasks.github import get_issues_assigned_to_me, issue_dialog
-from tasks.graphite import create_branch_from_issue
+from tasks.graphite import (
+    create_branch_from_issue,
+    submit_pr,  # noqa: F401
+)
 
 SRC_PATH = "personal_mnemonic_medium"
 PYTEST_CMD = "pytest --durations=5 --cov=personal_mnemonic_medium personal_mnemonic_medium --cov-report xml:.coverage.xml --cov-report lcov:.coverage.lcov"
