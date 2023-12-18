@@ -117,6 +117,10 @@ def select_next_issue(c: inv.Context):
     )
 
 
+def submit_pr(c: inv.Context):
+    c.run("gt submit --restack -m")
+
+
 def get_issues_assigned_to_me(
     c: inv.Context
 ) -> Sequence[GithubIssue] | None:

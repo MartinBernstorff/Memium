@@ -5,6 +5,20 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "Submit PR",
+            "type": "shell",
+            "command": "inv submit",
+            "dependsOn": [
+                "Ready"
+            ],
+            "presentation": {
+                "clear": false,
+                "group": "build",
+                "showReuseMessage": true,
+                "reveal": "always",
+            }
+        },
+        {
             "label": "Ready",
             "type": "shell",
             "command": "echo 'All passed'",
