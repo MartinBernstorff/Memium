@@ -5,12 +5,11 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "PR",
+            "label": "Ready",
             "type": "shell",
-            "command": "make finalise-pr",
+            "command": "echo 'All passed'",
             "group": "test",
             "dependsOn": [
-                "Setup PR",
                 "Lint",
                 "Test",
                 "Static type check",
@@ -25,31 +24,25 @@
         {
             "label": "Lint",
             "type": "shell",
-            "command": "make lint",
+            "command": "inv lint",
+            "dependsOn": [
+                "Update from ancestor"
+            ],
             "presentation": {
                 "reveal": "always",
                 "clear": true,
                 "showReuseMessage": false,
                 "group": "pr"
             },
-            "problemMatcher": []
-        },
-        {
-            "label": "Setup PR",
-            "type": "shell",
-            "command": "make setup-pr",
-            "presentation": {
-                "reveal": "always",
-                "clear": true,
-                "showReuseMessage": false,
-                "group": "pr"
-            },
-            "problemMatcher": []
+            "problemMatcher": [],
         },
         {
             "label": "Test",
             "type": "shell",
-            "command": "make test",
+            "command": "inv test",
+            "dependsOn": [
+                "Update from ancestor"
+            ],
             "presentation": {
                 "reveal": "always",
                 "clear": true,
@@ -60,7 +53,21 @@
         {
             "label": "Static type check",
             "type": "shell",
-            "command": "make types",
+            "command": "inv types",
+            "dependsOn": [
+                "Update from ancestor"
+            ],
+            "presentation": {
+                "reveal": "always",
+                "clear": true,
+                "showReuseMessage": false,
+                "group": "pr"
+            }
+        },
+        {
+            "label": "Update from ancestor",
+            "type": "shell",
+            "command": "gt restack",
             "presentation": {
                 "reveal": "always",
                 "clear": true,
