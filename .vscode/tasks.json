@@ -5,6 +5,25 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "Submit PR",
+            "type": "shell",
+            "command": "inv submit",
+            "dependsOn": [
+                "Ready"
+            ],
+            "presentation": {
+                "clear": false,
+                "group": "build",
+                "reveal": "always",
+                "showReuseMessage": true
+            },
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
             "label": "Ready",
             "type": "shell",
             "command": "echo 'All passed'",
@@ -12,7 +31,7 @@
             "dependsOn": [
                 "Lint",
                 "Test",
-                "Static type check",
+                "Static type check"
             ],
             "presentation": {
                 "reveal": "always",
@@ -34,7 +53,7 @@
                 "showReuseMessage": false,
                 "group": "pr"
             },
-            "problemMatcher": [],
+            "problemMatcher": []
         },
         {
             "label": "Test",
@@ -48,7 +67,7 @@
                 "clear": true,
                 "showReuseMessage": false,
                 "group": "pr"
-            },
+            }
         },
         {
             "label": "Static type check",

@@ -112,6 +112,14 @@ def select_next_issue(c: inv.Context):
 
     branch_title = f"{selected_issue.number}-{sanitised_title}"
     c.run(f"gt create {branch_title}")
+    c.run(
+        f"git commit --allow-empty -m 'Fixes #{selected_issue.number}'"
+    )
+
+
+@inv.task(aliases=("submit",))  # type: ignore
+def submit_pr(c: inv.Context):
+    c.run("gt submit --restack -m --no-edit")
 
 
 def get_issues_assigned_to_me(
