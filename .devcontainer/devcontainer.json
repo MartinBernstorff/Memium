@@ -35,7 +35,7 @@
     "features": {
         "ghcr.io/devcontainers/features/github-cli:1": {}
     },
-    "postStartCommand": "make install && export ENV=dev-container"
+    "postStartCommand": "inv install && export ENV=dev-container"
     // Features to add to the dev container. More info: https://containers.dev/features.
     // "features": {},
     // Use 'forwardPorts' to make a list of ports inside the container available locally.

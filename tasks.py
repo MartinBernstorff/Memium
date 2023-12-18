@@ -119,7 +119,8 @@ def select_next_issue(c: inv.Context):
 
 @inv.task(aliases=("submit",))  # type: ignore
 def submit_pr(c: inv.Context):
-    c.run("gt submit --restack -m --no-edit")
+    c.run("gt sync --delete --no-interactive")
+    c.run("gt submit --stack --restack -m --no-edit")
 
 
 def get_issues_assigned_to_me(
@@ -138,3 +139,12 @@ def get_issues_assigned_to_me(
         GithubIssue(**value) for value in json.loads(output)
     ]
     return parsed_output
+
+
+@inv.task  # type: ignore
+def validate_ci(c: inv.Context):
+    print("--- Validating CI ---")
+    lint(c)
+    types(c)
+    generate_coverage(c)
+    print("✅✅✅ CI valid ✅✅✅")
