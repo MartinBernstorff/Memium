@@ -5,7 +5,7 @@ from .github import GithubIssue, sanitise_issue_title
 
 @inv.task(aliases=("submit",))  # type: ignore
 def submit_pr(c: inv.Context):
-    c.run("gt sync --delete --no-interactive")
+    c.run("gt sync --delete --force")
     c.run("gt submit --stack --restack -m --no-edit")
     c.run("gt log -s")
 
