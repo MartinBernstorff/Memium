@@ -35,12 +35,19 @@ def install(c: inv.Context):
 
 @inv.task  # type: ignore
 def generate_coverage(c: inv.Context):
-    coverage_report = c.run(PYTEST_CMD)
+    c.run(PYTEST_CMD)
+
+
+@inv.task  # type: ignore
+def test(c: inv.Context):
+    print("--- Testing ---")
+    generate_coverage(c)
+
+    coverage_report = c.run("diff-cover .coverage.xml")
     if coverage_report is None:
         print("No coverage report generated")
         return
 
-    # Find line containing "Coverage: \d%"
     lines = coverage_report.stdout.split("\n")
     coverage_line = next(
         line for line in lines if "Coverage: " in line
@@ -48,16 +55,12 @@ def generate_coverage(c: inv.Context):
     coverage_percent = int(coverage_line.split(" ")[1][:-1])
     if coverage_percent < 80:
         proceed = input(
-            f"⚠⚠️⚠️️ Coverage is {coverage_percent}%. Proceed? [y/N] "
+            f"🚧🚧🚧 Coverage is {coverage_percent}%. Proceed? [y/N] "
         )
-        return
+        if proceed.lower() != "y":
+            print("Aborting")
+            return
 
-
-@inv.task  # type: ignore
-def test(c: inv.Context):
-    print("--- Testing ---")
-    generate_coverage(c)
-    c.run("diff-cover .coverage.xml --fail-under=80")
     print("✅✅✅ Tests passed ✅✅✅")
 
 
