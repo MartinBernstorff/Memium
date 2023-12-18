@@ -43,17 +43,29 @@ def test(c: inv.Context):
     print("--- Testing ---")
     generate_coverage(c)
 
-    coverage_report = c.run("diff-cover .coverage.xml")
+    coverage_report = c.run("diff-cover .coverage.xml", hide=True)
     if coverage_report is None:
         print("No coverage report generated")
         return
 
     lines = coverage_report.stdout.split("\n")
-    coverage_line = next(
-        line for line in lines if "Coverage: " in line
-    )
+    try:
+        coverage_line = next(
+            line for line in lines if "Coverage: " in line
+        )
+    except StopIteration:
+        print("No lines affected by coverage")
+        return
+
+    missing_lines = [
+        line for line in lines if "Missing lines" in line
+    ]
     coverage_percent = int(coverage_line.split(" ")[1][:-1])
+
     if coverage_percent < 80:
+        print("\n=== Lines with missing coverage ===")
+        for line in missing_lines:
+            print(line)
         proceed = input(
             f"🚧🚧🚧 Coverage is {coverage_percent}%. Proceed? [y/N] "
         )
