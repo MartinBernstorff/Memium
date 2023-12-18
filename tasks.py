@@ -35,7 +35,22 @@ def install(c: inv.Context):
 
 @inv.task  # type: ignore
 def generate_coverage(c: inv.Context):
-    c.run(PYTEST_CMD)
+    coverage_report = c.run(PYTEST_CMD)
+    if coverage_report is None:
+        print("No coverage report generated")
+        return
+
+    # Find line containing "Coverage: \d%"
+    lines = coverage_report.stdout.split("\n")
+    coverage_line = next(
+        line for line in lines if "Coverage: " in line
+    )
+    coverage_percent = int(coverage_line.split(" ")[1][:-1])
+    if coverage_percent < 80:
+        proceed = input(
+            f"⚠⚠️⚠️️ Coverage is {coverage_percent}%. Proceed? [y/N] "
+        )
+        return
 
 
 @inv.task  # type: ignore
