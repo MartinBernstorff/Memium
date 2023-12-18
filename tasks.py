@@ -94,10 +94,10 @@ def select_next_issue(c: inv.Context):
         return
 
     terminal_output = "\n".join(
-        f"[{i+1}] {issue.title} #{issue.number}"
+        f"[{i+1}] #{issue.number} {issue.title}"
         for i, issue in enumerate(my_issues)
     )
-    print(f"{terminal_output}\n")
+    print(f"\n{terminal_output}\n")
 
     issue_index = (
         int(
@@ -121,6 +121,7 @@ def select_next_issue(c: inv.Context):
 def submit_pr(c: inv.Context):
     c.run("gt sync --delete --no-interactive")
     c.run("gt submit --stack --restack -m --no-edit")
+    c.run("gt log -s")
 
 
 def get_issues_assigned_to_me(
