@@ -7,10 +7,9 @@
         {
             "label": "PR",
             "type": "shell",
-            "command": "make finalise-pr",
+            "command": "echo 'All passed'",
             "group": "test",
             "dependsOn": [
-                "Setup PR",
                 "Lint",
                 "Test",
                 "Static type check",
@@ -25,19 +24,7 @@
         {
             "label": "Lint",
             "type": "shell",
-            "command": "make lint",
-            "presentation": {
-                "reveal": "always",
-                "clear": true,
-                "showReuseMessage": false,
-                "group": "pr"
-            },
-            "problemMatcher": []
-        },
-        {
-            "label": "Setup PR",
-            "type": "shell",
-            "command": "make setup-pr",
+            "command": "inv lint",
             "presentation": {
                 "reveal": "always",
                 "clear": true,
@@ -49,7 +36,7 @@
         {
             "label": "Test",
             "type": "shell",
-            "command": "make test",
+            "command": "inv test",
             "presentation": {
                 "reveal": "always",
                 "clear": true,
@@ -60,7 +47,7 @@
         {
             "label": "Static type check",
             "type": "shell",
-            "command": "make types",
+            "command": "inv types",
             "presentation": {
                 "reveal": "always",
                 "clear": true,
