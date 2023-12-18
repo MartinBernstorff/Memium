@@ -55,6 +55,7 @@ documentation = "https://MartinBernstorff.github.io/personal-mnemonic-medium/"
 exclude = [".*venv*", "*subtasks*"]
 pythonPlatform = "Darwin"
 reportMissingTypeStubs = false
+reportPrivateImportUsage = false
 typeCheckingMode = "strict"
 
 [tool.ruff]
