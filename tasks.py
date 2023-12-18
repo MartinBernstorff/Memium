@@ -65,7 +65,7 @@ class GithubIssue:
     title: str
 
 
-def sanitise_for_github(issue_title: str) -> str:
+def sanitise_issue_title(issue_title: str) -> str:
     characters_to_replace = [
         " ",
         ":",
@@ -81,6 +81,7 @@ def sanitise_for_github(issue_title: str) -> str:
     for character in characters_to_replace:
         issue_title = issue_title.replace(character, "-")
 
+    issue_title = issue_title.replace("--", "-")
     return issue_title
 
 
@@ -107,7 +108,7 @@ def select_next_issue(c: inv.Context):
         - 1
     )
     selected_issue = my_issues[issue_index]
-    sanitised_title = sanitise_for_github(selected_issue.title)
+    sanitised_title = sanitise_issue_title(selected_issue.title)
 
     branch_title = f"{selected_issue.number}-{sanitised_title}"
     c.run(f"gt create {branch_title}")
