@@ -117,6 +117,7 @@ def select_next_issue(c: inv.Context):
     )
 
 
+@inv.task(aliases=("submit",))  # type: ignore
 def submit_pr(c: inv.Context):
     c.run("gt submit --restack -m")
 
