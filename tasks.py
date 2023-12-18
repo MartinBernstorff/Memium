@@ -138,3 +138,12 @@ def get_issues_assigned_to_me(
         GithubIssue(**value) for value in json.loads(output)
     ]
     return parsed_output
+
+
+@inv.task  # type: ignore
+def validate_ci(c: inv.Context):
+    print("--- Validating CI ---")
+    lint(c)
+    types(c)
+    generate_coverage(c)
+    print("✅✅✅ CI valid ✅✅✅")
