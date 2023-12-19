@@ -110,8 +110,13 @@ class AnkiConnectDestination(PromptDestination):
             command.prompts
         )
 
-        models = {card.genanki_model for card in cards}
-        for model in models:
+        models = [card.genanki_model for card in cards]
+        unique_models: dict[int, genanki.Model] = {
+            model.model_id: model  # type: ignore
+            for model in models  # type: ignore
+        }
+
+        for model in unique_models.values():
             self.gateway.update_model(model)
 
         package = self._create_package(cards)

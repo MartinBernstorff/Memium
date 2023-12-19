@@ -34,6 +34,9 @@ class QAFromDoc(QAPrompt):
     parent_doc: Document
     line_nr: int
 
+    def __repr__(self) -> str:
+        return f"{self.parent_doc.source_path}:{self.line_nr}: \n\tQ. {self.question}\n\tA. {self.answer}"
+
     @property
     def tags(self) -> Sequence[str]:
         return self.parent_doc.tags

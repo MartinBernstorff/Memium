@@ -21,7 +21,7 @@ class DryRunDestination(AnkiConnectDestination):
             match command:
                 case DeletePrompts(prompts):
                     for prompt in prompts:
-                        log.info(f"Deleting prompt: {prompt}")
+                        log.info(f"Deleting prompt: {prompt}\n")
                 case PushPrompts(prompts):
                     for prompt in prompts:
-                        log.info(f"Pushing prompt: {prompt}")
+                        log.info(f"Pushing prompt: {prompt}\n")
