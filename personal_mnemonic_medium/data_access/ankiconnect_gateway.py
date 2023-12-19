@@ -194,11 +194,20 @@ class SpieAnkiconnectGateway(AnkiConnectGateway):
         self.executed_commands.append(ImportPackage(package=package))
 
 
-# TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/222 refactor: remove globals.py
+def in_docker() -> bool:
+    try:
+        with Path("/proc/1/cgroup").open("r") as ifh:
+            return "docker" in ifh.read()
+    except Exception:
+        return False
+
 
 ANKICONNECT_URL = (
     "http://host.docker.internal:8765"
-)  # On host machine, port is 8765
+    if in_docker()
+    else "http://localhost:8765"
+)
+# On host machine, port is 8765
 
 
 def anki_connect_is_live() -> bool:
