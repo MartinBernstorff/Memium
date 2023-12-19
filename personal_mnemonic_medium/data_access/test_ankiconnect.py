@@ -63,6 +63,7 @@ class TestAnkiConnectGateway:
             genanki.Note(
                 model=model,
                 fields=["Capital of Argentina", "Buenos Aires"],
+                tags=["TestTag"],
             )
         )
 
@@ -74,7 +75,8 @@ class TestAnkiConnectGateway:
 
         # Phase 2: Getting
         all_notes = self.gateway.get_all_note_infos()
-        assert len(all_notes) == 1
+        note = all_notes[0]
+        assert note.tags == ["TestTag"]
 
         # Phase 3: Deleting
         self.gateway.delete_notes(

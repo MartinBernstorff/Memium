@@ -195,11 +195,7 @@ class SpieAnkiconnectGateway(AnkiConnectGateway):
 
 
 def in_docker() -> bool:
-    try:
-        with Path("/proc/1/cgroup").open("r") as ifh:
-            return "docker" in ifh.read()
-    except Exception:
-        return False
+    return Path("/.dockerenv").exists()
 
 
 ANKICONNECT_URL = (

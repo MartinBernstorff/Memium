@@ -52,4 +52,5 @@ class AnkiCloze(AnkiCard):
                 " ".join(self.tags),
                 str(self.uuid),
             ],
+            tags=self.tags,
         )
