@@ -17,7 +17,9 @@ class AnkiQA(AnkiCard):
 
     @property
     def uuid(self) -> int:
-        return int_hash_str(clean_str(self.question))
+        return int_hash_str(
+            clean_str(f"{self.question}{self.answer}")
+        )
 
     @property
     def genanki_model(self) -> genanki.Model:
