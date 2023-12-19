@@ -41,14 +41,14 @@ class AnkiPromptConverter:
                 return AnkiQA(
                     question=prompt.question,
                     answer=prompt.answer,
-                    deck=deck,
+                    base_deck=deck,
                     tags=prompt.tags,
                     css=self.card_css,
                 )
             case ClozePrompt():
                 return AnkiCloze(
                     text=prompt.text,
-                    deck=deck,
+                    base_deck=deck,
                     tags=prompt.tags,
                     css=self.card_css,
                 )

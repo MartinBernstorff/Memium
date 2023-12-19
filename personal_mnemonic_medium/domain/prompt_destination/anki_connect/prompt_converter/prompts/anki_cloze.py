@@ -9,7 +9,7 @@ from .base_anki_prompt import AnkiCard
 
 @dataclass(frozen=True)
 class AnkiCloze(AnkiCard):
-    deck: str
+    base_deck: str
     tags: Sequence[str]
     text: str
     css: str

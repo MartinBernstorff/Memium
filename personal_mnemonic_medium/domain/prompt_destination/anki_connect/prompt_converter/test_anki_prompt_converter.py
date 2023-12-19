@@ -11,13 +11,16 @@ from .prompts.base_anki_prompt import AnkiCard
 fake_anki_qa = AnkiQA(
     question="FakeQuestion",
     answer="FakeAnswer",
-    deck="FakeDeck",
+    base_deck="FakeDeck",
     tags=["FakeTag"],
     css="FakeCSS",
 )
 
 fake_anki_cloze = AnkiCloze(
-    text="FakeText", deck="FakeDeck", tags=["FakeTag"], css="FakeCSS"
+    text="FakeText",
+    base_deck="FakeDeck",
+    tags=["FakeTag"],
+    css="FakeCSS",
 )
 
 
