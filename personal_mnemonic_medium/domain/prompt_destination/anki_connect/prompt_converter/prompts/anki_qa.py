@@ -9,7 +9,7 @@ from .base_anki_prompt import AnkiCard
 
 @dataclass(frozen=True)
 class AnkiQA(AnkiCard):
-    deck: str
+    base_deck: str
     tags: Sequence[str]
     question: str
     answer: str
