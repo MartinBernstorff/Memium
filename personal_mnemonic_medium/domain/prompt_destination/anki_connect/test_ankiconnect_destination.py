@@ -63,7 +63,7 @@ def test_ankiconnect_push_prompts():
                     QAWithoutDoc(
                         question="FakeQuestion",
                         answer="FakeAnswer",
-                        add_tags=["FakeTag"],
+                        add_tags=["#anki/deck/FakeSubdeck"],
                     ),
                     ClozeWithoutDoc(
                         text="FakeText", add_tags=["FakeTag"]
@@ -74,6 +74,16 @@ def test_ankiconnect_push_prompts():
     )
 
     expected_commands = [(ImportPackage, 1), (UpdateModel, 2)]
+    import_package_command = next(
+        c
+        for c in gateway.executed_commands
+        if isinstance(c, ImportPackage)
+    )
+    assert (
+        import_package_command.package.decks[0].name  # type: ignore
+        == "FakeDeck::FakeSubdeck"
+    )
+
     for command in expected_commands:
         assert (
             len(
