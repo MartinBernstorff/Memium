@@ -7,7 +7,7 @@ from ..prompt_destination.destination_commands import (
     PushPrompts,
 )
 from ..prompts.base_prompt import BasePrompt, DestinationPrompt
-from ..prompts.qa_prompt import QAPrompt
+from ..prompts.qa_prompt import QAPrompt, QAWithoutDoc
 from .base_diff_determiner import GeneralSyncer, PromptDiffDeterminer
 
 
@@ -25,20 +25,28 @@ def test_diff_determiner():
     assert syncer.only_in_destination() == ["3"]
 
 
+from dataclasses import dataclass
+
+
+@dataclass(frozen=True)
+class DiffDeterminerExample:
+    example_title: str
+    source_prompts: Sequence[BasePrompt]
+    destination_prompts: Sequence[DestinationPrompt]
+    delete_prompts: Sequence[DestinationPrompt]
+    push_prompts: Sequence[BasePrompt]
+
+
 @pytest.mark.parametrize(
-    (
-        "source_prompts",
-        "destination_prompts",
-        "delete_prompts",
-        "push_prompts",
-    ),
+    "example",
     [
-        (
-            [
+        DiffDeterminerExample(
+            example_title="Basic",
+            source_prompts=[
                 QAPrompt(question="a", answer="a"),
                 QAPrompt(question="b", answer="b"),
             ],
-            [
+            destination_prompts=[
                 DestinationPrompt(
                     QAPrompt(question="b", answer="b"),
                     destination_id="2",
@@ -48,41 +56,51 @@ def test_diff_determiner():
                     destination_id="3",
                 ),
             ],
-            [
+            delete_prompts=[
                 DestinationPrompt(
                     QAPrompt(question="c", answer="c"),
                     destination_id="3",
                 )
             ],
-            [PushPrompts([QAPrompt(question="a", answer="a")])],
-        )
+            push_prompts=[QAPrompt(question="a", answer="a")],
+        ),
+        (
+            DiffDeterminerExample(
+                example_title="Updated tags",
+                source_prompts=[
+                    QAWithoutDoc(
+                        question="a", answer="a", add_tags=["NewTag"]
+                    )
+                ],
+                destination_prompts=[
+                    DestinationPrompt(
+                        QAWithoutDoc(
+                            question="a",
+                            answer="a",
+                            add_tags=["OldTag"],
+                        ),
+                        destination_id="1",
+                    )
+                ],
+                delete_prompts=[],
+                push_prompts=[
+                    QAWithoutDoc(
+                        question="a", answer="a", add_tags=["NewTag"]
+                    )
+                ],
+            )
+        ),
     ],
 )
 def test_prompt_diff_determiner(
     diff_determiner: PromptDiffDeterminer,
-    source_prompts: Sequence[BasePrompt],
-    destination_prompts: Sequence[DestinationPrompt],
-    delete_prompts: Sequence[DestinationPrompt],
-    push_prompts: Sequence[BasePrompt],
+    example: DiffDeterminerExample,
 ):
-    source_prompts = [
-        QAPrompt(question="a", answer="a"),
-        QAPrompt(question="b", answer="b"),
-    ]
-    destination_prompts = [
-        DestinationPrompt(
-            QAPrompt(question="b", answer="b"), destination_id="2"
-        ),
-        DestinationPrompt(
-            QAPrompt(question="c", answer="c"), destination_id="3"
-        ),
-    ]
-
     diff = diff_determiner.sync(
-        source_prompts=source_prompts,
-        destination_prompts=destination_prompts,
+        source_prompts=example.source_prompts,
+        destination_prompts=example.destination_prompts,
     )
     assert diff == [
-        DeletePrompts(delete_prompts),
-        PushPrompts(push_prompts),
+        DeletePrompts(example.delete_prompts),
+        PushPrompts(example.push_prompts),
     ]

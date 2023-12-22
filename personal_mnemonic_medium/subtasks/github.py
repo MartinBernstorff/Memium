@@ -18,7 +18,7 @@ class GithubIssue:
 
 
 def get_issues_assigned_to_me(
-    c: inv.Context
+    c: inv.Context,
 ) -> Sequence[GithubIssue] | None:
     """Get issues assigned to current user on current repo"""
     my_issues = c.run(
