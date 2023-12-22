@@ -26,4 +26,4 @@ This is another block without any cloze prompts.
         extractor[0].text
         == r"What is the meaning of life? {{c734::42}}"
     )
-    assert extractor[0].tags == ["#anki/tag/test_tag"]
+    assert extractor[0].tags == ["anki/tag/test_tag"]

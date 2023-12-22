@@ -79,14 +79,14 @@ class AnkiConnectDestination(PromptDestination):
         self.gateway.delete_notes(list(prompt_ids))
 
     def _grouped_cards_to_deck(
-        self, cards: Mapping[str, Sequence[AnkiCard]]
+        self, grouped_cards: Mapping[str, Sequence[AnkiCard]]
     ) -> genanki.Deck:
-        deck_name = next(iter(cards.keys()))
+        deck_name = next(iter(grouped_cards.keys()))
         deck = genanki.Deck(
             name=deck_name, deck_id=hash_cleaned_str(deck_name)
         )
 
-        for card in cards[deck_name]:
+        for card in grouped_cards[deck_name]:
             deck.add_note(card.to_genanki_note())  # type: ignore
 
         return deck
@@ -97,11 +97,12 @@ class AnkiConnectDestination(PromptDestination):
         cards_grouped_by_deck = Seq(cards).groupby(
             lambda card: card.deck
         )
-        decks = (
-            Seq([cards_grouped_by_deck])
-            .map(self._grouped_cards_to_deck)
-            .to_list()
-        )
+        decks = [
+            self._grouped_cards_to_deck(
+                {group: cards_grouped_by_deck[group]}
+            )
+            for group in cards_grouped_by_deck
+        ]
 
         return genanki.Package(deck_or_decks=decks)
 

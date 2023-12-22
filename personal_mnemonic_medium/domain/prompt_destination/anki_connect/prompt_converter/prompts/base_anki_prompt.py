@@ -26,9 +26,9 @@ class AnkiCard(ABC):
 
     @property
     def deck(self) -> str:
-        deck_prefix = "#anki/deck/"
+        deck_prefix = "anki/deck/"
         deck_in_tags = (
-            tag.replace(deck_prefix, "")
+            tag.replace(deck_prefix, "").replace("/", "::")
             for tag in self.tags
             if tag.startswith(deck_prefix)
         )

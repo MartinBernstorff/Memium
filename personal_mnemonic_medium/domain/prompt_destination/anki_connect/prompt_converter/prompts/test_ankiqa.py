@@ -18,5 +18,5 @@ class FakeAnkiQA(AnkiQA):
 
 
 def test_ankiqa_deck_inference():
-    card = FakeAnkiQA(tags=["#anki/deck/Subdeck"])
+    card = FakeAnkiQA(tags=["anki/deck/Subdeck"])
     assert card.deck == "FakeBaseDeck::Subdeck"
