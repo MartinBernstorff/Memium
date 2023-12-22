@@ -63,7 +63,9 @@ def test_ankiconnect_push_prompts():
                     QAWithoutDoc(
                         question="FakeQuestion",
                         answer="FakeAnswer",
-                        add_tags=["anki/deck/FakeSubdeck"],
+                        add_tags=[
+                            "anki/deck/FakeSubdeck/FakeSubSubdeck"
+                        ],
                     ),
                     ClozeWithoutDoc(
                         text="FakeText", add_tags=["FakeTag"]
@@ -81,7 +83,7 @@ def test_ankiconnect_push_prompts():
     )
     assert (
         import_package_command.package.decks[0].name  # type: ignore
-        == "FakeDeck::FakeSubdeck"
+        == "FakeDeck::FakeSubdeck::FakeSubSubdeck"
     )
     assert len(import_package_command.package.decks) == 2  # type: ignore
 
