@@ -18,7 +18,7 @@ def test_markdown_document_ingester(tmpdir: Path):
     document = documents[0]
     assert document.title == "test"
     assert document.tags == [
-        "#anki/tag/test_tag",
-        "#anki/tag/test_tag2",
-        "#comment_tag",
+        "anki/tag/test_tag",
+        "anki/tag/test_tag2",
+        "comment_tag",
     ]
