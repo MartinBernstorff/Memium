@@ -11,7 +11,7 @@ class Document:
 
     @property
     def tags(self) -> Sequence[str]:
-        return list(re.findall(r"#anki\/tag\/\S+", self.content))
+        return list(re.findall(r"#[\w\/]+", self.content))
 
     @property
     def title(self) -> str:
