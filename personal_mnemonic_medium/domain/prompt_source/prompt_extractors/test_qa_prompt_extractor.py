@@ -25,5 +25,5 @@ A. 42
     prompt = extractor[0]
     assert prompt.question == "What is the meaning of life?"
     assert prompt.answer == "42"
-    assert prompt.tags == ["#anki/tag/test_tag"]
+    assert prompt.tags == ["anki/tag/test_tag"]
     assert prompt.uid == 9385242780
