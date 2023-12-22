@@ -4,7 +4,13 @@ from typing import Protocol
 
 class BasePrompt(Protocol):
     @property
-    def uid(self) -> int:
+    def scheduling_uid(self) -> int:
+        """UID used when scheduling the prompt. If this UID changes, the scheduling of the prompt is reset."""
+        ...
+
+    @property
+    def update_uid(self) -> int:
+        """The UID used to determine whether the prompt state has changed. If this UID changes, the prompt is updated on the remote."""
         ...
 
     @property
