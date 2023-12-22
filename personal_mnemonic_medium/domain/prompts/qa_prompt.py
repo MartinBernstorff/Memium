@@ -12,8 +12,14 @@ class QAPrompt(BasePrompt):
     answer: str
 
     @property
-    def uid(self) -> int:
+    def scheduling_uid(self) -> int:
         return hash_cleaned_str(f"{self.question}_{self.answer}")
+
+    @property
+    def update_uid(self) -> int:
+        return hash_cleaned_str(
+            f"{self.question}_{self.answer}_{self.tags}"
+        )
 
     @property
     def tags(self) -> Sequence[str]:
