@@ -56,11 +56,10 @@ class PromptDiffDeterminer(BaseDiffDeterminer):
         # Update prompts if content or tags have changed. This doesn't affect scheduling.
         prompts_to_update = GeneralSyncer(
             source={
-                f"{prompt.scheduling_uid}{prompt.tags}": prompt
-                for prompt in source_prompts
+                prompt.update_uid: prompt for prompt in source_prompts
             },
             destination={
-                f"{prompt.prompt.scheduling_uid}{prompt.prompt.tags}": prompt
+                prompt.prompt.update_uid: prompt
                 for prompt in destination_prompts
             },
         ).only_in_source()
