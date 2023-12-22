@@ -1,37 +1,22 @@
 from pathlib import Path
 
-from personal_mnemonic_medium.domain.prompt_destination.anki_connect.anki_prompt_css import (
-    CARD_MODEL_CSS,
-)
-
 from .data_access.ankiconnect_gateway import (
     ANKICONNECT_URL,
     AnkiConnectGateway,
 )
-from .domain.diff_determiner.base_diff_determiner import (
-    PromptDiffDeterminer,
-)
-from .domain.prompt_destination.anki_connect.ankiconnect_destination import (
-    AnkiConnectDestination,
-)
-from .domain.prompt_destination.anki_connect.prompt_converter.anki_prompt_converter import (
+from .diff_determiner import PromptDiffDeterminer
+from .prompt_destination.ankiconnect_converter import (
     AnkiPromptConverter,
 )
-from .domain.prompt_destination.dryrun_destination import (
-    DryRunDestination,
+from .prompt_destination.ankiconnect_css import CARD_MODEL_CSS
+from .prompt_destination.destination_ankiconnect import (
+    AnkiConnectDestination,
 )
-from .domain.prompt_source.document_ingesters.markdown_document_ingester import (
-    MarkdownDocumentIngester,
-)
-from .domain.prompt_source.document_prompt_source import (
-    DocumentPromptSource,
-)
-from .domain.prompt_source.prompt_extractors.cloze_prompt_extractor import (
-    ClozePromptExtractor,
-)
-from .domain.prompt_source.prompt_extractors.qa_prompt_extractor import (
-    QAPromptExtractor,
-)
+from .prompt_destination.dryrun import DryRunDestination
+from .prompt_source.extractor_cloze import ClozePromptExtractor
+from .prompt_source.extractor_qa import QAPromptExtractor
+from .prompt_source.facade_document import DocumentPromptSource
+from .prompt_source.ingester_markdown import MarkdownDocumentIngester
 
 
 def sync_deck(
