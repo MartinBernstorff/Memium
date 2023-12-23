@@ -86,7 +86,7 @@
         {
             "label": "Update from ancestor",
             "type": "shell",
-            "command": "gt restack",
+            "command": "gt restack --upstack",
             "presentation": {
                 "reveal": "always",
                 "clear": true,
