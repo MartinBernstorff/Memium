@@ -12,7 +12,7 @@ from .data_access.ankiconnect_gateway import anki_connect_is_live
     not anki_connect_is_live(),
     reason="Tests require a running AnkiConnect server",
 )
-def test_sync_deck(
+def test_main(
     tmp_path: Path,
     caplog: pytest.LogCaptureFixture,
     base_deck: str = "Tests::Integration Test deck",

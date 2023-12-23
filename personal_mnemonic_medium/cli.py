@@ -1,4 +1,5 @@
 import logging
+from functools import partial
 from pathlib import Path
 from typing import Annotated, Optional
 
@@ -39,6 +40,12 @@ def cli(
             help="Maximum number of cards to delete per sync to avoid unintentional deletions. If exceeded, raises error."
         ),
     ] = 50,
+    push_all: Annotated[
+        bool,
+        typer.Option(
+            help="Push all prompts to Anki, whether or not they exist in Anki. Useful if you have e.g. changed your CSS template. Note that this does not change scheduling, nor delete prompts that no longer exist in your markdown."
+        ),
+    ] = False,
     dry_run: Annotated[
         bool,
         typer.Option(
@@ -64,23 +71,21 @@ def cli(
     if sentry_dsn:
         sentry_sdk.init(dsn=sentry_dsn, environment=get_env(default="None"))
 
-    if not skip_sync:
-        main(
-            base_deck=deck_name,
-            input_dir=input_dir,
-            max_deletions_per_run=max_deletions_per_run,
-            dry_run=dry_run,
-        )
+    main_fn = partial(
+        main,
+        base_deck=deck_name,
+        input_dir=input_dir,
+        max_deletions_per_run=max_deletions_per_run,
+        dry_run=dry_run,
+        push_all=push_all,
+    )
 
+    if not skip_sync:
+        main_fn()
         if watch:
             sleep_seconds = 60
             log.info(f"Sync complete, sleeping for {sleep_seconds} seconds")
-            main(
-                base_deck=deck_name,
-                input_dir=input_dir,
-                max_deletions_per_run=max_deletions_per_run,
-                dry_run=dry_run,
-            )
+            main_fn()
 
 
 if __name__ == "__main__":
