@@ -12,9 +12,7 @@ log = logging.getLogger(__name__)
 
 
 class DryRunDestination(AnkiConnectDestination):
-    def update(
-        self, commands: Sequence[PromptDestinationCommand]
-    ) -> None:
+    def update(self, commands: Sequence[PromptDestinationCommand]) -> None:
         for command in commands:
             match command:
                 case DeletePrompts(prompts):

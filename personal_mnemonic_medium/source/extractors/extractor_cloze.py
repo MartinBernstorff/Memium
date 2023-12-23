@@ -4,8 +4,8 @@ import re
 from collections.abc import Sequence
 
 from ..document import Document
-from .extractor import BasePromptExtractor
 from ..prompts.prompt_cloze import ClozeFromDoc, ClozePrompt
+from .extractor import BasePromptExtractor
 
 log = logging.getLogger(__name__)
 

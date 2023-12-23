@@ -6,9 +6,9 @@ def clean_str(input_str: str) -> str:
     lowered = input_str.lower()
 
     punctuation = r"""!"#$%&'()*+,-./:;<=>?@[\]^_`|~"""
-    cleaned = lowered.translate(
-        str.maketrans("", "", punctuation)
-    ).replace(" ", "")
+    cleaned = lowered.translate(str.maketrans("", "", punctuation)).replace(
+        " ", ""
+    )
 
     return cleaned
 

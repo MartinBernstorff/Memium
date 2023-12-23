@@ -1,8 +1,8 @@
 from collections.abc import Sequence
 from typing import Protocol
 
-from ..prompts.prompt import BasePrompt
 from ..document import Document
+from ..prompts.prompt import BasePrompt
 
 
 # TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/297 Implement ClozeExtractor

@@ -11,12 +11,8 @@ class Document:
 
     @property
     def tags(self) -> Sequence[str]:
-        tag_strings: list[str] = list(
-            re.findall(r"#[\w\/]+", self.content)
-        )
-        return [
-            tag_string.replace("#", "") for tag_string in tag_strings
-        ]
+        tag_strings: list[str] = list(re.findall(r"#[\w\/]+", self.content))
+        return [tag_string.replace("#", "") for tag_string in tag_strings]
 
     @property
     def title(self) -> str:

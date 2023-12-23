@@ -4,9 +4,9 @@ from ...source.prompts.prompt import BasePrompt
 from ...source.prompts.prompt_cloze import ClozeWithoutDoc
 from ...source.prompts.prompt_qa import QAWithoutDoc
 from .anki_card import AnkiCard
+from .anki_converter import AnkiPromptConverter
 from .anki_prompt_cloze import AnkiCloze
 from .anki_prompt_qa import AnkiQA
-from .anki_converter import AnkiPromptConverter
 
 fake_anki_qa = AnkiQA(
     question="FakeQuestion",

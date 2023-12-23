@@ -2,8 +2,8 @@ import logging
 import re
 from collections.abc import Sequence
 
-from ..prompts.prompt_qa import QAFromDoc, QAPrompt
 from ..document import Document
+from ..prompts.prompt_qa import QAFromDoc, QAPrompt
 from .extractor import BasePromptExtractor
 
 log = logging.getLogger(__name__)

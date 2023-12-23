@@ -43,15 +43,11 @@ def sync(
     ],
     watch: Annotated[
         bool,
-        typer.Option(
-            help="Keep running, updating Anki deck every 15 seconds"
-        ),
+        typer.Option(help="Keep running, updating Anki deck every 15 seconds"),
     ],
     deck_name: Annotated[
         str,
-        typer.Option(
-            help="Anki path to deck, e.g. 'Parent deck::Child deck'"
-        ),
+        typer.Option(help="Anki path to deck, e.g. 'Parent deck::Child deck'"),
     ] = "Personal Mnemonic Medium",
     max_deletions_per_run: Annotated[
         int,
@@ -66,8 +62,7 @@ def sync(
         ),
     ] = False,
     skip_sync: Annotated[
-        bool,
-        typer.Option(help="Skip all syncing, useful for smoketest"),
+        bool, typer.Option(help="Skip all syncing, useful for smoketest")
     ] = False,
 ):
     logging.basicConfig(
@@ -77,9 +72,7 @@ def sync(
     )
 
     # Use apkg_output_filepath if host_ankiconnect_dir is not set
-    host_apkg_dir = (
-        host_apkg_dir if host_apkg_dir else apkg_output_dir
-    )
+    host_apkg_dir = host_apkg_dir if host_apkg_dir else apkg_output_dir
 
     sentry_sdk.init(
         dsn="https://37f17d6aa7742424652663a04154e032@o4506053997166592.ingest.sentry.io/4506053999984640",
@@ -98,9 +91,7 @@ def sync(
 
         if watch:
             sleep_seconds = 60
-            log.info(
-                f"Sync complete, sleeping for {sleep_seconds} seconds"
-            )
+            log.info(f"Sync complete, sleeping for {sleep_seconds} seconds")
             sync_deck(
                 base_deck=deck_name,
                 input_dir=input_dir,

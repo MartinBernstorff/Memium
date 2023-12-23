@@ -12,11 +12,6 @@ def test_hash_cleaned_str():
     ]
 
     assert (
-        len(
-            {
-                hash_cleaned_str(s)
-                for s in strings_should_hash_to_identical
-            }
-        )
+        len({hash_cleaned_str(s) for s in strings_should_hash_to_identical})
         == 1
     )
