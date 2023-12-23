@@ -7,7 +7,7 @@ from .github import GithubIssue, sanitise_issue_title
 def submit_pr(c: inv.Context):
     c.run("gt sync --delete --force")
     c.run("gt submit --stack --restack -m --no-edit --publish")
-    c.run("gt log -s")
+    c.run("gt log short")
 
 
 def create_branch_from_issue(c: inv.Context, selected_issue: GithubIssue):
