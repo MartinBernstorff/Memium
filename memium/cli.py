@@ -6,8 +6,8 @@ from typing import Annotated, Optional
 import sentry_sdk
 import typer
 
-from personal_mnemonic_medium.data_access.environment import get_env
-from personal_mnemonic_medium.main import main
+from memium.data_access.environment import get_env
+from memium.main import main
 
 log = logging.getLogger(__name__)
 
@@ -33,7 +33,7 @@ def cli(
     deck_name: Annotated[
         str,
         typer.Option(help="Anki path to deck, e.g. 'Parent deck::Child deck'"),
-    ] = "Personal Mnemonic Medium",
+    ] = "Memium",
     max_deletions_per_run: Annotated[
         int,
         typer.Option(
