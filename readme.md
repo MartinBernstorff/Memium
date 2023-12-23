@@ -1,12 +1,12 @@
-# Personal Mnemonic Medium
+# Memium
 
 [![Open in Dev Container](https://img.shields.io/static/v1?label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)][dev container]
-[![PyPI](https://img.shields.io/pypi/v/personal-mnemonic-medium.svg)][pypi status]
-[![Python Version](https://img.shields.io/pypi/pyversions/personal-mnemonic-medium)][pypi status]
+[![PyPI](https://img.shields.io/pypi/v/memium.svg)][pypi status]
+[![Python Version](https://img.shields.io/pypi/pyversions/memium)][pypi status]
 
-[dev container]: https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/MartinBernstorff/personal-mnemonic-medium/
-[pypi status]: https://pypi.org/project/personal-mnemonic-medium/
-[documentation]: https://MartinBernstorff.github.io/personal-mnemonic-medium/
+[dev container]: https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/MartinBernstorff/memium/
+[pypi status]: https://pypi.org/project/memium/
+[documentation]: https://MartinBernstorff.github.io/memium/
 
 
 <!-- start short-description -->
@@ -19,7 +19,7 @@ When you have to stop and look things up, it breaks up your flow. Adding this kn
 
 A [Zettelkasten](https://medium.com/@martinbernstorf/why-you-need-an-idea-management-system-defb5de44746) solves this problem! The present package extracts Anki prompts from (markdown) documents.
 
-Tremendous thanks to Andy Matuschak's [Personal Mnemonic Medium](https://notes.andymatuschak.org/The_mnemonic_medium_can_be_extended_to_one%E2%80%99s_personal_notes) idea, which this is an instantiation of.
+This is an implementation of Andy Matuschak's [Personal Mnemonic Medium](https://notes.andymatuschak.org/The_mnemonic_medium_can_be_extended_to_one%E2%80%99s_personal_notes).
 
 <!-- end short-description -->
 
@@ -33,7 +33,7 @@ docker run -itd \
   -v YOUR_INPUT_FOLDER_HERE:/input \
   -v $HOME/ankidecks:/output \
   --restart unless-stopped \
-  ghcr.io/martinbernstorff/personal-mnemonic-medium:latest \
+  ghcr.io/martinbernstorff/memium:latest \
   python application/main.py /input/ $HOME/ankidecks --watch --use-anki-connect
 ```
 
@@ -42,7 +42,7 @@ This will start a docker container which watches `YOUR_INPUT_FOLDER_HERE` every 
 ## Use as library
 If you would like to build build your own Python application on top of the abstractions added here, you can install the library from pypi:
 ```bash
-pip install personal-mnemonic-medium
+pip install memium
 ```
 
 
@@ -70,7 +70,7 @@ graph TD
 ### Setting up a dev environment
 1. Install [Orbstack](https://orbstack.dev/) or Docker Desktop. Make sure to complete the full install process before continuing.
 2. If not installed, install VSCode
-3. Press this [link](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/MartinBernstorff/personal-mnemonic-medium/)
+3. Press this [link](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/MartinBernstorff/memium/)
 4. Complete the setup process
 
 ### Submitting a PR
@@ -94,6 +94,6 @@ make pr
 | 👩‍💻 **Usage Questions**          | [GitHub Discussions]   |
 | 🗯 **General Discussion**       | [GitHub Discussions]   |
 
-[github issue tracker]: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues
-[github discussions]: https://github.com/MartinBernstorff/personal-mnemonic-medium/discussions
+[github issue tracker]: https://github.com/MartinBernstorff/memium/issues
+[github discussions]: https://github.com/MartinBernstorff/memium/discussions
 

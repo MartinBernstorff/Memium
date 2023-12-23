@@ -3,14 +3,14 @@ requires = ["setuptools>=61.0.0", "wheel", "setuptools_scm"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "personal-mnemonic-medium"
+name = "memium"
 version = "0.6.0"
 authors = [{ name = "Martin Bernstorff", email = "martinbernstorff@gmail.com" }]
-description = "Personal Mnemonic Medium"
+description = "Memium"
 classifiers = ["Programming Language :: Python :: 3.11"]
 requires-python = ">=3.11"
 
-# TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/260 Setup dependabot automerge
+# TODO: https://github.com/MartinBernstorff/memium/issues/260 Setup dependabot automerge
 dependencies = [
   "cffi==1.16.0",
   "functionalpy==0.14.0",
@@ -31,7 +31,7 @@ file = "README.md"
 content-type = "text/markdown"
 
 [project.scripts]
-personal_mnemonic_medium = "personal_mnemonic_medium.cli:app"
+memium = "memium.cli:app"
 
 [project.optional-dependencies]
 dev = [
@@ -50,9 +50,9 @@ tests = [
 ]
 
 [project.urls]
-homepage = "https://github.com/MartinBernstorff/personal-mnemonic-medium"
-repository = "https://github.com/MartinBernstorff/personal-mnemonic-medium"
-documentation = "https://MartinBernstorff.github.io/personal-mnemonic-medium/"
+homepage = "https://github.com/MartinBernstorff/memium"
+repository = "https://github.com/MartinBernstorff/memium"
+documentation = "https://MartinBernstorff.github.io/memium/"
 
 [tool.pyright]
 exclude = [".*venv*", "*subtasks*", ".git", "build"]

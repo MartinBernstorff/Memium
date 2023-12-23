@@ -1,5 +1,5 @@
 set -e
-docker build . -t personal-mnemonic-medium:latest -f Dockerfile
+docker build . -t memium:latest -f Dockerfile
 docker volume create ankidecks
 
 INPUT_DIR=$HOME/input/
@@ -17,8 +17,8 @@ docker run -i \
   -v $INPUT_DIR:/input \
   -v $HOST_APKG_DIR:/output \
   --restart unless-stopped \
-  personal-mnemonic-medium \
-  personal_mnemonic_medium \
+  memium \
+  memium \
   --input-dir /input/ \
   --dry-run \
   --skip-sync

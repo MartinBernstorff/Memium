@@ -4,13 +4,13 @@
   "checkout": null,
   "context": {
     "cookiecutter": {
-      "project_name": "personal-mnemonic-medium",
-      "package_name": "personal_mnemonic_medium",
-      "friendly_name": "Personal Mnemonic Medium",
+      "project_name": "memium",
+      "package_name": "memium",
+      "friendly_name": "Memium",
       "author": "Martin Bernstorff",
       "email": "martinbernstorff@gmail.com",
       "github_user": "MartinBernstorff",
-      "github_repo": "personal-mnemonic-medium",
+      "github_repo": "memium",
       "version": "0.0.0",
       "copyright_year": "2023",
       "release_to_pypi": "no",

@@ -1,4 +1,4 @@
-// TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/223 dev: prompt if wanting to enable automerge in tasks
+// TODO: https://github.com/MartinBernstorff/memium/issues/223 dev: prompt if wanting to enable automerge in tasks
 {
     // See https://go.microsoft.com/fwlink/?LinkId=733558
     // for the documentation about the tasks.json format

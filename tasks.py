@@ -1,15 +1,12 @@
 import invoke as inv
 
-from personal_mnemonic_medium.subtasks.github import (
-    get_issues_assigned_to_me,
-    issue_dialog,
-)
-from personal_mnemonic_medium.subtasks.graphite import (
+from memium.subtasks.github import get_issues_assigned_to_me, issue_dialog
+from memium.subtasks.graphite import (
     create_branch_from_issue,
     submit_pr,  # noqa: F401 # type: ignore
 )
 
-PYTEST_CMD = "pytest --durations=5 --cov=personal_mnemonic_medium personal_mnemonic_medium --cov-report xml:.coverage.xml --cov-report lcov:.coverage.lcov"
+PYTEST_CMD = "pytest --durations=5 --cov=memium memium --cov-report xml:.coverage.xml --cov-report lcov:.coverage.lcov"
 
 
 @inv.task  # type: ignore
@@ -83,7 +80,7 @@ def lint(c: inv.Context):
 @inv.task  # type: ignore
 def types(c: inv.Context):
     print("--- Type-checking ---")
-    c.run("pyright personal_mnemonic_medium")
+    c.run("pyright memium")
     print("✅✅✅ Types ✅✅✅")
 
 

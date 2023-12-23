@@ -67,7 +67,7 @@ class ClozePromptExtractor(BasePromptExtractor):
             if self._has_cloze(block_string):
                 clozes = re.findall(r"{(?!BearID).[^}]*}", block_string)
 
-                # TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/300 refactor: move clozeid replacement to AnkiCloze generator class
+                # TODO: https://github.com/MartinBernstorff/memium/issues/300 refactor: move clozeid replacement to AnkiCloze generator class
                 for selected_cloze in clozes:
                     prompt_content = self._replace_cloze_id_with_unique(
                         block_string, selected_cloze=selected_cloze
