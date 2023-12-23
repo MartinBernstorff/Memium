@@ -30,16 +30,17 @@ class MockNoteInfo(NoteInfo):
 )
 class TestAnkiConnectGateway:
     output_path = Path("/output")
-    gateway = AnkiConnectGateway(
-        ankiconnect_url=ANKICONNECT_URL,
-        base_deck="Test deck",
-        tmp_read_dir=(get_host_home_dir() / "ankidecks"),
-        tmp_write_dir=output_path,
-        max_deletions_per_run=1,
-        max_wait_seconds=0,
-    )
 
-    def test_import_package(self):
+    def test_import_get_delete_happy_path(self):
+        gateway = AnkiConnectGateway(
+            ankiconnect_url=ANKICONNECT_URL,
+            base_deck="Test deck",
+            tmp_read_dir=(get_host_home_dir() / "ankidecks"),
+            tmp_write_dir=self.output_path,
+            max_deletions_per_run=1,
+            max_wait_seconds=0,
+        )
+
         # Delete all .apkg in the output directory
         for f in self.output_path.glob("*.apkg"):
             f.unlink()
@@ -70,27 +71,38 @@ class TestAnkiConnectGateway:
         package = genanki.Package(deck_or_decks=deck)
 
         # Phase 1: Importing
-        self.gateway.import_package(package=package)
+        gateway.import_package(package=package)
         assert len(list(Path("/output").glob("*.apkg"))) == 0
 
         # Phase 2: Getting
-        all_notes = self.gateway.get_all_note_infos()
+        all_notes = gateway.get_all_note_infos()
         note = all_notes[0]
         assert note.tags == ["TestTag"]
 
         # Phase 3: Deleting
-        self.gateway.delete_notes(note_ids=[n.noteId for n in all_notes])
-        assert len(self.gateway.get_all_note_infos()) == 0
+        gateway.delete_notes(note_ids=[n.noteId for n in all_notes])
+        assert len(gateway.get_all_note_infos()) == 0
+
+    def test_error_if_deleting_more_than_allowed(self):
+        gateway = AnkiConnectGateway(
+            ankiconnect_url=ANKICONNECT_URL,
+            base_deck="Test deck",
+            tmp_read_dir=Path("/tmp"),
+            tmp_write_dir=Path("/tmp"),
+            max_deletions_per_run=0,
+            max_wait_seconds=0,
+        )
+        with pytest.raises(ValueError, match="are scheduled for deletion"):
+            gateway.delete_notes(note_ids=[1])
 
 
-def test_error_if_deleting_more_than_allowed():
-    gateway = AnkiConnectGateway(
-        ankiconnect_url=ANKICONNECT_URL,
-        base_deck="Test deck",
-        tmp_read_dir=Path("/tmp"),
-        tmp_write_dir=Path("/tmp"),
-        max_deletions_per_run=0,
-        max_wait_seconds=0,
-    )
-    with pytest.raises(ValueError, match="are scheduled for deletion"):
-        gateway.delete_notes(note_ids=[1])
+def test_error_if_not_running():
+    with pytest.raises(ConnectionError, match="Could not connect to Anki"):
+        AnkiConnectGateway(
+            ankiconnect_url="http://localhost:1234",
+            base_deck="Test deck",
+            tmp_read_dir=Path("/tmp"),
+            tmp_write_dir=Path("/tmp"),
+            max_deletions_per_run=0,
+            max_wait_seconds=0,
+        )

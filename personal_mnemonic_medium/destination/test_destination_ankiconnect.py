@@ -8,7 +8,7 @@ from ..data_access.ankiconnect_gateway import (
     SpieAnkiconnectGateway,
     UpdateModel,
 )
-from ..data_access.test_ankiconnect import MockNoteInfo
+from ..data_access.test_ankiconnect_gateway import MockNoteInfo
 from ..source.prompts.prompt_cloze import ClozeWithoutDoc
 from ..source.prompts.prompt_qa import QAWithoutDoc
 from .ankiconnect.anki_converter import AnkiPromptConverter

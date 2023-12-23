@@ -11,6 +11,8 @@ from pathlib import Path
 from time import sleep
 from typing import Any
 
+log = logging.getLogger(__name__)
+
 import genanki
 import pydantic
 
@@ -40,26 +42,27 @@ class AnkiConnectCommand(Enum):
     UPDATE_MODEL_STYLING = "updateModelStyling"
 
 
+@dataclass(frozen=True)
 class AnkiConnectGateway:
-    def __init__(
-        self,
-        ankiconnect_url: str,
-        base_deck: str,
-        tmp_read_dir: Path,
-        tmp_write_dir: Path,
-        max_deletions_per_run: int,
-        max_wait_seconds: int,
-    ) -> None:
-        self.ankiconnect_url = ankiconnect_url
-        self.deck_name = base_deck
-        self.tmp_read_dir = tmp_read_dir
-        self.tmp_write_dir = tmp_write_dir
-        self.max_deletions_per_run = max_deletions_per_run
+    ankiconnect_url: str
+    base_deck: str
+    tmp_read_dir: Path
+    tmp_write_dir: Path
+    max_deletions_per_run: int
+    max_wait_seconds: int
 
+    def __post_init__(self) -> None:
         seconds_waited = 0
-        while not anki_connect_is_live() and seconds_waited < max_wait_seconds:
+        while not anki_connect_is_live(ankiconnect_url=self.ankiconnect_url):
+            if seconds_waited >= self.max_wait_seconds:
+                raise ConnectionError(
+                    f"Could not connect to AnkiConnect at {self.ankiconnect_url}"
+                )
+
             wait_seconds = 2
-            print(f"AnkiConnect is not live, waiting {wait_seconds} seconds...")
+            log.info(
+                f"AnkiConnect is not live, waiting {wait_seconds} seconds..."
+            )
             seconds_waited += wait_seconds
             sleep(wait_seconds)
 
@@ -89,10 +92,10 @@ class AnkiConnectGateway:
         read_path = self.tmp_read_dir / apkg_name
         try:
             self._invoke(AnkiConnectCommand.IMPORT_PACKAGE, path=str(read_path))
-            print(f"Imported from {read_path}!")
+            log.info(f"Imported from {read_path}!")
             write_path.unlink()
         except Exception:
-            print(f"""Unable to sync from {read_path}.""")
+            log.error(f"""Unable to sync from {read_path}.""")
             traceback.print_exc()
 
     def delete_notes(self, note_ids: Sequence[int]) -> None:
@@ -109,7 +112,7 @@ class AnkiConnectGateway:
 
     def get_all_note_infos(self) -> Sequence[NoteInfo]:
         anki_card_ids: list[int] = self._invoke(
-            AnkiConnectCommand.FIND_CARDS, query=f'"deck:{self.deck_name}"'
+            AnkiConnectCommand.FIND_CARDS, query=f'"deck:{self.base_deck}"'
         )
 
         # get a list of anki notes in the deck
@@ -194,13 +197,13 @@ ANKICONNECT_URL = (
 # On host machine, port is 8765
 
 
-def anki_connect_is_live() -> bool:
+def anki_connect_is_live(ankiconnect_url: str = ANKICONNECT_URL) -> bool:
     try:
-        if urllib.request.urlopen(ANKICONNECT_URL).getcode() == 200:
+        if urllib.request.urlopen(ankiconnect_url).getcode() == 200:
             return True
         raise Exception
     except Exception as err:
-        log.info(f"Attempted connection on {ANKICONNECT_URL}")
+        log.info(f"Attempted connection on {ankiconnect_url}")
         log.info(
             "Unable to reach anki connect. Make sure anki is running and the Anki Connect addon is installed."
         )
