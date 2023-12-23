@@ -2,17 +2,15 @@ import logging
 import re
 from collections.abc import Sequence
 
-from .prompt_qa import QAFromDoc, QAPrompt
-from .document import Document
-from .extractor_base import BasePromptExtractor
+from ..prompts.prompt_qa import QAFromDoc, QAPrompt
+from ..document import Document
+from .extractor import BasePromptExtractor
 
 log = logging.getLogger(__name__)
 
 
 class QAPromptExtractor(BasePromptExtractor):
-    def __init__(
-        self, question_prefix: str, answer_prefix: str
-    ) -> None:
+    def __init__(self, question_prefix: str, answer_prefix: str) -> None:
         self.question_prefix = question_prefix
         self.answer_prefix = answer_prefix
 
@@ -48,9 +46,7 @@ class QAPromptExtractor(BasePromptExtractor):
         return (
             len(
                 re.findall(
-                    r"^(?![:>]).*"
-                    + self.question_prefix
-                    + r"{0,1}\. ",
+                    r"^(?![:>]).*" + self.question_prefix + r"{0,1}\. ",
                     string,
                     flags=re.DOTALL,
                 )
@@ -58,9 +54,7 @@ class QAPromptExtractor(BasePromptExtractor):
             != 0
         )
 
-    def extract_prompts(
-        self, document: Document
-    ) -> Sequence[QAPrompt]:
+    def extract_prompts(self, document: Document) -> Sequence[QAPrompt]:
         prompts: list[QAPrompt] = []
 
         blocks = self._string_to_blocks_by_newlines(document.content)
@@ -87,9 +81,7 @@ class QAPromptExtractor(BasePromptExtractor):
                     )
                 )
 
-            block_lines = len(
-                re.findall(r"\n", block_string, flags=re.DOTALL)
-            )
+            block_lines = len(re.findall(r"\n", block_string, flags=re.DOTALL))
             block_starting_line_nr += block_lines
 
         return prompts

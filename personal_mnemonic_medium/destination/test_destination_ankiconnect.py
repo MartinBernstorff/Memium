@@ -9,9 +9,9 @@ from ..data_access.ankiconnect_gateway import (
     UpdateModel,
 )
 from ..data_access.test_ankiconnect import MockNoteInfo
-from ..source.prompt_cloze import ClozeWithoutDoc
-from ..source.prompt_qa import QAWithoutDoc
-from .ankiconnect_converter import AnkiPromptConverter
+from ..source.prompts.prompt_cloze import ClozeWithoutDoc
+from ..source.prompts.prompt_qa import QAWithoutDoc
+from .ankiconnect.anki_converter import AnkiPromptConverter
 from .destination_ankiconnect import AnkiConnectDestination
 from .destination_commands import PushPrompts
 
@@ -61,13 +61,9 @@ def test_ankiconnect_push_prompts():
                     QAWithoutDoc(
                         question="FakeQuestion",
                         answer="FakeAnswer",
-                        add_tags=[
-                            "anki/deck/FakeSubdeck/FakeSubSubdeck"
-                        ],
+                        add_tags=["anki/deck/FakeSubdeck/FakeSubSubdeck"],
                     ),
-                    ClozeWithoutDoc(
-                        text="FakeText", add_tags=["FakeTag"]
-                    ),
+                    ClozeWithoutDoc(text="FakeText", add_tags=["FakeTag"]),
                 ]
             )
         ]
@@ -75,9 +71,7 @@ def test_ankiconnect_push_prompts():
 
     expected_commands = [(ImportPackage, 1), (UpdateModel, 2)]
     import_package_command = next(
-        c
-        for c in gateway.executed_commands
-        if isinstance(c, ImportPackage)
+        c for c in gateway.executed_commands if isinstance(c, ImportPackage)
     )
     assert (
         import_package_command.package.decks[0].name  # type: ignore

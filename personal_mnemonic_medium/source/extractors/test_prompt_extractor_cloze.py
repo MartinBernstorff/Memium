@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from .document import Document
+from ..document import Document
 from .extractor_cloze import ClozePromptExtractor
 
 
@@ -22,8 +22,5 @@ This is another block without any cloze prompts.
     extractor = ClozePromptExtractor().extract_prompts(doc)
 
     assert len(extractor) == 1
-    assert (
-        extractor[0].text
-        == r"What is the meaning of life? {{c734::42}}"
-    )
+    assert extractor[0].text == r"What is the meaning of life? {{c734::42}}"
     assert extractor[0].tags == ["anki/tag/test_tag"]

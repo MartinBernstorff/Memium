@@ -1,15 +1,9 @@
 from collections.abc import Sequence
 from dataclasses import dataclass
 
-from ...promptsource.document import Document
-from ..domain.utils.hash_cleaned_str import (
-    clean_str,
-    hash_cleaned_str,
-    int_hash_str,
-)
-from .prompt_base import BasePrompt
-
-# TODO: https://github.com/MartinBernstorff/personal-mnemonic-medium/issues/299 refactor: clean up doc type inheritance
+from ...utils.hash_cleaned_str import clean_str, hash_cleaned_str, int_hash_str
+from ..document import Document
+from .prompt import BasePrompt
 
 
 @dataclass(frozen=True)

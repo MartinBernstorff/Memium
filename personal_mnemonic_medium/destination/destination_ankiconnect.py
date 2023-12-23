@@ -3,17 +3,14 @@ from collections.abc import Mapping, Sequence
 import genanki
 from functionalpy._sequence import Seq
 
-from ..data_access.ankiconnect_gateway import (
-    AnkiConnectGateway,
-    NoteInfo,
-)
-from ..source.prompt_base import DestinationPrompt
-from ..source.prompt_cloze import ClozeWithoutDoc
-from ..source.prompt_qa import QAWithoutDoc
+from ..data_access.ankiconnect_gateway import AnkiConnectGateway, NoteInfo
+from ..source.prompts.prompt import DestinationPrompt
+from ..source.prompts.prompt_cloze import ClozeWithoutDoc
+from ..source.prompts.prompt_qa import QAWithoutDoc
 from ..utils.hash_cleaned_str import hash_cleaned_str
-from .anki_prompt_base import AnkiCard
-from .ankiconnect_converter import AnkiPromptConverter
-from .destination_base import PromptDestination
+from .ankiconnect.anki_card import AnkiCard
+from .ankiconnect.anki_converter import AnkiPromptConverter
+from .destination import PromptDestination
 from .destination_commands import (
     DeletePrompts,
     PromptDestinationCommand,
@@ -23,20 +20,13 @@ from .destination_commands import (
 
 class AnkiConnectDestination(PromptDestination):
     def __init__(
-        self,
-        gateway: AnkiConnectGateway,
-        prompt_converter: AnkiPromptConverter,
+        self, gateway: AnkiConnectGateway, prompt_converter: AnkiPromptConverter
     ) -> None:
         self.gateway = gateway
         self.prompt_converter = prompt_converter
 
-    def _note_info_to_prompt(
-        self, note_info: NoteInfo
-    ) -> DestinationPrompt:
-        if (
-            "Question" in note_info.fields
-            and "Answer" in note_info.fields
-        ):
+    def _note_info_to_prompt(self, note_info: NoteInfo) -> DestinationPrompt:
+        if "Question" in note_info.fields and "Answer" in note_info.fields:
             return DestinationPrompt(
                 QAWithoutDoc(
                     question=note_info.fields["Question"].value,
@@ -49,8 +39,7 @@ class AnkiConnectDestination(PromptDestination):
         if "Text" in note_info.fields:
             return DestinationPrompt(
                 ClozeWithoutDoc(
-                    text=note_info.fields["Text"].value,
-                    add_tags=note_info.tags,
+                    text=note_info.fields["Text"].value, add_tags=note_info.tags
                 ),
                 destination_id=str(note_info.noteId),
             )
@@ -66,12 +55,9 @@ class AnkiConnectDestination(PromptDestination):
             .to_list()
         )
 
-    def _delete_prompts(
-        self, prompts: Sequence[DestinationPrompt]
-    ) -> None:
+    def _delete_prompts(self, prompts: Sequence[DestinationPrompt]) -> None:
         prompt_ids = {
-            int(remote_prompt.destination_id)
-            for remote_prompt in prompts
+            int(remote_prompt.destination_id) for remote_prompt in prompts
         }
         self.gateway.delete_notes(list(prompt_ids))
 
@@ -79,34 +65,24 @@ class AnkiConnectDestination(PromptDestination):
         self, grouped_cards: Mapping[str, Sequence[AnkiCard]]
     ) -> genanki.Deck:
         deck_name = next(iter(grouped_cards.keys()))
-        deck = genanki.Deck(
-            name=deck_name, deck_id=hash_cleaned_str(deck_name)
-        )
+        deck = genanki.Deck(name=deck_name, deck_id=hash_cleaned_str(deck_name))
 
         for card in grouped_cards[deck_name]:
             deck.add_note(card.to_genanki_note())  # type: ignore
 
         return deck
 
-    def _create_package(
-        self, cards: Sequence[AnkiCard]
-    ) -> genanki.Package:
-        cards_grouped_by_deck = Seq(cards).groupby(
-            lambda card: card.deck
-        )
+    def _create_package(self, cards: Sequence[AnkiCard]) -> genanki.Package:
+        cards_grouped_by_deck = Seq(cards).groupby(lambda card: card.deck)
         decks = [
-            self._grouped_cards_to_deck(
-                {group: cards_grouped_by_deck[group]}
-            )
+            self._grouped_cards_to_deck({group: cards_grouped_by_deck[group]})
             for group in cards_grouped_by_deck
         ]
 
         return genanki.Package(deck_or_decks=decks)
 
     def _push_prompts(self, command: PushPrompts) -> None:
-        cards = self.prompt_converter.prompts_to_cards(
-            command.prompts
-        )
+        cards = self.prompt_converter.prompts_to_cards(command.prompts)
 
         models = [card.genanki_model for card in cards]
         unique_models: dict[int, genanki.Model] = {
@@ -121,9 +97,7 @@ class AnkiConnectDestination(PromptDestination):
 
         self.gateway.import_package(package)
 
-    def update(
-        self, commands: Sequence[PromptDestinationCommand]
-    ) -> None:
+    def update(self, commands: Sequence[PromptDestinationCommand]) -> None:
         for command in commands:
             match command:
                 case DeletePrompts(prompts):

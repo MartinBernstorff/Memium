@@ -3,8 +3,8 @@ from dataclasses import dataclass
 
 import genanki
 
-from ..domain.utils.hash_cleaned_str import clean_str, int_hash_str
-from .anki_prompt_base import AnkiCard
+from ...utils.hash_cleaned_str import clean_str, int_hash_str
+from .anki_card import AnkiCard
 
 
 @dataclass(frozen=True)
@@ -46,11 +46,6 @@ class AnkiCloze(AnkiCard):
         return genanki.Note(
             guid=str(self.uuid),
             model=self.genanki_model,
-            fields=[
-                self.text,
-                "",
-                " ".join(self.tags),
-                str(self.uuid),
-            ],
+            fields=[self.text, "", " ".join(self.tags), str(self.uuid)],
             tags=self.tags,
         )

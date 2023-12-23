@@ -3,8 +3,8 @@ from dataclasses import dataclass
 
 import genanki
 
-from ..domain.utils.hash_cleaned_str import clean_str, int_hash_str
-from .anki_prompt_base import AnkiCard
+from ...utils.hash_cleaned_str import clean_str, int_hash_str
+from .anki_card import AnkiCard
 
 
 @dataclass(frozen=True)
@@ -17,9 +17,7 @@ class AnkiQA(AnkiCard):
 
     @property
     def uuid(self) -> int:
-        return int_hash_str(
-            clean_str(f"{self.question}{self.answer}")
-        )
+        return int_hash_str(clean_str(f"{self.question}{self.answer}"))
 
     @property
     def genanki_model(self) -> genanki.Model:
@@ -31,7 +29,9 @@ class AnkiQA(AnkiCard):
         ]
 
         QUESTION_STR = r"{{ Question }}"
-        TTS_QUESTION_STR = r"{{ tts en_US voices=Apple_Samantha speed=1.05:Question }}"
+        TTS_QUESTION_STR = (
+            r"{{ tts en_US voices=Apple_Samantha speed=1.05:Question }}"
+        )
 
         ANSWER_STR = r"{{ Answer }}"
         TTS_ANSWER_STR = (

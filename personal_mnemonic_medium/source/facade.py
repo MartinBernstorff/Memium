@@ -1,10 +1,15 @@
 from collections.abc import Sequence
+from typing import Protocol
 
 from .document import Document
-from .extractor_base import BasePromptExtractor
-from .facade_base import BasePromptSource
-from .ingester_base import BaseDocumentIngester
-from .prompt_base import BasePrompt
+from .document_ingester import BaseDocumentIngester
+from .extractors.extractor import BasePromptExtractor
+from .prompts.prompt import BasePrompt
+
+
+class BasePromptSource(Protocol):
+    def get_prompts(self) -> Sequence[BasePrompt]:
+        ...
 
 
 class DocumentPromptSource(BasePromptSource):
@@ -21,9 +26,7 @@ class DocumentPromptSource(BasePromptSource):
     ) -> Sequence[BasePrompt]:
         prompts: list[BasePrompt] = []
         for extractor in self._prompt_extractors:
-            extractor_prompts = list(
-                extractor.extract_prompts(document)
-            )
+            extractor_prompts = list(extractor.extract_prompts(document))
             prompts += extractor_prompts
 
         return prompts
@@ -31,8 +34,6 @@ class DocumentPromptSource(BasePromptSource):
     def get_prompts(self) -> Sequence[BasePrompt]:
         documents = self._document_ingester.get_documents()
 
-        prompts = [
-            self._get_prompts_from_document(doc) for doc in documents
-        ]
+        prompts = [self._get_prompts_from_document(doc) for doc in documents]
 
         return [item for sublist in prompts for item in sublist]

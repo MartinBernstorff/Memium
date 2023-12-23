@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from .ingester_markdown import MarkdownDocumentIngester
+from .document_ingester import MarkdownDocumentIngester
 
 
 def test_markdown_document_ingester(tmpdir: Path):

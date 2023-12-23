@@ -1,10 +1,15 @@
 from collections.abc import Sequence
 from pathlib import Path
+from typing import Protocol
 
 from tqdm import tqdm
 
-from .ingester_base import BaseDocumentIngester
 from .document import Document
+
+
+class BaseDocumentIngester(Protocol):
+    def get_documents(self) -> Sequence[Document]:
+        ...
 
 
 class MarkdownDocumentIngester(BaseDocumentIngester):
@@ -15,9 +20,7 @@ class MarkdownDocumentIngester(BaseDocumentIngester):
         with file_path.open(encoding="utf8") as f:
             file_contents = f.read()
 
-            return Document(
-                content=file_contents, source_path=file_path
-            )
+            return Document(content=file_contents, source_path=file_path)
 
     def get_documents(self) -> Sequence[Document]:
         md_files = list(self.directory.rglob("*.md"))

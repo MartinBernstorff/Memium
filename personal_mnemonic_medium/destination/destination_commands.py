@@ -1,7 +1,7 @@
 from collections.abc import Sequence
 from dataclasses import dataclass
 
-from ..source.prompt_base import BasePrompt, DestinationPrompt
+from ..source.prompts.prompt import BasePrompt, DestinationPrompt
 
 
 @dataclass(frozen=True)

@@ -184,11 +184,11 @@ class SpieAnkiconnectGateway(AnkiConnectGateway):
         self.note_infos: list[NoteInfo] = list(note_infos)
         self.executed_commands: list[FakeAnkiCommand] = []
 
-    def get_all_note_infos(self) -> Sequence[NoteInfo]:
-        return self.note_infos
-
     def update_model(self, model: genanki.Model) -> None:
         self.executed_commands.append(UpdateModel(model=model))
+
+    def get_all_note_infos(self) -> Sequence[NoteInfo]:
+        return self.note_infos
 
     def import_package(self, package: genanki.Package) -> None:
         self.executed_commands.append(ImportPackage(package=package))

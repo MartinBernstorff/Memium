@@ -1,12 +1,12 @@
 import pytest
 
-from ..source.prompt_base import BasePrompt
-from ..source.prompt_cloze import ClozeWithoutDoc
-from ..source.prompt_qa import QAWithoutDoc
-from .anki_prompt_base import AnkiCard
+from ...source.prompts.prompt import BasePrompt
+from ...source.prompts.prompt_cloze import ClozeWithoutDoc
+from ...source.prompts.prompt_qa import QAWithoutDoc
+from .anki_card import AnkiCard
 from .anki_prompt_cloze import AnkiCloze
 from .anki_prompt_qa import AnkiQA
-from .ankiconnect_converter import AnkiPromptConverter
+from .anki_converter import AnkiPromptConverter
 
 fake_anki_qa = AnkiQA(
     question="FakeQuestion",
@@ -17,10 +17,7 @@ fake_anki_qa = AnkiQA(
 )
 
 fake_anki_cloze = AnkiCloze(
-    text="FakeText",
-    base_deck="FakeDeck",
-    tags=["FakeTag"],
-    css="FakeCSS",
+    text="FakeText", base_deck="FakeDeck", tags=["FakeTag"], css="FakeCSS"
 )
 
 

@@ -1,22 +1,15 @@
 from pathlib import Path
 
-from .data_access.ankiconnect_gateway import (
-    ANKICONNECT_URL,
-    AnkiConnectGateway,
-)
+from .data_access.ankiconnect_gateway import ANKICONNECT_URL, AnkiConnectGateway
+from .destination.ankiconnect.anki_converter import AnkiPromptConverter
+from .destination.ankiconnect.ankiconnect_css import CARD_MODEL_CSS
+from .destination.destination_ankiconnect import AnkiConnectDestination
+from .destination.destination_dryrun import DryRunDestination
 from .diff_determiner import PromptDiffDeterminer
-from .prompt_destination.ankiconnect_converter import (
-    AnkiPromptConverter,
-)
-from .prompt_destination.ankiconnect_css import CARD_MODEL_CSS
-from .prompt_destination.destination_ankiconnect import (
-    AnkiConnectDestination,
-)
-from .prompt_destination.dryrun import DryRunDestination
-from .prompt_source.extractor_cloze import ClozePromptExtractor
-from .prompt_source.extractor_qa import QAPromptExtractor
-from .prompt_source.facade_document import DocumentPromptSource
-from .prompt_source.ingester_markdown import MarkdownDocumentIngester
+from .source.document_ingester import MarkdownDocumentIngester
+from .source.extractors.extractor_cloze import ClozePromptExtractor
+from .source.extractors.extractor_qa import QAPromptExtractor
+from .source.facade import DocumentPromptSource
 
 
 def sync_deck(
@@ -28,20 +21,14 @@ def sync_deck(
     dry_run: bool,
 ):
     source_prompts = DocumentPromptSource(
-        document_ingester=MarkdownDocumentIngester(
-            directory=input_dir
-        ),
+        document_ingester=MarkdownDocumentIngester(directory=input_dir),
         prompt_extractors=[
-            QAPromptExtractor(
-                question_prefix="Q.", answer_prefix="A."
-            ),
+            QAPromptExtractor(question_prefix="Q.", answer_prefix="A."),
             ClozePromptExtractor(),
         ],
     ).get_prompts()
 
-    dest_class = (
-        AnkiConnectDestination if not dry_run else DryRunDestination
-    )
+    dest_class = AnkiConnectDestination if not dry_run else DryRunDestination
     destination = dest_class(
         gateway=AnkiConnectGateway(
             ankiconnect_url=ANKICONNECT_URL,
@@ -58,8 +45,7 @@ def sync_deck(
     destination_prompts = destination.get_all_prompts()
 
     update_commands = PromptDiffDeterminer().sync(
-        source_prompts=source_prompts,
-        destination_prompts=destination_prompts,
+        source_prompts=source_prompts, destination_prompts=destination_prompts
     )
 
     destination.update(commands=update_commands)

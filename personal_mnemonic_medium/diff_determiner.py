@@ -1,14 +1,13 @@
 from collections.abc import Mapping, Sequence
+from dataclasses import dataclass
 from typing import Generic, Protocol, TypeVar
 
-from .prompt_destination.destination_base import (
-    PromptDestinationCommand,
-)
-from .prompt_destination.destination_commands import (
+from .destination.destination_commands import (
     DeletePrompts,
+    PromptDestinationCommand,
     PushPrompts,
 )
-from .prompt_source.prompt_base import BasePrompt, DestinationPrompt
+from .source.prompts.prompt import BasePrompt, DestinationPrompt
 
 K = TypeVar("K")
 T = TypeVar("T")
@@ -24,12 +23,10 @@ class BaseDiffDeterminer(Protocol):
         ...
 
 
+@dataclass(frozen=True)
 class GeneralSyncer(Generic[K, T, S]):
-    def __init__(
-        self, source: Mapping[K, T], destination: Mapping[K, S]
-    ):
-        self.source = source
-        self.destination = destination
+    source: Mapping[K, T]
+    destination: Mapping[K, S]
 
     def only_in_source(self) -> Sequence[T]:
         return [
@@ -54,9 +51,7 @@ class PromptDiffDeterminer(BaseDiffDeterminer):
     ) -> Sequence[PromptDestinationCommand]:
         # Update prompts if content or tags have changed. This doesn't affect scheduling.
         prompts_to_update = GeneralSyncer(
-            source={
-                prompt.update_uid: prompt for prompt in source_prompts
-            },
+            source={prompt.update_uid: prompt for prompt in source_prompts},
             destination={
                 prompt.prompt.update_uid: prompt
                 for prompt in destination_prompts
@@ -65,10 +60,7 @@ class PromptDiffDeterminer(BaseDiffDeterminer):
 
         # Only delete prompts whose content have changed. This essentially resets their scheduling.
         prompts_to_delete = GeneralSyncer(
-            source={
-                prompt.scheduling_uid: prompt
-                for prompt in source_prompts
-            },
+            source={prompt.scheduling_uid: prompt for prompt in source_prompts},
             destination={
                 dest_prompt.prompt.scheduling_uid: dest_prompt
                 for dest_prompt in destination_prompts

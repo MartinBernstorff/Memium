@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from .document import Document
+from ..document import Document
 from .extractor_qa import QAPromptExtractor
 
 

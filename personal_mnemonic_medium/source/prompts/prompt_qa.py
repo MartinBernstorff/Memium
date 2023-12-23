@@ -1,9 +1,9 @@
 from collections.abc import Sequence
 from dataclasses import dataclass
 
-from ...promptsource.document import Document
-from ..domain.utils.hash_cleaned_str import hash_cleaned_str
-from .prompt_base import BasePrompt
+from ...utils.hash_cleaned_str import hash_cleaned_str
+from ..document import Document
+from .prompt import BasePrompt
 
 
 @dataclass(frozen=True)
@@ -17,9 +17,7 @@ class QAPrompt(BasePrompt):
 
     @property
     def update_uid(self) -> int:
-        return hash_cleaned_str(
-            f"{self.question}_{self.answer}_{self.tags}"
-        )
+        return hash_cleaned_str(f"{self.question}_{self.answer}_{self.tags}")
 
     @property
     def tags(self) -> Sequence[str]:
