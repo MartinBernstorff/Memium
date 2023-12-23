@@ -48,7 +48,7 @@ def issue_dialog(my_issues: Sequence[GithubIssue]) -> int:
     terminal_output = "\n".join(reversed(issue_strings))
     print(f"\n{terminal_output}\n")
 
-    print(f"Latest [a] is: \n\t {my_issues[-1].title}\n")
+    print(f"Latest [a] is: \n\t {my_issues.title}\n")
     print("I found these issues for you. Which do you want to work on?\n")
 
     issue_index = (
