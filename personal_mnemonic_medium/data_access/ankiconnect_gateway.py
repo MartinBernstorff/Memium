@@ -26,6 +26,7 @@ from contextlib import contextmanager
 def tempdir(tmp_path: Path) -> Iterator[Path]:
     """Context manager for a temporary directory that is deleted after use."""
     try:
+        tmp_path.mkdir(parents=True, exist_ok=True)
         yield tmp_path
     except:
         # If there's an error, ensure the directory is deleted before the error is propagated.
@@ -99,14 +100,14 @@ class AnkiConnectGateway:
         )
 
     def import_package(self, package: genanki.Package) -> None:
-        with tempdir(self.tmp_write_dir / "tmp_apkg_dir") as tmp_write_dir:
+        subdir = "tmp_apkg_dir"
+        with tempdir(self.tmp_write_dir / subdir) as tmp_write_subdir:
             apkg_name = (
                 f"{datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')}.apkg"
             )
-            write_path = tmp_write_dir / apkg_name
-            package.write_to_file(write_path)  # type: ignore
+            package.write_to_file(tmp_write_subdir / apkg_name)  # type: ignore
 
-            read_path = self.tmp_read_dir / apkg_name
+            read_path = self.tmp_read_dir / subdir / apkg_name
             try:
                 self._invoke(
                     AnkiConnectCommand.IMPORT_PACKAGE, path=str(read_path)

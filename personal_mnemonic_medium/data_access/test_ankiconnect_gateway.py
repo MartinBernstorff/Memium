@@ -32,15 +32,6 @@ class TestAnkiConnectGateway:
     output_path = Path("/output")
 
     def test_import_get_delete_happy_path(self):
-        gateway = AnkiConnectGateway(
-            ankiconnect_url=ANKICONNECT_URL,
-            base_deck="Test deck",
-            tmp_read_dir=(get_host_home_dir() / "ankidecks"),
-            tmp_write_dir=self.output_path,
-            max_deletions_per_run=1,
-            max_wait_seconds=0,
-        )
-
         # Delete all .apkg in the output directory
         for f in self.output_path.glob("*.apkg"):
             f.unlink()
@@ -68,10 +59,20 @@ class TestAnkiConnectGateway:
             )
         )
 
-        package = genanki.Package(deck_or_decks=deck)
+        tmp_read_dir = get_host_home_dir() / "ankidecks"
+        gateway = AnkiConnectGateway(
+            ankiconnect_url=ANKICONNECT_URL,
+            base_deck="Test deck",
+            tmp_read_dir=tmp_read_dir,
+            tmp_write_dir=self.output_path,
+            max_deletions_per_run=1,
+            max_wait_seconds=0,
+        )
 
         # Phase 1: Importing
+        package = genanki.Package(deck_or_decks=deck)
         gateway.import_package(package=package)
+        assert self.output_path.is_dir()
         assert len(list(Path("/output").glob("*.apkg"))) == 0
 
         # Phase 2: Getting
