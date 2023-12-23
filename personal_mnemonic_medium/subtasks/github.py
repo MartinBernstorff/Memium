@@ -20,7 +20,8 @@ class GithubIssue:
 def get_issues_assigned_to_me(c: inv.Context) -> Sequence[GithubIssue] | None:
     """Get issues assigned to current user on current repo"""
     my_issues = c.run(
-        "gh issue list --assignee='@me' --json number,title", hide=True
+        "gh issue list --assignee='@me' --json number,title --search sort:updated-desc",
+        hide=True,
     )
     if my_issues is None:
         return None
@@ -44,7 +45,7 @@ def issue_dialog(my_issues: Sequence[GithubIssue]) -> int:
             sleep(1)
         return 0
 
-    terminal_output = "\n".join(issue_strings)
+    terminal_output = "\n".join(reversed(issue_strings))
     print(f"\n{terminal_output}\n")
 
     first_issue_letter = get_letter_from_alphabet_position(1)
@@ -52,7 +53,7 @@ def issue_dialog(my_issues: Sequence[GithubIssue]) -> int:
     issue_index = (
         get_letter_alphabet_position(
             input(
-                f"Which issue do you want to work on? [{first_issue_letter}-{last_issue_letter}]\n"
+                f"I found these issues for you. Which do you want to work on? [{first_issue_letter}-{last_issue_letter}]\n"
             )
         )
         - 1
