@@ -32,7 +32,7 @@ def get_issues_assigned_to_me(c: inv.Context) -> Sequence[GithubIssue] | None:
 
 def issue_dialog(my_issues: Sequence[GithubIssue]) -> int:
     issue_strings = [
-        f"[{get_letter_from_alphabet_position(i)}] #{issue.number} {issue.title}"
+        f"[{get_letter_from_alphabet_position(i+1)}] #{issue.number} {issue.title}"
         for i, issue in enumerate(my_issues)
     ]
 
@@ -46,8 +46,13 @@ def issue_dialog(my_issues: Sequence[GithubIssue]) -> int:
 
     terminal_output = "\n".join(issue_strings)
     print(f"\n{terminal_output}\n")
+
+    first_issue_letter = get_letter_from_alphabet_position(1)
+    last_issue_letter = get_letter_from_alphabet_position(n_issues)
     issue_index = get_letter_alphabet_position(
-        input(f"Which issue do you want to work on? [1-{len(my_issues)}]\n")
+        input(
+            f"Which issue do you want to work on? [{first_issue_letter}-{last_issue_letter}]\n"
+        )
     )
 
     return issue_index
