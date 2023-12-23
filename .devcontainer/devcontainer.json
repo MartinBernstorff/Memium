@@ -32,12 +32,13 @@
     ],
     "containerEnv": {
         "HOST_HOME": "${localEnv:HOME}",
-        "HOST_INPUT_DIR": "${localEnv:HOME}/ankidecks"
+        "HOST_INPUT_DIR": "${localEnv:HOME}/ankidecks",
+        "ENV": "devcontainer"
     },
     "features": {
         "ghcr.io/devcontainers/features/github-cli:1": {}
     },
-    "postStartCommand": "inv install && export ENV=dev-container"
+    "postStartCommand": "inv install && gt user pager --disable"
     // Features to add to the dev container. More info: https://containers.dev/features.
     // "features": {},
     // Use 'forwardPorts' to make a list of ports inside the container available locally.
