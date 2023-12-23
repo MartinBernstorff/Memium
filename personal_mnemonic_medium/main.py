@@ -1,6 +1,7 @@
 from pathlib import Path
 
 from .data_access.ankiconnect_gateway import ANKICONNECT_URL, AnkiConnectGateway
+from .data_access.environment import host_input_dir, in_docker
 from .destination.ankiconnect.anki_converter import AnkiPromptConverter
 from .destination.ankiconnect.ankiconnect_css import CARD_MODEL_CSS
 from .destination.destination_ankiconnect import AnkiConnectDestination
@@ -13,12 +14,7 @@ from .source.facade import DocumentPromptSource
 
 
 def main(
-    base_deck: str,
-    input_dir: Path,
-    apkg_output_dir: Path,
-    ankiconnect_read_apkg_from_dir: Path,
-    max_deletions_per_run: int,
-    dry_run: bool,
+    base_deck: str, input_dir: Path, max_deletions_per_run: int, dry_run: bool
 ):
     source_prompts = DocumentPromptSource(
         document_ingester=MarkdownDocumentIngester(directory=input_dir),
@@ -33,8 +29,8 @@ def main(
         gateway=AnkiConnectGateway(
             ankiconnect_url=ANKICONNECT_URL,
             base_deck=base_deck,
-            tmp_read_dir=ankiconnect_read_apkg_from_dir,
-            tmp_write_dir=apkg_output_dir,
+            tmp_read_dir=host_input_dir() if in_docker() else input_dir,
+            tmp_write_dir=input_dir,
             max_deletions_per_run=max_deletions_per_run,
             max_wait_seconds=0,
         ),

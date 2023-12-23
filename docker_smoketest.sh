@@ -13,14 +13,13 @@ echo -e "Q. Question here\nA. Answer!" >> $HOME/input/test.md
 rm -f $HOST_OUTPUT_FILE
 
 docker run -i \
+  -e HOST_INPUT_DIR=$INPUT_DIR \
   -v $INPUT_DIR:/input \
   -v $HOST_APKG_DIR:/output \
   --restart unless-stopped \
   personal-mnemonic-medium \
   python personal_mnemonic_medium/cli.py \
   --input-dir /input/ \
-  --apkg-output-dir $APKG_OUTPUT_DIR \
-  --host-apkg-dir $HOST_APKG_DIR \
   --dry-run \
   --skip-sync
 

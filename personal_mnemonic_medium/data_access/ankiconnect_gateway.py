@@ -11,6 +11,8 @@ from pathlib import Path
 from time import sleep
 from typing import Any
 
+from personal_mnemonic_medium.data_access.environment import in_docker
+
 log = logging.getLogger(__name__)
 
 import genanki
@@ -202,10 +204,6 @@ class SpieAnkiconnectGateway(AnkiConnectGateway):
 
     def import_package(self, package: genanki.Package) -> None:
         self.executed_commands.append(ImportPackage(package=package))
-
-
-def in_docker() -> bool:
-    return Path("/.dockerenv").exists()
 
 
 ANKICONNECT_URL = (

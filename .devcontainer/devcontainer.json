@@ -32,6 +32,7 @@
     ],
     "containerEnv": {
         "HOST_HOME": "${localEnv:HOME}",
+        "HOST_INPUT_DIR": "${localEnv:HOME}/ankidecks"
     },
     "features": {
         "ghcr.io/devcontainers/features/github-cli:1": {}
