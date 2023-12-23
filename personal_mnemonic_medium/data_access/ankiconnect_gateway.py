@@ -4,7 +4,7 @@ import json
 import logging
 import traceback
 import urllib.request
-from collections.abc import Mapping, Sequence
+from collections.abc import Iterator, Mapping, Sequence
 from dataclasses import dataclass
 from enum import Enum
 from pathlib import Path
@@ -17,6 +17,22 @@ import genanki
 import pydantic
 
 log = logging.getLogger(__name__)
+
+import shutil
+from contextlib import contextmanager
+
+
+@contextmanager
+def tempdir(tmp_path: Path) -> Iterator[Path]:
+    """Context manager for a temporary directory that is deleted after use."""
+    try:
+        yield tmp_path
+    except:
+        # If there's an error, ensure the directory is deleted before the error is propagated.
+        shutil.rmtree(str(tmp_path))
+        raise
+    else:
+        shutil.rmtree(str(tmp_path))
 
 
 class AnkiField(pydantic.BaseModel):
@@ -83,20 +99,22 @@ class AnkiConnectGateway:
         )
 
     def import_package(self, package: genanki.Package) -> None:
-        apkg_name = (
-            f"{datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')}.apkg"
-        )
-        write_path = self.tmp_write_dir / apkg_name
-        package.write_to_file(write_path)  # type: ignore
+        with tempdir(self.tmp_write_dir) as tmp_write_dir:
+            apkg_name = (
+                f"{datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')}.apkg"
+            )
+            write_path = tmp_write_dir / apkg_name
+            package.write_to_file(write_path)  # type: ignore
 
-        read_path = self.tmp_read_dir / apkg_name
-        try:
-            self._invoke(AnkiConnectCommand.IMPORT_PACKAGE, path=str(read_path))
-            log.info(f"Imported from {read_path}!")
-            write_path.unlink()
-        except Exception:
-            log.error(f"""Unable to sync from {read_path}.""")
-            traceback.print_exc()
+            read_path = self.tmp_read_dir / apkg_name
+            try:
+                self._invoke(
+                    AnkiConnectCommand.IMPORT_PACKAGE, path=str(read_path)
+                )
+                log.info(f"Imported from {read_path}!")
+            except Exception as e:
+                log.error(f"""Unable to sync from {read_path}, {e}""")
+                traceback.print_exc()
 
     def delete_notes(self, note_ids: Sequence[int]) -> None:
         if len(note_ids) > self.max_deletions_per_run:
