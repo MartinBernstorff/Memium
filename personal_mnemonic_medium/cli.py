@@ -1,12 +1,12 @@
 import logging
 from pathlib import Path
-from typing import Annotated
+from typing import Annotated, Optional
 
 import sentry_sdk
 import typer
 
 from personal_mnemonic_medium.data_access.environment import get_env
-from personal_mnemonic_medium.sync_deck import sync_deck
+from personal_mnemonic_medium.main import main
 
 log = logging.getLogger(__name__)
 
@@ -14,7 +14,7 @@ app = typer.Typer()
 
 
 @app.command()
-def sync(
+def cli(
     input_dir: Annotated[
         Path,
         typer.Option(
@@ -36,15 +36,15 @@ def sync(
         ),
     ],
     host_apkg_dir: Annotated[
-        Path,
+        Optional[Path],  # noqa: UP007
         typer.Option(
             help="Directory in which AnkiConnect will look for the .apkg. Can be different from apkg_output_filepath in cases where the script is running in a Docker container. If None, defaults to apkg_output_filepath"
         ),
-    ],
+    ] = None,
     watch: Annotated[
-        bool,
+        Optional[int],  # noqa: UP007
         typer.Option(help="Keep running, updating Anki deck every 15 seconds"),
-    ],
+    ] = None,
     deck_name: Annotated[
         str,
         typer.Option(help="Anki path to deck, e.g. 'Parent deck::Child deck'"),
@@ -80,7 +80,7 @@ def sync(
     )
 
     if not skip_sync:
-        sync_deck(
+        main(
             base_deck=deck_name,
             input_dir=input_dir,
             apkg_output_dir=apkg_output_dir,
@@ -92,7 +92,7 @@ def sync(
         if watch:
             sleep_seconds = 60
             log.info(f"Sync complete, sleeping for {sleep_seconds} seconds")
-            sync_deck(
+            main(
                 base_deck=deck_name,
                 input_dir=input_dir,
                 apkg_output_dir=apkg_output_dir,
