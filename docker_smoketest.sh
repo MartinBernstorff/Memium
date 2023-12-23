@@ -20,7 +20,6 @@ docker run -i \
   personal-mnemonic-medium \
   python personal_mnemonic_medium/cli.py \
   --input-dir /input/ \
-  --dry-run \
-  --skip-sync
+  --dry-run
 
 echo "Smoketesting succesful!"
