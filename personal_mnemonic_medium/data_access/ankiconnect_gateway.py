@@ -99,7 +99,7 @@ class AnkiConnectGateway:
         )
 
     def import_package(self, package: genanki.Package) -> None:
-        with tempdir(self.tmp_write_dir) as tmp_write_dir:
+        with tempdir(self.tmp_write_dir / "tmp_apkg_dir") as tmp_write_dir:
             apkg_name = (
                 f"{datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')}.apkg"
             )
