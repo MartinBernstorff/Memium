@@ -21,7 +21,8 @@
                 "github.vscode-github-actions",
                 "markis.code-coverage",
                 "Gerrnperl.outline-map",
-                "SeeLog.python-init-generator"
+                "SeeLog.python-init-generator",
+                "Graphite.gti-vscode"
             ]
         }
     },
