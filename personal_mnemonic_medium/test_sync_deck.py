@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-from personal_mnemonic_medium.sync_deck import sync_deck
+from personal_mnemonic_medium.main import main
 
 from .data_access.ankiconnect_gateway import anki_connect_is_live
 from .data_access.environment import get_host_home_dir
@@ -30,7 +30,7 @@ A. Test answer!
 """
         )
 
-    sync_deck(
+    main(
         base_deck=base_deck,
         input_dir=tmp_path,
         apkg_output_dir=apkg_output_dir,

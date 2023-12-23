@@ -21,7 +21,6 @@ docker run -i \
   --input-dir /input/ \
   --apkg-output-dir $APKG_OUTPUT_DIR \
   --host-apkg-dir $HOST_APKG_DIR \
-  --no-watch \
   --dry-run \
   --skip-sync
 

@@ -12,7 +12,7 @@ from .source.extractors.extractor_qa import QAPromptExtractor
 from .source.facade import DocumentPromptSource
 
 
-def sync_deck(
+def main(
     base_deck: str,
     input_dir: Path,
     apkg_output_dir: Path,
