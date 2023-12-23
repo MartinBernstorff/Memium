@@ -49,10 +49,13 @@ def issue_dialog(my_issues: Sequence[GithubIssue]) -> int:
 
     first_issue_letter = get_letter_from_alphabet_position(1)
     last_issue_letter = get_letter_from_alphabet_position(n_issues)
-    issue_index = get_letter_alphabet_position(
-        input(
-            f"Which issue do you want to work on? [{first_issue_letter}-{last_issue_letter}]\n"
+    issue_index = (
+        get_letter_alphabet_position(
+            input(
+                f"Which issue do you want to work on? [{first_issue_letter}-{last_issue_letter}]\n"
+            )
         )
+        - 1
     )
 
     return issue_index
