@@ -60,7 +60,7 @@ typeCheckingMode = "strict"
 
 [tool.ruff]
 # Enable pycodestyle (`E`) and Pyflakes (`F`) codes by default.
-line-length = 70
+line-length = 80
 select = [
   "A",
   "ANN",

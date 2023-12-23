@@ -50,16 +50,12 @@ def test(c: inv.Context):
 
     lines = coverage_report.stdout.split("\n")
     try:
-        coverage_line = next(
-            line for line in lines if "Coverage: " in line
-        )
+        coverage_line = next(line for line in lines if "Coverage: " in line)
     except StopIteration:
         print("No lines affected by coverage")
         return
 
-    missing_lines = [
-        line for line in lines if "Missing lines" in line
-    ]
+    missing_lines = [line for line in lines if "Missing lines" in line]
     coverage_percent = int(coverage_line.split(" ")[1][:-1])
 
     if coverage_percent < 80:

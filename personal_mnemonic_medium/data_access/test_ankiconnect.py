@@ -79,9 +79,7 @@ class TestAnkiConnectGateway:
         assert note.tags == ["TestTag"]
 
         # Phase 3: Deleting
-        self.gateway.delete_notes(
-            note_ids=[n.noteId for n in all_notes]
-        )
+        self.gateway.delete_notes(note_ids=[n.noteId for n in all_notes])
         assert len(self.gateway.get_all_note_infos()) == 0
 
 
@@ -94,7 +92,5 @@ def test_error_if_deleting_more_than_allowed():
         max_deletions_per_run=0,
         max_wait_seconds=0,
     )
-    with pytest.raises(
-        ValueError, match="are scheduled for deletion"
-    ):
+    with pytest.raises(ValueError, match="are scheduled for deletion"):
         gateway.delete_notes(note_ids=[1])

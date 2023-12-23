@@ -57,14 +57,9 @@ class AnkiConnectGateway:
         self.max_deletions_per_run = max_deletions_per_run
 
         seconds_waited = 0
-        while (
-            not anki_connect_is_live()
-            and seconds_waited < max_wait_seconds
-        ):
+        while not anki_connect_is_live() and seconds_waited < max_wait_seconds:
             wait_seconds = 2
-            print(
-                f"AnkiConnect is not live, waiting {wait_seconds} seconds..."
-            )
+            print(f"AnkiConnect is not live, waiting {wait_seconds} seconds...")
             seconds_waited += wait_seconds
             sleep(wait_seconds)
 
@@ -85,15 +80,15 @@ class AnkiConnectGateway:
         )
 
     def import_package(self, package: genanki.Package) -> None:
-        apkg_name = f"{datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')}.apkg"
+        apkg_name = (
+            f"{datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')}.apkg"
+        )
         write_path = self.tmp_write_dir / apkg_name
         package.write_to_file(write_path)  # type: ignore
 
         read_path = self.tmp_read_dir / apkg_name
         try:
-            self._invoke(
-                AnkiConnectCommand.IMPORT_PACKAGE, path=str(read_path)
-            )
+            self._invoke(AnkiConnectCommand.IMPORT_PACKAGE, path=str(read_path))
             print(f"Imported from {read_path}!")
             write_path.unlink()
         except Exception:
@@ -114,8 +109,7 @@ class AnkiConnectGateway:
 
     def get_all_note_infos(self) -> Sequence[NoteInfo]:
         anki_card_ids: list[int] = self._invoke(
-            AnkiConnectCommand.FIND_CARDS,
-            query=f'"deck:{self.deck_name}"',
+            AnkiConnectCommand.FIND_CARDS, query=f'"deck:{self.deck_name}"'
         )
 
         # get a list of anki notes in the deck
@@ -133,9 +127,7 @@ class AnkiConnectGateway:
     def _request(self, action: Any, **params: Any) -> dict[str, Any]:
         return {"action": action, "params": params, "version": 6}
 
-    def _invoke(
-        self, action: AnkiConnectCommand, **params: Any
-    ) -> Any:
+    def _invoke(self, action: AnkiConnectCommand, **params: Any) -> Any:
         """Helper for invoking actions with anki-connect
         Args:
             action (string): the action to invoke
@@ -144,20 +136,16 @@ class AnkiConnectGateway:
         Returns:
             Any: the response from anki connect
         """
-        requestJson = json.dumps(
-            self._request(action.value, **params)
-        ).encode("utf-8")
+        requestJson = json.dumps(self._request(action.value, **params)).encode(
+            "utf-8"
+        )
         response = json.load(
             urllib.request.urlopen(
-                urllib.request.Request(
-                    self.ankiconnect_url, requestJson
-                )
+                urllib.request.Request(self.ankiconnect_url, requestJson)
             )
         )
         if len(response) != 2:
-            raise Exception(
-                "response has an unexpected number of fields"
-            )
+            raise Exception("response has an unexpected number of fields")
         if response["error"] is not None:
             raise Exception(response["error"])
         return response["result"]
@@ -184,11 +172,11 @@ class SpieAnkiconnectGateway(AnkiConnectGateway):
         self.note_infos: list[NoteInfo] = list(note_infos)
         self.executed_commands: list[FakeAnkiCommand] = []
 
-    def get_all_note_infos(self) -> Sequence[NoteInfo]:
-        return self.note_infos
-
     def update_model(self, model: genanki.Model) -> None:
         self.executed_commands.append(UpdateModel(model=model))
+
+    def get_all_note_infos(self) -> Sequence[NoteInfo]:
+        return self.note_infos
 
     def import_package(self, package: genanki.Package) -> None:
         self.executed_commands.append(ImportPackage(package=package))
