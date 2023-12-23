@@ -112,7 +112,7 @@ class AnkiConnectGateway:
 
     def get_all_note_infos(self) -> Sequence[NoteInfo]:
         anki_card_ids: list[int] = self._invoke(
-            AnkiConnectCommand.FIND_CARDS, query=f'"deck:{self.deck_name}"'
+            AnkiConnectCommand.FIND_CARDS, query=f'"deck:{self.base_deck}"'
         )
 
         # get a list of anki notes in the deck
