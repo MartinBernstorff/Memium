@@ -13,7 +13,7 @@ jobs:
   smoketest:
     permissions: write-all
     concurrency:
-      group: "${{ github.workflow }} @ ${{ github.ref }}"
+      group: ${{ github.repository }}-${{ github.workflow }}-${{ github.ref }}-${{ github.ref == 'refs/heads/main' && github.sha || ''}}
       cancel-in-progress: true
     runs-on: ubuntu-latest
     steps:
