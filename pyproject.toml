@@ -30,6 +30,9 @@ file = "LICENSE"
 file = "README.md"
 content-type = "text/markdown"
 
+[project.scripts]
+personal_mnemonic_medium = "personal_mnemonic_medium.cli:app"
+
 [project.optional-dependencies]
 dev = [
   "cruft==2.15.0",
