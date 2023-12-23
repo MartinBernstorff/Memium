@@ -18,7 +18,7 @@ docker run -i \
   -v $HOST_APKG_DIR:/output \
   --restart unless-stopped \
   personal-mnemonic-medium \
-  python personal_mnemonic_medium/cli.py \
+  personal_mnemonic_medium \ # Run the cli
   --input-dir /input/ \
   --dry-run \
   --skip-sync
