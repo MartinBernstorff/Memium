@@ -45,9 +45,6 @@ def cli(
             help="Don't update via AnkiConnect, just log what would happen"
         ),
     ] = False,
-    skip_sync: Annotated[
-        bool, typer.Option(help="Skip all syncing, useful for smoketest")
-    ] = False,
 ):
     logging.basicConfig(
         level=logging.INFO,
@@ -60,23 +57,22 @@ def cli(
         environment=get_env(default="None"),
     )
 
-    if not skip_sync:
+    main(
+        base_deck=deck_name,
+        input_dir=input_dir,
+        max_deletions_per_run=max_deletions_per_run,
+        dry_run=dry_run,
+    )
+
+    if watch:
+        sleep_seconds = 60
+        log.info(f"Sync complete, sleeping for {sleep_seconds} seconds")
         main(
             base_deck=deck_name,
             input_dir=input_dir,
             max_deletions_per_run=max_deletions_per_run,
             dry_run=dry_run,
         )
-
-        if watch:
-            sleep_seconds = 60
-            log.info(f"Sync complete, sleeping for {sleep_seconds} seconds")
-            main(
-                base_deck=deck_name,
-                input_dir=input_dir,
-                max_deletions_per_run=max_deletions_per_run,
-                dry_run=dry_run,
-            )
 
 
 if __name__ == "__main__":

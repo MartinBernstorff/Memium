@@ -5,7 +5,7 @@ import logging
 import traceback
 import urllib.request
 from collections.abc import Iterator, Mapping, Sequence
-from dataclasses import dataclass
+from dataclasses import InitVar, dataclass
 from enum import Enum
 from pathlib import Path
 from time import sleep
@@ -69,21 +69,25 @@ class AnkiConnectGateway:
     tmp_write_dir: Path
     max_deletions_per_run: int
     max_wait_seconds: int
+    validate_connection_on_init: InitVar[bool] = True
 
-    def __post_init__(self) -> None:
-        seconds_waited = 0
-        while not anki_connect_is_live(ankiconnect_url=self.ankiconnect_url):
-            if seconds_waited >= self.max_wait_seconds:
-                raise ConnectionError(
-                    f"Could not connect to AnkiConnect at {self.ankiconnect_url}"
+    def __post_init__(self, validate_connection_on_init: bool) -> None:
+        if validate_connection_on_init:
+            seconds_waited = 0
+            while not anki_connect_is_live(
+                ankiconnect_url=self.ankiconnect_url
+            ):
+                if seconds_waited >= self.max_wait_seconds:
+                    raise ConnectionError(
+                        f"Could not connect to AnkiConnect at {self.ankiconnect_url}"
+                    )
+
+                wait_seconds = 2
+                log.info(
+                    f"AnkiConnect is not live, waiting {wait_seconds} seconds..."
                 )
-
-            wait_seconds = 2
-            log.info(
-                f"AnkiConnect is not live, waiting {wait_seconds} seconds..."
-            )
-            seconds_waited += wait_seconds
-            sleep(wait_seconds)
+                seconds_waited += wait_seconds
+                sleep(wait_seconds)
 
     def update_model(self, model: genanki.Model) -> None:
         self._invoke(
