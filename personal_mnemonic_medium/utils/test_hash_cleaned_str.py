@@ -1,6 +1,4 @@
-from personal_mnemonic_medium.domain.utils.hash_cleaned_str import (
-    hash_cleaned_str,
-)
+from .hash_cleaned_str import hash_cleaned_str
 
 
 def test_hash_cleaned_str():

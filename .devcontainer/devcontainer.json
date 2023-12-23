@@ -20,7 +20,8 @@
                 "ms-vscode.makefile-tools",
                 "github.vscode-github-actions",
                 "markis.code-coverage",
-                "Gerrnperl.outline-map"
+                "Gerrnperl.outline-map",
+                "SeeLog.python-init-generator"
             ]
         }
     },
