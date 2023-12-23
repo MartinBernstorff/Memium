@@ -45,6 +45,12 @@ def cli(
             help="Don't update via AnkiConnect, just log what would happen"
         ),
     ] = False,
+    sentry_dsn: Annotated[
+        Optional[str],  # noqa: UP007
+        typer.Option(
+            help="Sentry DSN for error reporting. If not provided, no error reporting will be done."
+        ),
+    ] = None,
     skip_sync: Annotated[
         bool, typer.Option(help="Skip all syncing, useful for smoketest")
     ] = False,
@@ -55,10 +61,8 @@ def cli(
         datefmt="%Y/&m/%d %H:%M:%S",
     )
 
-    sentry_sdk.init(
-        dsn="https://37f17d6aa7742424652663a04154e032@o4506053997166592.ingest.sentry.io/4506053999984640",
-        environment=get_env(default="None"),
-    )
+    if sentry_dsn:
+        sentry_sdk.init(dsn=sentry_dsn, environment=get_env(default="None"))
 
     if not skip_sync:
         main(
