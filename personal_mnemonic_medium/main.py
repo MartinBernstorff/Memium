@@ -33,6 +33,7 @@ def main(
             tmp_write_dir=input_dir,
             max_deletions_per_run=max_deletions_per_run,
             max_wait_seconds=0,
+            validate_connection_on_init=not dry_run,
         ),
         prompt_converter=AnkiPromptConverter(
             base_deck=base_deck, card_css=CARD_MODEL_CSS
