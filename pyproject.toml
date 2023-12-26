@@ -37,7 +37,7 @@ memium = "memium.cli:app"
 dev = [
   "cruft==2.15.0",
   "invoke==2.2.0",
-  "pyright==1.1.342",
+  "pyright==1.1.343",
   "pre-commit==3.6.0",
   "ruff==0.1.9",
 ]
