@@ -2,8 +2,7 @@ set -e
 docker build . -t memium:latest -f Dockerfile
 docker volume create ankidecks
 
-INPUT_DIR=$HOME/input
-HOST_APKG_DIR=$HOME/ankidecks/smoketest
+INPUT_DIR=$HOME/input/
 
 mkdir -p $INPUT_DIR
 echo -e "Q. Question here\nA. Answer!" >> $INPUT_DIR/test.md
