@@ -2,6 +2,45 @@
 
 
 
+## v0.8.1 (2023-12-27)
+
+### Fix
+
+* fix: false positives on cloze for html comments (#494)
+
+Fixes #492 ([`df5ff29`](https://github.com/MartinBernstorff/Memium/commit/df5ff2933f33e06c230253741ed267fb5fdf82cf))
+
+* fix: false positives on cloze for html comments
+
+Fixes #492 ([`2fe2136`](https://github.com/MartinBernstorff/Memium/commit/2fe2136765783749eedea6a4b82ff750b2cff390))
+
+### Unknown
+
+* misc. ([`1cb74f4`](https://github.com/MartinBernstorff/Memium/commit/1cb74f4d4a9aee3c4ecb2487bec32f1ef2f8fbf0))
+
+* debug: prompts were not pushed in spite of push_all = true (#493)
+
+Fixes #491 ([`27bfe70`](https://github.com/MartinBernstorff/Memium/commit/27bfe70c50e2b4dcaaa6fd013157dae3ee15de36))
+
+* debug: prompts were not pushed in spite of push_all = true
+
+Fixes #491 ([`34f2118`](https://github.com/MartinBernstorff/Memium/commit/34f211843c9e0a6fc285b4da153c09d0403db54c))
+
+* styling: `_` does not italicize (#490)
+
+styling: `_` does not italicize
+
+Fixes #488
+
+misc. ([`78b7eca`](https://github.com/MartinBernstorff/Memium/commit/78b7eca2a4a8ddddaa79deff352288deedd5bff0))
+
+* misc. ([`a7115f5`](https://github.com/MartinBernstorff/Memium/commit/a7115f58e18a67182b16a67ce048e20e9343f7b8))
+
+* styling: `_` does not italicize
+
+Fixes #488 ([`681d243`](https://github.com/MartinBernstorff/Memium/commit/681d2434bfabe604121d711f2d224876161f5e4d))
+
+
 ## v0.8.0 (2023-12-27)
 
 ### Ci
