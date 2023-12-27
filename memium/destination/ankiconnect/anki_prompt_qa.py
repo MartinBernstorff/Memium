@@ -4,7 +4,7 @@ from dataclasses import dataclass
 import genanki
 
 from ...utils.hash_cleaned_str import clean_str, int_hash_str
-from .anki_card import AnkiPrompt
+from .anki_prompt import AnkiPrompt
 
 
 @dataclass(frozen=True)

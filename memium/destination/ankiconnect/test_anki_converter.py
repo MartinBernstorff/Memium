@@ -3,7 +3,7 @@ import pytest
 from ...source.prompts.prompt import BasePrompt
 from ...source.prompts.prompt_cloze import ClozeWithoutDoc
 from ...source.prompts.prompt_qa import QAWithoutDoc
-from .anki_card import AnkiPrompt
+from .anki_prompt import AnkiPrompt
 from .anki_converter import AnkiPromptConverter
 from .anki_prompt_cloze import AnkiCloze
 from .anki_prompt_qa import AnkiQA
