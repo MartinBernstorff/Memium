@@ -16,6 +16,10 @@ jobs:
       group: ${{ github.repository }}-${{ github.workflow }}-${{ github.ref }}-${{ github.ref == 'refs/heads/main' && github.sha || ''}}
       cancel-in-progress: true
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        invoke_command: ["smoketest-docker", "smoketest-cli"]
+
     steps:
       - name: Checkout (GitHub)
         uses: actions/checkout@v4
@@ -27,9 +31,12 @@ jobs:
           username: MartinBernstorff
           password: ${{ secrets.GITHUB_TOKEN }}
       
+      - name: Install invoke
+        run: |
+          python -m pip install --upgrade pip
+          pip install invoke
+
       - name: Run integration test
         shell: bash
         run: |
-          TEST_PATH=./docker_smoketest.sh
-          chmod +x $TEST_PATH
-          $TEST_PATH
+          inv ${{ matrix.invoke_command }}
