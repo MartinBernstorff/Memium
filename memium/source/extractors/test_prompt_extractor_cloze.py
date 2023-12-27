@@ -24,3 +24,29 @@ This is another block without any cloze prompts.
     assert len(extractor) == 1
     assert extractor[0].text == r"What is the meaning of life? {{c734::42}}"
     assert extractor[0].tags == ["anki/tag/test_tag"]
+
+
+import pytest
+
+
+@pytest.mark.parametrize(
+    ("content", "skipped"),
+    [
+        (
+            """```html
+         {Code block}
+         ```""",
+            True,
+        ),
+        ("""<!-- {HTML comment} -->""", True),
+        ("""{Cloze}""", False),
+    ],
+)
+def test_ignore_block_types(content: str, skipped: bool):
+    doc = Document(content=content, source_path=Path("test.md"))
+    extractor = ClozePromptExtractor().extract_prompts(doc)
+
+    if skipped:
+        assert len(extractor) == 0
+    else:
+        assert len(extractor) == 1

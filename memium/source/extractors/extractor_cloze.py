@@ -12,7 +12,7 @@ log = logging.getLogger(__name__)
 
 class ClozePromptExtractor(BasePromptExtractor):
     @staticmethod
-    def _break_string_by_two_or_more_newlines(string: str) -> list[str]:
+    def _get_blocks(string: str) -> list[str]:
         """Break string into a list by 2+ newlines in a row."""
         return re.split(r"(\n\n)+", string)
 
@@ -26,6 +26,18 @@ class ClozePromptExtractor(BasePromptExtractor):
             and "Q." not in string  # Exclude Q&A
             and "A." not in string  # Exclude Q&A
         ):
+            return True
+        return False
+
+    @staticmethod
+    def _is_code_block(string: str) -> bool:
+        if string.startswith("```"):
+            return True
+        return False
+
+    @staticmethod
+    def _is_html_comment(string: str) -> bool:
+        if string.startswith("<!--"):
             return True
         return False
 
@@ -60,10 +72,13 @@ class ClozePromptExtractor(BasePromptExtractor):
 
     def extract_prompts(self, document: Document) -> Sequence[ClozePrompt]:
         prompts: list[ClozeFromDoc] = []
-
-        blocks = self._break_string_by_two_or_more_newlines(document.content)
+        blocks = self._get_blocks(document.content)
 
         for block_string in blocks:
+            if self._is_code_block(block_string) or self._is_html_comment(
+                block_string
+            ):
+                continue
             if self._has_cloze(block_string):
                 clozes = re.findall(r"{(?!BearID).[^}]*}", block_string)
 
