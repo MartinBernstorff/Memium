@@ -2,9 +2,11 @@ from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 from typing import Generic, Protocol, TypeVar
 
-from .destination.destination import DeletePrompts, PushPrompts
-
-from .destination.destination import PromptDestinationCommand
+from .destination.destination import (
+    DeletePrompts,
+    PromptDestinationCommand,
+    PushPrompts,
+)
 from .source.prompts.prompt import BasePrompt, DestinationPrompt
 
 K = TypeVar("K")

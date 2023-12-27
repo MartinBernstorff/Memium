@@ -2,7 +2,9 @@ from collections.abc import Sequence
 
 import pytest
 
-from .destination.destination_commands import DeletePrompts, PushPrompts
+from .destination.destination import PushPrompts
+
+from .destination.destination import DeletePrompts
 from .diff_determiner import GeneralSyncer, PromptDiffDeterminer
 from .source.prompts.prompt import BasePrompt, DestinationPrompt
 from .source.prompts.prompt_qa import QAPrompt, QAWithoutDoc

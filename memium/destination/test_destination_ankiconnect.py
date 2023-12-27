@@ -13,7 +13,7 @@ from ..source.prompts.prompt_cloze import ClozeWithoutDoc
 from ..source.prompts.prompt_qa import QAWithoutDoc
 from .ankiconnect.anki_converter import AnkiPromptConverter
 from .destination_ankiconnect import AnkiConnectDestination
-from .destination_commands import PushPrompts
+from .destination import PushPrompts
 
 
 @pytest.mark.parametrize(

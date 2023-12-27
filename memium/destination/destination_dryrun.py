@@ -1,12 +1,8 @@
 import logging
 from collections.abc import Sequence
 
+from .destination import DeletePrompts, PromptDestinationCommand, PushPrompts
 from .destination_ankiconnect import AnkiConnectDestination
-from .destination_commands import (
-    DeletePrompts,
-    PromptDestinationCommand,
-    PushPrompts,
-)
 
 log = logging.getLogger(__name__)
 

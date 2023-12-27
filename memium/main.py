@@ -3,9 +3,8 @@ from pathlib import Path
 from .data_access.ankiconnect_gateway import ANKICONNECT_URL, AnkiConnectGateway
 from .data_access.environment import host_input_dir, in_docker
 from .destination.ankiconnect.anki_converter import AnkiPromptConverter
-from .destination.ankiconnect.ankiconnect_css import CARD_MODEL_CSS
-from .destination.destination_ankiconnect import AnkiConnectDestination
 from .destination.destination import PushPrompts
+from .destination.destination_ankiconnect import AnkiConnectDestination
 from .destination.destination_dryrun import DryRunDestination
 from .diff_determiner import PromptDiffDeterminer
 from .source.document_ingester import MarkdownDocumentIngester
@@ -40,7 +39,10 @@ def main(
             max_wait_seconds=0,
         ),
         prompt_converter=AnkiPromptConverter(
-            base_deck=base_deck, card_css=CARD_MODEL_CSS
+            base_deck=base_deck,
+            card_css=Path(
+                "memium/destination/ankiconnect/default_styling.css"
+            ).read_text(),
         ),
     )
     if not push_all:

@@ -10,9 +10,9 @@ from ..source.prompts.prompt_qa import QAWithoutDoc
 from ..utils.hash_cleaned_str import hash_cleaned_str
 from .ankiconnect.anki_card import AnkiCard
 from .ankiconnect.anki_converter import AnkiPromptConverter
-from .destination import PromptDestination
-from .destination_commands import (
+from .destination import (
     DeletePrompts,
+    PromptDestination,
     PromptDestinationCommand,
     PushPrompts,
 )

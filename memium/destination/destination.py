@@ -1,8 +1,21 @@
 from collections.abc import Sequence
-from typing import Protocol
+from dataclasses import dataclass
+from typing import Protocol, TypeAlias
 
-from ..source.prompts.prompt import DestinationPrompt
-from .destination_commands import PromptDestinationCommand
+from ..source.prompts.prompt import BasePrompt, DestinationPrompt
+
+
+@dataclass(frozen=True)
+class PushPrompts:
+    prompts: Sequence[BasePrompt]
+
+
+@dataclass(frozen=True)
+class DeletePrompts:
+    prompts: Sequence[DestinationPrompt]
+
+
+PromptDestinationCommand: TypeAlias = PushPrompts | DeletePrompts
 
 
 class PromptDestination(Protocol):
