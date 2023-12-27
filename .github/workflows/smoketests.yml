@@ -11,7 +11,6 @@ on:
 
 jobs:
   smoketests:
-    permissions: write-all
     concurrency:
       group: ${{ github.repository }}-${{ github.workflow }}-${{ github.ref }}-${{ github.ref == 'refs/heads/main' && github.sha || ''}}-${{ matrix.invoke_command }}
       cancel-in-progress: true
