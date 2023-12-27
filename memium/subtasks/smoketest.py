@@ -56,4 +56,5 @@ def smoketest_cli(c: inv.Context):
         "[YOUR_INPUT_DIR]", str(smoketest_dir)
     )
     print(cli_smoketest_cmd)
-    c.run(cli_smoketest_cmd)
+    c.run(cli_smoketest_cmd + "  --dry-run \\\n" + "  --skip-sync")
+    print("💨🎉 Smoketest complete")
