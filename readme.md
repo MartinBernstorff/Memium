@@ -51,7 +51,7 @@ If you want to sync markdown notes to Anki, here's how to get started!
 3. Setup a container
 ```bash
 $INPUT_DIR="PATH_TO_YOUR_INPUT_DIR"
-$HOST_APKG_DIR="
+
 docker run -i \
   -e HOST_INPUT_DIR=$INPUT_DIR \
   -v $INPUT_DIR:/input \
