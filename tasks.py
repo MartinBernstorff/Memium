@@ -5,6 +5,10 @@ from memium.subtasks.graphite import (
     create_branch_from_issue,
     submit_pr,  # noqa: F401 # type: ignore
 )
+from memium.subtasks.smoketest import (
+    smoketest_cli,  # noqa: F401 # type: ignore
+    smoketest_docker,  # noqa: F401 # type: ignore
+)
 
 PYTEST_CMD = "pytest --durations=5 --cov=memium memium --cov-report xml:.coverage.xml --cov-report lcov:.coverage.lcov"
 

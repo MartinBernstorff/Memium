@@ -42,7 +42,7 @@ If you want to sync markdown notes to Anki, here's how to get started!
 
 3. Import your notes!
 
-```bash
+```cli-block
 > memium --input-dir [YOUR_INPUT_DIR]
 ```
 
