@@ -77,17 +77,18 @@ The library is built as a pipeline illustrated below. The left path describes th
 
 graph TD 
 	FD["File on disk"]
-	FD -- Document ingester --> Document
-	Document -- Prompt extractor --> Prompt
-	Prompt -- Destination --> Card 
+        DP["Prompts at Destination"]
+	FD -- DocumentSource --> Document
+	Document -- PromptExtractor --> Prompt
+	Prompt -- Destination --> DP
  
 	MD["Markdown file"]
-	 Prompts["[QAPrompt | ClozePrompt]"]
-  Cards["[AnkiQA | AnkiCloze]"]
+	Prompts["[QAPrompt | ClozePrompt]"]
+        Anki["Cards in the Anki app"]
  
-	MD -- MarkdownDocumentIngester --> Document
+	MD -- MarkdownDocumentSource --> Document
 	Document -- "[QAPromptExtractor, \nClozePromptExtractor]" --> Prompts
-	Prompts -- AnkiConnectDestination --> Cards
+        Prompts -- AnkiConnectDestination --> Anki
  ```
 
 ## Contributing
