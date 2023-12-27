@@ -62,6 +62,7 @@ class AnkiConnectDestination(PromptDestination):
         prompt_ids = {
             int(remote_prompt.destination_id) for remote_prompt in prompts
         }
+        log.info(f"Deleting {len(prompt_ids)} prompts from Anki")
         self.gateway.delete_notes(list(prompt_ids))
 
     def _grouped_cards_to_deck(
