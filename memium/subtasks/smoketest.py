@@ -27,7 +27,9 @@ def smoketest_docker(c: inv.Context):
     input_dir = create_smoketest_dir()
 
     code_blocks = get_code_blocks_from_md(Path("readme.md"))
-    docker_block = next(block for block in code_blocks if "docker run" in block)
+    docker_block = (
+        next(block for block in code_blocks if "docker run" in block) + "\\"
+    )
 
     # Only keep content after docker line
     docker_block = docker_block[docker_block.index("docker run") :]
