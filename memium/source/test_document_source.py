@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-from .document_ingester import MarkdownDocumentIngester
+from .document_source import MarkdownDocumentSource
 
 
 class TestMarkdownIngester:
@@ -15,7 +15,7 @@ class TestMarkdownIngester:
     """
             )
 
-        documents = MarkdownDocumentIngester(directory=tmp_path).get_documents()
+        documents = MarkdownDocumentSource(directory=tmp_path).get_documents()
 
         assert len(documents) == 1
         document = documents[0]
@@ -39,7 +39,7 @@ class TestMarkdownIngester:
         # Removing read and execute permissions for owner, group and others
         failed_path.chmod(0o200)
 
-        MarkdownDocumentIngester(directory=tmp_path)._get_note_from_file(  # type: ignore[PrivateMethodUsage]
+        MarkdownDocumentSource(directory=tmp_path)._get_note_from_file(  # type: ignore[PrivateMethodUsage]
             Path("I do not exist")
         )
         assert "I do not exist" in caplog.records[0].message

@@ -3,7 +3,7 @@ from pathlib import Path
 
 import invoke as inv
 
-from memium.subtasks.graphite import submit_pr  # noqa: F401 # type: ignore
+from memium.tasks.graphite import submit_pr  # noqa: F401 # type: ignore
 
 
 def get_code_blocks_from_md(md_path: Path) -> Sequence[str]:

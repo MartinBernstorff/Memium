@@ -6,7 +6,7 @@ import genanki
 
 
 @dataclass(frozen=True)
-class AnkiCard(ABC):
+class AnkiPrompt(ABC):
     base_deck: str
     tags: Sequence[str]
 

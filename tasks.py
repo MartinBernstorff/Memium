@@ -1,11 +1,11 @@
 import invoke as inv
 
-from memium.subtasks.github import get_issues_assigned_to_me, issue_dialog
-from memium.subtasks.graphite import (
+from memium.tasks.github import get_issues_assigned_to_me, issue_dialog
+from memium.tasks.graphite import (
     create_branch_from_issue,
     submit_pr,  # noqa: F401 # type: ignore
 )
-from memium.subtasks.smoketest import (
+from memium.tasks.smoketest import (
     smoketest_cli,  # noqa: F401 # type: ignore
     smoketest_docker,  # noqa: F401 # type: ignore
 )

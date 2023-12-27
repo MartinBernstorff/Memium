@@ -2,7 +2,7 @@ from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 from typing import Generic, Protocol, TypeVar
 
-from .destination.destination_commands import (
+from .destination.destination import (
     DeletePrompts,
     PromptDestinationCommand,
     PushPrompts,

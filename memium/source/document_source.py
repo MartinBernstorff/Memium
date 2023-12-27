@@ -17,12 +17,12 @@ class FileNotRetrievedError(Exception):
     error: Exception
 
 
-class BaseDocumentIngester(Protocol):
+class BaseDocumentSource(Protocol):
     def get_documents(self) -> Sequence[Document]:
         ...
 
 
-class MarkdownDocumentIngester(BaseDocumentIngester):
+class MarkdownDocumentSource(BaseDocumentSource):
     def __init__(self, directory: Path) -> None:
         self.directory = directory
 

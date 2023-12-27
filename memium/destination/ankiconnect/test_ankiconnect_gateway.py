@@ -4,6 +4,7 @@ from pathlib import Path
 import genanki
 import pytest
 
+from ...environment import get_host_home_dir
 from .ankiconnect_gateway import (
     ANKICONNECT_URL,
     AnkiConnectGateway,
@@ -11,7 +12,6 @@ from .ankiconnect_gateway import (
     NoteInfo,
     anki_connect_is_live,
 )
-from .environment import get_host_home_dir
 
 
 class MockNoteInfo(NoteInfo):

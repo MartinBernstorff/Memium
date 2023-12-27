@@ -2,9 +2,9 @@ from collections.abc import Sequence
 from pathlib import Path
 
 from .document import Document
-from .document_ingester import BaseDocumentIngester
+from .document_source import BaseDocumentSource
 from .extractors.extractor_qa import QAPromptExtractor
-from .facade import DocumentPromptSource
+from .source import DocumentPromptSource
 
 
 def test_document_prompt_source():
@@ -26,7 +26,7 @@ A. Nothing""",
     assert len(prompts) == 1
 
 
-class FakeDocumentIngester(BaseDocumentIngester):
+class FakeDocumentIngester(BaseDocumentSource):
     def __init__(self, documents: Sequence[Document]):
         self.documents = documents
 

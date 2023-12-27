@@ -2,18 +2,18 @@ from collections.abc import Mapping
 
 import pytest
 
-from ..data_access.ankiconnect_gateway import (
+from ..source.prompts.prompt_cloze import ClozeWithoutDoc
+from ..source.prompts.prompt_qa import QAWithoutDoc
+from .ankiconnect.anki_converter import AnkiPromptConverter
+from .ankiconnect.ankiconnect_gateway import (
     AnkiField,
     ImportPackage,
     SpieAnkiconnectGateway,
     UpdateModel,
 )
-from ..data_access.test_ankiconnect_gateway import MockNoteInfo
-from ..source.prompts.prompt_cloze import ClozeWithoutDoc
-from ..source.prompts.prompt_qa import QAWithoutDoc
-from .ankiconnect.anki_converter import AnkiPromptConverter
+from .ankiconnect.test_ankiconnect_gateway import MockNoteInfo
+from .destination import PushPrompts
 from .destination_ankiconnect import AnkiConnectDestination
-from .destination_commands import PushPrompts
 
 
 @pytest.mark.parametrize(
