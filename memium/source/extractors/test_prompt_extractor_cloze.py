@@ -40,6 +40,14 @@ import pytest
         ),
         ("""<!-- {HTML comment} -->""", True),
         ("""{Cloze}""", False),
+        (
+            """```html
+Some content
+
+Content in another {block}
+        ```""",
+            True,
+        ),
     ],
 )
 def test_ignore_block_types(content: str, skipped: bool):
