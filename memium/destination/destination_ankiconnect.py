@@ -1,3 +1,4 @@
+import logging
 from collections.abc import Mapping, Sequence
 
 import genanki
@@ -16,6 +17,8 @@ from .destination import (
     PromptDestinationCommand,
     PushPrompts,
 )
+
+log = logging.getLogger(__name__)
 
 
 class AnkiConnectDestination(PromptDestination):
@@ -95,6 +98,7 @@ class AnkiConnectDestination(PromptDestination):
 
         package = self._create_package(cards)
 
+        log.info(f"Pushing {len(cards)} cards to Anki")
         self.gateway.import_package(package)
 
     def update(self, commands: Sequence[PromptDestinationCommand]) -> None:
