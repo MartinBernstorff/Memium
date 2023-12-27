@@ -71,7 +71,7 @@ pip install memium
 ```
 
 ### Pipeline abstractions
-The library is built as a pipeline illustrated below. The left path describes the abstract pipeline, defined by abstract interfaces. The right path describes implementation I use, and which is part of this repo. 
+The library is built as a pipeline illustrated below. Left describes the abstract pipeline, defined by interfaces. The right path describes an implementation of those interfaces from markdown to Anki, which is available in the CLI. 
 
 ```mermaid
 
