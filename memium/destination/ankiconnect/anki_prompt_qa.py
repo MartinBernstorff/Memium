@@ -81,8 +81,8 @@ class AnkiQA(AnkiPrompt):
             guid=str(self.uuid),
             model=self.genanki_model,
             fields=[
-                self.question,
-                self.answer,
+                self.field_to_html(self.question),
+                self.field_to_html(self.answer),
                 " ".join(self.tags),
                 str(self.uuid),
             ],

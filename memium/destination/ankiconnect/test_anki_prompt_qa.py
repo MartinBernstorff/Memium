@@ -20,3 +20,9 @@ class FakeAnkiQA(AnkiQA):
 def test_ankiqa_deck_inference():
     card = FakeAnkiQA(tags=["anki/deck/Subdeck"])
     assert card.deck == "FakeBaseDeck::Subdeck"
+
+
+def test_formatting():
+    card = FakeAnkiQA(question="Q. This is a _question_?")
+    note = card.to_genanki_note()
+    assert note.fields[0] == "<p>Q. This is a <em>question</em>?</p>"  # type: ignore
