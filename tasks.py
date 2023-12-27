@@ -88,7 +88,7 @@ def types(c: inv.Context):
 def branch_from_next_issue(c: inv.Context):
     my_issues = get_issues_assigned_to_me(c)
 
-    if my_issues is None:
+    if not my_issues:
         print("No issues found")
         return
 
@@ -111,8 +111,8 @@ def validate_ci(c: inv.Context):
 def new_branch_from_issue(c: inv.Context):
     my_issues = get_issues_assigned_to_me(c)
 
-    if my_issues is None:
-        print("No issues found")
+    if not my_issues:
+        print("No issues assigned to you found")
         return
 
     selected_issue_index = issue_dialog(my_issues)

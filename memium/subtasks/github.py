@@ -19,15 +19,16 @@ class GithubIssue:
 
 def get_issues_assigned_to_me(c: inv.Context) -> Sequence[GithubIssue] | None:
     """Get issues assigned to current user on current repo"""
-    my_issues = c.run(
-        "gh issue list --assignee='@me' --json number,title --search 'sort:updated-desc -linked:pr'",
-        hide=True,
+    my_issues_cmd = c.run(
+        "gh issue list --assignee='@me' --json number,title", hide="out"
     )
-    if my_issues is None:
+
+    if my_issues_cmd is None:
         return None
 
-    output = my_issues.stdout
-    parsed_output = [GithubIssue(**value) for value in json.loads(output)]
+    parsed_output = [
+        GithubIssue(**value) for value in json.loads(my_issues_cmd.stdout)
+    ]
     return parsed_output
 
 
