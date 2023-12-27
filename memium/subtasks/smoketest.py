@@ -26,7 +26,7 @@ def create_smoketest_dir() -> Path:
 def smoketest_docker(c: inv.Context):
     input_dir = create_smoketest_dir()
 
-    code_blocks = get_code_blocks_from_md(Path("README.md"))
+    code_blocks = get_code_blocks_from_md(Path("readme.md"))
     docker_block = next(block for block in code_blocks if "docker run" in block)
 
     # Only keep content after docker line
@@ -48,7 +48,7 @@ def smoketest_docker(c: inv.Context):
 @inv.task  # type: ignore
 def smoketest_cli(c: inv.Context):
     smoketest_dir = create_smoketest_dir()
-    code_blocks = get_code_blocks_from_md(Path("README.md"))
+    code_blocks = get_code_blocks_from_md(Path("readme.md"))
     cli_block = next(block for block in code_blocks if "cli-block" in block)
     sanitised_cli_block = cli_block.splitlines()[1].replace("> ", "")
 
