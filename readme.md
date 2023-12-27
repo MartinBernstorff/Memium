@@ -56,9 +56,9 @@ docker run -i \
   -e HOST_INPUT_DIR=$INPUT_DIR \
   -v $INPUT_DIR:/input \
   --restart unless-stopped \
+  ghcr.io/martinbernstorff/memium:latest \
   memium \
-  memium \
-  --input-dir /input/ \
+  --input-dir /input/
 ```
 
 This will start a docker container which updates your deck from `$INPUT_DIR` every 60 seconds. In case of updated files, it will sync the difference (create new prompts and delete deleted prompts) to Anki.
