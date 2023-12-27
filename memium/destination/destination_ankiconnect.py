@@ -8,8 +8,8 @@ from ..source.prompts.prompt import DestinationPrompt
 from ..source.prompts.prompt_cloze import ClozeWithoutDoc
 from ..source.prompts.prompt_qa import QAWithoutDoc
 from ..utils.hash_cleaned_str import hash_cleaned_str
-from .ankiconnect.anki_card import AnkiCard
 from .ankiconnect.anki_converter import AnkiPromptConverter
+from .ankiconnect.anki_prompt import AnkiPrompt
 from .destination import (
     DeletePrompts,
     PromptDestination,
@@ -62,7 +62,7 @@ class AnkiConnectDestination(PromptDestination):
         self.gateway.delete_notes(list(prompt_ids))
 
     def _grouped_cards_to_deck(
-        self, grouped_cards: Mapping[str, Sequence[AnkiCard]]
+        self, grouped_cards: Mapping[str, Sequence[AnkiPrompt]]
     ) -> genanki.Deck:
         deck_name = next(iter(grouped_cards.keys()))
         deck = genanki.Deck(name=deck_name, deck_id=hash_cleaned_str(deck_name))
@@ -72,7 +72,7 @@ class AnkiConnectDestination(PromptDestination):
 
         return deck
 
-    def _create_package(self, cards: Sequence[AnkiCard]) -> genanki.Package:
+    def _create_package(self, cards: Sequence[AnkiPrompt]) -> genanki.Package:
         cards_grouped_by_deck = Seq(cards).groupby(lambda card: card.deck)
         decks = [
             self._grouped_cards_to_deck({group: cards_grouped_by_deck[group]})

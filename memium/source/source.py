@@ -2,7 +2,7 @@ from collections.abc import Sequence
 from typing import Protocol
 
 from .document import Document
-from .document_ingester import BaseDocumentIngester
+from .document_source import BaseDocumentSource
 from .extractors.extractor import BasePromptExtractor
 from .prompts.prompt import BasePrompt
 
@@ -15,7 +15,7 @@ class BasePromptSource(Protocol):
 class DocumentPromptSource(BasePromptSource):
     def __init__(
         self,
-        document_ingester: BaseDocumentIngester,
+        document_ingester: BaseDocumentSource,
         prompt_extractors: Sequence[BasePromptExtractor],
     ):
         self._document_ingester = document_ingester

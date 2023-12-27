@@ -7,7 +7,7 @@ import sentry_sdk
 import typer
 
 from memium.data_access.environment import get_env
-from memium.main import main
+from memium.__main__ import main
 
 log = logging.getLogger(__name__)
 

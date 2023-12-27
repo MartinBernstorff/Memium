@@ -5,7 +5,7 @@ from functionalpy._sequence import Seq
 from ...source.prompts.prompt import BasePrompt
 from ...source.prompts.prompt_cloze import ClozePrompt
 from ...source.prompts.prompt_qa import QAPrompt
-from .anki_card import AnkiCard
+from .anki_prompt import AnkiPrompt
 from .anki_prompt_cloze import AnkiCloze
 from .anki_prompt_qa import AnkiQA
 
@@ -18,7 +18,7 @@ class AnkiPromptConverter:
         self.deck_prefix = deck_prefix
         self.card_css = card_css
 
-    def _prompt_to_card(self, prompt: BasePrompt) -> AnkiCard:
+    def _prompt_to_card(self, prompt: BasePrompt) -> AnkiPrompt:
         deck_in_tags = [
             tag for tag in prompt.tags if tag.startswith(self.deck_prefix)
         ]
@@ -47,7 +47,7 @@ class AnkiPromptConverter:
 
     def prompts_to_cards(
         self, prompts: Sequence[BasePrompt]
-    ) -> Sequence[AnkiCard]:
+    ) -> Sequence[AnkiPrompt]:
         """Takes an iterable of prompts and turns them into AnkiCards"""
 
         return Seq(prompts).map(self._prompt_to_card).to_list()

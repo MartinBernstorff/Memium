@@ -4,11 +4,11 @@ from dataclasses import dataclass
 import genanki
 
 from ...utils.hash_cleaned_str import clean_str, int_hash_str
-from .anki_card import AnkiCard
+from .anki_card import AnkiPrompt
 
 
 @dataclass(frozen=True)
-class AnkiQA(AnkiCard):
+class AnkiQA(AnkiPrompt):
     base_deck: str
     tags: Sequence[str]
     question: str
