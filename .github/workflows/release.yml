@@ -38,9 +38,3 @@ jobs:
         # This action supports PyPI's trusted publishing implementation, which allows authentication to PyPI without a manually 
         # configured API token or username/password combination. To perform trusted publishing with this action, your project's 
         # publisher must already be configured on PyPI.
-
-      - name: Publish package distributions to GitHub Releases
-        uses: python-semantic-release/upload-to-gh-release@main
-        if: steps.release.outputs.released == 'true'
-        with:
-          github_token: ${{ secrets.PAT }}
