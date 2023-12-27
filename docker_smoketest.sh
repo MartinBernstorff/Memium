@@ -5,6 +5,7 @@ docker volume create ankidecks
 INPUT_DIR=$HOME/input/
 
 mkdir -p $INPUT_DIR
+echo "Creating $INPUT_DIR"
 echo -e "Q. Question here\nA. Answer!" >> $INPUT_DIR/test.md
 
 docker run -i \
@@ -13,7 +14,7 @@ docker run -i \
   --restart unless-stopped \
   memium \
   memium \
-  --input-dir $INPUT_DIR \
+  --input-dir /input \
   --dry-run \
   --skip-sync
 
