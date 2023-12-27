@@ -17,14 +17,18 @@ class AnkiPromptConverter:
     base_deck: str
     deck_prefix: str
     card_css: str
-    extra_generators: Sequence[ExtraGenerator]
+    extra_generators: Sequence[ExtraGenerator] | None
 
     def _prompt_to_card(self, prompt: BasePrompt) -> AnkiPrompt:
         deck_in_tags = [
             tag for tag in prompt.tags if tag.startswith(self.deck_prefix)
         ]
         deck = deck_in_tags[0] if deck_in_tags else self.base_deck
-        extra = "".join(gen(prompt) for gen in self.extra_generators)
+        extra = (
+            "".join(gen(prompt) for gen in self.extra_generators)
+            if self.extra_generators
+            else ""
+        )
 
         match prompt:
             case QAPrompt():
