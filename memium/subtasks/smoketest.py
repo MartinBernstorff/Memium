@@ -28,7 +28,8 @@ def smoketest_docker(c: inv.Context):
 
     code_blocks = get_code_blocks_from_md(Path("readme.md"))
     docker_block = (
-        next(block for block in code_blocks if "docker run" in block) + "\\"
+        next(block for block in code_blocks if "docker run" in block).strip()
+        + " \\\n"
     )
 
     # Only keep content after docker line
