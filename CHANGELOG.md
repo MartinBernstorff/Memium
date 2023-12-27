@@ -2,7 +2,50 @@
 
 
 
+## v0.8.0 (2023-12-27)
+
+### Ci
+
+* ci: fix smoketest permissions (#482)
+
+ci: fix smoketest permissions
+
+Fixes #481
+
+ci: fix smoketest permissions
+
+Fixes #481 ([`056a6e0`](https://github.com/MartinBernstorff/Memium/commit/056a6e058b439e34f92e4bc2e55c1932b7ae7947))
+
+### Feature
+
+* feat: handle wikilinks and aliases (#487)
+
+feat: handle wikilinks
+
+Fixes #485 and fixes #486. ([`1c5dff5`](https://github.com/MartinBernstorff/Memium/commit/1c5dff5065dc784539c5af0359e1aa167fa9b5b5))
+
+* feat: handle wikilinks
+
+Fixes #485 ([`18023f6`](https://github.com/MartinBernstorff/Memium/commit/18023f631ac3acba9745961d6aca1c5a6bf393bf))
+
+* feat: handle wikilinks
+
+Fixes #485 ([`19355d8`](https://github.com/MartinBernstorff/Memium/commit/19355d89805d2fd50c3e13ec63e02a61c6610fec))
+
+
 ## v0.7.1 (2023-12-27)
+
+### Ci
+
+* ci: smoketests don&#39;t need ghcr ([`927668c`](https://github.com/MartinBernstorff/Memium/commit/927668cc2dbfc8fd15be82e8d387f9a7113a013b))
+
+* ci: fix smoketest permissions
+
+Fixes #481 ([`a36bbd3`](https://github.com/MartinBernstorff/Memium/commit/a36bbd3b05addc03c9a6ae6a0baf866fade89cfe))
+
+* ci: fix smoketest permissions
+
+Fixes #481 ([`9c6fc8e`](https://github.com/MartinBernstorff/Memium/commit/9c6fc8e6c03243242157665ea11307e2a744e4ec))
 
 ### Fix
 
