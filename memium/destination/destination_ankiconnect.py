@@ -3,13 +3,13 @@ from collections.abc import Mapping, Sequence
 import genanki
 from functionalpy._sequence import Seq
 
-from ..data_access.ankiconnect_gateway import AnkiConnectGateway, NoteInfo
 from ..source.prompts.prompt import DestinationPrompt
 from ..source.prompts.prompt_cloze import ClozeWithoutDoc
 from ..source.prompts.prompt_qa import QAWithoutDoc
 from ..utils.hash_cleaned_str import hash_cleaned_str
 from .ankiconnect.anki_converter import AnkiPromptConverter
 from .ankiconnect.anki_prompt import AnkiPrompt
+from .ankiconnect.ankiconnect_gateway import AnkiConnectGateway, NoteInfo
 from .destination import (
     DeletePrompts,
     PromptDestination,

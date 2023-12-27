@@ -6,8 +6,8 @@ from typing import Annotated, Optional
 import sentry_sdk
 import typer
 
-from memium.data_access.environment import get_env
 from memium.__main__ import main
+from memium.environment import get_env
 
 log = logging.getLogger(__name__)
 

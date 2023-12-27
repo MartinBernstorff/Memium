@@ -11,7 +11,7 @@ from pathlib import Path
 from time import sleep
 from typing import Any
 
-from memium.data_access.environment import in_docker
+from memium.environment import in_docker
 
 log = logging.getLogger(__name__)
 
