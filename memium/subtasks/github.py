@@ -41,9 +41,10 @@ def issue_dialog(my_issues: Sequence[GithubIssue]) -> int:
     n_issues = len(my_issues)
     if n_issues == 1:
         print(f"Only one issue found, selecting:\n\t{issue_strings[0]}\nin ")
-        for i in range(3, 0, -1):
-            print(f"{i}...")
-            sleep(1)
+        for i in range(1 * 10, 0, -1):
+            interval = 0.1
+            print(f"{round(i * interval, 1)}...")
+            sleep(interval)
         return 0
 
     terminal_output = "\n".join(reversed(issue_strings))
