@@ -11,13 +11,18 @@
 
 <!-- start short-description -->
 
-Extracting spaced repetition prompts (flashcards) from written notes.
+When you have to stop and look things up, it breaks up your flow. Adding this knowledge to long-term memory builds fluency, and being fluent at something makes it much more fun! The faster you can get from crawling to running, the more enjoyable it is.
 
-When you have to stop and look things up, it breaks up your flow. Adding this knowledge to long-term memory builds fluency, and being fluent at something makes it much more fun! The faster you can get from crawling to running, the more enjoyable it is. This means you can bootstrap into a new field rapidly.  
+Unfortunately, we forget most of what we read, [even stuff we care about](https://andymatuschak.org/books/).
 
-[Anki](https://apps.ankiweb.net) enables rapid bootstrapping. It's automated [spaced repetition](https://notes.andymatuschak.org/Spaced_repetition_memory_systems_make_memory_a_choice), allowing you to retain information for much longer with much fewer repetitions. But Anki's user interface isn't great, and not at all conducive to maintaining a cohesive set of knowledge.
+It turns out that if you ask questions of the texts you read, and ask those questions of yourself in the future, you learn much more! But writing questions and quizzing yourself can feel quite mechanical. What if you wrote questions as part of your notes, and then your computer could quiz you in the future? That's the purpose of Memium. It extracts questions from your notes like 
 
-A [Zettelkasten](https://medium.com/@martinbernstorf/why-you-need-an-idea-management-system-defb5de44746) solves this problem! The present package extracts Anki prompts from (markdown) documents.
+```
+Q. Why can spaced repetition result in more enjoyable learning?
+A. It enables faster bootstrapping to proficiency, which is more fun!
+```
+
+And adding them to a spaced repetition service like [Anki](https://apps.ankiweb.net). 
 
 This is an implementation of Andy Matuschak's [Personal Mnemonic Medium](https://notes.andymatuschak.org/The_mnemonic_medium_can_be_extended_to_one%E2%80%99s_personal_notes).
 
@@ -27,24 +32,43 @@ This is an implementation of Andy Matuschak's [Personal Mnemonic Medium](https:/
 If you want to sync markdown notes to Anki, here's how to get started!
 
 1. In Anki, install the [AnkiConnect](https://ankiweb.net/shared/info/2055492159) add-on
-2. Install [Orbstack](https://orbstack.dev/) or Docker Desktop. Then run:
+
+### Command line interface
+2. Install Memium in its own virtual environment with pipx,
+
 ```bash
-docker run -itd \
-  -v YOUR_INPUT_FOLDER_HERE:/input \
-  -v $HOME/ankidecks:/output \
-  --restart unless-stopped \
-  ghcr.io/martinbernstorff/memium:latest \
-  python application/main.py /input/ $HOME/ankidecks --watch --use-anki-connect
+> pipx install memium
 ```
 
-This will start a docker container which watches `YOUR_INPUT_FOLDER_HERE` every 60 seconds. In case of updated files, it will sync the difference (create new prompts and delete deleted prompts) to Anki.
+3. Import your notes!
+
+```bash
+> memium --input-dir [YOUR_INPUT_DIR]
+```
+
+### In Docker container
+2. Install [Orbstack](https://orbstack.dev/) or Docker Desktop. 
+3. Setup a container
+```bash
+$INPUT_DIR="PATH_TO_YOUR_INPUT_DIR"
+
+docker run -i \
+  -e HOST_INPUT_DIR=$INPUT_DIR \
+  -v $INPUT_DIR:/input \
+  --restart unless-stopped \
+  memium \
+  memium \
+  --input-dir /input/ \
+```
+
+This will start a docker container which updates your deck from `$INPUT_DIR` every 60 seconds. In case of updated files, it will sync the difference (create new prompts and delete deleted prompts) to Anki.
 
 ## Use as library
 If you would like to build build your own Python application on top of the abstractions added here, you can install the library from pypi:
+
 ```bash
 pip install memium
 ```
-
 
 ### Pipeline abstractions
 The library is built as a pipeline illustrated below. The left path describes the abstract pipeline, defined by abstract interfaces. The right path describes implementation I use, and which is part of this repo. 
@@ -53,17 +77,17 @@ The library is built as a pipeline illustrated below. The left path describes th
 
 graph TD 
 	FD["File on disk"]
-	FD -- Document factory --> Document
-	Document -- Extractor --> Prompt
-	Prompt -- Exporter --> Card 
+	FD -- Document ingester --> Document
+	Document -- Prompt extractor --> Prompt
+	Prompt -- Destination --> Card 
  
 	MD["Markdown file"]
 	 Prompts["[QAPrompt | ClozePrompt]"]
   Cards["[AnkiQA | AnkiCloze]"]
  
-	MD -- MarkdownNoteFactory --> Document
-	Document -- "[QAExtractor, \nClozeExtractor]" --> Prompts
-	Prompts -- AnkiPackageGenerator --> Cards
+	MD -- MarkdownDocumentIngester --> Document
+	Document -- "[QAPromptExtractor, \nClozePromptExtractor]" --> Prompts
+	Prompts -- AnkiConnectDestination --> Cards
  ```
 
 ## Contributing
@@ -77,12 +101,7 @@ graph TD
 Feel free to submit pull requests! If you want to run the entire pipeline locally, run:
 
 ```bash
-make validate
-```
-
-And, if you have the github CLI installed, we can even create the PR in your browser for you:
-```bash
-make pr
+inv validate_ci
 ```
 
 # 💬 Where to ask questions
