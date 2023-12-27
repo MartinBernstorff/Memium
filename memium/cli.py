@@ -24,6 +24,7 @@ def cli(
             file_okay=False,
             exists=True,
             readable=True,
+            writable=True,
         ),
     ],
     watch: Annotated[

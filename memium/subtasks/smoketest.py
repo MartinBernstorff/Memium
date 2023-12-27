@@ -27,11 +27,19 @@ def smoketest_docker(c: inv.Context):
     input_dir = create_smoketest_dir()
 
     code_blocks = get_code_blocks_from_md(Path("readme.md"))
-    docker_block = next(block for block in code_blocks if "docker run" in block)
+    docker_block = (
+        next(block for block in code_blocks if "docker run" in block).strip()
+        + " \\\n"
+    )
 
     # Only keep content after docker line
     docker_block = docker_block[docker_block.index("docker run") :]
-    replaced_input_dir = docker_block.replace("$INPUT_DIR", str(input_dir))
+    replaced_image_location = docker_block.replace(
+        "ghcr.io/martinbernstorff/memium:latest", "memium"
+    )
+    replaced_input_dir = replaced_image_location.replace(
+        "$INPUT_DIR", str(input_dir)
+    )
 
     smoketest_docker_command = (
         replaced_input_dir + "  --dry-run \\\n" + "  --skip-sync"
