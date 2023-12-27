@@ -14,6 +14,7 @@ class AnkiQA(AnkiPrompt):
     question: str
     answer: str
     css: str
+    extra: str = ""
 
     @property
     def uuid(self) -> int:

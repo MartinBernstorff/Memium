@@ -36,6 +36,7 @@ class ClozeWithoutDoc(ClozePrompt):
 class ClozeFromDoc(ClozePrompt):
     text: str
     source_doc: Document
+    line_nr: int
 
     @property
     def scheduling_uid(self) -> int:

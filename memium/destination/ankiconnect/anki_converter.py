@@ -1,7 +1,9 @@
 from collections.abc import Sequence
+from dataclasses import dataclass
 
 from functionalpy._sequence import Seq
 
+from ...post_processing.obsidian import ExtraGenerator
 from ...source.prompts.prompt import BasePrompt
 from ...source.prompts.prompt_cloze import ClozePrompt
 from ...source.prompts.prompt_qa import QAPrompt
@@ -10,19 +12,19 @@ from .anki_prompt_cloze import AnkiCloze
 from .anki_prompt_qa import AnkiQA
 
 
+@dataclass(frozen=True)
 class AnkiPromptConverter:
-    def __init__(
-        self, base_deck: str, card_css: str, deck_prefix: str = "#anki_deck"
-    ) -> None:
-        self.base_deck = base_deck
-        self.deck_prefix = deck_prefix
-        self.card_css = card_css
+    base_deck: str
+    deck_prefix: str
+    card_css: str
+    extra_generators: Sequence[ExtraGenerator]
 
     def _prompt_to_card(self, prompt: BasePrompt) -> AnkiPrompt:
         deck_in_tags = [
             tag for tag in prompt.tags if tag.startswith(self.deck_prefix)
         ]
         deck = deck_in_tags[0] if deck_in_tags else self.base_deck
+        extra = "".join(gen(prompt) for gen in self.extra_generators)
 
         match prompt:
             case QAPrompt():
@@ -32,6 +34,7 @@ class AnkiPromptConverter:
                     base_deck=deck,
                     tags=prompt.tags,
                     css=self.card_css,
+                    extra=extra,
                 )
             case ClozePrompt():
                 return AnkiCloze(
@@ -39,6 +42,7 @@ class AnkiPromptConverter:
                     base_deck=deck,
                     tags=prompt.tags,
                     css=self.card_css,
+                    extra=extra,
                 )
             case BasePrompt():
                 raise ValueError(

@@ -13,6 +13,7 @@ class AnkiCloze(AnkiPrompt):
     tags: Sequence[str]
     text: str
     css: str
+    extra: str = ""
 
     @property
     def uuid(self) -> int:
