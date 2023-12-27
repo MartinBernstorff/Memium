@@ -11,11 +11,3 @@ class PromptDestination(Protocol):
 
     def update(self, commands: Sequence[PromptDestinationCommand]) -> None:
         ...
-
-
-class FakePromptDestination(PromptDestination):
-    def get_all_prompts(self) -> Sequence[DestinationPrompt]:
-        ...
-
-    def update(self, commands: Sequence[PromptDestinationCommand]) -> None:
-        ...

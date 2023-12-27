@@ -22,7 +22,9 @@
                 "markis.code-coverage",
                 "Gerrnperl.outline-map",
                 "SeeLog.python-init-generator",
-                "Graphite.gti-vscode"
+                "Graphite.gti-vscode",
+                "aeschli.vscode-css-formatter",
+                "esbenp.prettier-vscode"
             ]
         }
     },

@@ -5,7 +5,7 @@ from .data_access.environment import host_input_dir, in_docker
 from .destination.ankiconnect.anki_converter import AnkiPromptConverter
 from .destination.ankiconnect.ankiconnect_css import CARD_MODEL_CSS
 from .destination.destination_ankiconnect import AnkiConnectDestination
-from .destination.destination_commands import PushPrompts
+from .destination.destination import PushPrompts
 from .destination.destination_dryrun import DryRunDestination
 from .diff_determiner import PromptDiffDeterminer
 from .source.document_ingester import MarkdownDocumentIngester
