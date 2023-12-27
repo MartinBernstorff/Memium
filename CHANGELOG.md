@@ -2,6 +2,25 @@
 
 
 
+## v0.8.2 (2023-12-27)
+
+### Fix
+
+* fix: false positives on brackets (#496)
+
+fix: false positives on brackets
+
+Fixes #495
+
+fix: remove entire code blocks ([`5606322`](https://github.com/MartinBernstorff/Memium/commit/56063221e2d3e02bf915e460d345d250b93c77f2))
+
+* fix: remove entire code blocks ([`780ec6f`](https://github.com/MartinBernstorff/Memium/commit/780ec6f8f825f93160524211c25ddd4a6870521c))
+
+* fix: false positives on brackets
+
+Fixes #495 ([`b2b656b`](https://github.com/MartinBernstorff/Memium/commit/b2b656be603a1af31c78b3e7a399190116482d0f))
+
+
 ## v0.8.1 (2023-12-27)
 
 ### Fix
