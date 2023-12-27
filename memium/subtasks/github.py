@@ -22,7 +22,6 @@ def get_issues_assigned_to_me(c: inv.Context) -> Sequence[GithubIssue] | None:
     my_issues_cmd = c.run(
         "gh issue list --assignee='@me' --json number,title", hide="out"
     )
-    print(my_issues_cmd.stdout)
 
     if my_issues_cmd is None:
         return None
