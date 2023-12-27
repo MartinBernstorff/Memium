@@ -13,4 +13,9 @@
             "query": "repo:${owner}/${repository} project:martinbernstorff/2 assignee:MartinBernstorff is:open"
         },
     ],
+    "git.branchProtection": [
+        "main",
+        "master",
+        "trunk"
+    ],
 }
