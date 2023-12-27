@@ -39,7 +39,19 @@ class TestMarkdownIngester:
         # Removing read and execute permissions for owner, group and others
         failed_path.chmod(0o200)
 
-        MarkdownDocumentSource(directory=tmp_path)._get_note_from_file(  # type: ignore[PrivateMethodUsage]
+        MarkdownDocumentSource(directory=tmp_path)._get_document_from_file(  # type: ignore[PrivateMethodUsage]
             Path("I do not exist")
         )
         assert "I do not exist" in caplog.records[0].message
+
+    def test_sanitize_to_valid_markdown(self):
+        input_str = """Linking to a valid [[Note|Note Alias]], and can handle [[Note2|Multiple Aliases]]"""
+        expected_output = """Linking to a valid _Note Alias_, and can handle _Multiple Aliases_"""
+        assert (
+            MarkdownDocumentSource(
+                directory=Path()
+            )._sanitize_to_valid_markdown(  # type: ignore[PrivateMethodUsage]
+                input_str
+            )
+            == expected_output
+        )
