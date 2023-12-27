@@ -3,12 +3,16 @@ from collections.abc import Sequence
 from dataclasses import dataclass
 
 import genanki
+import markdown
 
 
 @dataclass(frozen=True)
 class AnkiPrompt(ABC):
     base_deck: str
     tags: Sequence[str]
+
+    def field_to_html(self, field: str) -> str:
+        return markdown.markdown(field)
 
     @property
     @abstractmethod
