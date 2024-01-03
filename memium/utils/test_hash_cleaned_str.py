@@ -27,7 +27,7 @@ def test_hash_cleaned_str_should_ignore_punctuation():
 
 
 @pytest.mark.parametrize(
-    ("input_str", "hash_identical_str"), [("<p>Test</p>", "Test")]
+    ("input_str", "hash_identical_str"), [("<p>Test</p>", "Test"), ("å", "å")]
 )
 def test_hash_cleaned_str_should_remove_html_tags(
     input_str: str, hash_identical_str: str

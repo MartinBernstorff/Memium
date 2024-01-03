@@ -1,5 +1,6 @@
 import hashlib
 
+import unidecode
 from bs4 import BeautifulSoup
 
 
@@ -23,11 +24,21 @@ def remove_punctuation(text: str) -> str:
     return cleaned
 
 
+def decode_unicode(text: str) -> str:
+    """Standardise accents in a string."""
+    return unidecode.unidecode(text)
+
+
 def clean_str(input_str: str) -> str:
     """Clean string before hashing, so changes to spacing, punctuation, newlines etc. do not affect the hash."""
     cleaned = input_str
 
-    for cleaner in [remove_html_tags, remove_punctuation, remove_spaces]:
+    for cleaner in [
+        remove_html_tags,
+        remove_punctuation,
+        remove_spaces,
+        decode_unicode,
+    ]:
         cleaned = cleaner(cleaned)
 
     return cleaned
