@@ -2,6 +2,19 @@
 
 
 
+## v0.10.0 (2024-01-03)
+
+### Ci
+
+* ci: no need to manually specify latest tag ([`b71247c`](https://github.com/MartinBernstorff/Memium/commit/b71247cb91b10db88ce417cd0bf8ab4dc79d16a7))
+
+* ci: fix docker tag ([`3abf5b4`](https://github.com/MartinBernstorff/Memium/commit/3abf5b47074335216bdddb01b303d8da2b11eac9))
+
+### Feature
+
+* feat: update tag ([`84c845b`](https://github.com/MartinBernstorff/Memium/commit/84c845bf7964d329c872b767c7cc47ae098ef9bf))
+
+
 ## v0.9.0 (2024-01-03)
 
 ### Ci
