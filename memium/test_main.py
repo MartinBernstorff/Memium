@@ -13,13 +13,22 @@ from .destination.ankiconnect.ankiconnect_gateway import anki_connect_is_live
     reason="Tests require a running AnkiConnect server",
 )
 def test_main(
-    tmp_path: Path,
     caplog: pytest.LogCaptureFixture,
-    base_deck: str = "Tests::Integration Test deck",
+    base_deck: str = "Tests::Main Integration Test",
 ):
     caplog.set_level(logging.INFO)
-    output_path = tmp_path / "test.md"
-    with output_path.open("w") as f:
+
+    # Clear and delete output path
+    test_input_path = Path("/output")
+
+    if test_input_path.exists():
+        for entity in test_input_path.iterdir():
+            if not entity.is_dir():
+                entity.unlink()
+    else:
+        test_input_path.mkdir(parents=True)
+
+    with (test_input_path / "test.md").open("w") as f:
         f.write(
             """# Test note
 Q. Test question?
@@ -29,9 +38,15 @@ A. Test answer!
 
     main(
         base_deck=base_deck,
-        input_dir=tmp_path,
-        max_deletions_per_run=1,
-        dry_run=True,
+        input_dir=test_input_path,
+        max_deletions_per_run=2,
+        dry_run=False,
     )
-    assert "Pushing prompt" in caplog.text
-    assert "Test question?" in caplog.text
+
+    # Test idempotency
+    main(
+        base_deck=base_deck,
+        input_dir=test_input_path,
+        max_deletions_per_run=0,  # 0 deletions allowed to test idempotency
+        dry_run=False,
+    )

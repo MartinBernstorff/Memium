@@ -1,14 +1,35 @@
 import hashlib
+from collections.abc import Callable
+
+
+def remove_spaces(text: str) -> str:
+    """Remove spaces from a string."""
+    return text.replace(" ", "")
+
+
+def remove_html_tags(text: str) -> str:
+    from bs4 import BeautifulSoup
+
+    clean_text = BeautifulSoup(text, "html.parser").text
+    return clean_text
+
+
+def remove_punctuation(text: str) -> str:
+    """Clean string before hashing, so changes to spacing, punctuation, newlines etc. do not affect the hash."""
+    lowered = text.lower()
+
+    punctuation = r"""!"#$%&'()*+,-./:;<=>?@[\]^_`|~"""
+    cleaned = lowered.translate(str.maketrans("", "", punctuation))
+
+    return cleaned
 
 
 def clean_str(input_str: str) -> str:
     """Clean string before hashing, so changes to spacing, punctuation, newlines etc. do not affect the hash."""
-    lowered = input_str.lower()
+    cleaned = input_str
 
-    punctuation = r"""!"#$%&'()*+,-./:;<=>?@[\]^_`|~"""
-    cleaned = lowered.translate(str.maketrans("", "", punctuation)).replace(
-        " ", ""
-    )
+    for cleaner in [remove_punctuation, remove_spaces]:
+        cleaned = cleaner(cleaned)
 
     return cleaned
 
@@ -27,8 +48,9 @@ def int_hash_str(input_string: str, max_length: int = 10) -> int:
     return shortened
 
 
-def hash_cleaned_str(input_str: str) -> int:
+def hash_cleaned_str(
+    input_str: str, cleaner: Callable[[str], str] = clean_str
+) -> int:
     """Hash a string after cleaning it."""
-    cleaned = clean_str(input_str)
-    hashed = int_hash_str(cleaned)
+    hashed = int_hash_str(cleaner(input_str))
     return hashed

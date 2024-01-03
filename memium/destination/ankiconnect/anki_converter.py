@@ -2,12 +2,13 @@ from collections.abc import Sequence
 
 from functionalpy._sequence import Seq
 
-from ...source.prompts.prompt import BasePrompt
-from ...source.prompts.prompt_cloze import ClozePrompt
-from ...source.prompts.prompt_qa import QAPrompt
+from ...source.prompts.prompt import BasePrompt, DestinationPrompt
+from ...source.prompts.prompt_cloze import ClozePrompt, ClozeWithoutDoc
+from ...source.prompts.prompt_qa import QAPrompt, QAWithoutDoc
 from .anki_prompt import AnkiPrompt
 from .anki_prompt_cloze import AnkiCloze
 from .anki_prompt_qa import AnkiQA
+from .ankiconnect_gateway import NoteInfo
 
 
 class AnkiPromptConverter:
@@ -45,9 +46,37 @@ class AnkiPromptConverter:
                     "BasePrompt is the base class for all prompts, use a subclass"
                 )
 
+    def _note_info_to_prompt(self, note_info: NoteInfo) -> DestinationPrompt:
+        if "Question" in note_info.fields and "Answer" in note_info.fields:
+            return DestinationPrompt(
+                QAWithoutDoc(
+                    question=note_info.fields["Question"].value,
+                    answer=note_info.fields["Answer"].value,
+                    add_tags=note_info.tags,
+                ),
+                destination_id=str(note_info.noteId),
+            )
+
+        if "Text" in note_info.fields:
+            return DestinationPrompt(
+                ClozeWithoutDoc(
+                    text=note_info.fields["Text"].value, add_tags=note_info.tags
+                ),
+                destination_id=str(note_info.noteId),
+            )
+
+        raise ValueError(
+            f"NoteInfo {note_info} has neither Question nor Text field"
+        )
+
+    def note_infos_to_prompts(
+        self, note_infos: Sequence[NoteInfo]
+    ) -> Sequence[DestinationPrompt]:
+        """Takes an iterable of NoteInfos and turns them into DestinationPrompts"""
+        return Seq(note_infos).map(self._note_info_to_prompt).to_list()
+
     def prompts_to_cards(
         self, prompts: Sequence[BasePrompt]
     ) -> Sequence[AnkiPrompt]:
         """Takes an iterable of prompts and turns them into AnkiCards"""
-
         return Seq(prompts).map(self._prompt_to_card).to_list()

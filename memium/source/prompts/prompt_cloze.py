@@ -1,7 +1,7 @@
 from collections.abc import Sequence
 from dataclasses import dataclass
 
-from ...utils.hash_cleaned_str import clean_str, hash_cleaned_str, int_hash_str
+from ...utils.hash_cleaned_str import hash_cleaned_str, int_hash_str
 from ..document import Document
 from .prompt import BasePrompt
 
@@ -16,7 +16,7 @@ class ClozePrompt(BasePrompt):
 
     @property
     def update_uid(self) -> int:
-        return int_hash_str(f"{clean_str(self.text)}{self.tags}")
+        return int_hash_str(f"{(self.text)}{self.tags}")
 
     @property
     def tags(self) -> Sequence[str]:

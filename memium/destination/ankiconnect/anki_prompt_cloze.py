@@ -3,7 +3,7 @@ from dataclasses import dataclass
 
 import genanki
 
-from ...utils.hash_cleaned_str import clean_str, int_hash_str
+from ...utils.hash_cleaned_str import int_hash_str, remove_punctuation
 from .anki_prompt import AnkiPrompt
 
 
@@ -16,7 +16,7 @@ class AnkiCloze(AnkiPrompt):
 
     @property
     def uuid(self) -> int:
-        return int_hash_str(clean_str(self.text))
+        return int_hash_str(remove_punctuation(self.text))
 
     @property
     def genanki_model(self) -> genanki.Model:
