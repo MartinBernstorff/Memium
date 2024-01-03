@@ -2,6 +2,47 @@
 
 
 
+## v0.8.3 (2024-01-03)
+
+### Chore
+
+* chore(deps): update dependency dev/ruff to v0.1.11 ([`6fee03d`](https://github.com/MartinBernstorff/Memium/commit/6fee03d4fe2fc7f00aae79eec26eee5a70dd37e7))
+
+* chore(deps): update dependency dev/ruff to v0.1.10 ([`d491d3f`](https://github.com/MartinBernstorff/Memium/commit/d491d3f1ac75ec4aed2e7fc2e5c8fd0788fcf1a4))
+
+* chore(deps): update dependency functionalpy to v0.15.0 ([`937b6db`](https://github.com/MartinBernstorff/Memium/commit/937b6dbcb515237f660abc4879abe210c0d4b7f9))
+
+* chore(deps): update dependency tests/pytest to v7.4.4 ([`4f716ae`](https://github.com/MartinBernstorff/Memium/commit/4f716aec3dc662913c2a0e72503759e2409f2269))
+
+* chore(deps): update dependency dev/pyright to v1.1.344 ([`8519b4f`](https://github.com/MartinBernstorff/Memium/commit/8519b4fc8dd823608888c3f77501219b2119c0b1))
+
+### Fix
+
+* fix: AnkiConnect sync does not appear idempotent (#505)
+
+fix: AnkiConnect sync does not appear idempotent
+
+Fixes #503
+
+refactor: pure-ish functions for ankiconverter
+
+fix: apply the html cleaner ([`afe06ba`](https://github.com/MartinBernstorff/Memium/commit/afe06baca3d1cd09a0e3487bd10a68420e7041c9))
+
+* fix: apply the html cleaner ([`9aa0aaa`](https://github.com/MartinBernstorff/Memium/commit/9aa0aaaf23f909225a87d33a05d53a1b07f10d6b))
+
+* fix: AnkiConnect sync does not appear idempotent
+
+Fixes #503 ([`1cba106`](https://github.com/MartinBernstorff/Memium/commit/1cba106630f9f5fd2fde046296dc943254cdbc57))
+
+### Refactor
+
+* refactor: pure-ish functions for ankiconverter ([`ac82416`](https://github.com/MartinBernstorff/Memium/commit/ac82416fa2d834314d069cd30db53d14b37e174e))
+
+### Unknown
+
+* misc. ([`03319e8`](https://github.com/MartinBernstorff/Memium/commit/03319e8a8448d247902be953cbfcb16553d8c8d4))
+
+
 ## v0.8.2 (2023-12-27)
 
 ### Fix
