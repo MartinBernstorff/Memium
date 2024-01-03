@@ -21,6 +21,7 @@ dependencies = [
   "sentry-sdk==1.39.1",
   "typer==0.9.0",
   "tqdm==4.66.1",
+  "unidecode==1.3.7",
   "wasabi==1.1.2",
   "bs4==0.0.1",
 ]
