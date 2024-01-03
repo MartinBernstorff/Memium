@@ -66,6 +66,8 @@ This will start a docker container which updates your deck from `$INPUT_DIR`. In
 
 If you want to continuously sync the directory, set the `--watch-seconds [UPDATE_SECONDS]` argument as well.
 
+Keeping the package update can be a bit of a chore, which can be automated with [WatchTower](https://github.com/containrrr/watchtower).
+
 ## Use as library
 If you would like to build build your own Python application on top of the abstractions added here, you can install the library from pypi:
 
