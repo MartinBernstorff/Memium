@@ -18,7 +18,7 @@ from .test_anki_prompt_qa import FakeAnkiCloze, FakeAnkiQA
                 add_tags=["FakeTag"],
             ),
             FakeAnkiQA(
-                uuid=6947886967
+                uuid=4875918425
             ),  # Ensure that UUID generation remains stable to retain idempotency over time
         ),
         (
