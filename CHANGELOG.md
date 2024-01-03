@@ -2,6 +2,41 @@
 
 
 
+## v0.9.0 (2024-01-03)
+
+### Ci
+
+* ci: push docker image with version tag (#510)
+
+ci: push docker image with version tag
+
+Fixes #509 ([`5b37eda`](https://github.com/MartinBernstorff/Memium/commit/5b37edabed3e0c4f045b9f4fa561fba5a6a1fd0d))
+
+* ci: push docker image with version tag
+
+Fixes #509 ([`cab954e`](https://github.com/MartinBernstorff/Memium/commit/cab954e8a90370507eb73eb901991589cf89b7ff))
+
+* ci: push docker image with version tag
+
+Fixes #509 ([`e77d102`](https://github.com/MartinBernstorff/Memium/commit/e77d10217bc58e350e82916ff1b9246b70e41430))
+
+### Feature
+
+* feat: update tag ([`ec0c75c`](https://github.com/MartinBernstorff/Memium/commit/ec0c75c9ee9dcad4c8676bc686174b7a84257925))
+
+### Unknown
+
+* misc. ([`49ce7f7`](https://github.com/MartinBernstorff/Memium/commit/49ce7f79c013d75e21d34caaae1fc55b8a863dab))
+
+* dev: restack on submit (#508)
+
+dev: restack on submit
+
+Fixes #507
+
+misc. ([`1fec855`](https://github.com/MartinBernstorff/Memium/commit/1fec8557c2dfc41db703179396d8b150cc61b9c1))
+
+
 ## v0.8.4 (2024-01-03)
 
 ### Fix
@@ -23,6 +58,12 @@ refactor: clarify anki uuid usage ([`112a7f1`](https://github.com/MartinBernstor
 * refactor: What is the AnkiPrompt UUID used for?
 
 Fixes #504 ([`3d79f93`](https://github.com/MartinBernstorff/Memium/commit/3d79f93eba858f12495fa8212f9da93c017e019a))
+
+### Unknown
+
+* dev: restack on submit
+
+Fixes #507 ([`54a3dd8`](https://github.com/MartinBernstorff/Memium/commit/54a3dd8406472c43ecbcd7604f83a6bef837268b))
 
 
 ## v0.8.3 (2024-01-03)
