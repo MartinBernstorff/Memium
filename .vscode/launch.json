@@ -21,6 +21,7 @@
             "justMyCode": true,
             "args": [
                 "--input-dir=/Users/Shared/life-lessons/docs/life-lessons",
+                "--max-deletions-per-run=0",
             ]
         }
     ]
