@@ -53,6 +53,7 @@ If you want to sync markdown notes to Anki, here's how to get started!
 $INPUT_DIR="PATH_TO_YOUR_INPUT_DIR"
 
 docker run -i \
+  --name=memium \
   -e HOST_INPUT_DIR=$INPUT_DIR \
   -v $INPUT_DIR:/input \
   --restart unless-stopped \
