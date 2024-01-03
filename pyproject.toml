@@ -39,7 +39,7 @@ dev = [
   "invoke==2.2.0",
   "pyright==1.1.344",
   "pre-commit==3.6.0",
-  "ruff==0.1.10",
+  "ruff==0.1.11",
 ]
 tests = [
   "pytest==7.4.4",
