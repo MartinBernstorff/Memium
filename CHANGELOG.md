@@ -2,6 +2,43 @@
 
 
 
+## v0.11.0 (2024-01-03)
+
+### Documentation
+
+* docs: recommend naming memium container (#521) ([`d71ab7f`](https://github.com/MartinBernstorff/Memium/commit/d71ab7f3969c21e6b408f5febb5c7179e9af621a))
+
+### Feature
+
+* feat: add delays before erroring (#523)
+
+feat: add delays before erroring
+
+Fixes #522
+
+feat: add delays before erroring
+
+Fixes #522 ([`610aad2`](https://github.com/MartinBernstorff/Memium/commit/610aad2bfeeadb347c6c7691b6b104afdda264e9))
+
+* feat: add delays before erroring
+
+Fixes #522 ([`9ef8e6c`](https://github.com/MartinBernstorff/Memium/commit/9ef8e6cb3544b6fa4c0723af22802f3efa408155))
+
+* feat: add delays before erroring
+
+Fixes #522 ([`869d2a8`](https://github.com/MartinBernstorff/Memium/commit/869d2a86a27c233623cda3801bc3379cbbc2b5e5))
+
+### Unknown
+
+* misc. ([`3fc1fd4`](https://github.com/MartinBernstorff/Memium/commit/3fc1fd4411a809ba195b80edd4f82b6f74c976e1))
+
+* Update readme.md ([`94bcab8`](https://github.com/MartinBernstorff/Memium/commit/94bcab8b010d2467ddb0e8b34198be4db906a38d))
+
+* Update readme.md ([`fedbb9f`](https://github.com/MartinBernstorff/Memium/commit/fedbb9ff57e7f6c6da3230f9c61e94f84461e7c3))
+
+* Update readme.md ([`d15ec21`](https://github.com/MartinBernstorff/Memium/commit/d15ec21642496b2ecaf80d74f8425929f8159c30))
+
+
 ## v0.10.3 (2024-01-03)
 
 ### Fix
