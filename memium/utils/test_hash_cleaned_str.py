@@ -43,7 +43,9 @@ def test_hash_cleaned_str_should_remove_html_tags(
         ("pre <img src='testsrc' /> post", "pre_testsrc_post"),
         ("\t", ""),
         ("\n", ""),
-        ("""1. One\n2. Two""", "one_two"),
+        ("""1. One\n\t2. Two""", "one_two"),
+        ("""* One\n\t* Two""", "one_two"),
+        ("""- One\n\t- Two""", "one_two"),
         ("[link1](blah) and [link2](blah)", "link1_and_link2"),
     ],
 )
