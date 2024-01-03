@@ -71,6 +71,7 @@ class ClozePromptExtractor(BasePromptExtractor):
         prompts: list[ClozeFromDoc] = []
         blocks = self._get_blocks(document.content)
 
+        block_starting_line_nr = 1
         for block_string in blocks:
             if any(
                 exclusion_criterion(block_string)
@@ -80,6 +81,7 @@ class ClozePromptExtractor(BasePromptExtractor):
                 )
             ):
                 continue
+
             if self._has_cloze(block_string):
                 clozes = re.findall(r"{(?!BearID).[^}]*}", block_string)
 
@@ -89,7 +91,16 @@ class ClozePromptExtractor(BasePromptExtractor):
                     )
 
                     prompts.append(
-                        ClozeFromDoc(text=prompt_content, source_doc=document)
+                        ClozeFromDoc(
+                            text=prompt_content,
+                            parent_doc=document,
+                            line_nr=block_starting_line_nr,
+                        )
                     )
+
+            n_block_lines = len(
+                re.findall(r"\n", block_string, flags=re.DOTALL)
+            )
+            block_starting_line_nr += n_block_lines
 
         return prompts

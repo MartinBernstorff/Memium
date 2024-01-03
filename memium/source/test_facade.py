@@ -4,7 +4,7 @@ from pathlib import Path
 from .document import Document
 from .document_source import BaseDocumentSource
 from .extractors.extractor_qa import QAPromptExtractor
-from .source import DocumentPromptSource
+from .prompt_source import DocumentPromptSource
 
 
 def test_document_prompt_source():

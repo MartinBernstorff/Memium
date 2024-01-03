@@ -14,6 +14,7 @@ requires-python = ">=3.11"
 dependencies = [
   "cffi==1.16.0",
   "functionalpy==0.15.0",
+  "iter@https://github.com/MartinBernstorff/Iter/archive/refs/tags/v0.19.0.tar.gz",
   "genanki==0.13.1",
   "markdown==3.5.1",
   "pydantic==2.5.3",
