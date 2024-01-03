@@ -1,11 +1,12 @@
 from collections.abc import Sequence
-from typing import Protocol
+from typing import Protocol, runtime_checkable
 
 
+@runtime_checkable
 class BasePrompt(Protocol):
     @property
     def scheduling_uid(self) -> int:
-        """UID used when scheduling the prompt. If this UID changes, the scheduling of the prompt is reset."""
+        """UID used when scheduling the prompt. If this UID changes, the old prompt is deleted and a new prompt is created."""
         ...
 
     @property

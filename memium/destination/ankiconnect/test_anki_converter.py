@@ -44,7 +44,7 @@ def test_anki_prompt_converter(
     """Tests the AnkiPromptConverter class"""
     card = AnkiPromptConverter(
         base_deck="FakeDeck", card_css="FakeCSS"
-    ).prompts_to_cards([input_prompt])[0]
+    ).prompt_to_card(input_prompt)
 
     assert card.uuid == expected_card.uuid
     for attr in expected_card.__dict__:

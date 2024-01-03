@@ -5,12 +5,10 @@ import genanki
 from functionalpy._sequence import Seq
 
 from ..source.prompts.prompt import DestinationPrompt
-from ..source.prompts.prompt_cloze import ClozeWithoutDoc
-from ..source.prompts.prompt_qa import QAWithoutDoc
 from ..utils.hash_cleaned_str import hash_cleaned_str
 from .ankiconnect.anki_converter import AnkiPromptConverter
 from .ankiconnect.anki_prompt import AnkiPrompt
-from .ankiconnect.ankiconnect_gateway import AnkiConnectGateway, NoteInfo
+from .ankiconnect.ankiconnect_gateway import AnkiConnectGateway
 from .destination import (
     DeletePrompts,
     PromptDestination,
@@ -28,33 +26,10 @@ class AnkiConnectDestination(PromptDestination):
         self.gateway = gateway
         self.prompt_converter = prompt_converter
 
-    def _note_info_to_prompt(self, note_info: NoteInfo) -> DestinationPrompt:
-        if "Question" in note_info.fields and "Answer" in note_info.fields:
-            return DestinationPrompt(
-                QAWithoutDoc(
-                    question=note_info.fields["Question"].value,
-                    answer=note_info.fields["Answer"].value,
-                    add_tags=note_info.tags,
-                ),
-                destination_id=str(note_info.noteId),
-            )
-
-        if "Text" in note_info.fields:
-            return DestinationPrompt(
-                ClozeWithoutDoc(
-                    text=note_info.fields["Text"].value, add_tags=note_info.tags
-                ),
-                destination_id=str(note_info.noteId),
-            )
-
-        raise ValueError(
-            f"NoteInfo {note_info} has neither Question nor Text field"
-        )
-
     def get_all_prompts(self) -> Sequence[DestinationPrompt]:
         return (
             Seq(self.gateway.get_all_note_infos())
-            .map(self._note_info_to_prompt)
+            .map(self.prompt_converter.note_info_to_prompt)
             .to_list()
         )
 
@@ -85,7 +60,9 @@ class AnkiConnectDestination(PromptDestination):
         return genanki.Package(deck_or_decks=decks)
 
     def _push_prompts(self, command: PushPrompts) -> None:
-        cards = self.prompt_converter.prompts_to_cards(command.prompts)
+        cards = [
+            self.prompt_converter.prompt_to_card(e) for e in command.prompts
+        ]
 
         models = [card.genanki_model for card in cards]
         unique_models: dict[int, genanki.Model] = {
