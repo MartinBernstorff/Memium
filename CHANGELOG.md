@@ -2,6 +2,33 @@
 
 
 
+## v0.10.2 (2024-01-03)
+
+### Fix
+
+* fix: unicode encoding for uuids (#518)
+
+fix: Å encoding
+
+Fixes #517
+
+fix: Å encoding
+
+Fixes #517
+
+fix: handle unicode encoding for uids ([`2415f6a`](https://github.com/MartinBernstorff/Memium/commit/2415f6a4707625b3d10e29b1a60c7932b8ceee3b))
+
+* fix: handle unicode encoding for uids ([`94b4c7f`](https://github.com/MartinBernstorff/Memium/commit/94b4c7fb389692b8267454fa72c4ba8ef92242c7))
+
+* fix: Å encoding
+
+Fixes #517 ([`edba7e0`](https://github.com/MartinBernstorff/Memium/commit/edba7e04687902990b108d8d95d9c5e26d820bae))
+
+### Unknown
+
+* misc. ([`f07e7db`](https://github.com/MartinBernstorff/Memium/commit/f07e7db04dabd0c1b760c5ffa50cd285c02a839d))
+
+
 ## v0.10.1 (2024-01-03)
 
 ### Fix
