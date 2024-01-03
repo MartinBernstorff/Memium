@@ -1,17 +1,25 @@
 import hashlib
+import re
 
 import unidecode
 from bs4 import BeautifulSoup
 
 
-def remove_spaces(text: str) -> str:
-    """Remove spaces from a string."""
-    return text.replace(" ", "")
+def replace_whitespace(text: str) -> str:
+    return "_".join(text.split())
 
 
-def remove_html_tags(text: str) -> str:
-    clean_text = BeautifulSoup(text, "html.parser").text
-    return clean_text
+def remove_non_content_html_tags(text: str) -> str:
+    """Remove non-content html tags from a string."""
+    soup = BeautifulSoup(text, "html.parser")
+
+    for img in soup.find_all("img"):
+        if img.get("src"):
+            img.replace_with(img["src"])
+        else:
+            img.delete()
+
+    return soup.text
 
 
 def remove_punctuation(text: str) -> str:
@@ -24,9 +32,20 @@ def remove_punctuation(text: str) -> str:
     return cleaned
 
 
+def remove_markdown_links(text: str) -> str:
+    """Get the text from markdown links, e.g. '[link text](link url)' -> 'link text'"""
+    return re.sub(r"\[([^\]]+)\]\([^\)]+\)", r"\1", text)
+
+
 def decode_unicode(text: str) -> str:
     """Standardise accents in a string."""
     return unidecode.unidecode(text)
+
+
+def remove_list_markup(text: str) -> str:
+    """Remove markdown list markup, including '1. Item', '*' and '-'."""
+    without_list_numbers = re.sub(r"^\d+\. ", "", text, flags=re.MULTILINE)
+    return without_list_numbers.replace("* ", "").replace("- ", "")
 
 
 def clean_str(input_str: str) -> str:
@@ -34,10 +53,12 @@ def clean_str(input_str: str) -> str:
     cleaned = input_str
 
     for cleaner in [
-        remove_html_tags,
+        remove_non_content_html_tags,
+        remove_markdown_links,
+        remove_list_markup,
         remove_punctuation,
-        remove_spaces,
         decode_unicode,
+        replace_whitespace,
     ]:
         cleaned = cleaner(cleaned)
 

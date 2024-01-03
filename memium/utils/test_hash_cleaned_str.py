@@ -36,7 +36,16 @@ def test_hash_cleaned_str_should_remove_html_tags(
 
 
 @pytest.mark.parametrize(
-    ("input_str", "expected"), [("Is <2, but >4", "is2but4")]
+    ("input_str", "expected"),
+    [
+        ("Is <2, but >4", "is_2_but_4"),
+        ("Q. ![](src). Question?", "q_src_question"),
+        ("pre <img src='testsrc' /> post", "pre_testsrc_post"),
+        ("\t", ""),
+        ("\n", ""),
+        ("""1. One\n2. Two""", "one_two"),
+        ("[link1](blah) and [link2](blah)", "link1_and_link2"),
+    ],
 )
 def test_str_cleaner(input_str: str, expected: str):
-    assert clean_str(input_str) == clean_str(expected)
+    assert clean_str(input_str) == expected

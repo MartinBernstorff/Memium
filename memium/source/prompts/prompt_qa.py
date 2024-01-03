@@ -14,7 +14,7 @@ class QAPrompt(BasePrompt):
     @property
     def scheduling_uid_str(self) -> str:
         """Str used for generating the update_uid. Super helpful for debugging."""
-        return clean_str(f"{self.question}_{self.answer}")
+        return f"{clean_str(self.question)}_{clean_str(self.answer)}"
 
     @property
     def scheduling_uid(self) -> int:
