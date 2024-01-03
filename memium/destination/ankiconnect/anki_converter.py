@@ -29,6 +29,7 @@ class AnkiPromptConverter:
                     base_deck=deck,
                     tags=prompt.tags,
                     css=self.card_css,
+                    uuid=prompt.scheduling_uid,
                 )
             case ClozePrompt():
                 return AnkiCloze(
@@ -36,6 +37,7 @@ class AnkiPromptConverter:
                     base_deck=deck,
                     tags=prompt.tags,
                     css=self.card_css,
+                    uuid=prompt.scheduling_uid,
                 )
             case BasePrompt():
                 raise ValueError(

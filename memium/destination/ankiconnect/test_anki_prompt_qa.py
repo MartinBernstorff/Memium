@@ -15,6 +15,7 @@ class FakeAnkiQA(AnkiQA):
     question: str = "FakeQuestion"
     answer: str = "FakeAnswer"
     css: str = "FakeCSS"
+    uuid: int = 0
 
 
 def test_ankiqa_deck_inference():

@@ -6,18 +6,15 @@ from ...source.prompts.prompt_qa import QAWithoutDoc
 from .anki_converter import AnkiPromptConverter
 from .anki_prompt import AnkiPrompt
 from .anki_prompt_cloze import AnkiCloze
-from .anki_prompt_qa import AnkiQA
+from .test_anki_prompt_qa import FakeAnkiQA
 
-fake_anki_qa = AnkiQA(
-    question="FakeQuestion",
-    answer="FakeAnswer",
+fake_anki_qa = FakeAnkiQA()
+fake_anki_cloze = AnkiCloze(
+    text="FakeText",
     base_deck="FakeDeck",
     tags=["FakeTag"],
     css="FakeCSS",
-)
-
-fake_anki_cloze = AnkiCloze(
-    text="FakeText", base_deck="FakeDeck", tags=["FakeTag"], css="FakeCSS"
+    uuid=0,
 )
 
 
