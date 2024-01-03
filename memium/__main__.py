@@ -19,7 +19,7 @@ from memium.environment import get_env, host_input_dir, in_docker
 from memium.source.document_source import MarkdownDocumentSource
 from memium.source.extractors.extractor_cloze import ClozePromptExtractor
 from memium.source.extractors.extractor_qa import QAPromptExtractor
-from memium.source.source import DocumentPromptSource
+from memium.source.prompt_source import DocumentPromptSource
 
 log = logging.getLogger(__name__)
 
