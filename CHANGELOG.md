@@ -2,6 +2,59 @@
 
 
 
+## v0.10.1 (2024-01-03)
+
+### Fix
+
+* fix: deduplicate prompts on extraction (#516)
+
+fix: handle duplicate prompts
+
+Fixes #512
+
+fix: deduplicate prompts on extraction ([`cb1592b`](https://github.com/MartinBernstorff/Memium/commit/cb1592b4aa307946ad99ef432c368a7db15fb60d))
+
+* fix: deduplicate prompts on extraction ([`8f6cd54`](https://github.com/MartinBernstorff/Memium/commit/8f6cd5495891cdabfb22a6b848e32282370c425b))
+
+* fix: handle duplicate prompts
+
+Fixes #512 ([`683955a`](https://github.com/MartinBernstorff/Memium/commit/683955aa9261f3cdf19c2d326e5854966cf1af7a))
+
+### Refactor
+
+* refactor: easier hash debugging (#514)
+
+refactor: easier hash debugging
+
+Fixes #513
+
+refactor: easier hash debugging
+
+Fixes #513
+
+misc. ([`5b03293`](https://github.com/MartinBernstorff/Memium/commit/5b03293d55d702eda97709750c410ca014477c9d))
+
+* refactor: easier hash debugging
+
+Fixes #513 ([`ff2e8c7`](https://github.com/MartinBernstorff/Memium/commit/ff2e8c782a5abc9ce13afbc5ab3b7bb66abcec08))
+
+* refactor: easier hash debugging
+
+Fixes #513 ([`1b89c23`](https://github.com/MartinBernstorff/Memium/commit/1b89c2331e39cfde8a6626963a60a34df17b81be))
+
+### Style
+
+* style: lint ([`9bb033d`](https://github.com/MartinBernstorff/Memium/commit/9bb033d2f686d2f13ad58972d1efc2b6a39a5fd5))
+
+### Unknown
+
+* deps: get iter from https ([`a67617a`](https://github.com/MartinBernstorff/Memium/commit/a67617aae3cd2f61e0a2f0a66bc5aa771211eb3c))
+
+* misc. ([`8da7751`](https://github.com/MartinBernstorff/Memium/commit/8da7751e3e292bb475bc6795da4930df51b64c46))
+
+* misc. ([`4526cf0`](https://github.com/MartinBernstorff/Memium/commit/4526cf0be7a1de19236967acb577eac611e4cb5d))
+
+
 ## v0.10.0 (2024-01-03)
 
 ### Ci
