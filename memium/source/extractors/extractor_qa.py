@@ -56,9 +56,7 @@ class QAPromptExtractor(BasePromptExtractor):
 
     def extract_prompts(self, document: Document) -> Sequence[QAPrompt]:
         prompts: list[QAPrompt] = []
-
         blocks = self._string_to_blocks_by_newlines(document.content)
-
         block_starting_line_nr = 1
 
         for block_string in blocks:

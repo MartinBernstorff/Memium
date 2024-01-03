@@ -2,8 +2,8 @@ from collections.abc import Sequence
 from dataclasses import dataclass
 
 from ...utils.hash_cleaned_str import clean_str, hash_str_to_int
-from ..document import Document
 from .prompt import BasePrompt
+from .prompt_from_doc import PromptFromDocMixin
 
 
 @dataclass(frozen=True)
@@ -44,10 +44,7 @@ class QAWithoutDoc(QAPrompt):
 
 
 @dataclass(frozen=True)
-class QAFromDoc(QAPrompt):
-    parent_doc: Document
-    line_nr: int
-
+class QAFromDoc(QAPrompt, PromptFromDocMixin):
     @property
     def tags(self) -> Sequence[str]:
         return self.parent_doc.tags
