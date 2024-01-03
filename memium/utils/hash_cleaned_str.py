@@ -1,6 +1,8 @@
 import hashlib
 from collections.abc import Callable
 
+from bs4 import BeautifulSoup
+
 
 def remove_spaces(text: str) -> str:
     """Remove spaces from a string."""
@@ -8,8 +10,6 @@ def remove_spaces(text: str) -> str:
 
 
 def remove_html_tags(text: str) -> str:
-    from bs4 import BeautifulSoup
-
     clean_text = BeautifulSoup(text, "html.parser").text
     return clean_text
 
