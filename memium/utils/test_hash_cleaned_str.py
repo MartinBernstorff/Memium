@@ -1,6 +1,10 @@
 import pytest
 
-from .hash_cleaned_str import clean_str, hash_cleaned_str, hash_str_to_int
+from .hash_cleaned_str import clean_str, hash_str_to_int
+
+
+def hash_cleaned_str(input_str: str) -> int:
+    return hash_str_to_int(clean_str(input_str))
 
 
 def test_hash_cleaned_str_should_ignore_punctuation():
