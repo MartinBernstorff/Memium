@@ -5,7 +5,7 @@ import genanki
 from functionalpy._sequence import Seq
 
 from ..source.prompts.prompt import DestinationPrompt
-from ..utils.hash_cleaned_str import hash_cleaned_str
+from ..utils.hash_cleaned_str import clean_str, hash_str_to_int
 from .ankiconnect.anki_converter import AnkiPromptConverter
 from .ankiconnect.anki_prompt import AnkiPrompt
 from .ankiconnect.ankiconnect_gateway import AnkiConnectGateway
@@ -43,7 +43,9 @@ class AnkiConnectDestination(PromptDestination):
         self, grouped_cards: Mapping[str, Sequence[AnkiPrompt]]
     ) -> genanki.Deck:
         deck_name = next(iter(grouped_cards.keys()))
-        deck = genanki.Deck(name=deck_name, deck_id=hash_cleaned_str(deck_name))
+        deck = genanki.Deck(
+            name=deck_name, deck_id=hash_str_to_int(clean_str(deck_name))
+        )
 
         for card in grouped_cards[deck_name]:
             deck.add_note(card.to_genanki_note())  # type: ignore

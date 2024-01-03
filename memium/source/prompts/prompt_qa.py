@@ -1,7 +1,7 @@
 from collections.abc import Sequence
 from dataclasses import dataclass
 
-from ...utils.hash_cleaned_str import hash_cleaned_str, int_hash_str
+from ...utils.hash_cleaned_str import clean_str, hash_str_to_int
 from ..document import Document
 from .prompt import BasePrompt
 
@@ -12,12 +12,22 @@ class QAPrompt(BasePrompt):
     answer: str
 
     @property
+    def scheduling_uid_str(self) -> str:
+        """Str used for generating the update_uid. Super helpful for debugging."""
+        return clean_str(f"{self.question}_{self.answer}")
+
+    @property
     def scheduling_uid(self) -> int:
-        return hash_cleaned_str(f"{self.question}_{self.answer}")
+        return hash_str_to_int(self.scheduling_uid_str)
+
+    @property
+    def update_uid_str(self) -> str:
+        """Str used for generating the update_uid. Super helpful for debugging."""
+        return f"{self.question}_{self.answer}_{self.tags}"
 
     @property
     def update_uid(self) -> int:
-        return int_hash_str(f"{self.question}_{self.answer}_{self.tags}")
+        return hash_str_to_int(self.update_uid_str)
 
     @property
     def tags(self) -> Sequence[str]:

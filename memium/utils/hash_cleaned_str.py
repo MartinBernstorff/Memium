@@ -1,5 +1,4 @@
 import hashlib
-from collections.abc import Callable
 
 from bs4 import BeautifulSoup
 
@@ -34,7 +33,7 @@ def clean_str(input_str: str) -> str:
     return cleaned
 
 
-def int_hash_str(input_string: str, max_length: int = 10) -> int:
+def hash_str_to_int(input_string: str, max_length: int = 10) -> int:
     # Convert the string to bytes
     bytes_string = input_string.encode()
 
@@ -46,11 +45,3 @@ def int_hash_str(input_string: str, max_length: int = 10) -> int:
     shortened = unique_int % 10**max_length
 
     return shortened
-
-
-def hash_cleaned_str(
-    input_str: str, cleaner: Callable[[str], str] = clean_str
-) -> int:
-    """Hash a string after cleaning it."""
-    hashed = int_hash_str(cleaner(input_str))
-    return hashed
