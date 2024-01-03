@@ -29,7 +29,7 @@ class AnkiConnectDestination(PromptDestination):
     def get_all_prompts(self) -> Sequence[DestinationPrompt]:
         return (
             Seq(self.gateway.get_all_note_infos())
-            .map(self.prompt_converter._note_info_to_prompt)
+            .map(self.prompt_converter.note_info_to_prompt)
             .to_list()
         )
 
@@ -60,7 +60,9 @@ class AnkiConnectDestination(PromptDestination):
         return genanki.Package(deck_or_decks=decks)
 
     def _push_prompts(self, command: PushPrompts) -> None:
-        cards = self.prompt_converter.prompts_to_cards(command.prompts)
+        cards = [
+            self.prompt_converter.prompt_to_card(e) for e in command.prompts
+        ]
 
         models = [card.genanki_model for card in cards]
         unique_models: dict[int, genanki.Model] = {
