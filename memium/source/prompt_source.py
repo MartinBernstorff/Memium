@@ -7,8 +7,8 @@ from iter import Iter
 from .document import Document
 from .document_source import BaseDocumentSource
 from .extractors.extractor import BasePromptExtractor
-from .prompts.prompt_from_doc import PromptFromDocMixin
 from .prompts.prompt import BasePrompt
+from .prompts.prompt_from_doc import PromptFromDocMixin
 
 log = logging.getLogger(__name__)
 
