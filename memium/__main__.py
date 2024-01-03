@@ -1,4 +1,5 @@
 import logging
+import time
 from functools import partial
 from pathlib import Path
 from typing import Annotated, Optional
@@ -49,7 +50,7 @@ def main(
             tmp_read_dir=host_input_dir() if in_docker() else input_dir,
             tmp_write_dir=input_dir,
             max_deletions_per_run=max_deletions_per_run,
-            max_wait_seconds=0,
+            max_wait_seconds=30,
         ),
         prompt_converter=AnkiPromptConverter(
             base_deck=base_deck,
@@ -82,9 +83,11 @@ def cli(
             writable=True,
         ),
     ],
-    watch: Annotated[
+    watch_seconds: Annotated[
         Optional[int],  # noqa: UP007
-        typer.Option(help="Keep running, updating Anki deck every 15 seconds"),
+        typer.Option(
+            help="Keep running, updating Anki deck every [ARG] seconds"
+        ),
     ] = None,
     deck_name: Annotated[
         str,
@@ -138,9 +141,9 @@ def cli(
 
     if not skip_sync:
         main_fn()
-        if watch:
-            sleep_seconds = 60
-            log.info(f"Sync complete, sleeping for {sleep_seconds} seconds")
+        if watch_seconds:
+            log.info(f"Sync complete, sleeping for {watch_seconds} seconds")
+            time.sleep(watch_seconds)
             main_fn()
 
 

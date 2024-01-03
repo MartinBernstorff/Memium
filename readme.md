@@ -64,7 +64,7 @@ docker run -i \
 
 This will start a docker container which updates your deck from `$INPUT_DIR`. In case of updated files, it will sync the difference (create new prompts and delete deleted prompts) to Anki. 
 
-If you want to continuously sync the directory, set the `--watch [UPDATE_SECONDS]` argument as well.
+If you want to continuously sync the directory, set the `--watch-seconds [UPDATE_SECONDS]` argument as well.
 
 ## Use as library
 If you would like to build build your own Python application on top of the abstractions added here, you can install the library from pypi:
