@@ -2,6 +2,29 @@
 
 
 
+## v0.8.4 (2024-01-03)
+
+### Fix
+
+* fix: ankiconnect uuid handling  (#506)
+
+refactor: What is the AnkiPrompt UUID used for?
+
+Fixes #504
+
+refactor: clarify anki uuid usage ([`112a7f1`](https://github.com/MartinBernstorff/Memium/commit/112a7f126c7d2f3b05fdd941d4885e2d9d49fb91))
+
+* fix: tests ([`4069335`](https://github.com/MartinBernstorff/Memium/commit/406933579f4d4746ae2d9bdd3603c2cbb87e9142))
+
+### Refactor
+
+* refactor: clarify anki uuid usage ([`146bd44`](https://github.com/MartinBernstorff/Memium/commit/146bd44baa5d026c716498181b8c9e1280105c0c))
+
+* refactor: What is the AnkiPrompt UUID used for?
+
+Fixes #504 ([`3d79f93`](https://github.com/MartinBernstorff/Memium/commit/3d79f93eba858f12495fa8212f9da93c017e019a))
+
+
 ## v0.8.3 (2024-01-03)
 
 ### Chore
