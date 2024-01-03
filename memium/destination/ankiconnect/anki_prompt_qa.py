@@ -3,7 +3,7 @@ from dataclasses import dataclass
 
 import genanki
 
-from ...utils.hash_cleaned_str import int_hash_str, remove_punctuation
+from ...utils.hash_cleaned_str import int_hash_str
 from .anki_prompt import AnkiPrompt
 
 
@@ -14,10 +14,7 @@ class AnkiQA(AnkiPrompt):
     question: str
     answer: str
     css: str
-
-    @property
-    def uuid(self) -> int:
-        return int_hash_str(remove_punctuation(f"{self.question}{self.answer}"))
+    uuid: int  # UUID used for scheduling. If a new note is added with the same uuid, it will override the old note.
 
     @property
     def genanki_model(self) -> genanki.Model:
