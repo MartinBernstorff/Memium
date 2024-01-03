@@ -21,11 +21,6 @@
             "justMyCode": true,
             "args": [
                 "--input-dir=/Users/Shared/life-lessons/docs/life-lessons",
-                "--apkg-output-dir=/Users/Leisure/",
-                "--host-apkg-dir=/Users/Leisure/",
-                "--no-dry-run",
-                "--no-watch",
-                "--max-deletions-per-run=300",
             ]
         }
     ]

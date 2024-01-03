@@ -3,7 +3,7 @@ from dataclasses import dataclass
 
 import genanki
 
-from ...utils.hash_cleaned_str import int_hash_str
+from ...utils.hash_cleaned_str import hash_str_to_int
 from .anki_prompt import AnkiPrompt
 
 
@@ -65,7 +65,7 @@ class AnkiQA(AnkiPrompt):
         ]
 
         return genanki.Model(
-            model_id=int_hash_str("Ankdown QA with UUID"),
+            model_id=hash_str_to_int("Ankdown QA with UUID"),
             name=("Ankdown QA with UUID"),
             fields=model_fields,
             templates=model_template,

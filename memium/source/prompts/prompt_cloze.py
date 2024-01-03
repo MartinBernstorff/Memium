@@ -1,7 +1,7 @@
 from collections.abc import Sequence
 from dataclasses import dataclass
 
-from ...utils.hash_cleaned_str import hash_cleaned_str, int_hash_str
+from ...utils.hash_cleaned_str import clean_str, hash_str_to_int
 from ..document import Document
 from .prompt import BasePrompt
 
@@ -12,11 +12,11 @@ class ClozePrompt(BasePrompt):
 
     @property
     def scheduling_uid(self) -> int:
-        return hash_cleaned_str(self.text)
+        return hash_str_to_int(clean_str(self.text))
 
     @property
     def update_uid(self) -> int:
-        return int_hash_str(f"{(self.text)}{self.tags}")
+        return hash_str_to_int(f"{(self.text)}{self.tags}")
 
     @property
     def tags(self) -> Sequence[str]:
@@ -39,7 +39,7 @@ class ClozeFromDoc(ClozePrompt):
 
     @property
     def scheduling_uid(self) -> int:
-        return int_hash_str(self.text)
+        return hash_str_to_int(self.text)
 
     @property
     def tags(self) -> Sequence[str]:

@@ -6,20 +6,20 @@ from typing import Annotated, Optional
 import sentry_sdk
 import typer
 
-from .destination.ankiconnect.anki_converter import AnkiPromptConverter
-from .destination.ankiconnect.ankiconnect_gateway import (
+from memium.destination.ankiconnect.anki_converter import AnkiPromptConverter
+from memium.destination.ankiconnect.ankiconnect_gateway import (
     ANKICONNECT_URL,
     AnkiConnectGateway,
 )
-from .destination.destination import PushPrompts
-from .destination.destination_ankiconnect import AnkiConnectDestination
-from .destination.destination_dryrun import DryRunDestination
-from .diff_determiner import PromptDiffDeterminer
-from .environment import get_env, host_input_dir, in_docker
-from .source.document_source import MarkdownDocumentSource
-from .source.extractors.extractor_cloze import ClozePromptExtractor
-from .source.extractors.extractor_qa import QAPromptExtractor
-from .source.source import DocumentPromptSource
+from memium.destination.destination import PushPrompts
+from memium.destination.destination_ankiconnect import AnkiConnectDestination
+from memium.destination.destination_dryrun import DryRunDestination
+from memium.diff_determiner import PromptDiffDeterminer
+from memium.environment import get_env, host_input_dir, in_docker
+from memium.source.document_source import MarkdownDocumentSource
+from memium.source.extractors.extractor_cloze import ClozePromptExtractor
+from memium.source.extractors.extractor_qa import QAPromptExtractor
+from memium.source.source import DocumentPromptSource
 
 log = logging.getLogger(__name__)
 

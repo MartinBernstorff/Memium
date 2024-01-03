@@ -3,7 +3,7 @@ from dataclasses import dataclass
 
 import genanki
 
-from ...utils.hash_cleaned_str import int_hash_str
+from ...utils.hash_cleaned_str import hash_str_to_int
 from .anki_prompt import AnkiPrompt
 
 
@@ -19,7 +19,7 @@ class AnkiCloze(AnkiPrompt):
         model_name = "Ankdown Cloze with UUID"
 
         return genanki.Model(
-            model_id=int_hash_str(model_name),
+            model_id=hash_str_to_int(model_name),
             name=model_name,
             fields=[
                 {"name": "Text"},

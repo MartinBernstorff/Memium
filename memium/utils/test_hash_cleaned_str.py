@@ -1,6 +1,10 @@
 import pytest
 
-from .hash_cleaned_str import clean_str, hash_cleaned_str
+from .hash_cleaned_str import clean_str, hash_str_to_int
+
+
+def hash_cleaned_str(input_str: str) -> int:
+    return hash_str_to_int(clean_str(input_str))
 
 
 def test_hash_cleaned_str_should_ignore_punctuation():
@@ -12,17 +16,23 @@ def test_hash_cleaned_str_should_ignore_punctuation():
     ]
 
     assert (
-        len({hash_cleaned_str(s) for s in strings_should_hash_to_identical})
+        len(
+            {
+                hash_str_to_int(clean_str(s))
+                for s in strings_should_hash_to_identical
+            }
+        )
         == 1
     )
 
 
-def test_hash_cleaned_str_should_remove_html_tags():
-    strings_should_hash_to_identical = ["<p>Test</p>", "Test"]
-
-    assert hash_cleaned_str(
-        strings_should_hash_to_identical[0]
-    ) == hash_cleaned_str(strings_should_hash_to_identical[1])
+@pytest.mark.parametrize(
+    ("input_str", "hash_identical_str"), [("<p>Test</p>", "Test")]
+)
+def test_hash_cleaned_str_should_remove_html_tags(
+    input_str: str, hash_identical_str: str
+):
+    assert hash_cleaned_str(input_str) == hash_cleaned_str(hash_identical_str)
 
 
 @pytest.mark.parametrize(
