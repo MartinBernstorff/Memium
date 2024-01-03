@@ -28,7 +28,7 @@ def clean_str(input_str: str) -> str:
     """Clean string before hashing, so changes to spacing, punctuation, newlines etc. do not affect the hash."""
     cleaned = input_str
 
-    for cleaner in [remove_punctuation, remove_spaces]:
+    for cleaner in [remove_html_tags, remove_punctuation, remove_spaces]:
         cleaned = cleaner(cleaned)
 
     return cleaned
