@@ -1,15 +1,9 @@
-# This workflow will
-# - Find the latest version tag based on the commit history
-#   - Create a git tag for the new version
-#   - Update the version number in pyproject.toml based on the commit history
-# - Upload the package to PyPI
-# - Create a release on GitHub
-
 name: docker-publish
 on:
   push:
-    branches:
-      - main
+    tags:
+      - 'v*'
+  workflow_dispatch:
 
 jobs:
   release:
@@ -31,10 +25,23 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          # list of Docker images to use as base name for tags
+          images: |
+            ghcr.io/martinbernstorff/memium:latest
+          # generate Docker tags based on the following events/attributes
+          tags: |
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{major}}
+
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
           context: .
           push: true
           platforms: linux/amd64,linux/arm64
-          tags: ghcr.io/martinbernstorff/memium:latest
+          tags: ${{ steps.meta.outputs.tags }}
