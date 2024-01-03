@@ -2,6 +2,29 @@
 
 
 
+## v0.10.3 (2024-01-03)
+
+### Fix
+
+* fix: improve content-extraction for scheduling uuid detection (#520)
+
+fix: improve content-extraction for scheduling uuid detection
+
+Fixes #519
+
+misc. ([`b0ac0ce`](https://github.com/MartinBernstorff/Memium/commit/b0ac0cef0c047324cfa418ced7654f60006df670))
+
+* fix: only remove list markup if at beginning of line ([`a112e11`](https://github.com/MartinBernstorff/Memium/commit/a112e1187f5898f8d55d86a279a27c770f3561fe))
+
+* fix: improve content-extraction for scheduling uuid detection
+
+Fixes #519 ([`4acfd59`](https://github.com/MartinBernstorff/Memium/commit/4acfd598ddf12df573f5151e6e3374209f91bf1c))
+
+### Unknown
+
+* misc. ([`f53455c`](https://github.com/MartinBernstorff/Memium/commit/f53455c8a707eb0f5b2a085d734e418bdac0d967))
+
+
 ## v0.10.2 (2024-01-03)
 
 ### Fix
