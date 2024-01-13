@@ -44,9 +44,9 @@ class TableExtractor(BasePromptExtractor):
                     parsed_tables.append(
                         ParsedTable(
                             rows=rows,
-                            mode=metadata[0].strip(),
-                            front=metadata[1].strip(),
-                            back=metadata[2].strip(),
+                            mode=metadata[0].strip(),  # type: ignore
+                            front=metadata[1].strip(),  # type: ignore
+                            back=metadata[2].strip(),  # type: ignore
                         )
                     )
         return parsed_tables

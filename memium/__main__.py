@@ -22,6 +22,8 @@ from memium.source.extractors.extractor_cloze import ClozePromptExtractor
 from memium.source.extractors.extractor_qa import QAPromptExtractor
 from memium.source.prompt_source import DocumentPromptSource
 
+from .source.extractors.extractor_table import TableExtractor
+
 log = logging.getLogger(__name__)
 
 app = typer.Typer()
@@ -39,6 +41,7 @@ def main(
         prompt_extractors=[
             QAPromptExtractor(question_prefix="Q.", answer_prefix="A."),
             ClozePromptExtractor(),
+            TableExtractor(),
         ],
     ).get_prompts()
 
