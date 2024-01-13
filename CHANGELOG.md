@@ -2,6 +2,39 @@
 
 
 
+## v0.12.0 (2024-01-13)
+
+### Chore
+
+* chore(deps): update dependency dev/ruff to v0.1.13 ([`1a1d6e2`](https://github.com/MartinBernstorff/Memium/commit/1a1d6e260e9a82bae5daf0a7fcddb4ac06d9c688))
+
+* chore(deps): update dependency dev/ruff to v0.1.12 ([`0ce963f`](https://github.com/MartinBernstorff/Memium/commit/0ce963fd0ee95751ccfe419b8b2385f6750fe092))
+
+* chore(deps): update dependency unidecode to v1.3.8 ([`59b5add`](https://github.com/MartinBernstorff/Memium/commit/59b5addf89e500f59a5ab8a15ff416cb204a7440))
+
+* chore(deps): update dependency markdown to v3.5.2 ([`7c2c0c4`](https://github.com/MartinBernstorff/Memium/commit/7c2c0c45f2938701b377144b99127f461d89fe82))
+
+* chore(deps): update dependency sentry-sdk to v1.39.2 ([`9159fec`](https://github.com/MartinBernstorff/Memium/commit/9159fec58de91091e92dc7c2c58fb4aa6ffd16d0))
+
+* chore(deps): update dependency dev/pyright to v1.1.345 ([`9ead8ac`](https://github.com/MartinBernstorff/Memium/commit/9ead8ac6f1d0e6c7b3be7819235c42fcb623e467))
+
+* chore(deps): update python-semantic-release/python-semantic-release action to v8.7.2 ([`66341e5`](https://github.com/MartinBernstorff/Memium/commit/66341e56aa17eb6793edbc331cfc3a5051c386c8))
+
+### Feature
+
+* feat: table parser (#531) ([`8c0d109`](https://github.com/MartinBernstorff/Memium/commit/8c0d109fd745c995ca521f172c91395e03dccd3c))
+
+* feat: add table parser ([`dc3fac7`](https://github.com/MartinBernstorff/Memium/commit/dc3fac74bee7c60e2560754c050b028a6a663993))
+
+### Unknown
+
+* misc. ([`9cf8996`](https://github.com/MartinBernstorff/Memium/commit/9cf8996d418dd032395a8f8615fb8d1ab052ce1b))
+
+* isc. ([`5c90585`](https://github.com/MartinBernstorff/Memium/commit/5c905852dd1b61a29d1c1b62be7c14af570f3e6f))
+
+* Update readme.md ([`325eb87`](https://github.com/MartinBernstorff/Memium/commit/325eb879abde96460deab0513bf7a344a1fb2b74))
+
+
 ## v0.11.0 (2024-01-03)
 
 ### Documentation
