@@ -26,7 +26,7 @@ class TableExtractor(BasePromptExtractor):
         rows: list[dict[str, str]] = []
         parsed_tables: Sequence[ParsedTable] = []
         for n, line in enumerate(input_str[1:-1].split("\n")):
-            data = {}
+            data: dict[str, str] = {}
             if n == 0:
                 header = [
                     cell.strip() for cell in line.strip().split("|") if cell
@@ -35,7 +35,7 @@ class TableExtractor(BasePromptExtractor):
                 # Is a row
                 if line.startswith("|"):
                     values = [cell.strip() for cell in line.split("|") if cell]
-                    for col, value in zip(header, values, strict=False):
+                    for col, value in zip(header, values, strict=False):  # type: ignore
                         data[col] = value
                     rows.append(data)
                 # Is description
