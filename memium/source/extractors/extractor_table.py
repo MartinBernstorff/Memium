@@ -25,12 +25,10 @@ class TableExtractor(BasePromptExtractor):
 
         rows: list[dict[str, str]] = []
         parsed_tables: Sequence[ParsedTable] = []
-        for n, line in enumerate(input_str[1:-1].split("\n")):
+        for n, line in enumerate(input_str.strip().split("\n")):
             data: dict[str, str] = {}
             if n == 0:
-                header = [
-                    cell.strip() for cell in line.strip().split("|") if cell
-                ]
+                header = [cell.strip() for cell in line.split("|") if cell]
             if n > 1:
                 # Is a row
                 if line.startswith("|"):
