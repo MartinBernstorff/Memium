@@ -2,6 +2,15 @@
 
 
 
+## v0.12.1 (2024-01-14)
+
+### Fix
+
+* fix: correct table extraction without trailing spaces (#535) ([`9a1e1ba`](https://github.com/MartinBernstorff/Memium/commit/9a1e1ba7f826d74249e1de6f2dccfcd5176df3a4))
+
+* fix: correct table extraction without trailing spaces ([`8cb789c`](https://github.com/MartinBernstorff/Memium/commit/8cb789c3c756dcc6ea419bfac01995e271708e98))
+
+
 ## v0.12.0 (2024-01-13)
 
 ### Chore
