@@ -16,8 +16,7 @@ def test_table_extractor():
 | R2C1 | R2C2 |
 Descending // |Column one| is real? // |Column two|
 Ascending // |Column two|? // |Column one|
-Rowwise // |Column one|? // |Column two|
-    """,
+Rowwise // |Column one|? // |Column two|""",
         source_path=Path(__file__),
     )
 
