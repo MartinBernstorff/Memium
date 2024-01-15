@@ -2,6 +2,31 @@
 
 
 
+## v0.13.0 (2024-01-15)
+
+### Chore
+
+* chore(deps): update dependency dev/pyright to v1.1.347 ([`23224db`](https://github.com/MartinBernstorff/Memium/commit/23224dbeeaba28b81147c52cf94a678893d83738))
+
+* chore(deps): update dependency dev/pyright to v1.1.346 ([`f0f6cb5`](https://github.com/MartinBernstorff/Memium/commit/f0f6cb518c5d2e6380620da4b58eab1301defa70))
+
+### Feature
+
+* feat: exclude sparse cells from TableExtractor (#542)
+
+misc.
+
+misc. ([`244dabc`](https://github.com/MartinBernstorff/Memium/commit/244dabce4ec3a855e2bbdb3d0d69406f0fdb48d1))
+
+### Unknown
+
+* Update readme.md ([`bae4dd3`](https://github.com/MartinBernstorff/Memium/commit/bae4dd316c40fe1f5144602f1435af2320fc26c0))
+
+* misc. ([`a49db4e`](https://github.com/MartinBernstorff/Memium/commit/a49db4ee5bed97cf90c173622a79e636d13cbb27))
+
+* misc. ([`dc24aad`](https://github.com/MartinBernstorff/Memium/commit/dc24aade3a6aef60248ad353e84ed1f511618c06))
+
+
 ## v0.12.1 (2024-01-14)
 
 ### Fix
