@@ -3,11 +3,12 @@
 [![Open in Dev Container](https://img.shields.io/static/v1?label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)][dev container]
 [![PyPI](https://img.shields.io/pypi/v/memium.svg)][pypi status]
 [![Python Version](https://img.shields.io/pypi/pyversions/memium)][pypi status]
+[![Roadmap](https://img.shields.io/badge/Board-Roadmap-green)][roadmap]
 
 [dev container]: https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/MartinBernstorff/memium/
 [pypi status]: https://pypi.org/project/memium/
 [documentation]: https://MartinBernstorff.github.io/memium/
-
+[roadmap]: https://github.com/users/MartinBernstorff/projects/2
 
 <!-- start short-description -->
 
