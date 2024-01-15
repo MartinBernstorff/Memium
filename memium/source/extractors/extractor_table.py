@@ -78,7 +78,10 @@ class TableExtractor(BasePromptExtractor):
                     f"|{placeholder}|", front_row[placeholder]
                 )
                 back = back.replace(f"|{placeholder}|", back_row[placeholder])
-            prompts.append(QAPrompt(question=front, answer=back))
+
+            # Skip rows with empty fronts or backs
+            if front and back:
+                prompts.append(QAPrompt(question=front, answer=back))
             if i == break_index:
                 break
         return prompts
