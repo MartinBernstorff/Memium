@@ -18,6 +18,12 @@ class ParsedTable:
     back: str
 
 
+@dataclass(frozen=True)
+class RowPair:
+    front: dict[str, str]
+    back: dict[str, str]
+
+
 class TableExtractor(BasePromptExtractor):
     def _parse_table(self, input_str: str) -> Sequence[ParsedTable]:
         if not input_str.startswith("|"):
@@ -49,36 +55,54 @@ class TableExtractor(BasePromptExtractor):
                     )
         return parsed_tables
 
-    def parsed_table_to_prompt(
+    def _get_row_pair(self, parsed_table: ParsedTable, i: int) -> RowPair:
+        match parsed_table.mode:
+            case "Ascending":
+                front_row = parsed_table.rows[-1 - i]
+                back_row = parsed_table.rows[-2 - i]
+            case "Descending":
+                front_row = parsed_table.rows[i]
+                back_row = parsed_table.rows[i + 1]
+            case "Rowwise":
+                front_row = parsed_table.rows[i]
+                back_row = parsed_table.rows[i]
+
+        return RowPair(front_row, back_row)
+
+    def _replace_placeholders(
+        self, parsed_table: ParsedTable, row_pair: RowPair
+    ) -> tuple[str, str]:
+        front_placeholders = re.findall(r"\|(.+?)\|", parsed_table.front)
+        back_placeholders = re.findall(r"\|(.+?)\|", parsed_table.back)
+        front = parsed_table.front
+        back = parsed_table.back
+
+        for placeholder in [*front_placeholders, *back_placeholders]:
+            front = front.replace(
+                f"|{placeholder}|", row_pair.front[placeholder]
+            )
+            back = back.replace(f"|{placeholder}|", row_pair.back[placeholder])
+
+        return front, back
+
+    def _parsed_table_to_prompt(
         self, parsed_table: ParsedTable
     ) -> Sequence[QAPrompt]:
         prompts: Sequence[QAPrompt] = []
+        match parsed_table.mode:
+            case "Ascending" | "Descending":
+                break_index = len(parsed_table.rows) - 2
+            case "Rowwise":
+                break_index = len(parsed_table.rows) - 1
+
         for i in range(len(parsed_table.rows)):
-            match parsed_table.mode:
-                case "Ascending":
-                    front_row = parsed_table.rows[-1 - i]
-                    back_row = parsed_table.rows[-2 - i]
-                    break_index = len(parsed_table.rows) - 2
-                case "Descending":
-                    front_row = parsed_table.rows[i]
-                    back_row = parsed_table.rows[i + 1]
-                    break_index = len(parsed_table.rows) - 2
-                case "Rowwise":
-                    front_row = parsed_table.rows[i]
-                    back_row = parsed_table.rows[i]
-                    break_index = len(parsed_table.rows) - 1
+            row_pair = self._get_row_pair(parsed_table, i)
 
-            front_placeholders = re.findall(r"\|(.+?)\|", parsed_table.front)
-            back_placeholders = re.findall(r"\|(.+?)\|", parsed_table.back)
-            front = parsed_table.front
-            back = parsed_table.back
+            front, back = self._replace_placeholders(parsed_table, row_pair)
 
-            for placeholder in [*front_placeholders, *back_placeholders]:
-                front = front.replace(
-                    f"|{placeholder}|", front_row[placeholder]
-                )
-                back = back.replace(f"|{placeholder}|", back_row[placeholder])
-            prompts.append(QAPrompt(question=front, answer=back))
+            # Skip rows with empty fronts or backs
+            if front and back:
+                prompts.append(QAPrompt(question=front, answer=back))
             if i == break_index:
                 break
         return prompts
@@ -92,7 +116,7 @@ class TableExtractor(BasePromptExtractor):
             for parsed_table in sublist
         ]
         prompts = [
-            self.parsed_table_to_prompt(parsed_table)
+            self._parsed_table_to_prompt(parsed_table)
             for parsed_table in flattened_parsed_tables
         ]
         flattened_prompts = [
