@@ -14,7 +14,7 @@ requires-python = ">=3.11"
 dependencies = [
   "cffi==1.16.0",
   "functionalpy==0.15.0",
-  "iter@https://github.com/MartinBernstorff/Iter/archive/refs/tags/v0.19.0.tar.gz",
+  "iterpy==0.22.0",
   "genanki==0.13.1",
   "markdown==3.5.2",
   "pydantic==2.5.3",
@@ -39,6 +39,7 @@ memium = "memium.__main__:app"
 [project.optional-dependencies]
 dev = [
   "cruft==2.15.0",
+  "herbarium",
   "invoke==2.2.0",
   "pyright==1.1.347",
   "pre-commit==3.6.0",
