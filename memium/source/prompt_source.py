@@ -2,7 +2,7 @@ import logging
 from collections.abc import Sequence
 from typing import Protocol
 
-from iter import Iter
+from iterpy import Iter
 
 from .document import Document
 from .document_source import BaseDocumentSource
