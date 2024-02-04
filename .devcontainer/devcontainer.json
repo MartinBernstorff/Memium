@@ -17,14 +17,14 @@
                 "ms-python.python",
                 "ms-python.vscode-pylance",
                 "GitHub.vscode-pull-request-github",
-                "ms-vscode.makefile-tools",
                 "github.vscode-github-actions",
                 "markis.code-coverage",
                 "Gerrnperl.outline-map",
                 "SeeLog.python-init-generator",
                 "Graphite.gti-vscode",
                 "aeschli.vscode-css-formatter",
-                "esbenp.prettier-vscode"
+                "esbenp.prettier-vscode",
+                "MichaelCurrin.auto-commit-msg"
             ]
         }
     },
