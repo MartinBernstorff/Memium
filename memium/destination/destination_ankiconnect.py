@@ -1,8 +1,8 @@
 import logging
-from collections.abc import Mapping, Sequence
+from collections.abc import Sequence
 
 import genanki
-from functionalpy._sequence import Seq
+from iterpy import Iter
 
 from ..source.prompts.prompt import DestinationPrompt
 from ..utils.hash_cleaned_str import clean_str, hash_str_to_int
@@ -28,7 +28,7 @@ class AnkiConnectDestination(PromptDestination):
 
     def get_all_prompts(self) -> Sequence[DestinationPrompt]:
         return (
-            Seq(self.gateway.get_all_note_infos())
+            Iter(self.gateway.get_all_note_infos())
             .map(self.prompt_converter.note_info_to_prompt)
             .to_list()
         )
@@ -40,24 +40,25 @@ class AnkiConnectDestination(PromptDestination):
         self.gateway.delete_notes(list(prompt_ids))
 
     def _grouped_cards_to_deck(
-        self, grouped_cards: Mapping[str, Sequence[AnkiPrompt]]
+        self, grouped_cards: tuple[str, Sequence[AnkiPrompt]]
     ) -> genanki.Deck:
-        deck_name = next(iter(grouped_cards.keys()))
+        deck_name = grouped_cards[0]
         deck = genanki.Deck(
             name=deck_name, deck_id=hash_str_to_int(clean_str(deck_name))
         )
 
-        for card in grouped_cards[deck_name]:
+        for card in grouped_cards[1]:
             deck.add_note(card.to_genanki_note())  # type: ignore
 
         return deck
 
     def _create_package(self, cards: Sequence[AnkiPrompt]) -> genanki.Package:
-        cards_grouped_by_deck = Seq(cards).groupby(lambda card: card.deck)
-        decks = [
-            self._grouped_cards_to_deck({group: cards_grouped_by_deck[group]})
-            for group in cards_grouped_by_deck
-        ]
+        decks = (
+            Iter(cards)
+            .groupby(lambda card: card.deck)
+            .map(self._grouped_cards_to_deck)
+            .to_list()
+        )
 
         return genanki.Package(deck_or_decks=decks)
 
