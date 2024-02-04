@@ -1,3 +1,4 @@
+import enum
 import re
 from collections.abc import Sequence
 from dataclasses import dataclass
@@ -10,10 +11,16 @@ from ..prompts.prompt_qa import QAPrompt
 from .extractor import BasePromptExtractor
 
 
+class TableParseMode(enum.Enum):
+    ASCENDING = "Ascending"
+    DESCENDING = "Descending"
+    ROWWISE = "Rowwise"
+
+
 @dataclass(frozen=True)
 class ParsedTable:
     rows: list[dict[str, str]]
-    mode: Literal["Ascending", "Descending", "Rowwise"]
+    mode: TableParseMode
     front: str
     back: str
 
@@ -45,25 +52,37 @@ class TableExtractor(BasePromptExtractor):
                 # Is description
                 elif "//" in line:
                     metadata = line.split("//")
+                    mode_string: Literal[
+                        "Ascending", "Descending", "Rowwise", "Row-wise"
+                    ] = metadata[0].strip()  # type: ignore
+
+                    match mode_string:
+                        case "Ascending":
+                            mode = TableParseMode.ASCENDING
+                        case "Descending":
+                            mode = TableParseMode.DESCENDING
+                        case "Rowwise" | "Row-wise":
+                            mode = TableParseMode.ROWWISE
+
                     parsed_tables.append(
                         ParsedTable(
                             rows=rows,
-                            mode=metadata[0].strip(),  # type: ignore
-                            front=metadata[1].strip(),  # type: ignore
-                            back=metadata[2].strip(),  # type: ignore
+                            mode=mode,
+                            front=metadata[1].strip(),
+                            back=metadata[2].strip(),
                         )
                     )
         return parsed_tables
 
     def _get_row_pair(self, parsed_table: ParsedTable, i: int) -> RowPair:
         match parsed_table.mode:
-            case "Ascending":
+            case TableParseMode.ASCENDING:
                 front_row = parsed_table.rows[-1 - i]
                 back_row = parsed_table.rows[-2 - i]
-            case "Descending":
+            case TableParseMode.DESCENDING:
                 front_row = parsed_table.rows[i]
                 back_row = parsed_table.rows[i + 1]
-            case "Rowwise":
+            case TableParseMode.ROWWISE:
                 front_row = parsed_table.rows[i]
                 back_row = parsed_table.rows[i]
 
@@ -90,9 +109,9 @@ class TableExtractor(BasePromptExtractor):
     ) -> Sequence[QAPrompt]:
         prompts: Sequence[QAPrompt] = []
         match parsed_table.mode:
-            case "Ascending" | "Descending":
+            case TableParseMode.ASCENDING | TableParseMode.DESCENDING:
                 break_index = len(parsed_table.rows) - 2
-            case "Rowwise":
+            case TableParseMode.ROWWISE:
                 break_index = len(parsed_table.rows) - 1
 
         for i in range(len(parsed_table.rows)):
