@@ -27,19 +27,14 @@ from .destination_ankiconnect import AnkiConnectDestination
             }
         ),
         pytest.param(
-            ({"UnknownField": AnkiField(value="MockText", order=0)}),
-            marks=pytest.mark.xfail,
+            ({"UnknownField": AnkiField(value="MockText", order=0)}), marks=pytest.mark.xfail
         ),
     ],
 )
 def test_ankiconnect_get_all_prompts(fields: Mapping[str, AnkiField]):
     dest = AnkiConnectDestination(
-        gateway=SpieAnkiconnectGateway(
-            note_infos=[MockNoteInfo(fields=fields)]
-        ),
-        prompt_converter=AnkiPromptConverter(
-            base_deck="FakeDeck", card_css="FakeCSS"
-        ),
+        gateway=SpieAnkiconnectGateway(note_infos=[MockNoteInfo(fields=fields)]),
+        prompt_converter=AnkiPromptConverter(base_deck="FakeDeck", card_css="FakeCSS"),
     )
     prompts = dest.get_all_prompts()
 
@@ -50,9 +45,7 @@ def test_ankiconnect_push_prompts():
     gateway = SpieAnkiconnectGateway()
     dest = AnkiConnectDestination(
         gateway=gateway,
-        prompt_converter=AnkiPromptConverter(
-            base_deck="FakeDeck", card_css="FakeCSS"
-        ),
+        prompt_converter=AnkiPromptConverter(base_deck="FakeDeck", card_css="FakeCSS"),
     )
     dest.update(
         [
@@ -81,12 +74,5 @@ def test_ankiconnect_push_prompts():
 
     for command in expected_commands:
         assert (
-            len(
-                [
-                    c
-                    for c in gateway.executed_commands
-                    if isinstance(c, command[0])
-                ]
-            )
-            == command[1]
+            len([c for c in gateway.executed_commands if isinstance(c, command[0])]) == command[1]
         )

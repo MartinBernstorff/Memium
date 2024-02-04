@@ -18,9 +18,7 @@ A. Nothing""",
                 )
             ]
         ),
-        prompt_extractors=[
-            QAPromptExtractor(question_prefix="Q.", answer_prefix="A.")
-        ],
+        prompt_extractors=[QAPromptExtractor(question_prefix="Q.", answer_prefix="A.")],
     )
     prompts = source.get_prompts()
     assert len(prompts) == 1

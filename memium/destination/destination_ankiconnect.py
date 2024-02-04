@@ -9,20 +9,13 @@ from ..utils.hash_cleaned_str import clean_str, hash_str_to_int
 from .ankiconnect.anki_converter import AnkiPromptConverter
 from .ankiconnect.anki_prompt import AnkiPrompt
 from .ankiconnect.ankiconnect_gateway import AnkiConnectGateway
-from .destination import (
-    DeletePrompts,
-    PromptDestination,
-    PromptDestinationCommand,
-    PushPrompts,
-)
+from .destination import DeletePrompts, PromptDestination, PromptDestinationCommand, PushPrompts
 
 log = logging.getLogger(__name__)
 
 
 class AnkiConnectDestination(PromptDestination):
-    def __init__(
-        self, gateway: AnkiConnectGateway, prompt_converter: AnkiPromptConverter
-    ) -> None:
+    def __init__(self, gateway: AnkiConnectGateway, prompt_converter: AnkiPromptConverter) -> None:
         self.gateway = gateway
         self.prompt_converter = prompt_converter
 
@@ -34,18 +27,14 @@ class AnkiConnectDestination(PromptDestination):
         )
 
     def _delete_prompts(self, prompts: Sequence[DestinationPrompt]) -> None:
-        prompt_ids = {
-            int(remote_prompt.destination_id) for remote_prompt in prompts
-        }
+        prompt_ids = {int(remote_prompt.destination_id) for remote_prompt in prompts}
         self.gateway.delete_notes(list(prompt_ids))
 
     def _grouped_cards_to_deck(
         self, grouped_cards: tuple[str, Sequence[AnkiPrompt]]
     ) -> genanki.Deck:
         deck_name = grouped_cards[0]
-        deck = genanki.Deck(
-            name=deck_name, deck_id=hash_str_to_int(clean_str(deck_name))
-        )
+        deck = genanki.Deck(name=deck_name, deck_id=hash_str_to_int(clean_str(deck_name)))
 
         for card in grouped_cards[1]:
             deck.add_note(card.to_genanki_note())  # type: ignore
@@ -54,18 +43,13 @@ class AnkiConnectDestination(PromptDestination):
 
     def _create_package(self, cards: Sequence[AnkiPrompt]) -> genanki.Package:
         decks = (
-            Iter(cards)
-            .groupby(lambda card: card.deck)
-            .map(self._grouped_cards_to_deck)
-            .to_list()
+            Iter(cards).groupby(lambda card: card.deck).map(self._grouped_cards_to_deck).to_list()
         )
 
         return genanki.Package(deck_or_decks=decks)
 
     def _push_prompts(self, command: PushPrompts) -> None:
-        cards = [
-            self.prompt_converter.prompt_to_card(e) for e in command.prompts
-        ]
+        cards = [self.prompt_converter.prompt_to_card(e) for e in command.prompts]
 
         models = [card.genanki_model for card in cards]
         unique_models: dict[int, genanki.Model] = {

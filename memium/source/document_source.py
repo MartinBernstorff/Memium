@@ -35,9 +35,7 @@ class MarkdownDocumentSource(BaseDocumentSource):
     @staticmethod
     def _replace_alias_wiki_links(text: str) -> str:
         regex_pattern = r"\[\[[\w|\s|\d|\(|\)]+\|[\w|\s|\d]+\]\]"
-        pattern_matches = re.findall(
-            pattern=regex_pattern, string=text, flags=re.DOTALL
-        )
+        pattern_matches = re.findall(pattern=regex_pattern, string=text, flags=re.DOTALL)
 
         for match in pattern_matches:
             link_name = (
@@ -53,19 +51,14 @@ class MarkdownDocumentSource(BaseDocumentSource):
 
     def _sanitize_to_valid_markdown(self, input_str: str) -> str:
         aliases_handled = self._replace_alias_wiki_links(input_str)
-        wikilinks_replaced = self._replace_wikilinks_with_styling(
-            aliases_handled
-        )
+        wikilinks_replaced = self._replace_wikilinks_with_styling(aliases_handled)
         return wikilinks_replaced
 
-    def _get_document_from_file(
-        self, file_path: Path
-    ) -> Document | FileNotRetrievedError:
+    def _get_document_from_file(self, file_path: Path) -> Document | FileNotRetrievedError:
         try:
             with file_path.open("r", encoding="utf8") as f:
                 return Document(
-                    content=self._sanitize_to_valid_markdown(f.read()),
-                    source_path=file_path,
+                    content=self._sanitize_to_valid_markdown(f.read()), source_path=file_path
                 )
         except Exception as e:
             log.warning(f"Could not retrieve {file_path}: {e}")
@@ -81,8 +74,4 @@ class MarkdownDocumentSource(BaseDocumentSource):
                 notes.append(self._get_document_from_file(filepath))
                 pbar.update(1)
 
-        return [
-            note
-            for note in notes
-            if not isinstance(note, FileNotRetrievedError)
-        ]
+        return [note for note in notes if not isinstance(note, FileNotRetrievedError)]

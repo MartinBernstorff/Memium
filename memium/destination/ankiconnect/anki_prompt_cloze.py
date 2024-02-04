@@ -21,12 +21,7 @@ class AnkiCloze(AnkiPrompt):
         return genanki.Model(
             model_id=hash_str_to_int(model_name),
             name=model_name,
-            fields=[
-                {"name": "Text"},
-                {"name": "Extra"},
-                {"name": "Tags"},
-                {"name": "UUID"},
-            ],
+            fields=[{"name": "Text"}, {"name": "Extra"}, {"name": "Tags"}, {"name": "UUID"}],
             templates=[
                 {
                     "name": "Ankdown Cloze Card with UUID",
@@ -42,11 +37,6 @@ class AnkiCloze(AnkiPrompt):
         return genanki.Note(
             guid=str(self.uuid),
             model=self.genanki_model,
-            fields=[
-                self.field_to_html(self.text),
-                "",
-                " ".join(self.tags),
-                str(self.uuid),
-            ],
+            fields=[self.field_to_html(self.text), "", " ".join(self.tags), str(self.uuid)],
             tags=self.tags,
         )
