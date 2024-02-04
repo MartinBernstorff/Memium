@@ -2,6 +2,37 @@
 
 
 
+## v0.13.1 (2024-02-04)
+
+### Chore
+
+* chore(deps): update dependency tests/pytest to v8 ([`cdb09b3`](https://github.com/MartinBernstorff/Memium/commit/cdb09b3b4d667ceaf320a1b074d7a0992cefbde0))
+
+* chore(deps): update dependency dev/ruff to v0.2.0 ([`9f7c810`](https://github.com/MartinBernstorff/Memium/commit/9f7c810213e4e0892d94a3f5ce25e0c370cb3d00))
+
+* chore(deps): update dependency tests/pytest-sugar to v1 ([`1a9d95b`](https://github.com/MartinBernstorff/Memium/commit/1a9d95ba72319bdbed17b69a4b9160fb77ca5ecf))
+
+* chore(deps): update dependency sentry-sdk to v1.40.0 ([`ce58593`](https://github.com/MartinBernstorff/Memium/commit/ce585936d688359bba1e9d1612986e0c8f31427b))
+
+* chore(deps): update dependency dev/pyright to v1.1.349 ([`0be7671`](https://github.com/MartinBernstorff/Memium/commit/0be76718ac5b2608128a4be04ab3b209c70975de))
+
+### Fix
+
+* fix: migrate to iterpy (#555)
+
+fix: migrate to iterpy
+
+update prompt_source.py ([`752db8e`](https://github.com/MartinBernstorff/Memium/commit/752db8ec27587de1abbd9deb7557f14ff948335c))
+
+* fix: migrate to iterpy ([`bf8fba0`](https://github.com/MartinBernstorff/Memium/commit/bf8fba0882a08323e2f3819c85c72bf4330d3c6d))
+
+### Unknown
+
+* update prompt_source.py ([`499dc61`](https://github.com/MartinBernstorff/Memium/commit/499dc61772fd21c0c3bd7a3766475999e42f1f15))
+
+* misc. ([`007fd83`](https://github.com/MartinBernstorff/Memium/commit/007fd832a8bce0f79d33e843163a8de414e56c1a))
+
+
 ## v0.13.0 (2024-01-15)
 
 ### Chore
