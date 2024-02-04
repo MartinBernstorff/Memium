@@ -10,7 +10,7 @@ from memium.tasks.smoketest import (
     smoketest_docker,  # noqa: F401 # type: ignore
 )
 
-PYTEST_CMD = "pytest --durations=5 --cov=memium memium --cov-report xml:.coverage.xml --cov-report lcov:.coverage.lcov"
+PYTEST_CMD = "pytest --testmon --durations=5 --cov=memium memium --cov-report xml:.coverage.xml --cov-report lcov:.coverage.lcov"
 
 
 @inv.task  # type: ignore

@@ -13,7 +13,6 @@ requires-python = ">=3.11"
 # TODO: https://github.com/MartinBernstorff/memium/issues/260 Setup dependabot automerge
 dependencies = [
   "cffi==1.16.0",
-  "functionalpy==0.15.0",
   "iterpy==0.22.0",
   "genanki==0.13.1",
   "markdown==3.5.2",
@@ -37,6 +36,14 @@ content-type = "text/markdown"
 memium = "memium.__main__:app"
 
 [project.optional-dependencies]
+tests = [
+  "pytest==7.4.0",
+  "pytest-cov==4.1.0",
+  "pytest-xdist==3.5.0",
+  "pytest-sugar==1.0.0",
+  "pytest-testmon==2.1.0",
+  "diff-cover==8.0.2",
+]
 dev = [
   "cruft==2.15.0",
   "herbarium",
@@ -44,13 +51,7 @@ dev = [
   "pyright==1.1.349",
   "pre-commit==3.6.0",
   "ruff==0.2.0",
-]
-tests = [
-  "pytest==8.0.0",
-  "pytest-cov==4.1.0",
-  "pytest-xdist==3.5.0",
-  "pytest-sugar==1.0.0",
-  "diff-cover==8.0.2",
+  "lumberman",
 ]
 
 [project.urls]
@@ -163,10 +164,8 @@ include-package-data = true
 
 [tool.coverage.report]
 exclude_lines = [
-    "pragma: no cover",
-    # Ignore lines containing '...'
-    ".*[.]{3}.*",
+  "pragma: no cover",
+  # Ignore lines containing '...'
+  ".*[.]{3}.*",
 ]
-omit = [
-  "test_*.py",
-]
+omit = ["test_*.py"]

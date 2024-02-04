@@ -7,7 +7,7 @@
         {
             "label": "Submit PR",
             "type": "shell",
-            "command": "inv submit",
+            "command": "lm sync --squash --automerge",
             "dependsOn": [
                 "Ready"
             ],
@@ -73,20 +73,6 @@
             "label": "Static type check",
             "type": "shell",
             "command": "inv types",
-            "dependsOn": [
-                "Update from ancestor"
-            ],
-            "presentation": {
-                "reveal": "always",
-                "clear": true,
-                "showReuseMessage": false,
-                "group": "pr"
-            }
-        },
-        {
-            "label": "Update from ancestor",
-            "type": "shell",
-            "command": "gt sync --delete --force",
             "presentation": {
                 "reveal": "always",
                 "clear": true,
