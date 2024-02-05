@@ -2,6 +2,29 @@
 
 
 
+## v0.14.0 (2024-02-05)
+
+### Chore
+
+* chore(deps): update dependency pydantic to v2.6.0 ([`74776d2`](https://github.com/MartinBernstorff/Memium/commit/74776d26748fa3a902ea628d27bfca0bd7e8267b))
+
+### Feature
+
+* feat(#534): allow both rowwise and row-wise when parsing tables (#558)
+
+Fixes #534 ([`6a454bd`](https://github.com/MartinBernstorff/Memium/commit/6a454bd60fda1d7b1e7201a5f375fef09922d76d))
+
+* feat(#534): allow both rowwise and row-wise when parsing tables
+
+Fixes #534 ([`5fdbac7`](https://github.com/MartinBernstorff/Memium/commit/5fdbac7d0868852c0024f5852120fb0dd58ed154))
+
+### Unknown
+
+* dev: remove makefile and add lumberman (#553) ([`413f102`](https://github.com/MartinBernstorff/Memium/commit/413f102dd118970211319cd59282fee200abff11))
+
+* dev: remove makefile and add lumberman ([`11769d0`](https://github.com/MartinBernstorff/Memium/commit/11769d07d17aca37dd2307c4a6c5fce7a55ab769))
+
+
 ## v0.13.1 (2024-02-04)
 
 ### Chore
