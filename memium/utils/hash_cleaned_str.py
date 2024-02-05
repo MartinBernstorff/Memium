@@ -45,9 +45,7 @@ def decode_unicode(text: str) -> str:
 def remove_list_markup(text: str) -> str:
     """Remove markdown list markup, including '1. Item', '*' and '-'."""
     without_list_numbers = re.sub(r"^\s*\d+\. ", "", text, flags=re.MULTILINE)
-    without_bullets = re.sub(
-        r"^\s\* ", "", without_list_numbers, flags=re.MULTILINE
-    )
+    without_bullets = re.sub(r"^\s\* ", "", without_list_numbers, flags=re.MULTILINE)
     without_dashes = re.sub(r"^\s- ", "", without_bullets, flags=re.MULTILINE)
     return without_dashes
 

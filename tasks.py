@@ -63,9 +63,7 @@ def test(c: inv.Context):
         print("\n=== Lines with missing coverage ===")
         for line in missing_lines:
             print(line)
-        proceed = input(
-            f"🚧🚧🚧 Coverage is {coverage_percent}%. Proceed? [y/N] "
-        )
+        proceed = input(f"🚧🚧🚧 Coverage is {coverage_percent}%. Proceed? [y/N] ")
         if proceed.lower() != "y":
             print("Aborting")
             return
@@ -97,9 +95,7 @@ def branch_from_next_issue(c: inv.Context):
         return
 
     selected_issue_index = issue_dialog(my_issues)
-    create_branch_from_issue(
-        c=c, selected_issue=my_issues[selected_issue_index]
-    )
+    create_branch_from_issue(c=c, selected_issue=my_issues[selected_issue_index])
 
 
 @inv.task  # type: ignore
@@ -122,6 +118,4 @@ def new_branch_from_issue(c: inv.Context):
     selected_issue_index = issue_dialog(my_issues)
     c.run("git checkout main")
     c.run("git pull")
-    create_branch_from_issue(
-        c=c, selected_issue=my_issues[selected_issue_index]
-    )
+    create_branch_from_issue(c=c, selected_issue=my_issues[selected_issue_index])

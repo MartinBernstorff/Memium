@@ -24,7 +24,8 @@
                 "Graphite.gti-vscode",
                 "aeschli.vscode-css-formatter",
                 "esbenp.prettier-vscode",
-                "MichaelCurrin.auto-commit-msg"
+                "MichaelCurrin.auto-commit-msg",
+                "tamasfe.even-better-toml"
             ]
         }
     },

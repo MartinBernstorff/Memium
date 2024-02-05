@@ -8,17 +8,13 @@ from .ankiconnect_gateway import NoteInfo
 
 
 class AnkiPromptConverter:
-    def __init__(
-        self, base_deck: str, card_css: str, deck_prefix: str = "#anki_deck"
-    ) -> None:
+    def __init__(self, base_deck: str, card_css: str, deck_prefix: str = "#anki_deck") -> None:
         self.base_deck = base_deck
         self.deck_prefix = deck_prefix
         self.card_css = card_css
 
     def prompt_to_card(self, prompt: BasePrompt) -> AnkiPrompt:
-        deck_in_tags = [
-            tag for tag in prompt.tags if tag.startswith(self.deck_prefix)
-        ]
+        deck_in_tags = [tag for tag in prompt.tags if tag.startswith(self.deck_prefix)]
         deck = deck_in_tags[0] if deck_in_tags else self.base_deck
 
         match prompt:
@@ -40,9 +36,7 @@ class AnkiPromptConverter:
                     uuid=prompt.scheduling_uid,
                 )
             case BasePrompt():
-                raise ValueError(
-                    "BasePrompt is the base class for all prompts, use a subclass"
-                )
+                raise ValueError("BasePrompt is the base class for all prompts, use a subclass")
 
     def note_info_to_prompt(self, note_info: NoteInfo) -> DestinationPrompt:
         if "Question" in note_info.fields and "Answer" in note_info.fields:
@@ -57,12 +51,8 @@ class AnkiPromptConverter:
 
         if "Text" in note_info.fields:
             return DestinationPrompt(
-                ClozeWithoutDoc(
-                    text=note_info.fields["Text"].value, add_tags=note_info.tags
-                ),
+                ClozeWithoutDoc(text=note_info.fields["Text"].value, add_tags=note_info.tags),
                 destination_id=str(note_info.noteId),
             )
 
-        raise ValueError(
-            f"NoteInfo {note_info} has neither Question nor Text field"
-        )
+        raise ValueError(f"NoteInfo {note_info} has neither Question nor Text field")
