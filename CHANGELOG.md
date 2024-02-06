@@ -2,6 +2,35 @@
 
 
 
+## v0.14.2 (2024-02-06)
+
+### Ci
+
+* ci: do not disable on concurrency (#570) ([`9e1fc1b`](https://github.com/MartinBernstorff/Memium/commit/9e1fc1b59b9446f60fbd350087c54ef97f55fae4))
+
+* ci: do not disable on concurrency ([`05223f7`](https://github.com/MartinBernstorff/Memium/commit/05223f7ada7320dc494a28b1382a8063812bf9d1))
+
+### Fix
+
+* fix: duplicate prompt detection (#569) ([`31b39c6`](https://github.com/MartinBernstorff/Memium/commit/31b39c657839e038fa65331099cd9fc620a6d280))
+
+* fix: duplicate prompt detection ([`5e3e37e`](https://github.com/MartinBernstorff/Memium/commit/5e3e37ef2ebb6b420cd58e455641acf158f1977d))
+
+### Unknown
+
+* dev: remove .testmondata from git (#568) ([`ad28ee9`](https://github.com/MartinBernstorff/Memium/commit/ad28ee9ea81652f04d9b6cc5de195cfeae3ffecc))
+
+* dev: do not require manual intervention to submti with coverage &lt; 0.8 (#567) ([`526966b`](https://github.com/MartinBernstorff/Memium/commit/526966b38900a9d2d1ab937c9de53a93183e9eeb))
+
+* dev: remove .testmondata from git ([`72e2557`](https://github.com/MartinBernstorff/Memium/commit/72e2557dc1093601b1f09bb540ebb14b85bc09d9))
+
+* dev: do not require manual intervention to submti with coverage &lt; 0.8 ([`e4ca960`](https://github.com/MartinBernstorff/Memium/commit/e4ca96068ed0b69ec29a2f3ef0365e46c9963607))
+
+* dev: update ruff version (#566) ([`e61ac8b`](https://github.com/MartinBernstorff/Memium/commit/e61ac8b7dd95ccae2211e442e07624abb678e1a3))
+
+* dev: update ruff version ([`47c4ee5`](https://github.com/MartinBernstorff/Memium/commit/47c4ee55eef64df013ff33fcb0255fcf0cc5b71f))
+
+
 ## v0.14.1 (2024-02-06)
 
 ### Chore
