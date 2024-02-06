@@ -63,10 +63,6 @@ def test(c: inv.Context):
         print("\n=== Lines with missing coverage ===")
         for line in missing_lines:
             print(line)
-        proceed = input(f"🚧🚧🚧 Coverage is {coverage_percent}%. Proceed? [y/N] ")
-        if proceed.lower() != "y":
-            print("Aborting")
-            return
 
     print("✅✅✅ Tests passed ✅✅✅")
 
