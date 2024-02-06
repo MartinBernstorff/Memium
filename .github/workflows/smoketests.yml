@@ -11,9 +11,6 @@ on:
 
 jobs:
   smoketests:
-    concurrency:
-      group: ${{ github.repository }}-${{ github.workflow }}-${{ github.ref }}-${{ github.ref == 'refs/heads/main' && github.sha || ''}}-${{ matrix.invoke_command }}
-      cancel-in-progress: true
     runs-on: ubuntu-latest
     strategy:
       matrix:
