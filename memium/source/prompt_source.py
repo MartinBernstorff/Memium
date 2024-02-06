@@ -33,8 +33,13 @@ class DocumentPromptSource(BasePromptSource):
         prompts: list[PromptFromDocMixin] = []
 
         for extractor in self._prompt_extractors:
-            extractor_prompts = list(extractor.extract_prompts(document))
-            prompts += extractor_prompts  # type: ignore
+            try:
+                extractor_prompts = list(extractor.extract_prompts(document))
+                prompts += extractor_prompts  # type: ignore
+            except Exception as e:
+                log.error(
+                    f"Failed to extract prompts with {extractor} from {document.source_path.name} using {extractor}. Reason: {e}"
+                )
 
         return prompts
 
