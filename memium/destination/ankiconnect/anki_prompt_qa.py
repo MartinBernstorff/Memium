@@ -26,14 +26,10 @@ class AnkiQA(AnkiPrompt):
         ]
 
         QUESTION_STR = r"{{ Question }}"
-        TTS_QUESTION_STR = (
-            r"{{ tts en_US voices=Apple_Samantha speed=1.05:Question }}"
-        )
+        TTS_QUESTION_STR = r"{{ tts en_US voices=Apple_Samantha speed=1.05:Question }}"
 
         ANSWER_STR = r"{{ Answer }}"
-        TTS_ANSWER_STR = (
-            r"{{ tts en_US voices=Apple_Samantha speed=1.05:Answer }}"
-        )
+        TTS_ANSWER_STR = r"{{ tts en_US voices=Apple_Samantha speed=1.05:Answer }}"
 
         EXTRA_STR = r"{{ Extra }}"
 

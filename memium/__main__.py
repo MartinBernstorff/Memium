@@ -8,10 +8,7 @@ import sentry_sdk
 import typer
 
 from memium.destination.ankiconnect.anki_converter import AnkiPromptConverter
-from memium.destination.ankiconnect.ankiconnect_gateway import (
-    ANKICONNECT_URL,
-    AnkiConnectGateway,
-)
+from memium.destination.ankiconnect.ankiconnect_gateway import ANKICONNECT_URL, AnkiConnectGateway
 from memium.destination.destination import PushPrompts
 from memium.destination.destination_ankiconnect import AnkiConnectDestination
 from memium.destination.destination_dryrun import DryRunDestination
@@ -57,16 +54,13 @@ def main(
         ),
         prompt_converter=AnkiPromptConverter(
             base_deck=base_deck,
-            card_css=Path(
-                "memium/destination/ankiconnect/default_styling.css"
-            ).read_text(),
+            card_css=Path("memium/destination/ankiconnect/default_styling.css").read_text(),
         ),
     )
     if not push_all:
         destination_prompts = destination.get_all_prompts()
         update_commands = PromptDiffDeterminer().sync(
-            source_prompts=source_prompts,
-            destination_prompts=destination_prompts,
+            source_prompts=source_prompts, destination_prompts=destination_prompts
         )
         destination.update(commands=update_commands)
     else:
@@ -88,13 +82,10 @@ def cli(
     ],
     watch_seconds: Annotated[
         Optional[int],  # noqa: UP007
-        typer.Option(
-            help="Keep running, updating Anki deck every [ARG] seconds"
-        ),
+        typer.Option(help="Keep running, updating Anki deck every [ARG] seconds"),
     ] = None,
     deck_name: Annotated[
-        str,
-        typer.Option(help="Anki path to deck, e.g. 'Parent deck::Child deck'"),
+        str, typer.Option(help="Anki path to deck, e.g. 'Parent deck::Child deck'")
     ] = "Memium",
     max_deletions_per_run: Annotated[
         int,
@@ -109,10 +100,7 @@ def cli(
         ),
     ] = False,
     dry_run: Annotated[
-        bool,
-        typer.Option(
-            help="Don't update via AnkiConnect, just log what would happen"
-        ),
+        bool, typer.Option(help="Don't update via AnkiConnect, just log what would happen")
     ] = False,
     sentry_dsn: Annotated[
         Optional[str],  # noqa: UP007
@@ -120,9 +108,7 @@ def cli(
             help="Sentry DSN for error reporting. If not provided, no error reporting will be done."
         ),
     ] = None,
-    skip_sync: Annotated[
-        bool, typer.Option(help="Skip all syncing, useful for smoketest")
-    ] = False,
+    skip_sync: Annotated[bool, typer.Option(help="Skip all syncing, useful for smoketest")] = False,
 ):
     logging.basicConfig(
         level=logging.INFO,

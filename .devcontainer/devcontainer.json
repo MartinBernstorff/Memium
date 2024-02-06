@@ -12,19 +12,19 @@
     "customizations": {
         "vscode": {
             "extensions": [
+                "ms-python.vscode-pylance",
                 "GitHub.copilot",
                 "charliermarsh.ruff",
                 "ms-python.python",
-                "ms-python.vscode-pylance",
                 "GitHub.vscode-pull-request-github",
                 "github.vscode-github-actions",
                 "markis.code-coverage",
-                "Gerrnperl.outline-map",
                 "SeeLog.python-init-generator",
                 "Graphite.gti-vscode",
                 "aeschli.vscode-css-formatter",
                 "esbenp.prettier-vscode",
-                "MichaelCurrin.auto-commit-msg"
+                "MichaelCurrin.auto-commit-msg",
+                "tamasfe.even-better-toml"
             ]
         }
     },

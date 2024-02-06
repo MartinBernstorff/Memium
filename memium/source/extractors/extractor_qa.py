@@ -16,9 +16,7 @@ class QAPromptExtractor(BasePromptExtractor):
 
     def _get_first_question(self, content: str) -> str:
         question = re.findall(
-            self.question_prefix + r"{0,1}\.(?:(?!A\.).)*",
-            content,
-            flags=re.DOTALL,
+            self.question_prefix + r"{0,1}\.(?:(?!A\.).)*", content, flags=re.DOTALL
         )[0]
 
         return question[len(self.question_prefix) + 1 :].rstrip()
@@ -28,11 +26,9 @@ class QAPromptExtractor(BasePromptExtractor):
         # To ensure the last answer is matched as well, we add 2 newlines to string.
         string_padded = f"{content.rstrip()}\n\n"
 
-        answer = re.findall(
-            r"\n" + self.answer_prefix + r"[ \n]+\n*.+",
-            string_padded,
-            re.DOTALL,
-        )[0]
+        answer = re.findall(r"\n" + self.answer_prefix + r"[ \n]+\n*.+", string_padded, re.DOTALL)[
+            0
+        ]
 
         return answer[len(self.answer_prefix) + 2 :].rstrip()
 
@@ -46,9 +42,7 @@ class QAPromptExtractor(BasePromptExtractor):
         return (
             len(
                 re.findall(
-                    r"^(?![:>]).*" + self.question_prefix + r"{0,1}\. ",
-                    string,
-                    flags=re.DOTALL,
+                    r"^(?![:>]).*" + self.question_prefix + r"{0,1}\. ", string, flags=re.DOTALL
                 )
             )
             != 0
@@ -65,9 +59,7 @@ class QAPromptExtractor(BasePromptExtractor):
                 try:
                     answer = self._get_first_answer(block_string)
                 except IndexError:
-                    logging.warn(
-                        f"Could not find answer in {document.title} for {question}"
-                    )
+                    logging.warn(f"Could not find answer in {document.title} for {question}")
                     continue
 
                 prompts.append(

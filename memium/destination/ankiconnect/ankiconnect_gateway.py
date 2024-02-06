@@ -74,14 +74,10 @@ class AnkiConnectGateway:
         seconds_waited = 0
         while not anki_connect_is_live(ankiconnect_url=self.ankiconnect_url):
             if seconds_waited >= self.max_wait_seconds:
-                raise ConnectionError(
-                    f"Could not connect to AnkiConnect at {self.ankiconnect_url}"
-                )
+                raise ConnectionError(f"Could not connect to AnkiConnect at {self.ankiconnect_url}")
 
             wait_seconds = 2
-            log.info(
-                f"AnkiConnect is not live, waiting {wait_seconds} seconds..."
-            )
+            log.info(f"AnkiConnect is not live, waiting {wait_seconds} seconds...")
             seconds_waited += wait_seconds
             sleep(wait_seconds)
 
@@ -104,16 +100,12 @@ class AnkiConnectGateway:
     def import_package(self, package: genanki.Package) -> None:
         subdir = "tmp_apkg_dir"
         with tempdir(self.tmp_write_dir / subdir) as tmp_write_subdir:
-            apkg_name = (
-                f"{datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')}.apkg"
-            )
+            apkg_name = f"{datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')}.apkg"
             package.write_to_file(tmp_write_subdir / apkg_name)  # type: ignore
 
             read_path = self.tmp_read_dir / subdir / apkg_name
             try:
-                self._invoke(
-                    AnkiConnectCommand.IMPORT_PACKAGE, path=str(read_path)
-                )
+                self._invoke(AnkiConnectCommand.IMPORT_PACKAGE, path=str(read_path))
                 log.info(f"Imported from {read_path}!")
             except Exception as e:
                 log.error(f"""Unable to sync from {read_path}, {e}""")
@@ -160,13 +152,9 @@ class AnkiConnectGateway:
         Returns:
             Any: the response from anki connect
         """
-        requestJson = json.dumps(self._request(action.value, **params)).encode(
-            "utf-8"
-        )
+        requestJson = json.dumps(self._request(action.value, **params)).encode("utf-8")
         response = json.load(
-            urllib.request.urlopen(
-                urllib.request.Request(self.ankiconnect_url, requestJson)
-            )
+            urllib.request.urlopen(urllib.request.Request(self.ankiconnect_url, requestJson))
         )
         if len(response) != 2:
             raise Exception("response has an unexpected number of fields")
@@ -206,11 +194,7 @@ class SpieAnkiconnectGateway(AnkiConnectGateway):
         self.executed_commands.append(ImportPackage(package=package))
 
 
-ANKICONNECT_URL = (
-    "http://host.docker.internal:8765"
-    if in_docker()
-    else "http://localhost:8765"
-)
+ANKICONNECT_URL = "http://host.docker.internal:8765" if in_docker() else "http://localhost:8765"
 # On host machine, port is 8765
 
 

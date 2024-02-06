@@ -5,10 +5,7 @@ from time import sleep
 
 import invoke as inv
 
-from .str_parsing import (
-    get_letter_alphabet_position,
-    get_letter_from_alphabet_position,
-)
+from .str_parsing import get_letter_alphabet_position, get_letter_from_alphabet_position
 
 
 @dataclass(frozen=True)
@@ -19,16 +16,12 @@ class GithubIssue:
 
 def get_issues_assigned_to_me(c: inv.Context) -> Sequence[GithubIssue] | None:
     """Get issues assigned to current user on current repo"""
-    my_issues_cmd = c.run(
-        "gh issue list --assignee='@me' --json number,title", hide="out"
-    )
+    my_issues_cmd = c.run("gh issue list --assignee='@me' --json number,title", hide="out")
 
     if my_issues_cmd is None:
         return None
 
-    parsed_output = [
-        GithubIssue(**value) for value in json.loads(my_issues_cmd.stdout)
-    ]
+    parsed_output = [GithubIssue(**value) for value in json.loads(my_issues_cmd.stdout)]
     return parsed_output
 
 
@@ -54,9 +47,7 @@ def issue_dialog(my_issues: Sequence[GithubIssue]) -> int:
     print("I found these issues for you. Which do you want to work on?\n")
 
     issue_index = (
-        get_letter_alphabet_position(
-            input(f"[a-{get_letter_from_alphabet_position(n_issues)}]: ")
-        )
+        get_letter_alphabet_position(input(f"[a-{get_letter_from_alphabet_position(n_issues)}]: "))
         - 1
     )
 

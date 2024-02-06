@@ -97,16 +97,12 @@ class TableExtractor(BasePromptExtractor):
         back = parsed_table.back
 
         for placeholder in [*front_placeholders, *back_placeholders]:
-            front = front.replace(
-                f"|{placeholder}|", row_pair.front[placeholder]
-            )
+            front = front.replace(f"|{placeholder}|", row_pair.front[placeholder])
             back = back.replace(f"|{placeholder}|", row_pair.back[placeholder])
 
         return front, back
 
-    def _parsed_table_to_prompt(
-        self, parsed_table: ParsedTable
-    ) -> Sequence[QAPrompt]:
+    def _parsed_table_to_prompt(self, parsed_table: ParsedTable) -> Sequence[QAPrompt]:
         prompts: Sequence[QAPrompt] = []
         match parsed_table.mode:
             case TableParseMode.ASCENDING | TableParseMode.DESCENDING:
@@ -130,15 +126,10 @@ class TableExtractor(BasePromptExtractor):
         blocks = document.content.split("\n\n")
         parsed_tables = [self._parse_table(block) for block in blocks]
         flattened_parsed_tables = [
-            parsed_table
-            for sublist in parsed_tables
-            for parsed_table in sublist
+            parsed_table for sublist in parsed_tables for parsed_table in sublist
         ]
         prompts = [
-            self._parsed_table_to_prompt(parsed_table)
-            for parsed_table in flattened_parsed_tables
+            self._parsed_table_to_prompt(parsed_table) for parsed_table in flattened_parsed_tables
         ]
-        flattened_prompts = [
-            prompt for sublist in prompts for prompt in sublist
-        ]
+        flattened_prompts = [prompt for sublist in prompts for prompt in sublist]
         return flattened_prompts

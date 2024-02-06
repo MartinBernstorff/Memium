@@ -17,8 +17,6 @@ A. Answer"""
             )
         prompts = DocumentPromptSource(
             document_ingester=MarkdownDocumentSource(directory=tmp_path),
-            prompt_extractors=[
-                QAPromptExtractor(question_prefix="Q.", answer_prefix="A.")
-            ],
+            prompt_extractors=[QAPromptExtractor(question_prefix="Q.", answer_prefix="A.")],
         ).get_prompts()
         assert len(prompts) == 1

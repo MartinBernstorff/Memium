@@ -52,6 +52,4 @@ def test_table_extractor(example: TableExtractorExample):
         source_path=Path(__file__),
     )
 
-    assert set(example.expectation) == set(
-        TableExtractor().extract_prompts(input_doc)
-    )
+    assert set(example.expectation) == set(TableExtractor().extract_prompts(input_doc))

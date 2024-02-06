@@ -15,9 +15,7 @@ class ClozePromptExtractor(BasePromptExtractor):
     def _get_blocks(string: str) -> list[str]:
         """Break string into a list by 2+ newlines in a row."""
         # Exclude entire code blocks
-        string_sans_code_blocks = re.sub(
-            r"```.*?```", "", string, flags=re.DOTALL
-        )
+        string_sans_code_blocks = re.sub(r"```.*?```", "", string, flags=re.DOTALL)
         return re.split(r"(\n\n)+", string_sans_code_blocks)
 
     @staticmethod
@@ -39,9 +37,7 @@ class ClozePromptExtractor(BasePromptExtractor):
         return False
 
     @staticmethod
-    def _replace_cloze_id_with_unique(
-        string: str, selected_cloze: str | None = None
-    ) -> str:
+    def _replace_cloze_id_with_unique(string: str, selected_cloze: str | None = None) -> str:
         """Each cloze deletion in a note is numbered sequentially.
 
         This function ensures that the numbering is based on the content of the cloze deletion, essentially ensuring that if you modify the contents of a cloze, only the scheduling of that specific cloze is changed.
@@ -56,10 +52,7 @@ class ClozePromptExtractor(BasePromptExtractor):
             selected_clozes = re.findall(r"{(?!BearID).[^}]*}", string)
 
         for cloze in selected_clozes:
-            output_hash = (
-                int(hashlib.sha256(cloze.encode("utf-8")).hexdigest(), 16)
-                % 10**3
-            )
+            output_hash = int(hashlib.sha256(cloze.encode("utf-8")).hexdigest(), 16) % 10**3
 
             new_cloze = f"{{{{c{output_hash}::{cloze[1:-1]}}}}}"
 
@@ -75,10 +68,7 @@ class ClozePromptExtractor(BasePromptExtractor):
         for block_string in blocks:
             if any(
                 exclusion_criterion(block_string)
-                for exclusion_criterion in (
-                    self._is_html_comment,
-                    self._is_math_block,
-                )
+                for exclusion_criterion in (self._is_html_comment, self._is_math_block)
             ):
                 continue
 
@@ -92,15 +82,11 @@ class ClozePromptExtractor(BasePromptExtractor):
 
                     prompts.append(
                         ClozeFromDoc(
-                            text=prompt_content,
-                            parent_doc=document,
-                            line_nr=block_starting_line_nr,
+                            text=prompt_content, parent_doc=document, line_nr=block_starting_line_nr
                         )
                     )
 
-            n_block_lines = len(
-                re.findall(r"\n", block_string, flags=re.DOTALL)
-            )
+            n_block_lines = len(re.findall(r"\n", block_string, flags=re.DOTALL))
             block_starting_line_nr += n_block_lines
 
         return prompts
