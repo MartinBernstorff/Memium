@@ -2,6 +2,25 @@
 
 
 
+## v0.14.1 (2024-02-06)
+
+### Chore
+
+* chore(deps): update dependency sentry-sdk to v1.40.1 ([`caf7852`](https://github.com/MartinBernstorff/Memium/commit/caf78528062e62d6a876605e7017db47db5a43d5))
+
+* chore(deps): update dependency dev/ruff to v0.2.1 ([`125e96d`](https://github.com/MartinBernstorff/Memium/commit/125e96d16d710401eee7b669f6fd23794c594f9c))
+
+* chore(deps): update dependency dev/pyright to v1.1.350 ([`7b4c9f7`](https://github.com/MartinBernstorff/Memium/commit/7b4c9f7ea9f1dcbce079f76e0c102c79a972f9c3))
+
+* chore(deps): update dependency pydantic to v2.6.1 ([`bdf76a5`](https://github.com/MartinBernstorff/Memium/commit/bdf76a51fa1ccb3e643ed9e06d18ece5bf60e2de))
+
+### Fix
+
+* fix: gracefully fail if block cannot be parsed (#565) ([`7a49b05`](https://github.com/MartinBernstorff/Memium/commit/7a49b0533e0e3b9cc076112141d9e179803bc369))
+
+* fix: gracefully fail if block cannot be parsed ([`4691aa8`](https://github.com/MartinBernstorff/Memium/commit/4691aa85b88abd2b30b33130f3026f79e42c1a49))
+
+
 ## v0.14.0 (2024-02-05)
 
 ### Chore
