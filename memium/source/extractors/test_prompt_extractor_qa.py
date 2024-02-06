@@ -17,9 +17,7 @@ A. 42
         source_path=tmpdir / "test.md",
     )
 
-    extractor = QAPromptExtractor(
-        question_prefix="Q.", answer_prefix="A."
-    ).extract_prompts(doc)
+    extractor = QAPromptExtractor(question_prefix="Q.", answer_prefix="A.").extract_prompts(doc)
 
     assert len(extractor) == 1
     prompt = extractor[0]

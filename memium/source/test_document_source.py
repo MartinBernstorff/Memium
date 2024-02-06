@@ -20,11 +20,7 @@ class TestMarkdownIngester:
         assert len(documents) == 1
         document = documents[0]
         assert document.title == "test"
-        assert document.tags == [
-            "anki/tag/test_tag",
-            "anki/tag/test_tag2",
-            "comment_tag",
-        ]
+        assert document.tags == ["anki/tag/test_tag", "anki/tag/test_tag2", "comment_tag"]
 
     def test_should_log_error_if_file_not_retrieved(
         self, tmp_path: Path, caplog: pytest.LogCaptureFixture
@@ -45,12 +41,12 @@ class TestMarkdownIngester:
         assert "I do not exist" in caplog.records[0].message
 
     def test_sanitize_to_valid_markdown(self):
-        input_str = """Linking to a valid [[Note|Note Alias]], and can handle [[Note2|Multiple Aliases]]"""
+        input_str = (
+            """Linking to a valid [[Note|Note Alias]], and can handle [[Note2|Multiple Aliases]]"""
+        )
         expected_output = """Linking to a valid _Note Alias_, and can handle _Multiple Aliases_"""
         assert (
-            MarkdownDocumentSource(
-                directory=Path()
-            )._sanitize_to_valid_markdown(  # type: ignore[PrivateMethodUsage]
+            MarkdownDocumentSource(directory=Path())._sanitize_to_valid_markdown(  # type: ignore[PrivateMethodUsage]
                 input_str
             )
             == expected_output

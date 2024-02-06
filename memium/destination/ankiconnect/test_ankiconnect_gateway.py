@@ -17,17 +17,12 @@ from .ankiconnect_gateway import (
 class MockNoteInfo(NoteInfo):
     noteId: int = 1
     tags: Sequence[str] = ["MockTag"]
-    fields: Mapping[str, AnkiField] = {
-        "Text": AnkiField(value="MockText", order=0)
-    }
+    fields: Mapping[str, AnkiField] = {"Text": AnkiField(value="MockText", order=0)}
     modelName: str = "MockModel"
     cards: Sequence[int] = [1]
 
 
-@pytest.mark.skipif(
-    not anki_connect_is_live(),
-    reason="Tests require a running AnkiConnect server",
-)
+@pytest.mark.skipif(not anki_connect_is_live(), reason="Tests require a running AnkiConnect server")
 class TestAnkiConnectGateway:
     output_path = Path("/output")
 
@@ -53,9 +48,7 @@ class TestAnkiConnectGateway:
         deck.add_model(model)  # type: ignore
         deck.add_note(  # type: ignore
             genanki.Note(
-                model=model,
-                fields=["Capital of Argentina", "Buenos Aires"],
-                tags=["TestTag"],
+                model=model, fields=["Capital of Argentina", "Buenos Aires"], tags=["TestTag"]
             )
         )
 

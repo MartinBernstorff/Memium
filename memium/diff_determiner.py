@@ -2,11 +2,7 @@ from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 from typing import Generic, Protocol, TypeVar
 
-from .destination.destination import (
-    DeletePrompts,
-    PromptDestinationCommand,
-    PushPrompts,
-)
+from .destination.destination import DeletePrompts, PromptDestinationCommand, PushPrompts
 from .source.prompts.prompt import BasePrompt, DestinationPrompt
 
 K = TypeVar("K")
@@ -16,9 +12,7 @@ S = TypeVar("S")
 
 class BaseDiffDeterminer(Protocol):
     def sync(
-        self,
-        source_prompts: Sequence[BasePrompt],
-        destination_prompts: Sequence[DestinationPrompt],
+        self, source_prompts: Sequence[BasePrompt], destination_prompts: Sequence[DestinationPrompt]
     ) -> Sequence[PromptDestinationCommand]:
         ...
 
@@ -29,33 +23,20 @@ class GeneralSyncer(Generic[K, T, S]):
     destination: Mapping[K, S]
 
     def only_in_source(self) -> Sequence[T]:
-        return [
-            value
-            for key, value in self.source.items()
-            if key not in self.destination
-        ]
+        return [value for key, value in self.source.items() if key not in self.destination]
 
     def only_in_destination(self) -> Sequence[S]:
-        return [
-            value
-            for key, value in self.destination.items()
-            if key not in self.source
-        ]
+        return [value for key, value in self.destination.items() if key not in self.source]
 
 
 class PromptDiffDeterminer(BaseDiffDeterminer):
     def sync(
-        self,
-        source_prompts: Sequence[BasePrompt],
-        destination_prompts: Sequence[DestinationPrompt],
+        self, source_prompts: Sequence[BasePrompt], destination_prompts: Sequence[DestinationPrompt]
     ) -> Sequence[PromptDestinationCommand]:
         # Update prompts if content or tags have changed. This doesn't affect scheduling.
         prompts_to_update = GeneralSyncer(
             source={prompt.update_uid: prompt for prompt in source_prompts},
-            destination={
-                prompt.prompt.update_uid: prompt
-                for prompt in destination_prompts
-            },
+            destination={prompt.prompt.update_uid: prompt for prompt in destination_prompts},
         ).only_in_source()
 
         # Only delete prompts whose content have changed. This essentially resets their scheduling.
@@ -67,7 +48,4 @@ class PromptDiffDeterminer(BaseDiffDeterminer):
             },
         ).only_in_destination()
 
-        return [
-            DeletePrompts(prompts_to_delete),
-            PushPrompts(prompts_to_update),
-        ]
+        return [DeletePrompts(prompts_to_delete), PushPrompts(prompts_to_update)]
