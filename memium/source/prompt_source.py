@@ -1,5 +1,6 @@
 import logging
 from collections.abc import Sequence
+from dataclasses import dataclass
 from typing import Protocol
 
 from iterpy import Iter
@@ -8,7 +9,6 @@ from .document import Document
 from .document_source import BaseDocumentSource
 from .extractors.extractor import BasePromptExtractor
 from .prompts.prompt import BasePrompt
-from .prompts.prompt_from_doc import PromptFromDocMixin
 
 log = logging.getLogger(__name__)
 
@@ -18,22 +18,18 @@ class BasePromptSource(Protocol):
         ...
 
 
+@dataclass(frozen=True)
 class DocumentPromptSource(BasePromptSource):
-    def __init__(
-        self,
-        document_ingester: BaseDocumentSource,
-        prompt_extractors: Sequence[BasePromptExtractor],
-    ):
-        self._document_ingester = document_ingester
-        self._prompt_extractors = prompt_extractors
+    document_ingester: BaseDocumentSource
+    prompt_extractors: Sequence[BasePromptExtractor]
 
-    def _get_prompts_from_document(self, document: Document) -> Sequence[PromptFromDocMixin]:
-        prompts: list[PromptFromDocMixin] = []
+    def _get_prompts_from_document(self, document: Document) -> Sequence[BasePrompt]:
+        prompts: list[BasePrompt] = []
 
-        for extractor in self._prompt_extractors:
+        for extractor in self.prompt_extractors:
             try:
                 extractor_prompts = list(extractor.extract_prompts(document))
-                prompts += extractor_prompts  # type: ignore
+                prompts += extractor_prompts
             except Exception as e:
                 log.error(
                     f"Failed to extract prompts with {extractor} from {document.source_path.name} using {extractor}. Reason: {e}"
@@ -41,20 +37,15 @@ class DocumentPromptSource(BasePromptSource):
 
         return prompts
 
-    def _deduplicate_group(self, group: tuple[str, Sequence[PromptFromDocMixin]]) -> BasePrompt:
+    def _deduplicate_group(self, group: tuple[str, Sequence[BasePrompt]]) -> BasePrompt:
         prompts_in_group = group[1]
 
         if len(prompts_in_group) != 1:
-            duplicate_prompt_locations = (
-                Iter(prompts_in_group)
-                .map(lambda prompt: f"{prompt.parent_doc.source_path.name}:{prompt.line_nr}")
-                .to_list()
-            )
-            log.warn(f"Found duplicate prompts in {duplicate_prompt_locations}")
+            log.warn(f"Found duplicate prompts for {prompts_in_group[0]}")
 
         return prompts_in_group[0]
 
-    def _deduplicate_prompts(self, prompts: Sequence[PromptFromDocMixin]) -> Sequence[BasePrompt]:
+    def _deduplicate_prompts(self, prompts: Sequence[BasePrompt]) -> Sequence[BasePrompt]:
         """Deduplicate prompts based on scheduling UID. If the scheduling UID is the same, the prompt is considered a duplicate."""
         scheduling_uuid_groups = Iter(prompts).groupby(lambda prompt: str(prompt.scheduling_uid))
 
@@ -68,7 +59,7 @@ class DocumentPromptSource(BasePromptSource):
 
     def get_prompts(self) -> Sequence[BasePrompt]:
         prompts = (
-            Iter(self._document_ingester.get_documents())
+            Iter(self.document_ingester.get_documents())
             .map(self._get_prompts_from_document)
             .flatten()
             .to_list()
