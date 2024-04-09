@@ -3,7 +3,7 @@ from dataclasses import dataclass
 
 import genanki
 
-from memium.utils.get_wikilinks_from_string import get_wikilinks_from_string
+from memium.utils.extract_terms import get_terms_surrounded_by_underscores
 
 from ...utils.hash_cleaned_str import hash_str_to_int
 from .anki_prompt import AnkiPrompt
@@ -87,7 +87,7 @@ class AnkiQA(AnkiPrompt):
     @property
     def deck(self) -> str:
         base_deck = super().deck
-        wiki_links = get_wikilinks_from_string(self.question)
+        wiki_links = get_terms_surrounded_by_underscores(self.question)
         wiki_subdeck = "-".join(wiki_links)
 
         if wiki_subdeck != "":

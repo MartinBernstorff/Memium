@@ -28,16 +28,36 @@ class FakeAnkiQA(AnkiQA):
     uuid: int = 0
 
 
-def test_ankiqa_deck_inference():
-    card = FakeAnkiQA(tags=["anki/deck/Subdeck"])
-    assert card.deck == "FakeBaseDeck::Subdeck"
+from dataclasses import dataclass
+
+import pytest
 
 
-def test_ankiqa_deck_inference_with_wikilinks():
-    card = FakeAnkiQA(
-        tags=["anki/deck/Subdeck"], question="What are [[Wikilinks]] on [[Wikipedia]]?"
-    )
-    assert card.deck == "FakeBaseDeck::Subdeck::Wikilinks-Wikipedia"
+@dataclass(frozen=True)
+class QAExample:
+    card: AnkiQA
+    deck: str
+
+
+@pytest.mark.parametrize(
+    ("example"),
+    [
+        QAExample(FakeAnkiQA(tags=["anki/deck/Subdeck"]), "FakeBaseDeck::Subdeck"),
+        QAExample(
+            FakeAnkiQA(
+                tags=["anki/deck/Subdeck"], question="What are [[Wikilinks]] on [[Wikipedia]]?"
+            ),
+            "FakeBaseDeck::Subdeck::Wikilinks-Wikipedia",
+        ),
+        QAExample(
+            FakeAnkiQA(question="What are [[Wikilinks]] on [[Wikipedia]]?"),
+            "FakeBaseDeck::Wikilinks-Wikipedia",
+        ),
+        QAExample(FakeAnkiQA(question="Without wikilinks?"), "FakeBaseDeck"),
+    ],
+)
+def test_ankiqa_deck_inference(example: QAExample):
+    assert example.card.deck == example.deck
 
 
 def test_formatting():

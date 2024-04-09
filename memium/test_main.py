@@ -24,7 +24,7 @@ def test_main(caplog: pytest.LogCaptureFixture, base_deck: str = "Main Integrati
 
     with (test_input_path / "test.md").open("w") as f:
         f.write(
-            """Q. Question
+            """Q. What are [[Trees]]?
 A. å
 """
         )
