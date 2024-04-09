@@ -57,8 +57,12 @@ class AnkiConnectCommand(Enum):
     FIND_CARDS = "findCards"
     GET_NOTE_INFOS = "notesInfo"
     IMPORT_PACKAGE = "importPackage"
+
+    # Models
+    CREATE_MODEL = "createModel"
     UPDATE_MODEL_TEMPLATES = "updateModelTemplates"
     UPDATE_MODEL_STYLING = "updateModelStyling"
+    GET_MODEL_NAMES = "modelNames"
 
 
 @dataclass(frozen=True)
@@ -82,20 +86,34 @@ class AnkiConnectGateway:
             sleep(wait_seconds)
 
     def update_model(self, model: genanki.Model) -> None:
-        self._invoke(
-            AnkiConnectCommand.UPDATE_MODEL_TEMPLATES,
-            model={
-                "name": model.name,  # type: ignore
-                "templates": {
-                    t["name"]: {"qfmt": t["qfmt"], "afmt": t["afmt"]}
-                    for t in model.templates  # type: ignore
+        existing_model_names = self._invoke(AnkiConnectCommand.GET_MODEL_NAMES)
+
+        if model.name in existing_model_names:  # type: ignore
+            self._invoke(
+                AnkiConnectCommand.UPDATE_MODEL_TEMPLATES,
+                model={
+                    "name": model.name,  # type: ignore
+                    "templates": {
+                        t["name"]: {"qfmt": t["qfmt"], "afmt": t["afmt"]}
+                        for t in model.templates  # type: ignore
+                    },
                 },
-            },
-        )
-        self._invoke(
-            AnkiConnectCommand.UPDATE_MODEL_STYLING,
-            model={"name": model.name, "css": model.css},  # type: ignore
-        )
+            )
+            self._invoke(
+                AnkiConnectCommand.UPDATE_MODEL_STYLING,
+                model={"name": model.name, "css": model.css},  # type: ignore
+            )
+        else:
+            self._invoke(
+                AnkiConnectCommand.CREATE_MODEL,
+                modelName=model.name,  # type: ignore
+                inOrderFields=[field["name"] for field in model.fields],  # type: ignore
+                css=model.css,  # type: ignore
+                cardTemplates=[
+                    {"Name": t["name"], "Front": t["qfmt"], "Back": t["afmt"]}
+                    for t in model.templates  # type: ignore
+                ],
+            )
 
     def import_package(self, package: genanki.Package) -> None:
         subdir = "tmp_apkg_dir"
