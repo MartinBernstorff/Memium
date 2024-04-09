@@ -48,7 +48,7 @@ class QAExample:
             "FakeBaseDeck::Subdeck::Wikilinks-Wikipedia",
         ),
         QAExample(
-            FakeAnkiQA(question="What are _Wikilinks_ on _Wikipedia_?"),
+            FakeAnkiQA(question="On _Wikipedia_, what are _Wikilinks_?"),
             "FakeBaseDeck::Wikilinks-Wikipedia",
         ),
         QAExample(FakeAnkiQA(question="Without wikilinks?"), "FakeBaseDeck"),
