@@ -2,6 +2,115 @@
 
 
 
+## v0.15.0 (2024-04-09)
+
+### Chore
+
+* chore(deps): update dependency typer to v0.12.2 ([`92e40a1`](https://github.com/MartinBernstorff/Memium/commit/92e40a182c0dc5f7320e7a11a5090a19d8f5cc51))
+
+* chore(deps): update python-semantic-release/python-semantic-release action to v9.4.1 ([`1f58fa3`](https://github.com/MartinBernstorff/Memium/commit/1f58fa3c6636a20e477ce2df699712948fed30aa))
+
+* chore(deps): update dependency typer to v0.12.1 ([`dc7edb0`](https://github.com/MartinBernstorff/Memium/commit/dc7edb0bc96cdbf67542dfdbcfd69b099ee8d951))
+
+* chore(deps): update dependency dev/pyright to v1.1.357 ([`d8c851d`](https://github.com/MartinBernstorff/Memium/commit/d8c851d4c24e8dde3143c982bad093e49ddc7195))
+
+* chore(deps): update dependency sentry-sdk to v1.44.1 ([`0607674`](https://github.com/MartinBernstorff/Memium/commit/0607674265c1b680faad4901be09486d7d4a5130))
+
+* chore(deps): update dependency tests/pytest-cov to v5 ([`874eaaa`](https://github.com/MartinBernstorff/Memium/commit/874eaaa7755585a8b8ac5d8a7e6a53e6088d475a))
+
+* chore(deps): update dependency typer to v0.12.0 ([`e6e049d`](https://github.com/MartinBernstorff/Memium/commit/e6e049d58e2a8ee9493ac586ca7494fa32dcd175))
+
+* chore(deps): update python-semantic-release/python-semantic-release action to v9.4.0 ([`eed8164`](https://github.com/MartinBernstorff/Memium/commit/eed816481f2ca1f2ad603178183b997e61d88305))
+
+* chore(deps): update dependency sentry-sdk to v1.44.0 ([`0f4dade`](https://github.com/MartinBernstorff/Memium/commit/0f4dade1b0bdf962433e301bc42221d8383e6188))
+
+* chore(deps): update dependency markdown to v3.6 ([`1748178`](https://github.com/MartinBernstorff/Memium/commit/1748178470228ed879b02981d0d6ce6d2b3ba159))
+
+* chore(deps): update dependency dev/pre-commit to v3.7.0 ([`fa48661`](https://github.com/MartinBernstorff/Memium/commit/fa4866192533ce4a4bae393c59e64e2481b6b000))
+
+* chore(deps): update dependency pydantic to v2.6.4 ([`e734d3e`](https://github.com/MartinBernstorff/Memium/commit/e734d3e80212d1a55e1ba4dcf92c5dbe2bc06e52))
+
+* chore(deps): update dependency dev/ruff to v0.3.5 ([`a96013f`](https://github.com/MartinBernstorff/Memium/commit/a96013f9311e1b19b5d73c90ba9c3e77a89860fc))
+
+* chore(deps): update dependency dev/pyright to v1.1.356 ([`64b2cf1`](https://github.com/MartinBernstorff/Memium/commit/64b2cf1a17f4a22d0164011b82c406535ef432ca))
+
+* chore(deps): update dependency iterpy to v1.9.0 ([`906e640`](https://github.com/MartinBernstorff/Memium/commit/906e640fd54e2a63f9bf4c8a82792ab86fdad113))
+
+* chore(deps): update dependency dev/ruff to v0.3.2 ([`8525583`](https://github.com/MartinBernstorff/Memium/commit/8525583632ace4464590d0246760b1f0f73f7a91))
+
+* chore(deps): update dependency dev/pyright to v1.1.353 ([`80d8b97`](https://github.com/MartinBernstorff/Memium/commit/80d8b97e4797934bd01af7549f32abaadd93a4a6))
+
+* chore(deps): update dependency iterpy to v1.8.1 ([`68ece09`](https://github.com/MartinBernstorff/Memium/commit/68ece09d05296ff0494a9f7f190781385cf869e0))
+
+* chore(deps): update dependency iterpy to v1.7.0 ([`1153826`](https://github.com/MartinBernstorff/Memium/commit/1153826e756961ef24379300d1a808fdc402b794))
+
+* chore(deps): update dependency sentry-sdk to v1.41.0 ([`b422c1e`](https://github.com/MartinBernstorff/Memium/commit/b422c1ea25535acaa859e410b1f4f5f5f6d8f149))
+
+* chore(deps): update dependency dev/ruff to v0.3.1 ([`6095ed2`](https://github.com/MartinBernstorff/Memium/commit/6095ed24df306ef93c8eeb8d827a93d04f8c92ee))
+
+* chore(deps): update dependency dev/ruff to v0.3.0 ([`7a93e73`](https://github.com/MartinBernstorff/Memium/commit/7a93e73674faf1ec614bdacfc20699393d13a76e))
+
+* chore(deps): update dependency dev/pyright to v1.1.352 ([`4341487`](https://github.com/MartinBernstorff/Memium/commit/4341487e9fa78cdbbeed2162b75a1779c6c77933))
+
+* chore(deps): update dependency pydantic to v2.6.3 ([`69ef4fb`](https://github.com/MartinBernstorff/Memium/commit/69ef4fb8fa6789849f3441ddff6ac15e65846899))
+
+* chore(deps): update dependency tests/pytest-testmon to v2.1.1 ([`eda5e2c`](https://github.com/MartinBernstorff/Memium/commit/eda5e2c99d60a4a68f947a2f70a32f9fcbf34a51))
+
+* chore(deps): update dependency sentry-sdk to v1.40.6 ([`f4a8f0e`](https://github.com/MartinBernstorff/Memium/commit/f4a8f0e2cd02edd5faf27b2d2cad94b64744091a))
+
+* chore(deps): update python-semantic-release/python-semantic-release action to v9.1.1 ([`9a91fbf`](https://github.com/MartinBernstorff/Memium/commit/9a91fbf50c673c75a6075f9c715ece08bdc5eb87))
+
+* chore(deps): update dependency pydantic to v2.6.2 ([`70d8084`](https://github.com/MartinBernstorff/Memium/commit/70d808475f854593e17de61cf482dc0b09b0620b))
+
+* chore(deps): update dependency dev/pyright to v1.1.351 ([`0d18783`](https://github.com/MartinBernstorff/Memium/commit/0d187834784d4fd1b57f6400424f81940d78f735))
+
+* chore(deps): update dependency iterpy to v1.6.0 ([`25ee384`](https://github.com/MartinBernstorff/Memium/commit/25ee384a10ce5e28b9fc7ef492d287650411371a))
+
+* chore(deps): update dependency sentry-sdk to v1.40.5 ([`737cb25`](https://github.com/MartinBernstorff/Memium/commit/737cb25023abd55df145ef77ddc17dcf458c8e45))
+
+* chore(deps): update dependency dev/pre-commit to v3.6.2 ([`4e52e8d`](https://github.com/MartinBernstorff/Memium/commit/4e52e8d5604a68eb9276afe9614298f38bf13370))
+
+* chore(deps): update dependency dev/ruff to v0.2.2 ([`81544f3`](https://github.com/MartinBernstorff/Memium/commit/81544f3cc9801c0fb72fb14d0db73e05e983b6c2))
+
+* chore(deps): update python-semantic-release/python-semantic-release action to v9.1.0 ([`19ddce7`](https://github.com/MartinBernstorff/Memium/commit/19ddce77d14b1b4ebbc61ad23ebbb80af7367ed2))
+
+* chore(deps): update dependency sentry-sdk to v1.40.4 ([`3abd2d5`](https://github.com/MartinBernstorff/Memium/commit/3abd2d5432baa3c627fd05fcbc289f863ac85b1a))
+
+* chore(deps): update dependency iterpy to v1.5.1 ([`67c93bd`](https://github.com/MartinBernstorff/Memium/commit/67c93bd85639e7daf00a0027cd7f73ef393175bf))
+
+* chore(deps): update dependency iterpy to v1.5.0 ([`81cbf94`](https://github.com/MartinBernstorff/Memium/commit/81cbf940b25f088eaa4cce306bd5bcde1dcc0b60))
+
+* chore(deps): update dependency tqdm to v4.66.2 ([`4fa5a3d`](https://github.com/MartinBernstorff/Memium/commit/4fa5a3d6e34c384109864b0d6cb7de4aceef126b))
+
+* chore(deps): update dependency dev/pre-commit to v3.6.1 ([`c020f67`](https://github.com/MartinBernstorff/Memium/commit/c020f676cf9a46f9509f7f37b8adea1b5aefbb2e))
+
+* chore(deps): update dependency iterpy to v1 ([`455ff31`](https://github.com/MartinBernstorff/Memium/commit/455ff31a3389f809ed0055d49cd94512e349df67))
+
+* chore(deps): update dependency sentry-sdk to v1.40.3 ([`87a1e83`](https://github.com/MartinBernstorff/Memium/commit/87a1e8388147038211a3574e75a4f6721c5a386c))
+
+* chore(deps): update python-semantic-release/python-semantic-release action to v9.0.3 ([`4d28b59`](https://github.com/MartinBernstorff/Memium/commit/4d28b5966a97102b5db802b5c609d06f5080014b))
+
+* chore(deps): update python-semantic-release/python-semantic-release action to v9.0.2 ([`ddeba70`](https://github.com/MartinBernstorff/Memium/commit/ddeba707e96634657053bac2b42199c86f6cc56e))
+
+* chore(deps): update dependency sentry-sdk to v1.40.2 ([`658a8c3`](https://github.com/MartinBernstorff/Memium/commit/658a8c30d8c24a2efdcf3aff174a093bd8aac446))
+
+* chore(deps): update python-semantic-release/python-semantic-release action to v9 ([`b4a4dd6`](https://github.com/MartinBernstorff/Memium/commit/b4a4dd654ba2ff09d70022089842565d82790565))
+
+### Feature
+
+* feat: create decks based on wikilinks in qa question (#618)
+
+feat: create decks based on wikilinks in qa question
+
+update 8 files ([`bcd61e3`](https://github.com/MartinBernstorff/Memium/commit/bcd61e32384799e6791af0eb5acc5fca930a6a05))
+
+* feat: create decks based on wikilinks in qa question ([`448976b`](https://github.com/MartinBernstorff/Memium/commit/448976ba82f92a0b3909861e746f28e5ceafb58f))
+
+### Unknown
+
+* update 8 files ([`7519667`](https://github.com/MartinBernstorff/Memium/commit/7519667da7198422f2d47983d32ca322608d0d73))
+
+
 ## v0.14.3 (2024-02-06)
 
 ### Chore
