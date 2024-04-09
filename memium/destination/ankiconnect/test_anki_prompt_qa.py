@@ -44,13 +44,11 @@ class QAExample:
     [
         QAExample(FakeAnkiQA(tags=["anki/deck/Subdeck"]), "FakeBaseDeck::Subdeck"),
         QAExample(
-            FakeAnkiQA(
-                tags=["anki/deck/Subdeck"], question="What are [[Wikilinks]] on [[Wikipedia]]?"
-            ),
+            FakeAnkiQA(tags=["anki/deck/Subdeck"], question="What are _Wikilinks_ on _Wikipedia_?"),
             "FakeBaseDeck::Subdeck::Wikilinks-Wikipedia",
         ),
         QAExample(
-            FakeAnkiQA(question="What are [[Wikilinks]] on [[Wikipedia]]?"),
+            FakeAnkiQA(question="What are _Wikilinks_ on _Wikipedia_?"),
             "FakeBaseDeck::Wikilinks-Wikipedia",
         ),
         QAExample(FakeAnkiQA(question="Without wikilinks?"), "FakeBaseDeck"),
