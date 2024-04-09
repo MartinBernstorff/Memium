@@ -2,6 +2,15 @@
 
 
 
+## v0.18.0 (2024-04-09)
+
+### Feature
+
+* feat: support slashes in wikilinks (#622) ([`8fc90ac`](https://github.com/MartinBernstorff/Memium/commit/8fc90acdff2dc77bdff564e8ad27eda668a57b46))
+
+* feat: support slashes in wikilinks ([`7d207ff`](https://github.com/MartinBernstorff/Memium/commit/7d207ff8964b390881a9169ed236db3541eb58cc))
+
+
 ## v0.17.0 (2024-04-09)
 
 ### Feature
