@@ -2,6 +2,15 @@
 
 
 
+## v0.17.0 (2024-04-09)
+
+### Feature
+
+* feat: sort terms before generating subdecks (#621) ([`fd7e703`](https://github.com/MartinBernstorff/Memium/commit/fd7e703ad17e5edfc2d4e07f15f974e48a7f65bf))
+
+* feat: sort terms before generating subdecks ([`9564ff7`](https://github.com/MartinBernstorff/Memium/commit/9564ff740ebd8a32540dd514b0d0e1475289441c))
+
+
 ## v0.16.1 (2024-04-09)
 
 ### Fix
