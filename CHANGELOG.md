@@ -2,6 +2,15 @@
 
 
 
+## v0.16.0 (2024-04-09)
+
+### Feature
+
+* feat: create model if it does not exist (#619) ([`380ed4e`](https://github.com/MartinBernstorff/Memium/commit/380ed4eb659e82704565299e798c2d0200c7c6ab))
+
+* feat: create model if it does not exist ([`e979d45`](https://github.com/MartinBernstorff/Memium/commit/e979d4567139e8ef095146193672e4bde65c0f2b))
+
+
 ## v0.15.0 (2024-04-09)
 
 ### Chore
