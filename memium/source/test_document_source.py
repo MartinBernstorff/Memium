@@ -51,3 +51,11 @@ class TestMarkdownIngester:
             )
             == expected_output
         )
+
+
+def test_replace_alias_wiki_links():
+    text = "Linking to a valid [[Note/Note2|Note Alias]], and can handle [[Note2|Multiple Aliases]]"
+    expected_output = "Linking to a valid [[Note Alias]], and can handle [[Multiple Aliases]]"
+    assert (
+        MarkdownDocumentSource(directory=Path())._replace_alias_wiki_links(text) == expected_output  # type: ignore
+    )
