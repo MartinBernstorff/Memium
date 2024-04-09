@@ -2,6 +2,21 @@
 
 
 
+## v0.16.1 (2024-04-09)
+
+### Fix
+
+* fix: term extraction (#620) ([`8816e48`](https://github.com/MartinBernstorff/Memium/commit/8816e48b87dda53ad57e8e3db10406db2f2366ed))
+
+### Test
+
+* test: update test_anki_prompt_qa.py ([`ec2f0d2`](https://github.com/MartinBernstorff/Memium/commit/ec2f0d2b72107b7dd738c4bf3042894969c374b5))
+
+### Unknown
+
+* update 3 files, create 2 files and delete 2 files ([`b245542`](https://github.com/MartinBernstorff/Memium/commit/b245542394996c474d05f0d615eb0bc2ad6cc503))
+
+
 ## v0.16.0 (2024-04-09)
 
 ### Feature
