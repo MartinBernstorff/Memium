@@ -13,8 +13,7 @@ S = TypeVar("S")
 class BaseDiffDeterminer(Protocol):
     def sync(
         self, source_prompts: Sequence[BasePrompt], destination_prompts: Sequence[DestinationPrompt]
-    ) -> Sequence[PromptDestinationCommand]:
-        ...
+    ) -> Sequence[PromptDestinationCommand]: ...
 
 
 @dataclass(frozen=True)

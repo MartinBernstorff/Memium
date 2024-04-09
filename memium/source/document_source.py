@@ -19,8 +19,7 @@ class FileNotRetrievedError(Exception):
 
 
 class BaseDocumentSource(Protocol):
-    def get_documents(self) -> Sequence[Document]:
-        ...
+    def get_documents(self) -> Sequence[Document]: ...
 
 
 class MarkdownDocumentSource(BaseDocumentSource):

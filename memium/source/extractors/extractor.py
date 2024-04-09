@@ -6,5 +6,4 @@ from ..prompts.prompt import BasePrompt
 
 
 class BasePromptExtractor(Protocol):
-    def extract_prompts(self, document: Document) -> Sequence[BasePrompt]:
-        ...
+    def extract_prompts(self, document: Document) -> Sequence[BasePrompt]: ...
