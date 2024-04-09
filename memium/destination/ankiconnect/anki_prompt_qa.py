@@ -88,7 +88,7 @@ class AnkiQA(AnkiPrompt):
     def deck(self) -> str:
         base_deck = super().deck
         wiki_links = get_terms_surrounded_by_underscores(self.question)
-        wiki_subdeck = "-".join(wiki_links)
+        wiki_subdeck = "-".join(sorted(wiki_links))
 
         if wiki_subdeck != "":
             return f"{base_deck}::{wiki_subdeck}"
