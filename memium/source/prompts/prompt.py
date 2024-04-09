@@ -15,8 +15,7 @@ class BasePrompt(Protocol):
         ...
 
     @property
-    def tags(self) -> Sequence[str]:
-        ...
+    def tags(self) -> Sequence[str]: ...
 
 
 from dataclasses import dataclass

@@ -17,12 +17,10 @@ class AnkiPrompt(ABC):
 
     @property
     @abstractmethod
-    def genanki_model(self) -> genanki.Model:
-        ...
+    def genanki_model(self) -> genanki.Model: ...
 
     @abstractmethod
-    def to_genanki_note(self) -> genanki.Note:
-        ...
+    def to_genanki_note(self) -> genanki.Note: ...
 
     @property
     def deck(self) -> str:

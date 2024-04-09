@@ -3,6 +3,8 @@ from dataclasses import dataclass
 
 import genanki
 
+from memium.utils.get_wikilinks_from_string import get_wikilinks_from_string
+
 from ...utils.hash_cleaned_str import hash_str_to_int
 from .anki_prompt import AnkiPrompt
 
@@ -81,3 +83,13 @@ class AnkiQA(AnkiPrompt):
             ],
             tags=self.tags,
         )
+
+    @property
+    def deck(self) -> str:
+        base_deck = super().deck
+        wiki_links = get_wikilinks_from_string(self.question)
+        wiki_subdeck = "-".join(wiki_links)
+
+        if wiki_subdeck != "":
+            return f"{base_deck}::{wiki_subdeck}"
+        return base_deck
