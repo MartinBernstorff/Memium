@@ -164,8 +164,7 @@ class AnkiConnectGateway:
 
 
 @dataclass(frozen=True)
-class FakeAnkiCommand:
-    ...
+class FakeAnkiCommand: ...
 
 
 @dataclass(frozen=True)

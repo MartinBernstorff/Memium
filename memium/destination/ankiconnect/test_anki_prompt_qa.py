@@ -33,6 +33,13 @@ def test_ankiqa_deck_inference():
     assert card.deck == "FakeBaseDeck::Subdeck"
 
 
+def test_ankiqa_deck_inference_with_wikilinks():
+    card = FakeAnkiQA(
+        tags=["anki/deck/Subdeck"], question="What are [[Wikilinks]] on [[Wikipedia]]?"
+    )
+    assert card.deck == "FakeBaseDeck::Subdeck::Wikilinks-Wikipedia"
+
+
 def test_formatting():
     card = FakeAnkiQA(question="Q. This is a _question_?")
     note = card.to_genanki_note()

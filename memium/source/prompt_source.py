@@ -14,8 +14,7 @@ log = logging.getLogger(__name__)
 
 
 class BasePromptSource(Protocol):
-    def get_prompts(self) -> Sequence[BasePrompt]:
-        ...
+    def get_prompts(self) -> Sequence[BasePrompt]: ...
 
 
 @dataclass(frozen=True)

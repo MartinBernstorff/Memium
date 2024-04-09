@@ -52,9 +52,9 @@ class TableExtractor(BasePromptExtractor):
                 # Is description
                 elif "//" in line:
                     metadata = line.split("//")
-                    mode_string: Literal[
-                        "Ascending", "Descending", "Rowwise", "Row-wise"
-                    ] = metadata[0].strip()  # type: ignore
+                    mode_string: Literal["Ascending", "Descending", "Rowwise", "Row-wise"] = (
+                        metadata[0].strip()
+                    )  # type: ignore
 
                     match mode_string:
                         case "Ascending":
