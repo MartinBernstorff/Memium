@@ -42,7 +42,7 @@ tests = [
   "pytest-xdist==3.5.0",
   "pytest-sugar==1.0.0",
   "pytest-testmon==2.1.1",
-  "diff-cover==8.0.2",
+  "diff-cover==9.0.0",
 ]
 dev = [
   "cruft==2.15.0",
