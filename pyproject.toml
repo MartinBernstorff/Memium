@@ -50,7 +50,7 @@ dev = [
   "invoke==2.2.0",
   "pyright==1.1.359",
   "pre-commit==3.7.0",
-  "ruff==0.3.7",
+  "ruff==0.4.0",
   "lumberman",
 ]
 
