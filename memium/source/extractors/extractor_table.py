@@ -5,9 +5,9 @@ from dataclasses import dataclass
 from typing import Literal
 
 from memium.source.document import Document
-from memium.source.prompts.prompt import BasePrompt
+from memium.source.extractors.to_line_blocks import LineBlock, to_line_blocks
 
-from ..prompts.prompt_qa import QAPrompt
+from ..prompts.prompt_qa import QAFromDoc, QAPrompt
 from .extractor import BasePromptExtractor
 
 
@@ -23,6 +23,7 @@ class ParsedTable:
     mode: TableParseMode
     front: str
     back: str
+    end_line_nr: int
 
 
 @dataclass(frozen=True)
@@ -32,13 +33,13 @@ class RowPair:
 
 
 class TableExtractor(BasePromptExtractor):
-    def _parse_table(self, input_str: str) -> Sequence[ParsedTable]:
-        if not input_str.startswith("|"):
+    def _parse_table(self, block: LineBlock) -> Sequence[ParsedTable]:
+        if not block.content.startswith("|"):
             return []
 
         rows: list[dict[str, str]] = []
         parsed_tables: Sequence[ParsedTable] = []
-        for n, line in enumerate(input_str.strip().split("\n")):
+        for n, line in enumerate(block.content.strip().split("\n")):
             data: dict[str, str] = {}
             if n == 0:
                 header = [cell.strip() for cell in line.split("|") if cell]
@@ -70,6 +71,7 @@ class TableExtractor(BasePromptExtractor):
                             mode=mode,
                             front=metadata[1].strip(),
                             back=metadata[2].strip(),
+                            end_line_nr=block.end_line,
                         )
                     )
         return parsed_tables
@@ -102,7 +104,9 @@ class TableExtractor(BasePromptExtractor):
 
         return front, back
 
-    def _parsed_table_to_prompt(self, parsed_table: ParsedTable) -> Sequence[QAPrompt]:
+    def _parsed_table_to_prompt(
+        self, parsed_table: ParsedTable, doc: Document
+    ) -> Sequence[QAPrompt]:
         prompts: Sequence[QAPrompt] = []
         match parsed_table.mode:
             case TableParseMode.ASCENDING | TableParseMode.DESCENDING:
@@ -117,19 +121,28 @@ class TableExtractor(BasePromptExtractor):
 
             # Skip rows with empty fronts or backs
             if front and back:
-                prompts.append(QAPrompt(question=front, answer=back))
+                prompts.append(
+                    QAFromDoc(
+                        question=front,
+                        answer=back,
+                        parent_doc=doc,
+                        line_nr=parsed_table.end_line_nr,
+                    )
+                )
             if i == break_index:
                 break
         return prompts
 
-    def extract_prompts(self, document: Document) -> Sequence[BasePrompt]:
-        blocks = document.content.split("\n\n")
+    def extract_prompts(self, document: Document) -> Sequence[QAPrompt]:
+        blocks = to_line_blocks(document.content)
+
         parsed_tables = [self._parse_table(block) for block in blocks]
         flattened_parsed_tables = [
             parsed_table for sublist in parsed_tables for parsed_table in sublist
         ]
         prompts = [
-            self._parsed_table_to_prompt(parsed_table) for parsed_table in flattened_parsed_tables
+            self._parsed_table_to_prompt(parsed_table, document)
+            for parsed_table in flattened_parsed_tables
         ]
         flattened_prompts = [prompt for sublist in prompts for prompt in sublist]
         return flattened_prompts

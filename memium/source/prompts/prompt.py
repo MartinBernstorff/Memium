@@ -17,6 +17,11 @@ class BasePrompt(Protocol):
     @property
     def tags(self) -> Sequence[str]: ...
 
+    @property
+    def edit_url(self) -> str | None:
+        """A link which, when pressed, opens a location where the prompt can be edited. E.g. opens a given Markdown document in the correct editor, or a web interface for a CMS."""
+        ...
+
 
 from dataclasses import dataclass
 

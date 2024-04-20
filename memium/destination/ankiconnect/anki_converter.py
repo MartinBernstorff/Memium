@@ -26,6 +26,7 @@ class AnkiPromptConverter:
                     tags=prompt.tags,
                     css=self.card_css,
                     uuid=prompt.scheduling_uid,
+                    edit_url=prompt.edit_url,
                 )
             case ClozePrompt():
                 return AnkiCloze(
@@ -34,6 +35,7 @@ class AnkiPromptConverter:
                     tags=prompt.tags,
                     css=self.card_css,
                     uuid=prompt.scheduling_uid,
+                    edit_url=prompt.edit_url,
                 )
             case BasePrompt():
                 raise ValueError("BasePrompt is the base class for all prompts, use a subclass")

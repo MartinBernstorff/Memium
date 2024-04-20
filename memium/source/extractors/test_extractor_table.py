@@ -4,15 +4,17 @@ from pathlib import Path
 
 import pytest
 
+from memium.source.extractors.test_prompt import FakeQAPrompt
+
 from ..document import Document
-from ..prompts.prompt_qa import QAPrompt
 from .extractor_table import TableExtractor
+from .to_line_blocks import LineBlock, to_line_blocks
 
 
 @dataclass(frozen=True)
 class TableExtractorExample:
     table_prompt: str  # What the example is testing
-    expectation: Sequence[QAPrompt]  # Expected prompts
+    expectation: Sequence[FakeQAPrompt]  # Expected prompts
 
 
 @pytest.mark.parametrize(
@@ -20,20 +22,20 @@ class TableExtractorExample:
     [
         TableExtractorExample(
             table_prompt="Descending // |Column one|? // |Column two|",
-            expectation=[QAPrompt(question="11?", answer="22")],
+            expectation=[FakeQAPrompt(question="11?", answer="22")],
         ),
         TableExtractorExample(
             table_prompt="Ascending // |Column one|? // |Column two|",
             expectation=[
-                QAPrompt(question="21?", answer="12"),
-                QAPrompt(question="31?", answer="22"),
+                FakeQAPrompt(question="21?", answer="12"),
+                FakeQAPrompt(question="31?", answer="22"),
             ],
         ),
         TableExtractorExample(
             table_prompt="Rowwise // |Column one|? // |Column two|",
             expectation=[
-                QAPrompt(question="11?", answer="12"),
-                QAPrompt(question="21?", answer="22"),
+                FakeQAPrompt(question="11?", answer="12"),
+                FakeQAPrompt(question="21?", answer="22"),
             ],
         ),
     ],
@@ -52,4 +54,18 @@ def test_table_extractor(example: TableExtractorExample):
         source_path=Path(__file__),
     )
 
-    assert set(example.expectation) == set(TableExtractor().extract_prompts(input_doc))
+    assert {
+        example.to_qa_from_doc(doc=input_doc, line_nr=len(input_doc.content.split("\n")) - 1)
+        for example in example.expectation
+    } == set(TableExtractor().extract_prompts(input_doc))
+
+
+def test_line_block_extractor():
+    document = """Block 1
+
+Block 2
+With multiline"""
+    assert to_line_blocks(document) == [
+        LineBlock(starting_line=0, lines=["Block 1"]),
+        LineBlock(starting_line=2, lines=["Block 2", "With multiline"]),
+    ]
