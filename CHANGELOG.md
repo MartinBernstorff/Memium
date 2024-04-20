@@ -2,6 +2,51 @@
 
 
 
+## v0.19.0 (2024-04-20)
+
+### Chore
+
+* chore(deps): update dependency tests/pytest-xdist to v3.6.0 ([`ab9face`](https://github.com/MartinBernstorff/Memium/commit/ab9face94242ce642b6801526cc7a2d666ea1605))
+
+* chore(deps): update dependency dev/ruff to v0.4.1 ([`5d56819`](https://github.com/MartinBernstorff/Memium/commit/5d5681946cacf21cfbd331f4baadee8aa960198d))
+
+* chore(deps): update dependency dev/ruff to v0.4.0 ([`122bf50`](https://github.com/MartinBernstorff/Memium/commit/122bf5073a9debc3467bcb77b56c4edce0ba974f))
+
+* chore(deps): update dependency dev/pyright to v1.1.359 ([`ad3ad6b`](https://github.com/MartinBernstorff/Memium/commit/ad3ad6b2ca2c736adbb7cfe91608db83107805bd))
+
+* chore(deps): update dependency tests/diff-cover to v9 ([`573571f`](https://github.com/MartinBernstorff/Memium/commit/573571f9380ef749552ee1f69c378d2ad00c47ef))
+
+* chore(deps): update python-semantic-release/python-semantic-release action to v9.4.2 ([`c14629d`](https://github.com/MartinBernstorff/Memium/commit/c14629dfe91b787c09985d90719c2f8b43297164))
+
+* chore(deps): update dependency dev/ruff to v0.3.7 ([`ae3928c`](https://github.com/MartinBernstorff/Memium/commit/ae3928c0e8b8964d83733134119c28b779c9d332))
+
+* chore(deps): update dependency dev/ruff to v0.3.6 ([`9243d80`](https://github.com/MartinBernstorff/Memium/commit/9243d80a285d24d519cc12b86b2ab751e7d4236b))
+
+* chore(deps): update dependency pydantic to v2.7.0 ([`b3a32f0`](https://github.com/MartinBernstorff/Memium/commit/b3a32f0b862c8054cdaf255bb6ccb9e0582e1df3))
+
+* chore(deps): update dependency sentry-sdk to v1.45.0 ([`eae82e6`](https://github.com/MartinBernstorff/Memium/commit/eae82e68846c6dfe1cec45817aec0234bd448047))
+
+* chore(deps): update dependency typer to v0.12.3 ([`e2f44fc`](https://github.com/MartinBernstorff/Memium/commit/e2f44fc0b9c9cc89518bf3e597ada32964fdbcde))
+
+* chore(deps): update dependency dev/pyright to v1.1.358 ([`08ea850`](https://github.com/MartinBernstorff/Memium/commit/08ea850e29b3c374038367968fa8a3cde098a8ec))
+
+### Feature
+
+* feat: add open in obsidian button (#635) ([`8843a65`](https://github.com/MartinBernstorff/Memium/commit/8843a65ffac535ce5aa1768f9ca35bfb24ddd620))
+
+* feat: add obsidian URI ([`78cfbcd`](https://github.com/MartinBernstorff/Memium/commit/78cfbcd9420b122bb872d12c896ef1b57568fbf8))
+
+### Test
+
+* test: update test_extractor_table.py and test_prompt.py ([`a862723`](https://github.com/MartinBernstorff/Memium/commit/a86272353d500b47f1c56970e690b8d63a28f413))
+
+### Unknown
+
+* update anki_prompt_qa.py ([`7b24ca5`](https://github.com/MartinBernstorff/Memium/commit/7b24ca56f03c6e2cb294f741576808f26404f9e6))
+
+* update anki_prompt.py, anki_prompt_cloze.py and anki_prompt_qa.py ([`bcd79cc`](https://github.com/MartinBernstorff/Memium/commit/bcd79cc23e3b0f26bef53cf0deb0498769a8a393))
+
+
 ## v0.18.0 (2024-04-09)
 
 ### Feature
