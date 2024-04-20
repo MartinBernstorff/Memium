@@ -40,7 +40,7 @@ class DocumentPromptSource(BasePromptSource):
         prompts_in_group = group[1]
 
         if len(prompts_in_group) != 1:
-            log.warn(f"Found duplicate prompts for {prompts_in_group[0]}")
+            log.warning(f"Found duplicate prompts for {prompts_in_group[0]}")
 
         return prompts_in_group[0]
 
@@ -52,7 +52,7 @@ class DocumentPromptSource(BasePromptSource):
 
         n_duplicates = len(prompts) - len(unique_prompts)
         if n_duplicates != 0:
-            log.warn(f"Found a total of {n_duplicates} duplicate prompts")
+            log.warning(f"Found a total of {n_duplicates} duplicate prompts")
 
         return unique_prompts
 

@@ -22,7 +22,10 @@ class MockNoteInfo(NoteInfo):
     cards: Sequence[int] = [1]
 
 
-@pytest.mark.skipif(not anki_connect_is_live(), reason="Tests require a running AnkiConnect server")
+@pytest.mark.skipif(
+    not anki_connect_is_live() or not Path("/output").exists(),
+    reason="Tests require a running AnkiConnect server and an output directory. Use the Docker container to run the tests.",
+)
 class TestAnkiConnectGateway:
     output_path = Path("/output")
 

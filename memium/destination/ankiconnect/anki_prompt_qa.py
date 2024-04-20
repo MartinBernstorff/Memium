@@ -71,6 +71,9 @@ class AnkiQA(AnkiPrompt):
             model_type=0,
         )
 
+    def extra_field_content(self) -> str:
+        return "" if not self.edit_url else create_edit_url_button(self.edit_url)
+
     def to_genanki_note(self) -> genanki.Note:
         return genanki.Note(
             guid=str(self.uuid),
@@ -78,7 +81,7 @@ class AnkiQA(AnkiPrompt):
             fields=[
                 self.field_to_html(self.question),
                 self.field_to_html(self.answer),
-                " ".join(self.tags),
+                self.extra_field_content,
                 str(self.uuid),
             ],
             tags=self.tags,
@@ -93,3 +96,18 @@ class AnkiQA(AnkiPrompt):
         if wiki_subdeck != "":
             return f"{base_deck}::{wiki_subdeck}"
         return base_deck
+
+
+def create_edit_url_button(edit_url: str) -> str:
+    return f"""<a href="{edit_url}" style="background-color: #5f0069;
+border: none;
+color: white;
+padding: 0.8em;
+text-align: center;
+text-decoration: none;
+font-size: 0.8em;
+font-family: 'Inter', sans-serif;
+float: right;
+border-radius: 8px;
+opacity: 0.8;
+">Obsidian</a>"""

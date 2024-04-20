@@ -31,6 +31,10 @@ class ClozeWithoutDoc(ClozePrompt):
     def tags(self) -> Sequence[str]:
         return self.add_tags
 
+    @property
+    def edit_url(self) -> str | None:
+        return None
+
 
 @dataclass(frozen=True)
 class ClozeFromDoc(ClozePrompt, PromptFromDocMixin):

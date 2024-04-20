@@ -16,6 +16,7 @@ class FakeAnkiCloze(AnkiCloze):
     tags: Sequence[str] = field(default_factory=fake_tag_factory)
     css: str = "FakeCSS"
     uuid: int = 0
+    edit_url: str = "FakeEditURL"
 
 
 @dataclass(frozen=True)
@@ -26,6 +27,7 @@ class FakeAnkiQA(AnkiQA):
     answer: str = "FakeAnswer"
     css: str = "FakeCSS"
     uuid: int = 0
+    edit_url: str = "FakeEditURL"
 
 
 from dataclasses import dataclass

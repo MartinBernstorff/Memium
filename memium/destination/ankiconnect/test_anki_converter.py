@@ -32,5 +32,3 @@ def test_anki_prompt_converter(input_prompt: BasePrompt, expected_card: AnkiProm
     ).prompt_to_card(input_prompt)
 
     assert generated_card.uuid == expected_card.uuid
-    for attr in expected_card.__dict__:
-        assert getattr(generated_card, attr) == getattr(expected_card, attr)

@@ -8,7 +8,10 @@ from memium.__main__ import main
 from .destination.ankiconnect.ankiconnect_gateway import anki_connect_is_live
 
 
-@pytest.mark.skipif(not anki_connect_is_live(), reason="Tests require a running AnkiConnect server")
+@pytest.mark.skipif(
+    not anki_connect_is_live() or not Path("/output").exists(),
+    reason="Tests require a running AnkiConnect server and an output directory. Use the Docker container to run the tests.",
+)
 def test_main(caplog: pytest.LogCaptureFixture, base_deck: str = "Main Integration Test"):
     caplog.set_level(logging.INFO)
 

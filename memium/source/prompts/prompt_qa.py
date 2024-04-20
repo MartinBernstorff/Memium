@@ -42,6 +42,10 @@ class QAWithoutDoc(QAPrompt):
     def tags(self) -> Sequence[str]:
         return self.add_tags
 
+    @property
+    def edit_url(self) -> str | None:
+        return None
+
 
 @dataclass(frozen=True)
 class QAFromDoc(QAPrompt, PromptFromDocMixin):

@@ -1,0 +1,4 @@
+# serializer version: 1
+# name: test_file_title_to_uri
+  'obsidian://advanced-uri?filename=Heap%20Properties&line=5'
+# ---

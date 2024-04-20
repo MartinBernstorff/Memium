@@ -7,7 +7,7 @@ from memium.utils.extract_terms import get_terms_surrounded_by_underscores
 
 
 @dataclass(frozen=True)
-class TestExample:
+class Example:
     input_string: str
     wikilinks: Sequence[str]
 
@@ -15,12 +15,12 @@ class TestExample:
 @pytest.mark.parametrize(
     ("example"),
     [
-        TestExample("_Test_", ["Test"]),
-        TestExample("_Test (testing)_", ["Test (testing)"]),
-        TestExample("_Test_, _Test2_", ["Test", "Test2"]),
-        TestExample("_ Some things, are just not _Wikilinks_ _", ["Wikilinks"]),
+        Example("_Test_", ["Test"]),
+        Example("_Test (testing)_", ["Test (testing)"]),
+        Example("_Test_, _Test2_", ["Test", "Test2"]),
+        Example("_ Some things, are just not _Wikilinks_ _", ["Wikilinks"]),
     ],
     ids=lambda x: x.input_string,
 )
-def test_get_wikilinks_from_string(example: TestExample):
+def test_get_wikilinks_from_string(example: Example):
     assert get_terms_surrounded_by_underscores(example.input_string) == example.wikilinks
