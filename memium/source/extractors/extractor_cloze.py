@@ -90,3 +90,64 @@ class ClozePromptExtractor(BasePromptExtractor):
             block_starting_line_nr += n_block_lines
 
         return prompts
+
+
+from pathlib import Path
+
+from ..document import Document
+
+
+def test_cloze_prompt_extractor(tmpdir: Path):
+    doc = Document(
+        content=r"""
+
+What is the meaning of life? {42}
+
+
+This is another block without any cloze prompts.
+
+#anki/tag/test_tag
+
+""",
+        source_path=tmpdir / "test.md",
+    )
+
+    extractor = ClozePromptExtractor().extract_prompts(doc)
+
+    assert len(extractor) == 1
+    assert extractor[0].text == r"What is the meaning of life? {{c734::42}}"
+    assert extractor[0].tags == ["anki/tag/test_tag"]
+
+
+import pytest
+
+
+@pytest.mark.parametrize(
+    ("content", "skipped"),
+    [
+        (
+            """```html
+         {Code block}
+         ```""",
+            True,
+        ),
+        ("""<!-- {HTML comment} -->""", True),
+        ("""{Cloze}""", False),
+        (
+            """```html
+Some content
+
+Content in another {block}
+        ```""",
+            True,
+        ),
+    ],
+)
+def test_ignore_block_types(content: str, skipped: bool):
+    doc = Document(content=content, source_path=Path("test.md"))
+    extractor = ClozePromptExtractor().extract_prompts(doc)
+
+    if skipped:
+        assert len(extractor) == 0
+    else:
+        assert len(extractor) == 1

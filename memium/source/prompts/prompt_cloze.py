@@ -1,7 +1,8 @@
 from collections.abc import Sequence
 from dataclasses import dataclass
 
-from ...utils.hash_cleaned_str import clean_str, hash_str_to_int
+from ...str_utils.cleaner import clean_str
+from ...str_utils.hasher import hash_str_to_int
 from .prompt import BasePrompt
 from .prompt_from_doc import PromptFromDocMixin
 

@@ -8,7 +8,7 @@ import sentry_sdk
 import typer
 
 from memium.destination.ankiconnect.anki_converter import AnkiPromptConverter
-from memium.destination.ankiconnect.ankiconnect_gateway import ANKICONNECT_URL, AnkiConnectGateway
+from memium.destination.ankiconnect.anki_gateway import ANKICONNECT_URL, AnkiConnectGateway
 from memium.destination.destination import PushPrompts
 from memium.destination.destination_ankiconnect import AnkiConnectDestination
 from memium.destination.destination_dryrun import DryRunDestination

@@ -118,3 +118,4 @@ BearImages*
 test_package
 .pytest_results
 .testmondata
+.vscode/bookmarks.json

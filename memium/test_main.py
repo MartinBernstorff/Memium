@@ -5,7 +5,7 @@ import pytest
 
 from memium.__main__ import main
 
-from .destination.ankiconnect.ankiconnect_gateway import anki_connect_is_live
+from .destination.ankiconnect.anki_gateway import anki_connect_is_live
 
 
 @pytest.mark.skipif(not anki_connect_is_live(), reason="Tests require a running AnkiConnect server")
