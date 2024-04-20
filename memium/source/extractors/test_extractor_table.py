@@ -7,7 +7,6 @@ import pytest
 from memium.source.extractors.test_prompt import FakeQAPrompt
 
 from ..document import Document
-from ..prompts.prompt_qa import QAPrompt
 from .extractor_table import TableExtractor
 from .to_line_blocks import LineBlock, to_line_blocks
 
@@ -15,7 +14,7 @@ from .to_line_blocks import LineBlock, to_line_blocks
 @dataclass(frozen=True)
 class TableExtractorExample:
     table_prompt: str  # What the example is testing
-    expectation: Sequence[QAPrompt]  # Expected prompts
+    expectation: Sequence[FakeQAPrompt]  # Expected prompts
 
 
 @pytest.mark.parametrize(
@@ -55,12 +54,10 @@ def test_table_extractor(example: TableExtractorExample):
         source_path=Path(__file__),
     )
 
-    expected_qa_pairs = [f"Q. {qa.question}\nA. {qa.answer}" for qa in example.expectation]
-    generated_qa_pairs = [
-        f"Q. {qa.question}\nA. {qa.answer}" for qa in TableExtractor().extract_prompts(input_doc)
-    ]
-
-    assert set(expected_qa_pairs) == set(generated_qa_pairs)
+    assert {
+        example.to_qa_from_doc(doc=input_doc, line_nr=len(input_doc.content.split("\n")) - 1)
+        for example in example.expectation
+    } == set(TableExtractor().extract_prompts(input_doc))
 
 
 def test_line_block_extractor():
