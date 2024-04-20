@@ -71,7 +71,7 @@ class AnkiQA(AnkiPrompt):
             model_type=0,
         )
 
-    def extra_field_content(self) -> str:
+    def _extra_field_content(self) -> str:
         return "" if not self.edit_url else create_edit_url_button(self.edit_url)
 
     def to_genanki_note(self) -> genanki.Note:
@@ -79,9 +79,9 @@ class AnkiQA(AnkiPrompt):
             guid=str(self.uuid),
             model=self.genanki_model,
             fields=[
-                self.field_to_html(self.question),
-                self.field_to_html(self.answer),
-                self.extra_field_content,
+                self._field_to_html(self.question),
+                self._field_to_html(self.answer),
+                self._extra_field_content,
                 str(self.uuid),
             ],
             tags=self.tags,
