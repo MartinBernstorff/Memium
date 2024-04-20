@@ -72,7 +72,7 @@ class AnkiQA(AnkiPrompt):
         )
 
     def _extra_field_content(self) -> str:
-        return "" if not self.edit_url else create_edit_url_button(self.edit_url)
+        return "" if not self.edit_url else edit_button(self.edit_url)
 
     def to_genanki_note(self) -> genanki.Note:
         return genanki.Note(
@@ -98,8 +98,8 @@ class AnkiQA(AnkiPrompt):
         return base_deck
 
 
-def create_edit_url_button(edit_url: str) -> str:
-    return f"""<a href="{edit_url}" style="background-color: #5f0069;
+def edit_button(url: str) -> str:
+    return f"""<a href="{url}" style="background-color: #5f0069;
 border: none;
 color: white;
 padding: 0.8em;
