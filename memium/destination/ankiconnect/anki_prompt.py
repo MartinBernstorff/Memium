@@ -13,7 +13,7 @@ class AnkiPrompt(ABC):
     uuid: int  # UUID is a unique identifier for the prompt, used for scheduling. If a new prompt is added with the same uuid, it will be treated as an update to the existing prompt. Otherwise, they will be interpreted as separate prompts.
     edit_url: str | None
 
-    def _field_to_html(self, field: str) -> str:
+    def _field_to_markdown(self, field: str) -> str:
         return markdown.markdown(field)
 
     @property
