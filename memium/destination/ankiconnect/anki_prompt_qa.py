@@ -71,6 +71,7 @@ class AnkiQA(AnkiPrompt):
             model_type=0,
         )
 
+    @property
     def _extra_field_content(self) -> str:
         return "" if not self.edit_url else edit_button(self.edit_url)
 
@@ -79,8 +80,8 @@ class AnkiQA(AnkiPrompt):
             guid=str(self.uuid),
             model=self.genanki_model,
             fields=[
-                self._field_to_html(self.question),
-                self._field_to_html(self.answer),
+                self._field_to_markdown(self.question),
+                self._field_to_markdown(self.answer),
                 self._extra_field_content,
                 str(self.uuid),
             ],

@@ -37,6 +37,6 @@ class AnkiCloze(AnkiPrompt):
         return genanki.Note(
             guid=str(self.uuid),
             model=self.genanki_model,
-            fields=[self._field_to_html(self.text), "", " ".join(self.tags), str(self.uuid)],
+            fields=[self._field_to_markdown(self.text), "", " ".join(self.tags), str(self.uuid)],
             tags=self.tags,
         )
