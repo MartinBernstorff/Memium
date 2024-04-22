@@ -2,6 +2,15 @@
 
 
 
+## v0.19.1 (2024-04-22)
+
+### Fix
+
+* fix: calling method instead of getting link contents (#639) ([`81e68b4`](https://github.com/MartinBernstorff/Memium/commit/81e68b4cbaab50984aaab17aa683c8ebefdf74b7))
+
+* fix: calling method instead of getting link contents ([`121fa88`](https://github.com/MartinBernstorff/Memium/commit/121fa8821f76c33d911b0264023dfd637d6ed3ff))
+
+
 ## v0.19.0 (2024-04-20)
 
 ### Chore
