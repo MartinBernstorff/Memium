@@ -1,4 +1,5 @@
 import logging
+import sys
 import time
 from functools import partial
 from pathlib import Path
@@ -108,7 +109,14 @@ def cli(
     ] = None,
     skip_sync: Annotated[bool, typer.Option(help="Skip all syncing, useful for smoketest")] = False,
 ):
+    config_dir = input_dir / ".memium"
+    config_dir.mkdir(exist_ok=True)
+
     logging.basicConfig(
+        handlers=[
+            logging.StreamHandler(sys.stdout),
+            logging.FileHandler(config_dir / "memium.log"),
+        ],
         level=logging.INFO,
         format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
         datefmt="%Y/&m/%d %H:%M:%S",
