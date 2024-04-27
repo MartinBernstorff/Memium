@@ -2,6 +2,19 @@
 
 
 
+## v0.21.0 (2024-04-27)
+
+### Feature
+
+* feat(#637): append log to output folder (#649)
+
+Fixes #637 ([`f03969c`](https://github.com/MartinBernstorff/Memium/commit/f03969c17296c48ecd67f81df411435fe17384b9))
+
+* feat(#637): append log to output folder
+
+Fixes #637 ([`178ff35`](https://github.com/MartinBernstorff/Memium/commit/178ff358501080b699f1173a3241d493e774e567))
+
+
 ## v0.20.0 (2024-04-27)
 
 ### Chore
