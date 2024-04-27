@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-from memium.__main__ import main
+from memium.core import main
 
 from .destination.ankiconnect.ankiconnect_gateway import anki_connect_is_live
 
