@@ -2,6 +2,17 @@
 
 
 
+## v0.21.1 (2024-04-27)
+
+### Fix
+
+* fix: html escaping (#641) ([`6f97f55`](https://github.com/MartinBernstorff/Memium/commit/6f97f55d85764265e4fbe6af58af832c6f3695a7))
+
+### Test
+
+* test: update test_anki_prompt_qa.py ([`e142041`](https://github.com/MartinBernstorff/Memium/commit/e1420419b3740c8a23281ff95254d107440e8ef2))
+
+
 ## v0.21.0 (2024-04-27)
 
 ### Feature
@@ -36,6 +47,10 @@ Fixes #637 ([`178ff35`](https://github.com/MartinBernstorff/Memium/commit/178ff3
 * feat: move obsidian link to top of AnkiQA (#648) ([`f45cdf9`](https://github.com/MartinBernstorff/Memium/commit/f45cdf9bb65c06b4a9d470e866347db62a2bbfe9))
 
 * feat: move obsidian link to top of AnkiQA ([`8802e01`](https://github.com/MartinBernstorff/Memium/commit/8802e015d449ab63d9c50601cca1ccea5b053299))
+
+### Unknown
+
+* update anki_prompt_qa.py ([`6eb439a`](https://github.com/MartinBernstorff/Memium/commit/6eb439ae0037ee0eefec02cd62eef242f60eeb00))
 
 
 ## v0.19.1 (2024-04-22)
