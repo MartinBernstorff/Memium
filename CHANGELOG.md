@@ -2,6 +2,29 @@
 
 
 
+## v0.20.0 (2024-04-27)
+
+### Chore
+
+* chore(deps): update dependency sentry-sdk to v2.0.1 ([`37dc0ed`](https://github.com/MartinBernstorff/Memium/commit/37dc0ed92635d1c82cfe60fa705c638fe3be2054))
+
+* chore(deps): update dependency dev/ruff to v0.4.2 ([`f7413f5`](https://github.com/MartinBernstorff/Memium/commit/f7413f5bdb96444623a0e447a390e04d9c256f94))
+
+* chore(deps): update dependency sentry-sdk to v2 ([`782b27b`](https://github.com/MartinBernstorff/Memium/commit/782b27b613d4cdb1bde0912b6e8e259204cbef7b))
+
+* chore(deps): update dependency dev/pyright to v1.1.360 ([`601e013`](https://github.com/MartinBernstorff/Memium/commit/601e0131a358c2a516701a7c3b6f523362342938))
+
+* chore(deps): update dependency pydantic to v2.7.1 ([`ea0ad67`](https://github.com/MartinBernstorff/Memium/commit/ea0ad67acfeb7dd53ef1833c4208597af3c12c1f))
+
+* chore(deps): update python-semantic-release/python-semantic-release action to v9.5.0 ([`335798b`](https://github.com/MartinBernstorff/Memium/commit/335798bde44aee34346a9ecd5d0220a33e27cbd4))
+
+### Feature
+
+* feat: move obsidian link to top of AnkiQA (#648) ([`f45cdf9`](https://github.com/MartinBernstorff/Memium/commit/f45cdf9bb65c06b4a9d470e866347db62a2bbfe9))
+
+* feat: move obsidian link to top of AnkiQA ([`8802e01`](https://github.com/MartinBernstorff/Memium/commit/8802e015d449ab63d9c50601cca1ccea5b053299))
+
+
 ## v0.19.1 (2024-04-22)
 
 ### Fix
