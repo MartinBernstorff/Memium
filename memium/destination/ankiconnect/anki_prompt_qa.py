@@ -39,23 +39,23 @@ class AnkiQA(AnkiPrompt):
             {
                 "name": "Ankdown QA Card with UUID",
                 "qfmt": f"""
-<div class="front">
-    {QUESTION_STR}{TTS_QUESTION_STR}
-</div>
 <div class="extra">
     {EXTRA_STR}
+</div>
+<div class="front">
+    {QUESTION_STR}{TTS_QUESTION_STR}
 </div>
             """,
                 "afmt": f"""
 <div class="back">
+    <div class="extra">
+        {EXTRA_STR}
+    </div>
     <div class="question">
         {QUESTION_STR}
     </div>
     <div class="answer">
         {ANSWER_STR}{TTS_ANSWER_STR}
-    </div>
-    <div class="extra">
-        {EXTRA_STR}
     </div>
 </div>
             """,
