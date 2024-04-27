@@ -1,3 +1,4 @@
+import html
 from collections.abc import Sequence
 from dataclasses import dataclass
 
@@ -80,10 +81,13 @@ class AnkiQA(AnkiPrompt):
             guid=str(self.uuid),
             model=self.genanki_model,
             fields=[
-                self._field_to_markdown(self.question),
-                self._field_to_markdown(self.answer),
-                self._extra_field_content,
-                str(self.uuid),
+                html.escape(field)
+                for field in [
+                    self._field_to_markdown(self.question),
+                    self._field_to_markdown(self.answer),
+                    self._extra_field_content,
+                    str(self.uuid),
+                ]
             ],
             tags=self.tags,
         )
