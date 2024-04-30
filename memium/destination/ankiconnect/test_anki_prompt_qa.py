@@ -1,6 +1,7 @@
-import html
 from collections.abc import Sequence
 from dataclasses import dataclass, field
+
+import genanki
 
 from .anki_prompt_cloze import AnkiCloze
 from .anki_prompt_qa import AnkiQA
@@ -61,7 +62,7 @@ def test_ankiqa_deck_inference(example: QAExample):
     assert example.card.deck == example.deck
 
 
-def test_formatting():
+def test_formatting(snapshot: genanki.Note):
     card = FakeAnkiQA(question="Q. This is a _question_?")
     note = card.to_genanki_note()
-    assert note.fields[0] == html.escape("<p>Q. This is a <em>question</em>?</p>")  # type: ignore
+    assert snapshot == note.fields  # type: ignore

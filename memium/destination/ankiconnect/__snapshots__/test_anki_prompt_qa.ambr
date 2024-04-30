@@ -1,0 +1,22 @@
+# serializer version: 1
+# name: test_formatting
+  list([
+    '<p>Q. This is a <em>question</em>?</p>',
+    '<p>FakeAnswer</p>',
+    '''
+      &lt;a href=&quot;FakeEditURL&quot; style=&quot;background-color: #5f0069;
+      border: none;
+      color: white;
+      padding: 0.8em;
+      text-align: center;
+      text-decoration: none;
+      font-size: 0.8em;
+      font-family: &#x27;Inter&#x27;, sans-serif;
+      float: right;
+      border-radius: 8px;
+      opacity: 0.8;
+      &quot;&gt;Obsidian&lt;/a&gt;
+    ''',
+    '0',
+  ])
+# ---
