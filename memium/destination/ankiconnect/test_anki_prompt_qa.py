@@ -65,4 +65,4 @@ def test_ankiqa_deck_inference(example: QAExample):
 def test_formatting(snapshot: genanki.Note):
     card = FakeAnkiQA(question="Q. This is a _question_?")
     note = card.to_genanki_note()
-    assert note.fields[0] == "<p>Q. This is a <em>question</em>?</p>"  # type: ignore
+    assert snapshot == note.fields  # type: ignore
