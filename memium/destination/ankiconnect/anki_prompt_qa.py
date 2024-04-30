@@ -81,13 +81,10 @@ class AnkiQA(AnkiPrompt):
             guid=str(self.uuid),
             model=self.genanki_model,
             fields=[
-                html.escape(field)
-                for field in [
-                    self._field_to_markdown(self.question),
-                    self._field_to_markdown(self.answer),
-                    self._extra_field_content,
-                    str(self.uuid),
-                ]
+                self._field_to_markdown(self.question),
+                self._field_to_markdown(self.answer),
+                html.escape(self._extra_field_content),
+                str(self.uuid),
             ],
             tags=self.tags,
         )
