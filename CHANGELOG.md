@@ -2,6 +2,31 @@
 
 
 
+## v0.21.2 (2024-04-30)
+
+### Chore
+
+* chore(deps): update python-semantic-release/python-semantic-release action to v9.6.0 ([`6acdc9c`](https://github.com/MartinBernstorff/Memium/commit/6acdc9cb1c02282ea392d2185ee26a6305628078))
+
+* chore(deps): update dependency tests/pytest-xdist to v3.6.1 ([`dcd0182`](https://github.com/MartinBernstorff/Memium/commit/dcd0182171c349ea94848c6289d71cc39d4b90c3))
+
+### Fix
+
+* fix: only escape relevant sections (#655) ([`9f1cb01`](https://github.com/MartinBernstorff/Memium/commit/9f1cb01f86e83b82b7e92fd04bd05fab759a6458))
+
+* fix: only escape relevant sections ([`5e6d403`](https://github.com/MartinBernstorff/Memium/commit/5e6d4034bfb35a02c224241ddfb32ba7c29b3be3))
+
+### Refactor
+
+* refactor: split cli and main (#651) ([`3e2fab4`](https://github.com/MartinBernstorff/Memium/commit/3e2fab401f0b397553746ba8c5b0fda3203ea1ce))
+
+* refactor: split cli and main ([`a316423`](https://github.com/MartinBernstorff/Memium/commit/a316423f5d4b4235848af9300f0b66919ee5bc90))
+
+### Test
+
+* test: update test_anki_prompt_qa.py ([`0dbd6c3`](https://github.com/MartinBernstorff/Memium/commit/0dbd6c37077c7acc56bef711f44f1944d0aad2d7))
+
+
 ## v0.21.1 (2024-04-27)
 
 ### Fix
