@@ -1,4 +1,3 @@
-import html
 from collections.abc import Sequence
 from dataclasses import dataclass
 
@@ -83,7 +82,7 @@ class AnkiQA(AnkiPrompt):
             fields=[
                 self._field_to_markdown(self.question),
                 self._field_to_markdown(self.answer),
-                html.escape(self._extra_field_content),
+                self._extra_field_content,
                 str(self.uuid),
             ],
             tags=self.tags,
