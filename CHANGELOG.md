@@ -2,6 +2,42 @@
 
 
 
+## v0.21.3 (2024-05-06)
+
+### Chore
+
+* chore(deps): update dependency sentry-sdk to v2.1.1 ([`94c4d3c`](https://github.com/MartinBernstorff/Memium/commit/94c4d3c80cf75f241470ef5211a68e7037be775c))
+
+* chore(deps): update dependency sentry-sdk to v2.1.0 ([`625b0bf`](https://github.com/MartinBernstorff/Memium/commit/625b0bfeb337895b6dc47fddae68836676cd3b1f))
+
+* chore(deps): update python-semantic-release/python-semantic-release action to v9.7.0 ([`05181e1`](https://github.com/MartinBernstorff/Memium/commit/05181e1b3367c9231b1219728d2f54a7ddd769b9))
+
+* chore(deps): update dependency dev/ruff to v0.4.3 ([`e8f6541`](https://github.com/MartinBernstorff/Memium/commit/e8f6541bf1bbf49e738ec381ae5b609be2b52d4b))
+
+* chore(deps): update dependency tqdm to v4.66.4 ([`168a75e`](https://github.com/MartinBernstorff/Memium/commit/168a75e9afcae0b7cac8ce4d06a58427048467f2))
+
+* chore(deps): update dependency dev/pyright to v1.1.361 ([`9fdb56b`](https://github.com/MartinBernstorff/Memium/commit/9fdb56b8a2390e37a2e5cc8a85cb1d4a9488fa65))
+
+* chore: delete test.py (#656) ([`1505b0f`](https://github.com/MartinBernstorff/Memium/commit/1505b0f8d8fbea4785f5935a79e717e38fece8c5))
+
+* chore: delete test.py ([`f1854dc`](https://github.com/MartinBernstorff/Memium/commit/f1854dc65643c430df9db0ce62cafb94680abb03))
+
+### Fix
+
+* fix: do not escape html (#664)
+
+- update anki_prompt_qa.py
+- test: update test_anki_prompt_qa.ambr ([`dcf5b28`](https://github.com/MartinBernstorff/Memium/commit/dcf5b28ac57a9df8996fc7abbd7ae05d676d215f))
+
+### Test
+
+* test: update test_anki_prompt_qa.ambr ([`b08f56a`](https://github.com/MartinBernstorff/Memium/commit/b08f56ae8517f5b5a5c04ac58b79022fd9c29aaf))
+
+### Unknown
+
+* update anki_prompt_qa.py ([`fc5d1f9`](https://github.com/MartinBernstorff/Memium/commit/fc5d1f9bd060392ce7d3b0b38dda62746e574d08))
+
+
 ## v0.21.2 (2024-04-30)
 
 ### Chore
