@@ -44,12 +44,12 @@ def main(
         ),
     )
 
-    if push_all:
-        update_commands = [PushPrompts(prompts=source_prompts)]
-    else:
-        destination_prompts = destination.get_all_prompts()
-        update_commands = PromptDiffDeterminer().sync(
-            source_prompts=source_prompts, destination_prompts=destination_prompts
+    update_commands = (
+        [PushPrompts(prompts=source_prompts)]
+        if push_all
+        else PromptDiffDeterminer().sync(
+            source_prompts=source_prompts, destination_prompts=destination.get_all_prompts()
         )
+    )
 
     destination.update(commands=update_commands)
