@@ -20,7 +20,7 @@ app = typer.Typer()
 def cli(
     input_dir: Annotated[
         Path,
-        typer.Argument(
+        typer.Option(
             help="Where to extract prompts from.",
             dir_okay=True,
             file_okay=False,
