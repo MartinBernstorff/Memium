@@ -20,8 +20,8 @@ app = typer.Typer()
 def cli(
     input_dir: Annotated[
         Path,
-        typer.Option(
-            help="Directory containing markdown prompts to sync to Anki.",
+        typer.Argument(
+            help="Where to extract prompts from.",
             dir_okay=True,
             file_okay=False,
             exists=True,
@@ -45,19 +45,15 @@ def cli(
     push_all: Annotated[
         bool,
         typer.Option(
-            help="Push all prompts to Anki, whether or not they exist in Anki. Useful if you have e.g. changed your CSS template. Note that this does not change scheduling, nor delete prompts that no longer exist in your markdown."
+            help="Push all prompts to Anki, not just the diff. Useful if you have e.g. changed your CSS template. Note that this does not change scheduling, nor delete prompts that no longer exist in your markdown."
         ),
     ] = False,
     dry_run: Annotated[
         bool, typer.Option(help="Don't update via AnkiConnect, just log what would happen")
     ] = False,
-    sentry_dsn: Annotated[
-        Optional[str],  # noqa: UP007
-        typer.Option(
-            help="Sentry DSN for error reporting. If not provided, no error reporting will be done."
-        ),
-    ] = None,
-    skip_sync: Annotated[bool, typer.Option(help="Skip all syncing, useful for smoketest")] = False,
+    skip_sync: Annotated[
+        bool, typer.Option(help="Skip all syncing, useful for smoketesting of the interface")
+    ] = False,
 ):
     config_dir = input_dir / ".memium"
     config_dir.mkdir(exist_ok=True)
@@ -72,8 +68,9 @@ def cli(
         datefmt="%Y/&m/%d %H:%M:%S",
     )
 
-    if sentry_dsn:
-        sentry_sdk.init(dsn=sentry_dsn, environment=get_env(default="None"))
+    if skip_sync:
+        log.info("Skipping sync")
+        return
 
     main_fn = partial(
         main,
@@ -83,13 +80,12 @@ def cli(
         dry_run=dry_run,
         push_all=push_all,
     )
+    main_fn()
 
-    if not skip_sync:
+    if watch_seconds:
+        log.info(f"Sync complete, sleeping for {watch_seconds} seconds")
+        time.sleep(watch_seconds)
         main_fn()
-        if watch_seconds:
-            log.info(f"Sync complete, sleeping for {watch_seconds} seconds")
-            time.sleep(watch_seconds)
-            main_fn()
 
 
 if __name__ == "__main__":
