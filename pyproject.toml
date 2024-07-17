@@ -49,7 +49,7 @@ dev = [
   "cruft==2.15.0",
   "herbarium",
   "invoke==2.2.0",
-  "pyright==1.1.371",
+  "pyright==1.1.372",
   "pre-commit==3.7.1",
   "ruff==0.4.5",
   "lumberman",
