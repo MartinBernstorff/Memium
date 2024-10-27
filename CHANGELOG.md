@@ -1,6 +1,13 @@
 # CHANGELOG
 
 
+## v0.21.5 (2024-10-27)
+
+### Bug Fixes
+
+* fix: handle dashes in wikilinks (#740) ([`97d1cf0`](https://github.com/MartinBernstorff/Memium/commit/97d1cf0e92db1b9ab9e00de883d37b24870930c0))
+
+
 ## v0.21.4 (2024-10-27)
 
 ### Bug Fixes
