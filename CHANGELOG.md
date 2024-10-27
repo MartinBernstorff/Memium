@@ -1,6 +1,17 @@
 # CHANGELOG
 
 
+## v0.24.1 (2024-10-27)
+
+### Bug Fixes
+
+* fix: further improve duplicate loggig (#749) ([`2d6431b`](https://github.com/MartinBernstorff/Memium/commit/2d6431bc30a3fee1a53f147c27980bc7c23c058f))
+
+### Refactoring
+
+* refactor: html parsing (#748) ([`a9578ce`](https://github.com/MartinBernstorff/Memium/commit/a9578cefe03d9336982af153bb7e966b46ab5d86))
+
+
 ## v0.24.0 (2024-10-27)
 
 ### Features
