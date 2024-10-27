@@ -5,11 +5,9 @@ from functools import partial
 from pathlib import Path
 from typing import Annotated, Optional
 
-import sentry_sdk
 import typer
 
 from memium.core import main
-from memium.environment import get_env
 
 log = logging.getLogger(__name__)
 
