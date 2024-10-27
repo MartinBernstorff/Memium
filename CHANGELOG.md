@@ -1,6 +1,13 @@
 # CHANGELOG
 
 
+## v0.21.6 (2024-10-27)
+
+### Bug Fixes
+
+* fix: empty rows in table parsing (#741) ([`03de23e`](https://github.com/MartinBernstorff/Memium/commit/03de23e7362f8a84a87a30b7d8d3513c2adf0b0e))
+
+
 ## v0.21.5 (2024-10-27)
 
 ### Bug Fixes
