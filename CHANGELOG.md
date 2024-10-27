@@ -1,6 +1,13 @@
 # CHANGELOG
 
 
+## v0.24.2 (2024-10-27)
+
+### Bug Fixes
+
+* fix: typo (#750) ([`c6ff00e`](https://github.com/MartinBernstorff/Memium/commit/c6ff00eb3876a5789cff9f3a40fafec4d368efd4))
+
+
 ## v0.24.1 (2024-10-27)
 
 ### Bug Fixes
