@@ -45,7 +45,12 @@ class DocumentPromptSource(BasePromptSource):
                 if prompts_in_group[0].edit_url
                 else prompts_in_group[0]
             )
-            log.warning(f"Found duplicate prompts for {identifier}. Prompts: {prompts_in_group}")
+            log.warning(
+                f"""{identifier} has duplicate prompts:
+    Prompts:
+        {(' '*8).join(prompts_in_group.__repr__())}
+"""
+            )
 
         return prompts_in_group[0]
 
