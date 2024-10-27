@@ -33,7 +33,11 @@ class MarkdownDocumentSource(BaseDocumentSource):
 
     @staticmethod
     def _replace_alias_wiki_links(text: str) -> str:
-        regex_pattern = r"\[\[[\w|\s|\d|\/\(|\)]+\|[\w|\s|\d|\/]+\]\]"
+        ob = r"\[\["  # Open bracket
+        cb = r"\]\]"  # Close bracket
+        word_contents = r"\w|\s|\d|\-"  # Word contents
+
+        regex_pattern = rf"{ob}[{word_contents}|\/\(|\)]+\|[{word_contents}|\/]+{cb}"
         pattern_matches = re.findall(pattern=regex_pattern, string=text, flags=re.DOTALL)
 
         for match in pattern_matches:
