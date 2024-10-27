@@ -48,7 +48,7 @@ class DocumentPromptSource(BasePromptSource):
             log.warning(
                 f"""{identifier} has duplicate prompts:
     Prompts:
-        {'        '.join(prompts_in_group.__repr__())}
+        {(' '*8).join(prompts_in_group.__repr__())}
 """
             )
 
