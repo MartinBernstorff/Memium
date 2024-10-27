@@ -1,6 +1,13 @@
 # CHANGELOG
 
 
+## v0.22.0 (2024-10-27)
+
+### Features
+
+* feat: add codeblock parsing (#742) ([`cc48a3b`](https://github.com/MartinBernstorff/Memium/commit/cc48a3bda50b64808e6adceb818d9622737e3a5a))
+
+
 ## v0.21.6 (2024-10-27)
 
 ### Bug Fixes
