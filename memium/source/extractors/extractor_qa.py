@@ -53,13 +53,14 @@ class QAPromptExtractor(BasePromptExtractor):
         blocks = self._string_to_blocks_by_newlines(document.content)
         block_starting_line_nr = 1
 
+        missing_answers: list[str] = []
         for block_string in blocks:
             if self._has_qa(block_string):
                 question = self._get_first_question(block_string)
                 try:
                     answer = self._get_first_answer(block_string)
                 except IndexError:
-                    logging.warning(f"Could not find answer in {document.title} for {question}")
+                    missing_answers.append(f"{document.title}: {question}")
                     continue
 
                 prompts.append(
@@ -73,5 +74,8 @@ class QAPromptExtractor(BasePromptExtractor):
 
             block_lines = len(re.findall(r"\n", block_string, flags=re.DOTALL))
             block_starting_line_nr += block_lines
+
+        if missing_answers:
+            logging.warning(f"{missing_answers} is missing an answer")
 
         return prompts
