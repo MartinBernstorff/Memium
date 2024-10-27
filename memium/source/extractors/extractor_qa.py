@@ -59,7 +59,7 @@ class QAPromptExtractor(BasePromptExtractor):
                 try:
                     answer = self._get_first_answer(block_string)
                 except IndexError:
-                    logging.warn(f"Could not find answer in {document.title} for {question}")
+                    logging.warning(f"Could not find answer in {document.title} for {question}")
                     continue
 
                 prompts.append(

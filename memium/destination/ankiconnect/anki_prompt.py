@@ -3,7 +3,8 @@ from collections.abc import Sequence
 from dataclasses import dataclass
 
 import genanki
-import markdown
+
+from memium.utils.markdown_parser import markdown_parser
 
 
 @dataclass(frozen=True)
@@ -14,7 +15,7 @@ class AnkiPrompt(ABC):
     edit_url: str | None
 
     def _field_to_markdown(self, field: str) -> str:
-        return markdown.markdown(field)
+        return markdown_parser(field)
 
     @property
     @abstractmethod
