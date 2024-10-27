@@ -1,3 +1,4 @@
+import pathlib
 from dataclasses import dataclass
 
 import pytest
@@ -22,3 +23,11 @@ class Ex:
 )
 def test_markdown_parser(example: Ex):
     assert markdown_parser(example.given) == f"<p>{example.then}</p>"
+
+
+def test_code_block_parsing(snapshot: str, tmp_path: pathlib.Path):
+    contents = pathlib.Path(__file__).parent / "code_block.md"
+    parsed = markdown_parser(contents.read_text())
+    path = tmp_path / "test.htm"
+    path.write_text(parsed)
+    assert parsed == snapshot

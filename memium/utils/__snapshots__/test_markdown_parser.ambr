@@ -1,0 +1,8 @@
+# serializer version: 1
+# name: test_code_block_parsing
+  '''
+  <pre><code class="language-python">def myfunc():
+      return res
+  </code></pre>
+  '''
+# ---
