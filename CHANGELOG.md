@@ -1,6 +1,13 @@
 # CHANGELOG
 
 
+## v0.23.0 (2024-10-27)
+
+### Features
+
+* feat: improve logging (#746) ([`a4647d3`](https://github.com/MartinBernstorff/Memium/commit/a4647d345db8a3dd04c63547ad30b5763b52fabe))
+
+
 ## v0.22.2 (2024-10-27)
 
 ### Bug Fixes
