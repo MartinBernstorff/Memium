@@ -621,7 +621,7 @@ requires-dist = [
     { name = "markdown", specifier = "==3.6" },
     { name = "pre-commit", marker = "extra == 'dev'", specifier = "==3.7.1" },
     { name = "pydantic", specifier = "==2.8.2" },
-    { name = "pyright", marker = "extra == 'dev'", specifier = "==1.1.371" },
+    { name = "pyright", marker = "extra == 'dev'", specifier = "==1.1.386" },
     { name = "pytest", marker = "extra == 'tests'", specifier = "==7.4.4" },
     { name = "pytest-cov", marker = "extra == 'tests'", specifier = "==5.0.0" },
     { name = "pytest-sugar", marker = "extra == 'tests'", specifier = "==1.0.0" },
@@ -781,14 +781,15 @@ wheels = [
 
 [[package]]
 name = "pyright"
-version = "1.1.371"
+version = "1.1.386"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "nodeenv" },
+    { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/d6/34/73e33154842c742681ec34b9c172777a37d44efc5842d35b0b22c1da4b4b/pyright-1.1.371.tar.gz", hash = "sha256:777b508b92dda2db476214c400ce043aad8d8f3dd0e10d284c96e79f298308b5", size = 17481 }
+sdist = { url = "https://files.pythonhosted.org/packages/92/50/1a57054b5585fa72a93a6244c1b4b5639f8f7a1cc60b2e807cc67da8f0bc/pyright-1.1.386.tar.gz", hash = "sha256:8e9975e34948ba5f8e07792a9c9d2bdceb2c6c0b61742b068d2229ca2bc4a9d9", size = 21949 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/10/ea/91caa08ed88da60ba2a0331bdf94e3bc62af6c3f3e3c9f48b8bd6f4a4599/pyright-1.1.371-py3-none-any.whl", hash = "sha256:cce52e42ff73943243e7e5e24f2a59dee81b97d99f4e3cf97370b27e8a1858cd", size = 18224 },
+    { url = "https://files.pythonhosted.org/packages/cc/68/47fd6b3ffa27c99d7e0c866c618f07784b8806712059049daa492ca7e526/pyright-1.1.386-py3-none-any.whl", hash = "sha256:7071ac495593b2258ccdbbf495f1a5c0e5f27951f6b429bed4e8b296eb5cd21d", size = 18577 },
 ]
 
 [[package]]
