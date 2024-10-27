@@ -14,3 +14,6 @@ class FakeQAPrompt(QAPrompt):
         return QAFromDoc(
             parent_doc=doc, line_nr=line_nr, question=self.question, answer=self.answer
         )
+
+    def __repr__(self) -> str:
+        return f"{self.question!r}\n{self.answer!r})"
