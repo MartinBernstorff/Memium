@@ -628,7 +628,7 @@ requires-dist = [
     { name = "pytest-testmon", marker = "extra == 'tests'", specifier = "==2.1.1" },
     { name = "pytest-xdist", marker = "extra == 'tests'", specifier = "==3.6.1" },
     { name = "ruff", marker = "extra == 'dev'", specifier = "==0.4.5" },
-    { name = "sentry-sdk", specifier = "==2.10.0" },
+    { name = "sentry-sdk", specifier = "==2.17.0" },
     { name = "syrupy", marker = "extra == 'tests'", specifier = "==4.6.1" },
     { name = "tqdm", specifier = "==4.66.4" },
     { name = "typer", specifier = "==0.12.3" },
@@ -985,15 +985,15 @@ wheels = [
 
 [[package]]
 name = "sentry-sdk"
-version = "2.10.0"
+version = "2.17.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "certifi" },
     { name = "urllib3" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/34/d8/ec3e43d4ce31e4f4cb6adb7210950362d71ce87a96c89934c4ac94f7110f/sentry_sdk-2.10.0.tar.gz", hash = "sha256:545fcc6e36c335faa6d6cda84669b6e17025f31efbf3b2211ec14efe008b75d1", size = 273996 }
+sdist = { url = "https://files.pythonhosted.org/packages/b1/83/7d0956a71ac894717099be3669ca7b8f164bccbcfb570b2f02817d0a0068/sentry_sdk-2.17.0.tar.gz", hash = "sha256:dd0a05352b78ffeacced73a94e86f38b32e2eae15fff5f30ca5abb568a72eacf", size = 290959 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/4f/9e/9298785949269c8930e1fd3707b960da6e1a95a2442b747b8f8cca4578cb/sentry_sdk-2.10.0-py2.py3-none-any.whl", hash = "sha256:87b3d413c87d8e7f816cc9334bff255a83d8b577db2b22042651c30c19c09190", size = 302064 },
+    { url = "https://files.pythonhosted.org/packages/10/63/8e80fff3aa15488bc332ede44165a397a29bb13ec4a4b2236299e3b66067/sentry_sdk-2.17.0-py2.py3-none-any.whl", hash = "sha256:625955884b862cc58748920f9e21efdfb8e0d4f98cca4ab0d3918576d5b606ad", size = 314520 },
 ]
 
 [[package]]
