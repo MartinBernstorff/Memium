@@ -1,4 +1,5 @@
 import logging
+from dataclasses import dataclass
 from pathlib import Path
 
 import pytest
@@ -53,9 +54,26 @@ class TestMarkdownIngester:
         )
 
 
-def test_replace_alias_wiki_links():
-    text = "Linking to a valid [[Note/Note2|Note Alias]], and can handle [[Note2|Multiple Aliases]]"
-    expected_output = "Linking to a valid [[Note Alias]], and can handle [[Multiple Aliases]]"
-    assert (
-        MarkdownDocumentSource(directory=Path())._replace_alias_wiki_links(text) == expected_output  # type: ignore
-    )
+@dataclass(frozen=True)
+class Ex:
+    given: str
+    # Required setup
+
+    then: str
+    # What the expected result is
+
+
+@pytest.mark.parametrize(
+    ("example"),
+    [
+        Ex("[[N|Alias]]", "[[Alias]]"),  # Base
+        Ex(" [[N|Alias]] ", " [[Alias]] "),  # Spaces
+        Ex("[[N/N2|Alias]]", "[[Alias]]"),  # Nesting
+        Ex("[[-|A]]", "[[A]]"),  # Dash
+    ],
+    ids=lambda x: x.given,
+)
+def test_replace_alias_wiki_links(example: Ex):
+    given = MarkdownDocumentSource._replace_alias_wiki_links(example.given)  # type: ignore
+    then = example.then
+    assert given == then
