@@ -17,6 +17,9 @@ class FileNotRetrievedError(Exception):
     path: Path
     error: Exception
 
+    def __repr__(self) -> str:
+        return f"{self.path}: Could not retrieve due to '{self.error}'"
+
 
 class BaseDocumentSource(Protocol):
     def get_documents(self) -> Sequence[Document]: ...
@@ -59,10 +62,17 @@ class MarkdownDocumentSource(BaseDocumentSource):
 
     def _get_document_from_file(self, file_path: Path) -> Document | FileNotRetrievedError:
         try:
-            with file_path.open("r", encoding="utf8") as f:
-                return Document(
-                    content=self._sanitize_to_valid_markdown(f.read()), source_path=file_path
-                )
+            try:
+                contents = file_path.read_text(encoding="utf8")
+            except Exception as e:
+                raise Exception(f"Could not read file {file_path}") from e
+
+            try:
+                sanitized = self._sanitize_to_valid_markdown(contents)
+            except Exception as e:
+                raise Exception(f"Could not sanitize file {file_path}") from e
+
+            return Document(content=sanitized, source_path=file_path)
         except Exception as e:
             log.warning(f"Could not retrieve {file_path}: {e}")
             return FileNotRetrievedError(file_path, e)
