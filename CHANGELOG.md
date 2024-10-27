@@ -1,6 +1,13 @@
 # CHANGELOG
 
 
+## v0.22.2 (2024-10-27)
+
+### Bug Fixes
+
+* fix: improve logging of parser errors (#745) ([`6a101d4`](https://github.com/MartinBernstorff/Memium/commit/6a101d40e35a0dd00da42ab77e419ecbabfdcbe4))
+
+
 ## v0.22.1 (2024-10-27)
 
 ### Bug Fixes
