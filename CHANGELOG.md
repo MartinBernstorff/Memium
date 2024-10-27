@@ -1,6 +1,19 @@
 # CHANGELOG
 
 
+## v0.24.0 (2024-10-27)
+
+### Features
+
+* feat: improve styling of code blocks (#747) ([`c513731`](https://github.com/MartinBernstorff/Memium/commit/c513731321eb822d2d2d4c9afba588783d7c4ff6))
+
+### Unknown
+
+* update default_styling.css ([`3c04e3c`](https://github.com/MartinBernstorff/Memium/commit/3c04e3c60d5a153c2b2688fe5d3386e888ff95d3))
+
+* improve-styling-of-code-blocks ([`e87607b`](https://github.com/MartinBernstorff/Memium/commit/e87607bbe444f6723fd1ad5b14ca10e58b8e48d2))
+
+
 ## v0.23.0 (2024-10-27)
 
 ### Features
