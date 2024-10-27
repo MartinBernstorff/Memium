@@ -1,6 +1,7 @@
 import logging
 import sys
 import time
+from datetime import datetime
 from functools import partial
 from pathlib import Path
 from typing import Annotated, Optional
@@ -53,6 +54,7 @@ def cli(
         bool, typer.Option(help="Skip all syncing, useful for smoketesting of the interface")
     ] = False,
 ):
+    start_time = datetime.now()
     config_dir = input_dir / ".memium"
     config_dir.mkdir(exist_ok=True)
 
@@ -81,7 +83,9 @@ def cli(
     main_fn()
 
     if watch_seconds:
-        log.info(f"Sync complete, sleeping for {watch_seconds} seconds")
+        log.info(
+            f"Sync complete in {(datetime.now() - start_time).total_seconds()} seconds, sleeping for {watch_seconds} seconds"
+        )
         time.sleep(watch_seconds)
         main_fn()
 
