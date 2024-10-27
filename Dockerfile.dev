@@ -31,8 +31,8 @@ RUN pyright .
 # Install deps #
 ################
 COPY pyproject.toml ./
-RUN  --mount=type=cache,target=/root/.cache/pip install --upgrade .[dev]
-RUN  --mount=type=cache,target=/root/.cache/pip install --upgrade .[tests]
+RUN  --mount=type=cache,target=/root/.cache/pip pip install --upgrade .[dev]
+RUN  --mount=type=cache,target=/root/.cache/pip pip install --upgrade .[tests]
 
 # Ensure pyright builds correctly. 
 # If run in make validate, it is run in parallel, which breaks its installation.
