@@ -1,6 +1,13 @@
 # CHANGELOG
 
 
+## v0.22.1 (2024-10-27)
+
+### Bug Fixes
+
+* fix: disable irrelevant genanki warnings (#744) ([`bbf5458`](https://github.com/MartinBernstorff/Memium/commit/bbf5458f768519f9ff27e0d9a81c309900431bb5))
+
+
 ## v0.22.0 (2024-10-27)
 
 ### Features
