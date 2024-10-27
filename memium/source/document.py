@@ -17,3 +17,6 @@ class Document:
     @property
     def title(self) -> str:
         return self.source_path.stem
+
+    def __repr__(self) -> str:
+        return f"{self.title}: {self.content[0:10]}..."
