@@ -32,6 +32,12 @@ class RowPair:
     back: dict[str, str]
 
 
+@dataclass(frozen=True)
+class FrontBack:
+    front: str
+    back: str
+
+
 class TableExtractor(BasePromptExtractor):
     def _parse_table(self, block: LineBlock) -> Sequence[ParsedTable]:
         if not block.content.startswith("|"):
@@ -92,17 +98,30 @@ class TableExtractor(BasePromptExtractor):
 
     def _replace_placeholders(
         self, parsed_table: ParsedTable, row_pair: RowPair
-    ) -> tuple[str, str]:
-        front_placeholders = re.findall(r"\|(.+?)\|", parsed_table.front)
-        back_placeholders = re.findall(r"\|(.+?)\|", parsed_table.back)
-        front = parsed_table.front
-        back = parsed_table.back
+    ) -> FrontBack | None:
+        def replace_side_placeholders(template: str, data: dict[str, str]) -> str | None:
+            """Replace placeholders in a template string using provided data."""
+            result = template
+            placeholders = re.findall(r"\|(.+?)\|", template)
 
-        for placeholder in [*front_placeholders, *back_placeholders]:
-            front = front.replace(f"|{placeholder}|", row_pair.front[placeholder])
-            back = back.replace(f"|{placeholder}|", row_pair.back[placeholder])
+            for placeholder in placeholders:
+                replacement = data.get(placeholder, "")
+                if not replacement:
+                    return None
+                result = result.replace(f"|{placeholder}|", replacement)
 
-        return front, back
+            return result
+
+        # Process front and back sides
+        processed_front = replace_side_placeholders(parsed_table.front, row_pair.front)
+        if processed_front is None:
+            return None
+
+        processed_back = replace_side_placeholders(parsed_table.back, row_pair.back)
+        if processed_back is None:
+            return None
+
+        return FrontBack(front=processed_front, back=processed_back)
 
     def _parsed_table_to_prompt(
         self, parsed_table: ParsedTable, doc: Document
@@ -117,14 +136,14 @@ class TableExtractor(BasePromptExtractor):
         for i in range(len(parsed_table.rows)):
             row_pair = self._get_row_pair(parsed_table, i)
 
-            front, back = self._replace_placeholders(parsed_table, row_pair)
+            card = self._replace_placeholders(parsed_table, row_pair)
 
             # Skip rows with empty fronts or backs
-            if front and back:
+            if card:
                 prompts.append(
                     QAFromDoc(
-                        question=front,
-                        answer=back,
+                        question=card.front,
+                        answer=card.back,
                         parent_doc=doc,
                         line_nr=parsed_table.end_line_nr,
                     )

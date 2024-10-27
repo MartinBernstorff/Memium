@@ -21,24 +21,25 @@ class TableExtractorExample:
     ("example"),
     [
         TableExtractorExample(
-            table_prompt="Descending // |Column one|? // |Column two|",
-            expectation=[FakeQAPrompt(question="11?", answer="22")],
+            table_prompt="Descending // |Column one|? // |Column two|.",
+            expectation=[FakeQAPrompt(question="11?", answer="22.")],
         ),
         TableExtractorExample(
-            table_prompt="Ascending // |Column one|? // |Column two|",
+            table_prompt="Ascending // |Column one|? // |Column two|.",
             expectation=[
-                FakeQAPrompt(question="21?", answer="12"),
-                FakeQAPrompt(question="31?", answer="22"),
+                FakeQAPrompt(question="21?", answer="12."),
+                FakeQAPrompt(question="31?", answer="22."),
             ],
         ),
         TableExtractorExample(
-            table_prompt="Rowwise // |Column one|? // |Column two|",
+            table_prompt="Rowwise // |Column one|? // |Column two|.",
             expectation=[
-                FakeQAPrompt(question="11?", answer="12"),
-                FakeQAPrompt(question="21?", answer="22"),
+                FakeQAPrompt(question="11?", answer="12."),
+                FakeQAPrompt(question="21?", answer="22."),
             ],
         ),
     ],
+    ids=lambda x: x.table_prompt,
 )
 def test_table_extractor(example: TableExtractorExample):
     input_doc = Document(
