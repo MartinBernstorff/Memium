@@ -1,4 +1,5 @@
 import logging
+import warnings
 from collections.abc import Sequence
 
 import genanki
@@ -18,6 +19,11 @@ class AnkiConnectDestination(PromptDestination):
     def __init__(self, gateway: AnkiConnectGateway, prompt_converter: AnkiPromptConverter) -> None:
         self.gateway = gateway
         self.prompt_converter = prompt_converter
+
+        # Don't care about genanki warnings, have our own tests
+        warnings.filterwarnings(
+            "ignore", module="genanki", message="^Field contained the following invalid HTML tags"
+        )
 
     def get_all_prompts(self) -> Sequence[DestinationPrompt]:
         return (
