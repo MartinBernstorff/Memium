@@ -1,6 +1,13 @@
 # CHANGELOG
 
 
+## v0.24.5 (2024-10-28)
+
+### Bug Fixes
+
+* fix(deps): update dependency pre-commit to v3.8.0 ([`8233a4e`](https://github.com/MartinBernstorff/Memium/commit/8233a4e75e2453141c0d5d24c9b93143491f0882))
+
+
 ## v0.24.4 (2024-10-28)
 
 ### Bug Fixes
