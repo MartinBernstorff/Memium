@@ -441,22 +441,6 @@ wheels = [
 ]
 
 [[package]]
-name = "iterfzf"
-version = "1.4.0.54.3"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/ed/2d/59f1b1eeaef868b24aba97e651c9c9bbf937b8a6967ffc23d1f9131c8f68/iterfzf-1.4.0.54.3.tar.gz", hash = "sha256:8a0b9dc4f1a126da959dd601643bf31de7fa69febb7c33f4b6e2fa8edc4be2e1", size = 1759273 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/20/2c/3afd6d9911204f8324195a0cf91b39844faaf3ad56bffd35d5d8083d84aa/iterfzf-1.4.0.54.3-py3-none-macosx_10_7_x86_64.macosx_10_9_x86_64.whl", hash = "sha256:0d070c575cb9e706651e2f753d0361639fcd7b79435ef4626a824a0a76b03dce", size = 1643311 },
-    { url = "https://files.pythonhosted.org/packages/45/bb/9d195462a6e8348aa9c16b47009f96cfa0cc84f62c53cdc7022c903c6c79/iterfzf-1.4.0.54.3-py3-none-macosx_11_0_arm64.whl", hash = "sha256:9d3edbd8184490bd9ab8cd399db462e010ae7c2273d933b040ca536d5c1a8915", size = 1557844 },
-    { url = "https://files.pythonhosted.org/packages/a8/44/6e7d873d292d17cb6af6c77d0f274408ae9da7dd9ac907eb48a2c83b39e7/iterfzf-1.4.0.54.3-py3-none-manylinux_1_2_aarch64.manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:f981dcf71f44bd4aa7119cc8e19373a8a8726db6f829a505d131c263c2fe8d84", size = 1432325 },
-    { url = "https://files.pythonhosted.org/packages/ad/3c/a6eebbfa3ab26d49e0f752b23cbd964011bd1de0579c97bab7ffe917bc8c/iterfzf-1.4.0.54.3-py3-none-manylinux_1_2_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:c87a093cdd13b9604f3e7f457dd49ec1bc1dad63899476a01f5743ad1f394bb9", size = 1552301 },
-    { url = "https://files.pythonhosted.org/packages/8a/88/6962ea965f146fb9ca11062756eb4c5c86d54b20eb38d93e7c1297cb96a9/iterfzf-1.4.0.54.3-py3-none-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:a7510bc99e503b12513fceca9add5ae6bcd9497e95a098ae682ca5b2916dc3c2", size = 1427831 },
-    { url = "https://files.pythonhosted.org/packages/9c/69/ca3abe63b1a7296ff2b8cb173e69283abf5f235268c393b48fe355918aba/iterfzf-1.4.0.54.3-py3-none-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:6c32312ce5599d84600d920b0db8986cf10b20e4b9fdb2aee5df6b67cc646d27", size = 1545488 },
-    { url = "https://files.pythonhosted.org/packages/81/9c/c94bf804b1c18024810ee3ebc4528faec4cedef18824776b9f3a37ad13fa/iterfzf-1.4.0.54.3-py3-none-win_amd64.whl", hash = "sha256:8385d45359d6c392b10095d179f0b2857f64b33eba55e1b6a34eb5d82320377f", size = 1763502 },
-    { url = "https://files.pythonhosted.org/packages/6c/24/42c53c9df027b630e54276e03d54d0ab80b4ecf425b9f74e1591765e54a6/iterfzf-1.4.0.54.3-py3-none-win_arm64.whl", hash = "sha256:bf78d55832e172fe7bce451f3b68becde28412a192f7161ca7bd2313bd5e842f", size = 1626719 },
-]
-
-[[package]]
 name = "iterpy"
 version = "1.9.0"
 source = { registry = "https://pypi.org/simple" }
@@ -479,16 +463,15 @@ wheels = [
 
 [[package]]
 name = "lumberman"
-version = "0.53.0"
+version = "0.35.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "iterfzf" },
-    { name = "rich" },
+    { name = "questionary" },
     { name = "typer" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/b0/88/8aab594cedfaa7ebd15b725f2cd179f047d962c0c54291800af611597aa3/lumberman-0.53.0.tar.gz", hash = "sha256:2704018d236e11d3e9b53a6b54818bdc2f041536ddacf4c531cf8be1a56b0610", size = 43444 }
+sdist = { url = "https://files.pythonhosted.org/packages/28/83/1b91b07d9f368f22d9461d38b30bf66fc852e1471c08d228424356fe8eb6/lumberman-0.35.1.tar.gz", hash = "sha256:eb6156f35cdff14f6e7d862a7d7ae16d4997e8fe6ded0b27927f029652b45515", size = 36194 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/7f/32/e8697c68ed0df24310901c156940135a35b619035be94ae3ddabde9fc376/lumberman-0.53.0-py3-none-any.whl", hash = "sha256:b7757f157ab1377873ae3d40dadbefc0f5934cd276a5e640b6a1e435bc6986d9", size = 18900 },
+    { url = "https://files.pythonhosted.org/packages/6a/fe/42b987b9cde2c3b25514d48ddce7a5a46579be8558591e0032d23c2bbc9f/lumberman-0.35.1-py3-none-any.whl", hash = "sha256:6674db9237b8fa2a4aa8deb4a39eb5bda99b90882f79a998d1e3ab89e4a26684", size = 17319 },
 ]
 
 [[package]]
@@ -631,7 +614,7 @@ requires-dist = [
     { name = "sentry-sdk", specifier = "==2.17.0" },
     { name = "syrupy", marker = "extra == 'tests'", specifier = "==4.6.1" },
     { name = "tqdm", specifier = "==4.66.6" },
-    { name = "typer", specifier = "==0.12.3" },
+    { name = "typer", specifier = "==0.12.5" },
     { name = "unidecode", specifier = "==1.3.8" },
     { name = "wasabi", specifier = "==1.1.3" },
 ]
@@ -1085,7 +1068,7 @@ wheels = [
 
 [[package]]
 name = "typer"
-version = "0.12.3"
+version = "0.12.5"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "click" },
@@ -1093,9 +1076,9 @@ dependencies = [
     { name = "shellingham" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/ac/0a/d55af35db5f50f486e3eda0ada747eed773859e2699d3ce570b682a9b70a/typer-0.12.3.tar.gz", hash = "sha256:49e73131481d804288ef62598d97a1ceef3058905aa536a1134f90891ba35482", size = 94276 }
+sdist = { url = "https://files.pythonhosted.org/packages/c5/58/a79003b91ac2c6890fc5d90145c662fd5771c6f11447f116b63300436bc9/typer-0.12.5.tar.gz", hash = "sha256:f592f089bedcc8ec1b974125d64851029c3b1af145f04aca64d69410f0c9b722", size = 98953 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/20/b5/11cf2e34fbb11b937e006286ab5b8cfd334fde1c8fa4dd7f491226931180/typer-0.12.3-py3-none-any.whl", hash = "sha256:070d7ca53f785acbccba8e7d28b08dcd88f79f1fbda035ade0aecec71ca5c914", size = 47209 },
+    { url = "https://files.pythonhosted.org/packages/a8/2b/886d13e742e514f704c33c4caa7df0f3b89e5a25ef8db02aa9ca3d9535d5/typer-0.12.5-py3-none-any.whl", hash = "sha256:62fe4e471711b147e3365034133904df3e235698399bc4de2b36c8579298d52b", size = 47288 },
 ]
 
 [[package]]
