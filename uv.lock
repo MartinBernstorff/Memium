@@ -304,7 +304,7 @@ wheels = [
 
 [[package]]
 name = "diff-cover"
-version = "9.1.0"
+version = "9.2.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "chardet" },
@@ -312,9 +312,9 @@ dependencies = [
     { name = "pluggy" },
     { name = "pygments" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/50/4f/3305c8d78dbb776017aad02f4ec8eb49cffed6ed80f5773259b9e16844c6/diff_cover-9.1.0.tar.gz", hash = "sha256:c6c9f7f1eacd9019d118cafb75908445caa41a79f65f36f9f506c9626dbcbc70", size = 92970 }
+sdist = { url = "https://files.pythonhosted.org/packages/44/3a/e49ccba052a4dda264fbad4f467739ecc63498f7223bfc03d4bfac23ea95/diff_cover-9.2.0.tar.gz", hash = "sha256:85a0b353ebbb678f9e87ea303f75b545bd0baca38f563219bb72f2ae862bba36", size = 94857 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/04/74/33b9d67fb777655ff56e0974fe2a9c3d935eabdb61f2be19bba47e850082/diff_cover-9.1.0-py3-none-any.whl", hash = "sha256:9b95204e6b98ec2815087b0ad1d504422a41fe36d7c778497eba128f267618c4", size = 51789 },
+    { url = "https://files.pythonhosted.org/packages/b4/8a/bddb8e4aea550066559144e72d3566e9ae2f757b8ac154e769c563f48177/diff_cover-9.2.0-py3-none-any.whl", hash = "sha256:1e24edc51c39e810c47dd9986e76c333ed95859655c091f572e590c39cabbdbe", size = 52561 },
 ]
 
 [[package]]
@@ -557,7 +557,7 @@ wheels = [
 
 [[package]]
 name = "memium"
-version = "0.24.2"
+version = "0.24.3"
 source = { editable = "." }
 dependencies = [
     { name = "bs4" },
@@ -598,7 +598,7 @@ requires-dist = [
     { name = "bs4", specifier = "==0.0.2" },
     { name = "cffi", specifier = "==1.16.0" },
     { name = "cruft", marker = "extra == 'dev'", specifier = "==2.15.0" },
-    { name = "diff-cover", marker = "extra == 'tests'", specifier = "==9.1.0" },
+    { name = "diff-cover", marker = "extra == 'tests'", specifier = "==9.2.0" },
     { name = "genanki", specifier = "==0.13.1" },
     { name = "herbarium", marker = "extra == 'dev'" },
     { name = "invoke", marker = "extra == 'dev'", specifier = "==2.2.0" },
