@@ -570,7 +570,7 @@ wheels = [
 
 [[package]]
 name = "memium"
-version = "0.24.3"
+version = "0.24.4"
 source = { editable = "." }
 dependencies = [
     { name = "bs4" },
@@ -618,7 +618,7 @@ requires-dist = [
     { name = "iterpy", specifier = "==1.9.0" },
     { name = "lumberman", marker = "extra == 'dev'" },
     { name = "markdown", specifier = "==3.6" },
-    { name = "pre-commit", marker = "extra == 'dev'", specifier = "==3.7.1" },
+    { name = "pre-commit", marker = "extra == 'dev'", specifier = "==3.8.0" },
     { name = "pydantic", specifier = "==2.8.2" },
     { name = "pyright", marker = "extra == 'dev'", specifier = "==1.1.386" },
     { name = "pytest", marker = "extra == 'tests'", specifier = "==7.4.4" },
@@ -673,7 +673,7 @@ wheels = [
 
 [[package]]
 name = "pre-commit"
-version = "3.7.1"
+version = "3.8.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "cfgv" },
@@ -682,9 +682,9 @@ dependencies = [
     { name = "pyyaml" },
     { name = "virtualenv" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/aa/46/cc214ef6514270328910083d0119d0a80a6d2c4ec8c6608c0219db0b74cf/pre_commit-3.7.1.tar.gz", hash = "sha256:8ca3ad567bc78a4972a3f1a477e94a79d4597e8140a6e0b651c5e33899c3654a", size = 177317 }
+sdist = { url = "https://files.pythonhosted.org/packages/64/10/97ee2fa54dff1e9da9badbc5e35d0bbaef0776271ea5907eccf64140f72f/pre_commit-3.8.0.tar.gz", hash = "sha256:8bb6494d4a20423842e198980c9ecf9f96607a07ea29549e180eef9ae80fe7af", size = 177815 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/b9/0f/d6d0b4e2f5b2933a557087fc0560371aa545a18232d4d3427eb3bb3af12e/pre_commit-3.7.1-py2.py3-none-any.whl", hash = "sha256:fae36fd1d7ad7d6a5a1c0b0d5adb2ed1a3bda5a21bf6c3e5372073d7a11cd4c5", size = 204268 },
+    { url = "https://files.pythonhosted.org/packages/07/92/caae8c86e94681b42c246f0bca35c059a2f0529e5b92619f6aba4cf7e7b6/pre_commit-3.8.0-py2.py3-none-any.whl", hash = "sha256:9a90a53bf82fdd8778d58085faf8d83df56e40dfe18f45b19446e26bf1b3a63f", size = 204643 },
 ]
 
 [[package]]
