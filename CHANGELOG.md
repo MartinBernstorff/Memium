@@ -1,6 +1,15 @@
 # CHANGELOG
 
 
+## v0.24.4 (2024-10-28)
+
+### Bug Fixes
+
+* fix(deps): update dependency cffi to v1.17.1 ([`77c8997`](https://github.com/MartinBernstorff/Memium/commit/77c89976ea4e126ab00607b95e60717759c59167))
+
+* fix(deps): update dependency diff-cover to v9.2.0 ([`df00d82`](https://github.com/MartinBernstorff/Memium/commit/df00d825e0d0adde3c4070fe234ea03f7fca3011))
+
+
 ## v0.24.3 (2024-10-28)
 
 ### Bug Fixes
