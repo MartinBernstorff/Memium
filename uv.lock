@@ -571,7 +571,7 @@ wheels = [
 
 [[package]]
 name = "memium"
-version = "0.21.3"
+version = "0.24.2"
 source = { editable = "." }
 dependencies = [
     { name = "bs4" },
@@ -630,7 +630,7 @@ requires-dist = [
     { name = "ruff", marker = "extra == 'dev'", specifier = "==0.4.5" },
     { name = "sentry-sdk", specifier = "==2.17.0" },
     { name = "syrupy", marker = "extra == 'tests'", specifier = "==4.6.1" },
-    { name = "tqdm", specifier = "==4.66.4" },
+    { name = "tqdm", specifier = "==4.66.6" },
     { name = "typer", specifier = "==0.12.3" },
     { name = "unidecode", specifier = "==1.3.8" },
     { name = "wasabi", specifier = "==1.1.3" },
@@ -1073,14 +1073,14 @@ wheels = [
 
 [[package]]
 name = "tqdm"
-version = "4.66.4"
+version = "4.66.6"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "colorama", marker = "platform_system == 'Windows'" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/5a/c0/b7599d6e13fe0844b0cda01b9aaef9a0e87dbb10b06e4ee255d3fa1c79a2/tqdm-4.66.4.tar.gz", hash = "sha256:e4d936c9de8727928f3be6079590e97d9abfe8d39a590be678eb5919ffc186bb", size = 169392 }
+sdist = { url = "https://files.pythonhosted.org/packages/e9/34/bef135b27fe1864993a5284ad001157ee9b5538e859ac90f5b0e8cc8c9ec/tqdm-4.66.6.tar.gz", hash = "sha256:4bdd694238bef1485ce839d67967ab50af8f9272aab687c0d7702a01da0be090", size = 169533 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/18/eb/fdb7eb9e48b7b02554e1664afd3bd3f117f6b6d6c5881438a0b055554f9b/tqdm-4.66.4-py3-none-any.whl", hash = "sha256:b75ca56b413b030bc3f00af51fd2c1a1a5eac6a0c1cca83cbb37a5c52abce644", size = 78275 },
+    { url = "https://files.pythonhosted.org/packages/41/73/02342de9c2d20922115f787e101527b831c0cffd2105c946c4a4826bcfd4/tqdm-4.66.6-py3-none-any.whl", hash = "sha256:223e8b5359c2efc4b30555531f09e9f2f3589bcd7fdd389271191031b49b7a63", size = 78326 },
 ]
 
 [[package]]
