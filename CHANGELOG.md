@@ -1,6 +1,13 @@
 # CHANGELOG
 
 
+## v0.24.6 (2024-10-28)
+
+### Bug Fixes
+
+* fix(deps): update dependency markdown to v3.7 ([`c4bbd4f`](https://github.com/MartinBernstorff/Memium/commit/c4bbd4fbd93b8d888c1e75afbffb834ab927f57f))
+
+
 ## v0.24.5 (2024-10-28)
 
 ### Bug Fixes
