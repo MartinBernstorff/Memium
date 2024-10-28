@@ -1,6 +1,19 @@
 # CHANGELOG
 
 
+## v0.24.3 (2024-10-28)
+
+### Bug Fixes
+
+* fix(deps): update dependency typer to v0.12.5 ([`4c55218`](https://github.com/MartinBernstorff/Memium/commit/4c55218434fc0c196b0fda5eb2fc2e8d868625d1))
+
+* fix(deps): update dependency bs4 to v0.0.2 ([`44ca48d`](https://github.com/MartinBernstorff/Memium/commit/44ca48d7b05bace5a01ad60639a2540211c48d30))
+
+### Chores
+
+* chore(deps): update dependency tqdm to v4.66.6 ([`40f0c52`](https://github.com/MartinBernstorff/Memium/commit/40f0c528c4694b6c4fdb40532529948394c0c09e))
+
+
 ## v0.24.2 (2024-10-27)
 
 ### Bug Fixes
