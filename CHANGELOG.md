@@ -1,6 +1,13 @@
 # CHANGELOG
 
 
+## v0.24.9 (2024-10-29)
+
+### Bug Fixes
+
+* fix(deps): update dependency pytest-cov to v6 ([`f00e1ad`](https://github.com/MartinBernstorff/Memium/commit/f00e1ad36ab7169240fb62f8caa5dc9e3c14e6a4))
+
+
 ## v0.24.8 (2024-10-29)
 
 ### Bug Fixes
