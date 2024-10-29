@@ -1,6 +1,15 @@
 # CHANGELOG
 
 
+## v0.24.7 (2024-10-29)
+
+### Bug Fixes
+
+* fix(deps): update dependency syrupy to v4.7.2 ([`90ac769`](https://github.com/MartinBernstorff/Memium/commit/90ac7695e893caa126899ef1a1f23f17b51b437c))
+
+* fix(deps): update dependency pydantic to v2.9.2 ([`279286b`](https://github.com/MartinBernstorff/Memium/commit/279286b31f76c0d5f98498f0341f586edc8f9c0b))
+
+
 ## v0.24.6 (2024-10-28)
 
 ### Bug Fixes
