@@ -1,6 +1,15 @@
 # CHANGELOG
 
 
+## v0.24.8 (2024-10-29)
+
+### Bug Fixes
+
+* fix(deps): update dependency pytest to v8 ([`2004f7c`](https://github.com/MartinBernstorff/Memium/commit/2004f7c0cc9a8591a9e31790642b5a391bf504cd))
+
+* fix(deps): update dependency pre-commit to v4 ([`93053e7`](https://github.com/MartinBernstorff/Memium/commit/93053e7908ed767e447b4627234fecc43557fb90))
+
+
 ## v0.24.7 (2024-10-29)
 
 ### Bug Fixes
