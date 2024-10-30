@@ -1,6 +1,13 @@
 # CHANGELOG
 
 
+## v0.24.10 (2024-10-30)
+
+### Bug Fixes
+
+* fix(deps): update dependency pyright to v1.1.387 ([`5ac08cb`](https://github.com/MartinBernstorff/Memium/commit/5ac08cbe50223007916976cbdbbc83555147b122))
+
+
 ## v0.24.9 (2024-10-29)
 
 ### Bug Fixes
