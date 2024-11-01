@@ -1,6 +1,13 @@
 # CHANGELOG
 
 
+## v0.25.0 (2024-11-01)
+
+### Features
+
+* feat: simplify code visualisation (#764) ([`315eb24`](https://github.com/MartinBernstorff/Memium/commit/315eb24381048ae0b56566a2e5a13bf50a3f4468))
+
+
 ## v0.24.10 (2024-10-30)
 
 ### Bug Fixes
