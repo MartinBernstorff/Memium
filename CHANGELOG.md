@@ -1,6 +1,13 @@
 # CHANGELOG
 
 
+## v0.25.1 (2024-11-04)
+
+### Bug Fixes
+
+* fix(deps): update dependency sentry-sdk to v2.18.0 ([`483feb4`](https://github.com/MartinBernstorff/Memium/commit/483feb4cf274a2e787e20f8292af2621f67d1a16))
+
+
 ## v0.25.0 (2024-11-01)
 
 ### Features
