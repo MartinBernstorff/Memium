@@ -80,10 +80,10 @@ class AnkiConnectGateway:
             if seconds_waited >= self.max_wait_seconds:
                 raise ConnectionError(f"Could not connect to AnkiConnect at {self.ankiconnect_url}")
 
-            wait_seconds = 2
-            log.info(f"AnkiConnect is not live, waiting {wait_seconds} seconds...")
-            seconds_waited += wait_seconds
-            sleep(wait_seconds)
+            poll_seconds = 10
+            log.info(f"AnkiConnect is not live, waiting {poll_seconds} seconds...")
+            seconds_waited += poll_seconds
+            sleep(poll_seconds)
 
     def update_model(self, model: genanki.Model) -> None:
         existing_model_names = self._invoke(AnkiConnectCommand.GET_MODEL_NAMES)
