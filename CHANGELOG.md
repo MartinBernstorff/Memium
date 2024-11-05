@@ -1,6 +1,13 @@
 # CHANGELOG
 
 
+## v0.25.2 (2024-11-05)
+
+### Performance Improvements
+
+* perf: check for anki before note sync (#766) ([`d4f33b9`](https://github.com/MartinBernstorff/Memium/commit/d4f33b958a8671e1bf69bb5f941d2d2a1894e423))
+
+
 ## v0.25.1 (2024-11-04)
 
 ### Bug Fixes
