@@ -20,6 +20,26 @@ def main(
     dry_run: bool,
     push_all: bool = False,
 ):
+    # Setup gateway as first step. If Anki is not running, no need to parse all the prompts.
+    gateway = AnkiConnectGateway(
+        ankiconnect_url=ANKICONNECT_URL,
+        base_deck=base_deck,
+        tmp_read_dir=host_input_dir() if in_docker() else input_dir,
+        tmp_write_dir=input_dir,
+        max_deletions_per_run=max_deletions_per_run,
+        max_wait_seconds=3600,
+    )
+
+    dest_class = AnkiConnectDestination if not dry_run else DryRunDestination
+    destination = dest_class(
+        gateway=gateway,
+        prompt_converter=AnkiPromptConverter(
+            base_deck=base_deck,
+            card_css=Path("memium/destination/ankiconnect/default_styling.css").read_text(),
+        ),
+    )
+
+    # Get the inputs
     source_prompts = DocumentPromptSource(
         document_ingester=MarkdownDocumentSource(directory=input_dir),
         prompt_extractors=[
@@ -28,22 +48,7 @@ def main(
         ],
     ).get_prompts()
 
-    dest_class = AnkiConnectDestination if not dry_run else DryRunDestination
-    destination = dest_class(
-        gateway=AnkiConnectGateway(
-            ankiconnect_url=ANKICONNECT_URL,
-            base_deck=base_deck,
-            tmp_read_dir=host_input_dir() if in_docker() else input_dir,
-            tmp_write_dir=input_dir,
-            max_deletions_per_run=max_deletions_per_run,
-            max_wait_seconds=30,
-        ),
-        prompt_converter=AnkiPromptConverter(
-            base_deck=base_deck,
-            card_css=Path("memium/destination/ankiconnect/default_styling.css").read_text(),
-        ),
-    )
-
+    # Get the updates
     update_commands = (
         [PushPrompts(prompts=source_prompts)]
         if push_all
@@ -51,5 +56,6 @@ def main(
             source_prompts=source_prompts, destination_prompts=destination.get_all_prompts()
         )
     )
+    # Send them
 
     destination.update(commands=update_commands)
