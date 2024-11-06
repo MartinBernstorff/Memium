@@ -1,6 +1,13 @@
 # CHANGELOG
 
 
+## v0.25.4 (2024-11-06)
+
+### Bug Fixes
+
+* fix(deps): update dependency tqdm to v4.67.0 ([`ab27f1b`](https://github.com/MartinBernstorff/Memium/commit/ab27f1b9ce89f4d2dbe849f3397124f72e475925))
+
+
 ## v0.25.3 (2024-11-06)
 
 ### Bug Fixes
