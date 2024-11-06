@@ -1,6 +1,17 @@
 # CHANGELOG
 
 
+## v0.25.3 (2024-11-06)
+
+### Bug Fixes
+
+* fix(deps): update dependency pyright to v1.1.388 ([`6763193`](https://github.com/MartinBernstorff/Memium/commit/6763193c733442854d88c375d85d45724e5d5709))
+
+### Chores
+
+* chore(deps): update python-semantic-release/python-semantic-release action to v9.12.1 ([`be2a1fb`](https://github.com/MartinBernstorff/Memium/commit/be2a1fbcd129ec35895ed1abdfee8276b020eb77))
+
+
 ## v0.25.2 (2024-11-05)
 
 ### Performance Improvements
