@@ -1,6 +1,228 @@
 # CHANGELOG
 
 
+## v0.25.5 (2024-11-07)
+
+### Bug Fixes
+
+* fix(deps): update dependency typer to v0.13.0 (#771)
+
+This PR contains the following updates:
+
+| Package | Change | Age | Adoption | Passing | Confidence |
+|---|---|---|---|---|---|
+| [typer](https://redirect.github.com/fastapi/typer)
+([changelog](https://typer.tiangolo.com/release-notes/)) | `==0.12.5` ->
+`==0.13.0` |
+[![age](https://developer.mend.io/api/mc/badges/age/pypi/typer/0.13.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+|
+[![adoption](https://developer.mend.io/api/mc/badges/adoption/pypi/typer/0.13.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+|
+[![passing](https://developer.mend.io/api/mc/badges/compatibility/pypi/typer/0.12.5/0.13.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+|
+[![confidence](https://developer.mend.io/api/mc/badges/confidence/pypi/typer/0.12.5/0.13.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+|
+
+---
+
+### Release Notes
+
+<details>
+<summary>fastapi/typer (typer)</summary>
+
+###
+[`v0.13.0`](https://redirect.github.com/fastapi/typer/releases/tag/0.13.0)
+
+[Compare
+Source](https://redirect.github.com/fastapi/typer/compare/0.12.5...0.13.0)
+
+##### Features
+
+- ✨ Handle `KeyboardInterrupt` separately from other exceptions. PR
+[#&#8203;1039](https://redirect.github.com/fastapi/typer/pull/1039) by
+[@&#8203;patrick91](https://redirect.github.com/patrick91).
+- ✨ Update `launch` to not print anything when opening urls. PR
+[#&#8203;1035](https://redirect.github.com/fastapi/typer/pull/1035) by
+[@&#8203;patrick91](https://redirect.github.com/patrick91).
+- ✨ Show help items in order of definition. PR
+[#&#8203;944](https://redirect.github.com/fastapi/typer/pull/944) by
+[@&#8203;svlandeg](https://redirect.github.com/svlandeg).
+
+##### Fixes
+
+- 🐛 Fix equality check for custom classes. PR
+[#&#8203;979](https://redirect.github.com/fastapi/typer/pull/979) by
+[@&#8203;AryazE](https://redirect.github.com/AryazE).
+- 🐛 Allow colon in zsh autocomplete values and descriptions. PR
+[#&#8203;988](https://redirect.github.com/fastapi/typer/pull/988) by
+[@&#8203;snapbug](https://redirect.github.com/snapbug).
+
+##### Refactors
+
+- 🗑️ Deprecate support for `is_flag` and `flag_value` parameters. PR
+[#&#8203;987](https://redirect.github.com/fastapi/typer/pull/987) by
+[@&#8203;svlandeg](https://redirect.github.com/svlandeg).
+- 🔥 Remove unused functionality from `_typing.py` file. PR
+[#&#8203;805](https://redirect.github.com/fastapi/typer/pull/805) by
+[@&#8203;ivantodorovich](https://redirect.github.com/ivantodorovich).
+- ✏️ Fix typo in function name `_make_rich_text`. PR
+[#&#8203;959](https://redirect.github.com/fastapi/typer/pull/959) by
+[@&#8203;svlandeg](https://redirect.github.com/svlandeg).
+
+##### Internal
+
+- ✅ Only run completion installation tests when the env var
+`_TYPER_RUN_INSTALL_COMPLETION_TESTS` is set. PR
+[#&#8203;995](https://redirect.github.com/fastapi/typer/pull/995) by
+[@&#8203;svlandeg](https://redirect.github.com/svlandeg).
+- 📝 Update the docstring of the `_make_rich_text` method. PR
+[#&#8203;972](https://redirect.github.com/fastapi/typer/pull/972) by
+[@&#8203;svlandeg](https://redirect.github.com/svlandeg).
+- ⬆ \[pre-commit.ci] pre-commit autoupdate. PR
+[#&#8203;1040](https://redirect.github.com/fastapi/typer/pull/1040) by
+[@&#8203;pre-commit-ci\[bot\]](https://redirect.github.com/apps/pre-commit-ci).
+- ⬆ Bump mkdocs-material from 9.5.42 to 9.5.44. PR
+[#&#8203;1042](https://redirect.github.com/fastapi/typer/pull/1042) by
+[@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot).
+- ⬆ Bump ruff from 0.7.1 to 0.7.2. PR
+[#&#8203;1038](https://redirect.github.com/fastapi/typer/pull/1038) by
+[@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot).
+- ⬆ Bump mkdocs-macros-plugin from 1.3.6 to 1.3.7. PR
+[#&#8203;1031](https://redirect.github.com/fastapi/typer/pull/1031) by
+[@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot).
+- ⬆ \[pre-commit.ci] pre-commit autoupdate. PR
+[#&#8203;1032](https://redirect.github.com/fastapi/typer/pull/1032) by
+[@&#8203;pre-commit-ci\[bot\]](https://redirect.github.com/apps/pre-commit-ci).
+- ⬆ Bump ruff from 0.7.0 to 0.7.1. PR
+[#&#8203;1029](https://redirect.github.com/fastapi/typer/pull/1029) by
+[@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot).
+- ⬆ Bump pillow from 10.4.0 to 11.0.0. PR
+[#&#8203;1023](https://redirect.github.com/fastapi/typer/pull/1023) by
+[@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot).
+- ⬆ Bump mkdocs-material from 9.5.35 to 9.5.42. PR
+[#&#8203;1027](https://redirect.github.com/fastapi/typer/pull/1027) by
+[@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot).
+- ⬆ Bump ruff from 0.6.5 to 0.7.0. PR
+[#&#8203;1026](https://redirect.github.com/fastapi/typer/pull/1026) by
+[@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot).
+- ⬆ Bump mkdocs-macros-plugin from 1.2.0 to 1.3.6. PR
+[#&#8203;1025](https://redirect.github.com/fastapi/typer/pull/1025) by
+[@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot).
+- ⬆ Update pre-commit requirement from <4.0.0,>=2.17.0 to
+>=2.17.0,<5.0.0. PR
+[#&#8203;1012](https://redirect.github.com/fastapi/typer/pull/1012) by
+[@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot).
+- ⬆ Bump pypa/gh-action-pypi-publish from 1.10.1 to 1.10.3. PR
+[#&#8203;1009](https://redirect.github.com/fastapi/typer/pull/1009) by
+[@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot).
+- ⬆ \[pre-commit.ci] pre-commit autoupdate. PR
+[#&#8203;1001](https://redirect.github.com/fastapi/typer/pull/1001) by
+[@&#8203;pre-commit-ci\[bot\]](https://redirect.github.com/apps/pre-commit-ci).
+- 👷 Update Deploy docs CI to use uv. PR
+[#&#8203;1021](https://redirect.github.com/fastapi/typer/pull/1021) by
+[@&#8203;tiangolo](https://redirect.github.com/tiangolo).
+- 👷 Fix smokeshow, checkout files on CI. PR
+[#&#8203;1020](https://redirect.github.com/fastapi/typer/pull/1020) by
+[@&#8203;tiangolo](https://redirect.github.com/tiangolo).
+- 👷 Use uv in CI. PR
+[#&#8203;1019](https://redirect.github.com/fastapi/typer/pull/1019) by
+[@&#8203;tiangolo](https://redirect.github.com/tiangolo).
+- 👷 Update `labeler.yml`. PR
+[#&#8203;1014](https://redirect.github.com/fastapi/typer/pull/1014) by
+[@&#8203;tiangolo](https://redirect.github.com/tiangolo).
+- 👷 Update worfkow deploy-docs-notify URL. PR
+[#&#8203;1011](https://redirect.github.com/fastapi/typer/pull/1011) by
+[@&#8203;tiangolo](https://redirect.github.com/tiangolo).
+- 👷 Upgrade Cloudflare GitHub Action. PR
+[#&#8203;1010](https://redirect.github.com/fastapi/typer/pull/1010) by
+[@&#8203;tiangolo](https://redirect.github.com/tiangolo).
+- ⬆ Bump mkdocs-macros-plugin from 1.0.5 to 1.2.0. PR
+[#&#8203;992](https://redirect.github.com/fastapi/typer/pull/992) by
+[@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot).
+- ⬆ Bump ruff from 0.6.4 to 0.6.5. PR
+[#&#8203;991](https://redirect.github.com/fastapi/typer/pull/991) by
+[@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot).
+- ⬆ Bump mkdocs-material from 9.5.34 to 9.5.35. PR
+[#&#8203;996](https://redirect.github.com/fastapi/typer/pull/996) by
+[@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot).
+- ⬆ \[pre-commit.ci] pre-commit autoupdate. PR
+[#&#8203;993](https://redirect.github.com/fastapi/typer/pull/993) by
+[@&#8203;pre-commit-ci\[bot\]](https://redirect.github.com/apps/pre-commit-ci).
+- ⬆ \[pre-commit.ci] pre-commit autoupdate. PR
+[#&#8203;982](https://redirect.github.com/fastapi/typer/pull/982) by
+[@&#8203;pre-commit-ci\[bot\]](https://redirect.github.com/apps/pre-commit-ci).
+- ⬆ Bump tiangolo/issue-manager from 0.5.0 to 0.5.1. PR
+[#&#8203;980](https://redirect.github.com/fastapi/typer/pull/980) by
+[@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot).
+- 👷 Update `issue-manager.yml`. PR
+[#&#8203;978](https://redirect.github.com/fastapi/typer/pull/978) by
+[@&#8203;tiangolo](https://redirect.github.com/tiangolo).
+- ⬆ Bump ruff from 0.6.3 to 0.6.4. PR
+[#&#8203;975](https://redirect.github.com/fastapi/typer/pull/975) by
+[@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot).
+- ⬆ Bump mkdocs-material from 9.5.33 to 9.5.34. PR
+[#&#8203;963](https://redirect.github.com/fastapi/typer/pull/963) by
+[@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot).
+- ⬆ Bump pypa/gh-action-pypi-publish from 1.9.0 to 1.10.1. PR
+[#&#8203;973](https://redirect.github.com/fastapi/typer/pull/973) by
+[@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot).
+- ⬆ \[pre-commit.ci] pre-commit autoupdate. PR
+[#&#8203;966](https://redirect.github.com/fastapi/typer/pull/966) by
+[@&#8203;pre-commit-ci\[bot\]](https://redirect.github.com/apps/pre-commit-ci).
+- 💚 Set `include-hidden-files` to `True` when using the
+`upload-artifact` GH action. PR
+[#&#8203;967](https://redirect.github.com/fastapi/typer/pull/967) by
+[@&#8203;svlandeg](https://redirect.github.com/svlandeg).
+- ⬆ Bump ruff from 0.6.1 to 0.6.3. PR
+[#&#8203;961](https://redirect.github.com/fastapi/typer/pull/961) by
+[@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot).
+- ⬆ \[pre-commit.ci] pre-commit autoupdate. PR
+[#&#8203;689](https://redirect.github.com/fastapi/typer/pull/689) by
+[@&#8203;pre-commit-ci\[bot\]](https://redirect.github.com/apps/pre-commit-ci).
+- ⬆ Bump ruff from 0.2.0 to 0.6.1. PR
+[#&#8203;938](https://redirect.github.com/fastapi/typer/pull/938) by
+[@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot).
+- 👷 Update `latest-changes` GitHub Action. PR
+[#&#8203;955](https://redirect.github.com/fastapi/typer/pull/955) by
+[@&#8203;tiangolo](https://redirect.github.com/tiangolo).
+
+</details>
+
+---
+
+### Configuration
+
+📅 **Schedule**: Branch creation - At any time (no schedule defined),
+Automerge - At any time (no schedule defined).
+
+🚦 **Automerge**: Enabled.
+
+♻ **Rebasing**: Whenever PR is behind base branch, or you tick the
+rebase/retry checkbox.
+
+🔕 **Ignore**: Close this PR and you won't be reminded about this update
+again.
+
+---
+
+- [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check
+this box
+
+---
+
+This PR was generated by [Mend Renovate](https://mend.io/renovate/).
+View the [repository job
+log](https://developer.mend.io/github/MartinBernstorff/Memium).
+
+<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiIzOS43LjEiLCJ1cGRhdGVkSW5WZXIiOiIzOS43LjEiLCJ0YXJnZXRCcmFuY2giOiJtYWluIiwibGFiZWxzIjpbXX0=-->
+
+Co-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com> ([`0ffe1cf`](https://github.com/MartinBernstorff/Memium/commit/0ffe1cfe4f5569d06e49fee9bffb79e9eebc2e08))
+
+### Chores
+
+* chore(deps): update python-semantic-release/python-semantic-release action to v9.12.2 ([`344ed9a`](https://github.com/MartinBernstorff/Memium/commit/344ed9afc3ce08094003692507c6f61ba3b045ad))
+
+
 ## v0.25.4 (2024-11-06)
 
 ### Bug Fixes
