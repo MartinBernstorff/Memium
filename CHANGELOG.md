@@ -1,190 +1,38 @@
 # CHANGELOG
 
 
-## v0.25.5 (2024-11-07)
+## v0.25.6 (2024-11-13)
 
 ### Bug Fixes
 
-* fix(deps): update dependency typer to v0.13.0 (#771)
+- **deps**: Update dependency pyright to v1.1.389
+  ([#774](https://github.com/MartinBernstorff/Memium/pull/774),
+  [`42e7e14`](https://github.com/MartinBernstorff/Memium/commit/42e7e14cfcf2ca454ccae03a61ac6173066b726a))
 
 This PR contains the following updates:
 
-| Package | Change | Age | Adoption | Passing | Confidence |
-|---|---|---|---|---|---|
-| [typer](https://redirect.github.com/fastapi/typer)
-([changelog](https://typer.tiangolo.com/release-notes/)) | `==0.12.5` ->
-`==0.13.0` |
-[![age](https://developer.mend.io/api/mc/badges/age/pypi/typer/0.13.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)
-|
-[![adoption](https://developer.mend.io/api/mc/badges/adoption/pypi/typer/0.13.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)
-|
-[![passing](https://developer.mend.io/api/mc/badges/compatibility/pypi/typer/0.12.5/0.13.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)
-|
-[![confidence](https://developer.mend.io/api/mc/badges/confidence/pypi/typer/0.12.5/0.13.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)
-|
+| Package | Change | Age | Adoption | Passing | Confidence | |---|---|---|---|---|---| |
+  [pyright](https://redirect.github.com/RobertCraigie/pyright-python) | `==1.1.388` -> `==1.1.389` |
+  [![age](https://developer.mend.io/api/mc/badges/age/pypi/pyright/1.1.389?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+  |
+  [![adoption](https://developer.mend.io/api/mc/badges/adoption/pypi/pyright/1.1.389?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+  |
+  [![passing](https://developer.mend.io/api/mc/badges/compatibility/pypi/pyright/1.1.388/1.1.389?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+  |
+  [![confidence](https://developer.mend.io/api/mc/badges/confidence/pypi/pyright/1.1.388/1.1.389?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+  |
 
 ---
 
 ### Release Notes
 
-<details>
-<summary>fastapi/typer (typer)</summary>
+<details> <summary>RobertCraigie/pyright-python (pyright)</summary>
 
 ###
-[`v0.13.0`](https://redirect.github.com/fastapi/typer/releases/tag/0.13.0)
+  [`v1.1.389`](https://redirect.github.com/RobertCraigie/pyright-python/compare/v1.1.388...v1.1.389)
 
 [Compare
-Source](https://redirect.github.com/fastapi/typer/compare/0.12.5...0.13.0)
-
-##### Features
-
-- ✨ Handle `KeyboardInterrupt` separately from other exceptions. PR
-[#&#8203;1039](https://redirect.github.com/fastapi/typer/pull/1039) by
-[@&#8203;patrick91](https://redirect.github.com/patrick91).
-- ✨ Update `launch` to not print anything when opening urls. PR
-[#&#8203;1035](https://redirect.github.com/fastapi/typer/pull/1035) by
-[@&#8203;patrick91](https://redirect.github.com/patrick91).
-- ✨ Show help items in order of definition. PR
-[#&#8203;944](https://redirect.github.com/fastapi/typer/pull/944) by
-[@&#8203;svlandeg](https://redirect.github.com/svlandeg).
-
-##### Fixes
-
-- 🐛 Fix equality check for custom classes. PR
-[#&#8203;979](https://redirect.github.com/fastapi/typer/pull/979) by
-[@&#8203;AryazE](https://redirect.github.com/AryazE).
-- 🐛 Allow colon in zsh autocomplete values and descriptions. PR
-[#&#8203;988](https://redirect.github.com/fastapi/typer/pull/988) by
-[@&#8203;snapbug](https://redirect.github.com/snapbug).
-
-##### Refactors
-
-- 🗑️ Deprecate support for `is_flag` and `flag_value` parameters. PR
-[#&#8203;987](https://redirect.github.com/fastapi/typer/pull/987) by
-[@&#8203;svlandeg](https://redirect.github.com/svlandeg).
-- 🔥 Remove unused functionality from `_typing.py` file. PR
-[#&#8203;805](https://redirect.github.com/fastapi/typer/pull/805) by
-[@&#8203;ivantodorovich](https://redirect.github.com/ivantodorovich).
-- ✏️ Fix typo in function name `_make_rich_text`. PR
-[#&#8203;959](https://redirect.github.com/fastapi/typer/pull/959) by
-[@&#8203;svlandeg](https://redirect.github.com/svlandeg).
-
-##### Internal
-
-- ✅ Only run completion installation tests when the env var
-`_TYPER_RUN_INSTALL_COMPLETION_TESTS` is set. PR
-[#&#8203;995](https://redirect.github.com/fastapi/typer/pull/995) by
-[@&#8203;svlandeg](https://redirect.github.com/svlandeg).
-- 📝 Update the docstring of the `_make_rich_text` method. PR
-[#&#8203;972](https://redirect.github.com/fastapi/typer/pull/972) by
-[@&#8203;svlandeg](https://redirect.github.com/svlandeg).
-- ⬆ \[pre-commit.ci] pre-commit autoupdate. PR
-[#&#8203;1040](https://redirect.github.com/fastapi/typer/pull/1040) by
-[@&#8203;pre-commit-ci\[bot\]](https://redirect.github.com/apps/pre-commit-ci).
-- ⬆ Bump mkdocs-material from 9.5.42 to 9.5.44. PR
-[#&#8203;1042](https://redirect.github.com/fastapi/typer/pull/1042) by
-[@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot).
-- ⬆ Bump ruff from 0.7.1 to 0.7.2. PR
-[#&#8203;1038](https://redirect.github.com/fastapi/typer/pull/1038) by
-[@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot).
-- ⬆ Bump mkdocs-macros-plugin from 1.3.6 to 1.3.7. PR
-[#&#8203;1031](https://redirect.github.com/fastapi/typer/pull/1031) by
-[@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot).
-- ⬆ \[pre-commit.ci] pre-commit autoupdate. PR
-[#&#8203;1032](https://redirect.github.com/fastapi/typer/pull/1032) by
-[@&#8203;pre-commit-ci\[bot\]](https://redirect.github.com/apps/pre-commit-ci).
-- ⬆ Bump ruff from 0.7.0 to 0.7.1. PR
-[#&#8203;1029](https://redirect.github.com/fastapi/typer/pull/1029) by
-[@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot).
-- ⬆ Bump pillow from 10.4.0 to 11.0.0. PR
-[#&#8203;1023](https://redirect.github.com/fastapi/typer/pull/1023) by
-[@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot).
-- ⬆ Bump mkdocs-material from 9.5.35 to 9.5.42. PR
-[#&#8203;1027](https://redirect.github.com/fastapi/typer/pull/1027) by
-[@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot).
-- ⬆ Bump ruff from 0.6.5 to 0.7.0. PR
-[#&#8203;1026](https://redirect.github.com/fastapi/typer/pull/1026) by
-[@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot).
-- ⬆ Bump mkdocs-macros-plugin from 1.2.0 to 1.3.6. PR
-[#&#8203;1025](https://redirect.github.com/fastapi/typer/pull/1025) by
-[@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot).
-- ⬆ Update pre-commit requirement from <4.0.0,>=2.17.0 to
->=2.17.0,<5.0.0. PR
-[#&#8203;1012](https://redirect.github.com/fastapi/typer/pull/1012) by
-[@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot).
-- ⬆ Bump pypa/gh-action-pypi-publish from 1.10.1 to 1.10.3. PR
-[#&#8203;1009](https://redirect.github.com/fastapi/typer/pull/1009) by
-[@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot).
-- ⬆ \[pre-commit.ci] pre-commit autoupdate. PR
-[#&#8203;1001](https://redirect.github.com/fastapi/typer/pull/1001) by
-[@&#8203;pre-commit-ci\[bot\]](https://redirect.github.com/apps/pre-commit-ci).
-- 👷 Update Deploy docs CI to use uv. PR
-[#&#8203;1021](https://redirect.github.com/fastapi/typer/pull/1021) by
-[@&#8203;tiangolo](https://redirect.github.com/tiangolo).
-- 👷 Fix smokeshow, checkout files on CI. PR
-[#&#8203;1020](https://redirect.github.com/fastapi/typer/pull/1020) by
-[@&#8203;tiangolo](https://redirect.github.com/tiangolo).
-- 👷 Use uv in CI. PR
-[#&#8203;1019](https://redirect.github.com/fastapi/typer/pull/1019) by
-[@&#8203;tiangolo](https://redirect.github.com/tiangolo).
-- 👷 Update `labeler.yml`. PR
-[#&#8203;1014](https://redirect.github.com/fastapi/typer/pull/1014) by
-[@&#8203;tiangolo](https://redirect.github.com/tiangolo).
-- 👷 Update worfkow deploy-docs-notify URL. PR
-[#&#8203;1011](https://redirect.github.com/fastapi/typer/pull/1011) by
-[@&#8203;tiangolo](https://redirect.github.com/tiangolo).
-- 👷 Upgrade Cloudflare GitHub Action. PR
-[#&#8203;1010](https://redirect.github.com/fastapi/typer/pull/1010) by
-[@&#8203;tiangolo](https://redirect.github.com/tiangolo).
-- ⬆ Bump mkdocs-macros-plugin from 1.0.5 to 1.2.0. PR
-[#&#8203;992](https://redirect.github.com/fastapi/typer/pull/992) by
-[@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot).
-- ⬆ Bump ruff from 0.6.4 to 0.6.5. PR
-[#&#8203;991](https://redirect.github.com/fastapi/typer/pull/991) by
-[@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot).
-- ⬆ Bump mkdocs-material from 9.5.34 to 9.5.35. PR
-[#&#8203;996](https://redirect.github.com/fastapi/typer/pull/996) by
-[@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot).
-- ⬆ \[pre-commit.ci] pre-commit autoupdate. PR
-[#&#8203;993](https://redirect.github.com/fastapi/typer/pull/993) by
-[@&#8203;pre-commit-ci\[bot\]](https://redirect.github.com/apps/pre-commit-ci).
-- ⬆ \[pre-commit.ci] pre-commit autoupdate. PR
-[#&#8203;982](https://redirect.github.com/fastapi/typer/pull/982) by
-[@&#8203;pre-commit-ci\[bot\]](https://redirect.github.com/apps/pre-commit-ci).
-- ⬆ Bump tiangolo/issue-manager from 0.5.0 to 0.5.1. PR
-[#&#8203;980](https://redirect.github.com/fastapi/typer/pull/980) by
-[@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot).
-- 👷 Update `issue-manager.yml`. PR
-[#&#8203;978](https://redirect.github.com/fastapi/typer/pull/978) by
-[@&#8203;tiangolo](https://redirect.github.com/tiangolo).
-- ⬆ Bump ruff from 0.6.3 to 0.6.4. PR
-[#&#8203;975](https://redirect.github.com/fastapi/typer/pull/975) by
-[@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot).
-- ⬆ Bump mkdocs-material from 9.5.33 to 9.5.34. PR
-[#&#8203;963](https://redirect.github.com/fastapi/typer/pull/963) by
-[@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot).
-- ⬆ Bump pypa/gh-action-pypi-publish from 1.9.0 to 1.10.1. PR
-[#&#8203;973](https://redirect.github.com/fastapi/typer/pull/973) by
-[@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot).
-- ⬆ \[pre-commit.ci] pre-commit autoupdate. PR
-[#&#8203;966](https://redirect.github.com/fastapi/typer/pull/966) by
-[@&#8203;pre-commit-ci\[bot\]](https://redirect.github.com/apps/pre-commit-ci).
-- 💚 Set `include-hidden-files` to `True` when using the
-`upload-artifact` GH action. PR
-[#&#8203;967](https://redirect.github.com/fastapi/typer/pull/967) by
-[@&#8203;svlandeg](https://redirect.github.com/svlandeg).
-- ⬆ Bump ruff from 0.6.1 to 0.6.3. PR
-[#&#8203;961](https://redirect.github.com/fastapi/typer/pull/961) by
-[@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot).
-- ⬆ \[pre-commit.ci] pre-commit autoupdate. PR
-[#&#8203;689](https://redirect.github.com/fastapi/typer/pull/689) by
-[@&#8203;pre-commit-ci\[bot\]](https://redirect.github.com/apps/pre-commit-ci).
-- ⬆ Bump ruff from 0.2.0 to 0.6.1. PR
-[#&#8203;938](https://redirect.github.com/fastapi/typer/pull/938) by
-[@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot).
-- 👷 Update `latest-changes` GitHub Action. PR
-[#&#8203;955](https://redirect.github.com/fastapi/typer/pull/955) by
-[@&#8203;tiangolo](https://redirect.github.com/tiangolo).
+  Source](https://redirect.github.com/RobertCraigie/pyright-python/compare/v1.1.388...v1.1.389)
 
 </details>
 
@@ -192,763 +40,1318 @@ Source](https://redirect.github.com/fastapi/typer/compare/0.12.5...0.13.0)
 
 ### Configuration
 
-📅 **Schedule**: Branch creation - At any time (no schedule defined),
-Automerge - At any time (no schedule defined).
+📅 **Schedule**: Branch creation - At any time (no schedule defined), Automerge - At any time (no
+  schedule defined).
 
 🚦 **Automerge**: Enabled.
 
-♻ **Rebasing**: Whenever PR is behind base branch, or you tick the
-rebase/retry checkbox.
+♻ **Rebasing**: Whenever PR is behind base branch, or you tick the rebase/retry checkbox.
 
-🔕 **Ignore**: Close this PR and you won't be reminded about this update
-again.
+🔕 **Ignore**: Close this PR and you won't be reminded about this update again.
 
 ---
 
-- [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check
-this box
+- [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check this box
 
 ---
 
-This PR was generated by [Mend Renovate](https://mend.io/renovate/).
-View the [repository job
-log](https://developer.mend.io/github/MartinBernstorff/Memium).
+This PR was generated by [Mend Renovate](https://mend.io/renovate/). View the [repository job
+  log](https://developer.mend.io/github/MartinBernstorff/Memium).
 
-<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiIzOS43LjEiLCJ1cGRhdGVkSW5WZXIiOiIzOS43LjEiLCJ0YXJnZXRCcmFuY2giOiJtYWluIiwibGFiZWxzIjpbXX0=-->
+<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiIzOS4xMS41IiwidXBkYXRlZEluVmVyIjoiMzkuMTEuNSIsInRhcmdldEJyYW5jaCI6Im1haW4iLCJsYWJlbHMiOltdfQ==-->
 
-Co-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com> ([`0ffe1cf`](https://github.com/MartinBernstorff/Memium/commit/0ffe1cfe4f5569d06e49fee9bffb79e9eebc2e08))
+Co-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>
 
 ### Chores
 
-* chore(deps): update python-semantic-release/python-semantic-release action to v9.12.2 ([`344ed9a`](https://github.com/MartinBernstorff/Memium/commit/344ed9afc3ce08094003692507c6f61ba3b045ad))
+- **deps**: Update python-semantic-release/python-semantic-release action to v9.14.0
+  ([#773](https://github.com/MartinBernstorff/Memium/pull/773),
+  [`1cd4ba2`](https://github.com/MartinBernstorff/Memium/commit/1cd4ba23acc1c16cf872d8cf00364c3caeb59d00))
+
+This PR contains the following updates:
+
+| Package | Type | Update | Change | |---|---|---|---| |
+  [python-semantic-release/python-semantic-release](https://redirect.github.com/python-semantic-release/python-semantic-release)
+  | action | minor | `v9.13.0` -> `v9.14.0` |
+
+---
+
+### Release Notes
+
+<details> <summary>python-semantic-release/python-semantic-release
+  (python-semantic-release/python-semantic-release)</summary>
+
+###
+  [`v9.14.0`](https://redirect.github.com/python-semantic-release/python-semantic-release/blob/HEAD/CHANGELOG.md#v9140-2024-11-11)
+
+[Compare
+  Source](https://redirect.github.com/python-semantic-release/python-semantic-release/compare/v9.13.0...v9.14.0)
+
+##### Bug Fixes
+
+- **release-notes**: Override default wordwrap to non-wrap for in default template
+
+([`99ab99b`](https://redirect.github.com/python-semantic-release/python-semantic-release/commit/99ab99bb0ba350ca1913a2bde9696f4242278972))
+
+##### Documentation
+
+- **changelog-templates**: Document new `mask_initial_release` changelog context variable
+
+([`f294957`](https://redirect.github.com/python-semantic-release/python-semantic-release/commit/f2949577dfb2dbf9c2ac952c1bbcc4ab84da080b))
+
+- **configuration**: Document new `mask_initial_release` option usage & effect
+
+([`3cabcdc`](https://redirect.github.com/python-semantic-release/python-semantic-release/commit/3cabcdcd9473e008604e74cc2d304595317e921d))
+
+- **homepage**: Fix reference to new ci workflow for test status badge
+
+([`6760069`](https://redirect.github.com/python-semantic-release/python-semantic-release/commit/6760069e7489f50635beb5aedbbeb2cb82b7c584))
+
+##### Features
+
+- **context**: Add `mask_initial_release` setting to changelog context
+
+([`6f2ee39`](https://redirect.github.com/python-semantic-release/python-semantic-release/commit/6f2ee39414b3cf75c0b67dee4db0146bbc1041bb))
+
+- **configuration**: Add `changelog.default_templates.mask_initial_release` option
+
+([`595a70b`](https://redirect.github.com/python-semantic-release/python-semantic-release/commit/595a70bcbc8fea1f8ccf6c5069c41c35ec4efb8d))
+
+- **release-notes**: Define first release w/o change descriptions in default template
+
+([`83167a3`](https://redirect.github.com/python-semantic-release/python-semantic-release/commit/83167a3dcceb7db16b790e1b0efd5fc75fee8942))
+
+- **changelog**: Define first release w/o change descriptions for default RST template
+
+([`e30c94b`](https://redirect.github.com/python-semantic-release/python-semantic-release/commit/e30c94bffe62b42e8dc6ed4fed6260e57b4d532b))
+
+- **changelog**: Define first release w/o change descriptions for default MD template
+
+([`fa89dec`](https://redirect.github.com/python-semantic-release/python-semantic-release/commit/fa89dec239efbae7544b187f624a998fa9ecc309))
+
+- **changelog**: Add md to rst conversion for markdown inline links
+
+([`cb2af1f`](https://redirect.github.com/python-semantic-release/python-semantic-release/commit/cb2af1f17cf6c8ae037c6cd8bb8b4d9c019bb47e))
+
+- **changelog-md**: Add markdown inline link format macro
+
+([`c6d8211`](https://redirect.github.com/python-semantic-release/python-semantic-release/commit/c6d8211c859442df17cb41d2ff19fdb7a81cdb76))
+
+- **changelogs**: Prefix scopes on commit descriptions in default template
+
+([#&#8203;1093](https://redirect.github.com/python-semantic-release/python-semantic-release/pull/1093),
+
+[`560fd2c`](https://redirect.github.com/python-semantic-release/python-semantic-release/commit/560fd2c0d58c97318377cb83af899a336d24cfcc))
+
+<!---->
+
+- test(changelog): update default changelog unit tests to handle commit scope
+
+- test(release-notes): update default release notes unit tests to handle commit scope
+
+- test(fixtures): update changelog generator fixture to handle scope additions
+
+- test(cmd-version): update implementation for test resiliency
+
+- feat(changelog-md): prefix scopes on commit descriptions in Markdown changelog template
+
+- feat(changelog-rst): prefix scopes on commit descriptions in ReStructuredText template
+
+</details>
+
+---
+
+### Configuration
+
+📅 **Schedule**: Branch creation - At any time (no schedule defined), Automerge - At any time (no
+  schedule defined).
+
+🚦 **Automerge**: Enabled.
+
+♻ **Rebasing**: Whenever PR is behind base branch, or you tick the rebase/retry checkbox.
+
+🔕 **Ignore**: Close this PR and you won't be reminded about this update again.
+
+---
+
+- [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check this box
+
+---
+
+This PR was generated by [Mend Renovate](https://mend.io/renovate/). View the [repository job
+  log](https://developer.mend.io/github/MartinBernstorff/Memium).
+
+<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiIzOS43LjEiLCJ1cGRhdGVkSW5WZXIiOiIzOS43LjEiLCJ0YXJnZXRCcmFuY2giOiJtYWluIiwibGFiZWxzIjpbXX0=-->
+
+Co-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>
+
+- **deps**: Update python-semantic-release/python-semantic-release action to v9.13.0
+  ([#772](https://github.com/MartinBernstorff/Memium/pull/772),
+  [`947dead`](https://github.com/MartinBernstorff/Memium/commit/947dead0a0dcf7cdef5d5caedab73a3adfd42881))
+
+This PR contains the following updates:
+
+| Package | Type | Update | Change | |---|---|---|---| |
+  [python-semantic-release/python-semantic-release](https://redirect.github.com/python-semantic-release/python-semantic-release)
+  | action | minor | `v9.12.2` -> `v9.13.0` |
+
+---
+
+### Release Notes
+
+<details> <summary>python-semantic-release/python-semantic-release
+  (python-semantic-release/python-semantic-release)</summary>
+
+###
+  [`v9.13.0`](https://redirect.github.com/python-semantic-release/python-semantic-release/blob/HEAD/CHANGELOG.md#v9130-2024-11-10)
+
+[Compare
+  Source](https://redirect.github.com/python-semantic-release/python-semantic-release/compare/v9.12.2...v9.13.0)
+
+##### Bug Fixes
+
+- Ignore unknown parsed commit types in default RST changelog
+
+([`77609b1`](https://redirect.github.com/python-semantic-release/python-semantic-release/commit/77609b1917a00b106ce254e6f6d5edcd1feebba7))
+
+- Drop the `breaking` category but still maintain a major level bump
+
+([`f1ffa54`](https://redirect.github.com/python-semantic-release/python-semantic-release/commit/f1ffa5411892de34cdc842fd55c460a24b6685c6))
+
+- Improve reliability of text unwordwrap of descriptions
+
+([`436374b`](https://redirect.github.com/python-semantic-release/python-semantic-release/commit/436374b04128d1550467ae97ba90253f1d1b3878))
+
+##### Documentation
+
+- Fix api class reference links
+
+([`7a5bdf2`](https://redirect.github.com/python-semantic-release/python-semantic-release/commit/7a5bdf29b3df0f9a1346ea5301d2a7fee953667b))
+
+- Add `linked_merge_request` field to examples
+
+([`d4376bc`](https://redirect.github.com/python-semantic-release/python-semantic-release/commit/d4376bc2ae4d3708d501d91211ec3ee3a923e9b5))
+
+- Add `linked_merge_request` field to Parsed Commit definition
+
+([`ca61889`](https://redirect.github.com/python-semantic-release/python-semantic-release/commit/ca61889d4ac73e9864fbf637fb87ab2d5bc053ea))
+
+##### Features
+
+- Add PR/MR url linking to default reStructuredText template
+
+([`5f018d6`](https://redirect.github.com/python-semantic-release/python-semantic-release/commit/5f018d630b4c625bdf6d329b27fd966eba75b017))
+
+Resolves:
+  [#&#8203;924](https://redirect.github.com/python-semantic-release/python-semantic-release/issues/924),
+  [#&#8203;953](https://redirect.github.com/python-semantic-release/python-semantic-release/issues/953)
+
+- Add PR/MR url linking to default Markdown changelog
+
+([`cd8d131`](https://redirect.github.com/python-semantic-release/python-semantic-release/commit/cd8d1310a4000cc79b529fbbdc58933f4c6373c6))
+
+Resolves:
+  [#&#8203;924](https://redirect.github.com/python-semantic-release/python-semantic-release/issues/924),
+  [#&#8203;953](https://redirect.github.com/python-semantic-release/python-semantic-release/issues/953)
+
+- Automatically parse PR/MR numbers from subject lines in commits
+
+([`2b3f738`](https://redirect.github.com/python-semantic-release/python-semantic-release/commit/2b3f73801f5760bac29acd93db3ffb2bc790cda0))
+
+- Automatically parse PR/MR numbers from subject lines in commits
+
+([`bca9909`](https://redirect.github.com/python-semantic-release/python-semantic-release/commit/bca9909c1b61fdb1f9ccf823fceb6951cd059820))
+
+- Automatically parse PR/MR numbers from subject lines in commits
+
+([`2ac798f`](https://redirect.github.com/python-semantic-release/python-semantic-release/commit/2ac798f92e0c13c1db668747f7e35a65b99ae7ce))
+
+- Add linked merge requests list to the `ParsedCommit` object
+
+([`9a91062`](https://redirect.github.com/python-semantic-release/python-semantic-release/commit/9a9106212d6c240e9d3358e139b4c4694eaf9c4b))
+
+##### Performance Improvements
+
+- Increase speed & decrease complexity of commit parsing
+
+([`2b661ed`](https://redirect.github.com/python-semantic-release/python-semantic-release/commit/2b661ed122a6f0357a6b92233ac1351c54c7794e))
+
+- Increase speed of commit parsing
+
+([`2c9c468`](https://redirect.github.com/python-semantic-release/python-semantic-release/commit/2c9c4685a66feb35cd78571cf05f76344dd6d66a))
+
+- Simplify commit parsing type pre-calculation
+
+([`a86a28c`](https://redirect.github.com/python-semantic-release/python-semantic-release/commit/a86a28c5e26ed766cda71d26b9382c392e377c61))
+
+</details>
+
+---
+
+### Configuration
+
+📅 **Schedule**: Branch creation - At any time (no schedule defined), Automerge - At any time (no
+  schedule defined).
+
+🚦 **Automerge**: Enabled.
+
+♻ **Rebasing**: Whenever PR is behind base branch, or you tick the rebase/retry checkbox.
+
+🔕 **Ignore**: Close this PR and you won't be reminded about this update again.
+
+---
+
+- [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check this box
+
+---
+
+This PR was generated by [Mend Renovate](https://mend.io/renovate/). View the [repository job
+  log](https://developer.mend.io/github/MartinBernstorff/Memium).
+
+<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiIzOS43LjEiLCJ1cGRhdGVkSW5WZXIiOiIzOS43LjEiLCJ0YXJnZXRCcmFuY2giOiJtYWluIiwibGFiZWxzIjpbXX0=-->
+
+Co-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>
+
+
+## v0.25.5 (2024-11-07)
+
+### Bug Fixes
+
+- **deps**: Update dependency typer to v0.13.0
+  ([#771](https://github.com/MartinBernstorff/Memium/pull/771),
+  [`0ffe1cf`](https://github.com/MartinBernstorff/Memium/commit/0ffe1cfe4f5569d06e49fee9bffb79e9eebc2e08))
+
+This PR contains the following updates:
+
+| Package | Change | Age | Adoption | Passing | Confidence | |---|---|---|---|---|---| |
+  [typer](https://redirect.github.com/fastapi/typer)
+  ([changelog](https://typer.tiangolo.com/release-notes/)) | `==0.12.5` -> `==0.13.0` |
+  [![age](https://developer.mend.io/api/mc/badges/age/pypi/typer/0.13.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+  |
+  [![adoption](https://developer.mend.io/api/mc/badges/adoption/pypi/typer/0.13.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+  |
+  [![passing](https://developer.mend.io/api/mc/badges/compatibility/pypi/typer/0.12.5/0.13.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+  |
+  [![confidence](https://developer.mend.io/api/mc/badges/confidence/pypi/typer/0.12.5/0.13.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+  |
+
+---
+
+### Release Notes
+
+<details> <summary>fastapi/typer (typer)</summary>
+
+### [`v0.13.0`](https://redirect.github.com/fastapi/typer/releases/tag/0.13.0)
+
+[Compare Source](https://redirect.github.com/fastapi/typer/compare/0.12.5...0.13.0)
+
+##### Features
+
+- ✨ Handle `KeyboardInterrupt` separately from other exceptions. PR
+  [#&#8203;1039](https://redirect.github.com/fastapi/typer/pull/1039) by
+  [@&#8203;patrick91](https://redirect.github.com/patrick91). - ✨ Update `launch` to not print
+  anything when opening urls. PR [#&#8203;1035](https://redirect.github.com/fastapi/typer/pull/1035)
+  by [@&#8203;patrick91](https://redirect.github.com/patrick91). - ✨ Show help items in order of
+  definition. PR [#&#8203;944](https://redirect.github.com/fastapi/typer/pull/944) by
+  [@&#8203;svlandeg](https://redirect.github.com/svlandeg).
+
+##### Fixes
+
+- 🐛 Fix equality check for custom classes. PR
+  [#&#8203;979](https://redirect.github.com/fastapi/typer/pull/979) by
+  [@&#8203;AryazE](https://redirect.github.com/AryazE). - 🐛 Allow colon in zsh autocomplete values
+  and descriptions. PR [#&#8203;988](https://redirect.github.com/fastapi/typer/pull/988) by
+  [@&#8203;snapbug](https://redirect.github.com/snapbug).
+
+##### Refactors
+
+- 🗑️ Deprecate support for `is_flag` and `flag_value` parameters. PR
+  [#&#8203;987](https://redirect.github.com/fastapi/typer/pull/987) by
+  [@&#8203;svlandeg](https://redirect.github.com/svlandeg). - 🔥 Remove unused functionality from
+  `_typing.py` file. PR [#&#8203;805](https://redirect.github.com/fastapi/typer/pull/805) by
+  [@&#8203;ivantodorovich](https://redirect.github.com/ivantodorovich). - ✏️ Fix typo in function
+  name `_make_rich_text`. PR [#&#8203;959](https://redirect.github.com/fastapi/typer/pull/959) by
+  [@&#8203;svlandeg](https://redirect.github.com/svlandeg).
+
+##### Internal
+
+- ✅ Only run completion installation tests when the env var `_TYPER_RUN_INSTALL_COMPLETION_TESTS` is
+  set. PR [#&#8203;995](https://redirect.github.com/fastapi/typer/pull/995) by
+  [@&#8203;svlandeg](https://redirect.github.com/svlandeg). - 📝 Update the docstring of the
+  `_make_rich_text` method. PR [#&#8203;972](https://redirect.github.com/fastapi/typer/pull/972) by
+  [@&#8203;svlandeg](https://redirect.github.com/svlandeg). - ⬆ \[pre-commit.ci] pre-commit
+  autoupdate. PR [#&#8203;1040](https://redirect.github.com/fastapi/typer/pull/1040) by
+  [@&#8203;pre-commit-ci\[bot\]](https://redirect.github.com/apps/pre-commit-ci). - ⬆ Bump
+  mkdocs-material from 9.5.42 to 9.5.44. PR
+  [#&#8203;1042](https://redirect.github.com/fastapi/typer/pull/1042) by
+  [@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot). - ⬆ Bump ruff from 0.7.1
+  to 0.7.2. PR [#&#8203;1038](https://redirect.github.com/fastapi/typer/pull/1038) by
+  [@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot). - ⬆ Bump
+  mkdocs-macros-plugin from 1.3.6 to 1.3.7. PR
+  [#&#8203;1031](https://redirect.github.com/fastapi/typer/pull/1031) by
+  [@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot). - ⬆ \[pre-commit.ci]
+  pre-commit autoupdate. PR [#&#8203;1032](https://redirect.github.com/fastapi/typer/pull/1032) by
+  [@&#8203;pre-commit-ci\[bot\]](https://redirect.github.com/apps/pre-commit-ci). - ⬆ Bump ruff from
+  0.7.0 to 0.7.1. PR [#&#8203;1029](https://redirect.github.com/fastapi/typer/pull/1029) by
+  [@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot). - ⬆ Bump pillow from
+  10.4.0 to 11.0.0. PR [#&#8203;1023](https://redirect.github.com/fastapi/typer/pull/1023) by
+  [@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot). - ⬆ Bump mkdocs-material
+  from 9.5.35 to 9.5.42. PR [#&#8203;1027](https://redirect.github.com/fastapi/typer/pull/1027) by
+  [@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot). - ⬆ Bump ruff from 0.6.5
+  to 0.7.0. PR [#&#8203;1026](https://redirect.github.com/fastapi/typer/pull/1026) by
+  [@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot). - ⬆ Bump
+  mkdocs-macros-plugin from 1.2.0 to 1.3.6. PR
+  [#&#8203;1025](https://redirect.github.com/fastapi/typer/pull/1025) by
+  [@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot). - ⬆ Update pre-commit
+  requirement from <4.0.0,>=2.17.0 to >=2.17.0,<5.0.0. PR
+  [#&#8203;1012](https://redirect.github.com/fastapi/typer/pull/1012) by
+  [@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot). - ⬆ Bump
+  pypa/gh-action-pypi-publish from 1.10.1 to 1.10.3. PR
+  [#&#8203;1009](https://redirect.github.com/fastapi/typer/pull/1009) by
+  [@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot). - ⬆ \[pre-commit.ci]
+  pre-commit autoupdate. PR [#&#8203;1001](https://redirect.github.com/fastapi/typer/pull/1001) by
+  [@&#8203;pre-commit-ci\[bot\]](https://redirect.github.com/apps/pre-commit-ci). - 👷 Update Deploy
+  docs CI to use uv. PR [#&#8203;1021](https://redirect.github.com/fastapi/typer/pull/1021) by
+  [@&#8203;tiangolo](https://redirect.github.com/tiangolo). - 👷 Fix smokeshow, checkout files on CI.
+  PR [#&#8203;1020](https://redirect.github.com/fastapi/typer/pull/1020) by
+  [@&#8203;tiangolo](https://redirect.github.com/tiangolo). - 👷 Use uv in CI. PR
+  [#&#8203;1019](https://redirect.github.com/fastapi/typer/pull/1019) by
+  [@&#8203;tiangolo](https://redirect.github.com/tiangolo). - 👷 Update `labeler.yml`. PR
+  [#&#8203;1014](https://redirect.github.com/fastapi/typer/pull/1014) by
+  [@&#8203;tiangolo](https://redirect.github.com/tiangolo). - 👷 Update worfkow deploy-docs-notify
+  URL. PR [#&#8203;1011](https://redirect.github.com/fastapi/typer/pull/1011) by
+  [@&#8203;tiangolo](https://redirect.github.com/tiangolo). - 👷 Upgrade Cloudflare GitHub Action. PR
+  [#&#8203;1010](https://redirect.github.com/fastapi/typer/pull/1010) by
+  [@&#8203;tiangolo](https://redirect.github.com/tiangolo). - ⬆ Bump mkdocs-macros-plugin from 1.0.5
+  to 1.2.0. PR [#&#8203;992](https://redirect.github.com/fastapi/typer/pull/992) by
+  [@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot). - ⬆ Bump ruff from 0.6.4
+  to 0.6.5. PR [#&#8203;991](https://redirect.github.com/fastapi/typer/pull/991) by
+  [@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot). - ⬆ Bump mkdocs-material
+  from 9.5.34 to 9.5.35. PR [#&#8203;996](https://redirect.github.com/fastapi/typer/pull/996) by
+  [@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot). - ⬆ \[pre-commit.ci]
+  pre-commit autoupdate. PR [#&#8203;993](https://redirect.github.com/fastapi/typer/pull/993) by
+  [@&#8203;pre-commit-ci\[bot\]](https://redirect.github.com/apps/pre-commit-ci). - ⬆
+  \[pre-commit.ci] pre-commit autoupdate. PR
+  [#&#8203;982](https://redirect.github.com/fastapi/typer/pull/982) by
+  [@&#8203;pre-commit-ci\[bot\]](https://redirect.github.com/apps/pre-commit-ci). - ⬆ Bump
+  tiangolo/issue-manager from 0.5.0 to 0.5.1. PR
+  [#&#8203;980](https://redirect.github.com/fastapi/typer/pull/980) by
+  [@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot). - 👷 Update
+  `issue-manager.yml`. PR [#&#8203;978](https://redirect.github.com/fastapi/typer/pull/978) by
+  [@&#8203;tiangolo](https://redirect.github.com/tiangolo). - ⬆ Bump ruff from 0.6.3 to 0.6.4. PR
+  [#&#8203;975](https://redirect.github.com/fastapi/typer/pull/975) by
+  [@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot). - ⬆ Bump mkdocs-material
+  from 9.5.33 to 9.5.34. PR [#&#8203;963](https://redirect.github.com/fastapi/typer/pull/963) by
+  [@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot). - ⬆ Bump
+  pypa/gh-action-pypi-publish from 1.9.0 to 1.10.1. PR
+  [#&#8203;973](https://redirect.github.com/fastapi/typer/pull/973) by
+  [@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot). - ⬆ \[pre-commit.ci]
+  pre-commit autoupdate. PR [#&#8203;966](https://redirect.github.com/fastapi/typer/pull/966) by
+  [@&#8203;pre-commit-ci\[bot\]](https://redirect.github.com/apps/pre-commit-ci). - 💚 Set
+  `include-hidden-files` to `True` when using the `upload-artifact` GH action. PR
+  [#&#8203;967](https://redirect.github.com/fastapi/typer/pull/967) by
+  [@&#8203;svlandeg](https://redirect.github.com/svlandeg). - ⬆ Bump ruff from 0.6.1 to 0.6.3. PR
+  [#&#8203;961](https://redirect.github.com/fastapi/typer/pull/961) by
+  [@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot). - ⬆ \[pre-commit.ci]
+  pre-commit autoupdate. PR [#&#8203;689](https://redirect.github.com/fastapi/typer/pull/689) by
+  [@&#8203;pre-commit-ci\[bot\]](https://redirect.github.com/apps/pre-commit-ci). - ⬆ Bump ruff from
+  0.2.0 to 0.6.1. PR [#&#8203;938](https://redirect.github.com/fastapi/typer/pull/938) by
+  [@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot). - 👷 Update
+  `latest-changes` GitHub Action. PR
+  [#&#8203;955](https://redirect.github.com/fastapi/typer/pull/955) by
+  [@&#8203;tiangolo](https://redirect.github.com/tiangolo).
+
+</details>
+
+---
+
+### Configuration
+
+📅 **Schedule**: Branch creation - At any time (no schedule defined), Automerge - At any time (no
+  schedule defined).
+
+🚦 **Automerge**: Enabled.
+
+♻ **Rebasing**: Whenever PR is behind base branch, or you tick the rebase/retry checkbox.
+
+🔕 **Ignore**: Close this PR and you won't be reminded about this update again.
+
+---
+
+- [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check this box
+
+---
+
+This PR was generated by [Mend Renovate](https://mend.io/renovate/). View the [repository job
+  log](https://developer.mend.io/github/MartinBernstorff/Memium).
+
+<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiIzOS43LjEiLCJ1cGRhdGVkSW5WZXIiOiIzOS43LjEiLCJ0YXJnZXRCcmFuY2giOiJtYWluIiwibGFiZWxzIjpbXX0=-->
+
+Co-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>
+
+### Chores
+
+- **deps**: Update python-semantic-release/python-semantic-release action to v9.12.2
+  ([`344ed9a`](https://github.com/MartinBernstorff/Memium/commit/344ed9afc3ce08094003692507c6f61ba3b045ad))
 
 
 ## v0.25.4 (2024-11-06)
 
 ### Bug Fixes
 
-* fix(deps): update dependency tqdm to v4.67.0 ([`ab27f1b`](https://github.com/MartinBernstorff/Memium/commit/ab27f1b9ce89f4d2dbe849f3397124f72e475925))
+- **deps**: Update dependency tqdm to v4.67.0
+  ([`ab27f1b`](https://github.com/MartinBernstorff/Memium/commit/ab27f1b9ce89f4d2dbe849f3397124f72e475925))
 
 
 ## v0.25.3 (2024-11-06)
 
 ### Bug Fixes
 
-* fix(deps): update dependency pyright to v1.1.388 ([`6763193`](https://github.com/MartinBernstorff/Memium/commit/6763193c733442854d88c375d85d45724e5d5709))
+- **deps**: Update dependency pyright to v1.1.388
+  ([`6763193`](https://github.com/MartinBernstorff/Memium/commit/6763193c733442854d88c375d85d45724e5d5709))
 
 ### Chores
 
-* chore(deps): update python-semantic-release/python-semantic-release action to v9.12.1 ([`be2a1fb`](https://github.com/MartinBernstorff/Memium/commit/be2a1fbcd129ec35895ed1abdfee8276b020eb77))
+- **deps**: Update python-semantic-release/python-semantic-release action to v9.12.1
+  ([`be2a1fb`](https://github.com/MartinBernstorff/Memium/commit/be2a1fbcd129ec35895ed1abdfee8276b020eb77))
 
 
 ## v0.25.2 (2024-11-05)
 
 ### Performance Improvements
 
-* perf: check for anki before note sync (#766) ([`d4f33b9`](https://github.com/MartinBernstorff/Memium/commit/d4f33b958a8671e1bf69bb5f941d2d2a1894e423))
+- Check for anki before note sync ([#766](https://github.com/MartinBernstorff/Memium/pull/766),
+  [`d4f33b9`](https://github.com/MartinBernstorff/Memium/commit/d4f33b958a8671e1bf69bb5f941d2d2a1894e423))
 
 
 ## v0.25.1 (2024-11-04)
 
 ### Bug Fixes
 
-* fix(deps): update dependency sentry-sdk to v2.18.0 ([`483feb4`](https://github.com/MartinBernstorff/Memium/commit/483feb4cf274a2e787e20f8292af2621f67d1a16))
+- **deps**: Update dependency sentry-sdk to v2.18.0
+  ([`483feb4`](https://github.com/MartinBernstorff/Memium/commit/483feb4cf274a2e787e20f8292af2621f67d1a16))
 
 
 ## v0.25.0 (2024-11-01)
 
 ### Features
 
-* feat: simplify code visualisation (#764) ([`315eb24`](https://github.com/MartinBernstorff/Memium/commit/315eb24381048ae0b56566a2e5a13bf50a3f4468))
+- Simplify code visualisation ([#764](https://github.com/MartinBernstorff/Memium/pull/764),
+  [`315eb24`](https://github.com/MartinBernstorff/Memium/commit/315eb24381048ae0b56566a2e5a13bf50a3f4468))
 
 
 ## v0.24.10 (2024-10-30)
 
 ### Bug Fixes
 
-* fix(deps): update dependency pyright to v1.1.387 ([`5ac08cb`](https://github.com/MartinBernstorff/Memium/commit/5ac08cbe50223007916976cbdbbc83555147b122))
+- **deps**: Update dependency pyright to v1.1.387
+  ([`5ac08cb`](https://github.com/MartinBernstorff/Memium/commit/5ac08cbe50223007916976cbdbbc83555147b122))
 
 
 ## v0.24.9 (2024-10-29)
 
 ### Bug Fixes
 
-* fix(deps): update dependency pytest-cov to v6 ([`f00e1ad`](https://github.com/MartinBernstorff/Memium/commit/f00e1ad36ab7169240fb62f8caa5dc9e3c14e6a4))
+- **deps**: Update dependency pytest-cov to v6
+  ([`f00e1ad`](https://github.com/MartinBernstorff/Memium/commit/f00e1ad36ab7169240fb62f8caa5dc9e3c14e6a4))
 
 
 ## v0.24.8 (2024-10-29)
 
 ### Bug Fixes
 
-* fix(deps): update dependency pytest to v8 ([`2004f7c`](https://github.com/MartinBernstorff/Memium/commit/2004f7c0cc9a8591a9e31790642b5a391bf504cd))
+- **deps**: Update dependency pytest to v8
+  ([`2004f7c`](https://github.com/MartinBernstorff/Memium/commit/2004f7c0cc9a8591a9e31790642b5a391bf504cd))
 
-* fix(deps): update dependency pre-commit to v4 ([`93053e7`](https://github.com/MartinBernstorff/Memium/commit/93053e7908ed767e447b4627234fecc43557fb90))
+- **deps**: Update dependency pre-commit to v4
+  ([`93053e7`](https://github.com/MartinBernstorff/Memium/commit/93053e7908ed767e447b4627234fecc43557fb90))
 
 
 ## v0.24.7 (2024-10-29)
 
 ### Bug Fixes
 
-* fix(deps): update dependency syrupy to v4.7.2 ([`90ac769`](https://github.com/MartinBernstorff/Memium/commit/90ac7695e893caa126899ef1a1f23f17b51b437c))
+- **deps**: Update dependency syrupy to v4.7.2
+  ([`90ac769`](https://github.com/MartinBernstorff/Memium/commit/90ac7695e893caa126899ef1a1f23f17b51b437c))
 
-* fix(deps): update dependency pydantic to v2.9.2 ([`279286b`](https://github.com/MartinBernstorff/Memium/commit/279286b31f76c0d5f98498f0341f586edc8f9c0b))
+- **deps**: Update dependency pydantic to v2.9.2
+  ([`279286b`](https://github.com/MartinBernstorff/Memium/commit/279286b31f76c0d5f98498f0341f586edc8f9c0b))
 
 
 ## v0.24.6 (2024-10-28)
 
 ### Bug Fixes
 
-* fix(deps): update dependency markdown to v3.7 ([`c4bbd4f`](https://github.com/MartinBernstorff/Memium/commit/c4bbd4fbd93b8d888c1e75afbffb834ab927f57f))
+- **deps**: Update dependency markdown to v3.7
+  ([`c4bbd4f`](https://github.com/MartinBernstorff/Memium/commit/c4bbd4fbd93b8d888c1e75afbffb834ab927f57f))
 
 
 ## v0.24.5 (2024-10-28)
 
 ### Bug Fixes
 
-* fix(deps): update dependency pre-commit to v3.8.0 ([`8233a4e`](https://github.com/MartinBernstorff/Memium/commit/8233a4e75e2453141c0d5d24c9b93143491f0882))
+- **deps**: Update dependency pre-commit to v3.8.0
+  ([`8233a4e`](https://github.com/MartinBernstorff/Memium/commit/8233a4e75e2453141c0d5d24c9b93143491f0882))
 
 
 ## v0.24.4 (2024-10-28)
 
 ### Bug Fixes
 
-* fix(deps): update dependency cffi to v1.17.1 ([`77c8997`](https://github.com/MartinBernstorff/Memium/commit/77c89976ea4e126ab00607b95e60717759c59167))
+- **deps**: Update dependency cffi to v1.17.1
+  ([`77c8997`](https://github.com/MartinBernstorff/Memium/commit/77c89976ea4e126ab00607b95e60717759c59167))
 
-* fix(deps): update dependency diff-cover to v9.2.0 ([`df00d82`](https://github.com/MartinBernstorff/Memium/commit/df00d825e0d0adde3c4070fe234ea03f7fca3011))
+- **deps**: Update dependency diff-cover to v9.2.0
+  ([`df00d82`](https://github.com/MartinBernstorff/Memium/commit/df00d825e0d0adde3c4070fe234ea03f7fca3011))
 
 
 ## v0.24.3 (2024-10-28)
 
 ### Bug Fixes
 
-* fix(deps): update dependency typer to v0.12.5 ([`4c55218`](https://github.com/MartinBernstorff/Memium/commit/4c55218434fc0c196b0fda5eb2fc2e8d868625d1))
+- **deps**: Update dependency typer to v0.12.5
+  ([`4c55218`](https://github.com/MartinBernstorff/Memium/commit/4c55218434fc0c196b0fda5eb2fc2e8d868625d1))
 
-* fix(deps): update dependency bs4 to v0.0.2 ([`44ca48d`](https://github.com/MartinBernstorff/Memium/commit/44ca48d7b05bace5a01ad60639a2540211c48d30))
+- **deps**: Update dependency bs4 to v0.0.2
+  ([`44ca48d`](https://github.com/MartinBernstorff/Memium/commit/44ca48d7b05bace5a01ad60639a2540211c48d30))
 
 ### Chores
 
-* chore(deps): update dependency tqdm to v4.66.6 ([`40f0c52`](https://github.com/MartinBernstorff/Memium/commit/40f0c528c4694b6c4fdb40532529948394c0c09e))
+- **deps**: Update dependency tqdm to v4.66.6
+  ([`40f0c52`](https://github.com/MartinBernstorff/Memium/commit/40f0c528c4694b6c4fdb40532529948394c0c09e))
 
 
 ## v0.24.2 (2024-10-27)
 
 ### Bug Fixes
 
-* fix: typo (#750) ([`c6ff00e`](https://github.com/MartinBernstorff/Memium/commit/c6ff00eb3876a5789cff9f3a40fafec4d368efd4))
+- Typo ([#750](https://github.com/MartinBernstorff/Memium/pull/750),
+  [`c6ff00e`](https://github.com/MartinBernstorff/Memium/commit/c6ff00eb3876a5789cff9f3a40fafec4d368efd4))
 
 
 ## v0.24.1 (2024-10-27)
 
 ### Bug Fixes
 
-* fix: further improve duplicate loggig (#749) ([`2d6431b`](https://github.com/MartinBernstorff/Memium/commit/2d6431bc30a3fee1a53f147c27980bc7c23c058f))
+- Further improve duplicate loggig ([#749](https://github.com/MartinBernstorff/Memium/pull/749),
+  [`2d6431b`](https://github.com/MartinBernstorff/Memium/commit/2d6431bc30a3fee1a53f147c27980bc7c23c058f))
 
 ### Refactoring
 
-* refactor: html parsing (#748) ([`a9578ce`](https://github.com/MartinBernstorff/Memium/commit/a9578cefe03d9336982af153bb7e966b46ab5d86))
+- Html parsing ([#748](https://github.com/MartinBernstorff/Memium/pull/748),
+  [`a9578ce`](https://github.com/MartinBernstorff/Memium/commit/a9578cefe03d9336982af153bb7e966b46ab5d86))
 
 
 ## v0.24.0 (2024-10-27)
 
 ### Features
 
-* feat: improve styling of code blocks (#747) ([`c513731`](https://github.com/MartinBernstorff/Memium/commit/c513731321eb822d2d2d4c9afba588783d7c4ff6))
-
-### Unknown
-
-* update default_styling.css ([`3c04e3c`](https://github.com/MartinBernstorff/Memium/commit/3c04e3c60d5a153c2b2688fe5d3386e888ff95d3))
-
-* improve-styling-of-code-blocks ([`e87607b`](https://github.com/MartinBernstorff/Memium/commit/e87607bbe444f6723fd1ad5b14ca10e58b8e48d2))
+- Improve styling of code blocks ([#747](https://github.com/MartinBernstorff/Memium/pull/747),
+  [`c513731`](https://github.com/MartinBernstorff/Memium/commit/c513731321eb822d2d2d4c9afba588783d7c4ff6))
 
 
 ## v0.23.0 (2024-10-27)
 
 ### Features
 
-* feat: improve logging (#746) ([`a4647d3`](https://github.com/MartinBernstorff/Memium/commit/a4647d345db8a3dd04c63547ad30b5763b52fabe))
+- Improve logging ([#746](https://github.com/MartinBernstorff/Memium/pull/746),
+  [`a4647d3`](https://github.com/MartinBernstorff/Memium/commit/a4647d345db8a3dd04c63547ad30b5763b52fabe))
 
 
 ## v0.22.2 (2024-10-27)
 
 ### Bug Fixes
 
-* fix: improve logging of parser errors (#745) ([`6a101d4`](https://github.com/MartinBernstorff/Memium/commit/6a101d40e35a0dd00da42ab77e419ecbabfdcbe4))
+- Improve logging of parser errors ([#745](https://github.com/MartinBernstorff/Memium/pull/745),
+  [`6a101d4`](https://github.com/MartinBernstorff/Memium/commit/6a101d40e35a0dd00da42ab77e419ecbabfdcbe4))
 
 
 ## v0.22.1 (2024-10-27)
 
 ### Bug Fixes
 
-* fix: disable irrelevant genanki warnings (#744) ([`bbf5458`](https://github.com/MartinBernstorff/Memium/commit/bbf5458f768519f9ff27e0d9a81c309900431bb5))
+- Disable irrelevant genanki warnings ([#744](https://github.com/MartinBernstorff/Memium/pull/744),
+  [`bbf5458`](https://github.com/MartinBernstorff/Memium/commit/bbf5458f768519f9ff27e0d9a81c309900431bb5))
 
 
 ## v0.22.0 (2024-10-27)
 
 ### Features
 
-* feat: add codeblock parsing (#742) ([`cc48a3b`](https://github.com/MartinBernstorff/Memium/commit/cc48a3bda50b64808e6adceb818d9622737e3a5a))
+- Add codeblock parsing ([#742](https://github.com/MartinBernstorff/Memium/pull/742),
+  [`cc48a3b`](https://github.com/MartinBernstorff/Memium/commit/cc48a3bda50b64808e6adceb818d9622737e3a5a))
 
 
 ## v0.21.6 (2024-10-27)
 
 ### Bug Fixes
 
-* fix: empty rows in table parsing (#741) ([`03de23e`](https://github.com/MartinBernstorff/Memium/commit/03de23e7362f8a84a87a30b7d8d3513c2adf0b0e))
+- Empty rows in table parsing ([#741](https://github.com/MartinBernstorff/Memium/pull/741),
+  [`03de23e`](https://github.com/MartinBernstorff/Memium/commit/03de23e7362f8a84a87a30b7d8d3513c2adf0b0e))
 
 
 ## v0.21.5 (2024-10-27)
 
 ### Bug Fixes
 
-* fix: handle dashes in wikilinks (#740) ([`97d1cf0`](https://github.com/MartinBernstorff/Memium/commit/97d1cf0e92db1b9ab9e00de883d37b24870930c0))
+- Handle dashes in wikilinks ([#740](https://github.com/MartinBernstorff/Memium/pull/740),
+  [`97d1cf0`](https://github.com/MartinBernstorff/Memium/commit/97d1cf0e92db1b9ab9e00de883d37b24870930c0))
 
 
 ## v0.21.4 (2024-10-27)
 
 ### Bug Fixes
 
-* fix: more generous parsing of italics (#739) ([`39298c1`](https://github.com/MartinBernstorff/Memium/commit/39298c1cdc75db95acbd02c3b7fc631e1456c444))
+- More generous parsing of italics ([#739](https://github.com/MartinBernstorff/Memium/pull/739),
+  [`39298c1`](https://github.com/MartinBernstorff/Memium/commit/39298c1cdc75db95acbd02c3b7fc631e1456c444))
 
 ### Chores
 
-* chore(deps): update dependency sentry-sdk to v2.17.0 ([`c35c510`](https://github.com/MartinBernstorff/Memium/commit/c35c51091cedd9b68956e5ff26a904caf5691d2c))
+- **deps**: Update dependency sentry-sdk to v2.17.0
+  ([`c35c510`](https://github.com/MartinBernstorff/Memium/commit/c35c51091cedd9b68956e5ff26a904caf5691d2c))
 
-* chore(deps): update python-semantic-release/python-semantic-release action to v9.12.0 ([`c2587b8`](https://github.com/MartinBernstorff/Memium/commit/c2587b81eede1cb71c560a0b0d778710167f44d6))
+- **deps**: Update python-semantic-release/python-semantic-release action to v9.12.0
+  ([`c2587b8`](https://github.com/MartinBernstorff/Memium/commit/c2587b81eede1cb71c560a0b0d778710167f44d6))
 
-* chore(deps): update dependency pyright to v1.1.386 ([`a7afc33`](https://github.com/MartinBernstorff/Memium/commit/a7afc33dafde6c45ad06aba5ab59c7b6b4dc3c40))
+- **deps**: Update dependency pyright to v1.1.386
+  ([`a7afc33`](https://github.com/MartinBernstorff/Memium/commit/a7afc33dafde6c45ad06aba5ab59c7b6b4dc3c40))
 
-* chore(deps): update python-semantic-release/python-semantic-release action to v9.8.6 ([`dc51102`](https://github.com/MartinBernstorff/Memium/commit/dc51102619b15a82e7da4d2a44934ef218ccedce))
+- **deps**: Update python-semantic-release/python-semantic-release action to v9.8.6
+  ([`dc51102`](https://github.com/MartinBernstorff/Memium/commit/dc51102619b15a82e7da4d2a44934ef218ccedce))
 
-* chore(deps): update dependency sentry-sdk to v2.10.0 ([`1625ea0`](https://github.com/MartinBernstorff/Memium/commit/1625ea072855013f4b6c96de28e4b0b0312cf2b3))
+- **deps**: Update dependency sentry-sdk to v2.10.0
+  ([`1625ea0`](https://github.com/MartinBernstorff/Memium/commit/1625ea072855013f4b6c96de28e4b0b0312cf2b3))
 
-* chore(deps): update dependency sentry-sdk to v2.9.0 ([`93f2d18`](https://github.com/MartinBernstorff/Memium/commit/93f2d1834095f19cbefc69f4fe2110ff257969da))
+- **deps**: Update dependency sentry-sdk to v2.9.0
+  ([`93f2d18`](https://github.com/MartinBernstorff/Memium/commit/93f2d1834095f19cbefc69f4fe2110ff257969da))
 
-* chore(deps): update dependency dev/pyright to v1.1.371 ([`b215832`](https://github.com/MartinBernstorff/Memium/commit/b2158322a0bef68e5eb7e15c66574a49ec7ff977))
+- **deps**: Update dependency dev/pyright to v1.1.371
+  ([`b215832`](https://github.com/MartinBernstorff/Memium/commit/b2158322a0bef68e5eb7e15c66574a49ec7ff977))
 
-* chore(deps): update dependency sentry-sdk to v2.8.0 ([`23a5ce0`](https://github.com/MartinBernstorff/Memium/commit/23a5ce030b61a2f6a67c7cb90ee9ab66d3bd35fd))
+- **deps**: Update dependency sentry-sdk to v2.8.0
+  ([`23a5ce0`](https://github.com/MartinBernstorff/Memium/commit/23a5ce030b61a2f6a67c7cb90ee9ab66d3bd35fd))
 
-* chore(deps): update python-semantic-release/python-semantic-release action to v9.8.5 ([`c306ac5`](https://github.com/MartinBernstorff/Memium/commit/c306ac5508d7d86195c7c73ed9b7cf2c4d8d9384))
+- **deps**: Update python-semantic-release/python-semantic-release action to v9.8.5
+  ([`c306ac5`](https://github.com/MartinBernstorff/Memium/commit/c306ac5508d7d86195c7c73ed9b7cf2c4d8d9384))
 
-* chore(deps): update python-semantic-release/python-semantic-release action to v9.8.4 ([`d0d62b6`](https://github.com/MartinBernstorff/Memium/commit/d0d62b65890aa70abd2852ec2e1049db4d74a45e))
+- **deps**: Update python-semantic-release/python-semantic-release action to v9.8.4
+  ([`d0d62b6`](https://github.com/MartinBernstorff/Memium/commit/d0d62b65890aa70abd2852ec2e1049db4d74a45e))
 
-* chore(deps): update dependency pydantic to v2.8.2 ([`8b2c12e`](https://github.com/MartinBernstorff/Memium/commit/8b2c12e58cd395862ea4b10b57479ab2aa924472))
+- **deps**: Update dependency pydantic to v2.8.2
+  ([`8b2c12e`](https://github.com/MartinBernstorff/Memium/commit/8b2c12e58cd395862ea4b10b57479ab2aa924472))
 
-* chore(deps): update dependency pydantic to v2.8.1 ([`2d711d9`](https://github.com/MartinBernstorff/Memium/commit/2d711d97ade8b64783de5e443ceddb1adbda2f62))
+- **deps**: Update dependency pydantic to v2.8.1
+  ([`2d711d9`](https://github.com/MartinBernstorff/Memium/commit/2d711d97ade8b64783de5e443ceddb1adbda2f62))
 
-* chore(deps): update dependency dev/pyright to v1.1.370 ([`595e89e`](https://github.com/MartinBernstorff/Memium/commit/595e89ec0f1a326cecb058fdee638119b6bdf9aa))
+- **deps**: Update dependency dev/pyright to v1.1.370
+  ([`595e89e`](https://github.com/MartinBernstorff/Memium/commit/595e89ec0f1a326cecb058fdee638119b6bdf9aa))
 
-* chore(deps): update dependency pydantic to v2.8.0 ([`c89414c`](https://github.com/MartinBernstorff/Memium/commit/c89414cd483aaf15071d6efdd95a6cd98567309b))
+- **deps**: Update dependency pydantic to v2.8.0
+  ([`c89414c`](https://github.com/MartinBernstorff/Memium/commit/c89414cd483aaf15071d6efdd95a6cd98567309b))
 
-* chore(deps): update dependency sentry-sdk to v2.7.1 ([`7f9163e`](https://github.com/MartinBernstorff/Memium/commit/7f9163e435af045c85182c61451efe55ea36f2d8))
+- **deps**: Update dependency sentry-sdk to v2.7.1
+  ([`7f9163e`](https://github.com/MartinBernstorff/Memium/commit/7f9163e435af045c85182c61451efe55ea36f2d8))
 
-* chore(deps): update dependency sentry-sdk to v2.7.0 ([`525ad14`](https://github.com/MartinBernstorff/Memium/commit/525ad146d6763a62f4df549ec486c445c09441c9))
+- **deps**: Update dependency sentry-sdk to v2.7.0
+  ([`525ad14`](https://github.com/MartinBernstorff/Memium/commit/525ad146d6763a62f4df549ec486c445c09441c9))
 
-* chore(deps): update dependency tests/diff-cover to v9.1.0 ([`a7d11e1`](https://github.com/MartinBernstorff/Memium/commit/a7d11e1cfe9557ee1a7fcbc92fe0171a9ed7d523))
+- **deps**: Update dependency tests/diff-cover to v9.1.0
+  ([`a7d11e1`](https://github.com/MartinBernstorff/Memium/commit/a7d11e1cfe9557ee1a7fcbc92fe0171a9ed7d523))
 
-* chore(deps): update dependency dev/pyright to v1.1.369 ([`56a257e`](https://github.com/MartinBernstorff/Memium/commit/56a257ec62e10c496c538dc6a29000bbc0c9c3ca))
+- **deps**: Update dependency dev/pyright to v1.1.369
+  ([`56a257e`](https://github.com/MartinBernstorff/Memium/commit/56a257ec62e10c496c538dc6a29000bbc0c9c3ca))
 
-* chore: cleanup (#696) ([`035ea7c`](https://github.com/MartinBernstorff/Memium/commit/035ea7c3b076de669ef9cd2a8cc6a3e0a4366547))
+- Cleanup ([#696](https://github.com/MartinBernstorff/Memium/pull/696),
+  [`035ea7c`](https://github.com/MartinBernstorff/Memium/commit/035ea7c3b076de669ef9cd2a8cc6a3e0a4366547))
 
-* chore(deps): update dependency sentry-sdk to v2.6.0 ([`da39d73`](https://github.com/MartinBernstorff/Memium/commit/da39d735c2b40ca6da41f85bbf9614f950a0f0d3))
+- **deps**: Update dependency sentry-sdk to v2.6.0
+  ([`da39d73`](https://github.com/MartinBernstorff/Memium/commit/da39d735c2b40ca6da41f85bbf9614f950a0f0d3))
 
-* chore(deps): update dependency dev/pyright to v1.1.368 ([`e807fc9`](https://github.com/MartinBernstorff/Memium/commit/e807fc943f2486eedfe402938e680889a92a2f00))
+- **deps**: Update dependency dev/pyright to v1.1.368
+  ([`e807fc9`](https://github.com/MartinBernstorff/Memium/commit/e807fc943f2486eedfe402938e680889a92a2f00))
 
-* chore(deps): update python-semantic-release/python-semantic-release action to v9.8.3 ([`368a2d0`](https://github.com/MartinBernstorff/Memium/commit/368a2d0816ae559c2d5f522243ea3eba0fe133c5))
+- **deps**: Update python-semantic-release/python-semantic-release action to v9.8.3
+  ([`368a2d0`](https://github.com/MartinBernstorff/Memium/commit/368a2d0816ae559c2d5f522243ea3eba0fe133c5))
 
-* chore(deps): update docker/build-push-action action to v6 ([`05d754c`](https://github.com/MartinBernstorff/Memium/commit/05d754c62e6c606f8eae7bfd1f49dce013549922))
+- **deps**: Update docker/build-push-action action to v6
+  ([`05d754c`](https://github.com/MartinBernstorff/Memium/commit/05d754c62e6c606f8eae7bfd1f49dce013549922))
 
-* chore(deps): update python-semantic-release/python-semantic-release action to v9.8.2 ([`c27b50d`](https://github.com/MartinBernstorff/Memium/commit/c27b50d6c84ea4c36194fea34b95a29fcf666495))
+- **deps**: Update python-semantic-release/python-semantic-release action to v9.8.2
+  ([`c27b50d`](https://github.com/MartinBernstorff/Memium/commit/c27b50d6c84ea4c36194fea34b95a29fcf666495))
 
-* chore(deps): update dependency pydantic to v2.7.4 ([`ef47449`](https://github.com/MartinBernstorff/Memium/commit/ef474490c539413fba3463945059aa59b5a1c047))
+- **deps**: Update dependency pydantic to v2.7.4
+  ([`ef47449`](https://github.com/MartinBernstorff/Memium/commit/ef474490c539413fba3463945059aa59b5a1c047))
 
-* chore(deps): update dependency dev/pyright to v1.1.367 ([`7df6c4e`](https://github.com/MartinBernstorff/Memium/commit/7df6c4ecdaacec8cea27ec813040c6a311ebdaf9))
+- **deps**: Update dependency dev/pyright to v1.1.367
+  ([`7df6c4e`](https://github.com/MartinBernstorff/Memium/commit/7df6c4ecdaacec8cea27ec813040c6a311ebdaf9))
 
-* chore(deps): update dependency sentry-sdk to v2.5.1 ([`85d1211`](https://github.com/MartinBernstorff/Memium/commit/85d12110fb114120f9a4c1fb6ad93b073e5e3f45))
+- **deps**: Update dependency sentry-sdk to v2.5.1
+  ([`85d1211`](https://github.com/MartinBernstorff/Memium/commit/85d12110fb114120f9a4c1fb6ad93b073e5e3f45))
 
-* chore(deps): update dependency sentry-sdk to v2.5.0 ([`6141c7b`](https://github.com/MartinBernstorff/Memium/commit/6141c7b3b82195346c8981c59d01d26241c5ace9))
+- **deps**: Update dependency sentry-sdk to v2.5.0
+  ([`6141c7b`](https://github.com/MartinBernstorff/Memium/commit/6141c7b3b82195346c8981c59d01d26241c5ace9))
 
-* chore(deps): update python-semantic-release/python-semantic-release action to v9.8.1 ([`243b1fe`](https://github.com/MartinBernstorff/Memium/commit/243b1fe2122cb7005aef5aab87e2867fe00584c9))
+- **deps**: Update python-semantic-release/python-semantic-release action to v9.8.1
+  ([`243b1fe`](https://github.com/MartinBernstorff/Memium/commit/243b1fe2122cb7005aef5aab87e2867fe00584c9))
 
-* chore(deps): update dependency sentry-sdk to v2.4.0 ([`cb38267`](https://github.com/MartinBernstorff/Memium/commit/cb38267aad20cfdf25d4710ba1e17fdedf07036e))
+- **deps**: Update dependency sentry-sdk to v2.4.0
+  ([`cb38267`](https://github.com/MartinBernstorff/Memium/commit/cb38267aad20cfdf25d4710ba1e17fdedf07036e))
 
-* chore(deps): update dependency pydantic to v2.7.3 ([`ade33b9`](https://github.com/MartinBernstorff/Memium/commit/ade33b9b8708c6c59a8d0db8f19fe4ebe838cc0f))
+- **deps**: Update dependency pydantic to v2.7.3
+  ([`ade33b9`](https://github.com/MartinBernstorff/Memium/commit/ade33b9b8708c6c59a8d0db8f19fe4ebe838cc0f))
 
-* chore(deps): update dependency wasabi to v1.1.3 ([`a639a64`](https://github.com/MartinBernstorff/Memium/commit/a639a640fca2dd551cc22816603d79e3368054b5))
+- **deps**: Update dependency wasabi to v1.1.3
+  ([`a639a64`](https://github.com/MartinBernstorff/Memium/commit/a639a640fca2dd551cc22816603d79e3368054b5))
 
-* chore(deps): update dependency dev/pyright to v1.1.365 ([`788df39`](https://github.com/MartinBernstorff/Memium/commit/788df390436ba6f767b22b98aba56dfee5fd2852))
+- **deps**: Update dependency dev/pyright to v1.1.365
+  ([`788df39`](https://github.com/MartinBernstorff/Memium/commit/788df390436ba6f767b22b98aba56dfee5fd2852))
 
-* chore(deps): update dependency pydantic to v2.7.2 ([`469dd43`](https://github.com/MartinBernstorff/Memium/commit/469dd43e0039be7f7f976acce7e0413befd0fd33))
+- **deps**: Update dependency pydantic to v2.7.2
+  ([`469dd43`](https://github.com/MartinBernstorff/Memium/commit/469dd43e0039be7f7f976acce7e0413befd0fd33))
 
-* chore(deps): update python-semantic-release/python-semantic-release action to v9.8.0 ([`40a7f7f`](https://github.com/MartinBernstorff/Memium/commit/40a7f7f039c8414b03914ce619af1ed73dab0b1b))
+- **deps**: Update python-semantic-release/python-semantic-release action to v9.8.0
+  ([`40a7f7f`](https://github.com/MartinBernstorff/Memium/commit/40a7f7f039c8414b03914ce619af1ed73dab0b1b))
 
-* chore(deps): update dependency sentry-sdk to v2.3.1 ([`8973609`](https://github.com/MartinBernstorff/Memium/commit/897360944183d39de31ff5d2320b3add26a0673e))
+- **deps**: Update dependency sentry-sdk to v2.3.1
+  ([`8973609`](https://github.com/MartinBernstorff/Memium/commit/897360944183d39de31ff5d2320b3add26a0673e))
 
-* chore(deps): update dependency sentry-sdk to v2.3.0 ([`68eba46`](https://github.com/MartinBernstorff/Memium/commit/68eba46fc5026e98d780f541e05767d046bd127c))
+- **deps**: Update dependency sentry-sdk to v2.3.0
+  ([`68eba46`](https://github.com/MartinBernstorff/Memium/commit/68eba46fc5026e98d780f541e05767d046bd127c))
 
-* chore(deps): update dependency dev/ruff to v0.4.5 ([`7006e4f`](https://github.com/MartinBernstorff/Memium/commit/7006e4ff49cd64ff059a72fd05d99292624b3c7e))
+- **deps**: Update dependency dev/ruff to v0.4.5
+  ([`7006e4f`](https://github.com/MartinBernstorff/Memium/commit/7006e4ff49cd64ff059a72fd05d99292624b3c7e))
 
-* chore(deps): update dependency dev/pyright to v1.1.364 ([`71f2f73`](https://github.com/MartinBernstorff/Memium/commit/71f2f739cb70320f8f9e57e1b3c0a1a2cc73aaf3))
+- **deps**: Update dependency dev/pyright to v1.1.364
+  ([`71f2f73`](https://github.com/MartinBernstorff/Memium/commit/71f2f739cb70320f8f9e57e1b3c0a1a2cc73aaf3))
 
-* chore(deps): update dependency sentry-sdk to v2.2.1 ([`58d33db`](https://github.com/MartinBernstorff/Memium/commit/58d33db77b94ec915f9aa9e436bf3805011f3adf))
+- **deps**: Update dependency sentry-sdk to v2.2.1
+  ([`58d33db`](https://github.com/MartinBernstorff/Memium/commit/58d33db77b94ec915f9aa9e436bf3805011f3adf))
 
-* chore(deps): update dependency sentry-sdk to v2.2.0 ([`3892955`](https://github.com/MartinBernstorff/Memium/commit/38929558ece763fda12b0b0b0ef770efa762b1ee))
+- **deps**: Update dependency sentry-sdk to v2.2.0
+  ([`3892955`](https://github.com/MartinBernstorff/Memium/commit/38929558ece763fda12b0b0b0ef770efa762b1ee))
 
-* chore(deps): update python-semantic-release/python-semantic-release action to v9.7.3 ([`b6a0329`](https://github.com/MartinBernstorff/Memium/commit/b6a03293423ff8c9d105d49a9666e0ffa3bdf56b))
+- **deps**: Update python-semantic-release/python-semantic-release action to v9.7.3
+  ([`b6a0329`](https://github.com/MartinBernstorff/Memium/commit/b6a03293423ff8c9d105d49a9666e0ffa3bdf56b))
 
-* chore(deps): update dependency dev/pyright to v1.1.363 ([`f58bde5`](https://github.com/MartinBernstorff/Memium/commit/f58bde57b3ec756895157ca64e3d1a3dacb4c068))
+- **deps**: Update dependency dev/pyright to v1.1.363
+  ([`f58bde5`](https://github.com/MartinBernstorff/Memium/commit/f58bde57b3ec756895157ca64e3d1a3dacb4c068))
 
-* chore(deps): update python-semantic-release/python-semantic-release action to v9.7.2 ([`a8ce44c`](https://github.com/MartinBernstorff/Memium/commit/a8ce44c3412ff9fbae155f1feff3d334948c6ad7))
+- **deps**: Update python-semantic-release/python-semantic-release action to v9.7.2
+  ([`a8ce44c`](https://github.com/MartinBernstorff/Memium/commit/a8ce44c3412ff9fbae155f1feff3d334948c6ad7))
 
-* chore(deps): update dependency dev/pre-commit to v3.7.1 ([`3e41364`](https://github.com/MartinBernstorff/Memium/commit/3e41364c651315adcb2a743cc5f475e76f3fb11d))
+- **deps**: Update dependency dev/pre-commit to v3.7.1
+  ([`3e41364`](https://github.com/MartinBernstorff/Memium/commit/3e41364c651315adcb2a743cc5f475e76f3fb11d))
 
-* chore(deps): update dependency dev/ruff to v0.4.4 ([`e0896bd`](https://github.com/MartinBernstorff/Memium/commit/e0896bd41b79cdd8dc324dd685fd066b640a2901))
+- **deps**: Update dependency dev/ruff to v0.4.4
+  ([`e0896bd`](https://github.com/MartinBernstorff/Memium/commit/e0896bd41b79cdd8dc324dd685fd066b640a2901))
 
-* chore(deps): update dependency dev/pyright to v1.1.362 ([`ed72e3f`](https://github.com/MartinBernstorff/Memium/commit/ed72e3fbebfa6f653ebe7b8ac975efa00f18a8b5))
+- **deps**: Update dependency dev/pyright to v1.1.362
+  ([`ed72e3f`](https://github.com/MartinBernstorff/Memium/commit/ed72e3fbebfa6f653ebe7b8ac975efa00f18a8b5))
 
-* chore(deps): update python-semantic-release/python-semantic-release action to v9.7.1 ([`b36a693`](https://github.com/MartinBernstorff/Memium/commit/b36a693ea8c8c2656716504c8e5710bda2d54e10))
-
-### Unknown
-
-* update __main__.py ([`20edd66`](https://github.com/MartinBernstorff/Memium/commit/20edd662d50aa72ada70203a521cb1f37edae98d))
-
-* update __main__.py and core.py ([`2b55f17`](https://github.com/MartinBernstorff/Memium/commit/2b55f173c7326803cb5e81e3010a58549e0e2e22))
+- **deps**: Update python-semantic-release/python-semantic-release action to v9.7.1
+  ([`b36a693`](https://github.com/MartinBernstorff/Memium/commit/b36a693ea8c8c2656716504c8e5710bda2d54e10))
 
 
 ## v0.21.3 (2024-05-06)
 
 ### Bug Fixes
 
-* fix: do not escape html (#664)
+- Do not escape html ([#664](https://github.com/MartinBernstorff/Memium/pull/664),
+  [`dcf5b28`](https://github.com/MartinBernstorff/Memium/commit/dcf5b28ac57a9df8996fc7abbd7ae05d676d215f))
 
-- update anki_prompt_qa.py
-- test: update test_anki_prompt_qa.ambr ([`dcf5b28`](https://github.com/MartinBernstorff/Memium/commit/dcf5b28ac57a9df8996fc7abbd7ae05d676d215f))
+- update anki_prompt_qa.py - test: update test_anki_prompt_qa.ambr
 
 ### Chores
 
-* chore(deps): update dependency sentry-sdk to v2.1.1 ([`94c4d3c`](https://github.com/MartinBernstorff/Memium/commit/94c4d3c80cf75f241470ef5211a68e7037be775c))
+- **deps**: Update dependency sentry-sdk to v2.1.1
+  ([`94c4d3c`](https://github.com/MartinBernstorff/Memium/commit/94c4d3c80cf75f241470ef5211a68e7037be775c))
 
-* chore(deps): update dependency sentry-sdk to v2.1.0 ([`625b0bf`](https://github.com/MartinBernstorff/Memium/commit/625b0bfeb337895b6dc47fddae68836676cd3b1f))
+- **deps**: Update dependency sentry-sdk to v2.1.0
+  ([`625b0bf`](https://github.com/MartinBernstorff/Memium/commit/625b0bfeb337895b6dc47fddae68836676cd3b1f))
 
-* chore(deps): update python-semantic-release/python-semantic-release action to v9.7.0 ([`05181e1`](https://github.com/MartinBernstorff/Memium/commit/05181e1b3367c9231b1219728d2f54a7ddd769b9))
+- **deps**: Update python-semantic-release/python-semantic-release action to v9.7.0
+  ([`05181e1`](https://github.com/MartinBernstorff/Memium/commit/05181e1b3367c9231b1219728d2f54a7ddd769b9))
 
-* chore(deps): update dependency dev/ruff to v0.4.3 ([`e8f6541`](https://github.com/MartinBernstorff/Memium/commit/e8f6541bf1bbf49e738ec381ae5b609be2b52d4b))
+- **deps**: Update dependency dev/ruff to v0.4.3
+  ([`e8f6541`](https://github.com/MartinBernstorff/Memium/commit/e8f6541bf1bbf49e738ec381ae5b609be2b52d4b))
 
-* chore(deps): update dependency tqdm to v4.66.4 ([`168a75e`](https://github.com/MartinBernstorff/Memium/commit/168a75e9afcae0b7cac8ce4d06a58427048467f2))
+- **deps**: Update dependency tqdm to v4.66.4
+  ([`168a75e`](https://github.com/MartinBernstorff/Memium/commit/168a75e9afcae0b7cac8ce4d06a58427048467f2))
 
-* chore(deps): update dependency dev/pyright to v1.1.361 ([`9fdb56b`](https://github.com/MartinBernstorff/Memium/commit/9fdb56b8a2390e37a2e5cc8a85cb1d4a9488fa65))
+- **deps**: Update dependency dev/pyright to v1.1.361
+  ([`9fdb56b`](https://github.com/MartinBernstorff/Memium/commit/9fdb56b8a2390e37a2e5cc8a85cb1d4a9488fa65))
 
-* chore: delete test.py (#656) ([`1505b0f`](https://github.com/MartinBernstorff/Memium/commit/1505b0f8d8fbea4785f5935a79e717e38fece8c5))
+- Delete test.py ([#656](https://github.com/MartinBernstorff/Memium/pull/656),
+  [`1505b0f`](https://github.com/MartinBernstorff/Memium/commit/1505b0f8d8fbea4785f5935a79e717e38fece8c5))
 
-* chore: delete test.py ([`f1854dc`](https://github.com/MartinBernstorff/Memium/commit/f1854dc65643c430df9db0ce62cafb94680abb03))
+- Delete test.py
+  ([`f1854dc`](https://github.com/MartinBernstorff/Memium/commit/f1854dc65643c430df9db0ce62cafb94680abb03))
 
 ### Testing
 
-* test: update test_anki_prompt_qa.ambr ([`b08f56a`](https://github.com/MartinBernstorff/Memium/commit/b08f56ae8517f5b5a5c04ac58b79022fd9c29aaf))
-
-### Unknown
-
-* update anki_prompt_qa.py ([`fc5d1f9`](https://github.com/MartinBernstorff/Memium/commit/fc5d1f9bd060392ce7d3b0b38dda62746e574d08))
+- Update test_anki_prompt_qa.ambr
+  ([`b08f56a`](https://github.com/MartinBernstorff/Memium/commit/b08f56ae8517f5b5a5c04ac58b79022fd9c29aaf))
 
 
 ## v0.21.2 (2024-04-30)
 
 ### Bug Fixes
 
-* fix: only escape relevant sections (#655) ([`9f1cb01`](https://github.com/MartinBernstorff/Memium/commit/9f1cb01f86e83b82b7e92fd04bd05fab759a6458))
+- Only escape relevant sections ([#655](https://github.com/MartinBernstorff/Memium/pull/655),
+  [`9f1cb01`](https://github.com/MartinBernstorff/Memium/commit/9f1cb01f86e83b82b7e92fd04bd05fab759a6458))
 
-* fix: only escape relevant sections ([`5e6d403`](https://github.com/MartinBernstorff/Memium/commit/5e6d4034bfb35a02c224241ddfb32ba7c29b3be3))
+- Only escape relevant sections
+  ([`5e6d403`](https://github.com/MartinBernstorff/Memium/commit/5e6d4034bfb35a02c224241ddfb32ba7c29b3be3))
 
 ### Chores
 
-* chore(deps): update python-semantic-release/python-semantic-release action to v9.6.0 ([`6acdc9c`](https://github.com/MartinBernstorff/Memium/commit/6acdc9cb1c02282ea392d2185ee26a6305628078))
+- **deps**: Update python-semantic-release/python-semantic-release action to v9.6.0
+  ([`6acdc9c`](https://github.com/MartinBernstorff/Memium/commit/6acdc9cb1c02282ea392d2185ee26a6305628078))
 
-* chore(deps): update dependency tests/pytest-xdist to v3.6.1 ([`dcd0182`](https://github.com/MartinBernstorff/Memium/commit/dcd0182171c349ea94848c6289d71cc39d4b90c3))
+- **deps**: Update dependency tests/pytest-xdist to v3.6.1
+  ([`dcd0182`](https://github.com/MartinBernstorff/Memium/commit/dcd0182171c349ea94848c6289d71cc39d4b90c3))
 
 ### Refactoring
 
-* refactor: split cli and main (#651) ([`3e2fab4`](https://github.com/MartinBernstorff/Memium/commit/3e2fab401f0b397553746ba8c5b0fda3203ea1ce))
+- Split cli and main ([#651](https://github.com/MartinBernstorff/Memium/pull/651),
+  [`3e2fab4`](https://github.com/MartinBernstorff/Memium/commit/3e2fab401f0b397553746ba8c5b0fda3203ea1ce))
 
-* refactor: split cli and main ([`a316423`](https://github.com/MartinBernstorff/Memium/commit/a316423f5d4b4235848af9300f0b66919ee5bc90))
+- Split cli and main
+  ([`a316423`](https://github.com/MartinBernstorff/Memium/commit/a316423f5d4b4235848af9300f0b66919ee5bc90))
 
 ### Testing
 
-* test: update test_anki_prompt_qa.py ([`0dbd6c3`](https://github.com/MartinBernstorff/Memium/commit/0dbd6c37077c7acc56bef711f44f1944d0aad2d7))
+- Update test_anki_prompt_qa.py
+  ([`0dbd6c3`](https://github.com/MartinBernstorff/Memium/commit/0dbd6c37077c7acc56bef711f44f1944d0aad2d7))
 
 
 ## v0.21.1 (2024-04-27)
 
 ### Bug Fixes
 
-* fix: html escaping (#641) ([`6f97f55`](https://github.com/MartinBernstorff/Memium/commit/6f97f55d85764265e4fbe6af58af832c6f3695a7))
+- Html escaping ([#641](https://github.com/MartinBernstorff/Memium/pull/641),
+  [`6f97f55`](https://github.com/MartinBernstorff/Memium/commit/6f97f55d85764265e4fbe6af58af832c6f3695a7))
 
 ### Testing
 
-* test: update test_anki_prompt_qa.py ([`e142041`](https://github.com/MartinBernstorff/Memium/commit/e1420419b3740c8a23281ff95254d107440e8ef2))
-
-### Unknown
-
-* update anki_prompt_qa.py ([`6eb439a`](https://github.com/MartinBernstorff/Memium/commit/6eb439ae0037ee0eefec02cd62eef242f60eeb00))
+- Update test_anki_prompt_qa.py
+  ([`e142041`](https://github.com/MartinBernstorff/Memium/commit/e1420419b3740c8a23281ff95254d107440e8ef2))
 
 
 ## v0.21.0 (2024-04-27)
 
 ### Features
 
-* feat(#637): append log to output folder (#649)
+- **#637**: Append log to output folder
+  ([#649](https://github.com/MartinBernstorff/Memium/pull/649),
+  [`f03969c`](https://github.com/MartinBernstorff/Memium/commit/f03969c17296c48ecd67f81df411435fe17384b9))
 
-Fixes #637 ([`f03969c`](https://github.com/MartinBernstorff/Memium/commit/f03969c17296c48ecd67f81df411435fe17384b9))
+Fixes #637
 
-* feat(#637): append log to output folder
+- **#637**: Append log to output folder
+  ([`178ff35`](https://github.com/MartinBernstorff/Memium/commit/178ff358501080b699f1173a3241d493e774e567))
 
-Fixes #637 ([`178ff35`](https://github.com/MartinBernstorff/Memium/commit/178ff358501080b699f1173a3241d493e774e567))
+Fixes #637
 
 
 ## v0.20.0 (2024-04-27)
 
 ### Chores
 
-* chore(deps): update dependency sentry-sdk to v2.0.1 ([`37dc0ed`](https://github.com/MartinBernstorff/Memium/commit/37dc0ed92635d1c82cfe60fa705c638fe3be2054))
+- **deps**: Update dependency sentry-sdk to v2.0.1
+  ([`37dc0ed`](https://github.com/MartinBernstorff/Memium/commit/37dc0ed92635d1c82cfe60fa705c638fe3be2054))
 
-* chore(deps): update dependency dev/ruff to v0.4.2 ([`f7413f5`](https://github.com/MartinBernstorff/Memium/commit/f7413f5bdb96444623a0e447a390e04d9c256f94))
+- **deps**: Update dependency dev/ruff to v0.4.2
+  ([`f7413f5`](https://github.com/MartinBernstorff/Memium/commit/f7413f5bdb96444623a0e447a390e04d9c256f94))
 
-* chore(deps): update dependency sentry-sdk to v2 ([`782b27b`](https://github.com/MartinBernstorff/Memium/commit/782b27b613d4cdb1bde0912b6e8e259204cbef7b))
+- **deps**: Update dependency sentry-sdk to v2
+  ([`782b27b`](https://github.com/MartinBernstorff/Memium/commit/782b27b613d4cdb1bde0912b6e8e259204cbef7b))
 
-* chore(deps): update dependency dev/pyright to v1.1.360 ([`601e013`](https://github.com/MartinBernstorff/Memium/commit/601e0131a358c2a516701a7c3b6f523362342938))
+- **deps**: Update dependency dev/pyright to v1.1.360
+  ([`601e013`](https://github.com/MartinBernstorff/Memium/commit/601e0131a358c2a516701a7c3b6f523362342938))
 
-* chore(deps): update dependency pydantic to v2.7.1 ([`ea0ad67`](https://github.com/MartinBernstorff/Memium/commit/ea0ad67acfeb7dd53ef1833c4208597af3c12c1f))
+- **deps**: Update dependency pydantic to v2.7.1
+  ([`ea0ad67`](https://github.com/MartinBernstorff/Memium/commit/ea0ad67acfeb7dd53ef1833c4208597af3c12c1f))
 
-* chore(deps): update python-semantic-release/python-semantic-release action to v9.5.0 ([`335798b`](https://github.com/MartinBernstorff/Memium/commit/335798bde44aee34346a9ecd5d0220a33e27cbd4))
+- **deps**: Update python-semantic-release/python-semantic-release action to v9.5.0
+  ([`335798b`](https://github.com/MartinBernstorff/Memium/commit/335798bde44aee34346a9ecd5d0220a33e27cbd4))
 
 ### Features
 
-* feat: move obsidian link to top of AnkiQA (#648) ([`f45cdf9`](https://github.com/MartinBernstorff/Memium/commit/f45cdf9bb65c06b4a9d470e866347db62a2bbfe9))
+- Move obsidian link to top of AnkiQA ([#648](https://github.com/MartinBernstorff/Memium/pull/648),
+  [`f45cdf9`](https://github.com/MartinBernstorff/Memium/commit/f45cdf9bb65c06b4a9d470e866347db62a2bbfe9))
 
-* feat: move obsidian link to top of AnkiQA ([`8802e01`](https://github.com/MartinBernstorff/Memium/commit/8802e015d449ab63d9c50601cca1ccea5b053299))
+- Move obsidian link to top of AnkiQA
+  ([`8802e01`](https://github.com/MartinBernstorff/Memium/commit/8802e015d449ab63d9c50601cca1ccea5b053299))
 
 
 ## v0.19.1 (2024-04-22)
 
 ### Bug Fixes
 
-* fix: calling method instead of getting link contents (#639) ([`81e68b4`](https://github.com/MartinBernstorff/Memium/commit/81e68b4cbaab50984aaab17aa683c8ebefdf74b7))
+- Calling method instead of getting link contents
+  ([#639](https://github.com/MartinBernstorff/Memium/pull/639),
+  [`81e68b4`](https://github.com/MartinBernstorff/Memium/commit/81e68b4cbaab50984aaab17aa683c8ebefdf74b7))
 
-* fix: calling method instead of getting link contents ([`121fa88`](https://github.com/MartinBernstorff/Memium/commit/121fa8821f76c33d911b0264023dfd637d6ed3ff))
+- Calling method instead of getting link contents
+  ([`121fa88`](https://github.com/MartinBernstorff/Memium/commit/121fa8821f76c33d911b0264023dfd637d6ed3ff))
 
 
 ## v0.19.0 (2024-04-20)
 
 ### Chores
 
-* chore(deps): update dependency tests/pytest-xdist to v3.6.0 ([`ab9face`](https://github.com/MartinBernstorff/Memium/commit/ab9face94242ce642b6801526cc7a2d666ea1605))
+- **deps**: Update dependency tests/pytest-xdist to v3.6.0
+  ([`ab9face`](https://github.com/MartinBernstorff/Memium/commit/ab9face94242ce642b6801526cc7a2d666ea1605))
 
-* chore(deps): update dependency dev/ruff to v0.4.1 ([`5d56819`](https://github.com/MartinBernstorff/Memium/commit/5d5681946cacf21cfbd331f4baadee8aa960198d))
+- **deps**: Update dependency dev/ruff to v0.4.1
+  ([`5d56819`](https://github.com/MartinBernstorff/Memium/commit/5d5681946cacf21cfbd331f4baadee8aa960198d))
 
-* chore(deps): update dependency dev/ruff to v0.4.0 ([`122bf50`](https://github.com/MartinBernstorff/Memium/commit/122bf5073a9debc3467bcb77b56c4edce0ba974f))
+- **deps**: Update dependency dev/ruff to v0.4.0
+  ([`122bf50`](https://github.com/MartinBernstorff/Memium/commit/122bf5073a9debc3467bcb77b56c4edce0ba974f))
 
-* chore(deps): update dependency dev/pyright to v1.1.359 ([`ad3ad6b`](https://github.com/MartinBernstorff/Memium/commit/ad3ad6b2ca2c736adbb7cfe91608db83107805bd))
+- **deps**: Update dependency dev/pyright to v1.1.359
+  ([`ad3ad6b`](https://github.com/MartinBernstorff/Memium/commit/ad3ad6b2ca2c736adbb7cfe91608db83107805bd))
 
-* chore(deps): update dependency tests/diff-cover to v9 ([`573571f`](https://github.com/MartinBernstorff/Memium/commit/573571f9380ef749552ee1f69c378d2ad00c47ef))
+- **deps**: Update dependency tests/diff-cover to v9
+  ([`573571f`](https://github.com/MartinBernstorff/Memium/commit/573571f9380ef749552ee1f69c378d2ad00c47ef))
 
-* chore(deps): update python-semantic-release/python-semantic-release action to v9.4.2 ([`c14629d`](https://github.com/MartinBernstorff/Memium/commit/c14629dfe91b787c09985d90719c2f8b43297164))
+- **deps**: Update python-semantic-release/python-semantic-release action to v9.4.2
+  ([`c14629d`](https://github.com/MartinBernstorff/Memium/commit/c14629dfe91b787c09985d90719c2f8b43297164))
 
-* chore(deps): update dependency dev/ruff to v0.3.7 ([`ae3928c`](https://github.com/MartinBernstorff/Memium/commit/ae3928c0e8b8964d83733134119c28b779c9d332))
+- **deps**: Update dependency dev/ruff to v0.3.7
+  ([`ae3928c`](https://github.com/MartinBernstorff/Memium/commit/ae3928c0e8b8964d83733134119c28b779c9d332))
 
-* chore(deps): update dependency dev/ruff to v0.3.6 ([`9243d80`](https://github.com/MartinBernstorff/Memium/commit/9243d80a285d24d519cc12b86b2ab751e7d4236b))
+- **deps**: Update dependency dev/ruff to v0.3.6
+  ([`9243d80`](https://github.com/MartinBernstorff/Memium/commit/9243d80a285d24d519cc12b86b2ab751e7d4236b))
 
-* chore(deps): update dependency pydantic to v2.7.0 ([`b3a32f0`](https://github.com/MartinBernstorff/Memium/commit/b3a32f0b862c8054cdaf255bb6ccb9e0582e1df3))
+- **deps**: Update dependency pydantic to v2.7.0
+  ([`b3a32f0`](https://github.com/MartinBernstorff/Memium/commit/b3a32f0b862c8054cdaf255bb6ccb9e0582e1df3))
 
-* chore(deps): update dependency sentry-sdk to v1.45.0 ([`eae82e6`](https://github.com/MartinBernstorff/Memium/commit/eae82e68846c6dfe1cec45817aec0234bd448047))
+- **deps**: Update dependency sentry-sdk to v1.45.0
+  ([`eae82e6`](https://github.com/MartinBernstorff/Memium/commit/eae82e68846c6dfe1cec45817aec0234bd448047))
 
-* chore(deps): update dependency typer to v0.12.3 ([`e2f44fc`](https://github.com/MartinBernstorff/Memium/commit/e2f44fc0b9c9cc89518bf3e597ada32964fdbcde))
+- **deps**: Update dependency typer to v0.12.3
+  ([`e2f44fc`](https://github.com/MartinBernstorff/Memium/commit/e2f44fc0b9c9cc89518bf3e597ada32964fdbcde))
 
-* chore(deps): update dependency dev/pyright to v1.1.358 ([`08ea850`](https://github.com/MartinBernstorff/Memium/commit/08ea850e29b3c374038367968fa8a3cde098a8ec))
+- **deps**: Update dependency dev/pyright to v1.1.358
+  ([`08ea850`](https://github.com/MartinBernstorff/Memium/commit/08ea850e29b3c374038367968fa8a3cde098a8ec))
 
 ### Features
 
-* feat: add open in obsidian button (#635) ([`8843a65`](https://github.com/MartinBernstorff/Memium/commit/8843a65ffac535ce5aa1768f9ca35bfb24ddd620))
+- Add open in obsidian button ([#635](https://github.com/MartinBernstorff/Memium/pull/635),
+  [`8843a65`](https://github.com/MartinBernstorff/Memium/commit/8843a65ffac535ce5aa1768f9ca35bfb24ddd620))
 
-* feat: add obsidian URI ([`78cfbcd`](https://github.com/MartinBernstorff/Memium/commit/78cfbcd9420b122bb872d12c896ef1b57568fbf8))
+- Add obsidian URI
+  ([`78cfbcd`](https://github.com/MartinBernstorff/Memium/commit/78cfbcd9420b122bb872d12c896ef1b57568fbf8))
 
 ### Testing
 
-* test: update test_extractor_table.py and test_prompt.py ([`a862723`](https://github.com/MartinBernstorff/Memium/commit/a86272353d500b47f1c56970e690b8d63a28f413))
-
-### Unknown
-
-* update anki_prompt_qa.py ([`7b24ca5`](https://github.com/MartinBernstorff/Memium/commit/7b24ca56f03c6e2cb294f741576808f26404f9e6))
-
-* update anki_prompt.py, anki_prompt_cloze.py and anki_prompt_qa.py ([`bcd79cc`](https://github.com/MartinBernstorff/Memium/commit/bcd79cc23e3b0f26bef53cf0deb0498769a8a393))
+- Update test_extractor_table.py and test_prompt.py
+  ([`a862723`](https://github.com/MartinBernstorff/Memium/commit/a86272353d500b47f1c56970e690b8d63a28f413))
 
 
 ## v0.18.0 (2024-04-09)
 
 ### Features
 
-* feat: support slashes in wikilinks (#622) ([`8fc90ac`](https://github.com/MartinBernstorff/Memium/commit/8fc90acdff2dc77bdff564e8ad27eda668a57b46))
+- Support slashes in wikilinks ([#622](https://github.com/MartinBernstorff/Memium/pull/622),
+  [`8fc90ac`](https://github.com/MartinBernstorff/Memium/commit/8fc90acdff2dc77bdff564e8ad27eda668a57b46))
 
-* feat: support slashes in wikilinks ([`7d207ff`](https://github.com/MartinBernstorff/Memium/commit/7d207ff8964b390881a9169ed236db3541eb58cc))
+- Support slashes in wikilinks
+  ([`7d207ff`](https://github.com/MartinBernstorff/Memium/commit/7d207ff8964b390881a9169ed236db3541eb58cc))
 
 
 ## v0.17.0 (2024-04-09)
 
 ### Features
 
-* feat: sort terms before generating subdecks (#621) ([`fd7e703`](https://github.com/MartinBernstorff/Memium/commit/fd7e703ad17e5edfc2d4e07f15f974e48a7f65bf))
+- Sort terms before generating subdecks
+  ([#621](https://github.com/MartinBernstorff/Memium/pull/621),
+  [`fd7e703`](https://github.com/MartinBernstorff/Memium/commit/fd7e703ad17e5edfc2d4e07f15f974e48a7f65bf))
 
-* feat: sort terms before generating subdecks ([`9564ff7`](https://github.com/MartinBernstorff/Memium/commit/9564ff740ebd8a32540dd514b0d0e1475289441c))
+- Sort terms before generating subdecks
+  ([`9564ff7`](https://github.com/MartinBernstorff/Memium/commit/9564ff740ebd8a32540dd514b0d0e1475289441c))
 
 
 ## v0.16.1 (2024-04-09)
 
 ### Bug Fixes
 
-* fix: term extraction (#620) ([`8816e48`](https://github.com/MartinBernstorff/Memium/commit/8816e48b87dda53ad57e8e3db10406db2f2366ed))
+- Term extraction ([#620](https://github.com/MartinBernstorff/Memium/pull/620),
+  [`8816e48`](https://github.com/MartinBernstorff/Memium/commit/8816e48b87dda53ad57e8e3db10406db2f2366ed))
 
 ### Testing
 
-* test: update test_anki_prompt_qa.py ([`ec2f0d2`](https://github.com/MartinBernstorff/Memium/commit/ec2f0d2b72107b7dd738c4bf3042894969c374b5))
-
-### Unknown
-
-* update 3 files, create 2 files and delete 2 files ([`b245542`](https://github.com/MartinBernstorff/Memium/commit/b245542394996c474d05f0d615eb0bc2ad6cc503))
+- Update test_anki_prompt_qa.py
+  ([`ec2f0d2`](https://github.com/MartinBernstorff/Memium/commit/ec2f0d2b72107b7dd738c4bf3042894969c374b5))
 
 
 ## v0.16.0 (2024-04-09)
 
 ### Features
 
-* feat: create model if it does not exist (#619) ([`380ed4e`](https://github.com/MartinBernstorff/Memium/commit/380ed4eb659e82704565299e798c2d0200c7c6ab))
+- Create model if it does not exist ([#619](https://github.com/MartinBernstorff/Memium/pull/619),
+  [`380ed4e`](https://github.com/MartinBernstorff/Memium/commit/380ed4eb659e82704565299e798c2d0200c7c6ab))
 
-* feat: create model if it does not exist ([`e979d45`](https://github.com/MartinBernstorff/Memium/commit/e979d4567139e8ef095146193672e4bde65c0f2b))
+- Create model if it does not exist
+  ([`e979d45`](https://github.com/MartinBernstorff/Memium/commit/e979d4567139e8ef095146193672e4bde65c0f2b))
 
 
 ## v0.15.0 (2024-04-09)
 
 ### Chores
 
-* chore(deps): update dependency typer to v0.12.2 ([`92e40a1`](https://github.com/MartinBernstorff/Memium/commit/92e40a182c0dc5f7320e7a11a5090a19d8f5cc51))
+- **deps**: Update dependency typer to v0.12.2
+  ([`92e40a1`](https://github.com/MartinBernstorff/Memium/commit/92e40a182c0dc5f7320e7a11a5090a19d8f5cc51))
 
-* chore(deps): update python-semantic-release/python-semantic-release action to v9.4.1 ([`1f58fa3`](https://github.com/MartinBernstorff/Memium/commit/1f58fa3c6636a20e477ce2df699712948fed30aa))
+- **deps**: Update python-semantic-release/python-semantic-release action to v9.4.1
+  ([`1f58fa3`](https://github.com/MartinBernstorff/Memium/commit/1f58fa3c6636a20e477ce2df699712948fed30aa))
 
-* chore(deps): update dependency typer to v0.12.1 ([`dc7edb0`](https://github.com/MartinBernstorff/Memium/commit/dc7edb0bc96cdbf67542dfdbcfd69b099ee8d951))
+- **deps**: Update dependency typer to v0.12.1
+  ([`dc7edb0`](https://github.com/MartinBernstorff/Memium/commit/dc7edb0bc96cdbf67542dfdbcfd69b099ee8d951))
 
-* chore(deps): update dependency dev/pyright to v1.1.357 ([`d8c851d`](https://github.com/MartinBernstorff/Memium/commit/d8c851d4c24e8dde3143c982bad093e49ddc7195))
+- **deps**: Update dependency dev/pyright to v1.1.357
+  ([`d8c851d`](https://github.com/MartinBernstorff/Memium/commit/d8c851d4c24e8dde3143c982bad093e49ddc7195))
 
-* chore(deps): update dependency sentry-sdk to v1.44.1 ([`0607674`](https://github.com/MartinBernstorff/Memium/commit/0607674265c1b680faad4901be09486d7d4a5130))
+- **deps**: Update dependency sentry-sdk to v1.44.1
+  ([`0607674`](https://github.com/MartinBernstorff/Memium/commit/0607674265c1b680faad4901be09486d7d4a5130))
 
-* chore(deps): update dependency tests/pytest-cov to v5 ([`874eaaa`](https://github.com/MartinBernstorff/Memium/commit/874eaaa7755585a8b8ac5d8a7e6a53e6088d475a))
+- **deps**: Update dependency tests/pytest-cov to v5
+  ([`874eaaa`](https://github.com/MartinBernstorff/Memium/commit/874eaaa7755585a8b8ac5d8a7e6a53e6088d475a))
 
-* chore(deps): update dependency typer to v0.12.0 ([`e6e049d`](https://github.com/MartinBernstorff/Memium/commit/e6e049d58e2a8ee9493ac586ca7494fa32dcd175))
+- **deps**: Update dependency typer to v0.12.0
+  ([`e6e049d`](https://github.com/MartinBernstorff/Memium/commit/e6e049d58e2a8ee9493ac586ca7494fa32dcd175))
 
-* chore(deps): update python-semantic-release/python-semantic-release action to v9.4.0 ([`eed8164`](https://github.com/MartinBernstorff/Memium/commit/eed816481f2ca1f2ad603178183b997e61d88305))
+- **deps**: Update python-semantic-release/python-semantic-release action to v9.4.0
+  ([`eed8164`](https://github.com/MartinBernstorff/Memium/commit/eed816481f2ca1f2ad603178183b997e61d88305))
 
-* chore(deps): update dependency sentry-sdk to v1.44.0 ([`0f4dade`](https://github.com/MartinBernstorff/Memium/commit/0f4dade1b0bdf962433e301bc42221d8383e6188))
+- **deps**: Update dependency sentry-sdk to v1.44.0
+  ([`0f4dade`](https://github.com/MartinBernstorff/Memium/commit/0f4dade1b0bdf962433e301bc42221d8383e6188))
 
-* chore(deps): update dependency markdown to v3.6 ([`1748178`](https://github.com/MartinBernstorff/Memium/commit/1748178470228ed879b02981d0d6ce6d2b3ba159))
+- **deps**: Update dependency markdown to v3.6
+  ([`1748178`](https://github.com/MartinBernstorff/Memium/commit/1748178470228ed879b02981d0d6ce6d2b3ba159))
 
-* chore(deps): update dependency dev/pre-commit to v3.7.0 ([`fa48661`](https://github.com/MartinBernstorff/Memium/commit/fa4866192533ce4a4bae393c59e64e2481b6b000))
+- **deps**: Update dependency dev/pre-commit to v3.7.0
+  ([`fa48661`](https://github.com/MartinBernstorff/Memium/commit/fa4866192533ce4a4bae393c59e64e2481b6b000))
 
-* chore(deps): update dependency pydantic to v2.6.4 ([`e734d3e`](https://github.com/MartinBernstorff/Memium/commit/e734d3e80212d1a55e1ba4dcf92c5dbe2bc06e52))
+- **deps**: Update dependency pydantic to v2.6.4
+  ([`e734d3e`](https://github.com/MartinBernstorff/Memium/commit/e734d3e80212d1a55e1ba4dcf92c5dbe2bc06e52))
 
-* chore(deps): update dependency dev/ruff to v0.3.5 ([`a96013f`](https://github.com/MartinBernstorff/Memium/commit/a96013f9311e1b19b5d73c90ba9c3e77a89860fc))
+- **deps**: Update dependency dev/ruff to v0.3.5
+  ([`a96013f`](https://github.com/MartinBernstorff/Memium/commit/a96013f9311e1b19b5d73c90ba9c3e77a89860fc))
 
-* chore(deps): update dependency dev/pyright to v1.1.356 ([`64b2cf1`](https://github.com/MartinBernstorff/Memium/commit/64b2cf1a17f4a22d0164011b82c406535ef432ca))
+- **deps**: Update dependency dev/pyright to v1.1.356
+  ([`64b2cf1`](https://github.com/MartinBernstorff/Memium/commit/64b2cf1a17f4a22d0164011b82c406535ef432ca))
 
-* chore(deps): update dependency iterpy to v1.9.0 ([`906e640`](https://github.com/MartinBernstorff/Memium/commit/906e640fd54e2a63f9bf4c8a82792ab86fdad113))
+- **deps**: Update dependency iterpy to v1.9.0
+  ([`906e640`](https://github.com/MartinBernstorff/Memium/commit/906e640fd54e2a63f9bf4c8a82792ab86fdad113))
 
-* chore(deps): update dependency dev/ruff to v0.3.2 ([`8525583`](https://github.com/MartinBernstorff/Memium/commit/8525583632ace4464590d0246760b1f0f73f7a91))
+- **deps**: Update dependency dev/ruff to v0.3.2
+  ([`8525583`](https://github.com/MartinBernstorff/Memium/commit/8525583632ace4464590d0246760b1f0f73f7a91))
 
-* chore(deps): update dependency dev/pyright to v1.1.353 ([`80d8b97`](https://github.com/MartinBernstorff/Memium/commit/80d8b97e4797934bd01af7549f32abaadd93a4a6))
+- **deps**: Update dependency dev/pyright to v1.1.353
+  ([`80d8b97`](https://github.com/MartinBernstorff/Memium/commit/80d8b97e4797934bd01af7549f32abaadd93a4a6))
 
-* chore(deps): update dependency iterpy to v1.8.1 ([`68ece09`](https://github.com/MartinBernstorff/Memium/commit/68ece09d05296ff0494a9f7f190781385cf869e0))
+- **deps**: Update dependency iterpy to v1.8.1
+  ([`68ece09`](https://github.com/MartinBernstorff/Memium/commit/68ece09d05296ff0494a9f7f190781385cf869e0))
 
-* chore(deps): update dependency iterpy to v1.7.0 ([`1153826`](https://github.com/MartinBernstorff/Memium/commit/1153826e756961ef24379300d1a808fdc402b794))
+- **deps**: Update dependency iterpy to v1.7.0
+  ([`1153826`](https://github.com/MartinBernstorff/Memium/commit/1153826e756961ef24379300d1a808fdc402b794))
 
-* chore(deps): update dependency sentry-sdk to v1.41.0 ([`b422c1e`](https://github.com/MartinBernstorff/Memium/commit/b422c1ea25535acaa859e410b1f4f5f5f6d8f149))
+- **deps**: Update dependency sentry-sdk to v1.41.0
+  ([`b422c1e`](https://github.com/MartinBernstorff/Memium/commit/b422c1ea25535acaa859e410b1f4f5f5f6d8f149))
 
-* chore(deps): update dependency dev/ruff to v0.3.1 ([`6095ed2`](https://github.com/MartinBernstorff/Memium/commit/6095ed24df306ef93c8eeb8d827a93d04f8c92ee))
+- **deps**: Update dependency dev/ruff to v0.3.1
+  ([`6095ed2`](https://github.com/MartinBernstorff/Memium/commit/6095ed24df306ef93c8eeb8d827a93d04f8c92ee))
 
-* chore(deps): update dependency dev/ruff to v0.3.0 ([`7a93e73`](https://github.com/MartinBernstorff/Memium/commit/7a93e73674faf1ec614bdacfc20699393d13a76e))
+- **deps**: Update dependency dev/ruff to v0.3.0
+  ([`7a93e73`](https://github.com/MartinBernstorff/Memium/commit/7a93e73674faf1ec614bdacfc20699393d13a76e))
 
-* chore(deps): update dependency dev/pyright to v1.1.352 ([`4341487`](https://github.com/MartinBernstorff/Memium/commit/4341487e9fa78cdbbeed2162b75a1779c6c77933))
+- **deps**: Update dependency dev/pyright to v1.1.352
+  ([`4341487`](https://github.com/MartinBernstorff/Memium/commit/4341487e9fa78cdbbeed2162b75a1779c6c77933))
 
-* chore(deps): update dependency pydantic to v2.6.3 ([`69ef4fb`](https://github.com/MartinBernstorff/Memium/commit/69ef4fb8fa6789849f3441ddff6ac15e65846899))
+- **deps**: Update dependency pydantic to v2.6.3
+  ([`69ef4fb`](https://github.com/MartinBernstorff/Memium/commit/69ef4fb8fa6789849f3441ddff6ac15e65846899))
 
-* chore(deps): update dependency tests/pytest-testmon to v2.1.1 ([`eda5e2c`](https://github.com/MartinBernstorff/Memium/commit/eda5e2c99d60a4a68f947a2f70a32f9fcbf34a51))
+- **deps**: Update dependency tests/pytest-testmon to v2.1.1
+  ([`eda5e2c`](https://github.com/MartinBernstorff/Memium/commit/eda5e2c99d60a4a68f947a2f70a32f9fcbf34a51))
 
-* chore(deps): update dependency sentry-sdk to v1.40.6 ([`f4a8f0e`](https://github.com/MartinBernstorff/Memium/commit/f4a8f0e2cd02edd5faf27b2d2cad94b64744091a))
+- **deps**: Update dependency sentry-sdk to v1.40.6
+  ([`f4a8f0e`](https://github.com/MartinBernstorff/Memium/commit/f4a8f0e2cd02edd5faf27b2d2cad94b64744091a))
 
-* chore(deps): update python-semantic-release/python-semantic-release action to v9.1.1 ([`9a91fbf`](https://github.com/MartinBernstorff/Memium/commit/9a91fbf50c673c75a6075f9c715ece08bdc5eb87))
+- **deps**: Update python-semantic-release/python-semantic-release action to v9.1.1
+  ([`9a91fbf`](https://github.com/MartinBernstorff/Memium/commit/9a91fbf50c673c75a6075f9c715ece08bdc5eb87))
 
-* chore(deps): update dependency pydantic to v2.6.2 ([`70d8084`](https://github.com/MartinBernstorff/Memium/commit/70d808475f854593e17de61cf482dc0b09b0620b))
+- **deps**: Update dependency pydantic to v2.6.2
+  ([`70d8084`](https://github.com/MartinBernstorff/Memium/commit/70d808475f854593e17de61cf482dc0b09b0620b))
 
-* chore(deps): update dependency dev/pyright to v1.1.351 ([`0d18783`](https://github.com/MartinBernstorff/Memium/commit/0d187834784d4fd1b57f6400424f81940d78f735))
+- **deps**: Update dependency dev/pyright to v1.1.351
+  ([`0d18783`](https://github.com/MartinBernstorff/Memium/commit/0d187834784d4fd1b57f6400424f81940d78f735))
 
-* chore(deps): update dependency iterpy to v1.6.0 ([`25ee384`](https://github.com/MartinBernstorff/Memium/commit/25ee384a10ce5e28b9fc7ef492d287650411371a))
+- **deps**: Update dependency iterpy to v1.6.0
+  ([`25ee384`](https://github.com/MartinBernstorff/Memium/commit/25ee384a10ce5e28b9fc7ef492d287650411371a))
 
-* chore(deps): update dependency sentry-sdk to v1.40.5 ([`737cb25`](https://github.com/MartinBernstorff/Memium/commit/737cb25023abd55df145ef77ddc17dcf458c8e45))
+- **deps**: Update dependency sentry-sdk to v1.40.5
+  ([`737cb25`](https://github.com/MartinBernstorff/Memium/commit/737cb25023abd55df145ef77ddc17dcf458c8e45))
 
-* chore(deps): update dependency dev/pre-commit to v3.6.2 ([`4e52e8d`](https://github.com/MartinBernstorff/Memium/commit/4e52e8d5604a68eb9276afe9614298f38bf13370))
+- **deps**: Update dependency dev/pre-commit to v3.6.2
+  ([`4e52e8d`](https://github.com/MartinBernstorff/Memium/commit/4e52e8d5604a68eb9276afe9614298f38bf13370))
 
-* chore(deps): update dependency dev/ruff to v0.2.2 ([`81544f3`](https://github.com/MartinBernstorff/Memium/commit/81544f3cc9801c0fb72fb14d0db73e05e983b6c2))
+- **deps**: Update dependency dev/ruff to v0.2.2
+  ([`81544f3`](https://github.com/MartinBernstorff/Memium/commit/81544f3cc9801c0fb72fb14d0db73e05e983b6c2))
 
-* chore(deps): update python-semantic-release/python-semantic-release action to v9.1.0 ([`19ddce7`](https://github.com/MartinBernstorff/Memium/commit/19ddce77d14b1b4ebbc61ad23ebbb80af7367ed2))
+- **deps**: Update python-semantic-release/python-semantic-release action to v9.1.0
+  ([`19ddce7`](https://github.com/MartinBernstorff/Memium/commit/19ddce77d14b1b4ebbc61ad23ebbb80af7367ed2))
 
-* chore(deps): update dependency sentry-sdk to v1.40.4 ([`3abd2d5`](https://github.com/MartinBernstorff/Memium/commit/3abd2d5432baa3c627fd05fcbc289f863ac85b1a))
+- **deps**: Update dependency sentry-sdk to v1.40.4
+  ([`3abd2d5`](https://github.com/MartinBernstorff/Memium/commit/3abd2d5432baa3c627fd05fcbc289f863ac85b1a))
 
-* chore(deps): update dependency iterpy to v1.5.1 ([`67c93bd`](https://github.com/MartinBernstorff/Memium/commit/67c93bd85639e7daf00a0027cd7f73ef393175bf))
+- **deps**: Update dependency iterpy to v1.5.1
+  ([`67c93bd`](https://github.com/MartinBernstorff/Memium/commit/67c93bd85639e7daf00a0027cd7f73ef393175bf))
 
-* chore(deps): update dependency iterpy to v1.5.0 ([`81cbf94`](https://github.com/MartinBernstorff/Memium/commit/81cbf940b25f088eaa4cce306bd5bcde1dcc0b60))
+- **deps**: Update dependency iterpy to v1.5.0
+  ([`81cbf94`](https://github.com/MartinBernstorff/Memium/commit/81cbf940b25f088eaa4cce306bd5bcde1dcc0b60))
 
-* chore(deps): update dependency tqdm to v4.66.2 ([`4fa5a3d`](https://github.com/MartinBernstorff/Memium/commit/4fa5a3d6e34c384109864b0d6cb7de4aceef126b))
+- **deps**: Update dependency tqdm to v4.66.2
+  ([`4fa5a3d`](https://github.com/MartinBernstorff/Memium/commit/4fa5a3d6e34c384109864b0d6cb7de4aceef126b))
 
-* chore(deps): update dependency dev/pre-commit to v3.6.1 ([`c020f67`](https://github.com/MartinBernstorff/Memium/commit/c020f676cf9a46f9509f7f37b8adea1b5aefbb2e))
+- **deps**: Update dependency dev/pre-commit to v3.6.1
+  ([`c020f67`](https://github.com/MartinBernstorff/Memium/commit/c020f676cf9a46f9509f7f37b8adea1b5aefbb2e))
 
-* chore(deps): update dependency iterpy to v1 ([`455ff31`](https://github.com/MartinBernstorff/Memium/commit/455ff31a3389f809ed0055d49cd94512e349df67))
+- **deps**: Update dependency iterpy to v1
+  ([`455ff31`](https://github.com/MartinBernstorff/Memium/commit/455ff31a3389f809ed0055d49cd94512e349df67))
 
-* chore(deps): update dependency sentry-sdk to v1.40.3 ([`87a1e83`](https://github.com/MartinBernstorff/Memium/commit/87a1e8388147038211a3574e75a4f6721c5a386c))
+- **deps**: Update dependency sentry-sdk to v1.40.3
+  ([`87a1e83`](https://github.com/MartinBernstorff/Memium/commit/87a1e8388147038211a3574e75a4f6721c5a386c))
 
-* chore(deps): update python-semantic-release/python-semantic-release action to v9.0.3 ([`4d28b59`](https://github.com/MartinBernstorff/Memium/commit/4d28b5966a97102b5db802b5c609d06f5080014b))
+- **deps**: Update python-semantic-release/python-semantic-release action to v9.0.3
+  ([`4d28b59`](https://github.com/MartinBernstorff/Memium/commit/4d28b5966a97102b5db802b5c609d06f5080014b))
 
-* chore(deps): update python-semantic-release/python-semantic-release action to v9.0.2 ([`ddeba70`](https://github.com/MartinBernstorff/Memium/commit/ddeba707e96634657053bac2b42199c86f6cc56e))
+- **deps**: Update python-semantic-release/python-semantic-release action to v9.0.2
+  ([`ddeba70`](https://github.com/MartinBernstorff/Memium/commit/ddeba707e96634657053bac2b42199c86f6cc56e))
 
-* chore(deps): update dependency sentry-sdk to v1.40.2 ([`658a8c3`](https://github.com/MartinBernstorff/Memium/commit/658a8c30d8c24a2efdcf3aff174a093bd8aac446))
+- **deps**: Update dependency sentry-sdk to v1.40.2
+  ([`658a8c3`](https://github.com/MartinBernstorff/Memium/commit/658a8c30d8c24a2efdcf3aff174a093bd8aac446))
 
-* chore(deps): update python-semantic-release/python-semantic-release action to v9 ([`b4a4dd6`](https://github.com/MartinBernstorff/Memium/commit/b4a4dd654ba2ff09d70022089842565d82790565))
+- **deps**: Update python-semantic-release/python-semantic-release action to v9
+  ([`b4a4dd6`](https://github.com/MartinBernstorff/Memium/commit/b4a4dd654ba2ff09d70022089842565d82790565))
 
 ### Features
 
-* feat: create decks based on wikilinks in qa question (#618)
+- Create decks based on wikilinks in qa question
+  ([#618](https://github.com/MartinBernstorff/Memium/pull/618),
+  [`bcd61e3`](https://github.com/MartinBernstorff/Memium/commit/bcd61e32384799e6791af0eb5acc5fca930a6a05))
 
 feat: create decks based on wikilinks in qa question
 
-update 8 files ([`bcd61e3`](https://github.com/MartinBernstorff/Memium/commit/bcd61e32384799e6791af0eb5acc5fca930a6a05))
+update 8 files
 
-* feat: create decks based on wikilinks in qa question ([`448976b`](https://github.com/MartinBernstorff/Memium/commit/448976ba82f92a0b3909861e746f28e5ceafb58f))
-
-### Unknown
-
-* update 8 files ([`7519667`](https://github.com/MartinBernstorff/Memium/commit/7519667da7198422f2d47983d32ca322608d0d73))
+- Create decks based on wikilinks in qa question
+  ([`448976b`](https://github.com/MartinBernstorff/Memium/commit/448976ba82f92a0b3909861e746f28e5ceafb58f))
 
 
 ## v0.14.3 (2024-02-06)
 
 ### Bug Fixes
 
-* fix: remove cloze extraction from default (#571) ([`48074a8`](https://github.com/MartinBernstorff/Memium/commit/48074a8194becd2bfc4c5391453d5df7726dde2c))
+- Remove cloze extraction from default ([#571](https://github.com/MartinBernstorff/Memium/pull/571),
+  [`48074a8`](https://github.com/MartinBernstorff/Memium/commit/48074a8194becd2bfc4c5391453d5df7726dde2c))
 
-* fix: remove cloze extraction from default ([`3d4c889`](https://github.com/MartinBernstorff/Memium/commit/3d4c889c9ad56b51a4de4a9efbc2c163866909a0))
+- Remove cloze extraction from default
+  ([`3d4c889`](https://github.com/MartinBernstorff/Memium/commit/3d4c889c9ad56b51a4de4a9efbc2c163866909a0))
 
 ### Chores
 
-* chore(deps): update dependency tests/pytest to v7.4.4 (#559)
+- **deps**: Update dependency tests/pytest to v7.4.4
+  ([#559](https://github.com/MartinBernstorff/Memium/pull/559),
+  [`a481ede`](https://github.com/MartinBernstorff/Memium/commit/a481ede81df0bf67e6c67cf3dbacf18bcc8ce1b2))
 
-[![Mend
-Renovate](https://app.renovatebot.com/images/banner.svg)](https://renovatebot.com)
+[![Mend Renovate](https://app.renovatebot.com/images/banner.svg)](https://renovatebot.com)
 
 This PR contains the following updates:
 
-| Package | Change | Age | Adoption | Passing | Confidence |
-|---|---|---|---|---|---|
-| [tests/pytest](https://docs.pytest.org/en/latest/)
-([source](https://togithub.com/pytest-dev/pytest),
-[changelog](https://docs.pytest.org/en/stable/changelog.html)) |
-`==7.4.0` -> `==7.4.4` |
-[![age](https://developer.mend.io/api/mc/badges/age/pypi/tests%2fpytest/7.4.4?slim=true)](https://docs.renovatebot.com/merge-confidence/)
-|
-[![adoption](https://developer.mend.io/api/mc/badges/adoption/pypi/tests%2fpytest/7.4.4?slim=true)](https://docs.renovatebot.com/merge-confidence/)
-|
-[![passing](https://developer.mend.io/api/mc/badges/compatibility/pypi/tests%2fpytest/7.4.0/7.4.4?slim=true)](https://docs.renovatebot.com/merge-confidence/)
-|
-[![confidence](https://developer.mend.io/api/mc/badges/confidence/pypi/tests%2fpytest/7.4.0/7.4.4?slim=true)](https://docs.renovatebot.com/merge-confidence/)
-|
+| Package | Change | Age | Adoption | Passing | Confidence | |---|---|---|---|---|---| |
+  [tests/pytest](https://docs.pytest.org/en/latest/)
+  ([source](https://togithub.com/pytest-dev/pytest),
+  [changelog](https://docs.pytest.org/en/stable/changelog.html)) | `==7.4.0` -> `==7.4.4` |
+  [![age](https://developer.mend.io/api/mc/badges/age/pypi/tests%2fpytest/7.4.4?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+  |
+  [![adoption](https://developer.mend.io/api/mc/badges/adoption/pypi/tests%2fpytest/7.4.4?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+  |
+  [![passing](https://developer.mend.io/api/mc/badges/compatibility/pypi/tests%2fpytest/7.4.0/7.4.4?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+  |
+  [![confidence](https://developer.mend.io/api/mc/badges/confidence/pypi/tests%2fpytest/7.4.0/7.4.4?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+  |
 
 ---
 
 ### Release Notes
 
-<details>
-<summary>pytest-dev/pytest (tests/pytest)</summary>
+<details> <summary>pytest-dev/pytest (tests/pytest)</summary>
 
-###
-[`v7.4.4`](https://togithub.com/pytest-dev/pytest/compare/7.4.3...7.4.4)
+### [`v7.4.4`](https://togithub.com/pytest-dev/pytest/compare/7.4.3...7.4.4)
 
-[Compare
-Source](https://togithub.com/pytest-dev/pytest/compare/7.4.3...7.4.4)
+[Compare Source](https://togithub.com/pytest-dev/pytest/compare/7.4.3...7.4.4)
 
-###
-[`v7.4.3`](https://togithub.com/pytest-dev/pytest/releases/tag/v7.4.3):
-pytest 7.4.3 (2023-10-24)
+### [`v7.4.3`](https://togithub.com/pytest-dev/pytest/releases/tag/v7.4.3): pytest 7.4.3
+  (2023-10-24)
 
-[Compare
-Source](https://togithub.com/pytest-dev/pytest/compare/7.4.2...7.4.3)
+[Compare Source](https://togithub.com/pytest-dev/pytest/compare/7.4.2...7.4.3)
 
 ## Bug Fixes
 
-- [#&#8203;10447](https://togithub.com/pytest-dev/pytest/issues/10447):
-Markers are now considered in the reverse mro order to ensure base class
-markers are considered first -- this resolves a regression.
+- [#&#8203;10447](https://togithub.com/pytest-dev/pytest/issues/10447): Markers are now considered
+  in the reverse mro order to ensure base class markers are considered first -- this resolves a
+  regression.
 
-- [#&#8203;11239](https://togithub.com/pytest-dev/pytest/issues/11239):
-Fixed `:=` in asserts impacting unrelated test cases.
+- [#&#8203;11239](https://togithub.com/pytest-dev/pytest/issues/11239): Fixed `:=` in asserts
+  impacting unrelated test cases.
 
-- [#&#8203;11439](https://togithub.com/pytest-dev/pytest/issues/11439):
-Handled an edge case where :data:`sys.stderr` might already be closed
-when :ref:`faulthandler` is tearing down.
+- [#&#8203;11439](https://togithub.com/pytest-dev/pytest/issues/11439): Handled an edge case where
+  :data:`sys.stderr` might already be closed when :ref:`faulthandler` is tearing down.
 
-###
-[`v7.4.2`](https://togithub.com/pytest-dev/pytest/releases/tag/7.4.2):
-pytest 7.4.2 (2023-09-07)
+### [`v7.4.2`](https://togithub.com/pytest-dev/pytest/releases/tag/7.4.2): pytest 7.4.2 (2023-09-07)
 
-[Compare
-Source](https://togithub.com/pytest-dev/pytest/compare/7.4.1...7.4.2)
+[Compare Source](https://togithub.com/pytest-dev/pytest/compare/7.4.1...7.4.2)
 
 ##### Bug Fixes
 
-- [#&#8203;11237](https://togithub.com/pytest-dev/pytest/issues/11237):
-Fix doctest collection of `functools.cached_property` objects.
+- [#&#8203;11237](https://togithub.com/pytest-dev/pytest/issues/11237): Fix doctest collection of
+  `functools.cached_property` objects.
 
-- [#&#8203;11306](https://togithub.com/pytest-dev/pytest/issues/11306):
-Fixed bug using `--importmode=importlib` which would cause package
-`__init__.py` files to be imported more than once in some cases.
+- [#&#8203;11306](https://togithub.com/pytest-dev/pytest/issues/11306): Fixed bug using
+  `--importmode=importlib` which would cause package `__init__.py` files to be imported more than
+  once in some cases.
 
-- [#&#8203;11367](https://togithub.com/pytest-dev/pytest/issues/11367):
-Fixed bug where `user_properties` where not being saved in the JUnit XML
-file if a fixture failed during teardown.
+- [#&#8203;11367](https://togithub.com/pytest-dev/pytest/issues/11367): Fixed bug where
+  `user_properties` where not being saved in the JUnit XML file if a fixture failed during teardown.
 
-- [#&#8203;11394](https://togithub.com/pytest-dev/pytest/issues/11394):
-Fixed crash when parsing long command line arguments that might be
-interpreted as files.
+- [#&#8203;11394](https://togithub.com/pytest-dev/pytest/issues/11394): Fixed crash when parsing
+  long command line arguments that might be interpreted as files.
 
 ##### Improved Documentation
 
-- [#&#8203;11391](https://togithub.com/pytest-dev/pytest/issues/11391):
-Improved disclaimer on pytest plugin reference page to better indicate
-this is an automated, non-curated listing.
+- [#&#8203;11391](https://togithub.com/pytest-dev/pytest/issues/11391): Improved disclaimer on
+  pytest plugin reference page to better indicate this is an automated, non-curated listing.
 
-###
-[`v7.4.1`](https://togithub.com/pytest-dev/pytest/releases/tag/7.4.1):
-pytest 7.4.1 (2023-09-02)
+### [`v7.4.1`](https://togithub.com/pytest-dev/pytest/releases/tag/7.4.1): pytest 7.4.1 (2023-09-02)
 
-[Compare
-Source](https://togithub.com/pytest-dev/pytest/compare/7.4.0...7.4.1)
+[Compare Source](https://togithub.com/pytest-dev/pytest/compare/7.4.0...7.4.1)
 
 ## Bug Fixes
 
-- [#&#8203;10337](https://togithub.com/pytest-dev/pytest/issues/10337):
-Fixed bug where fake intermediate modules generated by
-`--import-mode=importlib` would not include the
-    child modules as attributes of the parent modules.
+- [#&#8203;10337](https://togithub.com/pytest-dev/pytest/issues/10337): Fixed bug where fake
+  intermediate modules generated by `--import-mode=importlib` would not include the child modules as
+  attributes of the parent modules.
 
-- [#&#8203;10702](https://togithub.com/pytest-dev/pytest/issues/10702):
-Fixed error assertion handling in `pytest.approx` when `None` is an
-expected or received value when comparing dictionaries.
+- [#&#8203;10702](https://togithub.com/pytest-dev/pytest/issues/10702): Fixed error assertion
+  handling in `pytest.approx` when `None` is an expected or received value when comparing
+  dictionaries.
 
-- [#&#8203;10811](https://togithub.com/pytest-dev/pytest/issues/10811):
-Fixed issue when using `--import-mode=importlib` together with
-`--doctest-modules` that caused modules
-to be imported more than once, causing problems with modules that have
-import side effects.
+- [#&#8203;10811](https://togithub.com/pytest-dev/pytest/issues/10811): Fixed issue when using
+  `--import-mode=importlib` together with `--doctest-modules` that caused modules to be imported
+  more than once, causing problems with modules that have import side effects.
 
 </details>
 
@@ -956,213 +1359,206 @@ import side effects.
 
 ### Configuration
 
-📅 **Schedule**: Branch creation - At any time (no schedule defined),
-Automerge - At any time (no schedule defined).
+📅 **Schedule**: Branch creation - At any time (no schedule defined), Automerge - At any time (no
+  schedule defined).
 
-🚦 **Automerge**: Disabled because a matching PR was automerged
-previously.
+🚦 **Automerge**: Disabled because a matching PR was automerged previously.
 
-♻ **Rebasing**: Whenever PR becomes conflicted, or you tick the
-rebase/retry checkbox.
+♻ **Rebasing**: Whenever PR becomes conflicted, or you tick the rebase/retry checkbox.
 
-🔕 **Ignore**: Close this PR and you won't be reminded about this update
-again.
+🔕 **Ignore**: Close this PR and you won't be reminded about this update again.
 
 ---
 
-- [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check
-this box
+- [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check this box
 
 ---
 
-This PR has been generated by [Mend
-Renovate](https://www.mend.io/free-developer-tools/renovate/). View
-repository job log
-[here](https://developer.mend.io/github/MartinBernstorff/Memium).
+This PR has been generated by [Mend Renovate](https://www.mend.io/free-developer-tools/renovate/).
+  View repository job log [here](https://developer.mend.io/github/MartinBernstorff/Memium).
 
-<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiIzNy4xNzAuMCIsInVwZGF0ZWRJblZlciI6IjM3LjE3MC4wIiwidGFyZ2V0QnJhbmNoIjoibWFpbiJ9--> ([`a481ede`](https://github.com/MartinBernstorff/Memium/commit/a481ede81df0bf67e6c67cf3dbacf18bcc8ce1b2))
+<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiIzNy4xNzAuMCIsInVwZGF0ZWRJblZlciI6IjM3LjE3MC4wIiwidGFyZ2V0QnJhbmNoIjoibWFpbiJ9-->
 
-* chore(deps): update dependency tests/pytest to v7.4.4 ([`427d6a8`](https://github.com/MartinBernstorff/Memium/commit/427d6a813bae2ee3c799bc53e4df517c144015b5))
+- **deps**: Update dependency tests/pytest to v7.4.4
+  ([`427d6a8`](https://github.com/MartinBernstorff/Memium/commit/427d6a813bae2ee3c799bc53e4df517c144015b5))
 
 
 ## v0.14.2 (2024-02-06)
 
 ### Bug Fixes
 
-* fix: duplicate prompt detection (#569) ([`31b39c6`](https://github.com/MartinBernstorff/Memium/commit/31b39c657839e038fa65331099cd9fc620a6d280))
+- Duplicate prompt detection ([#569](https://github.com/MartinBernstorff/Memium/pull/569),
+  [`31b39c6`](https://github.com/MartinBernstorff/Memium/commit/31b39c657839e038fa65331099cd9fc620a6d280))
 
-* fix: duplicate prompt detection ([`5e3e37e`](https://github.com/MartinBernstorff/Memium/commit/5e3e37ef2ebb6b420cd58e455641acf158f1977d))
+- Duplicate prompt detection
+  ([`5e3e37e`](https://github.com/MartinBernstorff/Memium/commit/5e3e37ef2ebb6b420cd58e455641acf158f1977d))
 
 ### Continuous Integration
 
-* ci: do not disable on concurrency (#570) ([`9e1fc1b`](https://github.com/MartinBernstorff/Memium/commit/9e1fc1b59b9446f60fbd350087c54ef97f55fae4))
+- Do not disable on concurrency ([#570](https://github.com/MartinBernstorff/Memium/pull/570),
+  [`9e1fc1b`](https://github.com/MartinBernstorff/Memium/commit/9e1fc1b59b9446f60fbd350087c54ef97f55fae4))
 
-* ci: do not disable on concurrency ([`05223f7`](https://github.com/MartinBernstorff/Memium/commit/05223f7ada7320dc494a28b1382a8063812bf9d1))
-
-### Unknown
-
-* dev: remove .testmondata from git (#568) ([`ad28ee9`](https://github.com/MartinBernstorff/Memium/commit/ad28ee9ea81652f04d9b6cc5de195cfeae3ffecc))
-
-* dev: remove .testmondata from git ([`72e2557`](https://github.com/MartinBernstorff/Memium/commit/72e2557dc1093601b1f09bb540ebb14b85bc09d9))
-
-* dev: do not require manual intervention to submti with coverage < 0.8 (#567) ([`526966b`](https://github.com/MartinBernstorff/Memium/commit/526966b38900a9d2d1ab937c9de53a93183e9eeb))
-
-* dev: do not require manual intervention to submti with coverage < 0.8 ([`e4ca960`](https://github.com/MartinBernstorff/Memium/commit/e4ca96068ed0b69ec29a2f3ef0365e46c9963607))
-
-* dev: update ruff version (#566) ([`e61ac8b`](https://github.com/MartinBernstorff/Memium/commit/e61ac8b7dd95ccae2211e442e07624abb678e1a3))
-
-* dev: update ruff version ([`47c4ee5`](https://github.com/MartinBernstorff/Memium/commit/47c4ee55eef64df013ff33fcb0255fcf0cc5b71f))
+- Do not disable on concurrency
+  ([`05223f7`](https://github.com/MartinBernstorff/Memium/commit/05223f7ada7320dc494a28b1382a8063812bf9d1))
 
 
 ## v0.14.1 (2024-02-06)
 
 ### Bug Fixes
 
-* fix: gracefully fail if block cannot be parsed (#565) ([`7a49b05`](https://github.com/MartinBernstorff/Memium/commit/7a49b0533e0e3b9cc076112141d9e179803bc369))
+- Gracefully fail if block cannot be parsed
+  ([#565](https://github.com/MartinBernstorff/Memium/pull/565),
+  [`7a49b05`](https://github.com/MartinBernstorff/Memium/commit/7a49b0533e0e3b9cc076112141d9e179803bc369))
 
-* fix: gracefully fail if block cannot be parsed ([`4691aa8`](https://github.com/MartinBernstorff/Memium/commit/4691aa85b88abd2b30b33130f3026f79e42c1a49))
+- Gracefully fail if block cannot be parsed
+  ([`4691aa8`](https://github.com/MartinBernstorff/Memium/commit/4691aa85b88abd2b30b33130f3026f79e42c1a49))
 
 ### Chores
 
-* chore(deps): update dependency sentry-sdk to v1.40.1 ([`caf7852`](https://github.com/MartinBernstorff/Memium/commit/caf78528062e62d6a876605e7017db47db5a43d5))
+- **deps**: Update dependency sentry-sdk to v1.40.1
+  ([`caf7852`](https://github.com/MartinBernstorff/Memium/commit/caf78528062e62d6a876605e7017db47db5a43d5))
 
-* chore(deps): update dependency dev/ruff to v0.2.1 ([`125e96d`](https://github.com/MartinBernstorff/Memium/commit/125e96d16d710401eee7b669f6fd23794c594f9c))
+- **deps**: Update dependency dev/ruff to v0.2.1
+  ([`125e96d`](https://github.com/MartinBernstorff/Memium/commit/125e96d16d710401eee7b669f6fd23794c594f9c))
 
-* chore(deps): update dependency dev/pyright to v1.1.350 ([`7b4c9f7`](https://github.com/MartinBernstorff/Memium/commit/7b4c9f7ea9f1dcbce079f76e0c102c79a972f9c3))
+- **deps**: Update dependency dev/pyright to v1.1.350
+  ([`7b4c9f7`](https://github.com/MartinBernstorff/Memium/commit/7b4c9f7ea9f1dcbce079f76e0c102c79a972f9c3))
 
-* chore(deps): update dependency pydantic to v2.6.1 ([`bdf76a5`](https://github.com/MartinBernstorff/Memium/commit/bdf76a51fa1ccb3e643ed9e06d18ece5bf60e2de))
+- **deps**: Update dependency pydantic to v2.6.1
+  ([`bdf76a5`](https://github.com/MartinBernstorff/Memium/commit/bdf76a51fa1ccb3e643ed9e06d18ece5bf60e2de))
 
 
 ## v0.14.0 (2024-02-05)
 
 ### Chores
 
-* chore(deps): update dependency pydantic to v2.6.0 ([`74776d2`](https://github.com/MartinBernstorff/Memium/commit/74776d26748fa3a902ea628d27bfca0bd7e8267b))
+- **deps**: Update dependency pydantic to v2.6.0
+  ([`74776d2`](https://github.com/MartinBernstorff/Memium/commit/74776d26748fa3a902ea628d27bfca0bd7e8267b))
 
 ### Features
 
-* feat(#534): allow both rowwise and row-wise when parsing tables (#558)
+- **#534**: Allow both rowwise and row-wise when parsing tables
+  ([#558](https://github.com/MartinBernstorff/Memium/pull/558),
+  [`6a454bd`](https://github.com/MartinBernstorff/Memium/commit/6a454bd60fda1d7b1e7201a5f375fef09922d76d))
 
-Fixes #534 ([`6a454bd`](https://github.com/MartinBernstorff/Memium/commit/6a454bd60fda1d7b1e7201a5f375fef09922d76d))
+Fixes #534
 
-* feat(#534): allow both rowwise and row-wise when parsing tables
+- **#534**: Allow both rowwise and row-wise when parsing tables
+  ([`5fdbac7`](https://github.com/MartinBernstorff/Memium/commit/5fdbac7d0868852c0024f5852120fb0dd58ed154))
 
-Fixes #534 ([`5fdbac7`](https://github.com/MartinBernstorff/Memium/commit/5fdbac7d0868852c0024f5852120fb0dd58ed154))
-
-### Unknown
-
-* dev: remove makefile and add lumberman (#553) ([`413f102`](https://github.com/MartinBernstorff/Memium/commit/413f102dd118970211319cd59282fee200abff11))
-
-* dev: remove makefile and add lumberman ([`11769d0`](https://github.com/MartinBernstorff/Memium/commit/11769d07d17aca37dd2307c4a6c5fce7a55ab769))
+Fixes #534
 
 
 ## v0.13.1 (2024-02-04)
 
 ### Bug Fixes
 
-* fix: migrate to iterpy (#555)
+- Migrate to iterpy ([#555](https://github.com/MartinBernstorff/Memium/pull/555),
+  [`752db8e`](https://github.com/MartinBernstorff/Memium/commit/752db8ec27587de1abbd9deb7557f14ff948335c))
 
 fix: migrate to iterpy
 
-update prompt_source.py ([`752db8e`](https://github.com/MartinBernstorff/Memium/commit/752db8ec27587de1abbd9deb7557f14ff948335c))
+update prompt_source.py
 
-* fix: migrate to iterpy ([`bf8fba0`](https://github.com/MartinBernstorff/Memium/commit/bf8fba0882a08323e2f3819c85c72bf4330d3c6d))
+- Migrate to iterpy
+  ([`bf8fba0`](https://github.com/MartinBernstorff/Memium/commit/bf8fba0882a08323e2f3819c85c72bf4330d3c6d))
 
 ### Chores
 
-* chore(deps): update dependency tests/pytest to v8 ([`cdb09b3`](https://github.com/MartinBernstorff/Memium/commit/cdb09b3b4d667ceaf320a1b074d7a0992cefbde0))
+- **deps**: Update dependency tests/pytest to v8
+  ([`cdb09b3`](https://github.com/MartinBernstorff/Memium/commit/cdb09b3b4d667ceaf320a1b074d7a0992cefbde0))
 
-* chore(deps): update dependency dev/ruff to v0.2.0 ([`9f7c810`](https://github.com/MartinBernstorff/Memium/commit/9f7c810213e4e0892d94a3f5ce25e0c370cb3d00))
+- **deps**: Update dependency dev/ruff to v0.2.0
+  ([`9f7c810`](https://github.com/MartinBernstorff/Memium/commit/9f7c810213e4e0892d94a3f5ce25e0c370cb3d00))
 
-* chore(deps): update dependency tests/pytest-sugar to v1 ([`1a9d95b`](https://github.com/MartinBernstorff/Memium/commit/1a9d95ba72319bdbed17b69a4b9160fb77ca5ecf))
+- **deps**: Update dependency tests/pytest-sugar to v1
+  ([`1a9d95b`](https://github.com/MartinBernstorff/Memium/commit/1a9d95ba72319bdbed17b69a4b9160fb77ca5ecf))
 
-* chore(deps): update dependency sentry-sdk to v1.40.0 ([`ce58593`](https://github.com/MartinBernstorff/Memium/commit/ce585936d688359bba1e9d1612986e0c8f31427b))
+- **deps**: Update dependency sentry-sdk to v1.40.0
+  ([`ce58593`](https://github.com/MartinBernstorff/Memium/commit/ce585936d688359bba1e9d1612986e0c8f31427b))
 
-* chore(deps): update dependency dev/pyright to v1.1.349 ([`0be7671`](https://github.com/MartinBernstorff/Memium/commit/0be76718ac5b2608128a4be04ab3b209c70975de))
-
-### Unknown
-
-* update prompt_source.py ([`499dc61`](https://github.com/MartinBernstorff/Memium/commit/499dc61772fd21c0c3bd7a3766475999e42f1f15))
-
-* misc. ([`007fd83`](https://github.com/MartinBernstorff/Memium/commit/007fd832a8bce0f79d33e843163a8de414e56c1a))
+- **deps**: Update dependency dev/pyright to v1.1.349
+  ([`0be7671`](https://github.com/MartinBernstorff/Memium/commit/0be76718ac5b2608128a4be04ab3b209c70975de))
 
 
 ## v0.13.0 (2024-01-15)
 
 ### Chores
 
-* chore(deps): update dependency dev/pyright to v1.1.347 ([`23224db`](https://github.com/MartinBernstorff/Memium/commit/23224dbeeaba28b81147c52cf94a678893d83738))
+- **deps**: Update dependency dev/pyright to v1.1.347
+  ([`23224db`](https://github.com/MartinBernstorff/Memium/commit/23224dbeeaba28b81147c52cf94a678893d83738))
 
-* chore(deps): update dependency dev/pyright to v1.1.346 ([`f0f6cb5`](https://github.com/MartinBernstorff/Memium/commit/f0f6cb518c5d2e6380620da4b58eab1301defa70))
+- **deps**: Update dependency dev/pyright to v1.1.346
+  ([`f0f6cb5`](https://github.com/MartinBernstorff/Memium/commit/f0f6cb518c5d2e6380620da4b58eab1301defa70))
 
 ### Features
 
-* feat: exclude sparse cells from TableExtractor (#542)
+- Exclude sparse cells from TableExtractor
+  ([#542](https://github.com/MartinBernstorff/Memium/pull/542),
+  [`244dabc`](https://github.com/MartinBernstorff/Memium/commit/244dabce4ec3a855e2bbdb3d0d69406f0fdb48d1))
 
 misc.
 
-misc. ([`244dabc`](https://github.com/MartinBernstorff/Memium/commit/244dabce4ec3a855e2bbdb3d0d69406f0fdb48d1))
-
-### Unknown
-
-* misc. ([`a49db4e`](https://github.com/MartinBernstorff/Memium/commit/a49db4ee5bed97cf90c173622a79e636d13cbb27))
-
-* misc. ([`dc24aad`](https://github.com/MartinBernstorff/Memium/commit/dc24aade3a6aef60248ad353e84ed1f511618c06))
-
-* Update readme.md ([`bae4dd3`](https://github.com/MartinBernstorff/Memium/commit/bae4dd316c40fe1f5144602f1435af2320fc26c0))
+misc.
 
 
 ## v0.12.1 (2024-01-14)
 
 ### Bug Fixes
 
-* fix: correct table extraction without trailing spaces (#535) ([`9a1e1ba`](https://github.com/MartinBernstorff/Memium/commit/9a1e1ba7f826d74249e1de6f2dccfcd5176df3a4))
+- Correct table extraction without trailing spaces
+  ([#535](https://github.com/MartinBernstorff/Memium/pull/535),
+  [`9a1e1ba`](https://github.com/MartinBernstorff/Memium/commit/9a1e1ba7f826d74249e1de6f2dccfcd5176df3a4))
 
-* fix: correct table extraction without trailing spaces ([`8cb789c`](https://github.com/MartinBernstorff/Memium/commit/8cb789c3c756dcc6ea419bfac01995e271708e98))
+- Correct table extraction without trailing spaces
+  ([`8cb789c`](https://github.com/MartinBernstorff/Memium/commit/8cb789c3c756dcc6ea419bfac01995e271708e98))
 
 
 ## v0.12.0 (2024-01-13)
 
 ### Chores
 
-* chore(deps): update dependency dev/ruff to v0.1.13 ([`1a1d6e2`](https://github.com/MartinBernstorff/Memium/commit/1a1d6e260e9a82bae5daf0a7fcddb4ac06d9c688))
+- **deps**: Update dependency dev/ruff to v0.1.13
+  ([`1a1d6e2`](https://github.com/MartinBernstorff/Memium/commit/1a1d6e260e9a82bae5daf0a7fcddb4ac06d9c688))
 
-* chore(deps): update dependency dev/ruff to v0.1.12 ([`0ce963f`](https://github.com/MartinBernstorff/Memium/commit/0ce963fd0ee95751ccfe419b8b2385f6750fe092))
+- **deps**: Update dependency dev/ruff to v0.1.12
+  ([`0ce963f`](https://github.com/MartinBernstorff/Memium/commit/0ce963fd0ee95751ccfe419b8b2385f6750fe092))
 
-* chore(deps): update dependency unidecode to v1.3.8 ([`59b5add`](https://github.com/MartinBernstorff/Memium/commit/59b5addf89e500f59a5ab8a15ff416cb204a7440))
+- **deps**: Update dependency unidecode to v1.3.8
+  ([`59b5add`](https://github.com/MartinBernstorff/Memium/commit/59b5addf89e500f59a5ab8a15ff416cb204a7440))
 
-* chore(deps): update dependency markdown to v3.5.2 ([`7c2c0c4`](https://github.com/MartinBernstorff/Memium/commit/7c2c0c45f2938701b377144b99127f461d89fe82))
+- **deps**: Update dependency markdown to v3.5.2
+  ([`7c2c0c4`](https://github.com/MartinBernstorff/Memium/commit/7c2c0c45f2938701b377144b99127f461d89fe82))
 
-* chore(deps): update dependency sentry-sdk to v1.39.2 ([`9159fec`](https://github.com/MartinBernstorff/Memium/commit/9159fec58de91091e92dc7c2c58fb4aa6ffd16d0))
+- **deps**: Update dependency sentry-sdk to v1.39.2
+  ([`9159fec`](https://github.com/MartinBernstorff/Memium/commit/9159fec58de91091e92dc7c2c58fb4aa6ffd16d0))
 
-* chore(deps): update dependency dev/pyright to v1.1.345 ([`9ead8ac`](https://github.com/MartinBernstorff/Memium/commit/9ead8ac6f1d0e6c7b3be7819235c42fcb623e467))
+- **deps**: Update dependency dev/pyright to v1.1.345
+  ([`9ead8ac`](https://github.com/MartinBernstorff/Memium/commit/9ead8ac6f1d0e6c7b3be7819235c42fcb623e467))
 
-* chore(deps): update python-semantic-release/python-semantic-release action to v8.7.2 ([`66341e5`](https://github.com/MartinBernstorff/Memium/commit/66341e56aa17eb6793edbc331cfc3a5051c386c8))
+- **deps**: Update python-semantic-release/python-semantic-release action to v8.7.2
+  ([`66341e5`](https://github.com/MartinBernstorff/Memium/commit/66341e56aa17eb6793edbc331cfc3a5051c386c8))
 
 ### Features
 
-* feat: table parser (#531) ([`8c0d109`](https://github.com/MartinBernstorff/Memium/commit/8c0d109fd745c995ca521f172c91395e03dccd3c))
+- Table parser ([#531](https://github.com/MartinBernstorff/Memium/pull/531),
+  [`8c0d109`](https://github.com/MartinBernstorff/Memium/commit/8c0d109fd745c995ca521f172c91395e03dccd3c))
 
-* feat: add table parser ([`dc3fac7`](https://github.com/MartinBernstorff/Memium/commit/dc3fac74bee7c60e2560754c050b028a6a663993))
-
-### Unknown
-
-* misc. ([`9cf8996`](https://github.com/MartinBernstorff/Memium/commit/9cf8996d418dd032395a8f8615fb8d1ab052ce1b))
-
-* isc. ([`5c90585`](https://github.com/MartinBernstorff/Memium/commit/5c905852dd1b61a29d1c1b62be7c14af570f3e6f))
-
-* Update readme.md ([`325eb87`](https://github.com/MartinBernstorff/Memium/commit/325eb879abde96460deab0513bf7a344a1fb2b74))
+- Add table parser
+  ([`dc3fac7`](https://github.com/MartinBernstorff/Memium/commit/dc3fac74bee7c60e2560754c050b028a6a663993))
 
 
 ## v0.11.0 (2024-01-03)
 
 ### Documentation
 
-* docs: recommend naming memium container (#521) ([`d71ab7f`](https://github.com/MartinBernstorff/Memium/commit/d71ab7f3969c21e6b408f5febb5c7179e9af621a))
+- Recommend naming memium container ([#521](https://github.com/MartinBernstorff/Memium/pull/521),
+  [`d71ab7f`](https://github.com/MartinBernstorff/Memium/commit/d71ab7f3969c21e6b408f5febb5c7179e9af621a))
 
 ### Features
 
-* feat: add delays before erroring (#523)
+- Add delays before erroring ([#523](https://github.com/MartinBernstorff/Memium/pull/523),
+  [`610aad2`](https://github.com/MartinBernstorff/Memium/commit/610aad2bfeeadb347c6c7691b6b104afdda264e9))
 
 feat: add delays before erroring
 
@@ -1170,55 +1566,48 @@ Fixes #522
 
 feat: add delays before erroring
 
-Fixes #522 ([`610aad2`](https://github.com/MartinBernstorff/Memium/commit/610aad2bfeeadb347c6c7691b6b104afdda264e9))
+Fixes #522
 
-* feat: add delays before erroring
+- Add delays before erroring
+  ([`9ef8e6c`](https://github.com/MartinBernstorff/Memium/commit/9ef8e6cb3544b6fa4c0723af22802f3efa408155))
 
-Fixes #522 ([`9ef8e6c`](https://github.com/MartinBernstorff/Memium/commit/9ef8e6cb3544b6fa4c0723af22802f3efa408155))
+Fixes #522
 
-* feat: add delays before erroring
+- Add delays before erroring
+  ([`869d2a8`](https://github.com/MartinBernstorff/Memium/commit/869d2a86a27c233623cda3801bc3379cbbc2b5e5))
 
-Fixes #522 ([`869d2a8`](https://github.com/MartinBernstorff/Memium/commit/869d2a86a27c233623cda3801bc3379cbbc2b5e5))
-
-### Unknown
-
-* misc. ([`3fc1fd4`](https://github.com/MartinBernstorff/Memium/commit/3fc1fd4411a809ba195b80edd4f82b6f74c976e1))
-
-* Update readme.md ([`94bcab8`](https://github.com/MartinBernstorff/Memium/commit/94bcab8b010d2467ddb0e8b34198be4db906a38d))
-
-* Update readme.md ([`fedbb9f`](https://github.com/MartinBernstorff/Memium/commit/fedbb9ff57e7f6c6da3230f9c61e94f84461e7c3))
-
-* Update readme.md ([`d15ec21`](https://github.com/MartinBernstorff/Memium/commit/d15ec21642496b2ecaf80d74f8425929f8159c30))
+Fixes #522
 
 
 ## v0.10.3 (2024-01-03)
 
 ### Bug Fixes
 
-* fix: improve content-extraction for scheduling uuid detection (#520)
+- Improve content-extraction for scheduling uuid detection
+  ([#520](https://github.com/MartinBernstorff/Memium/pull/520),
+  [`b0ac0ce`](https://github.com/MartinBernstorff/Memium/commit/b0ac0cef0c047324cfa418ced7654f60006df670))
 
 fix: improve content-extraction for scheduling uuid detection
 
 Fixes #519
 
-misc. ([`b0ac0ce`](https://github.com/MartinBernstorff/Memium/commit/b0ac0cef0c047324cfa418ced7654f60006df670))
+misc.
 
-* fix: only remove list markup if at beginning of line ([`a112e11`](https://github.com/MartinBernstorff/Memium/commit/a112e1187f5898f8d55d86a279a27c770f3561fe))
+- Only remove list markup if at beginning of line
+  ([`a112e11`](https://github.com/MartinBernstorff/Memium/commit/a112e1187f5898f8d55d86a279a27c770f3561fe))
 
-* fix: improve content-extraction for scheduling uuid detection
+- Improve content-extraction for scheduling uuid detection
+  ([`4acfd59`](https://github.com/MartinBernstorff/Memium/commit/4acfd598ddf12df573f5151e6e3374209f91bf1c))
 
-Fixes #519 ([`4acfd59`](https://github.com/MartinBernstorff/Memium/commit/4acfd598ddf12df573f5151e6e3374209f91bf1c))
-
-### Unknown
-
-* misc. ([`f53455c`](https://github.com/MartinBernstorff/Memium/commit/f53455c8a707eb0f5b2a085d734e418bdac0d967))
+Fixes #519
 
 
 ## v0.10.2 (2024-01-03)
 
 ### Bug Fixes
 
-* fix: unicode encoding for uuids (#518)
+- Unicode encoding for uuids ([#518](https://github.com/MartinBernstorff/Memium/pull/518),
+  [`2415f6a`](https://github.com/MartinBernstorff/Memium/commit/2415f6a4707625b3d10e29b1a60c7932b8ceee3b))
 
 fix: Å encoding
 
@@ -1228,44 +1617,47 @@ fix: Å encoding
 
 Fixes #517
 
-fix: handle unicode encoding for uids ([`2415f6a`](https://github.com/MartinBernstorff/Memium/commit/2415f6a4707625b3d10e29b1a60c7932b8ceee3b))
+fix: handle unicode encoding for uids
 
-* fix: handle unicode encoding for uids ([`94b4c7f`](https://github.com/MartinBernstorff/Memium/commit/94b4c7fb389692b8267454fa72c4ba8ef92242c7))
+- Handle unicode encoding for uids
+  ([`94b4c7f`](https://github.com/MartinBernstorff/Memium/commit/94b4c7fb389692b8267454fa72c4ba8ef92242c7))
 
-* fix: Å encoding
+- Å encoding
+  ([`edba7e0`](https://github.com/MartinBernstorff/Memium/commit/edba7e04687902990b108d8d95d9c5e26d820bae))
 
-Fixes #517 ([`edba7e0`](https://github.com/MartinBernstorff/Memium/commit/edba7e04687902990b108d8d95d9c5e26d820bae))
-
-### Unknown
-
-* misc. ([`f07e7db`](https://github.com/MartinBernstorff/Memium/commit/f07e7db04dabd0c1b760c5ffa50cd285c02a839d))
+Fixes #517
 
 
 ## v0.10.1 (2024-01-03)
 
 ### Bug Fixes
 
-* fix: deduplicate prompts on extraction (#516)
+- Deduplicate prompts on extraction ([#516](https://github.com/MartinBernstorff/Memium/pull/516),
+  [`cb1592b`](https://github.com/MartinBernstorff/Memium/commit/cb1592b4aa307946ad99ef432c368a7db15fb60d))
 
 fix: handle duplicate prompts
 
 Fixes #512
 
-fix: deduplicate prompts on extraction ([`cb1592b`](https://github.com/MartinBernstorff/Memium/commit/cb1592b4aa307946ad99ef432c368a7db15fb60d))
+fix: deduplicate prompts on extraction
 
-* fix: deduplicate prompts on extraction ([`8f6cd54`](https://github.com/MartinBernstorff/Memium/commit/8f6cd5495891cdabfb22a6b848e32282370c425b))
+- Deduplicate prompts on extraction
+  ([`8f6cd54`](https://github.com/MartinBernstorff/Memium/commit/8f6cd5495891cdabfb22a6b848e32282370c425b))
 
-* fix: handle duplicate prompts
+- Handle duplicate prompts
+  ([`683955a`](https://github.com/MartinBernstorff/Memium/commit/683955aa9261f3cdf19c2d326e5854966cf1af7a))
 
-Fixes #512 ([`683955a`](https://github.com/MartinBernstorff/Memium/commit/683955aa9261f3cdf19c2d326e5854966cf1af7a))
+Fixes #512
 
 ### Code Style
 
-* style: lint ([`9bb033d`](https://github.com/MartinBernstorff/Memium/commit/9bb033d2f686d2f13ad58972d1efc2b6a39a5fd5))
+- Lint
+  ([`9bb033d`](https://github.com/MartinBernstorff/Memium/commit/9bb033d2f686d2f13ad58972d1efc2b6a39a5fd5))
 
 ### Refactoring
 
-* refactor: easier hash debugging (#514)
+- Easier hash debugging ([#514](https://github.com/MartinBernstorff/Memium/pull/514),
+  [`5b03293`](https://github.com/MartinBernstorff/Memium/commit/5b03293d55d702eda97709750c410ca014477c9d))
 
 refactor: easier hash debugging
 
@@ -1275,105 +1667,96 @@ refactor: easier hash debugging
 
 Fixes #513
 
-misc. ([`5b03293`](https://github.com/MartinBernstorff/Memium/commit/5b03293d55d702eda97709750c410ca014477c9d))
+misc.
 
-* refactor: easier hash debugging
+- Easier hash debugging
+  ([`ff2e8c7`](https://github.com/MartinBernstorff/Memium/commit/ff2e8c782a5abc9ce13afbc5ab3b7bb66abcec08))
 
-Fixes #513 ([`ff2e8c7`](https://github.com/MartinBernstorff/Memium/commit/ff2e8c782a5abc9ce13afbc5ab3b7bb66abcec08))
+Fixes #513
 
-* refactor: easier hash debugging
+- Easier hash debugging
+  ([`1b89c23`](https://github.com/MartinBernstorff/Memium/commit/1b89c2331e39cfde8a6626963a60a34df17b81be))
 
-Fixes #513 ([`1b89c23`](https://github.com/MartinBernstorff/Memium/commit/1b89c2331e39cfde8a6626963a60a34df17b81be))
-
-### Unknown
-
-* deps: get iter from https ([`a67617a`](https://github.com/MartinBernstorff/Memium/commit/a67617aae3cd2f61e0a2f0a66bc5aa771211eb3c))
-
-* misc. ([`8da7751`](https://github.com/MartinBernstorff/Memium/commit/8da7751e3e292bb475bc6795da4930df51b64c46))
-
-* misc. ([`4526cf0`](https://github.com/MartinBernstorff/Memium/commit/4526cf0be7a1de19236967acb577eac611e4cb5d))
+Fixes #513
 
 
 ## v0.10.0 (2024-01-03)
 
 ### Continuous Integration
 
-* ci: no need to manually specify latest tag ([`b71247c`](https://github.com/MartinBernstorff/Memium/commit/b71247cb91b10db88ce417cd0bf8ab4dc79d16a7))
+- No need to manually specify latest tag
+  ([`b71247c`](https://github.com/MartinBernstorff/Memium/commit/b71247cb91b10db88ce417cd0bf8ab4dc79d16a7))
 
-* ci: fix docker tag ([`3abf5b4`](https://github.com/MartinBernstorff/Memium/commit/3abf5b47074335216bdddb01b303d8da2b11eac9))
+- Fix docker tag
+  ([`3abf5b4`](https://github.com/MartinBernstorff/Memium/commit/3abf5b47074335216bdddb01b303d8da2b11eac9))
 
 ### Features
 
-* feat: update tag ([`84c845b`](https://github.com/MartinBernstorff/Memium/commit/84c845bf7964d329c872b767c7cc47ae098ef9bf))
+- Update tag
+  ([`84c845b`](https://github.com/MartinBernstorff/Memium/commit/84c845bf7964d329c872b767c7cc47ae098ef9bf))
 
 
 ## v0.9.0 (2024-01-03)
 
 ### Continuous Integration
 
-* ci: push docker image with version tag (#510)
+- Push docker image with version tag ([#510](https://github.com/MartinBernstorff/Memium/pull/510),
+  [`5b37eda`](https://github.com/MartinBernstorff/Memium/commit/5b37edabed3e0c4f045b9f4fa561fba5a6a1fd0d))
 
 ci: push docker image with version tag
 
-Fixes #509 ([`5b37eda`](https://github.com/MartinBernstorff/Memium/commit/5b37edabed3e0c4f045b9f4fa561fba5a6a1fd0d))
+Fixes #509
 
-* ci: push docker image with version tag
+- Push docker image with version tag
+  ([`cab954e`](https://github.com/MartinBernstorff/Memium/commit/cab954e8a90370507eb73eb901991589cf89b7ff))
 
-Fixes #509 ([`cab954e`](https://github.com/MartinBernstorff/Memium/commit/cab954e8a90370507eb73eb901991589cf89b7ff))
+Fixes #509
 
-* ci: push docker image with version tag
+- Push docker image with version tag
+  ([`e77d102`](https://github.com/MartinBernstorff/Memium/commit/e77d10217bc58e350e82916ff1b9246b70e41430))
 
-Fixes #509 ([`e77d102`](https://github.com/MartinBernstorff/Memium/commit/e77d10217bc58e350e82916ff1b9246b70e41430))
+Fixes #509
 
 ### Features
 
-* feat: update tag ([`ec0c75c`](https://github.com/MartinBernstorff/Memium/commit/ec0c75c9ee9dcad4c8676bc686174b7a84257925))
-
-### Unknown
-
-* misc. ([`49ce7f7`](https://github.com/MartinBernstorff/Memium/commit/49ce7f79c013d75e21d34caaae1fc55b8a863dab))
-
-* dev: restack on submit (#508)
-
-dev: restack on submit
-
-Fixes #507
-
-misc. ([`1fec855`](https://github.com/MartinBernstorff/Memium/commit/1fec8557c2dfc41db703179396d8b150cc61b9c1))
-
-* dev: restack on submit
-
-Fixes #507 ([`54a3dd8`](https://github.com/MartinBernstorff/Memium/commit/54a3dd8406472c43ecbcd7604f83a6bef837268b))
+- Update tag
+  ([`ec0c75c`](https://github.com/MartinBernstorff/Memium/commit/ec0c75c9ee9dcad4c8676bc686174b7a84257925))
 
 
 ## v0.8.4 (2024-01-03)
 
 ### Bug Fixes
 
-* fix: ankiconnect uuid handling  (#506)
+- Ankiconnect uuid handling ([#506](https://github.com/MartinBernstorff/Memium/pull/506),
+  [`112a7f1`](https://github.com/MartinBernstorff/Memium/commit/112a7f126c7d2f3b05fdd941d4885e2d9d49fb91))
 
 refactor: What is the AnkiPrompt UUID used for?
 
 Fixes #504
 
-refactor: clarify anki uuid usage ([`112a7f1`](https://github.com/MartinBernstorff/Memium/commit/112a7f126c7d2f3b05fdd941d4885e2d9d49fb91))
+refactor: clarify anki uuid usage
 
-* fix: tests ([`4069335`](https://github.com/MartinBernstorff/Memium/commit/406933579f4d4746ae2d9bdd3603c2cbb87e9142))
+- Tests
+  ([`4069335`](https://github.com/MartinBernstorff/Memium/commit/406933579f4d4746ae2d9bdd3603c2cbb87e9142))
 
 ### Refactoring
 
-* refactor: clarify anki uuid usage ([`146bd44`](https://github.com/MartinBernstorff/Memium/commit/146bd44baa5d026c716498181b8c9e1280105c0c))
+- Clarify anki uuid usage
+  ([`146bd44`](https://github.com/MartinBernstorff/Memium/commit/146bd44baa5d026c716498181b8c9e1280105c0c))
 
-* refactor: What is the AnkiPrompt UUID used for?
+- What is the AnkiPrompt UUID used for?
+  ([`3d79f93`](https://github.com/MartinBernstorff/Memium/commit/3d79f93eba858f12495fa8212f9da93c017e019a))
 
-Fixes #504 ([`3d79f93`](https://github.com/MartinBernstorff/Memium/commit/3d79f93eba858f12495fa8212f9da93c017e019a))
+Fixes #504
 
 
 ## v0.8.3 (2024-01-03)
 
 ### Bug Fixes
 
-* fix: AnkiConnect sync does not appear idempotent (#505)
+- Ankiconnect sync does not appear idempotent
+  ([#505](https://github.com/MartinBernstorff/Memium/pull/505),
+  [`afe06ba`](https://github.com/MartinBernstorff/Memium/commit/afe06baca3d1cd09a0e3487bd10a68420e7041c9))
 
 fix: AnkiConnect sync does not appear idempotent
 
@@ -1381,98 +1764,83 @@ Fixes #503
 
 refactor: pure-ish functions for ankiconverter
 
-fix: apply the html cleaner ([`afe06ba`](https://github.com/MartinBernstorff/Memium/commit/afe06baca3d1cd09a0e3487bd10a68420e7041c9))
+fix: apply the html cleaner
 
-* fix: apply the html cleaner ([`9aa0aaa`](https://github.com/MartinBernstorff/Memium/commit/9aa0aaaf23f909225a87d33a05d53a1b07f10d6b))
+- Apply the html cleaner
+  ([`9aa0aaa`](https://github.com/MartinBernstorff/Memium/commit/9aa0aaaf23f909225a87d33a05d53a1b07f10d6b))
 
-* fix: AnkiConnect sync does not appear idempotent
+- Ankiconnect sync does not appear idempotent
+  ([`1cba106`](https://github.com/MartinBernstorff/Memium/commit/1cba106630f9f5fd2fde046296dc943254cdbc57))
 
-Fixes #503 ([`1cba106`](https://github.com/MartinBernstorff/Memium/commit/1cba106630f9f5fd2fde046296dc943254cdbc57))
+Fixes #503
 
 ### Chores
 
-* chore(deps): update dependency dev/ruff to v0.1.11 ([`6fee03d`](https://github.com/MartinBernstorff/Memium/commit/6fee03d4fe2fc7f00aae79eec26eee5a70dd37e7))
+- **deps**: Update dependency dev/ruff to v0.1.11
+  ([`6fee03d`](https://github.com/MartinBernstorff/Memium/commit/6fee03d4fe2fc7f00aae79eec26eee5a70dd37e7))
 
-* chore(deps): update dependency dev/ruff to v0.1.10 ([`d491d3f`](https://github.com/MartinBernstorff/Memium/commit/d491d3f1ac75ec4aed2e7fc2e5c8fd0788fcf1a4))
+- **deps**: Update dependency dev/ruff to v0.1.10
+  ([`d491d3f`](https://github.com/MartinBernstorff/Memium/commit/d491d3f1ac75ec4aed2e7fc2e5c8fd0788fcf1a4))
 
-* chore(deps): update dependency functionalpy to v0.15.0 ([`937b6db`](https://github.com/MartinBernstorff/Memium/commit/937b6dbcb515237f660abc4879abe210c0d4b7f9))
+- **deps**: Update dependency functionalpy to v0.15.0
+  ([`937b6db`](https://github.com/MartinBernstorff/Memium/commit/937b6dbcb515237f660abc4879abe210c0d4b7f9))
 
-* chore(deps): update dependency tests/pytest to v7.4.4 ([`4f716ae`](https://github.com/MartinBernstorff/Memium/commit/4f716aec3dc662913c2a0e72503759e2409f2269))
+- **deps**: Update dependency tests/pytest to v7.4.4
+  ([`4f716ae`](https://github.com/MartinBernstorff/Memium/commit/4f716aec3dc662913c2a0e72503759e2409f2269))
 
-* chore(deps): update dependency dev/pyright to v1.1.344 ([`8519b4f`](https://github.com/MartinBernstorff/Memium/commit/8519b4fc8dd823608888c3f77501219b2119c0b1))
+- **deps**: Update dependency dev/pyright to v1.1.344
+  ([`8519b4f`](https://github.com/MartinBernstorff/Memium/commit/8519b4fc8dd823608888c3f77501219b2119c0b1))
 
 ### Refactoring
 
-* refactor: pure-ish functions for ankiconverter ([`ac82416`](https://github.com/MartinBernstorff/Memium/commit/ac82416fa2d834314d069cd30db53d14b37e174e))
-
-### Unknown
-
-* misc. ([`03319e8`](https://github.com/MartinBernstorff/Memium/commit/03319e8a8448d247902be953cbfcb16553d8c8d4))
+- Pure-ish functions for ankiconverter
+  ([`ac82416`](https://github.com/MartinBernstorff/Memium/commit/ac82416fa2d834314d069cd30db53d14b37e174e))
 
 
 ## v0.8.2 (2023-12-27)
 
 ### Bug Fixes
 
-* fix: false positives on brackets (#496)
+- False positives on brackets ([#496](https://github.com/MartinBernstorff/Memium/pull/496),
+  [`5606322`](https://github.com/MartinBernstorff/Memium/commit/56063221e2d3e02bf915e460d345d250b93c77f2))
 
 fix: false positives on brackets
 
 Fixes #495
 
-fix: remove entire code blocks ([`5606322`](https://github.com/MartinBernstorff/Memium/commit/56063221e2d3e02bf915e460d345d250b93c77f2))
+fix: remove entire code blocks
 
-* fix: remove entire code blocks ([`780ec6f`](https://github.com/MartinBernstorff/Memium/commit/780ec6f8f825f93160524211c25ddd4a6870521c))
+- Remove entire code blocks
+  ([`780ec6f`](https://github.com/MartinBernstorff/Memium/commit/780ec6f8f825f93160524211c25ddd4a6870521c))
 
-* fix: false positives on brackets
+- False positives on brackets
+  ([`b2b656b`](https://github.com/MartinBernstorff/Memium/commit/b2b656be603a1af31c78b3e7a399190116482d0f))
 
-Fixes #495 ([`b2b656b`](https://github.com/MartinBernstorff/Memium/commit/b2b656be603a1af31c78b3e7a399190116482d0f))
+Fixes #495
 
 
 ## v0.8.1 (2023-12-27)
 
 ### Bug Fixes
 
-* fix: false positives on cloze for html comments (#494)
+- False positives on cloze for html comments
+  ([#494](https://github.com/MartinBernstorff/Memium/pull/494),
+  [`df5ff29`](https://github.com/MartinBernstorff/Memium/commit/df5ff2933f33e06c230253741ed267fb5fdf82cf))
 
-Fixes #492 ([`df5ff29`](https://github.com/MartinBernstorff/Memium/commit/df5ff2933f33e06c230253741ed267fb5fdf82cf))
+Fixes #492
 
-* fix: false positives on cloze for html comments
+- False positives on cloze for html comments
+  ([`2fe2136`](https://github.com/MartinBernstorff/Memium/commit/2fe2136765783749eedea6a4b82ff750b2cff390))
 
-Fixes #492 ([`2fe2136`](https://github.com/MartinBernstorff/Memium/commit/2fe2136765783749eedea6a4b82ff750b2cff390))
-
-### Unknown
-
-* misc. ([`1cb74f4`](https://github.com/MartinBernstorff/Memium/commit/1cb74f4d4a9aee3c4ecb2487bec32f1ef2f8fbf0))
-
-* debug: prompts were not pushed in spite of push_all = true (#493)
-
-Fixes #491 ([`27bfe70`](https://github.com/MartinBernstorff/Memium/commit/27bfe70c50e2b4dcaaa6fd013157dae3ee15de36))
-
-* debug: prompts were not pushed in spite of push_all = true
-
-Fixes #491 ([`34f2118`](https://github.com/MartinBernstorff/Memium/commit/34f211843c9e0a6fc285b4da153c09d0403db54c))
-
-* styling: `_` does not italicize (#490)
-
-styling: `_` does not italicize
-
-Fixes #488
-
-misc. ([`78b7eca`](https://github.com/MartinBernstorff/Memium/commit/78b7eca2a4a8ddddaa79deff352288deedd5bff0))
-
-* misc. ([`a7115f5`](https://github.com/MartinBernstorff/Memium/commit/a7115f58e18a67182b16a67ce048e20e9343f7b8))
-
-* styling: `_` does not italicize
-
-Fixes #488 ([`681d243`](https://github.com/MartinBernstorff/Memium/commit/681d2434bfabe604121d711f2d224876161f5e4d))
+Fixes #492
 
 
 ## v0.8.0 (2023-12-27)
 
 ### Continuous Integration
 
-* ci: fix smoketest permissions (#482)
+- Fix smoketest permissions ([#482](https://github.com/MartinBernstorff/Memium/pull/482),
+  [`056a6e0`](https://github.com/MartinBernstorff/Memium/commit/056a6e058b439e34f92e4bc2e55c1932b7ae7947))
 
 ci: fix smoketest permissions
 
@@ -1480,107 +1848,109 @@ Fixes #481
 
 ci: fix smoketest permissions
 
-Fixes #481 ([`056a6e0`](https://github.com/MartinBernstorff/Memium/commit/056a6e058b439e34f92e4bc2e55c1932b7ae7947))
+Fixes #481
 
-* ci: smoketests don't need ghcr ([`927668c`](https://github.com/MartinBernstorff/Memium/commit/927668cc2dbfc8fd15be82e8d387f9a7113a013b))
+- Smoketests don't need ghcr
+  ([`927668c`](https://github.com/MartinBernstorff/Memium/commit/927668cc2dbfc8fd15be82e8d387f9a7113a013b))
 
-* ci: fix smoketest permissions
+- Fix smoketest permissions
+  ([`a36bbd3`](https://github.com/MartinBernstorff/Memium/commit/a36bbd3b05addc03c9a6ae6a0baf866fade89cfe))
 
-Fixes #481 ([`a36bbd3`](https://github.com/MartinBernstorff/Memium/commit/a36bbd3b05addc03c9a6ae6a0baf866fade89cfe))
+Fixes #481
 
-* ci: fix smoketest permissions
+- Fix smoketest permissions
+  ([`9c6fc8e`](https://github.com/MartinBernstorff/Memium/commit/9c6fc8e6c03243242157665ea11307e2a744e4ec))
 
-Fixes #481 ([`9c6fc8e`](https://github.com/MartinBernstorff/Memium/commit/9c6fc8e6c03243242157665ea11307e2a744e4ec))
+Fixes #481
 
 ### Features
 
-* feat: handle wikilinks and aliases (#487)
+- Handle wikilinks and aliases ([#487](https://github.com/MartinBernstorff/Memium/pull/487),
+  [`1c5dff5`](https://github.com/MartinBernstorff/Memium/commit/1c5dff5065dc784539c5af0359e1aa167fa9b5b5))
 
 feat: handle wikilinks
 
-Fixes #485 and fixes #486. ([`1c5dff5`](https://github.com/MartinBernstorff/Memium/commit/1c5dff5065dc784539c5af0359e1aa167fa9b5b5))
+Fixes #485 and fixes #486.
 
-* feat: handle wikilinks
+- Handle wikilinks
+  ([`18023f6`](https://github.com/MartinBernstorff/Memium/commit/18023f631ac3acba9745961d6aca1c5a6bf393bf))
 
-Fixes #485 ([`18023f6`](https://github.com/MartinBernstorff/Memium/commit/18023f631ac3acba9745961d6aca1c5a6bf393bf))
+Fixes #485
 
-* feat: handle wikilinks
+- Handle wikilinks
+  ([`19355d8`](https://github.com/MartinBernstorff/Memium/commit/19355d89805d2fd50c3e13ec63e02a61c6610fec))
 
-Fixes #485 ([`19355d8`](https://github.com/MartinBernstorff/Memium/commit/19355d89805d2fd50c3e13ec63e02a61c6610fec))
+Fixes #485
 
 
 ## v0.7.1 (2023-12-27)
 
 ### Bug Fixes
 
-* fix: cli entrypoint ([`c7edcb3`](https://github.com/MartinBernstorff/Memium/commit/c7edcb3c61ce29abcf24b98aca459e1050b1c25b))
+- Cli entrypoint
+  ([`c7edcb3`](https://github.com/MartinBernstorff/Memium/commit/c7edcb3c61ce29abcf24b98aca459e1050b1c25b))
 
-* fix: type errors ([`725f3d3`](https://github.com/MartinBernstorff/Memium/commit/725f3d380f8767cc307a28e12355bff0987eb803))
+- Type errors
+  ([`725f3d3`](https://github.com/MartinBernstorff/Memium/commit/725f3d380f8767cc307a28e12355bff0987eb803))
 
 ### Refactoring
 
-* refactor: misc. (#480) ([`907ab9f`](https://github.com/MartinBernstorff/Memium/commit/907ab9f544c40e249ad5ce6ffe412a26aabceacc))
-
-### Unknown
-
-* misc. ([`155036f`](https://github.com/MartinBernstorff/Memium/commit/155036f274c0838e7f164a8c7eb86f11b2cf6952))
-
-* misc. ([`a939e50`](https://github.com/MartinBernstorff/Memium/commit/a939e5071befc411a1dc1b9682449964c83351ed))
-
-* misc. ([`cf983b8`](https://github.com/MartinBernstorff/Memium/commit/cf983b8fa8eb259691a19b1ac4225ec6bb96b6d3))
-
-* misc. ([`2ade302`](https://github.com/MartinBernstorff/Memium/commit/2ade3026e45b3c9db6cecfd9f581a84c03223c6b))
-
-* misc. ([`b4606e3`](https://github.com/MartinBernstorff/Memium/commit/b4606e309799c19c5d72dd915e6fc66c2bfdd086))
-
-* misc. ([`99a2674`](https://github.com/MartinBernstorff/Memium/commit/99a2674af7026ccf9b6f1c7493c73b5b26025f16))
-
-* misc. refactors ([`4d1b1a1`](https://github.com/MartinBernstorff/Memium/commit/4d1b1a17809f4274787cd2bdd26b42218e043f3e))
-
-* Update readme.md ([`1e48dec`](https://github.com/MartinBernstorff/Memium/commit/1e48dec0e70a28556437f790b074aaa05abfd887))
-
-* Update readme.md ([`1327eeb`](https://github.com/MartinBernstorff/Memium/commit/1327eeb35d98000a2747f97d37ba03080c73f5b6))
+- Misc. ([#480](https://github.com/MartinBernstorff/Memium/pull/480),
+  [`907ab9f`](https://github.com/MartinBernstorff/Memium/commit/907ab9f544c40e249ad5ce6ffe412a26aabceacc))
 
 
 ## v0.7.0 (2023-12-27)
 
 ### Bug Fixes
 
-* fix: release to pypi (#475) ([`199ed12`](https://github.com/MartinBernstorff/Memium/commit/199ed125cc5cddff16a72665bfc36df871979152))
+- Release to pypi ([#475](https://github.com/MartinBernstorff/Memium/pull/475),
+  [`199ed12`](https://github.com/MartinBernstorff/Memium/commit/199ed125cc5cddff16a72665bfc36df871979152))
 
-* fix: append \ to docker command ([`2778bbb`](https://github.com/MartinBernstorff/Memium/commit/2778bbbb2465a9f142e82857bca7087b6b3af3e3))
+- Append \ to docker command
+  ([`2778bbb`](https://github.com/MartinBernstorff/Memium/commit/2778bbbb2465a9f142e82857bca7087b6b3af3e3))
 
-* fix: readme casing ([`35828d5`](https://github.com/MartinBernstorff/Memium/commit/35828d56a6bfae18f84cd1ae7fe8034643d8ed3a))
+- Readme casing
+  ([`35828d5`](https://github.com/MartinBernstorff/Memium/commit/35828d56a6bfae18f84cd1ae7fe8034643d8ed3a))
 
-* fix: release flow (#467)
+- Release flow ([#467](https://github.com/MartinBernstorff/Memium/pull/467),
+  [`56f6422`](https://github.com/MartinBernstorff/Memium/commit/56f64223a10da8c0cf094b7d9a52de14798a0cb1))
 
 fix: release flow
 
 Fixes #465
 
-major: release to pypi ([`56f6422`](https://github.com/MartinBernstorff/Memium/commit/56f64223a10da8c0cf094b7d9a52de14798a0cb1))
+major: release to pypi
 
-* fix: release flow
+- Release flow
+  ([`e6def83`](https://github.com/MartinBernstorff/Memium/commit/e6def83a9d0d5b351895a4846b1ec937d5bc1de8))
 
-Fixes #465 ([`e6def83`](https://github.com/MartinBernstorff/Memium/commit/e6def83a9d0d5b351895a4846b1ec937d5bc1de8))
+Fixes #465
 
-* fix: release flow
+- Release flow
+  ([`0db976e`](https://github.com/MartinBernstorff/Memium/commit/0db976e0183b36576a4457a81d23d0e3e65dfda4))
 
-Fixes #465 ([`0db976e`](https://github.com/MartinBernstorff/Memium/commit/0db976e0183b36576a4457a81d23d0e3e65dfda4))
+Fixes #465
 
-* fix: smokestest ([`da1e4ad`](https://github.com/MartinBernstorff/Memium/commit/da1e4ad4ecd9393153709ed71e600a7427319fcd))
+- Smokestest
+  ([`da1e4ad`](https://github.com/MartinBernstorff/Memium/commit/da1e4ad4ecd9393153709ed71e600a7427319fcd))
 
-* fix: smokestest ([`b472748`](https://github.com/MartinBernstorff/Memium/commit/b4727483335fb44411790f80fb7bbf94b14d2bd8))
+- Smokestest
+  ([`b472748`](https://github.com/MartinBernstorff/Memium/commit/b4727483335fb44411790f80fb7bbf94b14d2bd8))
 
-* fix: smokestest ([`fa7c5bb`](https://github.com/MartinBernstorff/Memium/commit/fa7c5bb53bd7cb6775349c07fa1fee61522e8964))
+- Smokestest
+  ([`fa7c5bb`](https://github.com/MartinBernstorff/Memium/commit/fa7c5bb53bd7cb6775349c07fa1fee61522e8964))
 
-* fix: create a subdir, so it can never delete an existing dir ([`0978523`](https://github.com/MartinBernstorff/Memium/commit/0978523972239e54064be61c0c6e15fea9690bfa))
+- Create a subdir, so it can never delete an existing dir
+  ([`0978523`](https://github.com/MartinBernstorff/Memium/commit/0978523972239e54064be61c0c6e15fea9690bfa))
 
-* fix: do not delete entire dir ([`9dc5bef`](https://github.com/MartinBernstorff/Memium/commit/9dc5beffc0a3501e5f6006da925ed0a577a1f278))
+- Do not delete entire dir
+  ([`9dc5bef`](https://github.com/MartinBernstorff/Memium/commit/9dc5beffc0a3501e5f6006da925ed0a577a1f278))
 
-* fix: imports ([`3244f6e`](https://github.com/MartinBernstorff/Memium/commit/3244f6ee4a7c303b97672e2dc086a62223f5ef0f))
+- Imports
+  ([`3244f6e`](https://github.com/MartinBernstorff/Memium/commit/3244f6ee4a7c303b97672e2dc086a62223f5ef0f))
 
-* fix: anki subdecks are not used (#404)
+- Anki subdecks are not used ([#404](https://github.com/MartinBernstorff/Memium/pull/404),
+  [`7ca3781`](https://github.com/MartinBernstorff/Memium/commit/7ca3781c10bdee78b4773cb610fcf3763f1a3b99))
 
 fix: anki subdecks are not used
 
@@ -1594,202 +1964,272 @@ fix: tag strings should not contain "#"
 
 fix: import all decks
 
-feat: support arbitrary subdeck nesting ([`7ca3781`](https://github.com/MartinBernstorff/Memium/commit/7ca3781c10bdee78b4773cb610fcf3763f1a3b99))
+feat: support arbitrary subdeck nesting
 
-* fix: import all decks ([`dda73bd`](https://github.com/MartinBernstorff/Memium/commit/dda73bd8e9b670a274e43b3d86ccefd75e71089b))
+- Import all decks
+  ([`dda73bd`](https://github.com/MartinBernstorff/Memium/commit/dda73bd8e9b670a274e43b3d86ccefd75e71089b))
 
-* fix: tag strings should not contain "#" ([`5a220ff`](https://github.com/MartinBernstorff/Memium/commit/5a220ff2543ed582c30f90418f67915b005ac4a7))
+- Tag strings should not contain "#"
+  ([`5a220ff`](https://github.com/MartinBernstorff/Memium/commit/5a220ff2543ed582c30f90418f67915b005ac4a7))
 
-* fix: extract all tags from markdown documents ([`9ab65fa`](https://github.com/MartinBernstorff/Memium/commit/9ab65fa34217c6c99cbdcc9844f9c359c0a5d9f8))
+- Extract all tags from markdown documents
+  ([`9ab65fa`](https://github.com/MartinBernstorff/Memium/commit/9ab65fa34217c6c99cbdcc9844f9c359c0a5d9f8))
 
-* fix: anki subdecks are not used ([`4762a48`](https://github.com/MartinBernstorff/Memium/commit/4762a481695947508937e11cb7470779889acfb2))
+- Anki subdecks are not used
+  ([`4762a48`](https://github.com/MartinBernstorff/Memium/commit/4762a481695947508937e11cb7470779889acfb2))
 
-* fix: anki subdecks are not used (#400)
+- Anki subdecks are not used ([#400](https://github.com/MartinBernstorff/Memium/pull/400),
+  [`0aa8473`](https://github.com/MartinBernstorff/Memium/commit/0aa84734c4f855ff17c03cbbe1afce4c27b2047b))
 
 fix: anki subdecks are not used
 
-fix: use anki subdecks ([`0aa8473`](https://github.com/MartinBernstorff/Memium/commit/0aa84734c4f855ff17c03cbbe1afce4c27b2047b))
+fix: use anki subdecks
 
-* fix: use anki subdecks ([`7fc378e`](https://github.com/MartinBernstorff/Memium/commit/7fc378eebd3539831b3c058a1549f0ae4f618eb9))
+- Use anki subdecks
+  ([`7fc378e`](https://github.com/MartinBernstorff/Memium/commit/7fc378eebd3539831b3c058a1549f0ae4f618eb9))
 
-* fix: anki subdecks are not used ([`3c71336`](https://github.com/MartinBernstorff/Memium/commit/3c713366f3400d84766ef8589ba488d4e178ec5a))
+- Anki subdecks are not used
+  ([`3c71336`](https://github.com/MartinBernstorff/Memium/commit/3c713366f3400d84766ef8589ba488d4e178ec5a))
 
-* fix: use answer when generating hash for QA (#399) ([`3345bff`](https://github.com/MartinBernstorff/Memium/commit/3345bff7b27135ad903d7886108ba6a941e7fc78))
+- Use answer when generating hash for QA
+  ([#399](https://github.com/MartinBernstorff/Memium/pull/399),
+  [`3345bff`](https://github.com/MartinBernstorff/Memium/commit/3345bff7b27135ad903d7886108ba6a941e7fc78))
 
-* fix: use answer when generating hash for QA ([`2919d77`](https://github.com/MartinBernstorff/Memium/commit/2919d7766005a00bc264ca654ef3bc6d13e6d48a))
+- Use answer when generating hash for QA
+  ([`2919d77`](https://github.com/MartinBernstorff/Memium/commit/2919d7766005a00bc264ca654ef3bc6d13e6d48a))
 
-* fix: anki tags are not added (#398)
+- Anki tags are not added ([#398](https://github.com/MartinBernstorff/Memium/pull/398),
+  [`5e05ab5`](https://github.com/MartinBernstorff/Memium/commit/5e05ab5ac31cad478d4674655e3dbb941649aac6))
 
 fix: anki tags are not added
 
 feat: implement
 
-misc. ([`5e05ab5`](https://github.com/MartinBernstorff/Memium/commit/5e05ab5ac31cad478d4674655e3dbb941649aac6))
+misc.
 
-* fix: anki tags are not added ([`27432d1`](https://github.com/MartinBernstorff/Memium/commit/27432d194e52732a57237ba913e9a140b84d471a))
+- Anki tags are not added
+  ([`27432d1`](https://github.com/MartinBernstorff/Memium/commit/27432d194e52732a57237ba913e9a140b84d471a))
 
-* fix: use localhost for ANKICONNECT_URL if not on docker ([`045eaa4`](https://github.com/MartinBernstorff/Memium/commit/045eaa414d4b8ef634a0f0cf331251bee41bcbff))
+- Use localhost for ANKICONNECT_URL if not on docker
+  ([`045eaa4`](https://github.com/MartinBernstorff/Memium/commit/045eaa414d4b8ef634a0f0cf331251bee41bcbff))
 
-* fix: only update unique models
-Fixes #315 ([`cfbae0e`](https://github.com/MartinBernstorff/Memium/commit/cfbae0e6364a6ef28af20f6a30c4df35591c0785))
+- Only update unique models
+  ([`cfbae0e`](https://github.com/MartinBernstorff/Memium/commit/cfbae0e6364a6ef28af20f6a30c4df35591c0785))
 
-* fix: submit entire stack ([`1b37e1b`](https://github.com/MartinBernstorff/Memium/commit/1b37e1bb6d7cb5c55b9c7c816798bc6370d0779e))
+- Submit entire stack
+  ([`1b37e1b`](https://github.com/MartinBernstorff/Memium/commit/1b37e1bb6d7cb5c55b9c7c816798bc6370d0779e))
 
-* fix: use invoke on devcontainer.json ([`3adb865`](https://github.com/MartinBernstorff/Memium/commit/3adb86501b98ab291abfa4c8d1fe3d106f5ded95))
+- Use invoke on devcontainer.json
+  ([`3adb865`](https://github.com/MartinBernstorff/Memium/commit/3adb86501b98ab291abfa4c8d1fe3d106f5ded95))
 
-* fix: QA uuid should include answer
+- Qa uuid should include answer
+  ([`9cc2991`](https://github.com/MartinBernstorff/Memium/commit/9cc29910f572b9663993483a384b7e0193e00a11))
 
-Fixes #346 ([`9cc2991`](https://github.com/MartinBernstorff/Memium/commit/9cc29910f572b9663993483a384b7e0193e00a11))
+Fixes #346
 
-* fix: use remote id for sync (#334) ([`b3e98f5`](https://github.com/MartinBernstorff/Memium/commit/b3e98f5026313cf4290fcb78aae14d46db70d5b6))
+- Use remote id for sync ([#334](https://github.com/MartinBernstorff/Memium/pull/334),
+  [`b3e98f5`](https://github.com/MartinBernstorff/Memium/commit/b3e98f5026313cf4290fcb78aae14d46db70d5b6))
 
-* fix: use correct id for remote sync ([`526480b`](https://github.com/MartinBernstorff/Memium/commit/526480becd316737871ca871dcb8b2349f2eaef0))
+- Use correct id for remote sync
+  ([`526480b`](https://github.com/MartinBernstorff/Memium/commit/526480becd316737871ca871dcb8b2349f2eaef0))
 
-* fix: PromptID to NoteID mapping
+- Promptid to NoteID mapping
+  ([`2f981b1`](https://github.com/MartinBernstorff/Memium/commit/2f981b1313689201e7ed539ea1a1a3f5618f6514))
 
-Fixes #284 ([`2f981b1`](https://github.com/MartinBernstorff/Memium/commit/2f981b1313689201e7ed539ea1a1a3f5618f6514))
+Fixes #284
 
-* fix: inherit from protocol (#287) ([`6e2862f`](https://github.com/MartinBernstorff/Memium/commit/6e2862f8b1b1ab7ccc528c503479f01f2f8028f3))
+- Inherit from protocol ([#287](https://github.com/MartinBernstorff/Memium/pull/287),
+  [`6e2862f`](https://github.com/MartinBernstorff/Memium/commit/6e2862f8b1b1ab7ccc528c503479f01f2f8028f3))
 
 ### Chores
 
-* chore: cleanup (#476) ([`c064b68`](https://github.com/MartinBernstorff/Memium/commit/c064b68c5a929ad3400665b67fe0e3dfcd840f45))
+- Cleanup ([#476](https://github.com/MartinBernstorff/Memium/pull/476),
+  [`c064b68`](https://github.com/MartinBernstorff/Memium/commit/c064b68c5a929ad3400665b67fe0e3dfcd840f45))
 
-* chore(deps): update actions/setup-python action to v5 ([`45a6637`](https://github.com/MartinBernstorff/Memium/commit/45a663750576c6885403a11cb7038f6bfa9a677e))
+- **deps**: Update actions/setup-python action to v5
+  ([`45a6637`](https://github.com/MartinBernstorff/Memium/commit/45a663750576c6885403a11cb7038f6bfa9a677e))
 
-* chore(deps): update dependency dev/pyright to v1.1.343 ([`a2dbeb6`](https://github.com/MartinBernstorff/Memium/commit/a2dbeb6137026e5e836040921321837570c262dd))
+- **deps**: Update dependency dev/pyright to v1.1.343
+  ([`a2dbeb6`](https://github.com/MartinBernstorff/Memium/commit/a2dbeb6137026e5e836040921321837570c262dd))
 
-* chore(deps): update python-semantic-release/python-semantic-release action to v8.7.0 ([`3d4b538`](https://github.com/MartinBernstorff/Memium/commit/3d4b538212c079097878b5ab16e1623d3b6c6fae))
+- **deps**: Update python-semantic-release/python-semantic-release action to v8.7.0
+  ([`3d4b538`](https://github.com/MartinBernstorff/Memium/commit/3d4b538212c079097878b5ab16e1623d3b6c6fae))
 
-* chore(deps): update dependency pydantic to v2.5.3 ([`11a85a9`](https://github.com/MartinBernstorff/Memium/commit/11a85a9b6bfbecf1bb5c2753dfcc4dfafaf5a54f))
+- **deps**: Update dependency pydantic to v2.5.3
+  ([`11a85a9`](https://github.com/MartinBernstorff/Memium/commit/11a85a9b6bfbecf1bb5c2753dfcc4dfafaf5a54f))
 
-* chore(deps): update dependency dev/ruff to v0.1.9 ([`b69d658`](https://github.com/MartinBernstorff/Memium/commit/b69d6584163869ab9c63393d658d76863faf9180))
+- **deps**: Update dependency dev/ruff to v0.1.9
+  ([`b69d658`](https://github.com/MartinBernstorff/Memium/commit/b69d6584163869ab9c63393d658d76863faf9180))
 
-* chore(deps): update dependency dev/pyright to v1.1.342 ([`cf5a8b1`](https://github.com/MartinBernstorff/Memium/commit/cf5a8b16e8a87727730cff04dc2678c6fcac4b73))
+- **deps**: Update dependency dev/pyright to v1.1.342
+  ([`cf5a8b1`](https://github.com/MartinBernstorff/Memium/commit/cf5a8b16e8a87727730cff04dc2678c6fcac4b73))
 
-* chore(deps): update python-semantic-release/python-semantic-release action to v8.5.2 ([`6e6496b`](https://github.com/MartinBernstorff/Memium/commit/6e6496bc5cc14b83a54c2272352b8fa456a0306f))
+- **deps**: Update python-semantic-release/python-semantic-release action to v8.5.2
+  ([`6e6496b`](https://github.com/MartinBernstorff/Memium/commit/6e6496bc5cc14b83a54c2272352b8fa456a0306f))
 
-* chore(deps): update dependency dev/pre-commit to v3 ([`f506653`](https://github.com/MartinBernstorff/Memium/commit/f5066538bb066327be10e384718676836a5c6bb8))
+- **deps**: Update dependency dev/pre-commit to v3
+  ([`f506653`](https://github.com/MartinBernstorff/Memium/commit/f5066538bb066327be10e384718676836a5c6bb8))
 
-* chore(deps): update docker/login-action action to v3 ([`8e76a16`](https://github.com/MartinBernstorff/Memium/commit/8e76a16e3aee608294ac25269edf1850c409ed7b))
+- **deps**: Update docker/login-action action to v3
+  ([`8e76a16`](https://github.com/MartinBernstorff/Memium/commit/8e76a16e3aee608294ac25269edf1850c409ed7b))
 
-* chore(deps): update actions/stale action to v9 ([`e5967b0`](https://github.com/MartinBernstorff/Memium/commit/e5967b06f4b7314e4ece77327bd3214af1f7b69b))
+- **deps**: Update actions/stale action to v9
+  ([`e5967b0`](https://github.com/MartinBernstorff/Memium/commit/e5967b06f4b7314e4ece77327bd3214af1f7b69b))
 
-* chore(deps): update actions/checkout action to v4 ([`b15c5d6`](https://github.com/MartinBernstorff/Memium/commit/b15c5d6c70d802504db4111dd519c587030acb82))
+- **deps**: Update actions/checkout action to v4
+  ([`b15c5d6`](https://github.com/MartinBernstorff/Memium/commit/b15c5d6c70d802504db4111dd519c587030acb82))
 
-* chore(deps): update python docker tag to v3.12 ([`e50a018`](https://github.com/MartinBernstorff/Memium/commit/e50a018da3525a0a812a6c5242e1813d4f66ee7d))
+- **deps**: Update python docker tag to v3.12
+  ([`e50a018`](https://github.com/MartinBernstorff/Memium/commit/e50a018da3525a0a812a6c5242e1813d4f66ee7d))
 
-* chore(deps): update python-semantic-release/python-semantic-release action to v8.5.1 ([`ff53391`](https://github.com/MartinBernstorff/Memium/commit/ff53391d9bfabc36a76fb9b46189730a5fc81ff9))
+- **deps**: Update python-semantic-release/python-semantic-release action to v8.5.1
+  ([`ff53391`](https://github.com/MartinBernstorff/Memium/commit/ff53391d9bfabc36a76fb9b46189730a5fc81ff9))
 
-* chore(deps): update dependency tests/pytest-xdist to v3.5.0 ([`2d97f73`](https://github.com/MartinBernstorff/Memium/commit/2d97f73a23dd91791d1efa58655ba89e7b0a0c7a))
+- **deps**: Update dependency tests/pytest-xdist to v3.5.0
+  ([`2d97f73`](https://github.com/MartinBernstorff/Memium/commit/2d97f73a23dd91791d1efa58655ba89e7b0a0c7a))
 
-* chore(deps): update dependency tests/pytest to v7.4.3 ([`acf432a`](https://github.com/MartinBernstorff/Memium/commit/acf432a8ade8c61c6a1e3612d85e1f974135b606))
+- **deps**: Update dependency tests/pytest to v7.4.3
+  ([`acf432a`](https://github.com/MartinBernstorff/Memium/commit/acf432a8ade8c61c6a1e3612d85e1f974135b606))
 
-* chore(deps): update dependency sentry-sdk to v1.39.1 ([`ff95683`](https://github.com/MartinBernstorff/Memium/commit/ff95683807d6e200b8a0dd11aa44b58b6b2c9760))
+- **deps**: Update dependency sentry-sdk to v1.39.1
+  ([`ff95683`](https://github.com/MartinBernstorff/Memium/commit/ff95683807d6e200b8a0dd11aa44b58b6b2c9760))
 
-* chore(deps): update dependency dev/pre-commit to v2.21.0 ([`02eb2cc`](https://github.com/MartinBernstorff/Memium/commit/02eb2cca0fef89e9fda62a16386f1e1a8fe78de9))
+- **deps**: Update dependency dev/pre-commit to v2.21.0
+  ([`02eb2cc`](https://github.com/MartinBernstorff/Memium/commit/02eb2cca0fef89e9fda62a16386f1e1a8fe78de9))
 
-* chore(deps): update dependency tests/diff-cover to v8.0.2 ([`a4512f8`](https://github.com/MartinBernstorff/Memium/commit/a4512f827d75570fac95ecfb11e2007dba45c59a))
+- **deps**: Update dependency tests/diff-cover to v8.0.2
+  ([`a4512f8`](https://github.com/MartinBernstorff/Memium/commit/a4512f827d75570fac95ecfb11e2007dba45c59a))
 
-* chore(deps): update dependency genanki to v0.13.1 ([`abf835a`](https://github.com/MartinBernstorff/Memium/commit/abf835a61a0b2de54615c69528a73c774a3fd16b))
+- **deps**: Update dependency genanki to v0.13.1
+  ([`abf835a`](https://github.com/MartinBernstorff/Memium/commit/abf835a61a0b2de54615c69528a73c774a3fd16b))
 
-* chore(deps): update dependency dev/pyright to v1.1.341 ([`8466592`](https://github.com/MartinBernstorff/Memium/commit/84665922ab7c8341c4239cec8e7f0b413f4c052a))
+- **deps**: Update dependency dev/pyright to v1.1.341
+  ([`8466592`](https://github.com/MartinBernstorff/Memium/commit/84665922ab7c8341c4239cec8e7f0b413f4c052a))
 
-* chore(deps): update dependency dev/ruff to v0.1.8 ([`e670f8e`](https://github.com/MartinBernstorff/Memium/commit/e670f8e07459afe2e02ad5a8d609557c7e5f78ba))
+- **deps**: Update dependency dev/ruff to v0.1.8
+  ([`e670f8e`](https://github.com/MartinBernstorff/Memium/commit/e670f8e07459afe2e02ad5a8d609557c7e5f78ba))
 
-* chore: Configure Renovate (#368)
+- Configure Renovate ([#368](https://github.com/MartinBernstorff/Memium/pull/368),
+  [`d9fa9c0`](https://github.com/MartinBernstorff/Memium/commit/d9fa9c0f05fe9e17d1e0d7efe133f3ba925bf9ef))
 
-Fixes #260. ([`d9fa9c0`](https://github.com/MartinBernstorff/Memium/commit/d9fa9c0f05fe9e17d1e0d7efe133f3ba925bf9ef))
+Fixes #260.
 
 ### Code Style
 
-* style: linting ([`554fedc`](https://github.com/MartinBernstorff/Memium/commit/554fedc7e2c73761fcfaabc855bd67a604d60d01))
+- Linting
+  ([`554fedc`](https://github.com/MartinBernstorff/Memium/commit/554fedc7e2c73761fcfaabc855bd67a604d60d01))
 
-* style: lint ([`e5f11a9`](https://github.com/MartinBernstorff/Memium/commit/e5f11a9d3706f378d1d8f95da0bb63797f08ddba))
+- Lint
+  ([`e5f11a9`](https://github.com/MartinBernstorff/Memium/commit/e5f11a9d3706f378d1d8f95da0bb63797f08ddba))
 
 ### Continuous Integration
 
-* ci: add manual trigger to release ([`32470a5`](https://github.com/MartinBernstorff/Memium/commit/32470a5f24ce24bfe6f37ead8b9aff7ae0141874))
+- Add manual trigger to release
+  ([`32470a5`](https://github.com/MartinBernstorff/Memium/commit/32470a5f24ce24bfe6f37ead8b9aff7ae0141874))
 
-* ci: typo in release.yml ([`72c7a08`](https://github.com/MartinBernstorff/Memium/commit/72c7a0896aea44d431dd4dfc8eb21364d885109c))
+- Typo in release.yml
+  ([`72c7a08`](https://github.com/MartinBernstorff/Memium/commit/72c7a0896aea44d431dd4dfc8eb21364d885109c))
 
-* ci: release override permissions (#479) ([`975630d`](https://github.com/MartinBernstorff/Memium/commit/975630d2bd7efd5b53d4397a70ebd8bd3c93475f))
+- Release override permissions ([#479](https://github.com/MartinBernstorff/Memium/pull/479),
+  [`975630d`](https://github.com/MartinBernstorff/Memium/commit/975630d2bd7efd5b53d4397a70ebd8bd3c93475f))
 
-* ci: update release token ([`b4f1f2e`](https://github.com/MartinBernstorff/Memium/commit/b4f1f2e6b8bc0ca76dedefeff587b981ffc3877b))
+- Update release token
+  ([`b4f1f2e`](https://github.com/MartinBernstorff/Memium/commit/b4f1f2e6b8bc0ca76dedefeff587b981ffc3877b))
 
-* ci: remove github release (#477) ([`941f587`](https://github.com/MartinBernstorff/Memium/commit/941f587455531f1e4f2d3eeb3cfcc9e946d582f8))
+- Remove github release ([#477](https://github.com/MartinBernstorff/Memium/pull/477),
+  [`941f587`](https://github.com/MartinBernstorff/Memium/commit/941f587455531f1e4f2d3eeb3cfcc9e946d582f8))
 
-* ci: release to memium on pypi
+- Release to memium on pypi
+  ([`b8fdb6b`](https://github.com/MartinBernstorff/Memium/commit/b8fdb6ba563aa2ba009fa41ad44f2c56bb4efb6b))
 
-Fixes #455 ([`b8fdb6b`](https://github.com/MartinBernstorff/Memium/commit/b8fdb6ba563aa2ba009fa41ad44f2c56bb4efb6b))
+Fixes #455
 
-* ci: update ref groups. (#447)
+- Update ref groups. ([#447](https://github.com/MartinBernstorff/Memium/pull/447),
+  [`1387d00`](https://github.com/MartinBernstorff/Memium/commit/1387d00a319f04961a448e19d91acd09b9245453))
 
 ci: update ref groups.
 
 Fixes #446
 
-implement ([`1387d00`](https://github.com/MartinBernstorff/Memium/commit/1387d00a319f04961a448e19d91acd09b9245453))
+implement
 
-* ci: update ref groups.
+- Update ref groups.
+  ([`a18ccaa`](https://github.com/MartinBernstorff/Memium/commit/a18ccaa5b8f76654aa8db9fd7a8ce02b6a4d2744))
 
-Fixes #446 ([`a18ccaa`](https://github.com/MartinBernstorff/Memium/commit/a18ccaa5b8f76654aa8db9fd7a8ce02b6a4d2744))
+Fixes #446
 
-* ci: update ([`75b3f22`](https://github.com/MartinBernstorff/Memium/commit/75b3f22e5e4fa38c2fb86f80c8a34829b4d31116))
+- Update
+  ([`75b3f22`](https://github.com/MartinBernstorff/Memium/commit/75b3f22e5e4fa38c2fb86f80c8a34829b4d31116))
 
-* ci: remove dependabot ([`e2e0721`](https://github.com/MartinBernstorff/Memium/commit/e2e07211b5c1a497aa3ac2253dc7dcf06ae22705))
+- Remove dependabot
+  ([`e2e0721`](https://github.com/MartinBernstorff/Memium/commit/e2e07211b5c1a497aa3ac2253dc7dcf06ae22705))
 
-* ci: add automerge ([`5f15b7d`](https://github.com/MartinBernstorff/Memium/commit/5f15b7d02404071218deb8917ea9017f8b037a80))
+- Add automerge
+  ([`5f15b7d`](https://github.com/MartinBernstorff/Memium/commit/5f15b7d02404071218deb8917ea9017f8b037a80))
 
-* ci: use invoke ([`ca61482`](https://github.com/MartinBernstorff/Memium/commit/ca614829284d0d9db7b410beb23191726025cd0b))
+- Use invoke
+  ([`ca61482`](https://github.com/MartinBernstorff/Memium/commit/ca614829284d0d9db7b410beb23191726025cd0b))
 
-* ci: update ([`126f81a`](https://github.com/MartinBernstorff/Memium/commit/126f81a2f3b413e923413ccaa4717af5acaa3352))
+- Update
+  ([`126f81a`](https://github.com/MartinBernstorff/Memium/commit/126f81a2f3b413e923413ccaa4717af5acaa3352))
 
-* ci: correct path to docker smoketest
+- Correct path to docker smoketest
+  ([`ee50f34`](https://github.com/MartinBernstorff/Memium/commit/ee50f34ccd2977c7af4a36a86c3a1eca629fa2e7))
 
-Fixes #343 ([`ee50f34`](https://github.com/MartinBernstorff/Memium/commit/ee50f34ccd2977c7af4a36a86c3a1eca629fa2e7))
+Fixes #343
 
-* ci: clean up ([`8ad85f1`](https://github.com/MartinBernstorff/Memium/commit/8ad85f101a4b7b04019bfb4ded226867d82e6e07))
+- Clean up
+  ([`8ad85f1`](https://github.com/MartinBernstorff/Memium/commit/8ad85f101a4b7b04019bfb4ded226867d82e6e07))
 
-* ci: remove codecov (#283) ([`b65cb11`](https://github.com/MartinBernstorff/Memium/commit/b65cb11e6681ef895548ee1727aa00754c5a3685))
+- Remove codecov ([#283](https://github.com/MartinBernstorff/Memium/pull/283),
+  [`b65cb11`](https://github.com/MartinBernstorff/Memium/commit/b65cb11e6681ef895548ee1727aa00754c5a3685))
 
-* ci: remove codecov ([`8d7f9d7`](https://github.com/MartinBernstorff/Memium/commit/8d7f9d7a10ff88836fe05ccd9ae10ea5290727ba))
+- Remove codecov
+  ([`8d7f9d7`](https://github.com/MartinBernstorff/Memium/commit/8d7f9d7a10ff88836fe05ccd9ae10ea5290727ba))
 
-* ci: add codecov (#199) ([`4d546d4`](https://github.com/MartinBernstorff/Memium/commit/4d546d473228c7977b3843c028fb72092e1ce48e))
+- Add codecov ([#199](https://github.com/MartinBernstorff/Memium/pull/199),
+  [`4d546d4`](https://github.com/MartinBernstorff/Memium/commit/4d546d473228c7977b3843c028fb72092e1ce48e))
 
 ### Documentation
 
-* docs: use ghcr in readme for docker image (#471)
+- Use ghcr in readme for docker image ([#471](https://github.com/MartinBernstorff/Memium/pull/471),
+  [`52cbec6`](https://github.com/MartinBernstorff/Memium/commit/52cbec631a5760fb1f19dff6cd7bc78b54a648b2))
 
 docs: use ghcr in readme for docker image
 
 Fixes #470
 
-misc. ([`52cbec6`](https://github.com/MartinBernstorff/Memium/commit/52cbec631a5760fb1f19dff6cd7bc78b54a648b2))
+misc.
 
-* docs: use ghcr in readme for docker image
+- Use ghcr in readme for docker image
+  ([`04229f1`](https://github.com/MartinBernstorff/Memium/commit/04229f16d4363f63e0e28cbd5c0355f9cc9cbd93))
 
-Fixes #470 ([`04229f1`](https://github.com/MartinBernstorff/Memium/commit/04229f16d4363f63e0e28cbd5c0355f9cc9cbd93))
+Fixes #470
 
-* docs: use ghcr in readme for docker image
+- Use ghcr in readme for docker image
+  ([`0b3f810`](https://github.com/MartinBernstorff/Memium/commit/0b3f810d815c7f22a23fc1d2b3df1e78f2b9b578))
 
-Fixes #470 ([`0b3f810`](https://github.com/MartinBernstorff/Memium/commit/0b3f810d815c7f22a23fc1d2b3df1e78f2b9b578))
+Fixes #470
 
-* docs: update readme (#466)
+- Update readme ([#466](https://github.com/MartinBernstorff/Memium/pull/466),
+  [`01aa23d`](https://github.com/MartinBernstorff/Memium/commit/01aa23d51813436bf23b849c779484b29813a9e0))
 
 docs: update readme
 
 Fixes #462
 
-misc. ([`01aa23d`](https://github.com/MartinBernstorff/Memium/commit/01aa23d51813436bf23b849c779484b29813a9e0))
+misc.
 
-* docs: update readme
+- Update readme
+  ([`adb5527`](https://github.com/MartinBernstorff/Memium/commit/adb552751f0198092f9ff1df41b2c7bc2b423069))
 
-Fixes #462 ([`adb5527`](https://github.com/MartinBernstorff/Memium/commit/adb552751f0198092f9ff1df41b2c7bc2b423069))
+Fixes #462
 
 ### Features
 
-* feat: raise error if input dir is not writeable (#474)
+- Raise error if input dir is not writeable
+  ([#474](https://github.com/MartinBernstorff/Memium/pull/474),
+  [`4f0ea80`](https://github.com/MartinBernstorff/Memium/commit/4f0ea807b017ce99d018dbcf9404411cdbbe672d))
 
 feat: raise error if input dir is not writeable
 
@@ -1797,37 +2237,44 @@ Fixes #473
 
 feat: raise error if input dir is not writeable
 
-Fixes #473 ([`4f0ea80`](https://github.com/MartinBernstorff/Memium/commit/4f0ea807b017ce99d018dbcf9404411cdbbe672d))
+Fixes #473
 
-* feat: raise error if input dir is not writeable
+- Raise error if input dir is not writeable
+  ([`883f16e`](https://github.com/MartinBernstorff/Memium/commit/883f16eae653bd58d33445a3ba92b7636b6f9ed6))
 
-Fixes #473 ([`883f16e`](https://github.com/MartinBernstorff/Memium/commit/883f16eae653bd58d33445a3ba92b7636b6f9ed6))
+Fixes #473
 
-* feat: raise error if input dir is not writeable
+- Raise error if input dir is not writeable
+  ([`f837faa`](https://github.com/MartinBernstorff/Memium/commit/f837faa25f6e2299b964c1211ef97683f23554cf))
 
-Fixes #473 ([`f837faa`](https://github.com/MartinBernstorff/Memium/commit/f837faa25f6e2299b964c1211ef97683f23554cf))
+Fixes #473
 
-* feat: rename to memium (#448)
+- Rename to memium ([#448](https://github.com/MartinBernstorff/Memium/pull/448),
+  [`41fbe4a`](https://github.com/MartinBernstorff/Memium/commit/41fbe4aefc57bd677543c985f44994ac644371bc))
 
 feat: rename to memium.
 
 Fixes #419
 
-implement ([`41fbe4a`](https://github.com/MartinBernstorff/Memium/commit/41fbe4aefc57bd677543c985f44994ac644371bc))
+implement
 
-* feat: rename to memium.
+- Rename to memium.
+  ([`fb02dc2`](https://github.com/MartinBernstorff/Memium/commit/fb02dc27c435369766b2db19c256b5f1bdfc5c53))
 
-Fixes #419 ([`fb02dc2`](https://github.com/MartinBernstorff/Memium/commit/fb02dc27c435369766b2db19c256b5f1bdfc5c53))
+Fixes #419
 
-* feat: make `pipx` installable. (#441)
+- Make `pipx` installable. ([#441](https://github.com/MartinBernstorff/Memium/pull/441),
+  [`61c397d`](https://github.com/MartinBernstorff/Memium/commit/61c397dcacfd567bd005f1e9d76fb3e786e6ab50))
 
-Fixes #413 ([`61c397d`](https://github.com/MartinBernstorff/Memium/commit/61c397dcacfd567bd005f1e9d76fb3e786e6ab50))
+Fixes #413
 
-* feat: make `pipx` installable.
+- Make `pipx` installable.
+  ([`540588a`](https://github.com/MartinBernstorff/Memium/commit/540588a38ca7e7b735ca63b865fc1ad281b79bff))
 
-Fixes #413 ([`540588a`](https://github.com/MartinBernstorff/Memium/commit/540588a38ca7e7b735ca63b865fc1ad281b79bff))
+Fixes #413
 
-* feat: add `push_all` option to CLI (#439)
+- Add `push_all` option to CLI ([#439](https://github.com/MartinBernstorff/Memium/pull/439),
+  [`bfd76ba`](https://github.com/MartinBernstorff/Memium/commit/bfd76ba4bbb4ad8047c502be750dfdbc076b222d))
 
 feat: update_all option.
 
@@ -1835,13 +2282,16 @@ Fixes #409
 
 feat: update_all option.
 
-Fixes #409 ([`bfd76ba`](https://github.com/MartinBernstorff/Memium/commit/bfd76ba4bbb4ad8047c502be750dfdbc076b222d))
+Fixes #409
 
-* feat: update_all option.
+- Update_all option.
+  ([`d6a184f`](https://github.com/MartinBernstorff/Memium/commit/d6a184f73c64e893fe84f5dbd11d5eb9d3d53e25))
 
-Fixes #409 ([`d6a184f`](https://github.com/MartinBernstorff/Memium/commit/d6a184f73c64e893fe84f5dbd11d5eb9d3d53e25))
+Fixes #409
 
-* feat: add sentry_dsn flag which enables/disables sentry. (#437)
+- Add sentry_dsn flag which enables/disables sentry.
+  ([#437](https://github.com/MartinBernstorff/Memium/pull/437),
+  [`7e001cf`](https://github.com/MartinBernstorff/Memium/commit/7e001cfc10b6a9d3a4a04ccf7f436d3204dbe91e))
 
 feat: add sentry_dsn flag which enables/disables sentry.
 
@@ -1849,155 +2299,202 @@ Fixes #421
 
 feat: add sentry_dsn flag which enables/disables sentry.
 
-Fixes #421 ([`7e001cf`](https://github.com/MartinBernstorff/Memium/commit/7e001cfc10b6a9d3a4a04ccf7f436d3204dbe91e))
+Fixes #421
 
-* feat: add sentry_dsn flag which enables/disables sentry.
+- Add sentry_dsn flag which enables/disables sentry.
+  ([`9c45c7b`](https://github.com/MartinBernstorff/Memium/commit/9c45c7b9192eff0fbb0ee9d8eb3491f20d04056e))
 
-Fixes #421 ([`9c45c7b`](https://github.com/MartinBernstorff/Memium/commit/9c45c7b9192eff0fbb0ee9d8eb3491f20d04056e))
+Fixes #421
 
-* feat: add sentry_dsn flag which enables/disables sentry.
+- Add sentry_dsn flag which enables/disables sentry.
+  ([`6db2467`](https://github.com/MartinBernstorff/Memium/commit/6db2467ce812ea6edae63ea0ab158c07e7ee293b))
 
-Fixes #421 ([`6db2467`](https://github.com/MartinBernstorff/Memium/commit/6db2467ce812ea6edae63ea0ab158c07e7ee293b))
+Fixes #421
 
-* feat: remove temp dir from cli interface. Fixes #374 (#428)
+- Remove temp dir from cli interface. Fixes #374
+  ([#428](https://github.com/MartinBernstorff/Memium/pull/428),
+  [`cb6c95c`](https://github.com/MartinBernstorff/Memium/commit/cb6c95cc7f3a13d32da107f1d26b9fe599d79421))
 
 feat: remove temp dir from cli interface. Fixes #374
 
 misc.
 
-misc. ([`cb6c95c`](https://github.com/MartinBernstorff/Memium/commit/cb6c95cc7f3a13d32da107f1d26b9fe599d79421))
+misc.
 
-* feat: remove temp dir from cli interface. Fixes #374 ([`a07738a`](https://github.com/MartinBernstorff/Memium/commit/a07738acb86da80c94b5eba9bf8b73f4ba0b71e5))
+- Remove temp dir from cli interface. Fixes #374
+  ([`a07738a`](https://github.com/MartinBernstorff/Memium/commit/a07738acb86da80c94b5eba9bf8b73f4ba0b71e5))
 
-* feat: use context manager to temp deck file deletion. Fixes #423 (#427)
+- Use context manager to temp deck file deletion. Fixes #423
+  ([#427](https://github.com/MartinBernstorff/Memium/pull/427),
+  [`be4999d`](https://github.com/MartinBernstorff/Memium/commit/be4999dca85607781872b67b5014e8297d7c1550))
 
 feat: use context manager to temp deck file deletion. Fixes #423
 
-implement ([`be4999d`](https://github.com/MartinBernstorff/Memium/commit/be4999dca85607781872b67b5014e8297d7c1550))
+implement
 
-* feat: use context manager to temp deck file deletion. Fixes #423 ([`d1c7e3d`](https://github.com/MartinBernstorff/Memium/commit/d1c7e3d83bc6d4fd053114022578d3e869ea906a))
+- Use context manager to temp deck file deletion. Fixes #423
+  ([`d1c7e3d`](https://github.com/MartinBernstorff/Memium/commit/d1c7e3d83bc6d4fd053114022578d3e869ea906a))
 
-* feat: add optional arguments to cli (#422)
+- Add optional arguments to cli ([#422](https://github.com/MartinBernstorff/Memium/pull/422),
+  [`bec9363`](https://github.com/MartinBernstorff/Memium/commit/bec93639b68be0687fc027bb78ff0f813aab16fc))
 
 feat: add optional arguments to cli
 
-misc. ([`bec9363`](https://github.com/MartinBernstorff/Memium/commit/bec93639b68be0687fc027bb78ff0f813aab16fc))
+misc.
 
-* feat: add optional arguments to cli ([`e20142a`](https://github.com/MartinBernstorff/Memium/commit/e20142a8bb38283fc073a08197ae7d1156f4a7ef))
+- Add optional arguments to cli
+  ([`e20142a`](https://github.com/MartinBernstorff/Memium/commit/e20142a8bb38283fc073a08197ae7d1156f4a7ef))
 
-* feat: fail with user friendly error if ankiconnect is not live ([`e489e2f`](https://github.com/MartinBernstorff/Memium/commit/e489e2ff2dd5d09c0b87692ef963dbe59997290b))
+- Fail with user friendly error if ankiconnect is not live
+  ([`e489e2f`](https://github.com/MartinBernstorff/Memium/commit/e489e2ff2dd5d09c0b87692ef963dbe59997290b))
 
-* feat: change document ingestion to best-effort (#416)
+- Change document ingestion to best-effort
+  ([#416](https://github.com/MartinBernstorff/Memium/pull/416),
+  [`bbe1196`](https://github.com/MartinBernstorff/Memium/commit/bbe1196d1f0197d967e377f86cf17d367bf61fc1))
 
 feat: change document ingestion to best-effort
 
-feat: implement ([`bbe1196`](https://github.com/MartinBernstorff/Memium/commit/bbe1196d1f0197d967e377f86cf17d367bf61fc1))
+feat: implement
 
-* feat: implement ([`bb00c4c`](https://github.com/MartinBernstorff/Memium/commit/bb00c4c0ad55e58d06d1709fbf181c6e92d47cc4))
+- Implement
+  ([`bb00c4c`](https://github.com/MartinBernstorff/Memium/commit/bb00c4c0ad55e58d06d1709fbf181c6e92d47cc4))
 
-* feat: change document ingestion to best-effort ([`5b4401c`](https://github.com/MartinBernstorff/Memium/commit/5b4401c67251be967a81092c4f64cb09b4d48bf6))
+- Change document ingestion to best-effort
+  ([`5b4401c`](https://github.com/MartinBernstorff/Memium/commit/5b4401c67251be967a81092c4f64cb09b4d48bf6))
 
-* feat: update remote if tags have changed (#410)
+- Update remote if tags have changed ([#410](https://github.com/MartinBernstorff/Memium/pull/410),
+  [`908ed5e`](https://github.com/MartinBernstorff/Memium/commit/908ed5e4885bb2d4d111a2b550c1f1780012a327))
 
 feat: update remote if tags have changed
 
 misc.
 
-tests: make tests more readable ([`908ed5e`](https://github.com/MartinBernstorff/Memium/commit/908ed5e4885bb2d4d111a2b550c1f1780012a327))
+tests: make tests more readable
 
-* feat: update remote if tags have changed ([`e9b06f7`](https://github.com/MartinBernstorff/Memium/commit/e9b06f707b9cce3308471891709d15abaf9ccd87))
+- Update remote if tags have changed
+  ([`e9b06f7`](https://github.com/MartinBernstorff/Memium/commit/e9b06f707b9cce3308471891709d15abaf9ccd87))
 
-* feat: support arbitrary subdeck nesting ([`3ba0c90`](https://github.com/MartinBernstorff/Memium/commit/3ba0c9092fa06a61fbacbb50b7d6fccad438f499))
+- Support arbitrary subdeck nesting
+  ([`3ba0c90`](https://github.com/MartinBernstorff/Memium/commit/3ba0c9092fa06a61fbacbb50b7d6fccad438f499))
 
-* feat: implement ([`10eecf4`](https://github.com/MartinBernstorff/Memium/commit/10eecf49e1d832ac8cea012250953328040cdbd3))
+- Implement
+  ([`10eecf4`](https://github.com/MartinBernstorff/Memium/commit/10eecf49e1d832ac8cea012250953328040cdbd3))
 
-* feat: first run on v2 (#397)
+- First run on v2 ([#397](https://github.com/MartinBernstorff/Memium/pull/397),
+  [`49d0501`](https://github.com/MartinBernstorff/Memium/commit/49d0501d2fca55c773c5ffb374d5a4aee982f5c5))
 
-fix: only update unique models
-Fixes #315
+fix: only update unique models Fixes #315
 
 dev: add run cli launch option
 
 fix: use localhost for ANKICONNECT_URL if not on docker
 
-misc: formatting ([`49d0501`](https://github.com/MartinBernstorff/Memium/commit/49d0501d2fca55c773c5ffb374d5a4aee982f5c5))
+misc: formatting
 
-* feat: set max_wait_seconds for ankiconnect destination ([`da53a73`](https://github.com/MartinBernstorff/Memium/commit/da53a7313577d971055cef731f7d8c238e7a54de))
+- Set max_wait_seconds for ankiconnect destination
+  ([`da53a73`](https://github.com/MartinBernstorff/Memium/commit/da53a7313577d971055cef731f7d8c238e7a54de))
 
-* feat: implement sleep for ankiconnectdestination ([`2204f4d`](https://github.com/MartinBernstorff/Memium/commit/2204f4dcd21608adb485b627a21d297a693bc0ce))
+- Implement sleep for ankiconnectdestination
+  ([`2204f4d`](https://github.com/MartinBernstorff/Memium/commit/2204f4dcd21608adb485b627a21d297a693bc0ce))
 
-* feat: use v2 when running docker smoketest
+- Use v2 when running docker smoketest
+  ([`510eb33`](https://github.com/MartinBernstorff/Memium/commit/510eb330886fcb0d4fa191e345f4206b06ef844b))
 
-Fixes #331 ([`510eb33`](https://github.com/MartinBernstorff/Memium/commit/510eb330886fcb0d4fa191e345f4206b06ef844b))
+Fixes #331
 
-* feat: add dry-run
+- Add dry-run
+  ([`ccde648`](https://github.com/MartinBernstorff/Memium/commit/ccde648621495d3b42f082559a62a31413fd3126))
 
-Fixes #336 ([`ccde648`](https://github.com/MartinBernstorff/Memium/commit/ccde648621495d3b42f082559a62a31413fd3126))
+Fixes #336
 
-* feat: polish cli
+- Polish cli
+  ([`bd11c10`](https://github.com/MartinBernstorff/Memium/commit/bd11c108c9114042958de7b313802891c127c9f7))
 
-Fixes #338 ([`bd11c10`](https://github.com/MartinBernstorff/Memium/commit/bd11c108c9114042958de7b313802891c127c9f7))
+Fixes #338
 
-* feat: use markdown promptsource
+- Use markdown promptsource
+  ([`464d8fa`](https://github.com/MartinBernstorff/Memium/commit/464d8facd83191666f051bd372173447f3d44257))
 
-Fixes #309 ([`464d8fa`](https://github.com/MartinBernstorff/Memium/commit/464d8facd83191666f051bd372173447f3d44257))
+Fixes #309
 
-* feat: add remoteid and use for prompt deletion
+- Add remoteid and use for prompt deletion
+  ([`3c47d7e`](https://github.com/MartinBernstorff/Memium/commit/3c47d7ee4cdff588a4f654d15c62bb2580ea74b2))
 
-Fixes #321 ([`3c47d7e`](https://github.com/MartinBernstorff/Memium/commit/3c47d7ee4cdff588a4f654d15c62bb2580ea74b2))
+Fixes #321
 
-* feat: if n+ notes are scheduled for deletion, do not sync
+- If n+ notes are scheduled for deletion, do not sync
+  ([`0915e7f`](https://github.com/MartinBernstorff/Memium/commit/0915e7fa56f2de747f1f0ded1667203058ad2d6b))
 
-Fixes #251 ([`0915e7f`](https://github.com/MartinBernstorff/Memium/commit/0915e7fa56f2de747f1f0ded1667203058ad2d6b))
+Fixes #251
 
-* feat: add diffdeterminer ([`9d708f2`](https://github.com/MartinBernstorff/Memium/commit/9d708f2928af270c53e06f3ca285c8ff588f899e))
+- Add diffdeterminer
+  ([`9d708f2`](https://github.com/MartinBernstorff/Memium/commit/9d708f2928af270c53e06f3ca285c8ff588f899e))
 
-* feat: implement diffdeterminer
+- Implement diffdeterminer
+  ([`174add1`](https://github.com/MartinBernstorff/Memium/commit/174add194efb4d57de0e0627a9bfc24e15a318fb))
 
-Fixes #292
-Add GeneralSyncer ([`174add1`](https://github.com/MartinBernstorff/Memium/commit/174add194efb4d57de0e0627a9bfc24e15a318fb))
+Fixes #292 Add GeneralSyncer
 
-* feat: implement ClozeExtractor
+- Implement ClozeExtractor
+  ([`a9afe36`](https://github.com/MartinBernstorff/Memium/commit/a9afe36c9b6530dc8fd97f9d5577c5dee93c2c1c))
 
-Fixes #297 ([`a9afe36`](https://github.com/MartinBernstorff/Memium/commit/a9afe36c9b6530dc8fd97f9d5577c5dee93c2c1c))
+Fixes #297
 
-* feat: implement QA extractor
+- Implement QA extractor
+  ([`aa7079c`](https://github.com/MartinBernstorff/Memium/commit/aa7079c815e892f3ba3c1b5adcd628b9b4dd07f0))
 
-Fixes #294 ([`aa7079c`](https://github.com/MartinBernstorff/Memium/commit/aa7079c815e892f3ba3c1b5adcd628b9b4dd07f0))
+Fixes #294
 
-* feat: add markdown ingester ([`728de65`](https://github.com/MartinBernstorff/Memium/commit/728de65c47bd722bfdeb247dd54f8520d652e1d2))
+- Add markdown ingester
+  ([`728de65`](https://github.com/MartinBernstorff/Memium/commit/728de65c47bd722bfdeb247dd54f8520d652e1d2))
 
-* feat: stub out promptsource
+- Stub out promptsource
+  ([`0e2e2f2`](https://github.com/MartinBernstorff/Memium/commit/0e2e2f235c1dad0a3c2112dfe754fe61bf209689))
 
-Fixes #293 ([`0e2e2f2`](https://github.com/MartinBernstorff/Memium/commit/0e2e2f235c1dad0a3c2112dfe754fe61bf209689))
+Fixes #293
 
-* feat: stub out `main` for cli in v2 (#291) ([`f2b4cf0`](https://github.com/MartinBernstorff/Memium/commit/f2b4cf05cc0595fa1837cc8e57d60671ae001fb4))
+- Stub out `main` for cli in v2 ([#291](https://github.com/MartinBernstorff/Memium/pull/291),
+  [`f2b4cf0`](https://github.com/MartinBernstorff/Memium/commit/f2b4cf05cc0595fa1837cc8e57d60671ae001fb4))
 
-* feat: stub out main cli v2 ([`24954c7`](https://github.com/MartinBernstorff/Memium/commit/24954c72dc1d7a720b2c6080da40aefa85145bd8))
+- Stub out main cli v2
+  ([`24954c7`](https://github.com/MartinBernstorff/Memium/commit/24954c72dc1d7a720b2c6080da40aefa85145bd8))
 
-* feat: stub out main cli v2 ([`79f2d09`](https://github.com/MartinBernstorff/Memium/commit/79f2d098bce415ad0367618790f756aaf5052340))
+- Stub out main cli v2
+  ([`79f2d09`](https://github.com/MartinBernstorff/Memium/commit/79f2d098bce415ad0367618790f756aaf5052340))
 
-* feat: finalise push on `AnkiConnectPromptDestination` (#289) ([`8edeee7`](https://github.com/MartinBernstorff/Memium/commit/8edeee7e1e400496c83224ac916f1b012f025e60))
+- Finalise push on `AnkiConnectPromptDestination`
+  ([#289](https://github.com/MartinBernstorff/Memium/pull/289),
+  [`8edeee7`](https://github.com/MartinBernstorff/Memium/commit/8edeee7e1e400496c83224ac916f1b012f025e60))
 
-* feat: anki `prompts_to_cards` (#288) ([`d9fd7aa`](https://github.com/MartinBernstorff/Memium/commit/d9fd7aa0549afeaade55cb3c873cfc5d2755f138))
+- Anki `prompts_to_cards` ([#288](https://github.com/MartinBernstorff/Memium/pull/288),
+  [`d9fd7aa`](https://github.com/MartinBernstorff/Memium/commit/d9fd7aa0549afeaade55cb3c873cfc5d2755f138))
 
-* feat: ankiconnect destination `get_all_prompts` (#286) ([`3184006`](https://github.com/MartinBernstorff/Memium/commit/31840062f2f4612beca2db83109fcdad852f2972))
+- Ankiconnect destination `get_all_prompts`
+  ([#286](https://github.com/MartinBernstorff/Memium/pull/286),
+  [`3184006`](https://github.com/MartinBernstorff/Memium/commit/31840062f2f4612beca2db83109fcdad852f2972))
 
-* feat: ankiconnect support delete notes (#285) ([`99b507a`](https://github.com/MartinBernstorff/Memium/commit/99b507a646ec4d6447aa236312b4c6ed8a6d77ec))
+- Ankiconnect support delete notes ([#285](https://github.com/MartinBernstorff/Memium/pull/285),
+  [`99b507a`](https://github.com/MartinBernstorff/Memium/commit/99b507a646ec4d6447aa236312b4c6ed8a6d77ec))
 
-* feat: add ankiconnect destination get all ([`60f52d8`](https://github.com/MartinBernstorff/Memium/commit/60f52d8a3b2320bdce0ecfd28bb21e64ba8cda09))
+- Add ankiconnect destination get all
+  ([`60f52d8`](https://github.com/MartinBernstorff/Memium/commit/60f52d8a3b2320bdce0ecfd28bb21e64ba8cda09))
 
-* feat: stub out ankiconnect destination (#282) ([`7de7bec`](https://github.com/MartinBernstorff/Memium/commit/7de7beccec96a655c271b456e2340006bbd064ff))
+- Stub out ankiconnect destination ([#282](https://github.com/MartinBernstorff/Memium/pull/282),
+  [`7de7bec`](https://github.com/MartinBernstorff/Memium/commit/7de7beccec96a655c271b456e2340006bbd064ff))
 
 ### Refactoring
 
-* refactor: remove top level git ([`eff9e9e`](https://github.com/MartinBernstorff/Memium/commit/eff9e9e7f751e0aa8347bbaa2fdecd525a826f07))
+- Remove top level git
+  ([`eff9e9e`](https://github.com/MartinBernstorff/Memium/commit/eff9e9e7f751e0aa8347bbaa2fdecd525a826f07))
 
-* refactor: remove top level git (#472) ([`3000b65`](https://github.com/MartinBernstorff/Memium/commit/3000b65fbed633f68ec77779acb92f8c02e64923))
+- Remove top level git ([#472](https://github.com/MartinBernstorff/Memium/pull/472),
+  [`3000b65`](https://github.com/MartinBernstorff/Memium/commit/3000b65fbed633f68ec77779acb92f8c02e64923))
 
-* refactor: remove top level git ([`a2913b7`](https://github.com/MartinBernstorff/Memium/commit/a2913b73e35af64d18a365dd0456b7bf62fa92de))
+- Remove top level git
+  ([`a2913b7`](https://github.com/MartinBernstorff/Memium/commit/a2913b73e35af64d18a365dd0456b7bf62fa92de))
 
-* refactor: decrease file nesting (#414)
+- Decrease file nesting ([#414](https://github.com/MartinBernstorff/Memium/pull/414),
+  [`0acd631`](https://github.com/MartinBernstorff/Memium/commit/0acd631b47e69c31ff9f7fda92c62082a60412dd))
 
 refactor: decrease file nesting
 
@@ -2009,2995 +2506,807 @@ fix: imports
 
 style: linting
 
-misc. ([`0acd631`](https://github.com/MartinBernstorff/Memium/commit/0acd631b47e69c31ff9f7fda92c62082a60412dd))
+misc.
 
-* refactor: decrease file nesting ([`15938e1`](https://github.com/MartinBernstorff/Memium/commit/15938e114034a7f7dd4e6a29e28f0d86664c1c0a))
+- Decrease file nesting
+  ([`15938e1`](https://github.com/MartinBernstorff/Memium/commit/15938e114034a7f7dd4e6a29e28f0d86664c1c0a))
 
-* refactor: misc ([`56fc926`](https://github.com/MartinBernstorff/Memium/commit/56fc9260921aaa1f5c1627f90353414bfd62e30a))
+- Misc
+  ([`56fc926`](https://github.com/MartinBernstorff/Memium/commit/56fc9260921aaa1f5c1627f90353414bfd62e30a))
 
-* refactor: split tasks into multiple files ([`c533a9e`](https://github.com/MartinBernstorff/Memium/commit/c533a9e4911a4646b608b3ac4d4df501483d873d))
+- Split tasks into multiple files
+  ([`c533a9e`](https://github.com/MartinBernstorff/Memium/commit/c533a9e4911a4646b608b3ac4d4df501483d873d))
 
-* refactor: remove makefile ([`6c97f96`](https://github.com/MartinBernstorff/Memium/commit/6c97f96e5985957f7d03bd45124541aedeeebaa8))
+- Remove makefile
+  ([`6c97f96`](https://github.com/MartinBernstorff/Memium/commit/6c97f96e5985957f7d03bd45124541aedeeebaa8))
 
-* refactor: remove v1 (#344) ([`f1be2d3`](https://github.com/MartinBernstorff/Memium/commit/f1be2d3d814832c581ed1b3358759ef30f408932))
+- Remove v1 ([#344](https://github.com/MartinBernstorff/Memium/pull/344),
+  [`f1be2d3`](https://github.com/MartinBernstorff/Memium/commit/f1be2d3d814832c581ed1b3358759ef30f408932))
 
-* refactor: move max wait duration to gateway ([`b237169`](https://github.com/MartinBernstorff/Memium/commit/b237169fc65eb76ef6350e6f81f22660c6eb52c4))
+- Move max wait duration to gateway
+  ([`b237169`](https://github.com/MartinBernstorff/Memium/commit/b237169fc65eb76ef6350e6f81f22660c6eb52c4))
 
-* refactor: move cli to top-level ([`e14a694`](https://github.com/MartinBernstorff/Memium/commit/e14a694e23f9d3f0b8c94e3300f41154b78c9ef3))
+- Move cli to top-level
+  ([`e14a694`](https://github.com/MartinBernstorff/Memium/commit/e14a694e23f9d3f0b8c94e3300f41154b78c9ef3))
 
-* refactor: move v2 to top level ([`8afcb5a`](https://github.com/MartinBernstorff/Memium/commit/8afcb5adfc62017c1f6bfc7ad6287b5eceae22ba))
+- Move v2 to top level
+  ([`8afcb5a`](https://github.com/MartinBernstorff/Memium/commit/8afcb5adfc62017c1f6bfc7ad6287b5eceae22ba))
 
-* refactor: remove v1
+- Remove v1
+  ([`3df182b`](https://github.com/MartinBernstorff/Memium/commit/3df182bfee0e03987e4eaf2b07a69fea70d9d416))
 
-Fixes #338 ([`3df182b`](https://github.com/MartinBernstorff/Memium/commit/3df182bfee0e03987e4eaf2b07a69fea70d9d416))
+Fixes #338
 
-* refactor: remove tmp_dirs from pushprompts and promptdiffdeterminer ([`8e80469`](https://github.com/MartinBernstorff/Memium/commit/8e804696b5ddd7832a27c9ebc19caa1b1c313b92))
+- Remove tmp_dirs from pushprompts and promptdiffdeterminer
+  ([`8e80469`](https://github.com/MartinBernstorff/Memium/commit/8e804696b5ddd7832a27c9ebc19caa1b1c313b92))
 
-* refactor: remove tmp_dirs from PushPrompts and `PromptDiffDeterminer`
+- Remove tmp_dirs from PushPrompts and `PromptDiffDeterminer`
+  ([`9fc4e3e`](https://github.com/MartinBernstorff/Memium/commit/9fc4e3efa9e89c26461795b535309ecfad85f3ac))
 
-Fixes #323 ([`9fc4e3e`](https://github.com/MartinBernstorff/Memium/commit/9fc4e3efa9e89c26461795b535309ecfad85f3ac))
+Fixes #323
 
-* refactor: renames ([`003b523`](https://github.com/MartinBernstorff/Memium/commit/003b5236ef126cb3732cfdf72908a54d24f06547))
+- Renames
+  ([`003b523`](https://github.com/MartinBernstorff/Memium/commit/003b5236ef126cb3732cfdf72908a54d24f06547))
 
-* refactor: get rid of tmp_read_dir and tmp_write_dir
+- Get rid of tmp_read_dir and tmp_write_dir
+  ([`93116a4`](https://github.com/MartinBernstorff/Memium/commit/93116a4b5cb6384b6e31601ee1c2258f02195575))
 
-Fixes #308 ([`93116a4`](https://github.com/MartinBernstorff/Memium/commit/93116a4b5cb6384b6e31601ee1c2258f02195575))
+Fixes #308
 
-* refactor: simplify prompts (#312) ([`be6a5db`](https://github.com/MartinBernstorff/Memium/commit/be6a5dbeb787fd9c94ad8c87ec52352a25cdc7d2))
+- Simplify prompts ([#312](https://github.com/MartinBernstorff/Memium/pull/312),
+  [`be6a5db`](https://github.com/MartinBernstorff/Memium/commit/be6a5dbeb787fd9c94ad8c87ec52352a25cdc7d2))
 
-* refactor: simplify prompts ([`1b4c802`](https://github.com/MartinBernstorff/Memium/commit/1b4c802d8eeaf094ad735ed9a9e663225303c1a9))
+- Simplify prompts
+  ([`1b4c802`](https://github.com/MartinBernstorff/Memium/commit/1b4c802d8eeaf094ad735ed9a9e663225303c1a9))
 
-* refactor: `int_hash_str` location (#303) ([`02eea89`](https://github.com/MartinBernstorff/Memium/commit/02eea8903fba90803a7a7cf321357c8b68c56193))
+- `int_hash_str` location ([#303](https://github.com/MartinBernstorff/Memium/pull/303),
+  [`02eea89`](https://github.com/MartinBernstorff/Memium/commit/02eea8903fba90803a7a7cf321357c8b68c56193))
 
-* refactor: minor cleanup (#290) ([`2564780`](https://github.com/MartinBernstorff/Memium/commit/2564780d30f2e2ae6dafe1417730948a15c05195))
+- Minor cleanup ([#290](https://github.com/MartinBernstorff/Memium/pull/290),
+  [`2564780`](https://github.com/MartinBernstorff/Memium/commit/2564780d30f2e2ae6dafe1417730948a15c05195))
 
-* refactor: abstract outline ([`6fb9675`](https://github.com/MartinBernstorff/Memium/commit/6fb9675533fee3882f2af15694c7cf678636c1f6))
+- Abstract outline
+  ([`6fb9675`](https://github.com/MartinBernstorff/Memium/commit/6fb9675533fee3882f2af15694c7cf678636c1f6))
 
-* refactor: sync decks into functional core imperative shell (#270) ([`80f956d`](https://github.com/MartinBernstorff/Memium/commit/80f956d3f45e5521219190f4a896c0938dddb03c))
+- Sync decks into functional core imperative shell
+  ([#270](https://github.com/MartinBernstorff/Memium/pull/270),
+  [`80f956d`](https://github.com/MartinBernstorff/Memium/commit/80f956d3f45e5521219190f4a896c0938dddb03c))
 
-* refactor: sync decks into functional core, imperative shell
+- Sync decks into functional core, imperative shell
+  ([`32a0e3a`](https://github.com/MartinBernstorff/Memium/commit/32a0e3a54e03c80d1aae9587a6d1f643b8fab52d))
 
-Fixes #240 ([`32a0e3a`](https://github.com/MartinBernstorff/Memium/commit/32a0e3a54e03c80d1aae9587a6d1f643b8fab52d))
+Fixes #240
 
-* refactor: sync decks into functional core, imperative shell
+- Sync decks into functional core, imperative shell
+  ([`9e709ff`](https://github.com/MartinBernstorff/Memium/commit/9e709ff93bface18fa2874c440c3dd9614c55ce6))
 
-Fixes #240 ([`9e709ff`](https://github.com/MartinBernstorff/Memium/commit/9e709ff93bface18fa2874c440c3dd9614c55ce6))
+Fixes #240
 
-* refactor: sync decks into functional core, imperative shell
+- Sync decks into functional core, imperative shell
+  ([`562d46f`](https://github.com/MartinBernstorff/Memium/commit/562d46f93d96c3cd0f88ca1d3d17d030317338a0))
 
-Fixes #240 ([`562d46f`](https://github.com/MartinBernstorff/Memium/commit/562d46f93d96c3cd0f88ca1d3d17d030317338a0))
+Fixes #240
 
-* refactor: simplify tests and remove defaults from extractors
+- Simplify tests and remove defaults from extractors
+  ([`e259578`](https://github.com/MartinBernstorff/Memium/commit/e2595786ab7b752b1480b5b79307b36eea118817))
 
-Fixes #245 ([`e259578`](https://github.com/MartinBernstorff/Memium/commit/e2595786ab7b752b1480b5b79307b36eea118817))
+Fixes #245
 
-* refactor: minor cleanup of markdown ingester (#246) ([`c542d8e`](https://github.com/MartinBernstorff/Memium/commit/c542d8e3afeb78fd83e012856ca1236f85a3b092))
+- Minor cleanup of markdown ingester ([#246](https://github.com/MartinBernstorff/Memium/pull/246),
+  [`c542d8e`](https://github.com/MartinBernstorff/Memium/commit/c542d8e3afeb78fd83e012856ca1236f85a3b092))
 
-* refactor: move things out of globals (#224)
+- Move things out of globals ([#224](https://github.com/MartinBernstorff/Memium/pull/224),
+  [`05a83b6`](https://github.com/MartinBernstorff/Memium/commit/05a83b6cf07f00e35751c8a796e60af067845984))
 
-Auto-created ([`05a83b6`](https://github.com/MartinBernstorff/Memium/commit/05a83b6cf07f00e35751c8a796e60af067845984))
+Auto-created
 
-* refactor: decrease makefile verbosity (#212)
+- Decrease makefile verbosity ([#212](https://github.com/MartinBernstorff/Memium/pull/212),
+  [`464453b`](https://github.com/MartinBernstorff/Memium/commit/464453b72b8f2a414fd2c75f928dd301b77fd8e5))
 
-Auto-created ([`464453b`](https://github.com/MartinBernstorff/Memium/commit/464453b72b8f2a414fd2c75f928dd301b77fd8e5))
+Auto-created
 
-* refactor: fix import errors after folder restructure (#202)
+- Fix import errors after folder restructure
+  ([#202](https://github.com/MartinBernstorff/Memium/pull/202),
+  [`5680ad9`](https://github.com/MartinBernstorff/Memium/commit/5680ad9663075465f5454b1f34311b349ade30e6))
 
 Auto-created
 
 ---------
 
-Co-authored-by: github-actions <github-actions@github.com> ([`5680ad9`](https://github.com/MartinBernstorff/Memium/commit/5680ad9663075465f5454b1f34311b349ade30e6))
+Co-authored-by: github-actions <github-actions@github.com>
 
 ### Testing
 
-* test: tags ([`f493ed4`](https://github.com/MartinBernstorff/Memium/commit/f493ed492c55766d56c85dcbb633b0de3988032e))
-
-### Unknown
-
-* misc. ([`75ac3e7`](https://github.com/MartinBernstorff/Memium/commit/75ac3e70036022d7115a5c4f4b238ee39ba19e49))
-
-* major: init version (#478) ([`9074caf`](https://github.com/MartinBernstorff/Memium/commit/9074cafa8aff552cb0c1a3998aac4722c0983553))
-
-* major: init version ([`2d93eac`](https://github.com/MartinBernstorff/Memium/commit/2d93eac9c5f1a3f477b5a5be57f039676f3a07ba))
-
-* misc: allow writing contents ([`a0d944e`](https://github.com/MartinBernstorff/Memium/commit/a0d944e15f84bfd8102b662fecbf46de0cd35020))
-
-* dev: add branch protection as default ([`d6310b9`](https://github.com/MartinBernstorff/Memium/commit/d6310b975b27820e9c68a33d941b3c6f8dc6fbae))
-
-* misc. ([`20180db`](https://github.com/MartinBernstorff/Memium/commit/20180db9a0689269d1a363ce4d4e27dc5fbc409f))
-
-* misc. ([`15d0df0`](https://github.com/MartinBernstorff/Memium/commit/15d0df0bb7d8251a42df2d5cf0d08772cbb5ece1))
-
-* misc. ([`8585450`](https://github.com/MartinBernstorff/Memium/commit/85854509559f2e5c0b4fdea8f2f73f9ff418b5e1))
-
-* misc. ([`0910350`](https://github.com/MartinBernstorff/Memium/commit/09103506cd4254088128989a6c58f59f6bb549fd))
-
-* cli: fix smoketest docker ([`c5bab68`](https://github.com/MartinBernstorff/Memium/commit/c5bab686ed083bcf39d9afcb5d24542f68d14ec2))
-
-* misc. ([`0151c38`](https://github.com/MartinBernstorff/Memium/commit/0151c38be362608fa3baaa0522dcbdbb06134fe2))
-
-* misc. ([`1814357`](https://github.com/MartinBernstorff/Memium/commit/1814357e4d3ce925e260cc6bbb9122707ace58de))
-
-* tests: extract smoketest command from readme (#468)
-
-tests: extract smoketest command from readme
-
-Fixes #463
-
-misc. ([`0cd327f`](https://github.com/MartinBernstorff/Memium/commit/0cd327fa35d056f66126f4a13aa917de36b1ae78))
-
-* misc. ([`edf75b6`](https://github.com/MartinBernstorff/Memium/commit/edf75b6f531b10c57f847da40eb5204bccae39e8))
-
-* misc. ([`e0f3ba2`](https://github.com/MartinBernstorff/Memium/commit/e0f3ba2846db2433b87bac5ef01e55b159f62a26))
-
-* tests: extract smoketest command from readme
-
-Fixes #463 ([`1cef659`](https://github.com/MartinBernstorff/Memium/commit/1cef659d0585906eeed7f457f6a3d0c21ef8b1c0))
-
-* tests: remove unused test ([`6ed9ca0`](https://github.com/MartinBernstorff/Memium/commit/6ed9ca093cf6a2641ae694039e7b5e25ccfaf871))
-
-* misc: setup python ([`02d97d8`](https://github.com/MartinBernstorff/Memium/commit/02d97d83ec1b10c4b0af4fc1a8efb4839636680b))
-
-* concurrency ([`7716969`](https://github.com/MartinBernstorff/Memium/commit/77169692f7fcc1ed7a34571f51ba1732bc4bdba2))
-
-* misc. ([`d9dfd1a`](https://github.com/MartinBernstorff/Memium/commit/d9dfd1abf032688df7b3bf0e9f201598e2fe1bae))
-
-* misc. ([`a87d051`](https://github.com/MartinBernstorff/Memium/commit/a87d0513d020efee80b2ff3765dc216fc1bdb624))
-
-* misc. ([`3c208c0`](https://github.com/MartinBernstorff/Memium/commit/3c208c0004d66a881051355ea7b725f9b373f905))
-
-* tests: extract smoketest command from readme
-
-Fixes #463 ([`d9bba41`](https://github.com/MartinBernstorff/Memium/commit/d9bba4189697b05960070d9fbde8384e26c20e3e))
-
-* misc. ([`6a25a73`](https://github.com/MartinBernstorff/Memium/commit/6a25a7358067e64d7291150d82ede01446fdee2b))
-
-* dev: do not restack on sync ([`5081b0f`](https://github.com/MartinBernstorff/Memium/commit/5081b0ff3ca1825210524db4a242b90a819b89fb))
-
-* misc. ([`5a9606f`](https://github.com/MartinBernstorff/Memium/commit/5a9606f1e5f01011b1bd20fff2c07c6a817f751b))
-
-* misc. ([`342fddf`](https://github.com/MartinBernstorff/Memium/commit/342fddfdca7c91cb8e94930af3588435ba8d69c7))
-
-* misc. ([`50c1ada`](https://github.com/MartinBernstorff/Memium/commit/50c1ada3512c6c825e497719d1fc93f69dab4b74))
-
-* major: release to pypi ([`6dd2fc2`](https://github.com/MartinBernstorff/Memium/commit/6dd2fc269c3213b70ffd8d964d239322a2e82d2d))
-
-* dev: do not restack on sync ([`d0eeb6a`](https://github.com/MartinBernstorff/Memium/commit/d0eeb6ade0ee3d73798d0a773a7317c78c8746ed))
-
-* misc. ([`afca5c7`](https://github.com/MartinBernstorff/Memium/commit/afca5c7317ab3bbca1b13c58ff37d57fca56b2bc))
-
-* misc. ([`fd3f95e`](https://github.com/MartinBernstorff/Memium/commit/fd3f95e2ee632a54277b215b6db31413b7a87797))
-
-* misc. ([`2c87c5a`](https://github.com/MartinBernstorff/Memium/commit/2c87c5af27eac469a9f5afbcc55d916f214ffa30))
-
-* misc. ([`f668767`](https://github.com/MartinBernstorff/Memium/commit/f668767d3ae2d23d35470c04388dee84627e13e3))
-
-* major: release to memium on pypi (#461)
-
-Fixes #455 ([`93e59aa`](https://github.com/MartinBernstorff/Memium/commit/93e59aa6fc350480e63c8dadc1d55e46fdfeddcf))
-
-* dev: user friendly error if no issues are assigned to you (#460)
-
-dev: user friendly error if no issues are assigned to you
-
-Fixes #459
-
-dev: user friendly error if no issues are assigned to you
-
-Fixes #459
-
-misc. ([`6f22148`](https://github.com/MartinBernstorff/Memium/commit/6f22148195835ecdf65e8fb90fe358428e72b1b5))
-
-* misc. ([`e6c46da`](https://github.com/MartinBernstorff/Memium/commit/e6c46dae7d8f13d10ee4b56f4eba6f61846074a5))
-
-* misc. ([`514caf2`](https://github.com/MartinBernstorff/Memium/commit/514caf2acab7f8063e082a79f1f6e6ac85c4a048))
-
-* dev: user friendly error if no issues are assigned to you
-
-Fixes #459 ([`9494b4f`](https://github.com/MartinBernstorff/Memium/commit/9494b4ff5664543b71b3191397ac45c99506c633))
-
-* dev: user friendly error if no issues are assigned to you
-
-Fixes #459 ([`be9a233`](https://github.com/MartinBernstorff/Memium/commit/be9a2339377fa3d944f34bbbcde009a23964c26a))
-
-* dev: decrease graphite force pushes (#454)
-
-dev: decrease force pushes
-
-Fixes #453
-
-tasks: only upstack ancestors
-
-misc. ([`7c8abeb`](https://github.com/MartinBernstorff/Memium/commit/7c8abeb94556b5e0782a3815c9f4d87b909bb393))
-
-* misc. ([`e280e17`](https://github.com/MartinBernstorff/Memium/commit/e280e176490f68c308f7035117b3f49c8e38bbd3))
-
-* tasks: only upstack ancestors ([`8c92a69`](https://github.com/MartinBernstorff/Memium/commit/8c92a695ccf8e7c9db7dc5e2802866c644a8f8ea))
-
-* dev: ignore issues with linked PRs (#452)
-
-dev: ignore issues with linked PRs
-
-Fixes #451
-
-implement ([`1eafbba`](https://github.com/MartinBernstorff/Memium/commit/1eafbba3778f08f064dedc6836f493a0b78c57df))
-
-* Merge branch 'main' into 451-dev-ignore-issues-with-linked-PRs ([`702c78b`](https://github.com/MartinBernstorff/Memium/commit/702c78b0a2d62171f574cc1ec9a94e8ecabdca56))
-
-* dev: do not add period at the end of PR title (#450)
-
-Fixes #449. ([`720fa01`](https://github.com/MartinBernstorff/Memium/commit/720fa012ce457d56902592629ce67c67fac98e16))
-
-* Merge branch 'main' into 449-dev-do-not-add-period-at-the-end-of-PR-title ([`0ffd281`](https://github.com/MartinBernstorff/Memium/commit/0ffd281b8d074ca8a15f5ce20099aab159749bce))
-
-* implement ([`403d2f8`](https://github.com/MartinBernstorff/Memium/commit/403d2f88e87f9d9f4dd791ceca4a3ac0798524d5))
-
-* dev: ignore issues with linked PRs
-
-Fixes #451 ([`22d4fb7`](https://github.com/MartinBernstorff/Memium/commit/22d4fb7c0257f5f505f547009b01634d97f6da4a))
-
-* misc. ([`d32576a`](https://github.com/MartinBernstorff/Memium/commit/d32576a25fea78a77bafda8affc677f090570c95))
-
-* misc. ([`a98b1cf`](https://github.com/MartinBernstorff/Memium/commit/a98b1cf3aa605f21e110122f7fce142107485a66))
-
-* implement ([`57d6a7f`](https://github.com/MartinBernstorff/Memium/commit/57d6a7fe942d6a2ff4f86bb068016ac2a51bd974))
-
-* Merge branch 'main' into 446-ci-update-ref-groups ([`0b23925`](https://github.com/MartinBernstorff/Memium/commit/0b23925bbd81bdd3d915644cd693c56300cbe988))
-
-* tests: use pip installed cli in smoketest. (#445)
-
-tests: use pip installed cli in smoketest.
-
-Fixes #444
-
-implement ([`a2c5d4b`](https://github.com/MartinBernstorff/Memium/commit/a2c5d4bce2781b286471830d66eff0297ed0a568))
-
-* misc. ([`b0e144f`](https://github.com/MartinBernstorff/Memium/commit/b0e144f3945aca1f5fbbbe719f97c232a4cf005c))
-
-* implement ([`f7b0d7c`](https://github.com/MartinBernstorff/Memium/commit/f7b0d7ce79ab8e6a94182cb9ceec63fde81562d6))
-
-* implement ([`b1ba20a`](https://github.com/MartinBernstorff/Memium/commit/b1ba20a53cf41bdb9541786132e0d373e00e2bcb))
-
-* tests: use pip installed cli in smoketest.
-
-Fixes #444 ([`f8a4b13`](https://github.com/MartinBernstorff/Memium/commit/f8a4b13e90fe3ec74f237353499776b289d7f3ae))
-
-* dev: add graphite extension as recommended in container. (#442)
-
-dev: add graphite extension as recommended in container.
-
-Fixes #435
-
-misc. ([`9e2e71d`](https://github.com/MartinBernstorff/Memium/commit/9e2e71d31142d193733080681302ec89ead0a0d1))
-
-* misc. ([`24c4320`](https://github.com/MartinBernstorff/Memium/commit/24c4320dc1ee22d20d07c7ab806022bca31feda9))
-
-* dev: add graphite extension as recommended in container.
-
-Fixes #435 ([`a829183`](https://github.com/MartinBernstorff/Memium/commit/a8291832fd8a2370c9de3d0da3d1a2010e7391ca))
-
-* dev: get last modified issue in bottom of list. (#440)
-
-dev: get last modified issue in bottom of list.
-
-Fixes #438
-
-misc. ([`1ffeae3`](https://github.com/MartinBernstorff/Memium/commit/1ffeae36ac705b562b38d000f73e11fdf48e62de))
-
-* misc. ([`1a1dfca`](https://github.com/MartinBernstorff/Memium/commit/1a1dfca1fbe9e7127aba61d4105d21732d231856))
-
-* dev: get last modified issue in bottom of list.
-
-Fixes #438 ([`7de9275`](https://github.com/MartinBernstorff/Memium/commit/7de9275e66b1a9650351813deb09df7faa375f81))
-
-* dev: disable graphite pager (#432)
-
-Fixes #431. ([`12a9e9f`](https://github.com/MartinBernstorff/Memium/commit/12a9e9f2aab80ec172080461fb22e6c270588c98))
-
-* dev: update pager ([`10c29f1`](https://github.com/MartinBernstorff/Memium/commit/10c29f1369097f2d6354d6991a02040bbf82e797))
-
-* misc. ([`4197300`](https://github.com/MartinBernstorff/Memium/commit/41973009f47756b3fa98e9daf473cc58b81f6c57))
-
-* misc. ([`58161ad`](https://github.com/MartinBernstorff/Memium/commit/58161adb3b31117f83f5c068e0cc86aa1316b208))
-
-* {selected_issue.title}.
-
-Fixes #{selected_issue.number} ([`aac479f`](https://github.com/MartinBernstorff/Memium/commit/aac479fee33687c5d6d4105687504ef03f7d00b6))
-
-* {selected_issue.title}.
-
-Fixes #{selected_issue.number} ([`c20b1c6`](https://github.com/MartinBernstorff/Memium/commit/c20b1c6d3accb1854ba1af6acfd2e51bc4c4ff52))
-
-* dev: prettier graphite commit messages (#430)
-
-Fixes #429 ([`cc93809`](https://github.com/MartinBernstorff/Memium/commit/cc93809fe285101a22f553e20fecb6eaaa683f9f))
-
-* rerun ci ([`96b256b`](https://github.com/MartinBernstorff/Memium/commit/96b256b5d735de6a339b08226896cc92e81b2872))
-
-* dev: automatically publish prs with gt submit ([`1266c38`](https://github.com/MartinBernstorff/Memium/commit/1266c38fd2b47452c5a05cf1ea4b7d4e2a5d0832))
-
-* dev: prettier graphite commit messages
-
-Fixes #429 ([`fc56d67`](https://github.com/MartinBernstorff/Memium/commit/fc56d67ed1eb5ba0c4daa8f2f120a3431b11fb4c))
-
-* misc. ([`d161092`](https://github.com/MartinBernstorff/Memium/commit/d161092fa0255c55dae9cdc11f82fa33bec34ec2))
-
-* misc. ([`85a474d`](https://github.com/MartinBernstorff/Memium/commit/85a474dc12623c693aa4bd1c7f499ad3ed9ed4df))
-
-* implement ([`f2bc39b`](https://github.com/MartinBernstorff/Memium/commit/f2bc39b66be8104d83f5735206c7c64eac10392e))
-
-* dev: merged prs do not close issues. Fixes #424. (#425)
-
-dev: merged prs do not close issues. Fixes #424.
-
-misc. ([`98eb56f`](https://github.com/MartinBernstorff/Memium/commit/98eb56fb61617d73eca5e3ef83086f863f89c8c6))
-
-* misc. ([`c115b59`](https://github.com/MartinBernstorff/Memium/commit/c115b59af918423c8ce2e4771c89cc2a5a395096))
-
-* dev: merged prs do not close issues. Fixes #424. ([`3a17a13`](https://github.com/MartinBernstorff/Memium/commit/3a17a13edb8a3905360446136e1f33243947cb94))
-
-* misc. ([`48e2131`](https://github.com/MartinBernstorff/Memium/commit/48e2131715ab12c709b46a6e9b9e08457061ed2e))
-
-* misc. ([`c06021d`](https://github.com/MartinBernstorff/Memium/commit/c06021d4c0467dd39124b2ec24963dde763ca50a))
-
-* ops: fail with user-friendly error if AnkiConnect is not live (#418)
-
-ops: fail with user-friendly error if AnkiConnect is not live
-
-feat: fail with user friendly error if ankiconnect is not live
-
-misc.
-
-Fixes #393 and #412. ([`db4ec91`](https://github.com/MartinBernstorff/Memium/commit/db4ec914562160c34820d97503a807e9d2bc9832))
-
-* misc. ([`c5cb128`](https://github.com/MartinBernstorff/Memium/commit/c5cb128dd2e8083f15974633444626d38483091c))
-
-* ops: fail with user-friendly error if AnkiConnect is not live ([`d603e9e`](https://github.com/MartinBernstorff/Memium/commit/d603e9eed847c987f08a3ff1a8bc1c8df7f3afab))
-
-* dev: fix issue index getter (#417)
-
-dev: fix issue index getter
-
-Fixes #415
-
-fix ([`6669456`](https://github.com/MartinBernstorff/Memium/commit/6669456d3b1ee00d5de52ecfd587078fdd7bf8e6))
-
-* misc. ([`e76b4ab`](https://github.com/MartinBernstorff/Memium/commit/e76b4ab031c7045b87bc01aaa71c91ca6baec8d7))
-
-* fix ([`0306f4f`](https://github.com/MartinBernstorff/Memium/commit/0306f4f52a59d2234d487c059bc810715963bb8c))
-
-* Fixes #415 ([`f31952a`](https://github.com/MartinBernstorff/Memium/commit/f31952a9448d200935d7ff7b0659ce9c77a6bd55))
-
-* dev: fix issue index getter ([`0a1ec30`](https://github.com/MartinBernstorff/Memium/commit/0a1ec30c775eaf42a08ce05ec6c90b16d5530b52))
-
-* misc. ([`c7fc6f9`](https://github.com/MartinBernstorff/Memium/commit/c7fc6f965b75d57b75b33813465f3fc5a46c42e1))
-
-* phase 1 ([`2da0636`](https://github.com/MartinBernstorff/Memium/commit/2da0636e79ad8229ce6e19b192dc7e6c80f74846))
-
-* Fixes #350 ([`4c9cf34`](https://github.com/MartinBernstorff/Memium/commit/4c9cf34fc05baecb4368d86f640499cb695285f6))
-
-* tests: make tests more readable ([`1281993`](https://github.com/MartinBernstorff/Memium/commit/1281993e518647b23c4aec172bf0708254d81813))
-
-* misc. ([`92e9867`](https://github.com/MartinBernstorff/Memium/commit/92e9867b5221ac1b95d8ab2bf520d9bd97fd8c23))
-
-* tests: ensure ankiconnect gets correct subdecks ([`dd043fd`](https://github.com/MartinBernstorff/Memium/commit/dd043fd67356920ee06f3a53a37f3f0663978460))
-
-* Fixes #396 ([`7a3334e`](https://github.com/MartinBernstorff/Memium/commit/7a3334e530724ccc99a89346ad232883bd99d94b))
-
-* misc. ([`bf36051`](https://github.com/MartinBernstorff/Memium/commit/bf36051938108ab4e8810e143189eff383739b07))
-
-* misc: formatting ([`efc599a`](https://github.com/MartinBernstorff/Memium/commit/efc599a4e67d8bb8d0ab06506f1b79940eea8881))
-
-* dev: add run cli launch option ([`4d16803`](https://github.com/MartinBernstorff/Memium/commit/4d168034091f1b38e797a43d8a0cd949e1c1e4be))
-
-* dev: delete on gt sync (#381) ([`e80d905`](https://github.com/MartinBernstorff/Memium/commit/e80d905c818f9d27aa9f09d12c4bf0a9ca2d5e8b))
-
-* dev: delete on gt sync ([`ad0e3b0`](https://github.com/MartinBernstorff/Memium/commit/ad0e3b0611e35f117fc9bcc98f539f566910de62))
-
-* dev: split out tasks.py (#380)
-
-dev: split out tasks.py
-
-Fixes #378
-
-refactor: split tasks into multiple files
-
-refactor: misc
-
-misc.
-
-misc. ([`cfa8912`](https://github.com/MartinBernstorff/Memium/commit/cfa891276c1584d0e186dc46eb9238abe37053d7))
-
-* dev: less strict about private imports ([`1b4ee13`](https://github.com/MartinBernstorff/Memium/commit/1b4ee1394d40e89eb24e1a36456115ae680cd689))
-
-* misc. ([`c925bf2`](https://github.com/MartinBernstorff/Memium/commit/c925bf2bcd2ec1d0cc15867a839fd07f0393ffb9))
-
-* misc. ([`58e130a`](https://github.com/MartinBernstorff/Memium/commit/58e130a823aa77855d61ea2c0a70313230ae2d08))
-
-* misc. ([`1aee1a7`](https://github.com/MartinBernstorff/Memium/commit/1aee1a776003c8f8a043bdfdcadd477be2e25bbf))
-
-* misc. ([`5f129e9`](https://github.com/MartinBernstorff/Memium/commit/5f129e99479a101dab54fccfdce1f0b02a57e40d))
-
-* misc. ([`ddccf25`](https://github.com/MartinBernstorff/Memium/commit/ddccf2557b11378662dd6e9a2c999371e35fc4d7))
-
-* misc. ([`0446e0f`](https://github.com/MartinBernstorff/Memium/commit/0446e0fcfbef8183dfa169c1a53aa2c611edddc6))
-
-* misc. ([`4c29d74`](https://github.com/MartinBernstorff/Memium/commit/4c29d748dd7901ac9f6be4afedd7d7926cfeeae3))
-
-* misc. ([`effded6`](https://github.com/MartinBernstorff/Memium/commit/effded6c703a254d897fc7c2a5eb1cc955bf2e3a))
-
-* misc. ([`83878ae`](https://github.com/MartinBernstorff/Memium/commit/83878ae1c89bdf9a38a725f9e4a6e84bc30e59e4))
-
-* dev: split out tasks.py ([`1f18f67`](https://github.com/MartinBernstorff/Memium/commit/1f18f675c6661d1cd7457ce29754591daacdc4fd))
-
-* dev: separate `inv new` and `inv next` (#376)
-
-dev: separate `inv new` and `inv next`
-
-Fixes #375
-
-misc. ([`fdbde16`](https://github.com/MartinBernstorff/Memium/commit/fdbde16e88df64a4c2954ec873d979ee169b7098))
-
-* misc. ([`14dd738`](https://github.com/MartinBernstorff/Memium/commit/14dd738bc877c2f8abfda1c68c2a9773b7111fdc))
-
-* Fixes #375 ([`2ec0283`](https://github.com/MartinBernstorff/Memium/commit/2ec0283151c071f1d3825627d269369157ac04cf))
-
-* dev: separate `inv new` and `inv next` ([`ba38ca6`](https://github.com/MartinBernstorff/Memium/commit/ba38ca6187694f8ced3624e50316a646d537baaa))
-
-* dev: automate pr naming (#365) ([`b8ab9fd`](https://github.com/MartinBernstorff/Memium/commit/b8ab9fd85c0ca04bdd026c8a4645757e2a6f041c))
-
-* misc. ([`7c2efaa`](https://github.com/MartinBernstorff/Memium/commit/7c2efaa6c2a15345871d5b00293c5b82c33b4093))
-
-* dev: automate pr naming ([`c5db89e`](https://github.com/MartinBernstorff/Memium/commit/c5db89e5cb561fdabe77583a5fb87e0ef0fbdb17))
-
-* Add renovate.json ([`09b7db2`](https://github.com/MartinBernstorff/Memium/commit/09b7db2f5f0ac9d7f1f93b4cf484f60495c04056))
-
-* Fixes #366 (#367)
-
-Fixes #366
-
-dev: add gt log ([`a35a262`](https://github.com/MartinBernstorff/Memium/commit/a35a26271f4fa93a407587e92046e22e11eaca11))
-
-* dev: add gt log ([`8b7552a`](https://github.com/MartinBernstorff/Memium/commit/8b7552aefc5134f110e47160dafb9b1019708df2))
-
-* Fixes #366 ([`dd4fc93`](https://github.com/MartinBernstorff/Memium/commit/dd4fc9309ecf49ee8e9983e092c35675a7a7855b))
-
-* dev:  remove makefile (#363)
-
-Fixes #362
-
-ci: use invoke
-
-refactor: remove makefile
-
-misc.
-
-misc. ([`93b8082`](https://github.com/MartinBernstorff/Memium/commit/93b8082ce2610b795636ea5f1589dc65a0867a78))
-
-* deps: add invoke ([`8bc416b`](https://github.com/MartinBernstorff/Memium/commit/8bc416b6a3f8fb72e13c5b529b4d2c83a8c85db1))
-
-* misc. ([`53e00c3`](https://github.com/MartinBernstorff/Memium/commit/53e00c3e9d27afb5c47b03829cc687790c7b08fc))
-
-* misc. ([`3795c53`](https://github.com/MartinBernstorff/Memium/commit/3795c53e25a9e067a40190cdb9813499a726adef))
-
-* Fixes #362 ([`1c55c67`](https://github.com/MartinBernstorff/Memium/commit/1c55c67740a3c18ebec25380979ea2e8eee611bd))
-
-* dev: add fix commit (#361)
-
-dev: add fix commit
-
-Fixes #359
-
-misc.
-
-misc.
-
-misc.
-
-misc. ([`c1f9b83`](https://github.com/MartinBernstorff/Memium/commit/c1f9b838526c39c68f0275bf14849a82da7df34d))
-
-* misc. ([`7b0dabf`](https://github.com/MartinBernstorff/Memium/commit/7b0dabf1b4b15624903b7dc999c7e75bd8c2e611))
-
-* misc. ([`41259ad`](https://github.com/MartinBernstorff/Memium/commit/41259ad51495219aaaaa29749a3c84aa3d993425))
-
-* misc. ([`d0d66d7`](https://github.com/MartinBernstorff/Memium/commit/d0d66d7f21aa6ef38232ba95c2031fc01bd23c27))
-
-* misc. ([`40ba1ae`](https://github.com/MartinBernstorff/Memium/commit/40ba1ae77891484d12ac4b828f72123a7c9ca595))
-
-* misc. ([`29d9020`](https://github.com/MartinBernstorff/Memium/commit/29d9020a12e9485c3d1094b851d7b8e1e840adf9))
-
-* Fixes #359 ([`40e91c0`](https://github.com/MartinBernstorff/Memium/commit/40e91c02942a27abc776bb9105fe198a30f5f7dc))
-
-* dev: add fix commit ([`10c9389`](https://github.com/MartinBernstorff/Memium/commit/10c9389b395cbb5f767c2d1f6f987030c24d2621))
-
-* dev: try graphite (#360)
-
-- dev-try-graphite
-- dev: convert entrypoints to invoke
-- dev: setup tasks for refactor
-- dev: ready
-- ci: update
-- misc.
-- misc. ([`d827149`](https://github.com/MartinBernstorff/Memium/commit/d827149b253518cbcc11c87f4c8497a0ca5bc074))
-
-* misc. ([`64d5f00`](https://github.com/MartinBernstorff/Memium/commit/64d5f001c01335f3be63a7565e241940ad3eda29))
-
-* misc. ([`e9c9788`](https://github.com/MartinBernstorff/Memium/commit/e9c9788b5ccf444b183d360d4bd5c2d0f61d6f4f))
-
-* dev: try graphite (#358)
-
-dev-try-graphite
-
-dev: convert entrypoints to invoke
-
-dev: setup tasks for refactor
-
-dev: ready
-
-ci: update ([`0194795`](https://github.com/MartinBernstorff/Memium/commit/0194795233b29cd2507267232b219310c2174393))
-
-* dev: ready ([`9913fa6`](https://github.com/MartinBernstorff/Memium/commit/9913fa636e9c19b26d7e572f5ab176468e95a287))
-
-* dev: setup tasks for refactor ([`4bcc26e`](https://github.com/MartinBernstorff/Memium/commit/4bcc26ea6b113bdd47ce6ef44c1b78d69e3ba916))
-
-* dev: convert entrypoints to invoke ([`1888da6`](https://github.com/MartinBernstorff/Memium/commit/1888da60610e59fb7573cb6ffcf7279e541338b1))
-
-* dev-try-graphite ([`d6c4d65`](https://github.com/MartinBernstorff/Memium/commit/d6c4d65facb2cf7f935fed8999bec7ec1ed33ef3))
-
-*  tests remove `UsersLeisure` from all tests (#349) ([`e27af07`](https://github.com/MartinBernstorff/Memium/commit/e27af0746226120e2f01eac8492dd1613d077fd7))
-
-* tests: remove `/Users/Leisure/` from all tests
-
-Fixes #345 ([`df68018`](https://github.com/MartinBernstorff/Memium/commit/df6801894a2081dc41315ac73a07059dc7c2a3e2))
-
-* tests: remove `/Users/Leisure/` from all tests
-
-Fixes #345 ([`242fb7c`](https://github.com/MartinBernstorff/Memium/commit/242fb7cf3e68d893d625d631206e997599be09c8))
-
-*  fix: QA uid should include answer (#348) ([`b0ee1f2`](https://github.com/MartinBernstorff/Memium/commit/b0ee1f2117327c6c90f8e117566f4d521d5760d1))
-
-* refactor ([`9a92d89`](https://github.com/MartinBernstorff/Memium/commit/9a92d89acaf26124c736e9ad0b478d6c1045b609))
-
-* tests: max_wait_seconds = 0 ([`24adfd6`](https://github.com/MartinBernstorff/Memium/commit/24adfd6263f899d52c26643c937710fa6b0eec14))
-
-*  feat use v when running docker command (#340) ([`2ad17d7`](https://github.com/MartinBernstorff/Memium/commit/2ad17d7a3b94601e6a8d1b942d500d5df3ed28a6))
-
-* Merge remote-tracking branch 'origin/main' into 331-feat-use-v2-when-running-docker-command ([`07aa2bf`](https://github.com/MartinBernstorff/Memium/commit/07aa2bf19363c7cbd1a0088fe90741b20ac315bb))
-
-*  feat: polish cli (#339) ([`2c07f17`](https://github.com/MartinBernstorff/Memium/commit/2c07f17f7ca8d9f9889ea9b5813fcb4429721a87))
-
-* Merge remote-tracking branch 'origin/main' into 338-feat-polish-cli ([`c289d65`](https://github.com/MartinBernstorff/Memium/commit/c289d65d0f0f6989bd0984a87581ddc864661d6c))
-
-*  feat add dry run (#337) ([`2702a63`](https://github.com/MartinBernstorff/Memium/commit/2702a6319f57e48958deb4ff59a2259a1db2c386))
-
-* misc. ([`a33c680`](https://github.com/MartinBernstorff/Memium/commit/a33c680dd46c33224fd1260205ba0f30344706e9))
-
-*  tests: integration test `sync_deck` (#330) ([`a96cd2a`](https://github.com/MartinBernstorff/Memium/commit/a96cd2a433b0d7dd064391a0aa7ce7975cf92614))
-
-* Merge remote-tracking branch 'origin/main' into 320-tets-integration-test-_sync_deck ([`070d540`](https://github.com/MartinBernstorff/Memium/commit/070d5402773e6fffbc0e3cedc73bb787d3102d4c))
-
-*  feat use markdown promptsource (#329) ([`ecb25cf`](https://github.com/MartinBernstorff/Memium/commit/ecb25cf6f833e57b643de5c45247708caa9e85d1))
-
-* tets: integration test _sync_deck
-
-Fixes #320 ([`a3c4eba`](https://github.com/MartinBernstorff/Memium/commit/a3c4eba2badf64e7778f858b88e68056f42a0e39))
-
-* Merge remote-tracking branch 'origin/main' into 309-feat-use-markdown-promptsource ([`2450143`](https://github.com/MartinBernstorff/Memium/commit/2450143a37993a32143a8db7958e114da52597f6))
-
-* mbern_fix_prompt_converter (#328) ([`9ed223b`](https://github.com/MartinBernstorff/Memium/commit/9ed223b239fbe45195499308e505922f704be076))
-
-* misc. ([`660c792`](https://github.com/MartinBernstorff/Memium/commit/660c792c42cf9c8012ac1ebc5a3baafa8849deb0))
-
-*  feat: if n+ notes are scheduled for deletion do not sync (#326) ([`f3dedc5`](https://github.com/MartinBernstorff/Memium/commit/f3dedc55c1bd48106e57deb599fecd60ca85f24d))
-
-* Merge remote-tracking branch 'origin/main' into 251-feat-if-n+-notes-are-scheduled-for-deletion-do-not-sync ([`c9fe4da`](https://github.com/MartinBernstorff/Memium/commit/c9fe4daf179a88979069bdd917587f581b594d7e))
-
-*  refactor: remove tmp_dirs from PushPrompts and `PromptDiffDeterminer` (#325) ([`b61fd15`](https://github.com/MartinBernstorff/Memium/commit/b61fd153c2085fc9828617ba105af8d9513b968f))
-
-* Merge remote-tracking branch 'origin/main' into 323-refactor-remove-tmp_dirs-from-PushPrompts-and-`PromptDiffDeterminer` ([`caa1a43`](https://github.com/MartinBernstorff/Memium/commit/caa1a436ce16f4c7b557204caf8a738ab302ea2e))
-
-* add to cli ([`525a367`](https://github.com/MartinBernstorff/Memium/commit/525a367c88ac3cb3ffc02dfbbaa4f455d1f378b2))
-
-* misc. ([`04cbed8`](https://github.com/MartinBernstorff/Memium/commit/04cbed8e06496aa9661cc208186e6eabf8af3179))
-
-* Merge remote-tracking branch 'origin/main' into 251-feat-if-n+-notes-are-scheduled-for-deletion-do-not-sync ([`5f234b8`](https://github.com/MartinBernstorff/Memium/commit/5f234b861f779c67bd3d7960b79d1d6209220943))
-
-*  feat: add remoteid and use for prompt deletion (#324) ([`5f38dfe`](https://github.com/MartinBernstorff/Memium/commit/5f38dfe7ee6a1a55c11ca9dc96f886826db0348c))
-
-* misc. ([`01ad405`](https://github.com/MartinBernstorff/Memium/commit/01ad40522cdecca133cd31b7c63851503c11f5a9))
-
-* misc: renames ([`1c8e3b4`](https://github.com/MartinBernstorff/Memium/commit/1c8e3b450bb57ff8089f311b8a03c0f2f6c4ac0a))
-
-* misc. ([`4ac31f6`](https://github.com/MartinBernstorff/Memium/commit/4ac31f6834e9a41ec6d01cecb5971fcde1433f89))
-
-*  refactor get rid of tmp_read_dir and tmp_write_dir (#318) ([`4b91f01`](https://github.com/MartinBernstorff/Memium/commit/4b91f013bf740855cef1a59672d8c175910280c0))
-
-* Merge remote-tracking branch 'origin/main' into 308-refactor-get-rid-of-tmp_read_dir-and-tmp_write_dir ([`e9dc794`](https://github.com/MartinBernstorff/Memium/commit/e9dc7945ec1e95f22cae19a5ddd4b43eeeb4e5c2))
-
-*  tests AnkiConnect create  > get all  > delete  > get all sequence (#316) ([`1866b7c`](https://github.com/MartinBernstorff/Memium/commit/1866b7c68b2f792c571055f505af1fb1f83997b4))
-
-* tests: AnkiConnect create -> get all -> delete -> get all sequence
-
-Fixes #314 ([`2393bad`](https://github.com/MartinBernstorff/Memium/commit/2393bad1c131858ef777ac1beda328ba75a1c8ba))
-
-* Merge remote-tracking branch 'origin/main' into mbern_refactor_simplify_prompts ([`be764e4`](https://github.com/MartinBernstorff/Memium/commit/be764e4a5204d869cd613f7396f8120729b794e0))
-
-*  fix: PromptID to NoteID mapping (#311) ([`30c2913`](https://github.com/MartinBernstorff/Memium/commit/30c29136f44b306c9c6e9316cb8f5a8080741155))
-
-* Merge remote-tracking branch 'origin/main' into 284-fix-PromptID-to-NoteID-mapping ([`20dd84e`](https://github.com/MartinBernstorff/Memium/commit/20dd84e4ce6f995b9e949e7fd29a5bcab72e87e3))
-
-*  feat: implement diffdeterminer (#310) ([`94c044c`](https://github.com/MartinBernstorff/Memium/commit/94c044c9a86d3a0bceae6cefec57b6c751df3964))
-
-* misc. ([`37f3dd4`](https://github.com/MartinBernstorff/Memium/commit/37f3dd4542f4fe530491d1e72266a16633abf49c))
-
-* reafctor: move int_hash_str to utils ([`65d1352`](https://github.com/MartinBernstorff/Memium/commit/65d13526a96e8894b51a7335e3e6dd8cd3d80e8e))
-
-*  tests: DocumentPromptSource (#302) ([`a6aff81`](https://github.com/MartinBernstorff/Memium/commit/a6aff817dca7c35bdc4861e1700384e5977b29d0))
-
-* Merge remote-tracking branch 'origin/main' into 296-tests-test-DocumentPromptSource ([`59d7e6a`](https://github.com/MartinBernstorff/Memium/commit/59d7e6ac4d55b80877c58707b05e4d4ddbdfa375))
-
-*  feat implement ClozeExtractor (#301) ([`741545a`](https://github.com/MartinBernstorff/Memium/commit/741545ab52367cf17a9abfc6a0b74b7da6778732))
-
-* tests: test DocumentPromptSource
-
-Fixes #296 ([`01f0bee`](https://github.com/MartinBernstorff/Memium/commit/01f0beedfeba7efc7bc485bb642b99d3153b2b00))
-
-*  feat implement QA and Cloze promptextractors (#298) ([`781d3f4`](https://github.com/MartinBernstorff/Memium/commit/781d3f45e3bf967ce955e129199a088e1e35d1e0))
-
-* misc. ([`825dc3f`](https://github.com/MartinBernstorff/Memium/commit/825dc3f998d35b5dd2e075d5cc99729626094d56))
-
-* Merge remote-tracking branch 'origin/main' into 294-feat-implement-QA-and-Cloze-promptextractors ([`019f1c9`](https://github.com/MartinBernstorff/Memium/commit/019f1c947d4f9beab873d41bfc763bff2b85a5c1))
-
-*  feat implement markdown promptsource (#295) ([`a5574b6`](https://github.com/MartinBernstorff/Memium/commit/a5574b615297296d3a1b4bf8b02a4ecbd8374a85))
-
-* misc: todo ([`037ddc3`](https://github.com/MartinBernstorff/Memium/commit/037ddc3b8c55e787a1ec1f41e42a0c147321e05c))
-
-* run tests ([`226aa93`](https://github.com/MartinBernstorff/Memium/commit/226aa9322444494865adbe07ef130831c7d7653b))
-
-* misc. ([`ff8fd66`](https://github.com/MartinBernstorff/Memium/commit/ff8fd66afd63fcae67d01b820ae5bdb2021cb0be))
-
-* Merge remote-tracking branch 'origin/main' into mbern_stub_out_main ([`a9b2d75`](https://github.com/MartinBernstorff/Memium/commit/a9b2d752b7b64665a5d9ed5cf376c056d20bf371))
-
-* Merge remote-tracking branch 'origin/main' into mbern_cleanup ([`0aa6dc5`](https://github.com/MartinBernstorff/Memium/commit/0aa6dc500f497c011c35136ee7211d72fe2fa42e))
-
-* misc. ([`b7a2515`](https://github.com/MartinBernstorff/Memium/commit/b7a2515789015d8744fb8d93f1115e0df3080c04))
-
-* Merge remote-tracking branch 'origin/main' into mbern_add_push ([`8a477dc`](https://github.com/MartinBernstorff/Memium/commit/8a477dc935da05fbea24480965c0fd1e9c5eaa06))
-
-* misc. ([`53b05d7`](https://github.com/MartinBernstorff/Memium/commit/53b05d73c268e7a0c8630ae88477246124f0eaad))
-
-* misc. ([`96b2030`](https://github.com/MartinBernstorff/Memium/commit/96b203097f3ee0c78592bd2a17254d3df6bb84f8))
-
-* misc. ([`c9feafb`](https://github.com/MartinBernstorff/Memium/commit/c9feafb41a5cbca9949eb1cdb30e836b2b284036))
-
-* misc. ([`48b171f`](https://github.com/MartinBernstorff/Memium/commit/48b171fe487c92e8d8d27f2a3ff32a9455440589))
-
-* Merge remote-tracking branch 'origin/main' into mbern_implement_push ([`3451469`](https://github.com/MartinBernstorff/Memium/commit/345146906deb3a6c4f2e67550d593c53a38b6316))
-
-* misc. ([`c1ffaae`](https://github.com/MartinBernstorff/Memium/commit/c1ffaae157ec66697f367dd8aa509a317191bcc6))
-
-* misc: cloze support ([`131183d`](https://github.com/MartinBernstorff/Memium/commit/131183d38c466c17c1b577d7f399666119e6e97d))
-
-* misc. ([`245514d`](https://github.com/MartinBernstorff/Memium/commit/245514d91a1d7af4ef79825e466de71640299b93))
-
-* Merge remote-tracking branch 'origin/main' into mbern_implement_get_all ([`31f0250`](https://github.com/MartinBernstorff/Memium/commit/31f0250472bb2ed933851bfb5b1c006ecb98d081))
-
-* misc. ([`ad374fa`](https://github.com/MartinBernstorff/Memium/commit/ad374fa95702513c4471cec5d97bb651ac1674c6))
-
-* misc. ([`22c7b73`](https://github.com/MartinBernstorff/Memium/commit/22c7b73a5d6ce899060c4e0e6c1f362ad93022e3))
-
-* misc. ([`0c270e6`](https://github.com/MartinBernstorff/Memium/commit/0c270e6c346103c67386593949830ba9b45ec3a3))
-
-* misc. ([`41d252f`](https://github.com/MartinBernstorff/Memium/commit/41d252f2f95b6f868b02572f1f18be5696ae7828))
-
-* misc. ([`7bde790`](https://github.com/MartinBernstorff/Memium/commit/7bde79045b3b4f20d1804b299163487eee21678c))
-
-* misc. ([`ae623e7`](https://github.com/MartinBernstorff/Memium/commit/ae623e771a6df10dd2698609878243bdfbb3cd9f))
-
-* misc. ([`49b5bac`](https://github.com/MartinBernstorff/Memium/commit/49b5bac475999e6eaeac3f29cd885c7b4e5f1144))
-
-* misc. ([`d0c68d0`](https://github.com/MartinBernstorff/Memium/commit/d0c68d0527b05d261bee2280af95db082f9f047e))
-
-* misc. ([`62f9adc`](https://github.com/MartinBernstorff/Memium/commit/62f9adca32f6522cd2612850c75ce8188b74e878))
-
-* misc. ([`93dd9d0`](https://github.com/MartinBernstorff/Memium/commit/93dd9d021468d7ef55a609512d311ca2e93e91a1))
-
-* misc. ([`ed3cf61`](https://github.com/MartinBernstorff/Memium/commit/ed3cf61c3baa05b7d13b526f32ed64195ab61ddc))
-
-* misc. ([`f8fd5ec`](https://github.com/MartinBernstorff/Memium/commit/f8fd5ecc3e327a8fc9e870ee122a9a996f8dbad9))
-
-* tests: omit tests from coverage ([`89aacd1`](https://github.com/MartinBernstorff/Memium/commit/89aacd123079fdd5b92757294071be0ec34ff0f8))
-
-* misc. ([`ed9aa29`](https://github.com/MartinBernstorff/Memium/commit/ed9aa2937a95e9a1a625a959e4b3fdf3851bf723))
-
-* misc. ([`ad5f85e`](https://github.com/MartinBernstorff/Memium/commit/ad5f85e1ded6f1893942d3e458480cb9617162a4))
-
-* misc. ([`21d52d4`](https://github.com/MartinBernstorff/Memium/commit/21d52d4d7aa239c90e36e8db08fb653346d652db))
-
-* misc. ([`62036c7`](https://github.com/MartinBernstorff/Memium/commit/62036c74e240bdedaebf84528227ead592f5b985))
-
-* misc. ([`ac4e56d`](https://github.com/MartinBernstorff/Memium/commit/ac4e56dace3255aa647d9f4b620e38e15fc7ac6b))
-
-* misc. ([`60c0a9a`](https://github.com/MartinBernstorff/Memium/commit/60c0a9a61a0fdc816610ad920c89302fa2ba752e))
-
-* Merge remote-tracking branch 'origin/main' into mbern_AnkiConnectGateway ([`dc4336d`](https://github.com/MartinBernstorff/Memium/commit/dc4336d2caa64371b9e31a2d3332325f73facee0))
-
-* mbern_feat_v_interfaces (#277) ([`89088c4`](https://github.com/MartinBernstorff/Memium/commit/89088c4c4bd4fc1e6dda0f6854d8c15c11ae20ce))
-
-* misc. ([`17f4523`](https://github.com/MartinBernstorff/Memium/commit/17f4523e77046704535fe36c2735df35c005f9e9))
-
-* misc. ([`9dc1a51`](https://github.com/MartinBernstorff/Memium/commit/9dc1a5112f5670af4c76aee35f7411f15f598eaa))
-
-* misc. ([`3fde2b5`](https://github.com/MartinBernstorff/Memium/commit/3fde2b5f3f70843c03cb7067941b33c5f367d07f))
-
-* misc. ([`ac0c39f`](https://github.com/MartinBernstorff/Memium/commit/ac0c39f9e86c8a0713cc191c985bf9a88e02ce30))
-
-* misc. ([`cbffb8b`](https://github.com/MartinBernstorff/Memium/commit/cbffb8badc6d5da4a18777983c6466df01362032))
-
-* misc. ([`b679858`](https://github.com/MartinBernstorff/Memium/commit/b679858ac22d5d7dd48a4f47edeca36b9312e787))
-
-* misc. ([`24ab383`](https://github.com/MartinBernstorff/Memium/commit/24ab38368a3a8d0b244ed4b6027434b79cd66e58))
-
-* misc: better coverage ([`5f025c6`](https://github.com/MartinBernstorff/Memium/commit/5f025c62635145142fa5a1adeed0b1e313c5cd4c))
-
-* misc. ([`7859fcf`](https://github.com/MartinBernstorff/Memium/commit/7859fcfd5f25f7707805865b6880857bd56c1c36))
-
-* misc. ([`671a448`](https://github.com/MartinBernstorff/Memium/commit/671a4487900972409cd7f215a4136be15b1c86d3))
-
-* misc. ([`019474d`](https://github.com/MartinBernstorff/Memium/commit/019474df9192a2c15be3d27341c135e62f2a9fab))
-
-* misc. ([`3e7561d`](https://github.com/MartinBernstorff/Memium/commit/3e7561de1d1c04ed91e9b6fd48ee7f9c90bdebfb))
-
-* misc. ([`75a8d0a`](https://github.com/MartinBernstorff/Memium/commit/75a8d0af0153e66d637208a05cd01b6eb29633de))
-
-* misc. ([`4b74fe6`](https://github.com/MartinBernstorff/Memium/commit/4b74fe61c5c0cddf69c20c8a0887ea81a798ec40))
-
-* misc. ([`4914100`](https://github.com/MartinBernstorff/Memium/commit/4914100b7f73337dcc8f5373ff74142f97e9299a))
-
-* Merge remote-tracking branch 'origin/main' into 240-refactor-sync-decks-into-functional-core-imperative-shell ([`28300f0`](https://github.com/MartinBernstorff/Memium/commit/28300f041b4b8a444a46063a4645ee38c03a8f05))
-
-* tests: add smoketest to main (#262) ([`477fbf9`](https://github.com/MartinBernstorff/Memium/commit/477fbf904f909722343cebb49f2523c1848d2131))
-
-* misc. ([`c1bd1d0`](https://github.com/MartinBernstorff/Memium/commit/c1bd1d0b4fc484ba41e689b52b14ee47a264d411))
-
-* misc. ([`cf96146`](https://github.com/MartinBernstorff/Memium/commit/cf961461458e7df96203eb6b9dd58e026291f6dd))
-
-* misc. ([`231c50a`](https://github.com/MartinBernstorff/Memium/commit/231c50ae0e2142b55f3f1fd4cae8597e65d911e4))
-
-* misc. ([`7f04a10`](https://github.com/MartinBernstorff/Memium/commit/7f04a10b77777afcc659ac3a94bb71adb1480bbd))
-
-* misc. ([`8fb5616`](https://github.com/MartinBernstorff/Memium/commit/8fb56168a58a2a7400adbb7587e654600808ee7b))
-
-* misc. ([`6b4b328`](https://github.com/MartinBernstorff/Memium/commit/6b4b328f51e12c5a85d2dfc4798997e994994f00))
-
-* misc. ([`7af9b1a`](https://github.com/MartinBernstorff/Memium/commit/7af9b1ade9e4bf2a33eb6ff390c899d3b7ddbda8))
-
-* misc. ([`ffdfb3b`](https://github.com/MartinBernstorff/Memium/commit/ffdfb3b19ffcff2abca092bfa0914418f1d110db))
-
-* misc. ([`9eb53b5`](https://github.com/MartinBernstorff/Memium/commit/9eb53b51681b6f1ad10a7ae77f48e62f4338681d))
-
-* misc. ([`bbbb0bd`](https://github.com/MartinBernstorff/Memium/commit/bbbb0bd23fe18f9644be99946b1e569ac7e4edb7))
-
-* Merge remote-tracking branch 'origin/main' into tests_main_integration_test ([`99b459b`](https://github.com/MartinBernstorff/Memium/commit/99b459b147237d619f34a88009a00c2e9ac5a773))
-
-* misc. ([`553cec8`](https://github.com/MartinBernstorff/Memium/commit/553cec805f0e0bda8ff88b6fc5a4c255963fcbc7))
-
-* sentry: disambiguate development and production environments
-
-Fixes #254 ([`e629876`](https://github.com/MartinBernstorff/Memium/commit/e629876edd26a94326ff88bbe95952e66ec5ebc6))
-
-* tests: add main smoke test ([`8f766a6`](https://github.com/MartinBernstorff/Memium/commit/8f766a6b3bb87e472ec358b4c92621afdc73a543))
-
-*  feat: disambiguate development and production environments in sentry (#261) ([`7ca9385`](https://github.com/MartinBernstorff/Memium/commit/7ca9385bfb1a63d713d4176a67b63e9ae78ce02b))
-
-* misc. ([`050475b`](https://github.com/MartinBernstorff/Memium/commit/050475b1d8f102f5a4d665d91163fe7ce691f737))
-
-* Merge remote-tracking branch 'origin/main' into 254-sentry-disambiguate-development-and-production-environments ([`b406493`](https://github.com/MartinBernstorff/Memium/commit/b4064930cba79189044168aa83d735f40ef645cc))
-
-* sentry: disambiguate development and production environments
-
-Fixes #254 ([`973dbe0`](https://github.com/MartinBernstorff/Memium/commit/973dbe0aaf828027d8ac01552480134bfa5b93ab))
-
-* dev: disable dependabot ([`fa55682`](https://github.com/MartinBernstorff/Memium/commit/fa5568218b0bcd45908cce6201684aaa008e982b))
-
-* deps:(deps-dev): bump functionalpy from 0.6.0 to 0.12.0 (#255) ([`e26aeb5`](https://github.com/MartinBernstorff/Memium/commit/e26aeb599b545a5e60ba88db267a26d74ac60811))
-
-* deps:(deps-dev): bump functionalpy from 0.6.0 to 0.12.0
-
-Bumps [functionalpy](https://github.com/MartinBernstorff/FunctionalPy) from 0.6.0 to 0.12.0.
-- [Release notes](https://github.com/MartinBernstorff/FunctionalPy/releases)
-- [Changelog](https://github.com/MartinBernstorff/FunctionalPy/blob/main/CHANGELOG.md)
-- [Commits](https://github.com/MartinBernstorff/FunctionalPy/compare/v0.6.0...v0.12.0)
-
----
-updated-dependencies:
-- dependency-name: functionalpy
-  dependency-type: direct:production
-  update-type: version-update:semver-minor
-...
-
-Signed-off-by: dependabot[bot] <support@github.com> ([`0927bfe`](https://github.com/MartinBernstorff/Memium/commit/0927bfec4f05ab435e19044de8868acbf72b73d8))
-
-* deps:(deps-dev): bump pyright from 1.1.328 to 1.1.336 (#257) ([`2d9ca6c`](https://github.com/MartinBernstorff/Memium/commit/2d9ca6cdb77bf66d27b7369cb74ac434762be87e))
-
-* deps:(deps-dev): bump pyright from 1.1.328 to 1.1.336
-
-Bumps [pyright](https://github.com/RobertCraigie/pyright-python) from 1.1.328 to 1.1.336.
-- [Release notes](https://github.com/RobertCraigie/pyright-python/releases)
-- [Commits](https://github.com/RobertCraigie/pyright-python/compare/v1.1.328...v1.1.336)
-
----
-updated-dependencies:
-- dependency-name: pyright
-  dependency-type: direct:production
-  update-type: version-update:semver-patch
-...
-
-Signed-off-by: dependabot[bot] <support@github.com> ([`0591d59`](https://github.com/MartinBernstorff/Memium/commit/0591d5901cf80d70acadd507bf6e006c8a846127))
-
-*  tests ensure that append actually adds it to the file on disk (#259) ([`faffdda`](https://github.com/MartinBernstorff/Memium/commit/faffddad40644165e8de0dc0577ae23b65ee2856))
-
-* tests: ensure that append actually adds it to the file on disk
-
-Fixes #252 ([`d4ad923`](https://github.com/MartinBernstorff/Memium/commit/d4ad923d63604dcc0b3eecebb25b67efa122adbc))
-
-* misc. settings ([`002408f`](https://github.com/MartinBernstorff/Memium/commit/002408febf0f9eb9c915a9780cbf3cd93983df22))
-
-*  remove defaults from extractors to make signature easier to understand (#249) ([`373f415`](https://github.com/MartinBernstorff/Memium/commit/373f4154777abe27a98bef08a74c3f4f0717e951))
-
-* misc. ([`48ecd00`](https://github.com/MartinBernstorff/Memium/commit/48ecd00f5a4e9bc8c7d3c5edb710b5a681e8d5f3))
-
-* Merge remote-tracking branch 'origin/main' into mb/minor_docs_additions ([`92e28ad`](https://github.com/MartinBernstorff/Memium/commit/92e28ad66d0b4dbcd280f1e34bc5ad4de43d3bcd))
-
-*  Split stateful and non stateful markdown note operations (#244) ([`ffb587c`](https://github.com/MartinBernstorff/Memium/commit/ffb587c4911c0fc4c486a72ba93790884f83cf3e))
-
-* misc. ([`49a3407`](https://github.com/MartinBernstorff/Memium/commit/49a3407a64ff6ac663b6909fe3441cf4ad3d75d3))
-
-* tests: expand test ([`5f5b864`](https://github.com/MartinBernstorff/Memium/commit/5f5b864e508447f845acb6cf67f7dfecff651e9a))
-
-* tests: test markdown ingester ([`3a08a7a`](https://github.com/MartinBernstorff/Memium/commit/3a08a7a2d0013b7d0a5ca25c942de45ab0b8e2ff))
-
-* tests: improve test coverage ([`832c488`](https://github.com/MartinBernstorff/Memium/commit/832c48843ab6ca803a7912aea70ad412307dfd98))
-
-* misc. ([`6f89631`](https://github.com/MartinBernstorff/Memium/commit/6f8963169e1fa45aa459ba884f62c9f495fe3a0f))
-
-* tests: misc. test refactor ([`8e30c7f`](https://github.com/MartinBernstorff/Memium/commit/8e30c7f3a50cf49db3e962c1ee78b8f32513e472))
-
-* Merge remote-tracking branch 'origin/main' into 206-Split-stateful-and-non-stateful-markdown-note-operations ([`7470d5e`](https://github.com/MartinBernstorff/Memium/commit/7470d5e2f999aa6e4581bf44d7094f8c970fb8d6))
-
-* dev_minor_settings_chagnes (#243) ([`347a512`](https://github.com/MartinBernstorff/Memium/commit/347a512f116d48c9565cb93e129724a72a48932c))
-
-* Merge branch 'main' into dev_minor_settings_chagnes ([`03b0781`](https://github.com/MartinBernstorff/Memium/commit/03b078108a623f861cea44c461fbd45090d230af))
-
-*  Refactor main to only handle stateful operations and calls into functional core (#241) ([`0d1e57c`](https://github.com/MartinBernstorff/Memium/commit/0d1e57c513617d834428041e3e69facbd4c2050c))
-
-* deps: update pytest-cov ([`df2359c`](https://github.com/MartinBernstorff/Memium/commit/df2359c0efafdb3a462088f2ec4ae93aa3869eae))
-
-* misc. minor changes to settings ([`6a40049`](https://github.com/MartinBernstorff/Memium/commit/6a40049e4268d7e4aa99019b6bc1f42177f5a3a9))
-
-* misc. ([`36d232b`](https://github.com/MartinBernstorff/Memium/commit/36d232b7ae6b0d98791b2fed7142b8d371544cd8))
-
-* misc. ([`0095543`](https://github.com/MartinBernstorff/Memium/commit/00955435c7c8f47d3afab265e561da18d9a77d01))
-
-* misc. types ([`4743fb1`](https://github.com/MartinBernstorff/Memium/commit/4743fb191c4e9b3dba15dd923b332a070f1a2b4c))
-
-* Refactor main to only handle stateful operations and calls into functional core
-
-Fixes #208 ([`e13eb53`](https://github.com/MartinBernstorff/Memium/commit/e13eb539c33331392243145ea1ba2b813510b9fc))
-
-* dev: add coverage to vscode ([`b2edb0f`](https://github.com/MartinBernstorff/Memium/commit/b2edb0fc38afcc07c2b0cb3f96dbf00cf93a1491))
-
-* misc. ([`f53f724`](https://github.com/MartinBernstorff/Memium/commit/f53f72492b9b18364448e76370537873ba18376a))
-
-* Merge remote-tracking branch 'origin/main' into 208-Refactor-main-to-only-handle-stateful-operations-and-calls-into-functional-core ([`80c0f36`](https://github.com/MartinBernstorff/Memium/commit/80c0f36c1e75f8d5a51bdb4422491f317006f6e0))
-
-* mbern_lengthy hornet (#238) ([`5c6ea12`](https://github.com/MartinBernstorff/Memium/commit/5c6ea12a3d7f17435afaeea258e51bff5ceb39d8))
-
-* dev: add no milestone ([`1c6d316`](https://github.com/MartinBernstorff/Memium/commit/1c6d31669bb854f9ecb56ae6594dc1bf38866918))
-
-* Refactor main to only handle stateful operations and calls into functional core
-
-Fixes #208 ([`09dd00b`](https://github.com/MartinBernstorff/Memium/commit/09dd00bb454eaf605f551fa89dd3a43795d4863c))
-
-* misc. ([`53f6caf`](https://github.com/MartinBernstorff/Memium/commit/53f6caf60c612358ca2c744d3e228754e0d1d28c))
-
-* Split stateful and non-stateful markdown note operations.
-
-Fixes #206 ([`247781e`](https://github.com/MartinBernstorff/Memium/commit/247781ec6da74a7eb14522ef21fa6d99fa09b14c))
-
-* dev: stop adding coverage.xml when committing (#237) ([`97d3a00`](https://github.com/MartinBernstorff/Memium/commit/97d3a00325391c6ebac16b0685949a1997a2c2b2))
-
-* Merge remote-tracking branch 'origin/main' into 236-dev-figure-out-how-to-avoid-merge-conflicts-when-merging-codecovxml ([`96ba8f6`](https://github.com/MartinBernstorff/Memium/commit/96ba8f6d39c8d09c229369f703289b586cf6fb0d))
-
-*  dev merge via merge commit on create pr (#234) ([`1120978`](https://github.com/MartinBernstorff/Memium/commit/1120978c39baf2493f9cf02a5ace8b1eec694457))
-
-* Merge branch 'main' into 233-dev-merge-via-merge-commit-on-create-pr ([`3baf3df`](https://github.com/MartinBernstorff/Memium/commit/3baf3df0a024d27df2cbcedab889cb91f9f6c8db))
-
-* dev: merge via merge commit on create pr
-
-Fixes #233 ([`bc752ea`](https://github.com/MartinBernstorff/Memium/commit/bc752ea92e06bf7d4bd47a64872dc5b832c79ac4))
-
-*  refactor change prompts into protocols (#235)
-
-Auto-created ([`9f16d9e`](https://github.com/MartinBernstorff/Memium/commit/9f16d9e8284c82399b396da5a095720bb6319b6a))
-
-* Stop tracking coverage.xml ([`d3fa2b8`](https://github.com/MartinBernstorff/Memium/commit/d3fa2b8feefe1db6013752098189e7c45397ad80))
-
-* dev: figure out how to avoid merge conflicts when merging codecov.xml
-
-Fixes #236 ([`c0ab9cd`](https://github.com/MartinBernstorff/Memium/commit/c0ab9cd24630c8d18391e36a45292c0d1c55326d))
-
-* dev_add_issues_queries (#232)
-
-Auto-created ([`3653f0a`](https://github.com/MartinBernstorff/Memium/commit/3653f0af92e59b873b1574e796efd5fc8df77efc))
-
-* dev: add diff-coverage to make pr (#229)
-
-Auto-created ([`d29a6a6`](https://github.com/MartinBernstorff/Memium/commit/d29a6a6c2e6226cc02e9d5f3bf590278f88eef95))
-
-* dev: prompt if wanting to enable automerge in tasks
-
-Fixes #223 (#231)
-
-Auto-created ([`657ecc3`](https://github.com/MartinBernstorff/Memium/commit/657ecc37629696860a7589c7f9ff2184223bfb2c))
-
-*  dev use branch title for PR title (#230) ([`e655575`](https://github.com/MartinBernstorff/Memium/commit/e655575d073383a0f485f0a624155df5ae5623df))
-
-* dev: use branch title for PR title
-
-Fixes #225 ([`df5eda7`](https://github.com/MartinBernstorff/Memium/commit/df5eda7a815f6d8d10dee4c5cfc08f22c3593bdb))
-
-* tests: update coverage ([`3f6c079`](https://github.com/MartinBernstorff/Memium/commit/3f6c07939ffbb0da50afeb64a83c4db3950708be))
-
-* dev: makefile success messages (#221)
-
-Auto-created ([`3e3e4e1`](https://github.com/MartinBernstorff/Memium/commit/3e3e4e152d45d9ed5bbbff96d6656d2daafff409))
-
-* Merge remote-tracking branch 'origin/main' into 214-dev-add-vscode-task-which-does-the-full-PR-view (#219)
-
-Auto-created ([`0344b3c`](https://github.com/MartinBernstorff/Memium/commit/0344b3c4548ea6ac9d8a9ee77f265e4438589853))
-
-* Merge remote-tracking branch 'origin/main' into 214-dev-add-vscode-task-which-does-the-full-PR-view (#218)
-
-Auto-created ([`b563c08`](https://github.com/MartinBernstorff/Memium/commit/b563c089ff453837f02cc637a254ef0299f5bfc2))
-
-* Merge remote-tracking branch 'origin/main' into 214-dev-add-vscode-task-which-does-the-full-PR-view (#217)
-
-Auto-created ([`fc56c34`](https://github.com/MartinBernstorff/Memium/commit/fc56c34926c9c4b9a58c7187de1962e4764423dd))
-
-* Merge remote-tracking branch 'origin/main' into 214-dev-add-vscode-task-which-does-the-full-PR-view (#216)
-
-Auto-created ([`74d713f`](https://github.com/MartinBernstorff/Memium/commit/74d713f8f86dd9eef4985fb6a32a5937193bdfa5))
-
-* dev: setup pip caching (#215)
-
-Auto-created ([`be802d6`](https://github.com/MartinBernstorff/Memium/commit/be802d66d70161666520309ec01ccf0c1f1b3292))
-
-* misc: map desired changes (#211)
-
-Auto-created ([`6a9e7fb`](https://github.com/MartinBernstorff/Memium/commit/6a9e7fbbcef0c04ae736d11bd3b80fcea6958f1e))
+- Tags
+  ([`f493ed4`](https://github.com/MartinBernstorff/Memium/commit/f493ed492c55766d56c85dcbb633b0de3988032e))
 
 
 ## v0.6.0 (2023-11-18)
 
 ### Bug Fixes
 
-* fix: do not mount input dir on remote (#201)
+- Do not mount input dir on remote ([#201](https://github.com/MartinBernstorff/Memium/pull/201),
+  [`83cedae`](https://github.com/MartinBernstorff/Memium/commit/83cedaeb83c918248d52ad2f09233232761972b6))
 
-Auto-created ([`83cedae`](https://github.com/MartinBernstorff/Memium/commit/83cedaeb83c918248d52ad2f09233232761972b6))
+Auto-created
 
-* fix: add mounts points for devcontainer ([`c2497ee`](https://github.com/MartinBernstorff/Memium/commit/c2497eeb7a0cc76763d45db4694b1a0c9d6d55ac))
+- Add mounts points for devcontainer
+  ([`c2497ee`](https://github.com/MartinBernstorff/Memium/commit/c2497eeb7a0cc76763d45db4694b1a0c9d6d55ac))
 
 ### Build System
 
-* build: update dockerfile for new dir structure ([`0f1e8c0`](https://github.com/MartinBernstorff/Memium/commit/0f1e8c0f3bfbc1610c159ea6e0f0c40cc86bd1b1))
+- Update dockerfile for new dir structure
+  ([`0f1e8c0`](https://github.com/MartinBernstorff/Memium/commit/0f1e8c0f3bfbc1610c159ea6e0f0c40cc86bd1b1))
 
 ### Continuous Integration
 
-* ci: fix integration tests with new path (#200)
+- Fix integration tests with new path ([#200](https://github.com/MartinBernstorff/Memium/pull/200),
+  [`b734f9e`](https://github.com/MartinBernstorff/Memium/commit/b734f9ee8f103586cdf7718ae13a50bf9dc5eb12))
 
-Auto-created ([`b734f9e`](https://github.com/MartinBernstorff/Memium/commit/b734f9ee8f103586cdf7718ae13a50bf9dc5eb12))
+Auto-created
 
-* ci: run docker publish independently of integration test ([`d1402c6`](https://github.com/MartinBernstorff/Memium/commit/d1402c6a29d5ef2878ed8342ca237edb5d3b5ae5))
+- Run docker publish independently of integration test
+  ([`d1402c6`](https://github.com/MartinBernstorff/Memium/commit/d1402c6a29d5ef2878ed8342ca237edb5d3b5ae5))
 
-* ci: run type checks on application script as well ([`849c0f5`](https://github.com/MartinBernstorff/Memium/commit/849c0f552ae9ae785bdb515d480dca811f0436ef))
+- Run type checks on application script as well
+  ([`849c0f5`](https://github.com/MartinBernstorff/Memium/commit/849c0f552ae9ae785bdb515d480dca811f0436ef))
 
-* ci: setup multiplatform conditions (#192) ([`5120b18`](https://github.com/MartinBernstorff/Memium/commit/5120b18685cce3af0930473d8981d5f87e0016c0))
+- Setup multiplatform conditions ([#192](https://github.com/MartinBernstorff/Memium/pull/192),
+  [`5120b18`](https://github.com/MartinBernstorff/Memium/commit/5120b18685cce3af0930473d8981d5f87e0016c0))
 
-* ci: add arm64 to deploy ([`a6fb2c5`](https://github.com/MartinBernstorff/Memium/commit/a6fb2c58b1ef39ead800263a33b2e56210c8f9dc))
+- Add arm64 to deploy
+  ([`a6fb2c5`](https://github.com/MartinBernstorff/Memium/commit/a6fb2c58b1ef39ead800263a33b2e56210c8f9dc))
 
-* ci: update docker build action ([`6724cd4`](https://github.com/MartinBernstorff/Memium/commit/6724cd4c6475924d5780420d6446e5d869c82cda))
+- Update docker build action
+  ([`6724cd4`](https://github.com/MartinBernstorff/Memium/commit/6724cd4c6475924d5780420d6446e5d869c82cda))
 
 ### Features
 
-* feat: move cli to separate file ([`f91216b`](https://github.com/MartinBernstorff/Memium/commit/f91216b9cf9fdd04eb7227de4b7d497472dc4ccd))
+- Move cli to separate file
+  ([`f91216b`](https://github.com/MartinBernstorff/Memium/commit/f91216b9cf9fdd04eb7227de4b7d497472dc4ccd))
 
 ### Refactoring
 
-* refactor: rename pipeline to not hit test ([`1b5cbf2`](https://github.com/MartinBernstorff/Memium/commit/1b5cbf2ed84aa1459853cf143509f690ede4ea79))
-
-### Unknown
-
-* misc. ([`b81c54a`](https://github.com/MartinBernstorff/Memium/commit/b81c54a8dfc946adc83547d66f1b6c858336814e))
-
-* misc. ([`cb6d386`](https://github.com/MartinBernstorff/Memium/commit/cb6d3866efa654ecd182f27161eaae090fe19f20))
-
-* misc. ([`c877343`](https://github.com/MartinBernstorff/Memium/commit/c877343a1bc7994f2bffd8cba88006bfddd65cc2))
-
-* misc. ([`47a1c58`](https://github.com/MartinBernstorff/Memium/commit/47a1c58413967dfe346e331677658fd490e7483b))
-
-* misc. ([`cc03bcb`](https://github.com/MartinBernstorff/Memium/commit/cc03bcbaefe8313b522d8ab6198b210b51744bf8))
-
-* misc. ([`9e5f776`](https://github.com/MartinBernstorff/Memium/commit/9e5f776dad634b8de14d100e318f6d82d1ec0a31))
-
-* dev: mount shared dir for ankicard generation ([`f872ed0`](https://github.com/MartinBernstorff/Memium/commit/f872ed0e21e2f5848552290a695978cf06bb3826))
-
-* dev: remove unneeded install in dockerfile ([`ed6f51c`](https://github.com/MartinBernstorff/Memium/commit/ed6f51c8f1957701fc0084b93b765ea0a297c272))
-
-* dev: update cruft (#191)
-
-Auto-created ([`e6fd14d`](https://github.com/MartinBernstorff/Memium/commit/e6fd14d75d29d09dba84042e9d8045c51008c903))
-
-* Merge pull request #190 from MartinBernstorff/mbern_dependent-flamingo
-
-ci: add arm64 to deploy ([`f2529bc`](https://github.com/MartinBernstorff/Memium/commit/f2529bc5b1112df0959bf1abd58b54c879e8901a))
-
-* Update readme.md ([`6ec8a1a`](https://github.com/MartinBernstorff/Memium/commit/6ec8a1a5cddb1b6d7327abcb56338a0b18b676e8))
-
-* Merge pull request #177 from MartinBernstorff/mb/fix_deploy
-
-ci: update docker build action ([`a11a7c2`](https://github.com/MartinBernstorff/Memium/commit/a11a7c253d1b96a4aa69c576a9995f006fc2ee79))
-
-* Merge branch 'main' into mb/fix_deploy ([`9e27591`](https://github.com/MartinBernstorff/Memium/commit/9e275919f68e1ba7b172f315ea1c2124aafa5fb8))
-
-* Update readme.md ([`0a0b577`](https://github.com/MartinBernstorff/Memium/commit/0a0b57711d59bfadae504f546b7345aa9c913162))
-
-* Update readme.md ([`b8e5041`](https://github.com/MartinBernstorff/Memium/commit/b8e50417740f8907ca091f58eb35c30fb904f4c6))
+- Rename pipeline to not hit test
+  ([`1b5cbf2`](https://github.com/MartinBernstorff/Memium/commit/1b5cbf2ed84aa1459853cf143509f690ede4ea79))
 
 
 ## v0.5.1 (2023-10-28)
 
 ### Bug Fixes
 
-* fix: docker deploy should be lowercase ([`56d0517`](https://github.com/MartinBernstorff/Memium/commit/56d0517da01ba25c950e5c01e13e190fd4bbeabe))
-
-### Unknown
-
-* Merge pull request #176 from MartinBernstorff/mb/fix_deploy
-
-fix: docker deploy should be lowercase ([`be9b35d`](https://github.com/MartinBernstorff/Memium/commit/be9b35d84405b0067e6b4caed08fa8c8e92a2eeb))
-
-* Update readme.md ([`25c38cc`](https://github.com/MartinBernstorff/Memium/commit/25c38cc1135e8027d2158014942c40c2bfd18e63))
+- Docker deploy should be lowercase
+  ([`56d0517`](https://github.com/MartinBernstorff/Memium/commit/56d0517da01ba25c950e5c01e13e190fd4bbeabe))
 
 
 ## v0.5.0 (2023-10-28)
 
 ### Continuous Integration
 
-* ci: add docker deploy ([`a658f15`](https://github.com/MartinBernstorff/Memium/commit/a658f15e9818449262f123ddc63d6ae64e1b4bbe))
+- Add docker deploy
+  ([`a658f15`](https://github.com/MartinBernstorff/Memium/commit/a658f15e9818449262f123ddc63d6ae64e1b4bbe))
 
-* ci: support multiline comment ([`273d2c9`](https://github.com/MartinBernstorff/Memium/commit/273d2c980b67e0b12a52246e1d98e1144cc5111a))
+- Support multiline comment
+  ([`273d2c9`](https://github.com/MartinBernstorff/Memium/commit/273d2c980b67e0b12a52246e1d98e1144cc5111a))
 
-* ci: remove unused section ([`79bb2d2`](https://github.com/MartinBernstorff/Memium/commit/79bb2d21327e243398ffbe56a17055e9e44f4b10))
+- Remove unused section
+  ([`79bb2d2`](https://github.com/MartinBernstorff/Memium/commit/79bb2d21327e243398ffbe56a17055e9e44f4b10))
 
-* ci: make integration test unique ([`85753df`](https://github.com/MartinBernstorff/Memium/commit/85753df8d6270f53fa85eaf8496e456e0efb5631))
+- Make integration test unique
+  ([`85753df`](https://github.com/MartinBernstorff/Memium/commit/85753df8d6270f53fa85eaf8496e456e0efb5631))
 
-* ci: build prod image as part of tests ([`b595956`](https://github.com/MartinBernstorff/Memium/commit/b59595611de1bc208501cdb09c630d20cfbc7728))
+- Build prod image as part of tests
+  ([`b595956`](https://github.com/MartinBernstorff/Memium/commit/b59595611de1bc208501cdb09c630d20cfbc7728))
 
 ### Documentation
 
-* docs: update contribution ([`a804fc7`](https://github.com/MartinBernstorff/Memium/commit/a804fc7627e330cfa21fc92c0a0c360d0da88175))
+- Update contribution
+  ([`a804fc7`](https://github.com/MartinBernstorff/Memium/commit/a804fc7627e330cfa21fc92c0a0c360d0da88175))
 
-* docs: update readme ([`704ae21`](https://github.com/MartinBernstorff/Memium/commit/704ae21840118a826d0e8a4d3ce38e93e8a261fe))
+- Update readme
+  ([`704ae21`](https://github.com/MartinBernstorff/Memium/commit/704ae21840118a826d0e8a4d3ce38e93e8a261fe))
 
 ### Features
 
-* feat: add integration test ([`e0526b6`](https://github.com/MartinBernstorff/Memium/commit/e0526b60bfb06f2e0d75d0c52ebb8d1ed5d7966c))
+- Add integration test
+  ([`e0526b6`](https://github.com/MartinBernstorff/Memium/commit/e0526b60bfb06f2e0d75d0c52ebb8d1ed5d7966c))
 
-* feat: add prod docker image ([`ed5f350`](https://github.com/MartinBernstorff/Memium/commit/ed5f35099d7d79295726967545b6bce87b0927d2))
-
-### Unknown
-
-* Merge pull request #175 from MartinBernstorff/add-prod-dockerfile
-
-feat: add prod dockerfile ([`99a6795`](https://github.com/MartinBernstorff/Memium/commit/99a679573a927bbc7c8ca0854b0288f95593d67c))
-
-* misc: type ignores ([`7e89279`](https://github.com/MartinBernstorff/Memium/commit/7e89279b0dda4ccac8f1f0d5d8d9dd9755de87ad))
-
-* Update readme.md ([`37dafbc`](https://github.com/MartinBernstorff/Memium/commit/37dafbc394c4e08e801ff1e2b1f211d992ac045a))
-
-* Update readme.md ([`5126fc0`](https://github.com/MartinBernstorff/Memium/commit/5126fc082eea65de81b1e677c6ba64451dd55d84))
+- Add prod docker image
+  ([`ed5f350`](https://github.com/MartinBernstorff/Memium/commit/ed5f35099d7d79295726967545b6bce87b0927d2))
 
 
 ## v0.4.0 (2023-10-27)
 
 ### Bug Fixes
 
-* fix: duplicate version toml ([`8526eed`](https://github.com/MartinBernstorff/Memium/commit/8526eed202a59021c15b258fcdf422172f7972b7))
+- Duplicate version toml
+  ([`8526eed`](https://github.com/MartinBernstorff/Memium/commit/8526eed202a59021c15b258fcdf422172f7972b7))
 
 ### Features
 
-* feat: add build command ([`d6cb133`](https://github.com/MartinBernstorff/Memium/commit/d6cb1330cbc7b7fbc4babc2e9e480da6a37bb5b0))
-
-### Unknown
-
-* Merge pull request #174 from MartinBernstorff/mb/critical-mockingbird
-
-feat: add build command ([`94af2bf`](https://github.com/MartinBernstorff/Memium/commit/94af2bf7c8a178c476adbc553774b64f22b78aab))
+- Add build command
+  ([`d6cb133`](https://github.com/MartinBernstorff/Memium/commit/d6cb1330cbc7b7fbc4babc2e9e480da6a37bb5b0))
 
 
 ## v0.3.0 (2023-10-27)
 
 ### Bug Fixes
 
-* fix: correctly sync dirs in bind mounts ([`3e269ee`](https://github.com/MartinBernstorff/Memium/commit/3e269ee2dfceb005b7418336cf0f3a5d821c3027))
+- Correctly sync dirs in bind mounts
+  ([`3e269ee`](https://github.com/MartinBernstorff/Memium/commit/3e269ee2dfceb005b7418336cf0f3a5d821c3027))
 
-* fix: add field to attribute, not property ([`274370f`](https://github.com/MartinBernstorff/Memium/commit/274370f914078c8c8b00bd1cc42fe26bacce2f2f))
+- Add field to attribute, not property
+  ([`274370f`](https://github.com/MartinBernstorff/Memium/commit/274370f914078c8c8b00bd1cc42fe26bacce2f2f))
 
-* fix: re-add required import ([`3d0d51d`](https://github.com/MartinBernstorff/Memium/commit/3d0d51d5354ce31ddbc18d3d3fa662635cc38933))
+- Re-add required import
+  ([`3d0d51d`](https://github.com/MartinBernstorff/Memium/commit/3d0d51d5354ce31ddbc18d3d3fa662635cc38933))
 
-* fix: infinite loop ([`ce7470a`](https://github.com/MartinBernstorff/Memium/commit/ce7470a08570d14a5d6667a3b08f989d302936b6))
+- Infinite loop
+  ([`ce7470a`](https://github.com/MartinBernstorff/Memium/commit/ce7470a08570d14a5d6667a3b08f989d302936b6))
 
-* fix: pin invoke to version 2.1.0 ([`a5c56b9`](https://github.com/MartinBernstorff/Memium/commit/a5c56b946ae5083cf67aaed0dd51c0876ad61b7c))
+- Pin invoke to version 2.1.0
+  ([`a5c56b9`](https://github.com/MartinBernstorff/Memium/commit/a5c56b946ae5083cf67aaed0dd51c0876ad61b7c))
 
-* fix: incorrect type hints from misaka ([`6988e7a`](https://github.com/MartinBernstorff/Memium/commit/6988e7a63957a9f23c4b8296b44b64768e798ea2))
+- Incorrect type hints from misaka
+  ([`6988e7a`](https://github.com/MartinBernstorff/Memium/commit/6988e7a63957a9f23c4b8296b44b64768e798ea2))
 
-* fix: remove rej ([`152f124`](https://github.com/MartinBernstorff/Memium/commit/152f124d4bb608f041da4b53dcd34666803b84c5))
+- Remove rej
+  ([`152f124`](https://github.com/MartinBernstorff/Memium/commit/152f124d4bb608f041da4b53dcd34666803b84c5))
 
-* fix: typo ([`e687c3e`](https://github.com/MartinBernstorff/Memium/commit/e687c3ed239ea8abdabf06143657c5a2a9a5f577))
+- Typo
+  ([`e687c3e`](https://github.com/MartinBernstorff/Memium/commit/e687c3ed239ea8abdabf06143657c5a2a9a5f577))
 
-* fix: overlapping commands ([`dd66cc1`](https://github.com/MartinBernstorff/Memium/commit/dd66cc11ceda6b1890b1c69a11e36578f515b2da))
+- Overlapping commands
+  ([`dd66cc1`](https://github.com/MartinBernstorff/Memium/commit/dd66cc11ceda6b1890b1c69a11e36578f515b2da))
 
-* fix: do not point to non-existing license ([`5197292`](https://github.com/MartinBernstorff/Memium/commit/5197292ddd6b30e549cd46167a89495a29623a88))
+- Do not point to non-existing license
+  ([`5197292`](https://github.com/MartinBernstorff/Memium/commit/5197292ddd6b30e549cd46167a89495a29623a88))
 
-* fix: shrink matching ([`5dc43d7`](https://github.com/MartinBernstorff/Memium/commit/5dc43d7b62752affc4a9d3ee73fc723084727472))
+- Shrink matching
+  ([`5dc43d7`](https://github.com/MartinBernstorff/Memium/commit/5dc43d7b62752affc4a9d3ee73fc723084727472))
 
-* fix: remove da references ([`1b32634`](https://github.com/MartinBernstorff/Memium/commit/1b326345dfa2ce65814a4412c91bd67e59354f85))
+- Remove da references
+  ([`1b32634`](https://github.com/MartinBernstorff/Memium/commit/1b326345dfa2ce65814a4412c91bd67e59354f85))
 
 ### Build System
 
-* build: auto-fix formatting by default ([`16806cf`](https://github.com/MartinBernstorff/Memium/commit/16806cfb1d5caa54f41626148dd6d779405fbf44))
+- Auto-fix formatting by default
+  ([`16806cf`](https://github.com/MartinBernstorff/Memium/commit/16806cfb1d5caa54f41626148dd6d779405fbf44))
 
-* build: update tasks.py ([`cef2666`](https://github.com/MartinBernstorff/Memium/commit/cef266634fecb9546ccd149b53d3116f81764bb5))
+- Update tasks.py
+  ([`cef2666`](https://github.com/MartinBernstorff/Memium/commit/cef266634fecb9546ccd149b53d3116f81764bb5))
 
-* build: typo ([`c3b4ed0`](https://github.com/MartinBernstorff/Memium/commit/c3b4ed0e1bccc0f72abec5d60d8a13c2d1d5c983))
+- Typo
+  ([`c3b4ed0`](https://github.com/MartinBernstorff/Memium/commit/c3b4ed0e1bccc0f72abec5d60d8a13c2d1d5c983))
 
-* build: more informative messaging when syncing ([`d351a16`](https://github.com/MartinBernstorff/Memium/commit/d351a169c723f524e96ebe8c6618c4881097ab24))
+- More informative messaging when syncing
+  ([`d351a16`](https://github.com/MartinBernstorff/Memium/commit/d351a169c723f524e96ebe8c6618c4881097ab24))
 
-* build: pull before push ([`027d426`](https://github.com/MartinBernstorff/Memium/commit/027d426159a89893249e698a8a00b38c60a7761c))
+- Pull before push
+  ([`027d426`](https://github.com/MartinBernstorff/Memium/commit/027d426159a89893249e698a8a00b38c60a7761c))
 
-* build: hide result from gh pr lsit ([`9c91fa1`](https://github.com/MartinBernstorff/Memium/commit/9c91fa19cf96d944d4c7ed8ace8f4fd42677e665))
+- Hide result from gh pr lsit
+  ([`9c91fa1`](https://github.com/MartinBernstorff/Memium/commit/9c91fa19cf96d944d4c7ed8ace8f4fd42677e665))
 
-* build: only open browser if PR does not exist ([`883ddca`](https://github.com/MartinBernstorff/Memium/commit/883ddca4bdb160ce809e161d4d17345d7927e7d7))
+- Only open browser if PR does not exist
+  ([`883ddca`](https://github.com/MartinBernstorff/Memium/commit/883ddca4bdb160ce809e161d4d17345d7927e7d7))
 
-* build: prettier messages ([`4c5d961`](https://github.com/MartinBernstorff/Memium/commit/4c5d96153067b555571d05834cd1541ed1249b6a))
+- Prettier messages
+  ([`4c5d961`](https://github.com/MartinBernstorff/Memium/commit/4c5d96153067b555571d05834cd1541ed1249b6a))
 
-* build: hide output of branch_exists_on_remote ([`9bef312`](https://github.com/MartinBernstorff/Memium/commit/9bef31295b03348c52649193d3fc6129cffedc08))
+- Hide output of branch_exists_on_remote
+  ([`9bef312`](https://github.com/MartinBernstorff/Memium/commit/9bef31295b03348c52649193d3fc6129cffedc08))
 
-* build: separate exist and does not exist flow ([`b044fe6`](https://github.com/MartinBernstorff/Memium/commit/b044fe67b9b523c0644a0bebf2ab710ee47ddc4d))
+- Separate exist and does not exist flow
+  ([`b044fe6`](https://github.com/MartinBernstorff/Memium/commit/b044fe67b9b523c0644a0bebf2ab710ee47ddc4d))
 
-* build: remove @task decorator from utils function ([`2e7a61d`](https://github.com/MartinBernstorff/Memium/commit/2e7a61d46d39b45dc0d7cf37c966733f2de5bdc6))
+- Remove @task decorator from utils function
+  ([`2e7a61d`](https://github.com/MartinBernstorff/Memium/commit/2e7a61d46d39b45dc0d7cf37c966733f2de5bdc6))
 
-* build: add timeout to pr list ([`d76f8d1`](https://github.com/MartinBernstorff/Memium/commit/d76f8d1f840385130fb4b8e89b325a8955371483))
+- Add timeout to pr list
+  ([`d76f8d1`](https://github.com/MartinBernstorff/Memium/commit/d76f8d1f840385130fb4b8e89b325a8955371483))
 
-* build: fix quotation marks ([`d833bc5`](https://github.com/MartinBernstorff/Memium/commit/d833bc599dd3139d2d5539485a7e0c2599cbda65))
+- Fix quotation marks
+  ([`d833bc5`](https://github.com/MartinBernstorff/Memium/commit/d833bc599dd3139d2d5539485a7e0c2599cbda65))
 
-* build: push branch to origin if doesn't exist ([`2b07dd9`](https://github.com/MartinBernstorff/Memium/commit/2b07dd9f3c63033fc6a9abe35f36017b9b900fdc))
+- Push branch to origin if doesn't exist
+  ([`2b07dd9`](https://github.com/MartinBernstorff/Memium/commit/2b07dd9f3c63033fc6a9abe35f36017b9b900fdc))
 
-* build: push to PR if exists ([`137aa06`](https://github.com/MartinBernstorff/Memium/commit/137aa0616c0e2f6409becf47ab8c88c0bf6d9ab6))
+- Push to PR if exists
+  ([`137aa06`](https://github.com/MartinBernstorff/Memium/commit/137aa0616c0e2f6409becf47ab8c88c0bf6d9ab6))
 
-* build: ask for commit if uncommitted changes before PR ([`4b4f7d3`](https://github.com/MartinBernstorff/Memium/commit/4b4f7d39d316e7d920ea637279241f175a28f065))
+- Ask for commit if uncommitted changes before PR
+  ([`4b4f7d3`](https://github.com/MartinBernstorff/Memium/commit/4b4f7d39d316e7d920ea637279241f175a28f065))
 
-* build: complete migration to Invoke ([`4c77a87`](https://github.com/MartinBernstorff/Memium/commit/4c77a87fe1b1cc50581991b4c1698cc7953b8d89))
+- Complete migration to Invoke
+  ([`4c77a87`](https://github.com/MartinBernstorff/Memium/commit/4c77a87fe1b1cc50581991b4c1698cc7953b8d89))
 
-* build: use all available cores ([`f9916e8`](https://github.com/MartinBernstorff/Memium/commit/f9916e8147819a47642a157900305bc56e4bf149))
+- Use all available cores
+  ([`f9916e8`](https://github.com/MartinBernstorff/Memium/commit/f9916e8147819a47642a157900305bc56e4bf149))
 
-* build: add more emojis ([`bb858f9`](https://github.com/MartinBernstorff/Memium/commit/bb858f9bd191316997990219531f392b3e2f795d))
+- Add more emojis
+  ([`bb858f9`](https://github.com/MartinBernstorff/Memium/commit/bb858f9bd191316997990219531f392b3e2f795d))
 
-* build: make tests only show minimal effect ([`65c3ddc`](https://github.com/MartinBernstorff/Memium/commit/65c3ddcf80afc187de6192e4c6d20f44329ac61d))
+- Make tests only show minimal effect
+  ([`65c3ddc`](https://github.com/MartinBernstorff/Memium/commit/65c3ddcf80afc187de6192e4c6d20f44329ac61d))
 
-* build: run failed tests first ([`af11fcb`](https://github.com/MartinBernstorff/Memium/commit/af11fcbadb72778574257f8163915cea13e159c3))
+- Run failed tests first
+  ([`af11fcb`](https://github.com/MartinBernstorff/Memium/commit/af11fcbadb72778574257f8163915cea13e159c3))
 
-* build: missing backslash ([`0fa130e`](https://github.com/MartinBernstorff/Memium/commit/0fa130e9fb611b3795f1dfeba8b306191a4c523d))
+- Missing backslash
+  ([`0fa130e`](https://github.com/MartinBernstorff/Memium/commit/0fa130e9fb611b3795f1dfeba8b306191a4c523d))
 
-* build: pre_commit before mypy ([`d2a5c40`](https://github.com/MartinBernstorff/Memium/commit/d2a5c4008945e3f8e532987d04be009b65de9bfb))
+- Pre_commit before mypy
+  ([`d2a5c40`](https://github.com/MartinBernstorff/Memium/commit/d2a5c4008945e3f8e532987d04be009b65de9bfb))
 
-* build: misc. ([`968cd47`](https://github.com/MartinBernstorff/Memium/commit/968cd4713f315ad77b0d1516cf18903fa5a9ecfe))
+- Misc.
+  ([`968cd47`](https://github.com/MartinBernstorff/Memium/commit/968cd4713f315ad77b0d1516cf18903fa5a9ecfe))
 
-* build: misc. ([`0d94a1d`](https://github.com/MartinBernstorff/Memium/commit/0d94a1df383e873ccc71cbf48494bc8931ceab8d))
+- Misc.
+  ([`0d94a1d`](https://github.com/MartinBernstorff/Memium/commit/0d94a1df383e873ccc71cbf48494bc8931ceab8d))
 
-* build: first makefile ([`e446e8b`](https://github.com/MartinBernstorff/Memium/commit/e446e8b61ec74ecf14308a685e9fea406339174a))
+- First makefile
+  ([`e446e8b`](https://github.com/MartinBernstorff/Memium/commit/e446e8b61ec74ecf14308a685e9fea406339174a))
 
-* build: remove unused readme ([`7f00c19`](https://github.com/MartinBernstorff/Memium/commit/7f00c19a6635e0168ae16126b40d7db6db1611d7))
+- Remove unused readme
+  ([`7f00c19`](https://github.com/MartinBernstorff/Memium/commit/7f00c19a6635e0168ae16126b40d7db6db1611d7))
 
 ### Chores
 
-* chore: cleanup repo ([`2f7c31f`](https://github.com/MartinBernstorff/Memium/commit/2f7c31f97139275964d034da616f7d8ca1ad5c79))
+- Cleanup repo
+  ([`2f7c31f`](https://github.com/MartinBernstorff/Memium/commit/2f7c31f97139275964d034da616f7d8ca1ad5c79))
 
 ### Code Style
 
-* style: Auto-fixes from pre-commit ([`45d16ee`](https://github.com/MartinBernstorff/Memium/commit/45d16eea207f5a337de8878f82dfd9a28657e402))
+- Auto-fixes from pre-commit
+  ([`45d16ee`](https://github.com/MartinBernstorff/Memium/commit/45d16eea207f5a337de8878f82dfd9a28657e402))
 
-* style: Auto-fixes from pre-commit ([`8c79758`](https://github.com/MartinBernstorff/Memium/commit/8c7975885265bce9de1a9919fcb929e841e8862c))
+- Auto-fixes from pre-commit
+  ([`8c79758`](https://github.com/MartinBernstorff/Memium/commit/8c7975885265bce9de1a9919fcb929e841e8862c))
 
-* style: lint ([`1998401`](https://github.com/MartinBernstorff/Memium/commit/19984014599e94f84ff46d128de126feb05e9818))
+- Lint
+  ([`1998401`](https://github.com/MartinBernstorff/Memium/commit/19984014599e94f84ff46d128de126feb05e9818))
 
-* style: linting ([`2db1686`](https://github.com/MartinBernstorff/Memium/commit/2db1686bcf4a4e09b87cbdaf5605efc9f2ad879f))
+- Linting
+  ([`2db1686`](https://github.com/MartinBernstorff/Memium/commit/2db1686bcf4a4e09b87cbdaf5605efc9f2ad879f))
 
-* style: linting ([`98f0a06`](https://github.com/MartinBernstorff/Memium/commit/98f0a0604de83de09d33922ebbd61986bdde6bf7))
+- Linting
+  ([`98f0a06`](https://github.com/MartinBernstorff/Memium/commit/98f0a0604de83de09d33922ebbd61986bdde6bf7))
 
-* style: linting ([`521cf42`](https://github.com/MartinBernstorff/Memium/commit/521cf42889a64bd8c3de873657643b03e0a0e483))
+- Linting
+  ([`521cf42`](https://github.com/MartinBernstorff/Memium/commit/521cf42889a64bd8c3de873657643b03e0a0e483))
 
-* style: linting ([`1b59dcc`](https://github.com/MartinBernstorff/Memium/commit/1b59dccd5bfc4d59cfca8a05bb7f4144671460c7))
+- Linting
+  ([`1b59dcc`](https://github.com/MartinBernstorff/Memium/commit/1b59dccd5bfc4d59cfca8a05bb7f4144671460c7))
 
-* style: remove unused type: ignore ([`0fb4b28`](https://github.com/MartinBernstorff/Memium/commit/0fb4b28d598a16e91ea7db562eafaeff05ef01eb))
+- Remove unused type: ignore
+  ([`0fb4b28`](https://github.com/MartinBernstorff/Memium/commit/0fb4b28d598a16e91ea7db562eafaeff05ef01eb))
 
-* style: linting ([`6198058`](https://github.com/MartinBernstorff/Memium/commit/6198058164273d63d4de0dc597854915b5a90d75))
+- Linting
+  ([`6198058`](https://github.com/MartinBernstorff/Memium/commit/6198058164273d63d4de0dc597854915b5a90d75))
 
-* style: linting ([`17c3163`](https://github.com/MartinBernstorff/Memium/commit/17c31631ce35ed2c03dcf87247f0f69e5476980a))
+- Linting
+  ([`17c3163`](https://github.com/MartinBernstorff/Memium/commit/17c31631ce35ed2c03dcf87247f0f69e5476980a))
 
 ### Continuous Integration
 
-* ci: update cruft ([`28c6125`](https://github.com/MartinBernstorff/Memium/commit/28c61258104da50093e9762387c8e50269112c9f))
+- Update cruft
+  ([`28c6125`](https://github.com/MartinBernstorff/Memium/commit/28c61258104da50093e9762387c8e50269112c9f))
 
-* ci: run release after tests ([`345abc3`](https://github.com/MartinBernstorff/Memium/commit/345abc37ad64191113de7b9afac81a001170059d))
+- Run release after tests
+  ([`345abc3`](https://github.com/MartinBernstorff/Memium/commit/345abc37ad64191113de7b9afac81a001170059d))
 
-* ci: create hosts before push ([`6d38c59`](https://github.com/MartinBernstorff/Memium/commit/6d38c59ba3b38d3a71c09d2ea08cecfc84dd4a64))
+- Create hosts before push
+  ([`6d38c59`](https://github.com/MartinBernstorff/Memium/commit/6d38c59ba3b38d3a71c09d2ea08cecfc84dd4a64))
 
-* ci: update cruft ([`357ac0a`](https://github.com/MartinBernstorff/Memium/commit/357ac0a10ad7409b5d725d8c03ed8669cec0032b))
+- Update cruft
+  ([`357ac0a`](https://github.com/MartinBernstorff/Memium/commit/357ac0a10ad7409b5d725d8c03ed8669cec0032b))
 
-* ci: reenable release ([`6a81185`](https://github.com/MartinBernstorff/Memium/commit/6a81185f68c81d5b0ac23369c480687015f4acb0))
+- Reenable release
+  ([`6a81185`](https://github.com/MartinBernstorff/Memium/commit/6a81185f68c81d5b0ac23369c480687015f4acb0))
 
-* ci: reenable release ([`1d2d20a`](https://github.com/MartinBernstorff/Memium/commit/1d2d20affac9d21f9f376a37c3836c6c918fca0d))
+- Reenable release
+  ([`1d2d20a`](https://github.com/MartinBernstorff/Memium/commit/1d2d20affac9d21f9f376a37c3836c6c918fca0d))
 
-* ci: re-enable caching in tests ([`dee7316`](https://github.com/MartinBernstorff/Memium/commit/dee7316908ab7d8ffbcf813500943af622f6a7c6))
+- Re-enable caching in tests
+  ([`dee7316`](https://github.com/MartinBernstorff/Memium/commit/dee7316908ab7d8ffbcf813500943af622f6a7c6))
 
-* ci: move dependencies to correct subheading ([`fea7ee1`](https://github.com/MartinBernstorff/Memium/commit/fea7ee1f89829974fa8bee49f9724b5848fe093f))
+- Move dependencies to correct subheading
+  ([`fea7ee1`](https://github.com/MartinBernstorff/Memium/commit/fea7ee1f89829974fa8bee49f9724b5848fe093f))
 
-* ci: invalidate cache ([`4eb6aae`](https://github.com/MartinBernstorff/Memium/commit/4eb6aaef43e2df931b56de953cb5f9b847a8ccd7))
+- Invalidate cache
+  ([`4eb6aae`](https://github.com/MartinBernstorff/Memium/commit/4eb6aaef43e2df931b56de953cb5f9b847a8ccd7))
 
-* ci: run tests ([`26473be`](https://github.com/MartinBernstorff/Memium/commit/26473bef39f6acf0fd2fd7d7f2441544f8678954))
+- Run tests
+  ([`26473be`](https://github.com/MartinBernstorff/Memium/commit/26473bef39f6acf0fd2fd7d7f2441544f8678954))
 
-* ci: simplify ([`abae734`](https://github.com/MartinBernstorff/Memium/commit/abae734e498eedc95537e2579101f56e32d75a26))
+- Simplify
+  ([`abae734`](https://github.com/MartinBernstorff/Memium/commit/abae734e498eedc95537e2579101f56e32d75a26))
 
-* ci: remove pull-request template ([`bfbe55d`](https://github.com/MartinBernstorff/Memium/commit/bfbe55d2241c9ec260e0d2b9d762e30443f453bb))
+- Remove pull-request template
+  ([`bfbe55d`](https://github.com/MartinBernstorff/Memium/commit/bfbe55d2241c9ec260e0d2b9d762e30443f453bb))
 
-* ci: use nimble-python ([`9da7e6c`](https://github.com/MartinBernstorff/Memium/commit/9da7e6cc0d4e45fd7abf1d2536ed59be76215fb6))
+- Use nimble-python
+  ([`9da7e6c`](https://github.com/MartinBernstorff/Memium/commit/9da7e6cc0d4e45fd7abf1d2536ed59be76215fb6))
 
-* ci: create pr on web ([`654349a`](https://github.com/MartinBernstorff/Memium/commit/654349a36bab5bd1ef9015a572dab176fcdecb09))
+- Create pr on web
+  ([`654349a`](https://github.com/MartinBernstorff/Memium/commit/654349a36bab5bd1ef9015a572dab176fcdecb09))
 
-* ci: send alert if script fails ([`25f88c2`](https://github.com/MartinBernstorff/Memium/commit/25f88c2773a55b1a1fa8ac20cf4793f85cf116ae))
+- Send alert if script fails
+  ([`25f88c2`](https://github.com/MartinBernstorff/Memium/commit/25f88c2773a55b1a1fa8ac20cf4793f85cf116ae))
 
-* ci: add dockerignore ([`35f6ecf`](https://github.com/MartinBernstorff/Memium/commit/35f6ecfc8cb47be58b75246fc16a8954c43b0acb))
+- Add dockerignore
+  ([`35f6ecf`](https://github.com/MartinBernstorff/Memium/commit/35f6ecfc8cb47be58b75246fc16a8954c43b0acb))
 
-* ci: align dockerfile devcontainer python with rest of project ([`fd0a59d`](https://github.com/MartinBernstorff/Memium/commit/fd0a59d97bc3e72c5ad1e22c1349e3168012eb04))
+- Align dockerfile devcontainer python with rest of project
+  ([`fd0a59d`](https://github.com/MartinBernstorff/Memium/commit/fd0a59d97bc3e72c5ad1e22c1349e3168012eb04))
 
-* ci: install pre-commit hooks on setup ([`61bfc12`](https://github.com/MartinBernstorff/Memium/commit/61bfc1257ec01476c331cf2d6e586268aed2b121))
+- Install pre-commit hooks on setup
+  ([`61bfc12`](https://github.com/MartinBernstorff/Memium/commit/61bfc1257ec01476c331cf2d6e586268aed2b121))
 
-* ci: optimise layers for deps ([`eea7e9b`](https://github.com/MartinBernstorff/Memium/commit/eea7e9b6412071dae6dc6b2f28af73cf93307047))
+- Optimise layers for deps
+  ([`eea7e9b`](https://github.com/MartinBernstorff/Memium/commit/eea7e9b6412071dae6dc6b2f28af73cf93307047))
 
-* ci: install test deps in dev container ([`0a03465`](https://github.com/MartinBernstorff/Memium/commit/0a034657ff9ed42a8a4727c37115d45b2c1a9e56))
+- Install test deps in dev container
+  ([`0a03465`](https://github.com/MartinBernstorff/Memium/commit/0a034657ff9ed42a8a4727c37115d45b2c1a9e56))
 
-* ci: do not automatically commit formatting changes ([`9073d12`](https://github.com/MartinBernstorff/Memium/commit/9073d12f21ba7cec2bc178c997005fa33598654b))
+- Do not automatically commit formatting changes
+  ([`9073d12`](https://github.com/MartinBernstorff/Memium/commit/9073d12f21ba7cec2bc178c997005fa33598654b))
 
-* ci: update tasks ([`2837861`](https://github.com/MartinBernstorff/Memium/commit/283786145c625efd9e942d090a06fa05b977c978))
+- Update tasks
+  ([`2837861`](https://github.com/MartinBernstorff/Memium/commit/283786145c625efd9e942d090a06fa05b977c978))
 
-* ci: print branch name ([`3e3dbf2`](https://github.com/MartinBernstorff/Memium/commit/3e3dbf247e79c196896239c1b6f3103d750f9831))
+- Print branch name
+  ([`3e3dbf2`](https://github.com/MartinBernstorff/Memium/commit/3e3dbf247e79c196896239c1b6f3103d750f9831))
 
-* ci: update cruft ([`4e5a414`](https://github.com/MartinBernstorff/Memium/commit/4e5a414bc3af76b690806c9acc47b343e3c5faa2))
+- Update cruft
+  ([`4e5a414`](https://github.com/MartinBernstorff/Memium/commit/4e5a414bc3af76b690806c9acc47b343e3c5faa2))
 
-* ci: update paths ([`29cc8ce`](https://github.com/MartinBernstorff/Memium/commit/29cc8cea1aaa789f69b48b89a34fe8e8b3c94f2c))
+- Update paths
+  ([`29cc8ce`](https://github.com/MartinBernstorff/Memium/commit/29cc8cea1aaa789f69b48b89a34fe8e8b3c94f2c))
 
-* ci: remove unused PR ([`949e2e3`](https://github.com/MartinBernstorff/Memium/commit/949e2e312b75ed38541e0354518bd8753e96d034))
+- Remove unused PR
+  ([`949e2e3`](https://github.com/MartinBernstorff/Memium/commit/949e2e312b75ed38541e0354518bd8753e96d034))
 
-* ci: simplify call ([`c072a29`](https://github.com/MartinBernstorff/Memium/commit/c072a294bd354f45b491a896e9fda18cf329e566))
+- Simplify call
+  ([`c072a29`](https://github.com/MartinBernstorff/Memium/commit/c072a294bd354f45b491a896e9fda18cf329e566))
 
-* ci: update tasks ([`687cdb8`](https://github.com/MartinBernstorff/Memium/commit/687cdb8dec71d5a1a21a8f91cbbf412a5239393c))
+- Update tasks
+  ([`687cdb8`](https://github.com/MartinBernstorff/Memium/commit/687cdb8dec71d5a1a21a8f91cbbf412a5239393c))
 
-* ci: broader ignore for venv ([`a5f534f`](https://github.com/MartinBernstorff/Memium/commit/a5f534f83c434da9c18e92495d3bf3c7e2e3c0cb))
+- Broader ignore for venv
+  ([`a5f534f`](https://github.com/MartinBernstorff/Memium/commit/a5f534f83c434da9c18e92495d3bf3c7e2e3c0cb))
 
-* ci: minimal test interface ([`0059b80`](https://github.com/MartinBernstorff/Memium/commit/0059b803ead752006d1943b06b351d8591324fad))
+- Minimal test interface
+  ([`0059b80`](https://github.com/MartinBernstorff/Memium/commit/0059b803ead752006d1943b06b351d8591324fad))
 
-* ci: update cruft ([`bda3461`](https://github.com/MartinBernstorff/Memium/commit/bda3461e914fcd421b2fcc9107f267a98734bff5))
+- Update cruft
+  ([`bda3461`](https://github.com/MartinBernstorff/Memium/commit/bda3461e914fcd421b2fcc9107f267a98734bff5))
 
-* ci: update cruft ([`169171c`](https://github.com/MartinBernstorff/Memium/commit/169171ce0677d21e9559784f99deb811d2b536b4))
+- Update cruft
+  ([`169171c`](https://github.com/MartinBernstorff/Memium/commit/169171ce0677d21e9559784f99deb811d2b536b4))
 
-* ci: disable release ([`a73a8d3`](https://github.com/MartinBernstorff/Memium/commit/a73a8d3827e0d918c09e66852c54efa824fa31a3))
+- Disable release
+  ([`a73a8d3`](https://github.com/MartinBernstorff/Memium/commit/a73a8d3827e0d918c09e66852c54efa824fa31a3))
 
-* ci: update cruft ([`382231d`](https://github.com/MartinBernstorff/Memium/commit/382231db184585973869738e581f9f2323e8fead))
+- Update cruft
+  ([`382231d`](https://github.com/MartinBernstorff/Memium/commit/382231db184585973869738e581f9f2323e8fead))
 
-* ci: remove poetry ([`a7c091d`](https://github.com/MartinBernstorff/Memium/commit/a7c091d668eab47f24fccfd708b02a115fa3a1e1))
+- Remove poetry
+  ([`a7c091d`](https://github.com/MartinBernstorff/Memium/commit/a7c091d668eab47f24fccfd708b02a115fa3a1e1))
 
-* ci: update cruft ([`9a3c0fb`](https://github.com/MartinBernstorff/Memium/commit/9a3c0fb10b7d9e258aa6df00e0d621f101c8b380))
+- Update cruft
+  ([`9a3c0fb`](https://github.com/MartinBernstorff/Memium/commit/9a3c0fb10b7d9e258aa6df00e0d621f101c8b380))
 
-* ci: add mypy to pre-commit ([`9746c27`](https://github.com/MartinBernstorff/Memium/commit/9746c2722e862159844fe10c22cb8ac68e7f79c0))
+- Add mypy to pre-commit
+  ([`9746c27`](https://github.com/MartinBernstorff/Memium/commit/9746c2722e862159844fe10c22cb8ac68e7f79c0))
 
 ### Documentation
 
-* docs: improve readme ([`b5a4ccc`](https://github.com/MartinBernstorff/Memium/commit/b5a4ccc2684f1fc55ab02608fd9b8cf9f92fb607))
+- Improve readme
+  ([`b5a4ccc`](https://github.com/MartinBernstorff/Memium/commit/b5a4ccc2684f1fc55ab02608fd9b8cf9f92fb607))
 
-* docs: update docs ([`d0b646d`](https://github.com/MartinBernstorff/Memium/commit/d0b646df07910a25e357d24d6554ca2e1a7f2674))
+- Update docs
+  ([`d0b646d`](https://github.com/MartinBernstorff/Memium/commit/d0b646df07910a25e357d24d6554ca2e1a7f2674))
 
-* docs: clean up readme ([`bcf2480`](https://github.com/MartinBernstorff/Memium/commit/bcf2480cf1eb3a2532338d82e27f7ad6b02b1658))
+- Clean up readme
+  ([`bcf2480`](https://github.com/MartinBernstorff/Memium/commit/bcf2480cf1eb3a2532338d82e27f7ad6b02b1658))
 
 ### Features
 
-* feat: bump ([`26ea9fb`](https://github.com/MartinBernstorff/Memium/commit/26ea9fb53ac4693a834b3c2fd65846e8850fb43d))
+- Bump
+  ([`26ea9fb`](https://github.com/MartinBernstorff/Memium/commit/26ea9fb53ac4693a834b3c2fd65846e8850fb43d))
 
-* feat: use functionalpy ([`b7352f1`](https://github.com/MartinBernstorff/Memium/commit/b7352f1961177661ce7de8b5f4c5a754564140dd))
+- Use functionalpy
+  ([`b7352f1`](https://github.com/MartinBernstorff/Memium/commit/b7352f1961177661ce7de8b5f4c5a754564140dd))
 
-* feat: use functionalpy ([`72d106a`](https://github.com/MartinBernstorff/Memium/commit/72d106a5e9597798f329d502401c4d4848a9721d))
+- Use functionalpy
+  ([`72d106a`](https://github.com/MartinBernstorff/Memium/commit/72d106a5e9597798f329d502401c4d4848a9721d))
 
-* feat: add docker image ([`2c0b7c6`](https://github.com/MartinBernstorff/Memium/commit/2c0b7c6e3233f235c2b5fee1c8f0deeb6558a9f3))
+- Add docker image
+  ([`2c0b7c6`](https://github.com/MartinBernstorff/Memium/commit/2c0b7c6e3233f235c2b5fee1c8f0deeb6558a9f3))
 
-* feat: pre-populate msic ([`73dcb46`](https://github.com/MartinBernstorff/Memium/commit/73dcb46273e88509ae4fb872c979d2ab1144635d))
+- Pre-populate msic
+  ([`73dcb46`](https://github.com/MartinBernstorff/Memium/commit/73dcb46273e88509ae4fb872c979d2ab1144635d))
 
-* feat: add preferred extensions ([`388dce3`](https://github.com/MartinBernstorff/Memium/commit/388dce336c8fc8497da338729c6cb34727137dfc))
+- Add preferred extensions
+  ([`388dce3`](https://github.com/MartinBernstorff/Memium/commit/388dce336c8fc8497da338729c6cb34727137dfc))
 
-* feat: add dev_container ([`0e29b4d`](https://github.com/MartinBernstorff/Memium/commit/0e29b4dbe41a6df5728026db66e22fb1a56ed988))
+- Add dev_container
+  ([`0e29b4d`](https://github.com/MartinBernstorff/Memium/commit/0e29b4dbe41a6df5728026db66e22fb1a56ed988))
 
-* feat: dynamic user dir in debug main launch.json ([`0aa5d38`](https://github.com/MartinBernstorff/Memium/commit/0aa5d386d073a8e3d77c3a5957f6beb45fed6f31))
+- Dynamic user dir in debug main launch.json
+  ([`0aa5d38`](https://github.com/MartinBernstorff/Memium/commit/0aa5d386d073a8e3d77c3a5957f6beb45fed6f31))
 
-* feat: robustness to cards with errors ([`d340b50`](https://github.com/MartinBernstorff/Memium/commit/d340b50f1bf5bae9f49794e86dfd65d46d893a99))
+- Robustness to cards with errors
+  ([`d340b50`](https://github.com/MartinBernstorff/Memium/commit/d340b50f1bf5bae9f49794e86dfd65d46d893a99))
 
-* feat: add vscode setting sto tracking ([`147716e`](https://github.com/MartinBernstorff/Memium/commit/147716e164d13a1474001905ac24d4465446e974))
+- Add vscode setting sto tracking
+  ([`147716e`](https://github.com/MartinBernstorff/Memium/commit/147716e164d13a1474001905ac24d4465446e974))
 
-* feat: use obsidian uris ([`e107087`](https://github.com/MartinBernstorff/Memium/commit/e1070871474f9205fd905d0e33a6e5e374ae0143))
+- Use obsidian uris
+  ([`e107087`](https://github.com/MartinBernstorff/Memium/commit/e1070871474f9205fd905d0e33a6e5e374ae0143))
 
-* feat: support dash in links ([`add5191`](https://github.com/MartinBernstorff/Memium/commit/add51919ccd246d84225b5989b3f04a6b110b858))
+- Support dash in links
+  ([`add5191`](https://github.com/MartinBernstorff/Memium/commit/add51919ccd246d84225b5989b3f04a6b110b858))
 
-* feat: restrict polling time ([`00f163e`](https://github.com/MartinBernstorff/Memium/commit/00f163ea912b35278fa0f3fdf6ec18b88c632b13))
+- Restrict polling time
+  ([`00f163e`](https://github.com/MartinBernstorff/Memium/commit/00f163ea912b35278fa0f3fdf6ec18b88c632b13))
 
-* feat: improve dir parsing speed ([`e17dea6`](https://github.com/MartinBernstorff/Memium/commit/e17dea693d268eeebeedbe83125a3b1e2f81aef2))
+- Improve dir parsing speed
+  ([`e17dea6`](https://github.com/MartinBernstorff/Memium/commit/e17dea693d268eeebeedbe83125a3b1e2f81aef2))
 
-* feat: update guid for qa ([`f88d7ad`](https://github.com/MartinBernstorff/Memium/commit/f88d7ad44e9ddc3dbe181c9f8866257d9b308090))
+- Update guid for qa
+  ([`f88d7ad`](https://github.com/MartinBernstorff/Memium/commit/f88d7ad44e9ddc3dbe181c9f8866257d9b308090))
 
-* feat: add guid test for qa ankinotes ([`dfdf04c`](https://github.com/MartinBernstorff/Memium/commit/dfdf04cf962cdb906427f9339eeadb18256583bf))
+- Add guid test for qa ankinotes
+  ([`dfdf04c`](https://github.com/MartinBernstorff/Memium/commit/dfdf04cf962cdb906427f9339eeadb18256583bf))
 
-* feat: add Obsidian URI to AnkiCards ([`b04f44b`](https://github.com/MartinBernstorff/Memium/commit/b04f44b89db5df81de2ba2a805899a48f88c0ee8))
+- Add Obsidian URI to AnkiCards
+  ([`b04f44b`](https://github.com/MartinBernstorff/Memium/commit/b04f44b89db5df81de2ba2a805899a48f88c0ee8))
 
-* feat: sync deletions ([`14c24e2`](https://github.com/MartinBernstorff/Memium/commit/14c24e21cb09d34ecb7aefc95f535b815e02cda2))
+- Sync deletions
+  ([`14c24e2`](https://github.com/MartinBernstorff/Memium/commit/14c24e21cb09d34ecb7aefc95f535b815e02cda2))
 
-* feat: delete cards on sync ([`cfd82c9`](https://github.com/MartinBernstorff/Memium/commit/cfd82c968a39c3ba82341d04c39d1f9fc3f90019))
+- Delete cards on sync
+  ([`cfd82c9`](https://github.com/MartinBernstorff/Memium/commit/cfd82c968a39c3ba82341d04c39d1f9fc3f90019))
 
-* feat: add support for markdown link aliases ([`add7e2a`](https://github.com/MartinBernstorff/Memium/commit/add7e2ac3769ad99b0bb8841a93fa21af4718ba3))
+- Add support for markdown link aliases
+  ([`add7e2a`](https://github.com/MartinBernstorff/Memium/commit/add7e2ac3769ad99b0bb8841a93fa21af4718ba3))
 
-* feat: add tts ([`5eaf984`](https://github.com/MartinBernstorff/Memium/commit/5eaf9848937678588b84213acbb81a663f6e1d5d))
+- Add tts
+  ([`5eaf984`](https://github.com/MartinBernstorff/Memium/commit/5eaf9848937678588b84213acbb81a663f6e1d5d))
 
-* feat: attempt tts addition ([`3ccb493`](https://github.com/MartinBernstorff/Memium/commit/3ccb49365eec003ce98bb6ae1c3e0a7f491ff7b7))
+- Attempt tts addition
+  ([`3ccb493`](https://github.com/MartinBernstorff/Memium/commit/3ccb49365eec003ce98bb6ae1c3e0a7f491ff7b7))
 
-* feat: decrease length of note id ([`6075894`](https://github.com/MartinBernstorff/Memium/commit/6075894de68d34b5a2db7277bf82d9aba604c798))
+- Decrease length of note id
+  ([`6075894`](https://github.com/MartinBernstorff/Memium/commit/6075894de68d34b5a2db7277bf82d9aba604c798))
 
 ### Refactoring
 
-* refactor: major rewrite of input pipeline ([`88793cd`](https://github.com/MartinBernstorff/Memium/commit/88793cd886c444e4cbe2e3dd55d010ff33590b78))
+- Major rewrite of input pipeline
+  ([`88793cd`](https://github.com/MartinBernstorff/Memium/commit/88793cd886c444e4cbe2e3dd55d010ff33590b78))
 
-* refactor: split ankicard into AnkiQA and AnkiCloze ([`824660c`](https://github.com/MartinBernstorff/Memium/commit/824660c165e70be08d0d4992ac69f4a400b9cf28))
+- Split ankicard into AnkiQA and AnkiCloze
+  ([`824660c`](https://github.com/MartinBernstorff/Memium/commit/824660c165e70be08d0d4992ac69f4a400b9cf28))
 
-* refactor: specify anki packagegenerator ([`8b52a42`](https://github.com/MartinBernstorff/Memium/commit/8b52a42c32e443188684fe825894d636dc3e4083))
+- Specify anki packagegenerator
+  ([`8b52a42`](https://github.com/MartinBernstorff/Memium/commit/8b52a42c32e443188684fe825894d636dc3e4083))
 
-* refactor: extract url generation ([`b740700`](https://github.com/MartinBernstorff/Memium/commit/b7407001d357a5e814394effaa5bd45a4b9c130b))
+- Extract url generation
+  ([`b740700`](https://github.com/MartinBernstorff/Memium/commit/b7407001d357a5e814394effaa5bd45a4b9c130b))
 
-* refactor: modularise ([`5eba16c`](https://github.com/MartinBernstorff/Memium/commit/5eba16ceefb68fb8b6a5a0ec6f68897716fe2db2))
+- Modularise
+  ([`5eba16c`](https://github.com/MartinBernstorff/Memium/commit/5eba16ceefb68fb8b6a5a0ec6f68897716fe2db2))
 
-* refactor: split cards_to_decks ([`fa183f0`](https://github.com/MartinBernstorff/Memium/commit/fa183f08bc883a81bf41fd94beb0d9765e04053b))
+- Split cards_to_decks
+  ([`fa183f0`](https://github.com/MartinBernstorff/Memium/commit/fa183f08bc883a81bf41fd94beb0d9765e04053b))
 
-* refactor: renaming ([`61baacc`](https://github.com/MartinBernstorff/Memium/commit/61baacc5d6374dff99f4707887afce02d040a1d0))
+- Renaming
+  ([`61baacc`](https://github.com/MartinBernstorff/Memium/commit/61baacc5d6374dff99f4707887afce02d040a1d0))
 
-* refactor: split git sync and github pr handling ([`981d105`](https://github.com/MartinBernstorff/Memium/commit/981d105a222b2f90c61adbb1a6d71a2ead1dee8a))
+- Split git sync and github pr handling
+  ([`981d105`](https://github.com/MartinBernstorff/Memium/commit/981d105a222b2f90c61adbb1a6d71a2ead1dee8a))
 
-* refactor: remove unused arguments from config ([`c27068b`](https://github.com/MartinBernstorff/Memium/commit/c27068bb735cae85c8d85b1353ab3181e76b6b75))
+- Remove unused arguments from config
+  ([`c27068b`](https://github.com/MartinBernstorff/Memium/commit/c27068bb735cae85c8d85b1353ab3181e76b6b75))
 
-* refactor: remove support for QA DK card ([`125c725`](https://github.com/MartinBernstorff/Memium/commit/125c725a23cdf68f6a5edd317ec6a863665500a7))
-
-### Unknown
-
-* Merge pull request #173 from MartinBernstorff/mb/critical-mockingbird
-
-ci: update cruft ([`ebcef8c`](https://github.com/MartinBernstorff/Memium/commit/ebcef8c3b3e358003b64e42f9ee95acb654cbd97))
-
-* major: bump ([`2062688`](https://github.com/MartinBernstorff/Memium/commit/20626889259f3365f9936dfa64004745f263427d))
-
-* Merge pull request #172 from MartinBernstorff/mb/melted-gull
-
-ci: run release after tests ([`51a0e48`](https://github.com/MartinBernstorff/Memium/commit/51a0e487056a0c2cc6596af9dd2eee2cd1e2cbd4))
-
-* Merge pull request #170 from MartinBernstorff/mb/cultural-goldfish
-
-ci: reenable release ([`ac0e0c1`](https://github.com/MartinBernstorff/Memium/commit/ac0e0c1cfd16a24c6980499fadb751701cc3f13b))
-
-* misc. ([`255e288`](https://github.com/MartinBernstorff/Memium/commit/255e2888d11ade7975dccde1285f98b335335349))
-
-* Merge pull request #169 from MartinBernstorff/mb/external-landfowl
-
-ci: re-enable caching in tests ([`5751833`](https://github.com/MartinBernstorff/Memium/commit/5751833d8f3d14d15074febff6cc501f10589f3a))
-
-* Merge pull request #168 from MartinBernstorff/mb/necessary-swallow
-
-ci: use nimble-python ([`65a46f4`](https://github.com/MartinBernstorff/Memium/commit/65a46f4e9536b55d1414d4a59d883f92b47ff11c))
-
-* cruft updates ([`6d496b5`](https://github.com/MartinBernstorff/Memium/commit/6d496b529babb615a3a5cce46d7c63be35562cea))
-
-* misc. ([`7e97a06`](https://github.com/MartinBernstorff/Memium/commit/7e97a067abe21d860ed92c858985c0b4b36bb165))
-
-* misc. ([`e512c5b`](https://github.com/MartinBernstorff/Memium/commit/e512c5b3cdc393d792cbc2c814d9a70864f7d402))
-
-* types: ignore unknown types ([`40cc8e6`](https://github.com/MartinBernstorff/Memium/commit/40cc8e69d74327a2ce50acc657a361a653ae34d3))
-
-* misc. ([`01ec648`](https://github.com/MartinBernstorff/Memium/commit/01ec6484cce41b46b382fb0bd544a0e6f27b018e))
-
-* format: line length ([`249592b`](https://github.com/MartinBernstorff/Memium/commit/249592b84bf608fecbb22b8f8142ca41a4572b01))
-
-* ruff: format ([`804b6b8`](https://github.com/MartinBernstorff/Memium/commit/804b6b82cad5af6db744cd347def2d63f683959a))
-
-* format: remove unused imports ([`082ea88`](https://github.com/MartinBernstorff/Memium/commit/082ea8844e9ad1abfbad18fa122e47c1f2aea768))
-
-* cleanup ([`413edea`](https://github.com/MartinBernstorff/Memium/commit/413edea11b6d2a04e02bb6401a34441a6988077c))
-
-* Merge pull request #165 from MartinBernstorff/mb/fix_bind_mounts
-
-fix: bind mounts ([`3217d85`](https://github.com/MartinBernstorff/Memium/commit/3217d85671d687efb8dd388f84d0f30175d7affd))
-
-* Merge branch 'main' into mb/fix_bind_mounts ([`3d6fded`](https://github.com/MartinBernstorff/Memium/commit/3d6fded0de4e48aac694a918f0724488fb116539))
-
-* Merge pull request #163 from MartinBernstorff/mb/debug_no_such_file_or_directory
-
-fix: correct bind mounts ([`7984cd2`](https://github.com/MartinBernstorff/Memium/commit/7984cd28fa9f487d111e6bb8af3e21c24f063aef))
-
-* misc. ([`0773a19`](https://github.com/MartinBernstorff/Memium/commit/0773a1918843b03b147edc14dc779c7da6e73647))
-
-* misc. ([`f91f319`](https://github.com/MartinBernstorff/Memium/commit/f91f319e46935ce423489d49289f8715fa5c13b4))
-
-* Merge pull request #159 from MartinBernstorff/2
-
-v2 ([`ff5fd40`](https://github.com/MartinBernstorff/Memium/commit/ff5fd40d9d5dbb95f25f0cb3ad4a350e9323b6ae))
-
-* v2 ([`58bbcae`](https://github.com/MartinBernstorff/Memium/commit/58bbcaed0bd69ace73dd63ee68e2262034c67027))
-
-* Merge pull request #157 from MartinBernstorff/MartinBernstorff-patch-2
-
-Update readme.md ([`f843f48`](https://github.com/MartinBernstorff/Memium/commit/f843f48db2f8384c3098e853ca991689e069bf67))
-
-* Update readme.md ([`96eaa92`](https://github.com/MartinBernstorff/Memium/commit/96eaa920d31321d4f1c8fbd9e6597b4d321c1edb))
-
-* Merge pull request #156 from MartinBernstorff/mb/create_prod_docker_image
-
-create prod docker image ([`ab2e688`](https://github.com/MartinBernstorff/Memium/commit/ab2e688cfa5f632653c90e915810beb55a6763fa))
-
-* misc. ([`d013219`](https://github.com/MartinBernstorff/Memium/commit/d013219a37065a971b91d6f1615f555a9fbece12))
-
-* misc. ([`38d7eb9`](https://github.com/MartinBernstorff/Memium/commit/38d7eb9e1fdf195739004eb3c22844b20f47f795))
-
-* misc. ([`4e79feb`](https://github.com/MartinBernstorff/Memium/commit/4e79feb0e959aa05cabde66a2f4ceadb0114ea2f))
-
-* misc. ([`70b63e9`](https://github.com/MartinBernstorff/Memium/commit/70b63e92cd23e4183303e3bd89404f4787a9ab84))
-
-* remove dev container json to enable local mounts ([`8dd1c66`](https://github.com/MartinBernstorff/Memium/commit/8dd1c6680aefe8a8b35fa28c0ab4872cd071a137))
-
-* git: ignore input mount ([`967a745`](https://github.com/MartinBernstorff/Memium/commit/967a7459d06c5e7d59c7f19fd775694fd7b4422d))
-
-* dev: do not add mount by default ([`670cef6`](https://github.com/MartinBernstorff/Memium/commit/670cef6941ffd02e4629926a07d756dfa37b3558))
-
-* misc. ([`2aa9395`](https://github.com/MartinBernstorff/Memium/commit/2aa93953d6b23bc9253299e27c21e359b3cec3e9))
-
-* remove unused docopt and centralise globals ([`8668bdd`](https://github.com/MartinBernstorff/Memium/commit/8668bdda30959f2175e04d503b88230ca174e47c))
-
-* misc. ([`939b1d9`](https://github.com/MartinBernstorff/Memium/commit/939b1d9a5d3b2fcb23e19da4658bfbeff43db4d0))
-
-* Merge pull request #150 from MartinBernstorff/mb/simplify_deps
-
-simplify deps ([`c888a4c`](https://github.com/MartinBernstorff/Memium/commit/c888a4cccaed7853beb9776d66dd6b3b87b2da7b))
-
-* deps: pytest-sugar version ([`0a05976`](https://github.com/MartinBernstorff/Memium/commit/0a05976897f5b1b5df715bb2fca0061d0fb127b0))
-
-* pytest-xdist deps ([`580bdcd`](https://github.com/MartinBernstorff/Memium/commit/580bdcd614c9df1a0e3159f30b86999e0a973f18))
-
-* Merge branch 'main' into mb/simplify_deps ([`979b421`](https://github.com/MartinBernstorff/Memium/commit/979b42170531096050025fdffa4db6b8915b5a98))
-
-* Merge pull request #148 from MartinBernstorff/mb/add_monitoring
-
-add monitoring ([`e0ad96f`](https://github.com/MartinBernstorff/Memium/commit/e0ad96fde8425040784605c783043d9745337e1c))
-
-* simplify deps ([`35c70d7`](https://github.com/MartinBernstorff/Memium/commit/35c70d741d22d93859869ac42e308c48ab70aeaa))
-
-* correct sentry version ([`fa14c24`](https://github.com/MartinBernstorff/Memium/commit/fa14c24900f99ec3a8f3feb2f76c52d32d0351d0))
-
-* Merge branch 'main' into mb/add_monitoring ([`f6a584a`](https://github.com/MartinBernstorff/Memium/commit/f6a584a06db7f411caa9ba58c439bf562c8d30b7))
-
-* Merge pull request #149 from MartinBernstorff/mb/migrate_ci_to_use_dev_container
-
-misc. ([`19255eb`](https://github.com/MartinBernstorff/Memium/commit/19255eb27e48f50526da99c2b1a9e691bd50ef1b))
-
-* Benchmark with prebuilt image ([`f2d3e80`](https://github.com/MartinBernstorff/Memium/commit/f2d3e80705540a0bee34bd3b475a50db87dd5fdf))
-
-* rename validation job ([`3dfefa5`](https://github.com/MartinBernstorff/Memium/commit/3dfefa5a79bab037fa992994a977d5dff7d1a1b1))
-
-* another typo ([`6d332b8`](https://github.com/MartinBernstorff/Memium/commit/6d332b80c639443a791c2a7e99d9310b0cf73747))
-
-* fix type in dev container image spec ([`5d83095`](https://github.com/MartinBernstorff/Memium/commit/5d83095ca334f830f965810fd4fee49ca639e849))
-
-* simplify ci ([`12ab185`](https://github.com/MartinBernstorff/Memium/commit/12ab185b22af6f0f0109f9147cf895ac632e8c59))
-
-* add gh cli to devcontainer.json ([`9ed6b15`](https://github.com/MartinBernstorff/Memium/commit/9ed6b15eb71173be5f5e9a3cfe6ae4f499ae6604))
-
-* python3 .10 ([`c780ae4`](https://github.com/MartinBernstorff/Memium/commit/c780ae4499f4189a5fb2b317e04111eb6b5410a3))
-
-* dev: simplify dev container ([`8b90fb1`](https://github.com/MartinBernstorff/Memium/commit/8b90fb1f916b55d8c61445497a75d8dc579360f4))
-
-* misc. ([`8778915`](https://github.com/MartinBernstorff/Memium/commit/87789153b1975aa391564d2a130b4893c783e984))
-
-* Merge remote-tracking branch 'origin/main' into mb/add_monitoring ([`748d415`](https://github.com/MartinBernstorff/Memium/commit/748d4150c9a9343244081394083e5125c3ee54f6))
-
-* Merge pull request #147 from MartinBernstorff/mb/feat_add_shell_script_logging
-
-add shell script logging ([`fcaca78`](https://github.com/MartinBernstorff/Memium/commit/fcaca7878bf8b8ab5b3dcc00414f90ddc99b550e))
-
-* dev: push changes on succesful tests ([`55c2589`](https://github.com/MartinBernstorff/Memium/commit/55c2589d21488f945d7211b36bdf63ee5a2ce7f2))
-
-* types: fix ([`18dfb85`](https://github.com/MartinBernstorff/Memium/commit/18dfb8526b9504756502f41f381af43ee224dd1c))
-
-* dev: add type-checks to make ([`228e951`](https://github.com/MartinBernstorff/Memium/commit/228e95124b8ff57f3f9c6dd74f64eab36da689e7))
-
-* dev: add makefile tools ([`b52e2a8`](https://github.com/MartinBernstorff/Memium/commit/b52e2a8a2e8f3b756a2ef20a398af61a5178d474))
-
-* dev: add makefile ([`0a8f043`](https://github.com/MartinBernstorff/Memium/commit/0a8f043b0d3fc80ed7375cf824e83b62fbb2482e))
-
-* add black as provider ([`34aa978`](https://github.com/MartinBernstorff/Memium/commit/34aa978ef44274bbad18af0d63a9c5cab2babc44))
-
-* add sentry monitoring ([`ea59872`](https://github.com/MartinBernstorff/Memium/commit/ea598720dc544d954b33dc3ba1544d755b7b3a2f))
-
-* add shell script logging ([`fa7fb28`](https://github.com/MartinBernstorff/Memium/commit/fa7fb284d14290cdad86bd0bc50ef095c45d6828))
-
-* Merge pull request #146 from MartinBernstorff/dependabot/pip/pyright-1.1.330.post0
-
-deps:(deps-dev): bump pyright from 1.1.329 to 1.1.330.post0 ([`09e7a26`](https://github.com/MartinBernstorff/Memium/commit/09e7a268d2b8377da1608c0a061e42a4b4f6c478))
-
-* deps:(deps-dev): bump pyright from 1.1.329 to 1.1.330.post0
-
-Bumps [pyright](https://github.com/RobertCraigie/pyright-python) from 1.1.329 to 1.1.330.post0.
-- [Release notes](https://github.com/RobertCraigie/pyright-python/releases)
-- [Commits](https://github.com/RobertCraigie/pyright-python/compare/v1.1.329...v1.1.330.post0)
-
----
-updated-dependencies:
-- dependency-name: pyright
-  dependency-type: direct:production
-  update-type: version-update:semver-patch
-...
-
-Signed-off-by: dependabot[bot] <support@github.com> ([`5cdeb83`](https://github.com/MartinBernstorff/Memium/commit/5cdeb83a9564fe853913f5b4b1ff88afa952b1df))
-
-* Merge pull request #139 from MartinBernstorff/mb/feat_add_devcontainer
-
-ci: add devcontainer ([`9d0635f`](https://github.com/MartinBernstorff/Memium/commit/9d0635f301a5e881e1c7f865b63f06250d248f47))
-
-* container: ensure lazygit does not show pop-up every time ([`ad0f51d`](https://github.com/MartinBernstorff/Memium/commit/ad0f51d8fbfcb673e3ce7ef9c352cce5ad6e7ac4))
-
-* Merge branch 'main' into mb/feat_add_devcontainer ([`98a8763`](https://github.com/MartinBernstorff/Memium/commit/98a8763c644907c2c2917ae2c15caffceba8051e))
-
-* Merge pull request #140 from MartinBernstorff/dependabot/pip/pyright-1.1.329
-
-deps:(deps-dev): bump pyright from 1.1.327 to 1.1.329 ([`c77656f`](https://github.com/MartinBernstorff/Memium/commit/c77656fae7f75612dd82713b971f55fa6991b32b))
-
-* deps:(deps-dev): bump pyright from 1.1.327 to 1.1.329
-
-Bumps [pyright](https://github.com/RobertCraigie/pyright-python) from 1.1.327 to 1.1.329.
-- [Release notes](https://github.com/RobertCraigie/pyright-python/releases)
-- [Commits](https://github.com/RobertCraigie/pyright-python/compare/v1.1.327...v1.1.329)
-
----
-updated-dependencies:
-- dependency-name: pyright
-  dependency-type: direct:production
-  update-type: version-update:semver-patch
-...
-
-Signed-off-by: dependabot[bot] <support@github.com> ([`a48366e`](https://github.com/MartinBernstorff/Memium/commit/a48366e932c7792df02f3e6f628feee085498e5e))
-
-* misc. ([`37f3d8b`](https://github.com/MartinBernstorff/Memium/commit/37f3d8b336aeccf148556da367387b7d6c702e28))
-
-* misc. ([`b3eb9eb`](https://github.com/MartinBernstorff/Memium/commit/b3eb9eb4631b0f94ea6080cb602616884950b3c8))
-
-* cleanup ([`156cc84`](https://github.com/MartinBernstorff/Memium/commit/156cc84d08d10a928c9259d49337cc6d599a2936))
-
-* Merge pull request #138 from MartinBernstorff/dependabot/pip/pyright-1.1.327
-
-deps:(deps-dev): bump pyright from 1.1.326 to 1.1.327 ([`9f4be02`](https://github.com/MartinBernstorff/Memium/commit/9f4be02a99f26b01b197540ac038fa3c7e735c1a))
-
-* deps:(deps-dev): bump pyright from 1.1.326 to 1.1.327
-
-Bumps [pyright](https://github.com/RobertCraigie/pyright-python) from 1.1.326 to 1.1.327.
-- [Release notes](https://github.com/RobertCraigie/pyright-python/releases)
-- [Commits](https://github.com/RobertCraigie/pyright-python/compare/v1.1.326...v1.1.327)
-
----
-updated-dependencies:
-- dependency-name: pyright
-  dependency-type: direct:production
-  update-type: version-update:semver-patch
-...
-
-Signed-off-by: dependabot[bot] <support@github.com> ([`ac56d47`](https://github.com/MartinBernstorff/Memium/commit/ac56d475b8781303e40f40df962db9d724545b79))
-
-* Merge pull request #137 from MartinBernstorff/dependabot/pip/pyright-1.1.326
-
-deps:(deps-dev): bump pyright from 1.1.325 to 1.1.326 ([`494de01`](https://github.com/MartinBernstorff/Memium/commit/494de01a5e897c4e6f8c07dbe36cd1a99c351f1d))
-
-* deps:(deps-dev): bump pyright from 1.1.325 to 1.1.326
-
-Bumps [pyright](https://github.com/RobertCraigie/pyright-python) from 1.1.325 to 1.1.326.
-- [Release notes](https://github.com/RobertCraigie/pyright-python/releases)
-- [Commits](https://github.com/RobertCraigie/pyright-python/compare/v1.1.325...v1.1.326)
-
----
-updated-dependencies:
-- dependency-name: pyright
-  dependency-type: direct:production
-  update-type: version-update:semver-patch
-...
-
-Signed-off-by: dependabot[bot] <support@github.com> ([`78fcd9d`](https://github.com/MartinBernstorff/Memium/commit/78fcd9ddc169f09cde76c6c189f46527e939079e))
-
-* Merge pull request #136 from MartinBernstorff/dependabot/pip/furo-gte-2022.12.7-and-lt-2023.9.11
-
-deps:(deps-dev): update furo requirement from <2023.8.20,>=2022.12.7 to >=2022.12.7,<2023.9.11 ([`faa8888`](https://github.com/MartinBernstorff/Memium/commit/faa8888410d38af2651c41f23de49efbbfd36f4c))
-
-* deps:(deps-dev): update furo requirement
-
-Updates the requirements on [furo](https://github.com/pradyunsg/furo) to permit the latest version.
-- [Release notes](https://github.com/pradyunsg/furo/releases)
-- [Changelog](https://github.com/pradyunsg/furo/blob/main/docs/changelog.md)
-- [Commits](https://github.com/pradyunsg/furo/compare/2022.12.07...2023.09.10)
-
----
-updated-dependencies:
-- dependency-name: furo
-  dependency-type: direct:production
-...
-
-Signed-off-by: dependabot[bot] <support@github.com> ([`cdf0bcf`](https://github.com/MartinBernstorff/Memium/commit/cdf0bcfc8517e119e18b862bae5dc882bfab9c20))
-
-* Merge pull request #132 from MartinBernstorff/mb/rewrite_entrypoint
-
-refactor: rewrite entrypoint ([`8e68c36`](https://github.com/MartinBernstorff/Memium/commit/8e68c3662792d4430b2201ba27e3cf6366a55e3a))
-
-* deps: pin invoke version ([`02b1549`](https://github.com/MartinBernstorff/Memium/commit/02b1549e7e4904109eade91f41fa5f03e4d044d4))
-
-* deps: pin invoke ([`a1d6339`](https://github.com/MartinBernstorff/Memium/commit/a1d6339305ad2eb1048bf887083e0128a0536cc5))
-
-* formatting ([`0ff68d0`](https://github.com/MartinBernstorff/Memium/commit/0ff68d0617e53644b0aefb9721bbd24555e63aa5))
-
-* Merge branch 'main' into mb/rewrite_entrypoint ([`b857f27`](https://github.com/MartinBernstorff/Memium/commit/b857f27b43bf6c860c8bed37e1bbbdbe5dfd5b7d))
-
-* misc. ([`1df62e9`](https://github.com/MartinBernstorff/Memium/commit/1df62e963d1b66942046254150235865d5d95626))
-
-* auto-style ([`cf4bf99`](https://github.com/MartinBernstorff/Memium/commit/cf4bf99daa9928869fce518533b6aef1e13fa154))
-
-* Merge pull request #135 from MartinBernstorff/dependabot/pip/pyright-1.1.325
-
-deps:(deps-dev): bump pyright from 1.1.324 to 1.1.325 ([`36587bf`](https://github.com/MartinBernstorff/Memium/commit/36587bf0a0417a3c8f4ebb1eefe2cfbf59a3f2b9))
-
-* deps:(deps-dev): bump pyright from 1.1.324 to 1.1.325
-
-Bumps [pyright](https://github.com/RobertCraigie/pyright-python) from 1.1.324 to 1.1.325.
-- [Release notes](https://github.com/RobertCraigie/pyright-python/releases)
-- [Commits](https://github.com/RobertCraigie/pyright-python/compare/v1.1.324...v1.1.325)
-
----
-updated-dependencies:
-- dependency-name: pyright
-  dependency-type: direct:production
-  update-type: version-update:semver-patch
-...
-
-Signed-off-by: dependabot[bot] <support@github.com> ([`8e92745`](https://github.com/MartinBernstorff/Memium/commit/8e92745079b9cb84d099570aeb09de941a68a297))
-
-* Merge pull request #131 from MartinBernstorff/mb/debug
-
-feat: dynamic user dir in debug main launch.json ([`68a68f2`](https://github.com/MartinBernstorff/Memium/commit/68a68f2b33a5eeffb76f70561153c1c55efa9a5e))
-
-* Merge pull request #134 from MartinBernstorff/dependabot/pip/invoke-2.2.0
-
-deps:(deps-dev): bump invoke from 2.1.0 to 2.2.0 ([`ed9446a`](https://github.com/MartinBernstorff/Memium/commit/ed9446a12f2a4291afcf5083e13fc96fb49a793c))
-
-* deps:(deps-dev): bump invoke from 2.1.0 to 2.2.0
-
-Bumps [invoke](https://github.com/pyinvoke/invoke) from 2.1.0 to 2.2.0.
-- [Commits](https://github.com/pyinvoke/invoke/compare/2.1.0...2.2.0)
-
----
-updated-dependencies:
-- dependency-name: invoke
-  dependency-type: direct:production
-  update-type: version-update:semver-minor
-...
-
-Signed-off-by: dependabot[bot] <support@github.com> ([`08026a6`](https://github.com/MartinBernstorff/Memium/commit/08026a63f7f9bb5757a499780a2c447384ce9b29))
-
-* Merge pull request #133 from MartinBernstorff/dependabot/pip/pyright-1.1.324
-
-deps:(deps-dev): bump pyright from 1.1.323 to 1.1.324 ([`8eea198`](https://github.com/MartinBernstorff/Memium/commit/8eea198a766e9d511ae5949e4e67090f4957c16e))
-
-* deps:(deps-dev): bump pyright from 1.1.323 to 1.1.324
-
-Bumps [pyright](https://github.com/RobertCraigie/pyright-python) from 1.1.323 to 1.1.324.
-- [Release notes](https://github.com/RobertCraigie/pyright-python/releases)
-- [Commits](https://github.com/RobertCraigie/pyright-python/compare/v1.1.323...v1.1.324)
-
----
-updated-dependencies:
-- dependency-name: pyright
-  dependency-type: direct:production
-  update-type: version-update:semver-patch
-...
-
-Signed-off-by: dependabot[bot] <support@github.com> ([`d567ab5`](https://github.com/MartinBernstorff/Memium/commit/d567ab5d70640604c45b8425ba91eb113f0eeb5f))
-
-* Merge pull request #130 from MartinBernstorff/mb/debug
-
-Mb/debug ([`9946429`](https://github.com/MartinBernstorff/Memium/commit/9946429c33aff2164e4287d2d4f11a08fd0a1390))
-
-* deps: lock invoke version ([`7cdbca5`](https://github.com/MartinBernstorff/Memium/commit/7cdbca566963ef5c44bdfe2e7d24578f49b16f23))
-
-* Merge pull request #127 from MartinBernstorff/dependabot/pip/sphinx-gte-5.3.0-and-lt-7.3.0
-
-deps:(deps-dev): update sphinx requirement from <7.2.0,>=5.3.0 to >=5.3.0,<7.3.0 ([`45ba02e`](https://github.com/MartinBernstorff/Memium/commit/45ba02e9c702897192921438e13b4e1616258d44))
-
-* deps:(deps-dev): update sphinx requirement
-
-Updates the requirements on [sphinx](https://github.com/sphinx-doc/sphinx) to permit the latest version.
-- [Release notes](https://github.com/sphinx-doc/sphinx/releases)
-- [Changelog](https://github.com/sphinx-doc/sphinx/blob/master/CHANGES)
-- [Commits](https://github.com/sphinx-doc/sphinx/compare/v5.3.0...v7.2.2)
-
----
-updated-dependencies:
-- dependency-name: sphinx
-  dependency-type: direct:production
-...
-
-Signed-off-by: dependabot[bot] <support@github.com> ([`53731c9`](https://github.com/MartinBernstorff/Memium/commit/53731c9c8fae2c124595d41dcee791dc2b9448de))
-
-* Merge pull request #129 from MartinBernstorff/dependabot/pip/pyright-1.1.323
-
-deps:(deps-dev): bump pyright from 1.1.322 to 1.1.323 ([`56b57c0`](https://github.com/MartinBernstorff/Memium/commit/56b57c033bbc5c27416b5aa4021a2dd655e4203b))
-
-* deps:(deps-dev): bump pyright from 1.1.322 to 1.1.323
-
-Bumps [pyright](https://github.com/RobertCraigie/pyright-python) from 1.1.322 to 1.1.323.
-- [Release notes](https://github.com/RobertCraigie/pyright-python/releases)
-- [Commits](https://github.com/RobertCraigie/pyright-python/compare/v1.1.322...v1.1.323)
-
----
-updated-dependencies:
-- dependency-name: pyright
-  dependency-type: direct:production
-  update-type: version-update:semver-patch
-...
-
-Signed-off-by: dependabot[bot] <support@github.com> ([`e8019f9`](https://github.com/MartinBernstorff/Memium/commit/e8019f95bb6ac1a001b7e58fd89d97258b66f2f7))
-
-* Merge pull request #128 from MartinBernstorff/dependabot/pip/furo-gte-2022.12.7-and-lt-2023.8.20
-
-deps:(deps-dev): update furo requirement from <2023.7.27,>=2022.12.7 to >=2022.12.7,<2023.8.20 ([`784838d`](https://github.com/MartinBernstorff/Memium/commit/784838de2fbe17db07a18ff91d8ad5e6669e39c7))
-
-* deps:(deps-dev): update furo requirement
-
-Updates the requirements on [furo](https://github.com/pradyunsg/furo) to permit the latest version.
-- [Release notes](https://github.com/pradyunsg/furo/releases)
-- [Changelog](https://github.com/pradyunsg/furo/blob/main/docs/changelog.md)
-- [Commits](https://github.com/pradyunsg/furo/compare/2022.12.07...2023.08.19)
-
----
-updated-dependencies:
-- dependency-name: furo
-  dependency-type: direct:production
-...
-
-Signed-off-by: dependabot[bot] <support@github.com> ([`afe01a6`](https://github.com/MartinBernstorff/Memium/commit/afe01a60f4cb7d1b0bd429496b68681e01978f8d))
-
-* Merge pull request #126 from MartinBernstorff/dependabot/pip/pyright-1.1.322
-
-deps:(deps-dev): bump pyright from 1.1.320 to 1.1.322 ([`4e66ebd`](https://github.com/MartinBernstorff/Memium/commit/4e66ebd0c917ec4ffbaa8ba19387c2a4f582558e))
-
-* deps:(deps-dev): bump pyright from 1.1.320 to 1.1.322
-
-Bumps [pyright](https://github.com/RobertCraigie/pyright-python) from 1.1.320 to 1.1.322.
-- [Release notes](https://github.com/RobertCraigie/pyright-python/releases)
-- [Commits](https://github.com/RobertCraigie/pyright-python/compare/v1.1.320...v1.1.322)
-
----
-updated-dependencies:
-- dependency-name: pyright
-  dependency-type: direct:production
-  update-type: version-update:semver-patch
-...
-
-Signed-off-by: dependabot[bot] <support@github.com> ([`a38d24f`](https://github.com/MartinBernstorff/Memium/commit/a38d24f25723447dc2151d05be52cda3511b2f12))
-
-* Merge pull request #125 from MartinBernstorff/dependabot/pip/invoke-2.2.0
-
-deps:(deps-dev): bump invoke from 2.1.0 to 2.2.0 ([`69de660`](https://github.com/MartinBernstorff/Memium/commit/69de660f076bac0af53eaa51c51ad68a2c3b2d58))
-
-* deps:(deps-dev): bump invoke from 2.1.0 to 2.2.0
-
-Bumps [invoke](https://github.com/pyinvoke/invoke) from 2.1.0 to 2.2.0.
-- [Commits](https://github.com/pyinvoke/invoke/compare/2.1.0...2.2.0)
-
----
-updated-dependencies:
-- dependency-name: invoke
-  dependency-type: direct:production
-  update-type: version-update:semver-minor
-...
-
-Signed-off-by: dependabot[bot] <support@github.com> ([`e4da95d`](https://github.com/MartinBernstorff/Memium/commit/e4da95d139cd029992b1ee82e668e6d6b4ca98c1))
-
-* Merge pull request #124 from MartinBernstorff/MartinBernstorff-patch-2
-
-Update readme.md ([`4b6f694`](https://github.com/MartinBernstorff/Memium/commit/4b6f6948fdb6fb5e0dce7d7c2fc20c862226645d))
-
-* Update readme.md ([`f1327d8`](https://github.com/MartinBernstorff/Memium/commit/f1327d852456d7e81d3f9e04e12f0f045af43711))
-
-* Merge pull request #123 from MartinBernstorff/mb/split_ankicard_into_two
-
-mb/split ankicard into two ([`db3c8f4`](https://github.com/MartinBernstorff/Memium/commit/db3c8f4ae214fee46f79d01beadaddbc9b2793df))
-
-* style ([`9f17cea`](https://github.com/MartinBernstorff/Memium/commit/9f17cea3aaffba5534417d7462ba3bd6824018f6))
-
-* Merge pull request #122 from MartinBernstorff/MartinBernstorff-patch-3
-
-Update readme.md ([`496263e`](https://github.com/MartinBernstorff/Memium/commit/496263e552aa60f97c905ac5ef76d26e588ebf51))
-
-* Update readme.md ([`5551251`](https://github.com/MartinBernstorff/Memium/commit/55512516615aad916cb71e4147274cd14ff05423))
-
-* Merge pull request #121 from MartinBernstorff/MartinBernstorff-patch-2
-
-Update readme.md ([`68e1495`](https://github.com/MartinBernstorff/Memium/commit/68e149516ba58c3a05b2b27835211bd6d5464e91))
-
-* Update readme.md ([`8d8835f`](https://github.com/MartinBernstorff/Memium/commit/8d8835fef063b5edbca32f151ae2a40b2e4e598e))
-
-* Merge pull request #120 from MartinBernstorff/mb/update_readme
-
-docs: improve readme ([`05b88c8`](https://github.com/MartinBernstorff/Memium/commit/05b88c8d6f1a2cb4201a1a25120dfbc31a4b428e))
-
-* Merge branch 'main' into mb/update_readme ([`69aa28f`](https://github.com/MartinBernstorff/Memium/commit/69aa28f075652157b0f57471f088329c0695e4d8))
-
-* Merge pull request #119 from MartinBernstorff/mb/rename
-
-refactor: specify anki packagegenerator ([`a1a3ac8`](https://github.com/MartinBernstorff/Memium/commit/a1a3ac8a6c2b9b525b96b76d3494ad698242b056))
-
-* Merge pull request #118 from MartinBernstorff/mb/further_decompose_ankicard
-
-mb/further decompose ankicard ([`546ab2f`](https://github.com/MartinBernstorff/Memium/commit/546ab2ffedade5bdac2ffb7876fc404727966792))
-
-* missing import ([`008dce0`](https://github.com/MartinBernstorff/Memium/commit/008dce0beb9604575f806b63355bbb38c8297786))
-
-* Merge pull request #117 from MartinBernstorff/mb/refactor_object
-
-mb/refactor object ([`b272769`](https://github.com/MartinBernstorff/Memium/commit/b272769494995e1908e16eb402db7907cd89b12c))
-
-* --a ([`94f58d6`](https://github.com/MartinBernstorff/Memium/commit/94f58d607c83406f17b113018579e7dcbe733afd))
-
-* misc. ([`08ae3f7`](https://github.com/MartinBernstorff/Memium/commit/08ae3f7f48ceeb3636c10127b6b6c0ccf1f1336f))
-
-* refactor ([`e6a609b`](https://github.com/MartinBernstorff/Memium/commit/e6a609bfb24f14b2fcebc1b43060d5c32acf10f6))
-
-* use any venv ([`2d37c65`](https://github.com/MartinBernstorff/Memium/commit/2d37c65aa3abeaf29c935ab1580dd4a231bffe11))
-
-* Merge pull request #116 from MartinBernstorff/mb/add_line_numbers
-
-Mb/add line numbers ([`e165d33`](https://github.com/MartinBernstorff/Memium/commit/e165d33161aa4ecaf561170da8dcd5a3ad783664))
-
-* fix off-by-one error on line numbers ([`3df1d53`](https://github.com/MartinBernstorff/Memium/commit/3df1d53b5fb8043b775cb9113ab017c57dcb6ba9))
-
-* update anki_card url with line number ([`225e6a5`](https://github.com/MartinBernstorff/Memium/commit/225e6a5f216fb61d8c6cbea1f976da4e28db2902))
-
-* add line numbers to qa prompts ([`f086157`](https://github.com/MartinBernstorff/Memium/commit/f0861574cb132c3c272b183a6d19422194a8b8cc))
-
-* Merge pull request #115 from MartinBernstorff/mb/add_visualisation_to_readme
-
-add visualisation to readme ([`66f1f26`](https://github.com/MartinBernstorff/Memium/commit/66f1f26b99f536623deae9bbe5e6b8282aca305d))
-
-* add visualisation to readme ([`f8541e8`](https://github.com/MartinBernstorff/Memium/commit/f8541e88ab67a3a78c2734c663ccf42a6de03d90))
-
-* Merge pull request #114 from MartinBernstorff/mb/move_to_obsidian
-
-feat: use obsidian uris ([`2162d85`](https://github.com/MartinBernstorff/Memium/commit/2162d85d1776edd4da77dce807bcd875020148da))
-
-* Merge pull request #113 from MartinBernstorff/mb/feat_support_dash_in_link
-
-Mb/feat support dash in link ([`f85f93f`](https://github.com/MartinBernstorff/Memium/commit/f85f93f8f152741c569b8dfc893a8103d487ab51))
-
-* Merge pull request #111 from MartinBernstorff/dependabot/pip/pyright-1.1.320
-
-deps:(deps-dev): bump pyright from 1.1.318 to 1.1.320 ([`03ecf58`](https://github.com/MartinBernstorff/Memium/commit/03ecf5837c728397c0458264a8030f4b5939968d))
-
-* deps:(deps-dev): bump pyright from 1.1.318 to 1.1.320
-
-Bumps [pyright](https://github.com/RobertCraigie/pyright-python) from 1.1.318 to 1.1.320.
-- [Release notes](https://github.com/RobertCraigie/pyright-python/releases)
-- [Commits](https://github.com/RobertCraigie/pyright-python/compare/v1.1.318...v1.1.320)
-
----
-updated-dependencies:
-- dependency-name: pyright
-  dependency-type: direct:production
-  update-type: version-update:semver-patch
-...
-
-Signed-off-by: dependabot[bot] <support@github.com> ([`3dd0320`](https://github.com/MartinBernstorff/Memium/commit/3dd0320548714afa06429b15bc6cf4dd4af5be10))
-
-* Merge pull request #112 from MartinBernstorff/dependabot/pip/invoke-2.2.0
-
-deps:(deps-dev): bump invoke from 2.1.0 to 2.2.0 ([`7a72969`](https://github.com/MartinBernstorff/Memium/commit/7a7296978df65a9bc1e27260f126160b58bdf654))
-
-* deps:(deps-dev): bump invoke from 2.1.0 to 2.2.0
-
-Bumps [invoke](https://github.com/pyinvoke/invoke) from 2.1.0 to 2.2.0.
-- [Commits](https://github.com/pyinvoke/invoke/compare/2.1.0...2.2.0)
-
----
-updated-dependencies:
-- dependency-name: invoke
-  dependency-type: direct:production
-  update-type: version-update:semver-minor
-...
-
-Signed-off-by: dependabot[bot] <support@github.com> ([`a324e65`](https://github.com/MartinBernstorff/Memium/commit/a324e6541a049288b0989452b6f8074c85fc71cb))
-
-* Merge pull request #110 from MartinBernstorff/mb/fix_alias_parsing_with_parens
-
-Mb/fix alias parsing with parens ([`5179086`](https://github.com/MartinBernstorff/Memium/commit/5179086aefb54a6ca947d443c39726cfa2dd5941))
-
-* cleanup ([`30bc8e9`](https://github.com/MartinBernstorff/Memium/commit/30bc8e9c6b16299e96e1b6c7571909d6d62aea4e))
-
-* Merge pull request #108 from MartinBernstorff/feat-restrict-anki-polling-time
-Feat restrict anki polling time
-
-- [ ] I have considered whether this PR needs review, and requested a review if necessary.
-
-Fixes issue #
-
-# Notes for reviewers
-Reviewers can skip X, but should pay attention to Y.
-
-<!-- {BearID:a96da1b7c406e5e2a5d1b5cd5401d005} --> ([`b01cbae`](https://github.com/MartinBernstorff/Memium/commit/b01cbae9ac3b81296d9314a8ccd90b541b7ec453))
-
-* Merge pull request #108 from MartinBernstorff/feat-restrict-anki-polling-time
-
-Feat restrict anki polling time ([`37962a8`](https://github.com/MartinBernstorff/Memium/commit/37962a897eccf34d50291a064dbff01fbe3de3c1))
-
-* Merge branch 'main' of https://github.com/martbern/personal-mnemonic-medium ([`65f1470`](https://github.com/MartinBernstorff/Memium/commit/65f1470276f0a016d03d73991815ecc7211a706f))
-
-* Merge pull request #107 from MartinBernstorff/mb/improve_dir_parsing_speed
-
-feat: improve dir parsing speed ([`98e24b4`](https://github.com/MartinBernstorff/Memium/commit/98e24b4528ecab05d1ed152aabb2c8700722d796))
-
-* Merge branch 'main' into mb/improve_dir_parsing_speed ([`995be12`](https://github.com/MartinBernstorff/Memium/commit/995be12e68656ec83567ca88821b9dad031bb79d))
-
-* Merge remote-tracking branch 'origin/mb/improve_dir_parsing_speed' ([`7bf1690`](https://github.com/MartinBernstorff/Memium/commit/7bf1690f87addb28ebecd630501dea720aa9627d))
-
-* --a ([`5048d91`](https://github.com/MartinBernstorff/Memium/commit/5048d911e9d353952a4c42ebde854a932c4192ad))
-
-* Merge pull request #106 from MartinBernstorff/mb/skip_medicine
-
-feat: skip medicine deck ([`979f742`](https://github.com/MartinBernstorff/Memium/commit/979f742e11320a85b25133d69a8ab708830b0fd2))
-
-* --a ([`b969bf8`](https://github.com/MartinBernstorff/Memium/commit/b969bf86861d01364b4c02b62eb30fbec2b59264))
-
-* --a ([`ca74f43`](https://github.com/MartinBernstorff/Memium/commit/ca74f43f13d82bc002d8e6e8a8a2c3476f9f59d1))
-
-* Merge remote-tracking branch 'origin/main' into mb/skip_medicine ([`bf8ab51`](https://github.com/MartinBernstorff/Memium/commit/bf8ab513d797ceb2711cc1c8184119340225889a))
-
-* Merge pull request #105 from MartinBernstorff/mb/only_sync_if_modified_in_ded
-
-feat: only sync if notes modified ([`467ec7a`](https://github.com/MartinBernstorff/Memium/commit/467ec7ac5d9de5228dd2ad660052c64559293626))
-
-* skip medicine deck ([`edf376c`](https://github.com/MartinBernstorff/Memium/commit/edf376c4272a0c105a224f0cac3b469f5ffe1525))
-
-* fix type hints ([`c73fb22`](https://github.com/MartinBernstorff/Memium/commit/c73fb22a4e0e7dca152d501da0e69d0f4fbbb929))
-
-* Merge branch 'main' into mb/only_sync_if_modified_in_ded ([`44ca1ab`](https://github.com/MartinBernstorff/Memium/commit/44ca1ab7578166dc25fd3390bd155d0f0df27ad2))
-
-* Merge pull request #104 from MartinBernstorff/feat_continous_polling
-
-continuous polling ([`b83652d`](https://github.com/MartinBernstorff/Memium/commit/b83652d8ff6d7d760952578e45a5f9ea97a17c8a))
-
-* only sync if notes modified ([`ef450b0`](https://github.com/MartinBernstorff/Memium/commit/ef450b06e670435187bd3e97d41205cc698d95bb))
-
-* continuous polling ([`d33b781`](https://github.com/MartinBernstorff/Memium/commit/d33b7814c1d86149105702bedc5cf7d219d429c9))
-
-* Merge pull request #103 from MartinBernstorff/mb/fix_guid_addition
-
-fix: guid on QA cards ([`8b275f1`](https://github.com/MartinBernstorff/Memium/commit/8b275f1ba89a53cc611437e093863d349c2f0a9d))
-
-* deps: pin invoke to 2.1.0 to avoid errors as values ([`ce274c2`](https://github.com/MartinBernstorff/Memium/commit/ce274c2dd3ae949e5709af5e7e182d622a83a716))
-
-* --a ([`85fb429`](https://github.com/MartinBernstorff/Memium/commit/85fb42982515330eb5aa829f7c666d770f9beee4))
-
-* Merge pull request #101 from MartinBernstorff/dependabot/pip/furo-gte-2022.12.7-and-lt-2023.7.27
-
-deps:(deps-dev): update furo requirement from <2023.5.21,>=2022.12.7 to >=2022.12.7,<2023.7.27 ([`a73899e`](https://github.com/MartinBernstorff/Memium/commit/a73899eac9192eca646950a06343db69a50a0544))
-
-* deps:(deps-dev): update furo requirement
-
-Updates the requirements on [furo](https://github.com/pradyunsg/furo) to permit the latest version.
-- [Release notes](https://github.com/pradyunsg/furo/releases)
-- [Changelog](https://github.com/pradyunsg/furo/blob/main/docs/changelog.md)
-- [Commits](https://github.com/pradyunsg/furo/compare/2022.12.07...2023.07.26)
-
----
-updated-dependencies:
-- dependency-name: furo
-  dependency-type: direct:production
-...
-
-Signed-off-by: dependabot[bot] <support@github.com> ([`5a48d69`](https://github.com/MartinBernstorff/Memium/commit/5a48d690999127ba0516880c3329335f8d1e85d8))
-
-* Merge pull request #102 from MartinBernstorff/dependabot/pip/sphinx-design-gte-0.3.0-and-lt-0.5.1
-
-deps:(deps-dev): update sphinx-design requirement from <0.3.1,>=0.3.0 to >=0.3.0,<0.5.1 ([`8b0005a`](https://github.com/MartinBernstorff/Memium/commit/8b0005af6697ff97d2202f2cf61fe7dc02453921))
-
-* deps:(deps-dev): update sphinx-design requirement
-
-Updates the requirements on [sphinx-design](https://github.com/executablebooks/sphinx-design) to permit the latest version.
-- [Release notes](https://github.com/executablebooks/sphinx-design/releases)
-- [Changelog](https://github.com/executablebooks/sphinx-design/blob/main/CHANGELOG.md)
-- [Commits](https://github.com/executablebooks/sphinx-design/compare/v0.3.0...v0.5.0)
-
----
-updated-dependencies:
-- dependency-name: sphinx-design
-  dependency-type: direct:production
-...
-
-Signed-off-by: dependabot[bot] <support@github.com> ([`949014a`](https://github.com/MartinBernstorff/Memium/commit/949014a7795537a125e842ee9c9e5e68194eae5f))
-
-* Merge pull request #100 from MartinBernstorff/dependabot/pip/sphinx-gte-5.3.0-and-lt-7.2.0
-
-deps:(deps-dev): update sphinx requirement from <7.1.0,>=5.3.0 to >=5.3.0,<7.2.0 ([`9dbeda4`](https://github.com/MartinBernstorff/Memium/commit/9dbeda4dbb268c6e8e6bc88581e261667741d814))
-
-* deps:(deps-dev): update sphinx requirement
-
-Updates the requirements on [sphinx](https://github.com/sphinx-doc/sphinx) to permit the latest version.
-- [Release notes](https://github.com/sphinx-doc/sphinx/releases)
-- [Changelog](https://github.com/sphinx-doc/sphinx/blob/master/CHANGES)
-- [Commits](https://github.com/sphinx-doc/sphinx/compare/v5.3.0...v7.1.1)
-
----
-updated-dependencies:
-- dependency-name: sphinx
-  dependency-type: direct:production
-...
-
-Signed-off-by: dependabot[bot] <support@github.com> ([`c22a7db`](https://github.com/MartinBernstorff/Memium/commit/c22a7dbb18a4772440742b336a53409d12f6cb02))
-
-* Merge pull request #99 from MartinBernstorff/dependabot/pip/pyright-1.1.318
-
-deps:(deps-dev): bump pyright from 1.1.317 to 1.1.318 ([`94e1bc7`](https://github.com/MartinBernstorff/Memium/commit/94e1bc7bf26afb3a36f96e64164d041b095348f2))
-
-* deps:(deps-dev): bump pyright from 1.1.317 to 1.1.318
-
-Bumps [pyright](https://github.com/RobertCraigie/pyright-python) from 1.1.317 to 1.1.318.
-- [Release notes](https://github.com/RobertCraigie/pyright-python/releases)
-- [Commits](https://github.com/RobertCraigie/pyright-python/compare/v1.1.317...v1.1.318)
-
----
-updated-dependencies:
-- dependency-name: pyright
-  dependency-type: direct:production
-  update-type: version-update:semver-patch
-...
-
-Signed-off-by: dependabot[bot] <support@github.com> ([`59b7374`](https://github.com/MartinBernstorff/Memium/commit/59b737429a8049cb00b83ef4fd99623b7991bc19))
-
-* Merge pull request #98 from MartinBernstorff/dependabot/pip/pyright-1.1.317
-
-deps:(deps-dev): bump pyright from 1.1.316 to 1.1.317 ([`87c4e00`](https://github.com/MartinBernstorff/Memium/commit/87c4e005e3889fa89e38a0cf8833cfee4e6cc920))
-
-* deps:(deps-dev): bump pyright from 1.1.316 to 1.1.317
-
-Bumps [pyright](https://github.com/RobertCraigie/pyright-python) from 1.1.316 to 1.1.317.
-- [Release notes](https://github.com/RobertCraigie/pyright-python/releases)
-- [Commits](https://github.com/RobertCraigie/pyright-python/compare/v1.1.316...v1.1.317)
-
----
-updated-dependencies:
-- dependency-name: pyright
-  dependency-type: direct:production
-  update-type: version-update:semver-patch
-...
-
-Signed-off-by: dependabot[bot] <support@github.com> ([`9899673`](https://github.com/MartinBernstorff/Memium/commit/98996739e09c2c68722adc9fdd08673c51294237))
-
-* Merge pull request #97 from MartinBernstorff/dependabot/pip/invoke-2.2.0
-
-deps:(deps-dev): bump invoke from 2.1.3 to 2.2.0 ([`1321c31`](https://github.com/MartinBernstorff/Memium/commit/1321c31856157016dee0a8118bb3d6c03244bf05))
-
-* deps:(deps-dev): bump invoke from 2.1.3 to 2.2.0
-
-Bumps [invoke](https://github.com/pyinvoke/invoke) from 2.1.3 to 2.2.0.
-- [Commits](https://github.com/pyinvoke/invoke/compare/2.1.3...2.2.0)
-
----
-updated-dependencies:
-- dependency-name: invoke
-  dependency-type: direct:production
-  update-type: version-update:semver-minor
-...
-
-Signed-off-by: dependabot[bot] <support@github.com> ([`22bd718`](https://github.com/MartinBernstorff/Memium/commit/22bd71848b39610df63ae0f79c5abfb094d86b9d))
-
-* Merge pull request #96 from MartinBernstorff/mb/sync_deletion
-
-Mb/sync deletion ([`48ae41e`](https://github.com/MartinBernstorff/Memium/commit/48ae41e190250111cdc36153a6fa8cdac06b2c2c))
-
-* Merge branch 'main' into mb/sync_deletion ([`1b230ae`](https://github.com/MartinBernstorff/Memium/commit/1b230aeeec32c77cb92623fcbd6827ecaec0e409))
-
-* Merge pull request #95 from MartinBernstorff/dependabot/pip/pyright-1.1.316
-
-deps:(deps-dev): bump pyright from 1.1.314 to 1.1.316 ([`e854fe6`](https://github.com/MartinBernstorff/Memium/commit/e854fe61bb1ffc25e58cc803e33eaec3b5611f26))
-
-* deps:(deps-dev): bump pyright from 1.1.314 to 1.1.316
-
-Bumps [pyright](https://github.com/RobertCraigie/pyright-python) from 1.1.314 to 1.1.316.
-- [Release notes](https://github.com/RobertCraigie/pyright-python/releases)
-- [Commits](https://github.com/RobertCraigie/pyright-python/compare/v1.1.314...v1.1.316)
-
----
-updated-dependencies:
-- dependency-name: pyright
-  dependency-type: direct:production
-  update-type: version-update:semver-patch
-...
-
-Signed-off-by: dependabot[bot] <support@github.com> ([`d6e375c`](https://github.com/MartinBernstorff/Memium/commit/d6e375c6712a912032654d444b75fd2e40cd4bbf))
-
-* Merge pull request #94 from MartinBernstorff/dependabot/pip/invoke-2.1.3
-
-deps:(deps-dev): bump invoke from 2.1.2 to 2.1.3 ([`ddf971c`](https://github.com/MartinBernstorff/Memium/commit/ddf971c909f34372a81cc260e6ca1e1c5abf653f))
-
-* deps:(deps-dev): bump invoke from 2.1.2 to 2.1.3
-
-Bumps [invoke](https://github.com/pyinvoke/invoke) from 2.1.2 to 2.1.3.
-- [Commits](https://github.com/pyinvoke/invoke/compare/2.1.2...2.1.3)
-
----
-updated-dependencies:
-- dependency-name: invoke
-  dependency-type: direct:production
-  update-type: version-update:semver-patch
-...
-
-Signed-off-by: dependabot[bot] <support@github.com> ([`8fbac68`](https://github.com/MartinBernstorff/Memium/commit/8fbac68516e74180a96e68ad86f0c051f3f6940e))
-
-* Merge pull request #93 from MartinBernstorff/dependabot/pip/pyright-1.1.314
-
-deps:(deps-dev): bump pyright from 1.1.313 to 1.1.314 ([`7af94ff`](https://github.com/MartinBernstorff/Memium/commit/7af94ff54c4bb5164785a0f2c5313c4880dc1993))
-
-* deps:(deps-dev): bump pyright from 1.1.313 to 1.1.314
-
-Bumps [pyright](https://github.com/RobertCraigie/pyright-python) from 1.1.313 to 1.1.314.
-- [Release notes](https://github.com/RobertCraigie/pyright-python/releases)
-- [Commits](https://github.com/RobertCraigie/pyright-python/compare/v1.1.313...v1.1.314)
-
----
-updated-dependencies:
-- dependency-name: pyright
-  dependency-type: direct:production
-  update-type: version-update:semver-patch
-...
-
-Signed-off-by: dependabot[bot] <support@github.com> ([`ae99f7d`](https://github.com/MartinBernstorff/Memium/commit/ae99f7d50e417dc34c0aca2cef5f4aecf844f265))
-
-* Merge pull request #92 from MartinBernstorff/dependabot/pip/invoke-2.1.2
-
-deps:(deps-dev): bump invoke from 2.1.1 to 2.1.2 ([`1ba428f`](https://github.com/MartinBernstorff/Memium/commit/1ba428f3196e00a327306d23cd9ec2516ac63aef))
-
-* deps:(deps-dev): bump invoke from 2.1.1 to 2.1.2
-
-Bumps [invoke](https://github.com/pyinvoke/invoke) from 2.1.1 to 2.1.2.
-- [Commits](https://github.com/pyinvoke/invoke/compare/2.1.1...2.1.2)
-
----
-updated-dependencies:
-- dependency-name: invoke
-  dependency-type: direct:production
-  update-type: version-update:semver-patch
-...
-
-Signed-off-by: dependabot[bot] <support@github.com> ([`8e1a14f`](https://github.com/MartinBernstorff/Memium/commit/8e1a14fe3ed2882057bbec95c98626727c3fc79f))
-
-* Merge pull request #91 from MartinBernstorff/dependabot/pip/pyright-1.1.313
-
-deps:(deps-dev): bump pyright from 1.1.305 to 1.1.313 ([`ddbbd06`](https://github.com/MartinBernstorff/Memium/commit/ddbbd060f5f74d7debcc8de6f39ff08dfbd7b390))
-
-* deps:(deps-dev): bump pyright from 1.1.305 to 1.1.313
-
-Bumps [pyright](https://github.com/RobertCraigie/pyright-python) from 1.1.305 to 1.1.313.
-- [Release notes](https://github.com/RobertCraigie/pyright-python/releases)
-- [Commits](https://github.com/RobertCraigie/pyright-python/compare/v1.1.305...v1.1.313)
-
----
-updated-dependencies:
-- dependency-name: pyright
-  dependency-type: direct:production
-  update-type: version-update:semver-patch
-...
-
-Signed-off-by: dependabot[bot] <support@github.com> ([`2127536`](https://github.com/MartinBernstorff/Memium/commit/21275367d0fca3a0e1847433921dc7714e7ad4e3))
-
-* Merge pull request #90 from MartinBernstorff/MartinBernstorff-patch-2
-
-Update readme.md ([`010e6f9`](https://github.com/MartinBernstorff/Memium/commit/010e6f9bfa4420dd5dd83cff54de6af0dda9075c))
-
-* Update readme.md ([`c5f37a1`](https://github.com/MartinBernstorff/Memium/commit/c5f37a1e43a08e4b433ba342f6547449441fead6))
-
-* Merge pull request #89 from MartinBernstorff/MartinBernstorff-patch-2
-
-Update readme.md ([`743a946`](https://github.com/MartinBernstorff/Memium/commit/743a946a8dcfd94034b408938d98f735eecb8880))
-
-* Update readme.md ([`2747360`](https://github.com/MartinBernstorff/Memium/commit/2747360e572e632ed1aecc9b6b01a8dc122bcd35))
-
-* Merge pull request #88 from MartinBernstorff/mb/sync_deletion
-
-feat: sync deletion ([`98c07f2`](https://github.com/MartinBernstorff/Memium/commit/98c07f2d3b3baeeacc209109c3ee4ae5b4bf1ef1))
-
-* styling ([`a2e553e`](https://github.com/MartinBernstorff/Memium/commit/a2e553e74ef081b614f734c0a355a5ddf2982daa))
-
-* --a ([`7e7eda7`](https://github.com/MartinBernstorff/Memium/commit/7e7eda72f086ad8c5717d3b64182bbac7ab616fa))
-
-* --a ([`8702130`](https://github.com/MartinBernstorff/Memium/commit/87021307bb0b3c82c1e035f3f10c506f25c552b1))
-
-* misc. ([`47e63d4`](https://github.com/MartinBernstorff/Memium/commit/47e63d49af7e0cd1cc3de47fd32db416f4fe0d09))
-
-* misc. ([`ee622e5`](https://github.com/MartinBernstorff/Memium/commit/ee622e57ad69001349eb9687125f019beac1767d))
-
-* misc. ([`0c0134d`](https://github.com/MartinBernstorff/Memium/commit/0c0134d8b7b792cab330ee711c85b978b8182dc5))
-
-* misc. ([`bba22a7`](https://github.com/MartinBernstorff/Memium/commit/bba22a78e87e2aca6483fef083575fe27d0d813e))
-
-* misc. ([`d8ab4ef`](https://github.com/MartinBernstorff/Memium/commit/d8ab4eff5ca6db6eeaf02397848272113d284a52))
-
-* --a ([`d2b59da`](https://github.com/MartinBernstorff/Memium/commit/d2b59da96532e3f6014ee556de1c59eab4aafd7c))
-
-* misc. ([`bcf0169`](https://github.com/MartinBernstorff/Memium/commit/bcf01693288f3d34f44937cd0eefec033e48eb58))
-
-* merge ([`18bddc6`](https://github.com/MartinBernstorff/Memium/commit/18bddc656986eac884d3c82563a0d16165b39b5c))
-
-* tests: fix tests ([`12cbe19`](https://github.com/MartinBernstorff/Memium/commit/12cbe1913f6280a0d4ff0e7bd1cbb87631ca93ba))
-
-* --a ([`8630858`](https://github.com/MartinBernstorff/Memium/commit/86308589dcc17e25af50155b558c85c203cf4cd3))
-
-* tests: adapt to new card_uuid property ([`fe72a2e`](https://github.com/MartinBernstorff/Memium/commit/fe72a2e7ca0b6603e7e9ad61ed0a3410ca8b6235))
-
-* misc. ([`bdb9009`](https://github.com/MartinBernstorff/Memium/commit/bdb9009882351e5e563454a3d27c26d0ffb5f444))
-
-* misc. ([`7eea28c`](https://github.com/MartinBernstorff/Memium/commit/7eea28c03bef9d9b32c816094c9c1f8144bd1683))
-
-* misc ([`64f1822`](https://github.com/MartinBernstorff/Memium/commit/64f1822743c09c2608af0aef56b4176d5bb5c33e))
-
-* Merge pull request #87 from MartinBernstorff/dependabot/pip/ruff-0.0.270
-
-deps:(deps-dev): bump ruff from 0.0.269 to 0.0.270 ([`e1c22e1`](https://github.com/MartinBernstorff/Memium/commit/e1c22e17dea78a7b9b1702b299e6e196105332f2))
-
-* deps:(deps-dev): bump ruff from 0.0.269 to 0.0.270
-
-Bumps [ruff](https://github.com/charliermarsh/ruff) from 0.0.269 to 0.0.270.
-- [Release notes](https://github.com/charliermarsh/ruff/releases)
-- [Changelog](https://github.com/charliermarsh/ruff/blob/main/BREAKING_CHANGES.md)
-- [Commits](https://github.com/charliermarsh/ruff/compare/v0.0.269...v0.0.270)
-
----
-updated-dependencies:
-- dependency-name: ruff
-  dependency-type: direct:production
-  update-type: version-update:semver-patch
-...
-
-Signed-off-by: dependabot[bot] <support@github.com> ([`569694f`](https://github.com/MartinBernstorff/Memium/commit/569694f91adc9e59f6e59a211874ef96b279e6ae))
-
-* Merge pull request #85 from MartinBernstorff/dependabot/pip/types-pyyaml-6.0.12.10
-
-deps:(deps-dev): bump types-pyyaml from 6.0 to 6.0.12.10 ([`3f4c223`](https://github.com/MartinBernstorff/Memium/commit/3f4c22399aacc3bb7b2c802afecae09b00f76957))
-
-* deps:(deps-dev): bump types-pyyaml from 6.0 to 6.0.12.10
-
-Bumps [types-pyyaml](https://github.com/python/typeshed) from 6.0 to 6.0.12.10.
-- [Commits](https://github.com/python/typeshed/commits)
-
----
-updated-dependencies:
-- dependency-name: types-pyyaml
-  dependency-type: direct:production
-  update-type: version-update:semver-patch
-...
-
-Signed-off-by: dependabot[bot] <support@github.com> ([`1762e04`](https://github.com/MartinBernstorff/Memium/commit/1762e047daf85a06bb54b6ba15034f06b7b8ea35))
-
-* Merge pull request #86 from MartinBernstorff/dependabot/pip/pytest-cov-gte-3.0.0-and-lt-4.2.0
-
-deps:(deps-dev): update pytest-cov requirement from <4.1.0,>=3.0.0 to >=3.0.0,<4.2.0 ([`6ecbf67`](https://github.com/MartinBernstorff/Memium/commit/6ecbf676c0acae63c401fc28512ba0c106686175))
-
-* deps:(deps-dev): update pytest-cov requirement
-
-Updates the requirements on [pytest-cov](https://github.com/pytest-dev/pytest-cov) to permit the latest version.
-- [Changelog](https://github.com/pytest-dev/pytest-cov/blob/master/CHANGELOG.rst)
-- [Commits](https://github.com/pytest-dev/pytest-cov/compare/v3.0.0...v4.1.0)
-
----
-updated-dependencies:
-- dependency-name: pytest-cov
-  dependency-type: direct:production
-...
-
-Signed-off-by: dependabot[bot] <support@github.com> ([`01f4cb2`](https://github.com/MartinBernstorff/Memium/commit/01f4cb230c896284d1b3f39afda8c79e4b7a161a))
-
-* Merge pull request #83 from MartinBernstorff/dependabot/pip/ruff-0.0.269
-
-deps:(deps-dev): bump ruff from 0.0.267 to 0.0.269 ([`fcb632d`](https://github.com/MartinBernstorff/Memium/commit/fcb632d5aa74d6a00c806892f6fe99a1db7de1f6))
-
-* deps:(deps-dev): bump ruff from 0.0.267 to 0.0.269
-
-Bumps [ruff](https://github.com/charliermarsh/ruff) from 0.0.267 to 0.0.269.
-- [Release notes](https://github.com/charliermarsh/ruff/releases)
-- [Changelog](https://github.com/charliermarsh/ruff/blob/main/BREAKING_CHANGES.md)
-- [Commits](https://github.com/charliermarsh/ruff/compare/v0.0.267...v0.0.269)
-
----
-updated-dependencies:
-- dependency-name: ruff
-  dependency-type: direct:production
-  update-type: version-update:semver-patch
-...
-
-Signed-off-by: dependabot[bot] <support@github.com> ([`a6dcd82`](https://github.com/MartinBernstorff/Memium/commit/a6dcd825cef18447aeff76e0f9da3a1e5c176454))
-
-* Merge pull request #84 from MartinBernstorff/dependabot/pip/furo-gte-2022.12.7-and-lt-2023.5.21
-
-deps:(deps-dev): update furo requirement from <2022.12.8,>=2022.12.7 to >=2022.12.7,<2023.5.21 ([`229fdf4`](https://github.com/MartinBernstorff/Memium/commit/229fdf495398e658dc80e0fa43558f72ede3c445))
-
-* deps:(deps-dev): update furo requirement
-
-Updates the requirements on [furo](https://github.com/pradyunsg/furo) to permit the latest version.
-- [Release notes](https://github.com/pradyunsg/furo/releases)
-- [Changelog](https://github.com/pradyunsg/furo/blob/main/docs/changelog.md)
-- [Commits](https://github.com/pradyunsg/furo/compare/2022.12.07...2023.05.20)
-
----
-updated-dependencies:
-- dependency-name: furo
-  dependency-type: direct:production
-...
-
-Signed-off-by: dependabot[bot] <support@github.com> ([`d18cfcc`](https://github.com/MartinBernstorff/Memium/commit/d18cfcc3ae183a7d62c58af9a2213b3f36d46767))
-
-* Merge pull request #82 from MartinBernstorff/dependabot/pip/pre-commit-3.3.2
-
-deps:(deps-dev): bump pre-commit from 3.3.1 to 3.3.2 ([`ae02f4b`](https://github.com/MartinBernstorff/Memium/commit/ae02f4b144131a942c9e4220d3365563eb77e6f9))
-
-* deps:(deps-dev): bump pre-commit from 3.3.1 to 3.3.2
-
-Bumps [pre-commit](https://github.com/pre-commit/pre-commit) from 3.3.1 to 3.3.2.
-- [Release notes](https://github.com/pre-commit/pre-commit/releases)
-- [Changelog](https://github.com/pre-commit/pre-commit/blob/main/CHANGELOG.md)
-- [Commits](https://github.com/pre-commit/pre-commit/compare/v3.3.1...v3.3.2)
-
----
-updated-dependencies:
-- dependency-name: pre-commit
-  dependency-type: direct:production
-  update-type: version-update:semver-patch
-...
-
-Signed-off-by: dependabot[bot] <support@github.com> ([`b2b7667`](https://github.com/MartinBernstorff/Memium/commit/b2b7667687a0549ca4d2dd5db958d1d7a3f05e8d))
-
-* Merge pull request #81 from MartinBernstorff/dependabot/pip/ruff-0.0.267
-
-deps:(deps-dev): bump ruff from 0.0.265 to 0.0.267 ([`afb40bb`](https://github.com/MartinBernstorff/Memium/commit/afb40bb6c6bd6cf8810d6fb801cdfc32f3835089))
-
-* deps:(deps-dev): bump ruff from 0.0.265 to 0.0.267
-
-Bumps [ruff](https://github.com/charliermarsh/ruff) from 0.0.265 to 0.0.267.
-- [Release notes](https://github.com/charliermarsh/ruff/releases)
-- [Changelog](https://github.com/charliermarsh/ruff/blob/main/BREAKING_CHANGES.md)
-- [Commits](https://github.com/charliermarsh/ruff/compare/v0.0.265...v0.0.267)
-
----
-updated-dependencies:
-- dependency-name: ruff
-  dependency-type: direct:production
-  update-type: version-update:semver-patch
-...
-
-Signed-off-by: dependabot[bot] <support@github.com> ([`d193516`](https://github.com/MartinBernstorff/Memium/commit/d1935160a70e321a650137888726e43bc354f661))
-
-* Merge pull request #80 from MartinBernstorff/dependabot/pip/pytest-xdist-gte-3.0.0-and-lt-3.4.0
-
-deps:(deps-dev): update pytest-xdist requirement from <3.3.0,>=3.0.0 to >=3.0.0,<3.4.0 ([`6beebe3`](https://github.com/MartinBernstorff/Memium/commit/6beebe3a5b9c8dabca4840059f1b7f458c05bc8c))
-
-* deps:(deps-dev): update pytest-xdist requirement
-
-Updates the requirements on [pytest-xdist](https://github.com/pytest-dev/pytest-xdist) to permit the latest version.
-- [Changelog](https://github.com/pytest-dev/pytest-xdist/blob/master/CHANGELOG.rst)
-- [Commits](https://github.com/pytest-dev/pytest-xdist/compare/v3.0.0...v3.3.0)
-
----
-updated-dependencies:
-- dependency-name: pytest-xdist
-  dependency-type: direct:production
-...
-
-Signed-off-by: dependabot[bot] <support@github.com> ([`50baf05`](https://github.com/MartinBernstorff/Memium/commit/50baf05bbe55269cdaf271cb64b0f6c3a53f9104))
-
-* Merge pull request #79 from MartinBernstorff/dependabot/pip/ruff-0.0.265
-
-deps:(deps-dev): bump ruff from 0.0.262 to 0.0.265 ([`d0b078f`](https://github.com/MartinBernstorff/Memium/commit/d0b078fc03250784d9a069514db64fa78db21d35))
-
-* deps:(deps-dev): bump ruff from 0.0.262 to 0.0.265
-
-Bumps [ruff](https://github.com/charliermarsh/ruff) from 0.0.262 to 0.0.265.
-- [Release notes](https://github.com/charliermarsh/ruff/releases)
-- [Changelog](https://github.com/charliermarsh/ruff/blob/main/BREAKING_CHANGES.md)
-- [Commits](https://github.com/charliermarsh/ruff/compare/v0.0.262...v0.0.265)
-
----
-updated-dependencies:
-- dependency-name: ruff
-  dependency-type: direct:production
-  update-type: version-update:semver-patch
-...
-
-Signed-off-by: dependabot[bot] <support@github.com> ([`6a863cb`](https://github.com/MartinBernstorff/Memium/commit/6a863cbc6ddae27f345087a515bfbf194d525605))
-
-* Merge pull request #78 from MartinBernstorff/dependabot/pip/pre-commit-3.3.1
-
-deps:(deps-dev): bump pre-commit from 3.1.1 to 3.3.1 ([`db30bbc`](https://github.com/MartinBernstorff/Memium/commit/db30bbc89bb13f7f7393d5b7a57ef95e02de27d0))
-
-* deps:(deps-dev): bump pre-commit from 3.1.1 to 3.3.1
-
-Bumps [pre-commit](https://github.com/pre-commit/pre-commit) from 3.1.1 to 3.3.1.
-- [Release notes](https://github.com/pre-commit/pre-commit/releases)
-- [Changelog](https://github.com/pre-commit/pre-commit/blob/main/CHANGELOG.md)
-- [Commits](https://github.com/pre-commit/pre-commit/compare/v3.1.1...v3.3.1)
-
----
-updated-dependencies:
-- dependency-name: pre-commit
-  dependency-type: direct:production
-  update-type: version-update:semver-minor
-...
-
-Signed-off-by: dependabot[bot] <support@github.com> ([`59b49a3`](https://github.com/MartinBernstorff/Memium/commit/59b49a37dc3f7adcbc5993c2a7d0e7a0b00b97a4))
-
-* Merge pull request #76 from MartinBernstorff/dependabot/pip/sphinx-gte-5.3.0-and-lt-7.1.0
-
-deps:(deps-dev): update sphinx requirement from <6.3.0,>=5.3.0 to >=5.3.0,<7.1.0 ([`43913e3`](https://github.com/MartinBernstorff/Memium/commit/43913e3d5c1c0e69b13b1ed3f822e815d7a6a386))
-
-* deps:(deps-dev): update sphinx requirement
-
-Updates the requirements on [sphinx](https://github.com/sphinx-doc/sphinx) to permit the latest version.
-- [Release notes](https://github.com/sphinx-doc/sphinx/releases)
-- [Changelog](https://github.com/sphinx-doc/sphinx/blob/master/CHANGES)
-- [Commits](https://github.com/sphinx-doc/sphinx/compare/v5.3.0...v7.0.0)
-
----
-updated-dependencies:
-- dependency-name: sphinx
-  dependency-type: direct:production
-...
-
-Signed-off-by: dependabot[bot] <support@github.com> ([`9ff3ba1`](https://github.com/MartinBernstorff/Memium/commit/9ff3ba1d6d8f9130dc21b704792468d05353f354))
-
-* Merge pull request #75 from MartinBernstorff/dependabot/pip/ruff-0.0.262
-
-deps:(deps-dev): bump ruff from 0.0.257 to 0.0.262 ([`c797266`](https://github.com/MartinBernstorff/Memium/commit/c797266d36bf28e412b3ca5f2bbac79982c2b04a))
-
-* deps:(deps-dev): bump ruff from 0.0.257 to 0.0.262
-
-Bumps [ruff](https://github.com/charliermarsh/ruff) from 0.0.257 to 0.0.262.
-- [Release notes](https://github.com/charliermarsh/ruff/releases)
-- [Changelog](https://github.com/charliermarsh/ruff/blob/main/BREAKING_CHANGES.md)
-- [Commits](https://github.com/charliermarsh/ruff/compare/v0.0.257...v0.0.262)
-
----
-updated-dependencies:
-- dependency-name: ruff
-  dependency-type: direct:production
-  update-type: version-update:semver-patch
-...
-
-Signed-off-by: dependabot[bot] <support@github.com> ([`0f7f6b2`](https://github.com/MartinBernstorff/Memium/commit/0f7f6b225d9d2deeca5b4aa8646444901c6eff81))
-
-* Merge pull request #74 from MartinBernstorff/dependabot/pip/black-jupyter--23.3.0
-
-deps:(deps-dev): bump black[jupyter] from 23.1.0 to 23.3.0 ([`7304b03`](https://github.com/MartinBernstorff/Memium/commit/7304b038cadbf734c226f8be08a06aa9d0821a30))
-
-* deps:(deps-dev): bump black[jupyter] from 23.1.0 to 23.3.0
-
-Bumps [black[jupyter]](https://github.com/psf/black) from 23.1.0 to 23.3.0.
-- [Release notes](https://github.com/psf/black/releases)
-- [Changelog](https://github.com/psf/black/blob/main/CHANGES.md)
-- [Commits](https://github.com/psf/black/compare/23.1.0...23.3.0)
-
----
-updated-dependencies:
-- dependency-name: black[jupyter]
-  dependency-type: direct:production
-  update-type: version-update:semver-minor
-...
-
-Signed-off-by: dependabot[bot] <support@github.com> ([`04c566c`](https://github.com/MartinBernstorff/Memium/commit/04c566c73b384f071cd172a63453b413809124c0))
-
-* Merge pull request #73 from MartinBernstorff/dependabot/pip/sphinx-gte-5.3.0-and-lt-6.3.0
-
-deps:(deps-dev): update sphinx requirement from <6.2.0,>=5.3.0 to >=5.3.0,<6.3.0 ([`94852e9`](https://github.com/MartinBernstorff/Memium/commit/94852e9b6ef74d2d3523534735b8f4f64e3d28cd))
-
-* deps:(deps-dev): update sphinx requirement
-
-Updates the requirements on [sphinx](https://github.com/sphinx-doc/sphinx) to permit the latest version.
-- [Release notes](https://github.com/sphinx-doc/sphinx/releases)
-- [Changelog](https://github.com/sphinx-doc/sphinx/blob/master/CHANGES)
-- [Commits](https://github.com/sphinx-doc/sphinx/compare/v5.3.0...v6.2.0)
-
----
-updated-dependencies:
-- dependency-name: sphinx
-  dependency-type: direct:production
-...
-
-Signed-off-by: dependabot[bot] <support@github.com> ([`6ba0468`](https://github.com/MartinBernstorff/Memium/commit/6ba04687179f6449154ba94c9dc41f768a2f4bb6))
-
-* Merge pull request #70 from MartinBernstorff/mb/update_cruft
-
-build: update cruft ([`011d1ea`](https://github.com/MartinBernstorff/Memium/commit/011d1eadb5b984b9c59538db296565dc12826109))
-
-* Merge pull request #65 from MartinBernstorff/mb/update_paths
-
-ci: update paths ([`bd1b6f5`](https://github.com/MartinBernstorff/Memium/commit/bd1b6f522fd4ff3c582c53fd4030a8536eb826f9))
-
-* Merge pull request #55 from MartinBernstorff/martbern/try_makefile
-
-build: migrate to Invoke ([`3b0fcc1`](https://github.com/MartinBernstorff/Memium/commit/3b0fcc1c64651972e6b08cbb72f39290334c0b07))
-
-* Merge branch 'martbern/try_makefile' of https://github.com/MartinBernstorff/personal-mnemonic-medium into martbern/try_makefile ([`3cb3529`](https://github.com/MartinBernstorff/Memium/commit/3cb3529db244dab63c2002ea35dead3afacd54d3))
-
-* Delete test.py ([`60aa58d`](https://github.com/MartinBernstorff/Memium/commit/60aa58de74a1b2a1f4ea086cb45cb6c83b2ed622))
-
-* misc. ([`34231f2`](https://github.com/MartinBernstorff/Memium/commit/34231f2d7d5deaebd7d88dd17566dc6aa4869c80))
-
-* tests: fix failing ([`1dee619`](https://github.com/MartinBernstorff/Memium/commit/1dee6196439c4591d35843ad0eacbe568394d09d))
-
-* misc. ([`04038f0`](https://github.com/MartinBernstorff/Memium/commit/04038f0ef3de3704eabd5654a55765c7f9c304a7))
-
-* misc. ([`54776e6`](https://github.com/MartinBernstorff/Memium/commit/54776e68ba25247c05e05f16d90dface7b1935a3))
-
-* bulid: misc ([`bd2f26e`](https://github.com/MartinBernstorff/Memium/commit/bd2f26e8fdd7b7434801ada16f77444e3204c971))
-
-* misc. changes ([`f4a0d81`](https://github.com/MartinBernstorff/Memium/commit/f4a0d8104d839b29cb0c82d8db9d6d9667b015e8))
-
-* Merge pull request #49 from MartinBernstorff/martbern/update_cruft_2
-
-Martbern/update cruft 2 ([`8cf73d8`](https://github.com/MartinBernstorff/Memium/commit/8cf73d81bf12b771da48e431e89a678f5947ff8d))
-
-* deps:(deps-dev): bump ruff from 0.0.254 to 0.0.257
-
-Bumps [ruff](https://github.com/charliermarsh/ruff) from 0.0.254 to 0.0.257.
-- [Release notes](https://github.com/charliermarsh/ruff/releases)
-- [Changelog](https://github.com/charliermarsh/ruff/blob/main/BREAKING_CHANGES.md)
-- [Commits](https://github.com/charliermarsh/ruff/compare/v0.0.254...v0.0.257)
-
----
-updated-dependencies:
-- dependency-name: ruff
-  dependency-type: direct:production
-  update-type: version-update:semver-patch
-...
-
-Signed-off-by: dependabot[bot] <support@github.com> ([`215672b`](https://github.com/MartinBernstorff/Memium/commit/215672b4c2d5e9a12b9ad33f75b084ed06578c0d))
-
-* Merge pull request #45 from MartinBernstorff/feat_support_markdown_link_alias
-
-feat: support markdown link alias ([`4213e04`](https://github.com/MartinBernstorff/Memium/commit/4213e047c9f371d2df643e46f319a71522f36cb9))
-
-* Merge pull request #44 from MartinBernstorff/martbern/add_english_tts_to_qa
-
-feat: add english tts to qa ([`e0eb897`](https://github.com/MartinBernstorff/Memium/commit/e0eb897c73b3d9b55196ff7e4317cf075a24696b))
-
-* dev: add pytypes yaml ([`a963f82`](https://github.com/MartinBernstorff/Memium/commit/a963f8274239af34526aa0617f3a81cade52b779))
-
-* Merge branch 'main' into martbern/add_english_tts_to_qa ([`2538285`](https://github.com/MartinBernstorff/Memium/commit/2538285ae37a66e5160c3c2c6ccc194c13dd015e))
-
-* Merge pull request #42 from MartinBernstorff/update-cruft
-
-update cruft ([`0c9e6c9`](https://github.com/MartinBernstorff/Memium/commit/0c9e6c920bd76643546ea157709ba18544b1b8e2))
-
-* Merge pull request #41 from MartinBernstorff/martbern/ci_disable_release
-
-ci: disable release ([`4771735`](https://github.com/MartinBernstorff/Memium/commit/47717352d83919e65e9146b2554176b36520373c))
-
-* Merge pull request #39 from MartinBernstorff/martbern/update_docs
-
-docs: update docs ([`731dfea`](https://github.com/MartinBernstorff/Memium/commit/731dfeaa096a6e4b938de2945f2c7b8b8b194865))
-
-* Merge pull request #40 from MartinBernstorff/update-cruft
-
-update cruft ([`05cea4b`](https://github.com/MartinBernstorff/Memium/commit/05cea4b4a91a131c243b234f329c31a2b757a86d))
-
-* Merge pull request #34 from MartinBernstorff/martbern/update_cruft
-
-ci: update cruft ([`13b4529`](https://github.com/MartinBernstorff/Memium/commit/13b45293e5ba5e9f6b696c8be2379611cbe7708e))
-
-* Merge pull request #33 from MartinBernstorff/dependabot/pip/sphinxext-opengraph-gte-0.7.3-and-lt-0.8.2
-
-deps:(deps-dev): update sphinxext-opengraph requirement from <0.7.4,>=0.7.3 to >=0.7.3,<0.8.2 ([`3fc23fe`](https://github.com/MartinBernstorff/Memium/commit/3fc23fe25c77fffd0082c4024e78027e8564e34f))
-
-* deps:(deps-dev): update sphinxext-opengraph requirement
-
-Updates the requirements on [sphinxext-opengraph](https://github.com/wpilibsuite/sphinxext-opengraph) to permit the latest version.
-- [Release notes](https://github.com/wpilibsuite/sphinxext-opengraph/releases)
-- [Commits](https://github.com/wpilibsuite/sphinxext-opengraph/compare/v0.7.3...v0.8.1)
-
----
-updated-dependencies:
-- dependency-name: sphinxext-opengraph
-  dependency-type: direct:production
-...
-
-Signed-off-by: dependabot[bot] <support@github.com> ([`f79ce05`](https://github.com/MartinBernstorff/Memium/commit/f79ce0562fe03ee1bc70a30a652ec118b92976a4))
-
-* Merge pull request #32 from MartinBernstorff/martbern/decrease-length-of-note-id-hash
-
-feat: decrease length of note id ([`87a3f7a`](https://github.com/MartinBernstorff/Memium/commit/87a3f7a2dfce572488c12d7db8f1c829ed5bd9b8))
+- Remove support for QA DK card
+  ([`125c725`](https://github.com/MartinBernstorff/Memium/commit/125c725a23cdf68f6a5edd317ec6a863665500a7))
 
 
 ## v0.2.0 (2023-03-12)
 
 ### Continuous Integration
 
-* ci: update cruft ([`89b9e86`](https://github.com/MartinBernstorff/Memium/commit/89b9e8697ea20a53e44f4e511d91061e951b7013))
+- Update cruft
+  ([`89b9e86`](https://github.com/MartinBernstorff/Memium/commit/89b9e8697ea20a53e44f4e511d91061e951b7013))
 
-* ci: ignore bearimages ([`32bf9e4`](https://github.com/MartinBernstorff/Memium/commit/32bf9e4069a575dda3ac45cd62e4b00608368525))
+- Ignore bearimages
+  ([`32bf9e4`](https://github.com/MartinBernstorff/Memium/commit/32bf9e4069a575dda3ac45cd62e4b00608368525))
 
 ### Features
 
-* feat: exclude q. and a. fields from cloze prompts ([`5b2d6cd`](https://github.com/MartinBernstorff/Memium/commit/5b2d6cda3825582381444b36c6ef1dbc8779d4af))
-
-### Unknown
-
-* Merge pull request #31 from MartinBernstorff/martbern/rewrite
-
-Martbern/rewrite ([`285260a`](https://github.com/MartinBernstorff/Memium/commit/285260a925c89477f0eeca7a26b4fca770cef259))
-
-* Merge pull request #27 from MartinBernstorff/dependabot/pip/pytest-cov-gte-3.0.0-and-lt-4.1.0
-
-deps:(deps-dev): update pytest-cov requirement from <3.1.0,>=3.0.0 to >=3.0.0,<4.1.0 ([`8fa46d1`](https://github.com/MartinBernstorff/Memium/commit/8fa46d1a17ef57aacbb802a69ec84ce604370ac7))
-
-* deps:(deps-dev): update pytest-cov requirement
-
-Updates the requirements on [pytest-cov](https://github.com/pytest-dev/pytest-cov) to permit the latest version.
-- [Release notes](https://github.com/pytest-dev/pytest-cov/releases)
-- [Changelog](https://github.com/pytest-dev/pytest-cov/blob/master/CHANGELOG.rst)
-- [Commits](https://github.com/pytest-dev/pytest-cov/compare/v3.0.0...v4.0.0)
-
----
-updated-dependencies:
-- dependency-name: pytest-cov
-  dependency-type: direct:production
-...
-
-Signed-off-by: dependabot[bot] <support@github.com> ([`c1ec617`](https://github.com/MartinBernstorff/Memium/commit/c1ec617bc6e4206fe6a51832cf310397a9ac6171))
-
-* Merge pull request #30 from MartinBernstorff/dependabot/pip/black-23.1.0
-
-deps:(deps-dev): bump black from 22.8.0 to 23.1.0 ([`37348e7`](https://github.com/MartinBernstorff/Memium/commit/37348e70e90bcbe3429b60dfd02d4d867633cd77))
-
-* deps:(deps-dev): bump black from 22.8.0 to 23.1.0
-
-Bumps [black](https://github.com/psf/black) from 22.8.0 to 23.1.0.
-- [Release notes](https://github.com/psf/black/releases)
-- [Changelog](https://github.com/psf/black/blob/main/CHANGES.md)
-- [Commits](https://github.com/psf/black/compare/22.8.0...23.1.0)
-
----
-updated-dependencies:
-- dependency-name: black
-  dependency-type: direct:production
-  update-type: version-update:semver-major
-...
-
-Signed-off-by: dependabot[bot] <support@github.com> ([`fa845b5`](https://github.com/MartinBernstorff/Memium/commit/fa845b5374cc748fe872cc581d8191a0456bc975))
-
-* Merge pull request #29 from MartinBernstorff/dependabot/pip/pre-commit-eq-3.1.1
-
-deps:(deps-dev): update pre-commit requirement from <2.21.0,==2.20.0 to ==3.1.1 ([`11ef695`](https://github.com/MartinBernstorff/Memium/commit/11ef695ca9843e6dc619ef631833e5ea436b0827))
-
-* deps:(deps-dev): update pre-commit requirement
-
-Updates the requirements on [pre-commit](https://github.com/pre-commit/pre-commit) to permit the latest version.
-- [Release notes](https://github.com/pre-commit/pre-commit/releases)
-- [Changelog](https://github.com/pre-commit/pre-commit/blob/main/CHANGELOG.md)
-- [Commits](https://github.com/pre-commit/pre-commit/compare/v2.20.0...v3.1.1)
-
----
-updated-dependencies:
-- dependency-name: pre-commit
-  dependency-type: direct:production
-...
-
-Signed-off-by: dependabot[bot] <support@github.com> ([`2dbe94e`](https://github.com/MartinBernstorff/Memium/commit/2dbe94e39bae879d9389cf1962cf75b2727db092))
-
-* Merge pull request #28 from MartinBernstorff/dependabot/pip/sphinx-gte-5.3.0-and-lt-6.2.0
-
-deps:(deps-dev): update sphinx requirement from <5.4.0,>=5.3.0 to >=5.3.0,<6.2.0 ([`42fd015`](https://github.com/MartinBernstorff/Memium/commit/42fd015727a1d34bbe25d89f37d1d0c0d07b9342))
-
-* deps:(deps-dev): update sphinx requirement
-
-Updates the requirements on [sphinx](https://github.com/sphinx-doc/sphinx) to permit the latest version.
-- [Release notes](https://github.com/sphinx-doc/sphinx/releases)
-- [Changelog](https://github.com/sphinx-doc/sphinx/blob/master/CHANGES)
-- [Commits](https://github.com/sphinx-doc/sphinx/compare/v5.3.0...v6.1.3)
-
----
-updated-dependencies:
-- dependency-name: sphinx
-  dependency-type: direct:production
-...
-
-Signed-off-by: dependabot[bot] <support@github.com> ([`0ae2bc5`](https://github.com/MartinBernstorff/Memium/commit/0ae2bc54607c40a268311fe070b151ce047e7469))
-
-* Merge pull request #26 from MartinBernstorff/dependabot/pip/pytest-xdist-gte-3.0.0-and-lt-3.3.0
-
-deps:(deps-dev): update pytest-xdist requirement from <3.2.0,>=3.0.0 to >=3.0.0,<3.3.0 ([`694732d`](https://github.com/MartinBernstorff/Memium/commit/694732daef5e9ab519a553836df6c6c8d7a518fb))
-
-* deps:(deps-dev): update pytest-xdist requirement
-
-Updates the requirements on [pytest-xdist](https://github.com/pytest-dev/pytest-xdist) to permit the latest version.
-- [Release notes](https://github.com/pytest-dev/pytest-xdist/releases)
-- [Changelog](https://github.com/pytest-dev/pytest-xdist/blob/master/CHANGELOG.rst)
-- [Commits](https://github.com/pytest-dev/pytest-xdist/compare/v3.0.0...v3.2.0)
-
----
-updated-dependencies:
-- dependency-name: pytest-xdist
-  dependency-type: direct:production
-...
-
-Signed-off-by: dependabot[bot] <support@github.com> ([`9ee8c1e`](https://github.com/MartinBernstorff/Memium/commit/9ee8c1e7f16574801b4599c839f51b8daaba7d75))
+- Exclude q. and a. fields from cloze prompts
+  ([`5b2d6cd`](https://github.com/MartinBernstorff/Memium/commit/5b2d6cda3825582381444b36c6ef1dbc8779d4af))
 
 
 ## v0.1.0 (2023-03-11)
 
 ### Bug Fixes
 
-* fix: cruft typography ([`99b7a25`](https://github.com/MartinBernstorff/Memium/commit/99b7a25ec613b8017309662354ed3def767975f3))
+- Cruft typography
+  ([`99b7a25`](https://github.com/MartinBernstorff/Memium/commit/99b7a25ec613b8017309662354ed3def767975f3))
 
-* fix: hash anki cards on markdown ([`b5a35b9`](https://github.com/MartinBernstorff/Memium/commit/b5a35b91f58c3d43e237f495a30940e3ea780a00))
+- Hash anki cards on markdown
+  ([`b5a35b9`](https://github.com/MartinBernstorff/Memium/commit/b5a35b91f58c3d43e237f495a30940e3ea780a00))
 
-* fix: don't fail on missing media references ([`5274e3f`](https://github.com/MartinBernstorff/Memium/commit/5274e3fb3f494c56c99624ec76cbbd307de548a4))
+- Don't fail on missing media references
+  ([`5274e3f`](https://github.com/MartinBernstorff/Memium/commit/5274e3fb3f494c56c99624ec76cbbd307de548a4))
 
-* fix: do not use tts for now ([`7e3bab5`](https://github.com/MartinBernstorff/Memium/commit/7e3bab580adf7d50d556024db29dd343db6a8cb3))
+- Do not use tts for now
+  ([`7e3bab5`](https://github.com/MartinBernstorff/Memium/commit/7e3bab580adf7d50d556024db29dd343db6a8cb3))
 
-* fix: typo in toml ([`be9499e`](https://github.com/MartinBernstorff/Memium/commit/be9499e60f9e872112cedd6454ff6fa16af1eabe))
+- Typo in toml
+  ([`be9499e`](https://github.com/MartinBernstorff/Memium/commit/be9499e60f9e872112cedd6454ff6fa16af1eabe))
 
-* fix: ensure guids match cloze ([`694f701`](https://github.com/MartinBernstorff/Memium/commit/694f701aa44a1962168cb3256062f70371aef1cd))
+- Ensure guids match cloze
+  ([`694f701`](https://github.com/MartinBernstorff/Memium/commit/694f701aa44a1962168cb3256062f70371aef1cd))
 
-* fix: match guide for first test case ([`ee41799`](https://github.com/MartinBernstorff/Memium/commit/ee41799941a027792588821f22003fc2a4c99171))
+- Match guide for first test case
+  ([`ee41799`](https://github.com/MartinBernstorff/Memium/commit/ee41799941a027792588821f22003fc2a4c99171))
 
-* fix: better support for TTS ([`78032e7`](https://github.com/MartinBernstorff/Memium/commit/78032e761e7661e1974d5595f39eaf43b8965264))
+- Better support for TTS
+  ([`78032e7`](https://github.com/MartinBernstorff/Memium/commit/78032e761e7661e1974d5595f39eaf43b8965264))
 
 ### Chores
 
-* chore: remove unused type ignore ([`4cbd2b8`](https://github.com/MartinBernstorff/Memium/commit/4cbd2b88cc86c2d8ecc0716d15b64ef5596fa7de))
+- Remove unused type ignore
+  ([`4cbd2b8`](https://github.com/MartinBernstorff/Memium/commit/4cbd2b88cc86c2d8ecc0716d15b64ef5596fa7de))
 
-* chore: more typing ([`dcb04d0`](https://github.com/MartinBernstorff/Memium/commit/dcb04d043ae173b02c6b86f707d4d24008d95241))
+- More typing
+  ([`dcb04d0`](https://github.com/MartinBernstorff/Memium/commit/dcb04d043ae173b02c6b86f707d4d24008d95241))
 
-* chore: type everything ([`884deea`](https://github.com/MartinBernstorff/Memium/commit/884deeaa9c5e58f5d82ade7cdad4575900b8f793))
+- Type everything
+  ([`884deea`](https://github.com/MartinBernstorff/Memium/commit/884deeaa9c5e58f5d82ade7cdad4575900b8f793))
 
-* chore: housekeeping ([`3c93bd7`](https://github.com/MartinBernstorff/Memium/commit/3c93bd738fbb122ba5d9f4babebeaa8ef9a9a391))
+- Housekeeping
+  ([`3c93bd7`](https://github.com/MartinBernstorff/Memium/commit/3c93bd738fbb122ba5d9f4babebeaa8ef9a9a391))
 
 ### Code Style
 
-* style: linting ([`057d034`](https://github.com/MartinBernstorff/Memium/commit/057d0348763f1c3b11dba4bd83877cbb65ac0831))
+- Linting
+  ([`057d034`](https://github.com/MartinBernstorff/Memium/commit/057d0348763f1c3b11dba4bd83877cbb65ac0831))
 
-* style: linting ([`ba808b6`](https://github.com/MartinBernstorff/Memium/commit/ba808b66ab4d83f919512cfce5d853d19714bdaa))
+- Linting
+  ([`ba808b6`](https://github.com/MartinBernstorff/Memium/commit/ba808b66ab4d83f919512cfce5d853d19714bdaa))
 
-* style: final linting ([`8e59770`](https://github.com/MartinBernstorff/Memium/commit/8e597700e268a2f26cc5dc940dfe1fb13789d0ab))
+- Final linting
+  ([`8e59770`](https://github.com/MartinBernstorff/Memium/commit/8e597700e268a2f26cc5dc940dfe1fb13789d0ab))
 
-* style: linting ([`186208c`](https://github.com/MartinBernstorff/Memium/commit/186208c9b009c211c66f57c1ce2efadf7ef2b909))
+- Linting
+  ([`186208c`](https://github.com/MartinBernstorff/Memium/commit/186208c9b009c211c66f57c1ce2efadf7ef2b909))
 
-* style: linting ([`9f0d580`](https://github.com/MartinBernstorff/Memium/commit/9f0d5802cc6155f2774faeeb293f72d72112a58d))
+- Linting
+  ([`9f0d580`](https://github.com/MartinBernstorff/Memium/commit/9f0d5802cc6155f2774faeeb293f72d72112a58d))
 
-* style: linting ([`66e30e1`](https://github.com/MartinBernstorff/Memium/commit/66e30e1b97e7ebed29b1552a0a48c659f09ffe9a))
+- Linting
+  ([`66e30e1`](https://github.com/MartinBernstorff/Memium/commit/66e30e1b97e7ebed29b1552a0a48c659f09ffe9a))
 
 ### Continuous Integration
 
-* ci: update find comment ([`3de3a91`](https://github.com/MartinBernstorff/Memium/commit/3de3a91015f316e5c651ef3f3de0e38704cf12fd))
+- Update find comment
+  ([`3de3a91`](https://github.com/MartinBernstorff/Memium/commit/3de3a91015f316e5c651ef3f3de0e38704cf12fd))
 
-* ci: update cruft logic ([`9d2109a`](https://github.com/MartinBernstorff/Memium/commit/9d2109ac5d29195bb103a84e5cb8ebb08f7d07b0))
+- Update cruft logic
+  ([`9d2109a`](https://github.com/MartinBernstorff/Memium/commit/9d2109ac5d29195bb103a84e5cb8ebb08f7d07b0))
 
-* ci: update cruft ([`aea9b87`](https://github.com/MartinBernstorff/Memium/commit/aea9b870cd52a2d4784e98d11710971d19c6006b))
+- Update cruft
+  ([`aea9b87`](https://github.com/MartinBernstorff/Memium/commit/aea9b870cd52a2d4784e98d11710971d19c6006b))
 
-* ci: update cruft message ([`2343489`](https://github.com/MartinBernstorff/Memium/commit/234348919d8f39546aadf1ff14de0873e30e9100))
+- Update cruft message
+  ([`2343489`](https://github.com/MartinBernstorff/Memium/commit/234348919d8f39546aadf1ff14de0873e30e9100))
 
-* ci: update cruft failed template ([`2d793c5`](https://github.com/MartinBernstorff/Memium/commit/2d793c53579cb2665039a35c11f13168b4f5b52c))
+- Update cruft failed template
+  ([`2d793c5`](https://github.com/MartinBernstorff/Memium/commit/2d793c53579cb2665039a35c11f13168b4f5b52c))
 
-* ci: cruft ([`55b6232`](https://github.com/MartinBernstorff/Memium/commit/55b62321376b3fee21252f4b2878f6e8bdaf2d4e))
+- Cruft
+  ([`55b6232`](https://github.com/MartinBernstorff/Memium/commit/55b62321376b3fee21252f4b2878f6e8bdaf2d4e))
 
-* ci: cruft check ([`c3b5353`](https://github.com/MartinBernstorff/Memium/commit/c3b5353b7febd1337acd3addc1a1711e47472bc5))
+- Cruft check
+  ([`c3b5353`](https://github.com/MartinBernstorff/Memium/commit/c3b5353b7febd1337acd3addc1a1711e47472bc5))
 
-* ci: cruft ([`eca6564`](https://github.com/MartinBernstorff/Memium/commit/eca65640591eeac6bd7edcb4aa6e3bdb3f450b80))
+- Cruft
+  ([`eca6564`](https://github.com/MartinBernstorff/Memium/commit/eca65640591eeac6bd7edcb4aa6e3bdb3f450b80))
 
-* ci: test new cruft procedure ([`e41862c`](https://github.com/MartinBernstorff/Memium/commit/e41862c0433c7838282cd7e880dc6a3847c32f54))
+- Test new cruft procedure
+  ([`e41862c`](https://github.com/MartinBernstorff/Memium/commit/e41862c0433c7838282cd7e880dc6a3847c32f54))
 
-* ci: test ([`62ea30c`](https://github.com/MartinBernstorff/Memium/commit/62ea30c0e8d504409bd91fbdcd01540b99752268))
+- Test
+  ([`62ea30c`](https://github.com/MartinBernstorff/Memium/commit/62ea30c0e8d504409bd91fbdcd01540b99752268))
 
-* ci: test ([`babf357`](https://github.com/MartinBernstorff/Memium/commit/babf357b30cecd73e8c202a80d881cfd2c2399fa))
+- Test
+  ([`babf357`](https://github.com/MartinBernstorff/Memium/commit/babf357b30cecd73e8c202a80d881cfd2c2399fa))
 
-* ci: fix error in cruft ([`c3114e5`](https://github.com/MartinBernstorff/Memium/commit/c3114e5809a7135ad7dabf088abc99cec35a0968))
+- Fix error in cruft
+  ([`c3114e5`](https://github.com/MartinBernstorff/Memium/commit/c3114e5809a7135ad7dabf088abc99cec35a0968))
 
-* ci: try new cruft ci ([`6412ae8`](https://github.com/MartinBernstorff/Memium/commit/6412ae8eaf9626de016abbef28e4c291e093c088))
+- Try new cruft ci
+  ([`6412ae8`](https://github.com/MartinBernstorff/Memium/commit/6412ae8eaf9626de016abbef28e4c291e093c088))
 
-* ci: update cruft ([`12bd8a9`](https://github.com/MartinBernstorff/Memium/commit/12bd8a9736da761c405af7e42f0747073a1364bf))
+- Update cruft
+  ([`12bd8a9`](https://github.com/MartinBernstorff/Memium/commit/12bd8a9736da761c405af7e42f0747073a1364bf))
 
-* ci: permissions for setup_for_dev ([`8f23875`](https://github.com/MartinBernstorff/Memium/commit/8f23875ad5e970bdb64503dc2a72a909e6c22e74))
+- Permissions for setup_for_dev
+  ([`8f23875`](https://github.com/MartinBernstorff/Memium/commit/8f23875ad5e970bdb64503dc2a72a909e6c22e74))
 
 ### Features
 
-* feat: ignore cloze-likes in code blocks ([`80b0888`](https://github.com/MartinBernstorff/Memium/commit/80b0888839ea8206fc1697674be4ac2e42e0627f))
+- Ignore cloze-likes in code blocks
+  ([`80b0888`](https://github.com/MartinBernstorff/Memium/commit/80b0888839ea8206fc1697674be4ac2e42e0627f))
 
-* feat: compile fields to html ([`13f8c07`](https://github.com/MartinBernstorff/Memium/commit/13f8c079a2db56c0b80161488d2831cc9d9eadf2))
+- Compile fields to html
+  ([`13f8c07`](https://github.com/MartinBernstorff/Memium/commit/13f8c079a2db56c0b80161488d2831cc9d9eadf2))
 
-* feat: better sh file ([`fc0b2e6`](https://github.com/MartinBernstorff/Memium/commit/fc0b2e6197940906061e22f069c361d3f379685c))
+- Better sh file
+  ([`fc0b2e6`](https://github.com/MartinBernstorff/Memium/commit/fc0b2e6197940906061e22f069c361d3f379685c))
 
-* feat: working version ([`a8438c7`](https://github.com/MartinBernstorff/Memium/commit/a8438c7b3cb42f4cb2718008b8e2ed4f2514c7ab))
+- Working version
+  ([`a8438c7`](https://github.com/MartinBernstorff/Memium/commit/a8438c7b3cb42f4cb2718008b8e2ed4f2514c7ab))
 
-* feat: don't update bear ([`59fef60`](https://github.com/MartinBernstorff/Memium/commit/59fef60eb4d22fc9e3e5443b7456a1687689d4e3))
+- Don't update bear
+  ([`59fef60`](https://github.com/MartinBernstorff/Memium/commit/59fef60eb4d22fc9e3e5443b7456a1687689d4e3))
 
-* feat: migrate main to use new pipeline ([`fa71108`](https://github.com/MartinBernstorff/Memium/commit/fa7110896aa326cf44646cb0fe7353c0d8ffa337))
+- Migrate main to use new pipeline
+  ([`fa71108`](https://github.com/MartinBernstorff/Memium/commit/fa7110896aa326cf44646cb0fe7353c0d8ffa337))
 
-* feat: create a unified pipeline ([`a703fcc`](https://github.com/MartinBernstorff/Memium/commit/a703fcc8158d2412170dda333d24cc87bf4c3daf))
+- Create a unified pipeline
+  ([`a703fcc`](https://github.com/MartinBernstorff/Memium/commit/a703fcc8158d2412170dda333d24cc87bf4c3daf))
 
-* feat: fit uuid generation to qa prompt extractor ([`4e33b0d`](https://github.com/MartinBernstorff/Memium/commit/4e33b0d37075d897aba0a932316d10284572e1e4))
+- Fit uuid generation to qa prompt extractor
+  ([`4e33b0d`](https://github.com/MartinBernstorff/Memium/commit/4e33b0d37075d897aba0a932316d10284572e1e4))
 
-* feat: remove filepath requirement ([`65c97a5`](https://github.com/MartinBernstorff/Memium/commit/65c97a5262965cd0776bfb36bc7108a27e83fd6d))
+- Remove filepath requirement
+  ([`65c97a5`](https://github.com/MartinBernstorff/Memium/commit/65c97a5262965cd0776bfb36bc7108a27e83fd6d))
 
-* feat: first working rewrite ([`9a16d98`](https://github.com/MartinBernstorff/Memium/commit/9a16d983054fa03c005922778f1e4bc33222496d))
+- First working rewrite
+  ([`9a16d98`](https://github.com/MartinBernstorff/Memium/commit/9a16d983054fa03c005922778f1e4bc33222496d))
 
-* feat: first stab at main package ([`069accd`](https://github.com/MartinBernstorff/Memium/commit/069accdfff488ed285dabebdbb847fb1ba064c3b))
+- First stab at main package
+  ([`069accd`](https://github.com/MartinBernstorff/Memium/commit/069accdfff488ed285dabebdbb847fb1ba064c3b))
 
-* feat: add markdown to card logic ([`f1a204f`](https://github.com/MartinBernstorff/Memium/commit/f1a204ff74c898374f8399f34aba8577830391a0))
+- Add markdown to card logic
+  ([`f1a204f`](https://github.com/MartinBernstorff/Memium/commit/f1a204ff74c898374f8399f34aba8577830391a0))
 
-* feat: add cloze extractor ([`8fda355`](https://github.com/MartinBernstorff/Memium/commit/8fda355e9ab7b9e945c61c7b2853a3418cfa4458))
+- Add cloze extractor
+  ([`8fda355`](https://github.com/MartinBernstorff/Memium/commit/8fda355e9ab7b9e945c61c7b2853a3418cfa4458))
 
-* feat: add source notes to QAPrompts ([`08bae17`](https://github.com/MartinBernstorff/Memium/commit/08bae173fcd0ce96aa54319cbe529a918e0b3229))
+- Add source notes to QAPrompts
+  ([`08bae17`](https://github.com/MartinBernstorff/Memium/commit/08bae173fcd0ce96aa54319cbe529a918e0b3229))
 
-* feat: add qa_prompt_extractor ([`377b426`](https://github.com/MartinBernstorff/Memium/commit/377b426d97ab985832cb577cfbfa4e4c01d73fd6))
+- Add qa_prompt_extractor
+  ([`377b426`](https://github.com/MartinBernstorff/Memium/commit/377b426d97ab985832cb577cfbfa4e4c01d73fd6))
 
-* feat: disable automatic tts (replaced by AwesomeTTS) ([`5f37882`](https://github.com/MartinBernstorff/Memium/commit/5f37882a9ce24ba84e36b7d2d1939cc035144dbe))
+- Disable automatic tts (replaced by AwesomeTTS)
+  ([`5f37882`](https://github.com/MartinBernstorff/Memium/commit/5f37882a9ce24ba84e36b7d2d1939cc035144dbe))
 
 ### Refactoring
 
-* refactor: add guards ([`c92eeb7`](https://github.com/MartinBernstorff/Memium/commit/c92eeb7c101f7a3c30e57827b8d5e696c7c82b49))
+- Add guards
+  ([`c92eeb7`](https://github.com/MartinBernstorff/Memium/commit/c92eeb7c101f7a3c30e57827b8d5e696c7c82b49))
 
-* refactor: stylise pipeline ([`34ba2a3`](https://github.com/MartinBernstorff/Memium/commit/34ba2a317f61f1ff0771ac4388ac634b99e67773))
+- Stylise pipeline
+  ([`34ba2a3`](https://github.com/MartinBernstorff/Memium/commit/34ba2a317f61f1ff0771ac4388ac634b99e67773))
 
-* refactor: disambiguate note and prompt uuids ([`db5c457`](https://github.com/MartinBernstorff/Memium/commit/db5c4570378fd7f50265b8ca3991cfb4dab7bbb5))
+- Disambiguate note and prompt uuids
+  ([`db5c457`](https://github.com/MartinBernstorff/Memium/commit/db5c4570378fd7f50265b8ca3991cfb4dab7bbb5))
 
-* refactor: clean up subdeck ([`7f03b42`](https://github.com/MartinBernstorff/Memium/commit/7f03b42bdb46733683459d5b8e21df39e44bc427))
+- Clean up subdeck
+  ([`7f03b42`](https://github.com/MartinBernstorff/Memium/commit/7f03b42bdb46733683459d5b8e21df39e44bc427))
 
-* refactor: misc. ([`8a366b3`](https://github.com/MartinBernstorff/Memium/commit/8a366b3fc2dce6788ae93a5f80c0a57e40fc75b7))
+- Misc.
+  ([`8a366b3`](https://github.com/MartinBernstorff/Memium/commit/8a366b3fc2dce6788ae93a5f80c0a57e40fc75b7))
 
-* refactor: rename factory classes ([`af592f4`](https://github.com/MartinBernstorff/Memium/commit/af592f4f51c4ed531582be5b7d538a27fd4680fb))
-
-### Unknown
-
-* Merge pull request #25 from MartinBernstorff/martbern/rewrite
-
-refactor: major rewrite ([`c37b743`](https://github.com/MartinBernstorff/Memium/commit/c37b7434dae004b9c2bc35f9d5cee0f592122cd6))
-
-* misc. ([`4459db1`](https://github.com/MartinBernstorff/Memium/commit/4459db15a360d9eaa2251d6d9b423d09bf498708))
-
-* misc. ([`86b5d19`](https://github.com/MartinBernstorff/Memium/commit/86b5d19b2b1e9ce5a4980cc65b2e679a00cb7759))
-
-* build. update deps ([`ca7a3dd`](https://github.com/MartinBernstorff/Memium/commit/ca7a3dd63c173b12d200e887f979c8d7dd10e8bf))
-
-* Merge branch 'main' into martbern/rewrite ([`54b6416`](https://github.com/MartinBernstorff/Memium/commit/54b64162ff9d06d3080464bb58e1987f4a4b68b7))
-
-* misc. ([`2337606`](https://github.com/MartinBernstorff/Memium/commit/2337606135ad183ab49c150af860f4ba8c3a1385))
-
-* cruft: add cruft ([`883da72`](https://github.com/MartinBernstorff/Memium/commit/883da7222e64ab85a2fa39a829cd9f523b805cac))
-
-* misc. ([`27883f5`](https://github.com/MartinBernstorff/Memium/commit/27883f5f844537e353d7bfcca9921e1424f512e9))
-
-* misc. ([`4553e37`](https://github.com/MartinBernstorff/Memium/commit/4553e37d141b752cf7bc4dd678c0a836c482ae4c))
-
-* tests: first attempt at uid hash test ([`ddb65c4`](https://github.com/MartinBernstorff/Memium/commit/ddb65c43b75514e52703c1e04949b53823b1d3ed))
-
-* tests: simplify tests ([`8d6f096`](https://github.com/MartinBernstorff/Memium/commit/8d6f096d79c9c1277e79a4113ed7ccc9d3adc351))
-
-* tests: remove filepath requirement ([`8fd8095`](https://github.com/MartinBernstorff/Memium/commit/8fd8095bc201ef44c627435b26b33404996a8186))
-
-* tests: migrate old tests ([`c54fe52`](https://github.com/MartinBernstorff/Memium/commit/c54fe521dacc90468dec6866fee8c6524c9c9558))
-
-* misc. ([`aa2fc4e`](https://github.com/MartinBernstorff/Memium/commit/aa2fc4e0bd4bf5e2f3eb1218d8af36c4ca381552))
-
-* misc. changes ([`3f1a454`](https://github.com/MartinBernstorff/Memium/commit/3f1a454ddf7385157ba465425256f5188a24e9dd))
-
-* misc. ([`bcf2d2a`](https://github.com/MartinBernstorff/Memium/commit/bcf2d2a2935611f8c7be9fe2cf26f31803efb347))
-
-* init: add markdown based extractor ([`435dfef`](https://github.com/MartinBernstorff/Memium/commit/435dfef5d5b587e6f6268af29f8b1cb5338d3cd4))
-
-* Misc. additions ([`9679ef4`](https://github.com/MartinBernstorff/Memium/commit/9679ef4fd6ad0f9e22cebf4592431ab4a4a74e2c))
-
-* Add Anki launch and sync ([`76badd9`](https://github.com/MartinBernstorff/Memium/commit/76badd9ba6106fe236aa2c0a00b6659fd6bf0529))
-
-* Add wasabi ([`82ee3af`](https://github.com/MartinBernstorff/Memium/commit/82ee3af163f856511a0000bd377fe44fd938c57a))
-
-* Fix required space after A. ([`4348fa5`](https://github.com/MartinBernstorff/Memium/commit/4348fa5607b20f81c7dcd51537bd351188f4a4e7))
-
-* Merge branch 'main' of https://github.com/martbern/personal-mnemonic-medium ([`8589b22`](https://github.com/MartinBernstorff/Memium/commit/8589b226bcc979ea6cbbb98a96a90951ae5ab386))
-
-* Update requirements.txt ([`9137df8`](https://github.com/MartinBernstorff/Memium/commit/9137df8a5d4dee2c1db58922d9b038ee7fa78bf3))
-
-* Update path ([`1621595`](https://github.com/MartinBernstorff/Memium/commit/162159585d1efc7e6e42bac6da902e70ed8034da))
-
-* Move to one file to avoid packaging ([`1b72c51`](https://github.com/MartinBernstorff/Memium/commit/1b72c518a80cc7b58b0c95b8386ffc80cbf8aab2))
-
-* Move all code to one file to avoid fighting with Python's packaging system ([`613aa41`](https://github.com/MartinBernstorff/Memium/commit/613aa418134027eb0b4c74b5e0be1d6d238623d7))
-
-* Merge branch 'main' of https://github.com/martbern/personal-mnemonic-medium ([`bd94c55`](https://github.com/MartinBernstorff/Memium/commit/bd94c55e0d3ab05cd782c30d7d8c7edd07a5419a))
-
-* Fix file-structure to support pytest (closes #23) ([`14b9976`](https://github.com/MartinBernstorff/Memium/commit/14b99767f37294630df21871c7dd27834254118c))
-
-* Fix file-structure to support pytest (closes #23) ([`2e2ccde`](https://github.com/MartinBernstorff/Memium/commit/2e2ccde253f1f3cec6add993a258238d1b4ae6c0))
-
-* Add ankiconnect support (closes #21) ([`848dd09`](https://github.com/MartinBernstorff/Memium/commit/848dd0925875d9349af21c968f322e26927c7de9))
-
-* Hashes on md source (closes #19 and #20) ([`52af681`](https://github.com/MartinBernstorff/Memium/commit/52af68150071c348970610513f01908e1078e10f))
-
-* Merge branch 'main' of https://github.com/martbern/personal-mnemonic-medium ([`72be9a8`](https://github.com/MartinBernstorff/Memium/commit/72be9a8ab4ca21417da8165cdeb34c8abbb6ab86))
-
-* Update readme.md ([`33ec4e1`](https://github.com/MartinBernstorff/Memium/commit/33ec4e14bdae031d8c58fcb75dae605784db88e5))
-
-* Update readme.md ([`47ac665`](https://github.com/MartinBernstorff/Memium/commit/47ac665daa186df19cb48ec9eca4eaf3db20fb1a))
-
-* Create readme.md ([`6bb7264`](https://github.com/MartinBernstorff/Memium/commit/6bb72641fa2a8476b197f8b4efe8bf03261a8eeb))
-
-* Update python-app.yml ([`112713e`](https://github.com/MartinBernstorff/Memium/commit/112713e769f53356d703bd980c25efcdc788521f))
-
-* Add test for multiline questions ([`d4c3d09`](https://github.com/MartinBernstorff/Memium/commit/d4c3d09dd0447ad737b4509b32a8195f58e9778e))
-
-* Merge branch 'main' of https://github.com/martbern/personal-mnemonic-medium ([`9bdae6e`](https://github.com/MartinBernstorff/Memium/commit/9bdae6eaab71b15078a5900d7396652dcc1875bf))
-
-* Update python-app.yml ([`26d4cc1`](https://github.com/MartinBernstorff/Memium/commit/26d4cc14da8223303e9e755b0285d3e5ec67dece))
-
-* Update python-app.yml ([`68402cc`](https://github.com/MartinBernstorff/Memium/commit/68402ccea7ac97c59e0902a4dcb12b31ca31ddd4))
-
-* Create python-app.yml ([`6a6bee4`](https://github.com/MartinBernstorff/Memium/commit/6a6bee48f3710db24a33c66b04a355df692fbb64))
-
-* Fix import for tests ([`9e2c787`](https://github.com/MartinBernstorff/Memium/commit/9e2c787ec1dab2e47efc041f8b7dce1d3309e5c0))
-
-* Add tests to ensure stable card GUIDs (closes #17) ([`0349e55`](https://github.com/MartinBernstorff/Memium/commit/0349e550bc8a86ce48991fb463f98ddfafb602f7))
-
-* Update requirements with specific versions ([`3a7ccfd`](https://github.com/MartinBernstorff/Memium/commit/3a7ccfd3f5e10c59a5be433686a0513dd518d3c0))
-
-* Make hash more stable ([`3ea3240`](https://github.com/MartinBernstorff/Memium/commit/3ea32400a09b9b9b696fe85016ca0586c6451a6a))
-
-* Removes QA formatting from cards (closes #14) ([`858e1b1`](https://github.com/MartinBernstorff/Memium/commit/858e1b13432ee0f185b4595483d1d88bf3f00341))
-
-* Fix stripping of newlines (closes #4) ([`b80d7e6`](https://github.com/MartinBernstorff/Memium/commit/b80d7e6e0c871c5067cd25e504ba2bec416b454e))
-
-* Strip source before processing (closes #13) ([`a9649b8`](https://github.com/MartinBernstorff/Memium/commit/a9649b871bb34eddfb2a77047148fdeee27ed383))
-
-* Merge branch 'main' of https://github.com/martbern/personal-mnemonic-medium ([`aa4fee1`](https://github.com/MartinBernstorff/Memium/commit/aa4fee113f5385f4c91a61fd90bea26f2dde7937))
-
-* Fix question containing newlines (#12) ([`5717d0d`](https://github.com/MartinBernstorff/Memium/commit/5717d0d344214d196641aa56fec641fcc5fcac73))
-
-* Fix question containing newlines (#12) ([`b5b9066`](https://github.com/MartinBernstorff/Memium/commit/b5b9066ae5210b2132d4d0756cb8e0beb96a649a))
-
-* Fix incorrect cloze card creation (closes #7) ([`65fbc50`](https://github.com/MartinBernstorff/Memium/commit/65fbc500f85a034ce6dee23dc12e683dd9b599a2))
-
-* Initial commit ([`74a00be`](https://github.com/MartinBernstorff/Memium/commit/74a00bed41d79bf6db49d66a4b3c3836cb0f6a36))
+- Rename factory classes
+  ([`af592f4`](https://github.com/MartinBernstorff/Memium/commit/af592f4f51c4ed531582be5b7d538a27fd4680fb))
