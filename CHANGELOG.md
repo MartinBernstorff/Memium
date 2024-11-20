@@ -1,6 +1,459 @@
 # CHANGELOG
 
 
+## v0.25.7 (2024-11-20)
+
+### Bug Fixes
+
+- **deps**: Update dependency pydantic to v2.10.0
+  ([#776](https://github.com/MartinBernstorff/Memium/pull/776),
+  [`4dcce97`](https://github.com/MartinBernstorff/Memium/commit/4dcce9792d82df32a763aa2068f3cce21910d665))
+
+This PR contains the following updates:
+
+| Package | Change | Age | Adoption | Passing | Confidence | |---|---|---|---|---|---| |
+  [pydantic](https://redirect.github.com/pydantic/pydantic)
+  ([changelog](https://docs.pydantic.dev/latest/changelog/)) | `==2.9.2` -> `==2.10.0` |
+  [![age](https://developer.mend.io/api/mc/badges/age/pypi/pydantic/2.10.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+  |
+  [![adoption](https://developer.mend.io/api/mc/badges/adoption/pypi/pydantic/2.10.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+  |
+  [![passing](https://developer.mend.io/api/mc/badges/compatibility/pypi/pydantic/2.9.2/2.10.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+  |
+  [![confidence](https://developer.mend.io/api/mc/badges/confidence/pypi/pydantic/2.9.2/2.10.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+  |
+
+---
+
+### Release Notes
+
+<details> <summary>pydantic/pydantic (pydantic)</summary>
+
+### [`v2.10.0`](https://redirect.github.com/pydantic/pydantic/blob/HEAD/HISTORY.md#v2100-2024-11-20)
+
+[Compare Source](https://redirect.github.com/pydantic/pydantic/compare/v2.9.2...v2.10.0)
+
+The code released in v2.10.0 is practically identical to that of v2.10.0b2.
+
+[GitHub release](https://redirect.github.com/pydantic/pydantic/releases/tag/v2.10.0)
+
+See the [v2.10 release blog post](https://pydantic.dev/articles/pydantic-v2-10-release) for the
+  highlights!
+
+##### What's Changed
+
+##### Packaging
+
+- Bump `pydantic-core` to `v2.27.0` by
+  [@&#8203;sydney-runkle](https://redirect.github.com/sydney-runkle) in
+  [#&#8203;10825](https://redirect.github.com/pydantic/pydantic/pull/10825) - Replaced pdm with uv
+  by [@&#8203;frfahim](https://redirect.github.com/frfahim) in
+  [#&#8203;10727](https://redirect.github.com/pydantic/pydantic/pull/10727)
+
+##### New Features
+
+- Support `fractions.Fraction` by [@&#8203;sydney-runkle](https://redirect.github.com/sydney-runkle)
+  in [#&#8203;10318](https://redirect.github.com/pydantic/pydantic/pull/10318) - Support `Hashable`
+  for json validation by [@&#8203;sydney-runkle](https://redirect.github.com/sydney-runkle) in
+  [#&#8203;10324](https://redirect.github.com/pydantic/pydantic/pull/10324) - Add a `SocketPath`
+  type for `linux` systems by [@&#8203;theunkn0wn1](https://redirect.github.com/theunkn0wn1) in
+  [#&#8203;10378](https://redirect.github.com/pydantic/pydantic/pull/10378) - Allow arbitrary refs
+  in JSON schema `examples` by [@&#8203;sydney-runkle](https://redirect.github.com/sydney-runkle) in
+  [#&#8203;10417](https://redirect.github.com/pydantic/pydantic/pull/10417) - Support `defer_build`
+  for Pydantic dataclasses by [@&#8203;Viicos](https://redirect.github.com/Viicos) in
+  [#&#8203;10313](https://redirect.github.com/pydantic/pydantic/pull/10313) - Adding v1 / v2
+  incompatibility warning for nested v1 model by
+  [@&#8203;sydney-runkle](https://redirect.github.com/sydney-runkle) in
+  [#&#8203;10431](https://redirect.github.com/pydantic/pydantic/pull/10431) - Add support for
+  unpacked `TypedDict` to type hint variadic keyword arguments with `@validate_call` by
+  [@&#8203;Viicos](https://redirect.github.com/Viicos) in
+  [#&#8203;10416](https://redirect.github.com/pydantic/pydantic/pull/10416) - Support compiled
+  patterns in `protected_namespaces` by
+  [@&#8203;sydney-runkle](https://redirect.github.com/sydney-runkle) in
+  [#&#8203;10522](https://redirect.github.com/pydantic/pydantic/pull/10522) - Add support for
+  `propertyNames` in JSON schema by [@&#8203;FlorianSW](https://redirect.github.com/FlorianSW) in
+  [#&#8203;10478](https://redirect.github.com/pydantic/pydantic/pull/10478) - Adding `__replace__`
+  protocol for Python 3.13+ support by
+  [@&#8203;sydney-runkle](https://redirect.github.com/sydney-runkle) in
+  [#&#8203;10596](https://redirect.github.com/pydantic/pydantic/pull/10596) - Expose public `sort`
+  method for JSON schema generation by
+  [@&#8203;sydney-runkle](https://redirect.github.com/sydney-runkle) in
+  [#&#8203;10595](https://redirect.github.com/pydantic/pydantic/pull/10595) - Add runtime validation
+  of `@validate_call` callable argument by [@&#8203;kc0506](https://redirect.github.com/kc0506) in
+  [#&#8203;10627](https://redirect.github.com/pydantic/pydantic/pull/10627) - Add
+  `experimental_allow_partial` support by
+  [@&#8203;samuelcolvin](https://redirect.github.com/samuelcolvin) in
+  [#&#8203;10748](https://redirect.github.com/pydantic/pydantic/pull/10748) - Support default
+  factories taking validated data as an argument by
+  [@&#8203;Viicos](https://redirect.github.com/Viicos) in
+  [#&#8203;10678](https://redirect.github.com/pydantic/pydantic/pull/10678) - Allow subclassing
+  `ValidationError` and `PydanticCustomError` by
+  [@&#8203;Youssefares](https://redirect.github.com/Youssefares) in
+  [pydantic/pydantic-core#1413](https://redirect.github.com/pydantic/pydantic-core/pull/1413) - Add
+  `trailing-strings` support to `experimental_allow_partial` by
+  [@&#8203;sydney-runkle](https://redirect.github.com/sydney-runkle) in
+  [#&#8203;10825](https://redirect.github.com/pydantic/pydantic/pull/10825) - Add `rebuild()` method
+  for `TypeAdapter` and simplify `defer_build` patterns by
+  [@&#8203;sydney-runkle](https://redirect.github.com/sydney-runkle) in
+  [#&#8203;10537](https://redirect.github.com/pydantic/pydantic/pull/10537) - Improve `TypeAdapter`
+  instance repr by [@&#8203;sydney-runkle](https://redirect.github.com/sydney-runkle) in
+  [#&#8203;10872](https://redirect.github.com/pydantic/pydantic/pull/10872)
+
+##### Changes
+
+- Don't allow customization of `SchemaGenerator` until interface is more stable by
+  [@&#8203;sydney-runkle](https://redirect.github.com/sydney-runkle) in
+  [#&#8203;10303](https://redirect.github.com/pydantic/pydantic/pull/10303) - Cleanly `defer_build`
+  on `TypeAdapters`, removing experimental flag by
+  [@&#8203;sydney-runkle](https://redirect.github.com/sydney-runkle) in
+  [#&#8203;10329](https://redirect.github.com/pydantic/pydantic/pull/10329) - Fix `mro` of generic
+  subclass by [@&#8203;kc0506](https://redirect.github.com/kc0506) in
+  [#&#8203;10100](https://redirect.github.com/pydantic/pydantic/pull/10100) - Strip whitespaces on
+  JSON Schema title generation by [@&#8203;sydney-runkle](https://redirect.github.com/sydney-runkle)
+  in [#&#8203;10404](https://redirect.github.com/pydantic/pydantic/pull/10404) - Use `b64decode` and
+  `b64encode` for `Base64Bytes` type by
+  [@&#8203;sydney-runkle](https://redirect.github.com/sydney-runkle) in
+  [#&#8203;10486](https://redirect.github.com/pydantic/pydantic/pull/10486) - Relax protected
+  namespace config default by [@&#8203;sydney-runkle](https://redirect.github.com/sydney-runkle) in
+  [#&#8203;10441](https://redirect.github.com/pydantic/pydantic/pull/10441) - Revalidate
+  parametrized generics if instance's origin is subclass of OG class by
+  [@&#8203;sydney-runkle](https://redirect.github.com/sydney-runkle) in
+  [#&#8203;10666](https://redirect.github.com/pydantic/pydantic/pull/10666) - Warn if configuration
+  is specified on the `@dataclass` decorator and with the `__pydantic_config__` attribute by
+  [@&#8203;sydney-runkle](https://redirect.github.com/sydney-runkle) in
+  [#&#8203;10406](https://redirect.github.com/pydantic/pydantic/pull/10406) - Recommend against
+  using `Ellipsis` (...) with `Field` by [@&#8203;Viicos](https://redirect.github.com/Viicos) in
+  [#&#8203;10661](https://redirect.github.com/pydantic/pydantic/pull/10661) - Migrate to subclassing
+  instead of annotated approach for pydantic url types by
+  [@&#8203;sydney-runkle](https://redirect.github.com/sydney-runkle) in
+  [#&#8203;10662](https://redirect.github.com/pydantic/pydantic/pull/10662) - Change JSON schema
+  generation of `Literal`s and `Enums` by [@&#8203;Viicos](https://redirect.github.com/Viicos) in
+  [#&#8203;10692](https://redirect.github.com/pydantic/pydantic/pull/10692) - Simplify unions
+  involving `Any` or `Never` when replacing type variables by
+  [@&#8203;Viicos](https://redirect.github.com/Viicos) in
+  [#&#8203;10338](https://redirect.github.com/pydantic/pydantic/pull/10338) - Do not require padding
+  when decoding `base64` bytes by
+  [@&#8203;bschoenmaeckers](https://redirect.github.com/bschoenmaeckers) in
+  [pydantic/pydantic-core#1448](https://redirect.github.com/pydantic/pydantic-core/pull/1448) -
+  Support dates all the way to 1BC by [@&#8203;changhc](https://redirect.github.com/changhc) in
+  [pydantic/speedate#77](https://redirect.github.com/pydantic/speedate/pull/77)
+
+##### Performance
+
+- Schema cleaning: skip unnecessary copies during schema walking by
+  [@&#8203;Viicos](https://redirect.github.com/Viicos) in
+  [#&#8203;10286](https://redirect.github.com/pydantic/pydantic/pull/10286) - Refactor namespace
+  logic for annotations evaluation by [@&#8203;Viicos](https://redirect.github.com/Viicos) in
+  [#&#8203;10530](https://redirect.github.com/pydantic/pydantic/pull/10530) - Improve email regexp
+  on edge cases by [@&#8203;AlekseyLobanov](https://redirect.github.com/AlekseyLobanov) in
+  [#&#8203;10601](https://redirect.github.com/pydantic/pydantic/pull/10601) - `CoreMetadata`
+  refactor with an emphasis on documentation, schema build time performance, and reducing complexity
+  by [@&#8203;sydney-runkle](https://redirect.github.com/sydney-runkle) in
+  [#&#8203;10675](https://redirect.github.com/pydantic/pydantic/pull/10675)
+
+##### Fixes
+
+- Remove guarding check on `computed_field` with `field_serializer` by
+  [@&#8203;nix010](https://redirect.github.com/nix010) in
+  [#&#8203;10390](https://redirect.github.com/pydantic/pydantic/pull/10390) - Fix `Predicate` issue
+  in `v2.9.0` by [@&#8203;sydney-runkle](https://redirect.github.com/sydney-runkle) in
+  [#&#8203;10321](https://redirect.github.com/pydantic/pydantic/pull/10321) - Fixing
+  `annotated-types` bound by [@&#8203;sydney-runkle](https://redirect.github.com/sydney-runkle) in
+  [#&#8203;10327](https://redirect.github.com/pydantic/pydantic/pull/10327) - Turn `tzdata` install
+  requirement into optional `timezone` dependency by
+  [@&#8203;jakob-keller](https://redirect.github.com/jakob-keller) in
+  [#&#8203;10331](https://redirect.github.com/pydantic/pydantic/pull/10331) - Use correct types
+  namespace when building `namedtuple` core schemas by
+  [@&#8203;Viicos](https://redirect.github.com/Viicos) in
+  [#&#8203;10337](https://redirect.github.com/pydantic/pydantic/pull/10337) - Fix evaluation of
+  stringified annotations during namespace inspection by
+  [@&#8203;Viicos](https://redirect.github.com/Viicos) in
+  [#&#8203;10347](https://redirect.github.com/pydantic/pydantic/pull/10347) - Fix `IncEx` type alias
+  definition by [@&#8203;Viicos](https://redirect.github.com/Viicos) in
+  [#&#8203;10339](https://redirect.github.com/pydantic/pydantic/pull/10339) - Do not error when
+  trying to evaluate annotations of private attributes by
+  [@&#8203;Viicos](https://redirect.github.com/Viicos) in
+  [#&#8203;10358](https://redirect.github.com/pydantic/pydantic/pull/10358) - Fix nested type
+  statement by [@&#8203;kc0506](https://redirect.github.com/kc0506) in
+  [#&#8203;10369](https://redirect.github.com/pydantic/pydantic/pull/10369) - Improve typing of
+  `ModelMetaclass.mro` by [@&#8203;Viicos](https://redirect.github.com/Viicos) in
+  [#&#8203;10372](https://redirect.github.com/pydantic/pydantic/pull/10372) - Fix class access of
+  deprecated `computed_field`s by [@&#8203;Viicos](https://redirect.github.com/Viicos) in
+  [#&#8203;10391](https://redirect.github.com/pydantic/pydantic/pull/10391) - Make sure
+  `inspect.iscoroutinefunction` works on coroutines decorated with `@validate_call` by
+  [@&#8203;MovisLi](https://redirect.github.com/MovisLi) in
+  [#&#8203;10374](https://redirect.github.com/pydantic/pydantic/pull/10374) - Fix `NameError` when
+  using `validate_call` with PEP 695 on a class by
+  [@&#8203;kc0506](https://redirect.github.com/kc0506) in
+  [#&#8203;10380](https://redirect.github.com/pydantic/pydantic/pull/10380) - Fix `ZoneInfo` with
+  various invalid types by [@&#8203;sydney-runkle](https://redirect.github.com/sydney-runkle) in
+  [#&#8203;10408](https://redirect.github.com/pydantic/pydantic/pull/10408) - Fix
+  `PydanticUserError` on empty `model_config` with annotations by
+  [@&#8203;cdwilson](https://redirect.github.com/cdwilson) in
+  [#&#8203;10412](https://redirect.github.com/pydantic/pydantic/pull/10412) - Fix variance issue in
+  `_IncEx` type alias, only allow `True` by [@&#8203;Viicos](https://redirect.github.com/Viicos) in
+  [#&#8203;10414](https://redirect.github.com/pydantic/pydantic/pull/10414) - Fix serialization
+  schema generation when using `PlainValidator` by
+  [@&#8203;Viicos](https://redirect.github.com/Viicos) in
+  [#&#8203;10427](https://redirect.github.com/pydantic/pydantic/pull/10427) - Fix schema generation
+  error when serialization schema holds references by
+  [@&#8203;Viicos](https://redirect.github.com/Viicos) in
+  [#&#8203;10444](https://redirect.github.com/pydantic/pydantic/pull/10444) - Inline references if
+  possible when generating schema for `json_schema_input_type` by
+  [@&#8203;Viicos](https://redirect.github.com/Viicos) in
+  [#&#8203;10439](https://redirect.github.com/pydantic/pydantic/pull/10439) - Fix recursive
+  arguments in `Representation` by [@&#8203;Viicos](https://redirect.github.com/Viicos) in
+  [#&#8203;10480](https://redirect.github.com/pydantic/pydantic/pull/10480) - Fix representation for
+  builtin function types by [@&#8203;kschwab](https://redirect.github.com/kschwab) in
+  [#&#8203;10479](https://redirect.github.com/pydantic/pydantic/pull/10479) - Add python validators
+  for decimal constraints (`max_digits` and `decimal_places`) by
+  [@&#8203;sydney-runkle](https://redirect.github.com/sydney-runkle) in
+  [#&#8203;10506](https://redirect.github.com/pydantic/pydantic/pull/10506) - Only fetch
+  `__pydantic_core_schema__` from the current class during schema generation by
+  [@&#8203;Viicos](https://redirect.github.com/Viicos) in
+  [#&#8203;10518](https://redirect.github.com/pydantic/pydantic/pull/10518) - Fix `stacklevel` on
+  deprecation warnings for `BaseModel` by
+  [@&#8203;sydney-runkle](https://redirect.github.com/sydney-runkle) in
+  [#&#8203;10520](https://redirect.github.com/pydantic/pydantic/pull/10520) - Fix warning
+  `stacklevel` in `BaseModel.__init__` by [@&#8203;Viicos](https://redirect.github.com/Viicos) in
+  [#&#8203;10526](https://redirect.github.com/pydantic/pydantic/pull/10526) - Improve error handling
+  for in-evaluable refs for discriminator application by
+  [@&#8203;sydney-runkle](https://redirect.github.com/sydney-runkle) in
+  [#&#8203;10440](https://redirect.github.com/pydantic/pydantic/pull/10440) - Change the signature
+  of `ConfigWrapper.core_config` to take the title directly by
+  [@&#8203;Viicos](https://redirect.github.com/Viicos) in
+  [#&#8203;10562](https://redirect.github.com/pydantic/pydantic/pull/10562) - Do not use the
+  previous config from the stack for dataclasses without config by
+  [@&#8203;Viicos](https://redirect.github.com/Viicos) in
+  [#&#8203;10576](https://redirect.github.com/pydantic/pydantic/pull/10576) - Fix serialization for
+  IP types with `mode='python'` by
+  [@&#8203;sydney-runkle](https://redirect.github.com/sydney-runkle) in
+  [#&#8203;10594](https://redirect.github.com/pydantic/pydantic/pull/10594) - Support constraint
+  application for `Base64Etc` types by
+  [@&#8203;sydney-runkle](https://redirect.github.com/sydney-runkle) in
+  [#&#8203;10584](https://redirect.github.com/pydantic/pydantic/pull/10584) - Fix `validate_call`
+  ignoring `Field` in `Annotated` by [@&#8203;kc0506](https://redirect.github.com/kc0506) in
+  [#&#8203;10610](https://redirect.github.com/pydantic/pydantic/pull/10610) - Raise an error when
+  `Self` is invalid by [@&#8203;kc0506](https://redirect.github.com/kc0506) in
+  [#&#8203;10609](https://redirect.github.com/pydantic/pydantic/pull/10609) - Using
+  `core_schema.InvalidSchema` instead of metadata injection + checks by
+  [@&#8203;sydney-runkle](https://redirect.github.com/sydney-runkle) in
+  [#&#8203;10523](https://redirect.github.com/pydantic/pydantic/pull/10523) - Tweak type alias logic
+  by [@&#8203;kc0506](https://redirect.github.com/kc0506) in
+  [#&#8203;10643](https://redirect.github.com/pydantic/pydantic/pull/10643) - Support usage of
+  `type` with `typing.Self` and type aliases by [@&#8203;kc0506](https://redirect.github.com/kc0506)
+  in [#&#8203;10621](https://redirect.github.com/pydantic/pydantic/pull/10621) - Use overloads for
+  `Field` and `PrivateAttr` functions by [@&#8203;Viicos](https://redirect.github.com/Viicos) in
+  [#&#8203;10651](https://redirect.github.com/pydantic/pydantic/pull/10651) - Clean up the `mypy`
+  plugin implementation by [@&#8203;Viicos](https://redirect.github.com/Viicos) in
+  [#&#8203;10669](https://redirect.github.com/pydantic/pydantic/pull/10669) - Properly check for
+  `typing_extensions` variant of `TypeAliasType` by
+  [@&#8203;Daraan](https://redirect.github.com/Daraan) in
+  [#&#8203;10713](https://redirect.github.com/pydantic/pydantic/pull/10713) - Allow any mapping in
+  `BaseModel.model_copy()` by [@&#8203;Viicos](https://redirect.github.com/Viicos) in
+  [#&#8203;10751](https://redirect.github.com/pydantic/pydantic/pull/10751) - Fix `isinstance`
+  behavior for urls by [@&#8203;sydney-runkle](https://redirect.github.com/sydney-runkle) in
+  [#&#8203;10766](https://redirect.github.com/pydantic/pydantic/pull/10766) - Ensure
+  `cached_property` can be set on Pydantic models by
+  [@&#8203;Viicos](https://redirect.github.com/Viicos) in
+  [#&#8203;10774](https://redirect.github.com/pydantic/pydantic/pull/10774) - Fix equality checks
+  for primitives in literals by [@&#8203;sydney-runkle](https://redirect.github.com/sydney-runkle)
+  in [pydantic/pydantic-core#1459](https://redirect.github.com/pydantic/pydantic-core/pull/1459) -
+  Properly enforce `host_required` for URLs by [@&#8203;Viicos](https://redirect.github.com/Viicos)
+  in [pydantic/pydantic-core#1488](https://redirect.github.com/pydantic/pydantic-core/pull/1488) -
+  Fix when `coerce_numbers_to_str` enabled and string has invalid Unicode character by
+  [@&#8203;andrey-berenda](https://redirect.github.com/andrey-berenda) in
+  [pydantic/pydantic-core#1515](https://redirect.github.com/pydantic/pydantic-core/pull/1515) - Fix
+  serializing `complex` values in `Enum`s by [@&#8203;changhc](https://redirect.github.com/changhc)
+  in [pydantic/pydantic-core#1524](https://redirect.github.com/pydantic/pydantic-core/pull/1524) -
+  Refactor `_typing_extra` module by [@&#8203;Viicos](https://redirect.github.com/Viicos) in
+  [#&#8203;10725](https://redirect.github.com/pydantic/pydantic/pull/10725) - Support intuitive
+  equality for urls by [@&#8203;sydney-runkle](https://redirect.github.com/sydney-runkle) in
+  [#&#8203;10798](https://redirect.github.com/pydantic/pydantic/pull/10798) - Add `bytearray` to
+  `TypeAdapter.validate_json` signature by
+  [@&#8203;samuelcolvin](https://redirect.github.com/samuelcolvin) in
+  [#&#8203;10802](https://redirect.github.com/pydantic/pydantic/pull/10802) - Ensure class access of
+  method descriptors is performed when used as a default with `Field` by
+  [@&#8203;Viicos](https://redirect.github.com/Viicos) in
+  [#&#8203;10816](https://redirect.github.com/pydantic/pydantic/pull/10816) - Fix circular import
+  with `validate_call` by [@&#8203;sydney-runkle](https://redirect.github.com/sydney-runkle) in
+  [#&#8203;10807](https://redirect.github.com/pydantic/pydantic/pull/10807) - Fix error when using
+  type aliases referencing other type aliases by
+  [@&#8203;Viicos](https://redirect.github.com/Viicos) in
+  [#&#8203;10809](https://redirect.github.com/pydantic/pydantic/pull/10809) - Fix `IncEx` type alias
+  to be compatible with mypy by [@&#8203;Viicos](https://redirect.github.com/Viicos) in
+  [#&#8203;10813](https://redirect.github.com/pydantic/pydantic/pull/10813) - Make `__signature__` a
+  lazy property, do not deepcopy defaults by [@&#8203;Viicos](https://redirect.github.com/Viicos) in
+  [#&#8203;10818](https://redirect.github.com/pydantic/pydantic/pull/10818) - Make `__signature__`
+  lazy for dataclasses, too by [@&#8203;sydney-runkle](https://redirect.github.com/sydney-runkle) in
+  [#&#8203;10832](https://redirect.github.com/pydantic/pydantic/pull/10832) - Subclass all single
+  host url classes from `AnyUrl` to preserve behavior from v2.9 by
+  [@&#8203;sydney-runkle](https://redirect.github.com/sydney-runkle) in
+  [#&#8203;10856](https://redirect.github.com/pydantic/pydantic/pull/10856)
+
+##### New Contributors
+
+- [@&#8203;jakob-keller](https://redirect.github.com/jakob-keller) made their first contribution in
+  [#&#8203;10331](https://redirect.github.com/pydantic/pydantic/pull/10331) -
+  [@&#8203;MovisLi](https://redirect.github.com/MovisLi) made their first contribution in
+  [#&#8203;10374](https://redirect.github.com/pydantic/pydantic/pull/10374) -
+  [@&#8203;joaopalmeiro](https://redirect.github.com/joaopalmeiro) made their first contribution in
+  [#&#8203;10405](https://redirect.github.com/pydantic/pydantic/pull/10405) -
+  [@&#8203;theunkn0wn1](https://redirect.github.com/theunkn0wn1) made their first contribution in
+  [#&#8203;10378](https://redirect.github.com/pydantic/pydantic/pull/10378) -
+  [@&#8203;cdwilson](https://redirect.github.com/cdwilson) made their first contribution in
+  [#&#8203;10412](https://redirect.github.com/pydantic/pydantic/pull/10412) -
+  [@&#8203;dlax](https://redirect.github.com/dlax) made their first contribution in
+  [#&#8203;10421](https://redirect.github.com/pydantic/pydantic/pull/10421) -
+  [@&#8203;kschwab](https://redirect.github.com/kschwab) made their first contribution in
+  [#&#8203;10479](https://redirect.github.com/pydantic/pydantic/pull/10479) -
+  [@&#8203;santibreo](https://redirect.github.com/santibreo) made their first contribution in
+  [#&#8203;10453](https://redirect.github.com/pydantic/pydantic/pull/10453) -
+  [@&#8203;FlorianSW](https://redirect.github.com/FlorianSW) made their first contribution in
+  [#&#8203;10478](https://redirect.github.com/pydantic/pydantic/pull/10478) -
+  [@&#8203;tkasuz](https://redirect.github.com/tkasuz) made their first contribution in
+  [#&#8203;10555](https://redirect.github.com/pydantic/pydantic/pull/10555) -
+  [@&#8203;AlekseyLobanov](https://redirect.github.com/AlekseyLobanov) made their first contribution
+  in [#&#8203;10601](https://redirect.github.com/pydantic/pydantic/pull/10601) -
+  [@&#8203;NiclasvanEyk](https://redirect.github.com/NiclasvanEyk) made their first contribution in
+  [#&#8203;10667](https://redirect.github.com/pydantic/pydantic/pull/10667) -
+  [@&#8203;mschoettle](https://redirect.github.com/mschoettle) made their first contribution in
+  [#&#8203;10677](https://redirect.github.com/pydantic/pydantic/pull/10677) -
+  [@&#8203;Daraan](https://redirect.github.com/Daraan) made their first contribution in
+  [#&#8203;10713](https://redirect.github.com/pydantic/pydantic/pull/10713) -
+  [@&#8203;k4nar](https://redirect.github.com/k4nar) made their first contribution in
+  [#&#8203;10736](https://redirect.github.com/pydantic/pydantic/pull/10736) -
+  [@&#8203;UriyaHarpeness](https://redirect.github.com/UriyaHarpeness) made their first contribution
+  in [#&#8203;10740](https://redirect.github.com/pydantic/pydantic/pull/10740) -
+  [@&#8203;frfahim](https://redirect.github.com/frfahim) made their first contribution in
+  [#&#8203;10727](https://redirect.github.com/pydantic/pydantic/pull/10727)
+
+</details>
+
+---
+
+### Configuration
+
+📅 **Schedule**: Branch creation - At any time (no schedule defined), Automerge - At any time (no
+  schedule defined).
+
+🚦 **Automerge**: Enabled.
+
+♻ **Rebasing**: Whenever PR is behind base branch, or you tick the rebase/retry checkbox.
+
+🔕 **Ignore**: Close this PR and you won't be reminded about this update again.
+
+---
+
+- [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check this box
+
+---
+
+This PR was generated by [Mend Renovate](https://mend.io/renovate/). View the [repository job
+  log](https://developer.mend.io/github/MartinBernstorff/Memium).
+
+<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiIzOS4xOS4wIiwidXBkYXRlZEluVmVyIjoiMzkuMTkuMCIsInRhcmdldEJyYW5jaCI6Im1haW4iLCJsYWJlbHMiOltdfQ==-->
+
+Co-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>
+
+- **deps**: Update dependency typer to v0.13.1
+  ([#775](https://github.com/MartinBernstorff/Memium/pull/775),
+  [`2f355ad`](https://github.com/MartinBernstorff/Memium/commit/2f355ad1b7622a5079959e81fd3af8cdc38ccfe7))
+
+This PR contains the following updates:
+
+| Package | Change | Age | Adoption | Passing | Confidence | |---|---|---|---|---|---| |
+  [typer](https://redirect.github.com/fastapi/typer)
+  ([changelog](https://typer.tiangolo.com/release-notes/)) | `==0.13.0` -> `==0.13.1` |
+  [![age](https://developer.mend.io/api/mc/badges/age/pypi/typer/0.13.1?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+  |
+  [![adoption](https://developer.mend.io/api/mc/badges/adoption/pypi/typer/0.13.1?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+  |
+  [![passing](https://developer.mend.io/api/mc/badges/compatibility/pypi/typer/0.13.0/0.13.1?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+  |
+  [![confidence](https://developer.mend.io/api/mc/badges/confidence/pypi/typer/0.13.0/0.13.1?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+  |
+
+---
+
+### Release Notes
+
+<details> <summary>fastapi/typer (typer)</summary>
+
+### [`v0.13.1`](https://redirect.github.com/fastapi/typer/releases/tag/0.13.1)
+
+[Compare Source](https://redirect.github.com/fastapi/typer/compare/0.13.0...0.13.1)
+
+##### Features
+
+- ✨ Remove Rich tags when showing completion text. PR
+  [#&#8203;877](https://redirect.github.com/fastapi/typer/pull/877) by
+  [@&#8203;svlandeg](https://redirect.github.com/svlandeg). - ✨ Render Rich markup as HTML in
+  Markdown docs. PR [#&#8203;847](https://redirect.github.com/fastapi/typer/pull/847) by
+  [@&#8203;svlandeg](https://redirect.github.com/svlandeg). - ✨ Support cp850 encoding for
+  auto-completion in PowerShell. PR
+  [#&#8203;808](https://redirect.github.com/fastapi/typer/pull/808) by
+  [@&#8203;svlandeg](https://redirect.github.com/svlandeg). - ✨ Allow gettext translation of help
+  message. PR [#&#8203;886](https://redirect.github.com/fastapi/typer/pull/886) by
+  [@&#8203;svlandeg](https://redirect.github.com/svlandeg).
+
+##### Refactors
+
+- 🐛 Fix printing HTML from Rich output. PR
+  [#&#8203;1055](https://redirect.github.com/fastapi/typer/pull/1055) by
+  [@&#8203;tiangolo](https://redirect.github.com/tiangolo).
+
+##### Docs
+
+- 📝 Update markdown includes to use the new simpler format. PR
+  [#&#8203;1054](https://redirect.github.com/fastapi/typer/pull/1054) by
+  [@&#8203;tiangolo](https://redirect.github.com/tiangolo).
+
+##### Internal
+
+- ⬆ Bump ruff from 0.7.3 to 0.7.4. PR
+  [#&#8203;1051](https://redirect.github.com/fastapi/typer/pull/1051) by
+  [@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot). - ⬆ \[pre-commit.ci]
+  pre-commit autoupdate. PR [#&#8203;1047](https://redirect.github.com/fastapi/typer/pull/1047) by
+  [@&#8203;pre-commit-ci\[bot\]](https://redirect.github.com/apps/pre-commit-ci). - ⬆ Bump ruff from
+  0.7.2 to 0.7.3. PR [#&#8203;1046](https://redirect.github.com/fastapi/typer/pull/1046) by
+  [@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot). - ⬆ Bump
+  tiangolo/latest-changes from 0.3.1 to 0.3.2. PR
+  [#&#8203;1044](https://redirect.github.com/fastapi/typer/pull/1044) by
+  [@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot). - ⬆ Update pytest-cov
+  requirement from <6.0.0,>=2.10.0 to >=2.10.0,<7.0.0. PR
+  [#&#8203;1033](https://redirect.github.com/fastapi/typer/pull/1033) by
+  [@&#8203;dependabot\[bot\]](https://redirect.github.com/apps/dependabot).
+
+</details>
+
+---
+
+### Configuration
+
+📅 **Schedule**: Branch creation - At any time (no schedule defined), Automerge - At any time (no
+  schedule defined).
+
+🚦 **Automerge**: Enabled.
+
+♻ **Rebasing**: Whenever PR is behind base branch, or you tick the rebase/retry checkbox.
+
+🔕 **Ignore**: Close this PR and you won't be reminded about this update again.
+
+---
+
+- [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check this box
+
+---
+
+This PR was generated by [Mend Renovate](https://mend.io/renovate/). View the [repository job
+  log](https://developer.mend.io/github/MartinBernstorff/Memium).
+
+<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiIzOS4xOS4wIiwidXBkYXRlZEluVmVyIjoiMzkuMTkuMCIsInRhcmdldEJyYW5jaCI6Im1haW4iLCJsYWJlbHMiOltdfQ==-->
+
+Co-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>
+
+
 ## v0.25.6 (2024-11-13)
 
 ### Bug Fixes
