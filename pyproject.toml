@@ -16,7 +16,7 @@ dependencies = [
   "iterpy==1.9.0",
   "genanki==0.13.1",
   "markdown==3.7",
-  "pydantic==2.9.2",
+  "pydantic==2.10.0",
   "sentry-sdk==2.18.0",
   "typer==0.13.1",
   "tqdm==4.67.0",
