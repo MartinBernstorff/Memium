@@ -1,6 +1,127 @@
 # CHANGELOG
 
 
+## v0.25.8 (2024-11-21)
+
+### Bug Fixes
+
+- **deps**: Update dependency sentry-sdk to v2.19.0
+  ([#777](https://github.com/MartinBernstorff/Memium/pull/777),
+  [`e5849dd`](https://github.com/MartinBernstorff/Memium/commit/e5849ddb81232caca8ec59395d2c5073ac5f3b58))
+
+This PR contains the following updates:
+
+| Package | Change | Age | Adoption | Passing | Confidence | |---|---|---|---|---|---| |
+  [sentry-sdk](https://redirect.github.com/getsentry/sentry-python)
+  ([changelog](https://redirect.github.com/getsentry/sentry-python/blob/master/CHANGELOG.md)) |
+  `==2.18.0` -> `==2.19.0` |
+  [![age](https://developer.mend.io/api/mc/badges/age/pypi/sentry-sdk/2.19.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+  |
+  [![adoption](https://developer.mend.io/api/mc/badges/adoption/pypi/sentry-sdk/2.19.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+  |
+  [![passing](https://developer.mend.io/api/mc/badges/compatibility/pypi/sentry-sdk/2.18.0/2.19.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+  |
+  [![confidence](https://developer.mend.io/api/mc/badges/confidence/pypi/sentry-sdk/2.18.0/2.19.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+  |
+
+---
+
+### Release Notes
+
+<details> <summary>getsentry/sentry-python (sentry-sdk)</summary>
+
+### [`v2.19.0`](https://redirect.github.com/getsentry/sentry-python/blob/HEAD/CHANGELOG.md#2190)
+
+[Compare Source](https://redirect.github.com/getsentry/sentry-python/compare/2.18.0...2.19.0)
+
+##### Various fixes & improvements
+
+- New: introduce `rust_tracing` integration. See
+  https://docs.sentry.io/platforms/python/integrations/rust_tracing/
+  ([#&#8203;3717](https://redirect.github.com/getsentry/sentry-python/issues/3717)) by
+  [@&#8203;matt-codecov](https://redirect.github.com/matt-codecov) - Auto enable Litestar
+  integration ([#&#8203;3540](https://redirect.github.com/getsentry/sentry-python/issues/3540)) by
+  [@&#8203;provinzkraut](https://redirect.github.com/provinzkraut) - Deprecate `sentry_sdk.init`
+  context manager ([#&#8203;3729](https://redirect.github.com/getsentry/sentry-python/issues/3729))
+  by [@&#8203;szokeasaurusrex](https://redirect.github.com/szokeasaurusrex) - feat(spotlight): Send
+  PII to Spotlight when no DSN is set
+  ([#&#8203;3804](https://redirect.github.com/getsentry/sentry-python/issues/3804)) by
+  [@&#8203;BYK](https://redirect.github.com/BYK) - feat(spotlight): Add info logs when Sentry is
+  enabled ([#&#8203;3735](https://redirect.github.com/getsentry/sentry-python/issues/3735)) by
+  [@&#8203;BYK](https://redirect.github.com/BYK) - feat(spotlight): Inject Spotlight button on
+  Django ([#&#8203;3751](https://redirect.github.com/getsentry/sentry-python/issues/3751)) by
+  [@&#8203;BYK](https://redirect.github.com/BYK) - feat(spotlight): Auto enable cache_spans for
+  Spotlight on DEBUG
+  ([#&#8203;3791](https://redirect.github.com/getsentry/sentry-python/issues/3791)) by
+  [@&#8203;BYK](https://redirect.github.com/BYK) - fix(logging): Handle parameter `stack_info` for
+  the `LoggingIntegration`
+  ([#&#8203;3745](https://redirect.github.com/getsentry/sentry-python/issues/3745)) by
+  [@&#8203;gmcrocetti](https://redirect.github.com/gmcrocetti) - fix(pure-eval): Make
+  sentry-sdk\[pure-eval] installable with pip==24.0
+  ([#&#8203;3757](https://redirect.github.com/getsentry/sentry-python/issues/3757)) by
+  [@&#8203;sentrivana](https://redirect.github.com/sentrivana) - fix(rust_tracing):
+  include_tracing_fields arg to control unvetted data in rust_tracing integration
+  ([#&#8203;3780](https://redirect.github.com/getsentry/sentry-python/issues/3780)) by
+  [@&#8203;matt-codecov](https://redirect.github.com/matt-codecov) - fix(aws) Fix aws lambda tests
+  (by reducing event size)
+  ([#&#8203;3770](https://redirect.github.com/getsentry/sentry-python/issues/3770)) by
+  [@&#8203;antonpirker](https://redirect.github.com/antonpirker) - fix(arq): fix integration with
+  Worker settings as a dict
+  ([#&#8203;3742](https://redirect.github.com/getsentry/sentry-python/issues/3742)) by
+  [@&#8203;saber-solooki](https://redirect.github.com/saber-solooki) - fix(httpx): Prevent Sentry
+  baggage duplication
+  ([#&#8203;3728](https://redirect.github.com/getsentry/sentry-python/issues/3728)) by
+  [@&#8203;szokeasaurusrex](https://redirect.github.com/szokeasaurusrex) - fix(falcon): Don't
+  exhaust request body stream
+  ([#&#8203;3768](https://redirect.github.com/getsentry/sentry-python/issues/3768)) by
+  [@&#8203;szokeasaurusrex](https://redirect.github.com/szokeasaurusrex) - fix(integrations): Check
+  `retries_left` before capturing exception
+  ([#&#8203;3803](https://redirect.github.com/getsentry/sentry-python/issues/3803)) by
+  [@&#8203;malkovro](https://redirect.github.com/malkovro) - fix(openai): Use name instead of
+  description ([#&#8203;3807](https://redirect.github.com/getsentry/sentry-python/issues/3807)) by
+  [@&#8203;sourceful-rob](https://redirect.github.com/sourceful-rob) - test(gcp): Only run GCP tests
+  when they should ([#&#8203;3721](https://redirect.github.com/getsentry/sentry-python/issues/3721))
+  by [@&#8203;szokeasaurusrex](https://redirect.github.com/szokeasaurusrex) - chore: Shorten CI
+  workflow names ([#&#8203;3805](https://redirect.github.com/getsentry/sentry-python/issues/3805))
+  by [@&#8203;sentrivana](https://redirect.github.com/sentrivana) - chore: Test with pyspark
+  prerelease ([#&#8203;3760](https://redirect.github.com/getsentry/sentry-python/issues/3760)) by
+  [@&#8203;sentrivana](https://redirect.github.com/sentrivana) - build(deps): bump
+  codecov/codecov-action from 4.6.0 to 5.0.2
+  ([#&#8203;3792](https://redirect.github.com/getsentry/sentry-python/issues/3792)) by
+  [@&#8203;dependabot](https://redirect.github.com/dependabot) - build(deps): bump actions/checkout
+  from 4.2.1 to 4.2.2
+  ([#&#8203;3691](https://redirect.github.com/getsentry/sentry-python/issues/3691)) by
+  [@&#8203;dependabot](https://redirect.github.com/dependabot)
+
+</details>
+
+---
+
+### Configuration
+
+📅 **Schedule**: Branch creation - At any time (no schedule defined), Automerge - At any time (no
+  schedule defined).
+
+🚦 **Automerge**: Enabled.
+
+♻ **Rebasing**: Whenever PR is behind base branch, or you tick the rebase/retry checkbox.
+
+🔕 **Ignore**: Close this PR and you won't be reminded about this update again.
+
+---
+
+- [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check this box
+
+---
+
+This PR was generated by [Mend Renovate](https://mend.io/renovate/). View the [repository job
+  log](https://developer.mend.io/github/MartinBernstorff/Memium).
+
+<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiIzOS4xOS4wIiwidXBkYXRlZEluVmVyIjoiMzkuMTkuMCIsInRhcmdldEJyYW5jaCI6Im1haW4iLCJsYWJlbHMiOltdfQ==-->
+
+Co-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>
+
+
 ## v0.25.7 (2024-11-20)
 
 ### Bug Fixes
