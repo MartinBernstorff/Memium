@@ -458,11 +458,11 @@ wheels = [
 
 [[package]]
 name = "iterpy"
-version = "1.9.0"
+version = "1.9.1"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/dc/79/2434963d4143ba21cef68e5be85f36ef02bb6abf02cfb4fdbec5cdca8d61/iterpy-1.9.0.tar.gz", hash = "sha256:8bcbc2f8939072d02dc482cebda093591263e2b07d600364e61ad49ffc1b745b", size = 36837 }
+sdist = { url = "https://files.pythonhosted.org/packages/e6/61/f4e6f64749fec96c8a1eae5e6fcf8015d849c7f73087de344cc865396447/iterpy-1.9.1.tar.gz", hash = "sha256:561f59161cfe26f900b5711e1195a99b9e1f1f7847f2fc05437722add953740f", size = 37622 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/97/07/9dd389d1e3840bbc7fc2a15a421355def4906166c51a69cb7d2144af19c1/iterpy-1.9.0-py3-none-any.whl", hash = "sha256:34cc1e7bb2ef9caf4ee0f508271ae09d747572a3a4a2f448a0ff507444b54e4d", size = 12251 },
+    { url = "https://files.pythonhosted.org/packages/3b/b3/afc1c753c2a0848a36cb8d8b054d0a33d0f86029cedc6c3d73aa03501ddf/iterpy-1.9.1-py3-none-any.whl", hash = "sha256:e946284bcddde280d1967c766d692a2562a28c94e8beca4d6a3aafb5caaeeceb", size = 11998 },
 ]
 
 [[package]]
@@ -570,7 +570,7 @@ wheels = [
 
 [[package]]
 name = "memium"
-version = "0.25.11"
+version = "0.25.12"
 source = { editable = "." }
 dependencies = [
     { name = "bs4" },
@@ -615,7 +615,7 @@ requires-dist = [
     { name = "genanki", specifier = "==0.13.1" },
     { name = "herbarium", marker = "extra == 'dev'" },
     { name = "invoke", marker = "extra == 'dev'", specifier = "==2.2.0" },
-    { name = "iterpy", specifier = "==1.9.0" },
+    { name = "iterpy", specifier = "==1.9.1" },
     { name = "lumberman", marker = "extra == 'dev'" },
     { name = "markdown", specifier = "==3.7" },
     { name = "pre-commit", marker = "extra == 'dev'", specifier = "==4.0.1" },
