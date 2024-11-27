@@ -1,6 +1,617 @@
 # CHANGELOG
 
 
+## v0.25.13 (2024-11-27)
+
+### Bug Fixes
+
+- **deps**: Update dependency iterpy to v1.9.1
+  ([#782](https://github.com/MartinBernstorff/Memium/pull/782),
+  [`b94875d`](https://github.com/MartinBernstorff/Memium/commit/b94875da21cb10f24365ca5b46c624db1e92355a))
+
+This PR contains the following updates:
+
+| Package | Change | Age | Adoption | Passing | Confidence | |---|---|---|---|---|---| |
+  [iterpy](https://redirect.github.com/MartinBernstorff/iterpy) | `==1.9.0` -> `==1.9.1` |
+  [![age](https://developer.mend.io/api/mc/badges/age/pypi/iterpy/1.9.1?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+  |
+  [![adoption](https://developer.mend.io/api/mc/badges/adoption/pypi/iterpy/1.9.1?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+  |
+  [![passing](https://developer.mend.io/api/mc/badges/compatibility/pypi/iterpy/1.9.0/1.9.1?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+  |
+  [![confidence](https://developer.mend.io/api/mc/badges/confidence/pypi/iterpy/1.9.0/1.9.1?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+  |
+
+---
+
+### Release Notes
+
+<details> <summary>MartinBernstorff/iterpy (iterpy)</summary>
+
+###
+  [`v1.9.1`](https://redirect.github.com/MartinBernstorff/iterpy/blob/HEAD/CHANGELOG.md#v191-2024-11-27)
+
+[Compare Source](https://redirect.github.com/MartinBernstorff/iterpy/compare/v1.9.0...v1.9.1)
+
+##### Chore
+
+- chore: remove placeholder file
+  ([`c19a07d`](https://redirect.github.com/MartinBernstorff/iterpy/commit/c19a07dbb7e1761ec8badb6ec001d88c1c11578a))
+
+##### Documentation
+
+- docs: update readme
+  ([`c3c614a`](https://redirect.github.com/MartinBernstorff/iterpy/commit/c3c614a363612800e7af8f09e8418b85444e4dae))
+
+- docs: documentation for eager iters
+  ([#&#8203;143](https://redirect.github.com/MartinBernstorff/iterpy/issues/143))
+  ([`7f45065`](https://redirect.github.com/MartinBernstorff/iterpy/commit/7f4506553e3604451e1544cd447d69902068580c))
+
+- docs: documentation for eager iters
+  ([`108d3b5`](https://redirect.github.com/MartinBernstorff/iterpy/commit/108d3b5ca895c81b18bdc66c9b2f8315541f8406))
+
+##### Fix
+
+- fix: improve export robustness
+  ([`b9e61be`](https://redirect.github.com/MartinBernstorff/iterpy/commit/b9e61be72db4eb4067f66fc5ba3339f8e9d90194))
+
+##### Refactor
+
+- refactor([#&#8203;146](https://redirect.github.com/MartinBernstorff/iterpy/issues/146)): most
+  logic from Arr should call Iter
+  ([#&#8203;147](https://redirect.github.com/MartinBernstorff/iterpy/issues/147))
+
+Fixes [#&#8203;146](https://redirect.github.com/MartinBernstorff/iterpy/issues/146)
+  ([`17d637d`](https://redirect.github.com/MartinBernstorff/iterpy/commit/17d637d844880521da35dfcb3e1df887304cff5e))
+
+- refactor([#&#8203;146](https://redirect.github.com/MartinBernstorff/iterpy/issues/146)): most
+  logic from Arr should call Iter
+
+Fixes [#&#8203;146](https://redirect.github.com/MartinBernstorff/iterpy/issues/146)
+  ([`fcffbff`](https://redirect.github.com/MartinBernstorff/iterpy/commit/fcffbffb84dc01b97af85e05b912e8f1f0123891))
+
+##### Unknown
+
+- deps:(deps): bump pyright from 1.1.362 to 1.1.363
+  ([#&#8203;175](https://redirect.github.com/MartinBernstorff/iterpy/issues/175))
+  ([`4296b87`](https://redirect.github.com/MartinBernstorff/iterpy/commit/4296b87f6c3352728d800afaa615aca9a6c9418b))
+
+- deps:(deps): bump pyright from 1.1.362 to 1.1.363
+
+Bumps [pyright](https://redirect.github.com/RobertCraigie/pyright-python) from 1.1.362 to 1.1.363.
+
+- [Release notes](https://redirect.github.com/RobertCraigie/pyright-python/releases) -
+  [Commits](https://redirect.github.com/RobertCraigie/pyright-python/compare/v1.1.362...v1.1.363)
+
+***
+
+updated-dependencies:
+
+- dependency-name: pyright dependency-type: direct:production update-type:
+  version-update:semver-patch ...
+
+Signed-off-by: dependabot\[bot] \<support@github.com>
+  ([`7115348`](https://redirect.github.com/MartinBernstorff/iterpy/commit/7115348d9920dc2ffa2564d9b3574a385411102f))
+
+- deps:(deps): bump pytest from 8.2.0 to 8.2.1
+  ([#&#8203;174](https://redirect.github.com/MartinBernstorff/iterpy/issues/174))
+  ([`a84c9e1`](https://redirect.github.com/MartinBernstorff/iterpy/commit/a84c9e144b55d3806157bbace240d9fe05215379))
+
+- deps:(deps): bump pytest from 8.2.0 to 8.2.1
+
+Bumps [pytest](https://redirect.github.com/pytest-dev/pytest) from 8.2.0 to 8.2.1.
+
+- [Release notes](https://redirect.github.com/pytest-dev/pytest/releases) -
+  [Changelog](https://redirect.github.com/pytest-dev/pytest/blob/main/CHANGELOG.rst) -
+  [Commits](https://redirect.github.com/pytest-dev/pytest/compare/8.2.0...8.2.1)
+
+***
+
+updated-dependencies:
+
+- dependency-name: pytest dependency-type: direct:production update-type:
+  version-update:semver-patch ...
+
+Signed-off-by: dependabot\[bot] \<support@github.com>
+  ([`3f75218`](https://redirect.github.com/MartinBernstorff/iterpy/commit/3f7521807f5b8ae63e6841a6d9e994a8636f8148))
+
+- deps:(deps): bump pyright from 1.1.361 to 1.1.362
+  ([#&#8203;173](https://redirect.github.com/MartinBernstorff/iterpy/issues/173))
+  ([`47c2e9a`](https://redirect.github.com/MartinBernstorff/iterpy/commit/47c2e9a987b83849bb0ee8773921cb5618bf9d54))
+
+- deps:(deps): bump ruff from 0.4.3 to 0.4.4
+  ([#&#8203;172](https://redirect.github.com/MartinBernstorff/iterpy/issues/172))
+  ([`f8a9a30`](https://redirect.github.com/MartinBernstorff/iterpy/commit/f8a9a3000679f48b552052f3adcd3a6ced6b2c81))
+
+- deps:(deps): bump pyright from 1.1.361 to 1.1.362
+
+Bumps [pyright](https://redirect.github.com/RobertCraigie/pyright-python) from 1.1.361 to 1.1.362.
+
+- [Release notes](https://redirect.github.com/RobertCraigie/pyright-python/releases) -
+  [Commits](https://redirect.github.com/RobertCraigie/pyright-python/compare/v1.1.361...v1.1.362)
+
+***
+
+updated-dependencies:
+
+- dependency-name: pyright dependency-type: direct:production update-type:
+  version-update:semver-patch ...
+
+Signed-off-by: dependabot\[bot] \<support@github.com>
+  ([`10259b3`](https://redirect.github.com/MartinBernstorff/iterpy/commit/10259b36aff8b1ab7f8c9fb848ac32f36b2df234))
+
+- deps:(deps): bump ruff from 0.4.3 to 0.4.4
+
+Bumps [ruff](https://redirect.github.com/astral-sh/ruff) from 0.4.3 to 0.4.4.
+
+- [Release notes](https://redirect.github.com/astral-sh/ruff/releases) -
+  [Changelog](https://redirect.github.com/astral-sh/ruff/blob/main/CHANGELOG.md) -
+  [Commits](https://redirect.github.com/astral-sh/ruff/compare/v0.4.3...v0.4.4)
+
+***
+
+updated-dependencies:
+
+- dependency-name: ruff dependency-type: direct:production update-type: version-update:semver-patch
+  ...
+
+Signed-off-by: dependabot\[bot] \<support@github.com>
+  ([`7614f83`](https://redirect.github.com/MartinBernstorff/iterpy/commit/7614f83bec9a5e679b5bac9e8ff1757d3bf58578))
+
+- Update README.md
+  ([`03836f3`](https://redirect.github.com/MartinBernstorff/iterpy/commit/03836f3a6a82e151e083c226bf30d3fcd9821e1d))
+
+- deps:(deps): bump pyright from 1.1.360 to 1.1.361
+  ([#&#8203;170](https://redirect.github.com/MartinBernstorff/iterpy/issues/170))
+  ([`b27c82e`](https://redirect.github.com/MartinBernstorff/iterpy/commit/b27c82ea0afb266253577116afcd0450993ca717))
+
+- deps:(deps): bump ruff from 0.4.2 to 0.4.3
+  ([#&#8203;169](https://redirect.github.com/MartinBernstorff/iterpy/issues/169))
+  ([`1da3055`](https://redirect.github.com/MartinBernstorff/iterpy/commit/1da305513eb06e78ece780a98f629e203b14b765))
+
+- deps:(deps): bump pyright from 1.1.360 to 1.1.361
+
+Bumps [pyright](https://redirect.github.com/RobertCraigie/pyright-python) from 1.1.360 to 1.1.361.
+
+- [Release notes](https://redirect.github.com/RobertCraigie/pyright-python/releases) -
+  [Commits](https://redirect.github.com/RobertCraigie/pyright-python/compare/v1.1.360...v1.1.361)
+
+***
+
+updated-dependencies:
+
+- dependency-name: pyright dependency-type: direct:production update-type:
+  version-update:semver-patch ...
+
+Signed-off-by: dependabot\[bot] \<support@github.com>
+  ([`4a05bb3`](https://redirect.github.com/MartinBernstorff/iterpy/commit/4a05bb3f53db922405a3507d16dbd3d9556a4d41))
+
+- deps:(deps): bump ruff from 0.4.2 to 0.4.3
+
+Bumps [ruff](https://redirect.github.com/astral-sh/ruff) from 0.4.2 to 0.4.3.
+
+- [Release notes](https://redirect.github.com/astral-sh/ruff/releases) -
+  [Changelog](https://redirect.github.com/astral-sh/ruff/blob/main/CHANGELOG.md) -
+  [Commits](https://redirect.github.com/astral-sh/ruff/compare/v0.4.2...v0.4.3)
+
+***
+
+updated-dependencies:
+
+- dependency-name: ruff dependency-type: direct:production update-type: version-update:semver-patch
+  ...
+
+Signed-off-by: dependabot\[bot] \<support@github.com>
+  ([`62e0ac9`](https://redirect.github.com/MartinBernstorff/iterpy/commit/62e0ac9775f84abd0eaaf0203c757acfa8fc1c43))
+
+- deps:(deps): bump pyright from 1.1.359 to 1.1.360
+  ([#&#8203;168](https://redirect.github.com/MartinBernstorff/iterpy/issues/168))
+  ([`75eace3`](https://redirect.github.com/MartinBernstorff/iterpy/commit/75eace3b85730c3ceae00c15fc02dc5c3577fc53))
+
+- deps:(deps): bump pyright from 1.1.359 to 1.1.360
+
+Bumps [pyright](https://redirect.github.com/RobertCraigie/pyright-python) from 1.1.359 to 1.1.360.
+
+- [Release notes](https://redirect.github.com/RobertCraigie/pyright-python/releases) -
+  [Commits](https://redirect.github.com/RobertCraigie/pyright-python/compare/v1.1.359...v1.1.360)
+
+***
+
+updated-dependencies:
+
+- dependency-name: pyright dependency-type: direct:production update-type:
+  version-update:semver-patch ...
+
+Signed-off-by: dependabot\[bot] \<support@github.com>
+  ([`a5471ba`](https://redirect.github.com/MartinBernstorff/iterpy/commit/a5471ba8bb032d5c8c08997b29e777f310fe7008))
+
+- deps:(deps): bump pytest from 8.1.1 to 8.2.0
+  ([#&#8203;167](https://redirect.github.com/MartinBernstorff/iterpy/issues/167))
+  ([`f686475`](https://redirect.github.com/MartinBernstorff/iterpy/commit/f686475b154f6f0461491fc728d79f356fabcf32))
+
+- deps:(deps): bump ruff from 0.4.1 to 0.4.2
+  ([#&#8203;166](https://redirect.github.com/MartinBernstorff/iterpy/issues/166))
+  ([`42ee1ed`](https://redirect.github.com/MartinBernstorff/iterpy/commit/42ee1ed363c00b34071f7f6e245c4672dc8c16ce))
+
+- deps:(deps): bump pytest-xdist from 3.5.0 to 3.6.1
+  ([#&#8203;165](https://redirect.github.com/MartinBernstorff/iterpy/issues/165))
+  ([`1891ce5`](https://redirect.github.com/MartinBernstorff/iterpy/commit/1891ce5932f3b46cd80f54808c3acdaefcd8fc8b))
+
+- deps:(deps): bump pytest from 8.1.1 to 8.2.0
+
+Bumps [pytest](https://redirect.github.com/pytest-dev/pytest) from 8.1.1 to 8.2.0.
+
+- [Release notes](https://redirect.github.com/pytest-dev/pytest/releases) -
+  [Changelog](https://redirect.github.com/pytest-dev/pytest/blob/main/CHANGELOG.rst) -
+  [Commits](https://redirect.github.com/pytest-dev/pytest/compare/8.1.1...8.2.0)
+
+***
+
+updated-dependencies:
+
+- dependency-name: pytest dependency-type: direct:production update-type:
+  version-update:semver-minor ...
+
+Signed-off-by: dependabot\[bot] \<support@github.com>
+  ([`46f1158`](https://redirect.github.com/MartinBernstorff/iterpy/commit/46f11588d883c932eff77f7150608774c93c5ba1))
+
+- deps:(deps): bump ruff from 0.4.1 to 0.4.2
+
+Bumps [ruff](https://redirect.github.com/astral-sh/ruff) from 0.4.1 to 0.4.2.
+
+- [Release notes](https://redirect.github.com/astral-sh/ruff/releases) -
+  [Changelog](https://redirect.github.com/astral-sh/ruff/blob/main/CHANGELOG.md) -
+  [Commits](https://redirect.github.com/astral-sh/ruff/compare/v0.4.1...v0.4.2)
+
+***
+
+updated-dependencies:
+
+- dependency-name: ruff dependency-type: direct:production update-type: version-update:semver-patch
+  ...
+
+Signed-off-by: dependabot\[bot] \<support@github.com>
+  ([`d28a08f`](https://redirect.github.com/MartinBernstorff/iterpy/commit/d28a08fcd7f03ce660410413b270bca9037eef02))
+
+- deps:(deps): bump pytest-xdist from 3.5.0 to 3.6.1
+
+Bumps [pytest-xdist](https://redirect.github.com/pytest-dev/pytest-xdist) from 3.5.0 to 3.6.1.
+
+- [Release notes](https://redirect.github.com/pytest-dev/pytest-xdist/releases) -
+  [Changelog](https://redirect.github.com/pytest-dev/pytest-xdist/blob/master/CHANGELOG.rst) -
+  [Commits](https://redirect.github.com/pytest-dev/pytest-xdist/compare/v3.5.0...v3.6.1)
+
+***
+
+updated-dependencies:
+
+- dependency-name: pytest-xdist dependency-type: direct:production update-type:
+  version-update:semver-minor ...
+
+Signed-off-by: dependabot\[bot] \<support@github.com>
+  ([`5d918ab`](https://redirect.github.com/MartinBernstorff/iterpy/commit/5d918ab10088238ef5c7f3b5ca9c33a5ab588baa))
+
+- deps:(deps): bump ruff from 0.3.7 to 0.4.1
+  ([#&#8203;164](https://redirect.github.com/MartinBernstorff/iterpy/issues/164))
+  ([`813d1ee`](https://redirect.github.com/MartinBernstorff/iterpy/commit/813d1ee6142da075f52610418cb6ef2c4500b65d))
+
+- deps:(deps): bump pyright from 1.1.358 to 1.1.359
+  ([#&#8203;163](https://redirect.github.com/MartinBernstorff/iterpy/issues/163))
+  ([`67dff5c`](https://redirect.github.com/MartinBernstorff/iterpy/commit/67dff5cca03ba4a0a937559b2bc8721999b69183))
+
+- deps:(deps): bump ruff from 0.3.7 to 0.4.1
+
+Bumps [ruff](https://redirect.github.com/astral-sh/ruff) from 0.3.7 to 0.4.1.
+
+- [Release notes](https://redirect.github.com/astral-sh/ruff/releases) -
+  [Changelog](https://redirect.github.com/astral-sh/ruff/blob/main/CHANGELOG.md) -
+  [Commits](https://redirect.github.com/astral-sh/ruff/compare/v0.3.7...v0.4.1)
+
+***
+
+updated-dependencies:
+
+- dependency-name: ruff dependency-type: direct:production update-type: version-update:semver-minor
+  ...
+
+Signed-off-by: dependabot\[bot] \<support@github.com>
+  ([`cc14105`](https://redirect.github.com/MartinBernstorff/iterpy/commit/cc14105e134393abff98f6f9cf37f3669a4004d0))
+
+- deps:(deps): bump pyright from 1.1.358 to 1.1.359
+
+Bumps [pyright](https://redirect.github.com/RobertCraigie/pyright-python) from 1.1.358 to 1.1.359.
+
+- [Release notes](https://redirect.github.com/RobertCraigie/pyright-python/releases) -
+  [Commits](https://redirect.github.com/RobertCraigie/pyright-python/compare/v1.1.358...v1.1.359)
+
+***
+
+updated-dependencies:
+
+- dependency-name: pyright dependency-type: direct:production update-type:
+  version-update:semver-patch ...
+
+Signed-off-by: dependabot\[bot] \<support@github.com>
+  ([`ee59060`](https://redirect.github.com/MartinBernstorff/iterpy/commit/ee59060f501ca8b6f873380383a68cd4d4ebe9e2))
+
+- deps:(deps): bump diff-cover from 8.0.3 to 9.0.0
+  ([#&#8203;162](https://redirect.github.com/MartinBernstorff/iterpy/issues/162))
+  ([`c839ce6`](https://redirect.github.com/MartinBernstorff/iterpy/commit/c839ce6c20314e0490f9ad3f017ad11d18a3ef18))
+
+- deps:(deps): bump diff-cover from 8.0.3 to 9.0.0
+
+Bumps [diff-cover](https://redirect.github.com/Bachmann1234/diff-cover) from 8.0.3 to 9.0.0.
+
+- [Release notes](https://redirect.github.com/Bachmann1234/diff-cover/releases) -
+  [Changelog](https://redirect.github.com/Bachmann1234/diff_cover/blob/main/CHANGELOG) -
+  [Commits](https://redirect.github.com/Bachmann1234/diff-cover/compare/v8.0.3...v9.0.0)
+
+***
+
+updated-dependencies:
+
+- dependency-name: diff-cover dependency-type: direct:production update-type:
+  version-update:semver-major ...
+
+Signed-off-by: dependabot\[bot] \<support@github.com>
+  ([`2cc8fd3`](https://redirect.github.com/MartinBernstorff/iterpy/commit/2cc8fd38647995d5bbdfe6228ef00bdc478babbb))
+
+- deps:(deps): bump pyright from 1.1.357 to 1.1.358
+  ([#&#8203;161](https://redirect.github.com/MartinBernstorff/iterpy/issues/161))
+  ([`c2b6b5b`](https://redirect.github.com/MartinBernstorff/iterpy/commit/c2b6b5b05768d7437177c1154d2aeb2574034460))
+
+- deps:(deps): bump ruff from 0.3.5 to 0.3.7
+  ([#&#8203;160](https://redirect.github.com/MartinBernstorff/iterpy/issues/160))
+  ([`88cb96a`](https://redirect.github.com/MartinBernstorff/iterpy/commit/88cb96a9ec66311231e06fa457276f3a579ee216))
+
+- deps:(deps): bump pyright from 1.1.357 to 1.1.358
+
+Bumps [pyright](https://redirect.github.com/RobertCraigie/pyright-python) from 1.1.357 to 1.1.358.
+
+- [Release notes](https://redirect.github.com/RobertCraigie/pyright-python/releases) -
+  [Commits](https://redirect.github.com/RobertCraigie/pyright-python/compare/v1.1.357...v1.1.358)
+
+***
+
+updated-dependencies:
+
+- dependency-name: pyright dependency-type: direct:production update-type:
+  version-update:semver-patch ...
+
+Signed-off-by: dependabot\[bot] \<support@github.com>
+  ([`45cadab`](https://redirect.github.com/MartinBernstorff/iterpy/commit/45cadaba03f375053ba03d5ee3a5d0180b3e4e97))
+
+- deps:(deps): bump ruff from 0.3.5 to 0.3.7
+
+Bumps [ruff](https://redirect.github.com/astral-sh/ruff) from 0.3.5 to 0.3.7.
+
+- [Release notes](https://redirect.github.com/astral-sh/ruff/releases) -
+  [Changelog](https://redirect.github.com/astral-sh/ruff/blob/main/CHANGELOG.md) -
+  [Commits](https://redirect.github.com/astral-sh/ruff/compare/v0.3.5...v0.3.7)
+
+***
+
+updated-dependencies:
+
+- dependency-name: ruff dependency-type: direct:production update-type: version-update:semver-patch
+  ...
+
+Signed-off-by: dependabot\[bot] \<support@github.com>
+  ([`971e00e`](https://redirect.github.com/MartinBernstorff/iterpy/commit/971e00e666aa5646896f6e9e600eef11e6b5e673))
+
+- deps:(deps-dev): bump ruff from 0.3.3 to 0.3.5
+  ([#&#8203;159](https://redirect.github.com/MartinBernstorff/iterpy/issues/159))
+  ([`484431b`](https://redirect.github.com/MartinBernstorff/iterpy/commit/484431bb0e1889bfdd6a43810fec7d34f8f9cb39))
+
+- deps:(deps-dev): bump pyright from 1.1.356 to 1.1.357
+  ([#&#8203;158](https://redirect.github.com/MartinBernstorff/iterpy/issues/158))
+  ([`234cf14`](https://redirect.github.com/MartinBernstorff/iterpy/commit/234cf14447e709e3f8627d3efdf3726973aeaf6e))
+
+- deps:(deps-dev): bump ruff from 0.3.3 to 0.3.5
+
+Bumps [ruff](https://redirect.github.com/astral-sh/ruff) from 0.3.3 to 0.3.5.
+
+- [Release notes](https://redirect.github.com/astral-sh/ruff/releases) -
+  [Changelog](https://redirect.github.com/astral-sh/ruff/blob/main/CHANGELOG.md) -
+  [Commits](https://redirect.github.com/astral-sh/ruff/compare/v0.3.3...v0.3.5)
+
+***
+
+updated-dependencies:
+
+- dependency-name: ruff dependency-type: direct:production update-type: version-update:semver-patch
+  ...
+
+Signed-off-by: dependabot\[bot] \<support@github.com>
+  ([`c8d72c0`](https://redirect.github.com/MartinBernstorff/iterpy/commit/c8d72c06519c43794031c3daef1ca45a189e9005))
+
+- deps:(deps-dev): bump pyright from 1.1.356 to 1.1.357
+
+Bumps [pyright](https://redirect.github.com/RobertCraigie/pyright-python) from 1.1.356 to 1.1.357.
+
+- [Release notes](https://redirect.github.com/RobertCraigie/pyright-python/releases) -
+  [Commits](https://redirect.github.com/RobertCraigie/pyright-python/compare/v1.1.356...v1.1.357)
+
+***
+
+updated-dependencies:
+
+- dependency-name: pyright dependency-type: direct:production update-type:
+  version-update:semver-patch ...
+
+Signed-off-by: dependabot\[bot] \<support@github.com>
+  ([`0cb9591`](https://redirect.github.com/MartinBernstorff/iterpy/commit/0cb95916d74a0254ad20f94b633a8195b5f1043a))
+
+- deps:(deps-dev): bump pytest-cov from 4.1.0 to 5.0.0
+  ([#&#8203;154](https://redirect.github.com/MartinBernstorff/iterpy/issues/154))
+  ([`ca100c3`](https://redirect.github.com/MartinBernstorff/iterpy/commit/ca100c338e40973bb08cd453eacb5365cef44fa4))
+
+- deps:(deps-dev): bump pytest-cov from 4.1.0 to 5.0.0
+
+Bumps [pytest-cov](https://redirect.github.com/pytest-dev/pytest-cov) from 4.1.0 to 5.0.0.
+
+- [Changelog](https://redirect.github.com/pytest-dev/pytest-cov/blob/master/CHANGELOG.rst) -
+  [Commits](https://redirect.github.com/pytest-dev/pytest-cov/compare/v4.1.0...v5.0.0)
+
+***
+
+updated-dependencies:
+
+- dependency-name: pytest-cov dependency-type: direct:production update-type:
+  version-update:semver-major ...
+
+Signed-off-by: dependabot\[bot] \<support@github.com>
+  ([`6030217`](https://redirect.github.com/MartinBernstorff/iterpy/commit/6030217a03f9174d2ea8b0bcd5da7ec01d756775))
+
+- deps:(deps-dev): bump pyright from 1.1.353 to 1.1.356
+  ([#&#8203;156](https://redirect.github.com/MartinBernstorff/iterpy/issues/156))
+  ([`83f8ebf`](https://redirect.github.com/MartinBernstorff/iterpy/commit/83f8ebf99fbb0553b0a74c40142594c69ef1a258))
+
+- deps:(deps-dev): bump pyright from 1.1.353 to 1.1.356
+
+Bumps [pyright](https://redirect.github.com/RobertCraigie/pyright-python) from 1.1.353 to 1.1.356.
+
+- [Release notes](https://redirect.github.com/RobertCraigie/pyright-python/releases) -
+  [Commits](https://redirect.github.com/RobertCraigie/pyright-python/compare/v1.1.353...v1.1.356)
+
+***
+
+updated-dependencies:
+
+- dependency-name: pyright dependency-type: direct:production update-type:
+  version-update:semver-patch ...
+
+Signed-off-by: dependabot\[bot] \<support@github.com>
+  ([`19b3a4d`](https://redirect.github.com/MartinBernstorff/iterpy/commit/19b3a4d0770677a7a4b55a488a4c2f06de2f6c08))
+
+- deps:(deps-dev): bump ruff from 0.3.2 to 0.3.3
+  ([#&#8203;151](https://redirect.github.com/MartinBernstorff/iterpy/issues/151))
+  ([`b3e1fa6`](https://redirect.github.com/MartinBernstorff/iterpy/commit/b3e1fa621041c25ed3b187fc434d27275b96b315))
+
+- deps:(deps-dev): bump ruff from 0.3.2 to 0.3.3
+
+Bumps [ruff](https://redirect.github.com/astral-sh/ruff) from 0.3.2 to 0.3.3.
+
+- [Release notes](https://redirect.github.com/astral-sh/ruff/releases) -
+  [Changelog](https://redirect.github.com/astral-sh/ruff/blob/main/CHANGELOG.md) -
+  [Commits](https://redirect.github.com/astral-sh/ruff/compare/v0.3.2...v0.3.3)
+
+***
+
+updated-dependencies:
+
+- dependency-name: ruff dependency-type: direct:production update-type: version-update:semver-patch
+  ...
+
+Signed-off-by: dependabot\[bot] \<support@github.com>
+  ([`1b159da`](https://redirect.github.com/MartinBernstorff/iterpy/commit/1b159dab4feae1c7e078ad6aa4603133264b70ca))
+
+- deps:(deps-dev): bump pytest from 8.1.0 to 8.1.1
+  ([#&#8203;150](https://redirect.github.com/MartinBernstorff/iterpy/issues/150))
+  ([`e7dff51`](https://redirect.github.com/MartinBernstorff/iterpy/commit/e7dff51c48fbcc4af2426ec4dad1c03a4fef1a49))
+
+- deps:(deps-dev): bump pytest from 8.1.0 to 8.1.1
+
+Bumps [pytest](https://redirect.github.com/pytest-dev/pytest) from 8.1.0 to 8.1.1.
+
+- [Release notes](https://redirect.github.com/pytest-dev/pytest/releases) -
+  [Changelog](https://redirect.github.com/pytest-dev/pytest/blob/main/CHANGELOG.rst) -
+  [Commits](https://redirect.github.com/pytest-dev/pytest/compare/8.1.0...8.1.1)
+
+***
+
+updated-dependencies:
+
+- dependency-name: pytest dependency-type: direct:production update-type:
+  version-update:semver-patch ...
+
+Signed-off-by: dependabot\[bot] \<support@github.com>
+  ([`7cebc14`](https://redirect.github.com/MartinBernstorff/iterpy/commit/7cebc146d72d542961ec083d112ef72701d1afc7))
+
+- deps:(deps-dev): bump ruff from 0.3.0 to 0.3.2
+  ([#&#8203;148](https://redirect.github.com/MartinBernstorff/iterpy/issues/148))
+  ([`73b4237`](https://redirect.github.com/MartinBernstorff/iterpy/commit/73b423778ebb98045f091f237dd12c6b70afb31d))
+
+- deps:(deps-dev): bump pyright from 1.1.352 to 1.1.353
+  ([#&#8203;149](https://redirect.github.com/MartinBernstorff/iterpy/issues/149))
+  ([`0614de4`](https://redirect.github.com/MartinBernstorff/iterpy/commit/0614de4a1c14d3c58c8327401dfa0caca7e88691))
+
+- deps:(deps-dev): bump pyright from 1.1.352 to 1.1.353
+
+Bumps [pyright](https://redirect.github.com/RobertCraigie/pyright-python) from 1.1.352 to 1.1.353.
+
+- [Release notes](https://redirect.github.com/RobertCraigie/pyright-python/releases) -
+  [Commits](https://redirect.github.com/RobertCraigie/pyright-python/compare/v1.1.352...v1.1.353)
+
+***
+
+updated-dependencies:
+
+- dependency-name: pyright dependency-type: direct:production update-type:
+  version-update:semver-patch ...
+
+Signed-off-by: dependabot\[bot] \<support@github.com>
+  ([`2ade1d6`](https://redirect.github.com/MartinBernstorff/iterpy/commit/2ade1d6b0c0420182d47cfc860876bca544874de))
+
+- deps:(deps-dev): bump ruff from 0.3.0 to 0.3.2
+
+Bumps [ruff](https://redirect.github.com/astral-sh/ruff) from 0.3.0 to 0.3.2.
+
+- [Release notes](https://redirect.github.com/astral-sh/ruff/releases) -
+  [Changelog](https://redirect.github.com/astral-sh/ruff/blob/main/CHANGELOG.md) -
+  [Commits](https://redirect.github.com/astral-sh/ruff/compare/v0.3.0...v0.3.2)
+
+***
+
+updated-dependencies:
+
+- dependency-name: ruff dependency-type: direct:production update-type: version-update:semver-patch
+  ...
+
+Signed-off-by: dependabot\[bot] \<support@github.com>
+  ([`3de2f20`](https://redirect.github.com/MartinBernstorff/iterpy/commit/3de2f20e86655b60712d21dac27f3006f4562546))
+
+- tests([#&#8203;144](https://redirect.github.com/MartinBernstorff/iterpy/issues/144)): test
+  comprehensions ([#&#8203;145](https://redirect.github.com/MartinBernstorff/iterpy/issues/145))
+
+Fixes [#&#8203;144](https://redirect.github.com/MartinBernstorff/iterpy/issues/144)
+  ([`440e189`](https://redirect.github.com/MartinBernstorff/iterpy/commit/440e189f2bb094a28c0d9bdfdd59f394deda5c22))
+
+- tests([#&#8203;144](https://redirect.github.com/MartinBernstorff/iterpy/issues/144)): test
+  comprehensions
+
+Fixes [#&#8203;144](https://redirect.github.com/MartinBernstorff/iterpy/issues/144)
+  ([`2e14944`](https://redirect.github.com/MartinBernstorff/iterpy/commit/2e14944d9ac8ec85db6aedc3100cd2377e78804b))
+
+</details>
+
+---
+
+### Configuration
+
+📅 **Schedule**: Branch creation - At any time (no schedule defined), Automerge - At any time (no
+  schedule defined).
+
+🚦 **Automerge**: Enabled.
+
+♻ **Rebasing**: Whenever PR is behind base branch, or you tick the rebase/retry checkbox.
+
+🔕 **Ignore**: Close this PR and you won't be reminded about this update again.
+
+---
+
+- [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check this box
+
+---
+
+This PR was generated by [Mend Renovate](https://mend.io/renovate/). View the [repository job
+  log](https://developer.mend.io/github/MartinBernstorff/Memium).
+
+<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiIzOS4xOS4wIiwidXBkYXRlZEluVmVyIjoiMzkuMTkuMCIsInRhcmdldEJyYW5jaCI6Im1haW4iLCJsYWJlbHMiOltdfQ==-->
+
+Co-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>
+
+
 ## v0.25.12 (2024-11-26)
 
 ### Bug Fixes
