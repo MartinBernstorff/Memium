@@ -37,7 +37,7 @@ memium = "memium.__main__:app"
 
 [project.optional-dependencies]
 tests = [
-  "pytest==8.3.3",
+  "pytest==8.3.4",
   "pytest-cov==6.0.0",
   "pytest-xdist==3.6.1",
   "pytest-sugar==1.0.0",
