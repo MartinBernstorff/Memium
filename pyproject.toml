@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "memium"
-version = "0.25.19"
+version = "0.25.20"
 authors = [{ name = "Martin Bernstorff", email = "martinbernstorff@gmail.com" }]
 description = "Memium"
 classifiers = ["Programming Language :: Python :: 3.11"]
