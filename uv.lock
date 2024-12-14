@@ -317,7 +317,7 @@ wheels = [
 
 [[package]]
 name = "diff-cover"
-version = "9.2.0"
+version = "9.2.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "chardet" },
@@ -325,9 +325,9 @@ dependencies = [
     { name = "pluggy" },
     { name = "pygments" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/44/3a/e49ccba052a4dda264fbad4f467739ecc63498f7223bfc03d4bfac23ea95/diff_cover-9.2.0.tar.gz", hash = "sha256:85a0b353ebbb678f9e87ea303f75b545bd0baca38f563219bb72f2ae862bba36", size = 94857 }
+sdist = { url = "https://files.pythonhosted.org/packages/36/b0/f3ccf97926f6e5cc76d5ece42f3c685d75673d1886fcec62886b8b00c51a/diff_cover-9.2.1.tar.gz", hash = "sha256:5fa5b2d71ccf5d16cd222a71c2ca069d9bf5fa3d657f6fac9b4d9c23379323bf", size = 94964 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/b4/8a/bddb8e4aea550066559144e72d3566e9ae2f757b8ac154e769c563f48177/diff_cover-9.2.0-py3-none-any.whl", hash = "sha256:1e24edc51c39e810c47dd9986e76c333ed95859655c091f572e590c39cabbdbe", size = 52561 },
+    { url = "https://files.pythonhosted.org/packages/e2/67/5785b653e392a17bec8a340fc5f4f9278ff3588098cc96b1b3b8f9c3f167/diff_cover-9.2.1-py3-none-any.whl", hash = "sha256:97393d4acaa7545eae86f66e287ad96ffbeef70c188cca5a7f433983363e3849", size = 52560 },
 ]
 
 [[package]]
@@ -570,7 +570,7 @@ wheels = [
 
 [[package]]
 name = "memium"
-version = "0.25.19"
+version = "0.25.20"
 source = { editable = "." }
 dependencies = [
     { name = "bs4" },
@@ -611,7 +611,7 @@ requires-dist = [
     { name = "bs4", specifier = "==0.0.2" },
     { name = "cffi", specifier = "==1.17.1" },
     { name = "cruft", marker = "extra == 'dev'", specifier = "==2.15.0" },
-    { name = "diff-cover", marker = "extra == 'tests'", specifier = "==9.2.0" },
+    { name = "diff-cover", marker = "extra == 'tests'", specifier = "==9.2.1" },
     { name = "genanki", specifier = "==0.13.1" },
     { name = "herbarium", marker = "extra == 'dev'" },
     { name = "invoke", marker = "extra == 'dev'", specifier = "==2.2.0" },
