@@ -212,7 +212,7 @@ name = "click"
 version = "8.1.7"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "colorama", marker = "platform_system == 'Windows'" },
+    { name = "colorama", marker = "sys_platform == 'win32'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/96/d3/f04c7bfcf5c1862a2a5b845c6b2b360488cf47af55dfa79c98f6a6bf98b5/click-8.1.7.tar.gz", hash = "sha256:ca9853ad459e787e2192211578cc907e7594e294c7ccc834310722b41b9ca6de", size = 336121 }
 wheels = [
@@ -570,7 +570,7 @@ wheels = [
 
 [[package]]
 name = "memium"
-version = "0.25.23"
+version = "0.25.24"
 source = { editable = "." }
 dependencies = [
     { name = "bs4" },
@@ -624,7 +624,7 @@ requires-dist = [
     { name = "pytest", marker = "extra == 'tests'", specifier = "==8.3.4" },
     { name = "pytest-cov", marker = "extra == 'tests'", specifier = "==6.0.0" },
     { name = "pytest-sugar", marker = "extra == 'tests'", specifier = "==1.0.0" },
-    { name = "pytest-testmon", marker = "extra == 'tests'", specifier = "==2.1.1" },
+    { name = "pytest-testmon", marker = "extra == 'tests'", specifier = "==2.1.3" },
     { name = "pytest-xdist", marker = "extra == 'tests'", specifier = "==3.6.1" },
     { name = "ruff", marker = "extra == 'dev'", specifier = "==0.4.5" },
     { name = "sentry-sdk", specifier = "==2.19.2" },
@@ -841,15 +841,15 @@ wheels = [
 
 [[package]]
 name = "pytest-testmon"
-version = "2.1.1"
+version = "2.1.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "coverage" },
     { name = "pytest" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/26/57/ef7c8a41ca806c3f8052653abc306ceb44dd4a5e090bf5d1faf1f432be9f/pytest-testmon-2.1.1.tar.gz", hash = "sha256:8ebe2c3de42d99306ee54cd4536fed0fc48346a954420da904b18e8d59b5da98", size = 20481 }
+sdist = { url = "https://files.pythonhosted.org/packages/54/24/b17712bc8b9d9814a30346e5bd76a6c4539f5187455f4e0d99d95f033da6/pytest_testmon-2.1.3.tar.gz", hash = "sha256:dad41aa7d501d74571750da1abd3f6673b63fd9dbf3023bd1623814999018c97", size = 22608 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/03/3e/f62aefad1f5b3291029a3754af70efc3212b8303f83a9bd2d0b1d44b90e4/pytest_testmon-2.1.1-py3-none-any.whl", hash = "sha256:8271ca47bc8c80760c4fc7fd7895ea786b111bbb31f13eeea879a6fd11fe2226", size = 22672 },
+    { url = "https://files.pythonhosted.org/packages/73/08/278800711d937e76ce59105fea1bb739ae5ff5c13583fd064fe3b4e64fa1/pytest_testmon-2.1.3-py3-none-any.whl", hash = "sha256:53ba06d8a90ce24c3a191b196aac72ca4b788beff5eb1c1bffee04dc50ec7105", size = 24994 },
 ]
 
 [[package]]
@@ -1081,7 +1081,7 @@ name = "tqdm"
 version = "4.67.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "colorama", marker = "platform_system == 'Windows'" },
+    { name = "colorama", marker = "sys_platform == 'win32'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/a8/4b/29b4ef32e036bb34e4ab51796dd745cdba7ed47ad142a9f4a1eb8e0c744d/tqdm-4.67.1.tar.gz", hash = "sha256:f8aef9c52c08c13a65f30ea34f4e5aac3fd1a34959879d7e59e63027286627f2", size = 169737 }
 wheels = [
