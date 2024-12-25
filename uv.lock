@@ -302,7 +302,7 @@ toml = [
 
 [[package]]
 name = "cruft"
-version = "2.15.0"
+version = "2.16.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "click" },
@@ -310,9 +310,9 @@ dependencies = [
     { name = "gitpython" },
     { name = "typer" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/d8/59/bb9e052fba37972e4b27db74d0bc770bade501d48336dec3c89fe57e9513/cruft-2.15.0.tar.gz", hash = "sha256:9802af66037418655e7e4b6f30b531591e0761939b3ff5dd45d27c3a3f588abe", size = 23966 }
+sdist = { url = "https://files.pythonhosted.org/packages/d1/7e/0e20012f2aa156e5d6a70483a8d90accb7ed4966dddb0c58987d9f6eba12/cruft-2.16.0.tar.gz", hash = "sha256:184662853fbc1c16c0137fe0e9444e0cbe95e40362f5ebb2d9fae33d9223e73f", size = 678333 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/6f/3c/394d7446f306cdec0ec422f1673203b231ec3badc6bf6747174a12ee611a/cruft-2.15.0-py3-none-any.whl", hash = "sha256:2c1c6c7c512b8bc3afc66cefa829247dc067409a78ba2609d629d413444bc153", size = 26086 },
+    { url = "https://files.pythonhosted.org/packages/c9/76/1e88cda6ba47b593fcea24acce8070bb7cc5780c49f828b7b47c212bf62c/cruft-2.16.0-py3-none-any.whl", hash = "sha256:96adb81f814300a9db0fca690eaa063547f5d3c25f486ac0a366cf8da5cdfb79", size = 26635 },
 ]
 
 [[package]]
@@ -570,7 +570,7 @@ wheels = [
 
 [[package]]
 name = "memium"
-version = "0.25.24"
+version = "0.25.25"
 source = { editable = "." }
 dependencies = [
     { name = "bs4" },
@@ -610,7 +610,7 @@ tests = [
 requires-dist = [
     { name = "bs4", specifier = "==0.0.2" },
     { name = "cffi", specifier = "==1.17.1" },
-    { name = "cruft", marker = "extra == 'dev'", specifier = "==2.15.0" },
+    { name = "cruft", marker = "extra == 'dev'", specifier = "==2.16.0" },
     { name = "diff-cover", marker = "extra == 'tests'", specifier = "==9.2.1" },
     { name = "genanki", specifier = "==0.13.1" },
     { name = "herbarium", marker = "extra == 'dev'" },
