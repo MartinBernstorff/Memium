@@ -46,7 +46,7 @@ tests = [
   "syrupy==4.8.0",
 ]
 dev = [
-  "cruft==2.15.0",
+  "cruft==2.16.0",
   "herbarium",
   "invoke==2.2.0",
   "pyright==1.1.391",
