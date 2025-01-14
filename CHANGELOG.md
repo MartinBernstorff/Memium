@@ -1,6 +1,146 @@
 # CHANGELOG
 
 
+## v0.25.29 (2025-01-14)
+
+### Bug Fixes
+
+- **deps**: Update dependency sentry-sdk to v2.20.0
+  ([#805](https://github.com/MartinBernstorff/Memium/pull/805),
+  [`25cb10e`](https://github.com/MartinBernstorff/Memium/commit/25cb10e1d78c599ed9520027399b1821aaeb852f))
+
+This PR contains the following updates:
+
+| Package | Change | Age | Adoption | Passing | Confidence | |---|---|---|---|---|---| |
+  [sentry-sdk](https://redirect.github.com/getsentry/sentry-python)
+  ([changelog](https://redirect.github.com/getsentry/sentry-python/blob/master/CHANGELOG.md)) |
+  `==2.19.2` -> `==2.20.0` |
+  [![age](https://developer.mend.io/api/mc/badges/age/pypi/sentry-sdk/2.20.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+  |
+  [![adoption](https://developer.mend.io/api/mc/badges/adoption/pypi/sentry-sdk/2.20.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+  |
+  [![passing](https://developer.mend.io/api/mc/badges/compatibility/pypi/sentry-sdk/2.19.2/2.20.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+  |
+  [![confidence](https://developer.mend.io/api/mc/badges/confidence/pypi/sentry-sdk/2.19.2/2.20.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+  |
+
+---
+
+### Release Notes
+
+<details> <summary>getsentry/sentry-python (sentry-sdk)</summary>
+
+### [`v2.20.0`](https://redirect.github.com/getsentry/sentry-python/blob/HEAD/CHANGELOG.md#2200)
+
+[Compare Source](https://redirect.github.com/getsentry/sentry-python/compare/2.19.2...2.20.0)
+
+- **New integration:** Add [Typer](https://typer.tiangolo.com/) integration
+  ([#&#8203;3869](https://redirect.github.com/getsentry/sentry-python/issues/3869)) by
+  [@&#8203;patrick91](https://redirect.github.com/patrick91)
+
+For more information, see the documentation for the
+  [TyperIntegration](https://docs.sentry.io/platforms/python/integrations/typer/).
+
+- **New integration:** Add [Unleash](https://www.getunleash.io/) feature flagging integration
+  ([#&#8203;3888](https://redirect.github.com/getsentry/sentry-python/issues/3888)) by
+  [@&#8203;aliu39](https://redirect.github.com/aliu39)
+
+For more information, see the documentation for the
+  [UnleashIntegration](https://docs.sentry.io/platforms/python/integrations/unleash/).
+
+- Add custom tracking of feature flag evaluations
+  ([#&#8203;3860](https://redirect.github.com/getsentry/sentry-python/issues/3860)) by
+  [@&#8203;aliu39](https://redirect.github.com/aliu39)
+
+- Feature Flags: Register LD hook in setup instead of init, and don't check for initialization
+  ([#&#8203;3890](https://redirect.github.com/getsentry/sentry-python/issues/3890)) by
+  [@&#8203;aliu39](https://redirect.github.com/aliu39)
+
+- Feature Flags: Moved adding of `flags` context into Scope
+  ([#&#8203;3917](https://redirect.github.com/getsentry/sentry-python/issues/3917)) by
+  [@&#8203;antonpirker](https://redirect.github.com/antonpirker)
+
+- Create a separate group for feature flag test suites
+  ([#&#8203;3911](https://redirect.github.com/getsentry/sentry-python/issues/3911)) by
+  [@&#8203;sentrivana](https://redirect.github.com/sentrivana)
+
+- Fix flaky LaunchDarkly tests
+  ([#&#8203;3896](https://redirect.github.com/getsentry/sentry-python/issues/3896)) by
+  [@&#8203;aliu39](https://redirect.github.com/aliu39)
+
+- Fix LRU cache copying
+  ([#&#8203;3883](https://redirect.github.com/getsentry/sentry-python/issues/3883)) by
+  [@&#8203;ffelixg](https://redirect.github.com/ffelixg)
+
+- Fix cache pollution from mutable reference
+  ([#&#8203;3887](https://redirect.github.com/getsentry/sentry-python/issues/3887)) by
+  [@&#8203;cmanallen](https://redirect.github.com/cmanallen)
+
+- Centralize minimum version checking
+  ([#&#8203;3910](https://redirect.github.com/getsentry/sentry-python/issues/3910)) by
+  [@&#8203;sentrivana](https://redirect.github.com/sentrivana)
+
+- Support SparkIntegration activation after SparkContext created
+  ([#&#8203;3411](https://redirect.github.com/getsentry/sentry-python/issues/3411)) by
+  [@&#8203;seyoon-lim](https://redirect.github.com/seyoon-lim)
+
+- Preserve ARQ enqueue_job **kwdefaults** after patching
+  ([#&#8203;3903](https://redirect.github.com/getsentry/sentry-python/issues/3903)) by
+  [@&#8203;danmr](https://redirect.github.com/danmr)
+
+- Add Github workflow to comment on issues when a fix was released
+  ([#&#8203;3866](https://redirect.github.com/getsentry/sentry-python/issues/3866)) by
+  [@&#8203;antonpirker](https://redirect.github.com/antonpirker)
+
+- Update test matrix for Sanic
+  ([#&#8203;3904](https://redirect.github.com/getsentry/sentry-python/issues/3904)) by
+  [@&#8203;antonpirker](https://redirect.github.com/antonpirker)
+
+- Rename scripts ([#&#8203;3885](https://redirect.github.com/getsentry/sentry-python/issues/3885))
+  by [@&#8203;sentrivana](https://redirect.github.com/sentrivana)
+
+- Fix CI ([#&#8203;3878](https://redirect.github.com/getsentry/sentry-python/issues/3878)) by
+  [@&#8203;sentrivana](https://redirect.github.com/sentrivana)
+
+- Treat `potel-base` as release branch in CI
+  ([#&#8203;3912](https://redirect.github.com/getsentry/sentry-python/issues/3912)) by
+  [@&#8203;sentrivana](https://redirect.github.com/sentrivana)
+
+- build(deps): bump actions/create-github-app-token from 1.11.0 to 1.11.1
+  ([#&#8203;3893](https://redirect.github.com/getsentry/sentry-python/issues/3893)) by
+  [@&#8203;dependabot](https://redirect.github.com/dependabot)
+
+- build(deps): bump codecov/codecov-action from 5.0.7 to 5.1.1
+  ([#&#8203;3867](https://redirect.github.com/getsentry/sentry-python/issues/3867)) by
+  [@&#8203;dependabot](https://redirect.github.com/dependabot)
+
+- build(deps): bump codecov/codecov-action from 5.1.1 to 5.1.2
+  ([#&#8203;3892](https://redirect.github.com/getsentry/sentry-python/issues/3892)) by
+  [@&#8203;dependabot](https://redirect.github.com/dependabot)
+
+</details>
+
+### Configuration
+
+📅 **Schedule**: Branch creation - At any time (no schedule defined), Automerge - At any time (no
+  schedule defined).
+
+🚦 **Automerge**: Enabled.
+
+♻ **Rebasing**: Whenever PR is behind base branch, or you tick the rebase/retry checkbox.
+
+🔕 **Ignore**: Close this PR and you won't be reminded about this update again.
+
+- [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check this box
+
+This PR was generated by [Mend Renovate](https://mend.io/renovate/). View the [repository job
+  log](https://developer.mend.io/github/MartinBernstorff/Memium).
+
+<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiIzOS4xMDcuMCIsInVwZGF0ZWRJblZlciI6IjM5LjEwNy4wIiwidGFyZ2V0QnJhbmNoIjoibWFpbiIsImxhYmVscyI6W119-->
+
+Co-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>
+
+
 ## v0.25.28 (2025-01-13)
 
 ### Bug Fixes
