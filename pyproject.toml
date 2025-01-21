@@ -50,7 +50,7 @@ dev = [
   "herbarium",
   "invoke==2.2.0",
   "pyright==1.1.392.post0",
-  "pre-commit==4.0.1",
+  "pre-commit==4.1.0",
   "ruff==0.4.5",
   "lumberman",
 ]
