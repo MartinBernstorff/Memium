@@ -69,14 +69,14 @@ def rephrase(
         location = cast(str, memory.location)  # type: ignore
         log.info(f"Looking into cache at {location}")
 
-        cached_func: Callable[[QAFromDoc], str] = memory.cache(  # type: ignore
-            lambda x: _rephrase_question(  # type: ignore
-                x.question,  # type: ignore
-                x.answer,  # type: ignore
+        cached_func: Callable[[str, str], str] = memory.cache(  # type: ignore
+            lambda q, a: _rephrase_question(  # type: ignore
+                q,  # type: ignore
+                a,  # type: ignore
                 get_ttl_hash(60 * 60 * 24 * cache_days),  # type: ignore
             )
         )
-        return cached_func(x)
+        return cached_func(x.question, x.answer)
 
     rephrased: list[RephrasedQAFromDoc] = []
     total_to_rephrase = len(to_rephrase)
