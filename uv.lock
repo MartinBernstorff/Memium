@@ -735,6 +735,7 @@ tests = [
 
 [package.dev-dependencies]
 dev = [
+    { name = "pyright" },
     { name = "pytest" },
 ]
 
@@ -770,7 +771,10 @@ requires-dist = [
 ]
 
 [package.metadata.requires-dev]
-dev = [{ name = "pytest", specifier = ">=8.3.4" }]
+dev = [
+    { name = "pyright", specifier = ">=1.1.393" },
+    { name = "pytest", specifier = ">=8.3.4" },
+]
 
 [[package]]
 name = "nodeenv"
