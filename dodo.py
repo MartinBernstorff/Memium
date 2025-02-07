@@ -6,26 +6,28 @@ code_files = [Path("pyproject.toml"), Path("uv.lock")] + [
     p for p in Path("memium").rglob("*") if not p.is_dir()
 ]
 
-FISH_SHELL = "/opt/homebrew/bin/fish -c"
+
+def github_signoff(name: str) -> str:
+    return f"~/Git/dotfiles/scripts/signoff.sh {name}"
 
 
 def task_types():
     return {
-        "actions": ["uv run pyright memium", f"{FISH_SHELL} ghso local/types"],
+        "actions": ["uv run pyright memium", github_signoff("local/types")],
         "file_dep": code_files,
     }
 
 
 def task_test():
     return {
-        "actions": ["uv run pytest memium", f"{FISH_SHELL} ghso local/test"],
+        "actions": ["uv run pytest memium", github_signoff("local/test")],
         "file_dep": code_files,
     }
 
 
 def task_lint():
     return {
-        "actions": ["ruff check memium --fix", f"{FISH_SHELL} ghso local/lint"],
+        "actions": ["ruff check memium --fix", github_signoff("local/lint")],
         "file_dep": code_files,
     }
 
