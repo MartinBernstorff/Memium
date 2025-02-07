@@ -13,7 +13,7 @@ def front_from_rephrased(prompt: RephrasedQAFromDoc) -> str:
 
 def back_from_rephrased(prompt: RephrasedQAFromDoc) -> str:
     return f"""{prompt.answer}
-<p style="font-size: 0.4em; opacity: 0.2;">Rephrased from: {prompt.question}</p>
+<p style="font-size: 0.7em; opacity: 0.2;">Rephrased from: {prompt.question}</p>
 """
 
 
