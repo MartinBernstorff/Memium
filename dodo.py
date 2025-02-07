@@ -43,7 +43,3 @@ def task_run_image():
         "task_dep": ["image", "validate"],
         "file_dep": code_files + dockerfiles,
     }
-
-
-def task_deploy():
-    return {"actions": None, "task_dep": ["run_image"]}
