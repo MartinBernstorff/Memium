@@ -79,6 +79,7 @@ def rephrase(
         return cached_func(x)
 
     rephrased: list[RephrasedQAFromDoc] = []
+    total_to_rephrase = len(to_rephrase)
     for i, it in enumerate(to_rephrase):
         rephrased.append(
             RephrasedQAFromDoc(
@@ -89,8 +90,14 @@ def rephrase(
                 answer=it.answer,
             )
         )
-        prop_rephrased = i + 1 / len(to_rephrase)
-        log.info(f"Rephrased {i + 1} ({round((prop_rephrased) * 100, 2)}%)")
+        log.info(
+            {
+                "event": "rephraseProgress",
+                "n_done": i,
+                "total": total_to_rephrase,
+                "progress": i / total_to_rephrase,
+            }
+        )
 
     to_keep = prompts.filter(lambda x: not should_rephrase(x)).to_list()
 
