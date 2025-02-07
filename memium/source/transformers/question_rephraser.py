@@ -95,7 +95,7 @@ def rephrase(
                 "event": "rephraseProgress",
                 "n_done": i + 1,
                 "total": total_to_rephrase,
-                "progress": round(i + i / total_to_rephrase, 2),
+                "progress": round((i + 1) / total_to_rephrase, 2),
             }
         )
 
