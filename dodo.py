@@ -6,17 +6,28 @@ code_files = [Path("pyproject.toml"), Path("uv.lock")] + [
     p for p in Path("memium").rglob("*") if not p.is_dir()
 ]
 
+FISH_SHELL = "/opt/homebrew/bin/fish -c "
+
 
 def task_types():
-    return {"actions": ["uv run pyright memium", "ghso local/types"], "file_dep": code_files}
+    return {
+        "actions": ["uv run pyright memium", f"{FISH_SHELL} ghso local/types"],
+        "file_dep": code_files,
+    }
 
 
 def task_test():
-    return {"actions": ["uv run pytest memium", "ghso local/test"], "file_dep": code_files}
+    return {
+        "actions": ["uv run pytest memium", f"{FISH_SHELL} ghso local/test"],
+        "file_dep": code_files,
+    }
 
 
 def task_lint():
-    return {"actions": ["ruff check memium --fix", "ghso local/lint"], "file_dep": code_files}
+    return {
+        "actions": ["ruff check memium --fix", f"{FISH_SHELL} ghso local/lint"],
+        "file_dep": code_files,
+    }
 
 
 def task_validate():
