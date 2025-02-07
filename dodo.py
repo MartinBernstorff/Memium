@@ -8,15 +8,15 @@ code_files = [Path("pyproject.toml"), Path("uv.lock")] + [
 
 
 def task_types():
-    return {"actions": ["uv run pyright memium"], "file_dep": code_files}
+    return {"actions": ["uv run pyright memium", "ghso local/types"], "file_dep": code_files}
 
 
 def task_test():
-    return {"actions": ["uv run pytest memium"], "file_dep": code_files}
+    return {"actions": ["uv run pytest memium", "ghso local/test"], "file_dep": code_files}
 
 
 def task_lint():
-    return {"actions": ["ruff check memium --fix"], "file_dep": code_files}
+    return {"actions": ["ruff check memium --fix", "ghso local/lint"], "file_dep": code_files}
 
 
 def task_validate():
