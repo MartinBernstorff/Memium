@@ -1,6 +1,7 @@
 import datetime
 import logging
 import time
+from collections.abc import Callable
 from typing import TypeGuard, cast
 
 from anthropic import Anthropic
@@ -61,14 +62,28 @@ def rephrase(
 
     log.info(f"Found {len(to_rephrase)} prompts to rephrase")
 
+    # Need this to be an inner function so we can swap out the memory path before
+    # this function is defined.
+    # Joblib is terribly typed, sou just have to trust me here.
+    def _cached_rephraser(x: QAFromDoc) -> str:
+        location = cast(str, memory.location)  # type: ignore
+        log.info(f"Looking into cache at {location}")
+
+        cached_func: Callable[[QAFromDoc], str] = memory.cache(  # type: ignore
+            lambda x: _rephrase_question(  # type: ignore
+                x.question,  # type: ignore
+                x.answer,  # type: ignore
+                get_ttl_hash(60 * 60 * 24 * cache_days),  # type: ignore
+            )
+        )
+        return cached_func(x)
+
     rephrased = Arr(to_rephrase).map(
         lambda it: RephrasedQAFromDoc(
             parent_doc=it.parent_doc,
             line_nr=it.line_nr,
             question=it.question,
-            rephrased_question=_rephrase_question(
-                it.question, it.answer, get_ttl_hash(60 * 60 * 24 * cache_days)
-            ),
+            rephrased_question=_cached_rephraser(it),
             answer=it.answer,
         )
     )

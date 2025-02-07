@@ -99,6 +99,7 @@ def cli(
         push_all=push_all,
         rephrase_if_younger_than_days=rephrase_if_younger_than_days,
         rephrase_cache_days=rephrase_cache_days,
+        config_dir=config_dir,
     )
     main_fn()
 

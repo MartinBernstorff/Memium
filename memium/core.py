@@ -1,6 +1,9 @@
 import datetime
+import logging
 import os
 from pathlib import Path
+
+from joblib import Memory  # type: ignore
 
 from memium.destination.ankiconnect.anki_converter import AnkiPromptConverter
 from memium.destination.ankiconnect.ankiconnect_gateway import ANKICONNECT_URL, AnkiConnectGateway
@@ -15,10 +18,13 @@ from memium.source.extractors.extractor_table import TableExtractor
 from memium.source.prompt_source import DocumentPromptSource
 from memium.source.transformers import question_rephraser
 
+log = logging.getLogger(__name__)
+
 
 def main(
     base_deck: str,
     input_dir: Path,
+    config_dir: Path,
     max_deletions_per_run: int,
     dry_run: bool,
     push_all: bool,
@@ -55,7 +61,11 @@ def main(
             raise ValueError(
                 "rephrase_cache_days must be set if rephrase_if_younger_than_days is set"
             )
-        question_rephraser.memory.location = input_dir / "rephrase_cache"
+        rephrase_cache_dir = config_dir / "rephrasings"
+        log.info(f"Caching rephrasings in {rephrase_cache_dir}")
+        rephrase_cache_dir.mkdir(exist_ok=True, parents=True)
+        question_rephraser.memory = Memory(rephrase_cache_dir)
+
         source_prompts = question_rephraser.rephrase(
             source_prompts,
             max_age=datetime.timedelta(days=rephrase_if_younger_than_days),

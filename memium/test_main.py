@@ -40,6 +40,7 @@ A. å
         push_all=False,
         rephrase_if_younger_than_days=None,
         rephrase_cache_days=None,
+        config_dir=Path(),
     )
     assert "Pushing 1 cards to Anki" in caplog.text
 
@@ -52,4 +53,5 @@ A. å
         push_all=False,
         rephrase_if_younger_than_days=None,
         rephrase_cache_days=None,
+        config_dir=Path(),
     )
