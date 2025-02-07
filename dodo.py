@@ -1,7 +1,7 @@
 from pathlib import Path
 
 code_files = (
-    [p for p in Path().rglob("*.py") if not "dodo" not in p.name]
+    [p for p in Path().rglob("*.py") if "dodo" not in p.name]
     + list(Path().rglob("*.toml"))
     + list(Path().rglob("*.lock"))
 )
