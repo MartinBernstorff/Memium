@@ -89,7 +89,7 @@ def rephrase(
                 answer=it.answer,
             )
         )
-        log.info(f"Rephrased {i + 1} ({round(i + 1 / len(to_rephrase) * 100, 2)}%)")
+        log.info(f"Rephrased {i + 1} ({round((i + 1 / len(to_rephrase)) * 100, 2)}%)")
 
     to_keep = prompts.filter(lambda x: not should_rephrase(x)).to_list()
 
