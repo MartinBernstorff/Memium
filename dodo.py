@@ -6,7 +6,7 @@ code_files = [Path("pyproject.toml"), Path("uv.lock")] + [
     p for p in Path("memium").rglob("*") if not p.is_dir()
 ]
 
-FISH_SHELL = "/opt/homebrew/bin/fish -c "
+FISH_SHELL = "/opt/homebrew/bin/fish -c"
 
 
 def task_types():
