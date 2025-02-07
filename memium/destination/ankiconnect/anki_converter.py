@@ -8,7 +8,7 @@ from .ankiconnect_gateway import NoteInfo
 
 
 def front_from_rephrased(prompt: RephrasedQAFromDoc) -> str:
-    return f"""{prompt.rephrased_question}
+    return f"""{prompt.rephrased_question} (LLM-rephrased)
 <p style="display: none;">{prompt.question}</p>
 """
 
