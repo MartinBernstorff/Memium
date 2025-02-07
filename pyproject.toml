@@ -118,7 +118,6 @@ ignore = [
   "COM819",
   "W191",
 ]
-ignore-init-module-imports = true
 # Allow autofix for all enabled rules (when `--fix`) is provided.
 unfixable = ["ERA"]
 # Exclude a variety of commonly ignored directories.
@@ -181,8 +180,4 @@ exclude_lines = [
 omit = ["test_*.py"]
 
 [dependency-groups]
-dev = [
-    "pyright>=1.1.393",
-    "pytest>=8.3.4",
-    "syrupy>=4.8.1",
-]
+dev = ["pyright>=1.1.393", "pytest>=8.3.4", "syrupy>=4.8.1"]

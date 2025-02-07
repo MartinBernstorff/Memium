@@ -1,4 +1,4 @@
-FROM docker.io/library/python:3.12-bookworm@sha256:99bb27b18fc0b930cdc372f9e17fe4b0c2a50686504c8ed8aa32397acbad603b as builder
+FROM docker.io/library/python:3.12-bookworm@sha256:99bb27b18fc0b930cdc372f9e17fe4b0c2a50686504c8ed8aa32397acbad603b AS builder
 WORKDIR /app
 
 # Install build utilities and python requirements

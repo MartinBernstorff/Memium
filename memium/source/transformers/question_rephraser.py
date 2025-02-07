@@ -27,7 +27,7 @@ def get_ttl_hash(seconds: int) -> str:
 @memory.cache  # type: ignore
 def _rephrase_question(
     question: str,
-    answer: str,
+    answer: str,  # noqa: ARG001
     ttl: str,  # noqa: ARG001
     version: str = "2",  # Note, changing this default value will invalidate all caches. Beware! # noqa: ARG001
 ) -> str:

@@ -1,10 +1,8 @@
-from pathlib import Path
-
 from ..document import Document
 from .extractor_qa import QAPromptExtractor
 
 
-def test_qa_prompt_extractor(tmpdir: Path):
+def test_qa_prompt_extractor():
     doc = Document.fake(
         content="""
 
@@ -13,7 +11,8 @@ A. 42
 
 #anki/tag/test_tag
 
-""")
+"""
+    )
 
     extractor = QAPromptExtractor(question_prefix="Q.", answer_prefix="A.").extract_prompts(doc)
 

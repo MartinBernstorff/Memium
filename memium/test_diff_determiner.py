@@ -10,7 +10,7 @@ from .source.prompts.prompt import BasePrompt, DestinationPrompt
 from .source.prompts.prompt_qa import QAWithoutDoc
 
 
-@pytest.fixture
+@pytest.fixture()
 def diff_determiner() -> PromptDiffDeterminer:
     return PromptDiffDeterminer()
 
