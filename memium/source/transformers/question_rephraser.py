@@ -64,7 +64,7 @@ def rephrase(
 
     # Need this to be an inner function so we can swap out the memory path before
     # this function is defined.
-    # Joblib is terribly typed, sou just have to trust me here.
+    # Joblib is terribly typed, so just have to trust me here.
     def _cached_rephraser(x: QAFromDoc) -> str:
         location = cast(str, memory.location)  # type: ignore
         log.info(f"Looking into cache at {location}")
