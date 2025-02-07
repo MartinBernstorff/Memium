@@ -57,6 +57,8 @@ def main(
     ).get_prompts()
 
     if rephrase_if_younger_than_days is not None:
+        # perf: we could rephrase only the prompts which are due within a timedelta by getting them as destinationprompts,
+        # and using those to filter which prompts to rephrase
         if not rephrase_cache_days is not None:
             raise ValueError(
                 "rephrase_cache_days must be set if rephrase_if_younger_than_days is set"
