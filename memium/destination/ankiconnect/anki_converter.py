@@ -12,8 +12,8 @@ def front_from_rephrased(prompt: RephrasedQAFromDoc) -> str:
 
 
 def back_from_rephrased(prompt: RephrasedQAFromDoc) -> str:
-    return f"""{prompt.answer} <span style="opacity: 0.1">(LLM-rephrased)</span>
-<p style="opacity: 0.1;">Rephrased from: {prompt.question}</p>
+    return f"""{prompt.answer}
+<p class="font-size: 0.4em; opacity: 0.2;">Rephrased from: {prompt.question}</p>
 """
 
 
