@@ -19,6 +19,8 @@ class AnkiPromptConverter:
 
         match prompt:
             case QAPrompt():
+                # feat: handle the new rephrasedprompt type here
+                # On HTML presentation, hide the original question, and only show the rephrased one
                 return AnkiQA(
                     question=prompt.question,
                     answer=prompt.answer,

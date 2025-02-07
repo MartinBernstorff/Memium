@@ -122,4 +122,3 @@ inv validate_ci
 
 [github issue tracker]: https://github.com/MartinBernstorff/memium/issues
 [github discussions]: https://github.com/MartinBernstorff/memium/discussions
-

@@ -1,3 +1,4 @@
+import datetime
 import re
 from collections.abc import Sequence
 from dataclasses import dataclass
@@ -8,6 +9,7 @@ from pathlib import Path
 class Document:
     content: str
     source_path: Path
+    last_modified: datetime.datetime
 
     @property
     def tags(self) -> Sequence[str]:

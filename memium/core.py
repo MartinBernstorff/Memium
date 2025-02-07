@@ -30,15 +30,6 @@ def main(
         max_wait_seconds=3600,
     )
 
-    dest_class = AnkiConnectDestination if not dry_run else DryRunDestination
-    destination = dest_class(
-        gateway=gateway,
-        prompt_converter=AnkiPromptConverter(
-            base_deck=base_deck,
-            card_css=Path("memium/destination/ankiconnect/default_styling.css").read_text(),
-        ),
-    )
-
     # Get the inputs
     source_prompts = DocumentPromptSource(
         document_ingester=MarkdownDocumentSource(directory=input_dir),
@@ -48,12 +39,29 @@ def main(
         ],
     ).get_prompts()
 
+    # feat: add a rephrasing step here. It should split the data based on document's last modified date,
+    # and then rephrase the relevant ones
+    # feat: output as a new card type, "rephrasedQAPrompt"
+    # perf: make sure to cache the outputs using joblib.memory and a _ttl_ for refreshing every n days
+    # perf: unsure how to make this fast, but perhaps it doesn't need to be? Async would make sense, but we're in a synchronous context
+
+    # Get the destination
+    dest_class = AnkiConnectDestination if not dry_run else DryRunDestination
+    destination = dest_class(
+        gateway=gateway,
+        prompt_converter=AnkiPromptConverter(
+            base_deck=base_deck,
+            card_css=Path("memium/destination/ankiconnect/default_styling.css").read_text(),
+        ),
+    )
+    destination_prompts = destination.get_all_prompts()
+
     # Get the updates
     update_commands = (
         [PushPrompts(prompts=source_prompts)]
         if push_all
         else PromptDiffDeterminer().sync(
-            source_prompts=source_prompts, destination_prompts=destination.get_all_prompts()
+            source_prompts=source_prompts, destination_prompts=destination_prompts
         )
     )
     # Send them

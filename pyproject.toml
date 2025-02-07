@@ -10,7 +10,6 @@ description = "Memium"
 classifiers = ["Programming Language :: Python :: 3.11"]
 requires-python = ">=3.11"
 
-# TODO: https://github.com/MartinBernstorff/memium/issues/260 Setup dependabot automerge
 dependencies = [
   "cffi==1.17.1",
   "iterpy==1.11.1",
@@ -23,6 +22,8 @@ dependencies = [
   "unidecode==1.3.8",
   "wasabi==1.1.3",
   "bs4==0.0.2",
+  "anthropic>=0.45.2",
+  "joblib>=1.4.2",
 ]
 
 [project.license]
@@ -173,3 +174,8 @@ exclude_lines = [
   ".*[.]{3}.*",
 ]
 omit = ["test_*.py"]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.4",
+]
