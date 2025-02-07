@@ -12,7 +12,7 @@ from memium.source.prompts.prompt_qa import QAFromDoc, RephrasedQAFromDoc
 
 # Set up the cache directory
 # Note that this is modified at invocation time in the core call
-memory = Memory(verbose=0)
+memory = Memory(verbose=1)
 
 log = logging.getLogger(__name__)
 
