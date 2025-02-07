@@ -93,9 +93,9 @@ def rephrase(
         log.info(
             {
                 "event": "rephraseProgress",
-                "n_done": i,
+                "n_done": i + 1,
                 "total": total_to_rephrase,
-                "progress": i / total_to_rephrase,
+                "progress": round(i / total_to_rephrase, 2),
             }
         )
 
