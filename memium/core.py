@@ -26,9 +26,9 @@ def main(
     rephrase_cache_days: int | None,
 ):
     # Check anthropic setup
-    if rephrase_if_younger_than_days or (
-        rephrase_cache_days and not os.getenv("ANTHROPIC_API_KEY")
-    ):
+    if (rephrase_if_younger_than_days or rephrase_cache_days) and os.getenv(
+        "ANTHROPIC_API_KEY"
+    ) is None:
         raise ValueError("ANTHROPIC_API_KEY environment variable is not set")
 
     # Setup gateway as first step. If Anki is not running, no need to parse all the prompts.

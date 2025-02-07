@@ -30,12 +30,10 @@ def _rephrase_question(
     ttl: str,  # noqa: ARG001
 ) -> str:
     client = Anthropic()
-    prompt = f"""Given this question and its answer, rephrase the question. Make it brief, without changing the meaning.
-
-Question: {question}
-Answer: {answer}
-
-Provide only the rephrased question with no additional text or explanation."""
+    prompt = f"""<prompt>Rephrase the question. Make it brief, without changing the meaning. Any term surrounded by _, like _this_, must stay surrounded by _ and not be rephrased. When possible, put these terms in the start of the sentence.</prompt>
+<question>{question}</question>
+<answer>{answer}</answer>
+<prompt>Provide only the rephrased question with no additional text or explanation.</prompt>"""
 
     response = client.messages.create(
         model="claude-3-5-sonnet-20241022",
