@@ -31,7 +31,7 @@ class AnkiPromptConverter:
             case RephrasedQAFromDoc():
                 return AnkiQA(
                     question=front_from_rephrased(prompt),
-                    answer=back_from_rephrased(prompt.answer),
+                    answer=back_from_rephrased(prompt),
                     base_deck=deck,
                     tags=prompt.tags,
                     css=self.card_css,
