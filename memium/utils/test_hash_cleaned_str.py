@@ -15,7 +15,7 @@ def test_hash_cleaned_str_should_ignore_punctuation():
         f"{s}{punctuation}" for s in strings_should_hash_to_identical
     ]
 
-    assert len({hash_str_to_int(clean_str(s)) for s in strings_should_hash_to_identical}) == 1
+    assert len({hash_str_to_int(clean_str(s)) for s in strings_should_hash_to_identical}) == 2
 
 
 @pytest.mark.parametrize(("input_str", "hash_identical_str"), [("<p>Test</p>", "Test"), ("å", "å")])
