@@ -29,11 +29,11 @@ def _rephrase_question(
     question: str,
     answer: str,
     ttl: str,  # noqa: ARG001
+    version: str = "2",  # Note, changing this default value will invalidate all caches. Beware! # noqa: ARG001
 ) -> str:
     client = Anthropic()
-    prompt = f"""<prompt>Rephrase the question. Make it brief, without changing the meaning. Any term surrounded by _, like _this_, must stay surrounded by _ and not be rephrased. When possible, put these terms in the start of the sentence.</prompt>
+    prompt = f"""<prompt>Rephrase the question. Make it brief, without changing the meaning. Any term surrounded by _, like _this_, must stay surrounded by _ and not be rephrased. When reasonable, put these terms in the start of the sentence.</prompt>
 <question>{question}</question>
-<answer>{answer}</answer>
 <prompt>Provide only the rephrased question with no additional text or explanation.</prompt>"""
 
     response = client.messages.create(

@@ -103,7 +103,8 @@ def cli(
     )
     main_fn()
 
-    if watch_seconds:
+
+ssssss watch_seconds:
         log.info(
             f"Sync complete in {(datetime.now() - start_time).total_seconds()} seconds, sleeping for {watch_seconds} seconds"
         )
