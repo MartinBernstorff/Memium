@@ -737,6 +737,7 @@ tests = [
 dev = [
     { name = "pyright" },
     { name = "pytest" },
+    { name = "syrupy" },
 ]
 
 [package.metadata]
@@ -774,6 +775,7 @@ requires-dist = [
 dev = [
     { name = "pyright", specifier = ">=1.1.393" },
     { name = "pytest", specifier = ">=8.3.4" },
+    { name = "syrupy", specifier = ">=4.8.1" },
 ]
 
 [[package]]

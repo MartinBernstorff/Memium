@@ -121,3 +121,4 @@ test_package
 .gokid*
 .gokid.*
 .vscode/settings.json
+.doit.db.db

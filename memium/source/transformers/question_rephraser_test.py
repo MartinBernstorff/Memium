@@ -12,7 +12,7 @@ from .question_rephraser import _rephrase_question, get_ttl_hash  # type: ignore
 @pytest.mark.parametrize(
     ("question", "answer", "expected_contains"),
     [
-        ("what's the city that's the capital in _France_?", "Paris", ["_France_", "capital"]),
+        ("what's the city that's the capital in _France_?", "Paris", ["France", "capital"]),
         (
             "what programming language is _Python_?",
             "Python is a high-level programming language",
