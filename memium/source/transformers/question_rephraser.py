@@ -59,6 +59,8 @@ def rephrase(
     # List comp. to get TypeGuard functionality
     to_rephrase = [p for p in prompts if should_rephrase(p)]
 
+    log.info(f"Found {len(to_rephrase)} prompts to rephrase")
+
     rephrased = Arr(to_rephrase).map(
         lambda it: RephrasedQAFromDoc(
             parent_doc=it.parent_doc,
