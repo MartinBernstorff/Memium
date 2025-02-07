@@ -42,7 +42,7 @@ def task_run_image():
     return {
         "actions": ["docker compose -f ~/Git/dotfiles/containers/memium/docker-compose.yml up -d"],
         "task_dep": ["image", "validate"],
-        "file_dep": dockerfiles,
+        "file_dep": code_files + dockerfiles,
         "verbosity": 2,
     }
 
