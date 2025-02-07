@@ -1,10 +1,10 @@
 from pathlib import Path
 
-code_files = (
-    list(Path().rglob("*.toml"))
-    + list(Path().rglob("*.lock"))
-    + [p for p in Path("memium").rglob("*") if not p.is_dir()]
-)
+DOIT_CONFIG = {"backend": "json", "dep_file": "doit-db.json"}
+
+code_files = [Path("pyproject.toml"), Path("uv.lock")] + [
+    p for p in Path("memium").rglob("*") if not p.is_dir()
+]
 
 
 def task_types():
