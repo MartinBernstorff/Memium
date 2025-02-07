@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "memium"
-version = "0.25.35"
+version = "0.25.36"
 authors = [{ name = "Martin Bernstorff", email = "martinbernstorff@gmail.com" }]
 description = "Memium"
 classifiers = ["Programming Language :: Python :: 3.11"]
@@ -12,7 +12,7 @@ requires-python = ">=3.11"
 
 dependencies = [
   "cffi==1.17.1",
-  "iterpy==1.11.1",
+  "iterpy==1.12.0",
   "genanki==0.13.1",
   "markdown==3.7",
   "pydantic==2.10.6",
@@ -62,11 +62,16 @@ repository = "https://github.com/MartinBernstorff/memium"
 documentation = "https://MartinBernstorff.github.io/memium/"
 
 [tool.pyright]
-exclude = [".*venv*", "*subtasks*", ".git", "build"]
+exclude = [
+  "**/node_modules",
+  "**/__pycache__",
+  "**/.*",
+  "build",
+  "memium/tasks/*",
+]
+typeCheckingMode = "off"
+strict = ["**/*.py"]
 pythonPlatform = "Darwin"
-reportMissingTypeStubs = false
-reportPrivateImportUsage = false
-typeCheckingMode = "strict"
 
 [tool.ruff]
 # Enable pycodestyle (`E`) and Pyflakes (`F`) codes by default.
@@ -176,6 +181,4 @@ exclude_lines = [
 omit = ["test_*.py"]
 
 [dependency-groups]
-dev = [
-    "pytest>=8.3.4",
-]
+dev = ["pytest>=8.3.4"]

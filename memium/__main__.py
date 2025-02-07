@@ -1,3 +1,4 @@
+import importlib.metadata
 import logging
 import sys
 import time
@@ -53,7 +54,22 @@ def cli(
     skip_sync: Annotated[
         bool, typer.Option(help="Skip all syncing, useful for smoketesting of the interface")
     ] = False,
+    rephrase_if_younger_than_days: Annotated[
+        int | None,
+        typer.Option(
+            help="Rephrase prompts whose documents have been modified within the last N days."
+        ),
+    ] = None,
+    rephrase_cache_days: Annotated[
+        int | None, typer.Option(help="Cache the rephrased prompts for N days.")
+    ] = None,
 ):
+    rephrase_is_none = [rephrase_if_younger_than_days is None, rephrase_cache_days is None]
+    if not all(rephrase_is_none) and any(rephrase_is_none):
+        raise ValueError(
+            "Both rephrase_cache_days and rephrase_if_younger_than_days must be set or unset"
+        )
+
     start_time = datetime.now()
     config_dir = input_dir / ".memium"
     config_dir.mkdir(exist_ok=True)
@@ -68,6 +84,8 @@ def cli(
         datefmt="%Y/&m/%d %H:%M:%S",
     )
 
+    log.info(f"Starting Memium version {importlib.metadata.version('memium')}")
+
     if skip_sync:
         log.info("Skipping sync")
         return
@@ -79,6 +97,8 @@ def cli(
         max_deletions_per_run=max_deletions_per_run,
         dry_run=dry_run,
         push_all=push_all,
+        rephrase_if_younger_than_days=rephrase_if_younger_than_days,
+        rephrase_cache_days=rephrase_cache_days,
     )
     main_fn()
 

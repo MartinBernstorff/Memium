@@ -22,3 +22,12 @@ class Document:
 
     def __repr__(self) -> str:
         return f"{self.title}: {self.content[0:10]}..."
+
+    @classmethod
+    def fake(
+        cls: type["Document"],
+        content: str = "Fake content with #fake/tag",
+        source_path: Path = Path("/fake/document.txt"),
+        last_modified: datetime.datetime = datetime.datetime.now(),  # noqa: B008
+    ) -> "Document":
+        return cls(content=content, source_path=source_path, last_modified=last_modified)

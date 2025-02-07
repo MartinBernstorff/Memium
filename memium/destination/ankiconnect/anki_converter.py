@@ -1,10 +1,16 @@
 from ...source.prompts.prompt import BasePrompt, DestinationPrompt
 from ...source.prompts.prompt_cloze import ClozePrompt, ClozeWithoutDoc
-from ...source.prompts.prompt_qa import QAPrompt, QAWithoutDoc
+from ...source.prompts.prompt_qa import QAPrompt, QAWithoutDoc, RephrasedQAFromDoc
 from .anki_prompt import AnkiPrompt
 from .anki_prompt_cloze import AnkiCloze
 from .anki_prompt_qa import AnkiQA
 from .ankiconnect_gateway import NoteInfo
+
+
+def front_from_rephrased(prompt: RephrasedQAFromDoc) -> str:
+    return f"""{prompt.rephrased_question}
+<p style="display: none;">{prompt.question}</p>
+"""
 
 
 class AnkiPromptConverter:
@@ -18,9 +24,17 @@ class AnkiPromptConverter:
         deck = deck_in_tags[0] if deck_in_tags else self.base_deck
 
         match prompt:
+            case RephrasedQAFromDoc():
+                return AnkiQA(
+                    question=front_from_rephrased(prompt),
+                    answer=prompt.answer,
+                    base_deck=deck,
+                    tags=prompt.tags,
+                    css=self.card_css,
+                    uuid=prompt.scheduling_uid,
+                    edit_url=prompt.edit_url,
+                )
             case QAPrompt():
-                # feat: handle the new rephrasedprompt type here
-                # On HTML presentation, hide the original question, and only show the rephrased one
                 return AnkiQA(
                     question=prompt.question,
                     answer=prompt.answer,

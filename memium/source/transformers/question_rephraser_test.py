@@ -1,10 +1,14 @@
+import os
 from unittest.mock import patch
 
 import pytest
 
-from .question_rephraser import QuestionRephraser, get_ttl_hash
+from .question_rephraser import _rephrase_question, get_ttl_hash  # type: ignore
 
 
+@pytest.mark.skipif(
+    not os.getenv("ANTHROPIC_API_KEY"), reason="ANTHROPIC_API_KEY environment variable is not set"
+)
 @pytest.mark.parametrize(
     ("question", "answer", "expected_contains"),
     [
@@ -17,8 +21,7 @@ from .question_rephraser import QuestionRephraser, get_ttl_hash
     ],
 )
 def test_rephrase_question(question: str, answer: str, expected_contains: str):
-    rephraser = QuestionRephraser()
-    result = rephraser.rephrase(question, answer, 60 * 60 * 24 * 365)
+    result = _rephrase_question(question, answer, "1")
 
     assert len(result) > 0
     for expected in expected_contains:

@@ -1,3 +1,5 @@
+import datetime
+import os
 from pathlib import Path
 
 from memium.destination.ankiconnect.anki_converter import AnkiPromptConverter
@@ -11,6 +13,7 @@ from memium.source.document_source import MarkdownDocumentSource
 from memium.source.extractors.extractor_qa import QAPromptExtractor
 from memium.source.extractors.extractor_table import TableExtractor
 from memium.source.prompt_source import DocumentPromptSource
+from memium.source.transformers import question_rephraser
 
 
 def main(
@@ -18,8 +21,16 @@ def main(
     input_dir: Path,
     max_deletions_per_run: int,
     dry_run: bool,
-    push_all: bool = False,
+    push_all: bool,
+    rephrase_if_younger_than_days: int | None,
+    rephrase_cache_days: int | None,
 ):
+    # Check anthropic setup
+    if rephrase_if_younger_than_days or (
+        rephrase_cache_days and not os.getenv("ANTHROPIC_API_KEY")
+    ):
+        raise ValueError("ANTHROPIC_API_KEY environment variable is not set")
+
     # Setup gateway as first step. If Anki is not running, no need to parse all the prompts.
     gateway = AnkiConnectGateway(
         ankiconnect_url=ANKICONNECT_URL,
@@ -39,11 +50,17 @@ def main(
         ],
     ).get_prompts()
 
-    # feat: add a rephrasing step here. It should split the data based on document's last modified date,
-    # and then rephrase the relevant ones
-    # feat: output as a new card type, "rephrasedQAPrompt"
-    # perf: make sure to cache the outputs using joblib.memory and a _ttl_ for refreshing every n days
-    # perf: unsure how to make this fast, but perhaps it doesn't need to be? Async would make sense, but we're in a synchronous context
+    if rephrase_if_younger_than_days is not None:
+        if not rephrase_cache_days is not None:
+            raise ValueError(
+                "rephrase_cache_days must be set if rephrase_if_younger_than_days is set"
+            )
+        question_rephraser.memory.location = input_dir / "rephrase_cache"
+        source_prompts = question_rephraser.rephrase(
+            source_prompts,
+            max_age=datetime.timedelta(days=rephrase_if_younger_than_days),
+            cache_days=rephrase_cache_days,
+        )
 
     # Get the destination
     dest_class = AnkiConnectDestination if not dry_run else DryRunDestination
@@ -64,6 +81,6 @@ def main(
             source_prompts=source_prompts, destination_prompts=destination_prompts
         )
     )
-    # Send them
 
+    # Send them
     destination.update(commands=update_commands)

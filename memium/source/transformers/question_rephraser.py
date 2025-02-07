@@ -1,17 +1,20 @@
 import datetime
+import logging
 import time
-from typing import TypeGuard
+from typing import TypeGuard, cast
 
 from anthropic import Anthropic
 from iterpy import Arr
-from joblib import Memory
+from joblib import Memory  # type: ignore
 
 from memium.source.prompts.prompt import BasePrompt
 from memium.source.prompts.prompt_qa import QAFromDoc, RephrasedQAFromDoc
 
 # Set up the cache directory
-# feat: make this configurable so it's stored next to the prompts
-memory = Memory("/tmp/joblib_cache", verbose=0)
+# Note that this is modified at invocation time in the core call
+memory = Memory(verbose=0)
+
+log = logging.getLogger(__name__)
 
 
 def get_ttl_hash(seconds: int) -> str:
@@ -21,7 +24,7 @@ def get_ttl_hash(seconds: int) -> str:
 
 
 @memory.cache  # type: ignore
-def rephrase_question(
+def _rephrase_question(
     question: str,
     answer: str,
     ttl: str,  # noqa: ARG001
@@ -41,15 +44,14 @@ Provide only the rephrased question with no additional text or explanation."""
         messages=[{"role": "user", "content": prompt}],
     )
 
-    return response.content[0].text.strip()  # type: ignore
+    rephrasing: str = cast(str, response.content[0].text.strip())  # type: ignore
+    log.info({"event": "rephrased_question", "question": question, "rephrasing": rephrasing})
+    return rephrasing
 
 
-class QuestionRephraser:
-    def rephrase(self, question: str, answer: str, cache_seconds: int) -> str:
-        return rephrase_question(question, answer, get_ttl_hash(cache_seconds))
-
-
-def rephrase(prompts: Arr[BasePrompt], max_age: datetime.timedelta) -> Arr[BasePrompt]:
+def rephrase(
+    prompts: Arr[BasePrompt], max_age: datetime.timedelta, cache_days: int
+) -> Arr[BasePrompt]:
     def should_rephrase(prompt: BasePrompt) -> TypeGuard[QAFromDoc]:
         return (
             isinstance(prompt, QAFromDoc)
@@ -64,8 +66,8 @@ def rephrase(prompts: Arr[BasePrompt], max_age: datetime.timedelta) -> Arr[BaseP
             parent_doc=it.parent_doc,
             line_nr=it.line_nr,
             question=it.question,
-            rephrased_question=rephrase_question(
-                it.question, it.answer, get_ttl_hash(60 * 60 * 24 * 365)
+            rephrased_question=_rephrase_question(
+                it.question, it.answer, get_ttl_hash(60 * 60 * 24 * cache_days)
             ),
             answer=it.answer,
         )
@@ -73,6 +75,4 @@ def rephrase(prompts: Arr[BasePrompt], max_age: datetime.timedelta) -> Arr[BaseP
 
     to_keep = prompts.filter(lambda x: not should_rephrase(x)).to_list()
 
-    # refactor: keep these as arr and chain them together
-    # requires upgrading iterpy
     return Arr(to_keep + rephrased.to_list())
