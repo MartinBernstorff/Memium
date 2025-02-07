@@ -8,8 +8,12 @@ from .ankiconnect_gateway import NoteInfo
 
 
 def front_from_rephrased(prompt: RephrasedQAFromDoc) -> str:
-    return f"""{prompt.rephrased_question} <span style="opacity: 0.1">(LLM-rephrased)</span>
-<p style="display: none;">{prompt.question}</p>
+    return f"""{prompt.rephrased_question} <span style="opacity: 0.1">(LLM-rephrased)</span>"""
+
+
+def back_from_rephrased(prompt: RephrasedQAFromDoc) -> str:
+    return f"""{prompt.answer} <span style="opacity: 0.1">(LLM-rephrased)</span>
+<p style="opacity: 0.1;">Rephrased from: {prompt.question}</p>
 """
 
 
@@ -27,7 +31,7 @@ class AnkiPromptConverter:
             case RephrasedQAFromDoc():
                 return AnkiQA(
                     question=front_from_rephrased(prompt),
-                    answer=prompt.answer,
+                    answer=back_from_rephrased(prompt.answer),
                     base_deck=deck,
                     tags=prompt.tags,
                     css=self.card_css,
