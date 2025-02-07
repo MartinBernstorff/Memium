@@ -19,5 +19,4 @@
     ],
     "github.copilot.editor.enableAutoCompletions": true,
     "editor.formatOnSave": true,
-    "github.copilot.inlineSuggest.enable": true,
 }

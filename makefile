@@ -7,4 +7,4 @@ image:
 
 deploy:
 	make image
-	docker compose -f ~/Git/dotfiles/containers/memium/docker-compose.yml up
+	docker compose -f ~/Git/dotfiles/containers/memium/docker-compose.yml up -d
