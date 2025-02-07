@@ -8,7 +8,7 @@ code_files = [Path("pyproject.toml"), Path("uv.lock")] + [
 
 
 def github_signoff(name: str) -> str:
-    return f"~/Git/dotfiles/scripts/signoff.sh {name}"
+    return f'~/Git/dotfiles/scripts/signoff.sh $PWD "{name}"'
 
 
 def task_types():
