@@ -73,11 +73,11 @@ def rephrase(
 
         cached_func: Callable[[str, str, str], str] = memory.cache(  # type: ignore
             lambda q, a, n: _rephrase_question(  # type: ignore
-                q,  # type: ignore
-                a,  # type: ignore
-                n,  # type: ignore
-                get_ttl_hash(60 * 60 * 24 * cache_days),  # type: ignore
+                question=q,  # type: ignore
+                answer=a,  # type: ignore
+                note_title=n,  # type: ignore
                 version="3",  # type: ignore
+                ttl=get_ttl_hash(60 * 60 * 24 * cache_days),  # type: ignore
             )
         )
         return cached_func(x.question, x.answer, x.parent_doc.source_path.stem)
