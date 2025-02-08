@@ -26,7 +26,7 @@ from .question_rephraser import _rephrase_question, get_ttl_hash  # type: ignore
     ],
 )
 def test_rephrase_question(question: str, answer: str, expected_contains: str):
-    result = _rephrase_question(question, answer, "1")
+    result = _rephrase_question(question, answer, "", "1")
 
     assert len(result) > 0
     for expected in expected_contains:
