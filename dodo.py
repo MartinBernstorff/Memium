@@ -11,6 +11,10 @@ def github_signoff(name: str) -> str:
     return f'~/Git/dotfiles/scripts/signoff.sh $PWD "{name}"'
 
 
+def task_git_clean():
+    return {"actions": ["git status --porcelain"]}
+
+
 def task_types():
     return {"actions": ["uv run pyright memium"], "file_dep": code_files}
 
@@ -26,7 +30,7 @@ def task_lint():
 def task_validate():
     return {
         "actions": ["git push", github_signoff("local/mergeable")],
-        "task_dep": ["lint", "types", "test"],
+        "task_dep": ["lint", "types", "test", "git_clean"],
     }
 
 
