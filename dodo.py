@@ -27,7 +27,6 @@ def task_validate():
     return {
         "actions": ["git push", github_signoff("local/mergeable")],
         "task_dep": ["lint", "types", "test"],
-        "verbosity": 2,  # Otherwise, output is only displayed in case of error
     }
 
 
