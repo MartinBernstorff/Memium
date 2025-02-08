@@ -29,7 +29,7 @@ def task_lint():
 
 def task_validate():
     return {
-        "actions": ["git push", github_signoff("local/mergeable")],
+        "actions": [github_signoff("local/mergeable")],
         "task_dep": ["lint", "types", "test", "git_clean"],
     }
 
