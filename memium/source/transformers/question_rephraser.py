@@ -37,7 +37,7 @@ def _rephrase_question(
     note_title: str,
     ttl: str,  # noqa: ARG001
     prompt: str,
-    version: str,
+    version: str,  # noqa: ARG001
 ) -> str:
     client = Anthropic()
 
