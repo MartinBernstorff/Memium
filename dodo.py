@@ -7,6 +7,10 @@ code_files = [Path("pyproject.toml"), Path("uv.lock")] + [
 ]
 
 
+def github_signoff(name: str) -> str:
+    return f'~/Git/dotfiles/scripts/signoff.sh $PWD "{name}"'
+
+
 def task_git_clean():
     return {"actions": ["git status --porcelain"]}
 
@@ -25,7 +29,7 @@ def task_lint():
 
 def task_validate():
     return {
-        "actions": ["echo 'All checks passed'"],
+        "actions": ["git push", github_signoff("local/mergeable")],
         "task_dep": ["lint", "types", "test", "git_clean"],
     }
 

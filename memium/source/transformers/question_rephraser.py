@@ -77,6 +77,7 @@ def rephrase(
                 a,  # type: ignore
                 n,  # type: ignore
                 get_ttl_hash(60 * 60 * 24 * cache_days),  # type: ignore
+                version="3",  # type: ignore
             )
         )
         return cached_func(x.question, x.answer, x.parent_doc.source_path.stem)
