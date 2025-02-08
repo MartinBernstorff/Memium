@@ -76,7 +76,7 @@ def rephrase(
                 get_ttl_hash(60 * 60 * 24 * cache_days),  # type: ignore
             )
         )
-        return cached_func(f"{x.parent_doc.source_path.stem}: {x.question}", x.answer)
+        return cached_func(f"_{x.parent_doc.source_path.stem}_: {x.question}", x.answer)
 
     rephrased: list[RephrasedQAFromDoc] = []
     total_to_rephrase = len(to_rephrase)
