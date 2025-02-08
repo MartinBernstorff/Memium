@@ -30,7 +30,7 @@ def _rephrase_question(
     answer: str,  # noqa: ARG001
     note_title: str,
     ttl: str,  # noqa: ARG001
-    version: str = "2",  # Note, changing this default value will invalidate all caches. Beware! # noqa: ARG001
+    version: str = "3",  # Note, changing this default value will invalidate all caches. Beware! # noqa: ARG001
 ) -> str:
     client = Anthropic()
     prompt = f"""<prompt>This is a question from a note. Rephrase the question for learning, keeping it brief, while retaining the meaning. Any term surrounded by _, like _this_, must remain surrounded by _ and not be rephrased. If the note title appears in the question, you can remove it.</prompt>
