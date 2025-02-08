@@ -28,11 +28,13 @@ def get_ttl_hash(seconds: int) -> str:
 def _rephrase_question(
     question: str,
     answer: str,  # noqa: ARG001
+    note_title: str,
     ttl: str,  # noqa: ARG001
     version: str = "2",  # Note, changing this default value will invalidate all caches. Beware! # noqa: ARG001
 ) -> str:
     client = Anthropic()
-    prompt = f"""<prompt>Rephrase the question. Make it brief, without changing the meaning. Any term surrounded by _, like _this_, must stay surrounded by _ and not be rephrased. When reasonable, put these terms in the start of the sentence.</prompt>
+    prompt = f"""<prompt>This is a question from a note. Rephrase the question for learning, keeping it brief, while retaining the meaning. Any term surrounded by _, like _this_, must remain surrounded by _ and not be rephrased.</prompt>
+<note_title>{note_title}</note_title>
 <question>{question}</question>
 <prompt>Provide only the rephrased question with no additional text or explanation.</prompt>"""
 
@@ -69,14 +71,15 @@ def rephrase(
         location = cast(str, memory.location)  # type: ignore
         log.info(f"Looking into cache at {location}")
 
-        cached_func: Callable[[str, str], str] = memory.cache(  # type: ignore
-            lambda q, a: _rephrase_question(  # type: ignore
+        cached_func: Callable[[str, str, str], str] = memory.cache(  # type: ignore
+            lambda q, a, n: _rephrase_question(  # type: ignore
                 q,  # type: ignore
                 a,  # type: ignore
+                n,  # type: ignore
                 get_ttl_hash(60 * 60 * 24 * cache_days),  # type: ignore
             )
         )
-        return cached_func(f"_{x.parent_doc.source_path.stem}_: {x.question}", x.answer)
+        return cached_func(x.question, x.answer, x.parent_doc.source_path.stem)
 
     rephrased: list[RephrasedQAFromDoc] = []
     total_to_rephrase = len(to_rephrase)
