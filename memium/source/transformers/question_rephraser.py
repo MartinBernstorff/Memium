@@ -65,7 +65,7 @@ def _rephrase_question(
     )
 
     rephrasing: str = cast(str, response.content[0].text.strip())  # type: ignore
-    log.info({"event": "rephrased_question", "prompt": prompt, "rephrasing": rephrasing})
+    log.info({"event": "rephrased_question", "question": question, "rephrasing": rephrasing})
     return rephrasing
 
 
