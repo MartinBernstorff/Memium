@@ -17,7 +17,7 @@ memory = Memory(verbose=1)
 
 log = logging.getLogger(__name__)
 
-prompt = r"""<prompt>This is a question from a note. Rephrase the question, keeping it brief, while retaining the meaning. If a word is surrounded by an underscore, like this _word_, treat it as an important term.</prompt>
+PROMPT = r"""<prompt>This is a question from a note. Rephrase the question, keeping it brief, while retaining the meaning. If a word is surrounded by an underscore, like this _word_, treat it as an important term.</prompt>
 <note_title>||note_title||</note_title>
 <draft_question>||question||</draft_question>
 <prompt>Provide only the rephrased question with no additional text or explanation. If the note title appears in the question, be sure that it does _not_ occur in the rephrasing. Use an alternate term, or omit it entirely.</prompt>
@@ -95,7 +95,7 @@ def rephrase(
                 question=q,  # type: ignore
                 answer=a,  # type: ignore
                 note_title=n,  # type: ignore
-                prompt=prompt,
+                prompt=PROMPT,
                 ttl=get_ttl_hash(60 * 60 * 24 * cache_days),  # type: ignore
             )
         )

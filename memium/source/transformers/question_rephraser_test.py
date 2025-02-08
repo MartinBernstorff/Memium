@@ -37,7 +37,7 @@ def test_rephrase_question(question: str, answer: str, note_title: str):
         answer=answer,
         note_title=note_title,
         ttl="ttl-hash",
-        prompt=question_rephraser.prompt,
+        prompt=question_rephraser.PROMPT,
     )
 
     assert len(result) > 0
