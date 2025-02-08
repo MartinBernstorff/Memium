@@ -17,13 +17,6 @@ memory = Memory(verbose=1)
 
 log = logging.getLogger(__name__)
 
-
-def get_ttl_hash(seconds: int) -> str:
-    """Return the same value withing `seconds` time period"""
-    value = int(time.time()) // seconds
-    return str(value)
-
-
 prompt = r"""<prompt>This is a question from a note. Rephrase the question, keeping it brief, while retaining the meaning. If a word is surrounded by an underscore, like this _word_, treat it as an important term.</prompt>
 <note_title>||note_title||</note_title>
 <draft_question>||question||</draft_question>
@@ -41,13 +34,19 @@ prompt = r"""<prompt>This is a question from a note. Rephrase the question, keep
 """
 
 
+def get_ttl_hash(seconds: int) -> str:
+    """Return the same value withing `seconds` time period"""
+    value = int(time.time()) // seconds
+    return str(value)
+
+
 @memory.cache  # type: ignore
 def _rephrase_question(
     question: str,
     answer: str,  # noqa: ARG001
     note_title: str,
     ttl: str,  # noqa: ARG001
-    prompt: str = prompt,
+    prompt: str,
 ) -> str:
     client = Anthropic()
 
@@ -96,7 +95,7 @@ def rephrase(
                 question=q,  # type: ignore
                 answer=a,  # type: ignore
                 note_title=n,  # type: ignore
-                version="3",  # type: ignore
+                prompt=prompt,
                 ttl=get_ttl_hash(60 * 60 * 24 * cache_days),  # type: ignore
             )
         )

@@ -3,6 +3,8 @@ from unittest.mock import patch
 
 import pytest
 
+from memium.source.transformers import question_rephraser  # type: ignore
+
 from .question_rephraser import _rephrase_question, get_ttl_hash  # type: ignore
 
 
@@ -31,7 +33,11 @@ from .question_rephraser import _rephrase_question, get_ttl_hash  # type: ignore
 )
 def test_rephrase_question(question: str, answer: str, note_title: str):
     result = _rephrase_question(
-        question=question, answer=answer, note_title=note_title, ttl="ttl-hash"
+        question=question,
+        answer=answer,
+        note_title=note_title,
+        ttl="ttl-hash",
+        prompt=question_rephraser.prompt,
     )
 
     assert len(result) > 0
