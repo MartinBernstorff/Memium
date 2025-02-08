@@ -20,17 +20,7 @@ log = logging.getLogger(__name__)
 PROMPT = r"""<prompt>This is a question from a note. Rephrase the question, keeping it brief, while retaining the meaning. If a word is surrounded by an underscore, like this _word_, treat it as an important term.</prompt>
 <note_title>||note_title||</note_title>
 <draft_question>||question||</draft_question>
-<prompt>Provide only the rephrased question with no additional text or explanation. If the note title appears in the question, be sure that it does _not_ occur in the rephrasing. Use an alternate term, or omit it entirely.</prompt>
-<example>
-<note_title>France</note_title>
-<draft_question>What is the capital city of _France_?</draft_question>
-<rephrasing>What is the capital city?</rephrasing>
-</example>
-<example>
-<note_title>Rust</note_title>
-<draft_question>Why is _Rust_ faster than Python?</draft_question>
-<rephrasing>Why is it faster than Python?</rephrasing>
-</example>
+<prompt>Provide only the rephrased question with no additional text or explanation. If the note title appears in the question, be sure that it is removed form the rephrasing. Use "it", an alternate term, or omit it entirely.</prompt>
 """
 
 
