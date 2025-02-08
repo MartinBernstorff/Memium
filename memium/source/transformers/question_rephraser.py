@@ -37,6 +37,7 @@ def _rephrase_question(
     note_title: str,
     ttl: str,  # noqa: ARG001
     prompt: str,
+    version: str,
 ) -> str:
     client = Anthropic()
 
@@ -87,6 +88,7 @@ def rephrase(
                 note_title=n,  # type: ignore
                 prompt=PROMPT,
                 ttl=get_ttl_hash(60 * 60 * 24 * cache_days),  # type: ignore
+                version="1.0",
             )
         )
         return cached_func(x.question, x.answer, x.parent_doc.source_path.stem)
