@@ -17,7 +17,7 @@ memory = Memory(verbose=1)
 
 log = logging.getLogger(__name__)
 
-PROMPT = r"""<prompt>This is a question from a note. Rephrase the question, keeping it brief, while retaining the meaning. If a word is surrounded by an underscore, like this _word_, treat it as an important term.</prompt>
+PROMPT = r"""<prompt>This is a question from a note. Rephrase the question, make it brief, while retaining the meaning. If a word is surrounded by an underscore, like this _word_, treat it as an important term.</prompt>
 <note_title>||note_title||</note_title>
 <draft_question>||question||</draft_question>
 <prompt>Provide only the rephrased question with no additional text or explanation. Omit ||note_title|| from the rephrasing. Instead, use "it", or omit ||note_title|| entirely.</prompt>
