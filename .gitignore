@@ -122,3 +122,5 @@ test_package
 .gokid.*
 .vscode/settings.json
 *doit*
+
+.logs/
