@@ -11,6 +11,14 @@ def github_signoff(name: str) -> str:
     return f'~/Git/dotfiles/scripts/signoff.sh $PWD "{name}"'
 
 
+def task_smoketest_docker():
+    return {"actions": ["inv smoketest-docker"], "file_dep": [*code_files, Path("readme.md")]}
+
+
+def task_smoketest_cli():
+    return {"actions": ["inv smoketest-cli"], "file_dep": [*code_files, Path("readme.md")]}
+
+
 def task_git_clean():
     return {"actions": ["git status --porcelain"]}
 
@@ -30,7 +38,7 @@ def task_lint():
 def task_validate():
     return {
         "actions": ["git push", github_signoff("local/mergeable")],
-        "task_dep": ["lint", "types", "test", "git_clean"],
+        "task_dep": ["lint", "types", "test", "git_clean", "smoketest_docker", "smoketest_cli"],
     }
 
 
