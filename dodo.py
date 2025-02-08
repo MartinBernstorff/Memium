@@ -12,29 +12,20 @@ def github_signoff(name: str) -> str:
 
 
 def task_types():
-    return {
-        "actions": ["uv run pyright memium", github_signoff("local/types")],
-        "file_dep": code_files,
-    }
+    return {"actions": ["uv run pyright memium"], "file_dep": code_files}
 
 
 def task_test():
-    return {
-        "actions": ["uv run pytest memium", github_signoff("local/test")],
-        "file_dep": code_files,
-    }
+    return {"actions": ["uv run pytest memium"], "file_dep": code_files}
 
 
 def task_lint():
-    return {
-        "actions": ["ruff check memium --fix", github_signoff("local/lint")],
-        "file_dep": code_files,
-    }
+    return {"actions": ["ruff check memium --fix"], "file_dep": code_files}
 
 
 def task_validate():
     return {
-        "actions": ["echo ✅✅✅ All OK ✅✅✅"],
+        "actions": ["git push", github_signoff("local/mergeable")],
         "task_dep": ["lint", "types", "test"],
         "verbosity": 2,  # Otherwise, output is only displayed in case of error
     }
