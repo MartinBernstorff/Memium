@@ -20,7 +20,7 @@ log = logging.getLogger(__name__)
 PROMPT = r"""<prompt>This is a question from a note. Rephrase the question, make it brief, while retaining the meaning. If a word is surrounded by an underscore, like this _word_, treat it as an important term.</prompt>
 <note_title>||note_title||</note_title>
 <draft_question>||question||</draft_question>
-<prompt>Provide only the rephrased question with no additional text or explanation. Remove the <note_title> (||note_title||) from the rephrasing.</prompt>
+<prompt>Provide only the rephrased question with no additional text or explanation. Remove the <note_title> (||note_title||) from the rephrasing. Instead, use "it".</prompt>
 """
 
 
@@ -88,7 +88,7 @@ def rephrase(
                 note_title=n,  # type: ignore
                 prompt=PROMPT,
                 ttl=get_ttl_hash(60 * 60 * 24 * cache_days),  # type: ignore
-                version="1.3",
+                version="1.2",
             )
         )
         return cached_func(x.question, x.answer, x.parent_doc.source_path.stem)
