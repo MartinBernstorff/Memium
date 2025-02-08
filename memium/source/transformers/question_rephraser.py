@@ -33,10 +33,10 @@ def _rephrase_question(
     ttl: str,  # noqa: ARG001
 ) -> str:
     client = Anthropic()
-    prompt = f"""<prompt>This is a question from a note. Rephrase the question for learning, keeping it brief, while retaining the meaning. Any term surrounded by _, like _this_, must remain surrounded by _ and not be rephrased. If the note title appears in the question, you can remove it.</prompt>
+    prompt = f"""<prompt>This is a question from a note. Rephrase the question for learning, keeping it brief, while retaining the meaning. Any term surrounded by _, like _this_, must remain surrounded by _ and not be rephrased. </prompt>
 <note_title>{note_title}</note_title>
 <question>{question}</question>
-<prompt>Provide only the rephrased question with no additional text or explanation.</prompt>"""
+<prompt>Provide only the rephrased question with no additional text or explanation. If the note title appears in the question, remove it in your rephrasing.</prompt>"""
 
     response = client.messages.create(
         model="claude-3-5-sonnet-20241022",
