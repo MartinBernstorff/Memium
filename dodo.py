@@ -7,6 +7,11 @@ code_files = [Path("pyproject.toml"), Path("uv.lock")] + [
 ]
 
 
+# refactor: this duplicates a lot of the functionality in the `tasks.py` file
+# Ideally, I would want to remove that, and to change the CI to use pydoit
+# However, this is not at all a high priority right now
+
+
 def github_signoff(name: str) -> str:
     return f'~/Git/dotfiles/scripts/signoff.sh $PWD "{name}"'
 
