@@ -7,6 +7,12 @@ from ..document import Document
 from .prompt import BasePrompt
 
 
+# refactor: would be awesome to make this a composite type instead of a mixin.
+# E.g. PromptFromDoc, which has doc, line_nr, and prompt attributes.
+# Quite uncertain here. Many options:
+# * PromptFromDoc[Prompt, Doc] - hard to serialise with e.g. an ORM. Very contextual; "throwaway"? But can be very thin.
+# * Doc[Prompt] - needs passthrough methods if processing prompts within the doc.
+# * Prompt[Doc] - needs passthrough methods if processing the doc within the prompt.
 @dataclass(frozen=True)
 class PromptFromDocMixin(BasePrompt, ABC):
     parent_doc: Document

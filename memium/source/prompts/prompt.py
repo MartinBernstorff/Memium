@@ -1,4 +1,5 @@
 from collections.abc import Sequence
+from dataclasses import dataclass
 from typing import Protocol, runtime_checkable
 
 
@@ -23,9 +24,13 @@ class BasePrompt(Protocol):
         ...
 
 
-from dataclasses import dataclass
+# refactor: I think this can be _dramatically_ simplified.
+# * I don't use the cloze prompt, so that can be removed.
+# * Why is tags a property? It's fine for now, but I don't think I'm really using it anywhere.
 
 
+# refactor: is this basically a "materialised prompt"? If so, it means that it should contain more metadata; last review, due date, etc.
+# ?: In general, for e.g. presentation, if there is more than one way of presenting a prompt, the presentation should be a function, not a method on the prompt.
 @dataclass(frozen=True)
 class DestinationPrompt:
     prompt: BasePrompt

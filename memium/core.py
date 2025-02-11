@@ -56,6 +56,14 @@ def main(
         ],
     ).get_prompts()
 
+    # refactor: instead of calling get_prompts here, we can perhaps validate that the promptsource exists, and
+    # only extract the prompts later. I.e. splitting up into a "setup" phase, which validates assumptions, and an
+    # execution phase?
+
+    # feat: instead of rephrasing based on document modification date, I'd love to rephrase the "next up" cards
+    # This means we need to get "MaterialisedPrompts" (i.e. those stored in the destination), and order them by when they are
+    # due. Then apply transformations only to those which are due.
+    # This seems relatively complicated with the current prompt type hierarchy, so look at their refactor first.
     if rephrase_if_younger_than_days is not None:
         # perf: we could rephrase only the prompts which are due within a timedelta by getting them as destinationprompts,
         # and using those to filter which prompts to rephrase
@@ -75,6 +83,7 @@ def main(
         )
 
     # Get the destination
+    # refactor: move this to the setup phase. See if there are any assumptions we want to test during setup.
     dest_class = AnkiConnectDestination if not dry_run else DryRunDestination
     destination = dest_class(
         gateway=gateway,

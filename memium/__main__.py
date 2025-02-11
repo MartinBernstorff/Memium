@@ -90,6 +90,9 @@ def cli(
         log.info("Skipping sync")
         return
 
+    # refactor: this double-naming of main and the __main__ file are quite confusing
+    # Perhaps the cli should live in cli.py, and then it's just OK that memium is not callable as a module?
+    # It also adds another layer of indirection; that part is due to the "watch" functionality. Maybe we can do that smarter?
     main_fn = partial(
         main,
         base_deck=deck_name,
