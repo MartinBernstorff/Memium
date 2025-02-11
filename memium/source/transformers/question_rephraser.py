@@ -20,7 +20,6 @@ log = logging.getLogger(__name__)
 PROMPT = r"""<prompt>This is a question from a note. Rephrase the question, make it brief, while retaining the meaning. If a word is surrounded by an underscore, like this _word_, treat it as an important term.</prompt>
 <note_title>||note_title||</note_title>
 <draft_question>||question||</draft_question>
-<answer>||answer||</answer>
 <filter_from_rephrasing>_||note_title||_</filter_from_rephrasing>
 <prompt>Provide only the rephrased question with no additional text or explanation. Make sure the rephrasing does not include _||note_title||_, i.e. that it filters anything from <filter_from_rephrasing>.</prompt>
 """
