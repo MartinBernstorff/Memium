@@ -20,7 +20,9 @@ log = logging.getLogger(__name__)
 PROMPT = r"""<prompt>This is a question from a note. Rephrase the question, make it brief, while retaining the meaning. If a word is surrounded by an underscore, like this _word_, treat it as an important term.</prompt>
 <note_title>||note_title||</note_title>
 <draft_question>||question||</draft_question>
-<prompt>Provide only the rephrased question with no additional text or explanation. Remove the <note_title> (||note_title||) from the rephrasing. Instead, use "it".</prompt>
+<answer>||answer||</answer>
+<filter_from_rephrasing>_||note_title||_</filter_from_rephrasing>
+<prompt>Provide only the rephrased question with no additional text or explanation. Make sure the rephrasing does not include _||note_title||_, i.e. that it filters anything from <filter_from_rephrasing>.</prompt>
 """
 
 
@@ -33,7 +35,7 @@ def get_ttl_hash(seconds: int) -> str:
 @memory.cache  # type: ignore
 def _rephrase_question(
     question: str,
-    answer: str,  # noqa: ARG001
+    answer: str,
     note_title: str,
     ttl: str,  # noqa: ARG001
     prompt: str,
@@ -41,18 +43,17 @@ def _rephrase_question(
 ) -> str:
     client = Anthropic()
 
+    content = (
+        prompt.replace("||note_title||", note_title)
+        .replace("||question||", question)
+        .replace("||answer||", answer)
+    )
+
     response = client.messages.create(
         model="claude-3-5-sonnet-20241022",
         max_tokens=300,
         temperature=0.7,
-        messages=[
-            {
-                "role": "user",
-                "content": prompt.replace("||note_title||", note_title).replace(
-                    "||question||", question
-                ),
-            }
-        ],
+        messages=[{"role": "user", "content": content}],
     )
 
     rephrasing: str = cast(str, response.content[0].text.strip())  # type: ignore

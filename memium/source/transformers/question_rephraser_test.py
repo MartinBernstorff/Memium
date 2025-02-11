@@ -12,7 +12,7 @@ from .question_rephraser import _rephrase_question, get_ttl_hash  # type: ignore
     not os.getenv("ANTHROPIC_API_KEY"), reason="ANTHROPIC_API_KEY environment variable is not set"
 )
 @pytest.mark.parametrize(
-    ("question", "answer", "note_title"),
+    ("draft_q", "answer", "note_title"),
     [
         (
             "What is the term for unhelpful _Thinking_ with negative affect?",
@@ -29,21 +29,23 @@ from .question_rephraser import _rephrase_question, get_ttl_hash  # type: ignore
             "The job resource exists as a failure, the pod does not.",
             "Kubernetes",
         ),
+        ("`func(dict)`; which boundaries to test?", "...", "Boundary test"),
     ],
 )
-def test_rephrase_question(question: str, answer: str, note_title: str):
+def test_rephrase_question(draft_q: str, answer: str, note_title: str):
     result = _rephrase_question(
-        question=question,
+        question=draft_q,
         answer=answer,
         note_title=note_title,
         ttl="ttl-hash",
         prompt=question_rephraser.PROMPT,
-        version="1.0",
+        version="1.1",
     )
 
     assert len(result) > 0
     assert result.endswith("?")
-    assert result != question
+    assert result != draft_q
+    assert f"_{note_title}_" not in result
 
 
 def test_get_ttl_hash():
