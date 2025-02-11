@@ -21,7 +21,7 @@ PROMPT = r"""<prompt>This is a question from a note. Rephrase the question, make
 <note_title>||note_title||</note_title>
 <draft_question>||question||</draft_question>
 <filter_from_rephrasing>_||note_title||_</filter_from_rephrasing>
-<prompt>Provide only the rephrased question with no additional text or explanation. Make sure the rephrasing does not include _||note_title||_, i.e. that it filters anything from <filter_from_rephrasing>.</prompt>
+<prompt>Provide only the rephrased question with no additional text or explanation. Maintain formatting, e.g. surrounding code blocks with backticks `. Make sure the rephrasing does not include _||note_title||_, i.e. that it filters anything from <filter_from_rephrasing>.</prompt>
 """
 
 
