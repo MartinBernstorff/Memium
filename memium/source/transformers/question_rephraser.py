@@ -88,7 +88,7 @@ def rephrase(
                 note_title=n,  # type: ignore
                 prompt=PROMPT,
                 ttl=get_ttl_hash(60 * 60 * 24 * cache_days),  # type: ignore
-                version="1.5",
+                version="1.6",
             )
         )
         return cached_func(x.question, x.answer, x.parent_doc.source_path.stem)
