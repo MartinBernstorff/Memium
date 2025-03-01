@@ -47,7 +47,7 @@ def cli(
         typer.Option(
             help="Push all prompts to Anki, not just the diff. Useful if you have e.g. changed your CSS template. Note that this does not change scheduling, nor delete prompts that no longer exist in your markdown."
         ),
-    ] = False,
+    ] = True,
     dry_run: Annotated[
         bool, typer.Option(help="Don't update via AnkiConnect, just log what would happen")
     ] = False,

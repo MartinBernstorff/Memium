@@ -21,7 +21,7 @@
             "justMyCode": true,
             "args": [
                 "--input-dir=/Users/mabe/Documents/life-lessons",
-                "--max-deletions-per-run=0",
+                "--max-deletions-per-run=7000",
             ]
         }
     ]

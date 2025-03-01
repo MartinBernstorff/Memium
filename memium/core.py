@@ -7,7 +7,7 @@ from joblib import Memory  # type: ignore
 
 from memium.destination.ankiconnect.anki_converter import AnkiPromptConverter
 from memium.destination.ankiconnect.ankiconnect_gateway import ANKICONNECT_URL, AnkiConnectGateway
-from memium.destination.destination import PushPrompts
+from memium.destination.destination import DeletePrompts, PushPrompts
 from memium.destination.destination_ankiconnect import AnkiConnectDestination
 from memium.destination.destination_dryrun import DryRunDestination
 from memium.diff_determiner import PromptDiffDeterminer
@@ -95,13 +95,24 @@ def main(
     destination_prompts = destination.get_all_prompts()
 
     # Get the updates
-    update_commands = (
-        [PushPrompts(prompts=source_prompts)]
-        if push_all
-        else PromptDiffDeterminer().sync(
-            source_prompts=source_prompts, destination_prompts=destination_prompts
-        )
+    # So, this is where the bug is! If push_all is set, it means it won't delete
+    # That's a shame! Instead, I want it to determine the diff anyway, and replace the
+    # push part
+    diff = PromptDiffDeterminer().sync(
+        source_prompts=source_prompts, destination_prompts=destination_prompts
     )
 
+    actions_to_perform: list[PushPrompts | DeletePrompts] = []
+
+    for d in diff:
+        match d:
+            case PushPrompts(prompts=source_prompts):
+                if push_all:
+                    actions_to_perform.append(PushPrompts(prompts=source_prompts))
+                else:
+                    actions_to_perform.append(d)
+            case DeletePrompts(prompts=source_prompts):
+                actions_to_perform.append(d)
+
     # Send them
-    destination.update(commands=update_commands)
+    destination.update(commands=actions_to_perform)

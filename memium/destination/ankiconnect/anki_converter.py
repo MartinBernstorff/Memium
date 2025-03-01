@@ -45,6 +45,13 @@ class AnkiPromptConverter:
                     edit_url=prompt.edit_url,
                 )
             case QAFromDoc():
+                # XXX: This is a problem. Adding the parent doc to the front means that the card will be rescheduled
+                # anytime I choose to change the styling. That's not acceptable.
+                # Instead, I should change how it is rendered. E.g.
+                # * By allowing AnkiQA to display "fron extra", or just adding a "parent doc."
+                # * By adding a "source" field to the card, which is displayed on the back.
+                # * By adding an AnkiQA variant which takes a "source" argument
+                # Huh, but since the scheduling uid comes from the prmopt, perhaps it's not an issue? Why do I have this many scheduled for delete, then?
                 return AnkiQA(
                     question=_with_parent_doc(prompt, prompt.question),
                     answer=prompt.answer,
