@@ -2,7 +2,7 @@ from pathlib import Path
 
 from memium.destination.ankiconnect.anki_converter import AnkiPromptConverter
 from memium.destination.ankiconnect.ankiconnect_gateway import ANKICONNECT_URL, AnkiConnectGateway
-from memium.destination.destination import PushPrompts
+from memium.destination.destination import DeletePrompts, PushPrompts
 from memium.destination.destination_ankiconnect import AnkiConnectDestination
 from memium.destination.destination_dryrun import DryRunDestination
 from memium.diff_determiner import PromptDiffDeterminer
@@ -48,14 +48,15 @@ def main(
         ],
     ).get_prompts()
 
-    # Get the updates
-    update_commands = (
-        [PushPrompts(prompts=source_prompts)]
-        if push_all
-        else PromptDiffDeterminer().sync(
-            source_prompts=source_prompts, destination_prompts=destination.get_all_prompts()
-        )
+    diff = PromptDiffDeterminer().sync(
+        source_prompts=source_prompts, destination_prompts=destination.get_all_prompts()
     )
-    # Send them
 
-    destination.update(commands=update_commands)
+    delete_prompts = [command for command in diff if isinstance(command, DeletePrompts)]
+    push_prompts = (
+        [command for command in diff if isinstance(command, PushPrompts)]
+        if not push_all
+        else [PushPrompts(prompts=source_prompts)]
+    )
+
+    destination.update(commands=[*delete_prompts, *push_prompts])

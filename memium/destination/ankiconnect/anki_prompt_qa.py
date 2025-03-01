@@ -15,6 +15,7 @@ class AnkiQA(AnkiPrompt):
     tags: Sequence[str]
     question: str
     answer: str
+    source_title: str | None
     css: str
     uuid: int  # UUID used for scheduling. If a new note is added with the same uuid, it will override the old note.
 
@@ -28,10 +29,10 @@ class AnkiQA(AnkiPrompt):
         ]
 
         QUESTION_STR = r"{{ Question }}"
-        TTS_QUESTION_STR = r"{{ tts en_US voices=Apple_Samantha speed=1.05:Question }}"
+        TTS_QUESTION_STR = r"{{ tts en_US voices=Apple_Samantha speed=1.05:Question }}" # type: ignore
 
         ANSWER_STR = r"{{ Answer }}"
-        TTS_ANSWER_STR = r"{{ tts en_US voices=Apple_Samantha speed=1.05:Answer }}"
+        TTS_ANSWER_STR = r"{{ tts en_US voices=Apple_Samantha speed=1.05:Answer }}" # type: ignore
 
         EXTRA_STR = r"{{ Extra }}"
 
@@ -39,23 +40,16 @@ class AnkiQA(AnkiPrompt):
             {
                 "name": "Ankdown QA Card with UUID",
                 "qfmt": f"""
-<div class="extra">
-    {EXTRA_STR}
-</div>
-<div class="front">
-    {QUESTION_STR}{TTS_QUESTION_STR}
-</div>
-            """,
+<div class="front">{EXTRA_STR}
+    {QUESTION_STR}
+</div>""",
                 "afmt": f"""
-<div class="back">
-    <div class="extra">
-        {EXTRA_STR}
-    </div>
+<div class="back">{EXTRA_STR}
     <div class="question">
         {QUESTION_STR}
     </div>
     <div class="answer">
-        {ANSWER_STR}{TTS_ANSWER_STR}
+        {ANSWER_STR}
     </div>
 </div>
             """,
@@ -73,7 +67,9 @@ class AnkiQA(AnkiPrompt):
 
     @property
     def _extra_field_content(self) -> str:
-        return "" if not self.edit_url else edit_button(self.edit_url)
+        note_title = f"<span style='opacity: 0.5; font-size: 0.7em; line-height: 0%;'>{self.source_title}</span>" if self.source_title else ""
+        edit_button_html = edit_button(self.edit_url) if self.edit_url else ""
+        return f"{edit_button_html}{note_title}"
 
     def to_genanki_note(self) -> genanki.Note:
         return genanki.Note(
