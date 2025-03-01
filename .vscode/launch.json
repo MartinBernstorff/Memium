@@ -16,12 +16,13 @@
             "name": "Run CLI",
             "type": "python",
             "request": "launch",
-            "program": "${file}",
+            "program": "${workspaceFolder}/memium/__main__.py",
             "console": "integratedTerminal",
             "justMyCode": true,
             "args": [
                 "--input-dir=/Users/mabe/Documents/life-lessons",
                 "--max-deletions-per-run=7000",
+                "--push-all"
             ]
         }
     ]

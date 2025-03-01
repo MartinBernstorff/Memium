@@ -1,6 +1,6 @@
 from ...source.prompts.prompt import BasePrompt, DestinationPrompt
 from ...source.prompts.prompt_cloze import ClozePrompt, ClozeWithoutDoc
-from ...source.prompts.prompt_qa import QAPrompt, QAWithoutDoc
+from ...source.prompts.prompt_qa import QAFromDoc, QAWithoutDoc
 from .anki_prompt import AnkiPrompt
 from .anki_prompt_cloze import AnkiCloze
 from .anki_prompt_qa import AnkiQA
@@ -18,7 +18,7 @@ class AnkiPromptConverter:
         deck = deck_in_tags[0] if deck_in_tags else self.base_deck
 
         match prompt:
-            case QAPrompt():
+            case QAFromDoc():
                 return AnkiQA(
                     question=prompt.question,
                     answer=prompt.answer,
@@ -27,6 +27,18 @@ class AnkiPromptConverter:
                     css=self.card_css,
                     uuid=prompt.scheduling_uid,
                     edit_url=prompt.edit_url,
+                    source_title=prompt.parent_doc.title,
+                )
+            case QAWithoutDoc():
+                return AnkiQA(
+                    question=prompt.question,
+                    answer=prompt.answer,
+                    base_deck=deck,
+                    tags=prompt.tags,
+                    css=self.card_css,
+                    uuid=prompt.scheduling_uid,
+                    edit_url=prompt.edit_url,
+                    source_title=None,
                 )
             case ClozePrompt():
                 return AnkiCloze(
