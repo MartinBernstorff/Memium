@@ -1,10 +1,26 @@
+from memium.source.prompts.prompt_from_doc import PromptFromDocMixin
+
 from ...source.prompts.prompt import BasePrompt, DestinationPrompt
 from ...source.prompts.prompt_cloze import ClozePrompt, ClozeWithoutDoc
-from ...source.prompts.prompt_qa import QAPrompt, QAWithoutDoc
+from ...source.prompts.prompt_qa import QAFromDoc, QAPrompt, QAWithoutDoc, RephrasedQAFromDoc
 from .anki_prompt import AnkiPrompt
 from .anki_prompt_cloze import AnkiCloze
 from .anki_prompt_qa import AnkiQA
 from .ankiconnect_gateway import NoteInfo
+
+
+def _with_parent_doc(prompt: PromptFromDocMixin, question: str) -> str:
+    return f"""<span style="opacity: 0.3; font-size: 0.7em">{prompt.parent_doc.source_path.stem}</span><br/> {question}"""
+
+
+def front_from_rephrased(prompt: RephrasedQAFromDoc) -> str:
+    return f"""{prompt.rephrased_question}"""
+
+
+def back_from_rephrased(prompt: RephrasedQAFromDoc) -> str:
+    return f"""{prompt.answer}
+<p style="font-size: 0.7em; opacity: 0.2;">Rephrased from: {prompt.question}</p>
+"""
 
 
 class AnkiPromptConverter:
@@ -18,6 +34,33 @@ class AnkiPromptConverter:
         deck = deck_in_tags[0] if deck_in_tags else self.base_deck
 
         match prompt:
+            case RephrasedQAFromDoc():
+                return AnkiQA(
+                    question=_with_parent_doc(prompt, front_from_rephrased(prompt)),
+                    answer=back_from_rephrased(prompt),
+                    base_deck=deck,
+                    tags=prompt.tags,
+                    css=self.card_css,
+                    uuid=prompt.scheduling_uid,
+                    edit_url=prompt.edit_url,
+                )
+            case QAFromDoc():
+                # XXX: This is a problem. Adding the parent doc to the front means that the card will be rescheduled
+                # anytime I choose to change the styling. That's not acceptable.
+                # Instead, I should change how it is rendered. E.g.
+                # * By allowing AnkiQA to display "fron extra", or just adding a "parent doc."
+                # * By adding a "source" field to the card, which is displayed on the back.
+                # * By adding an AnkiQA variant which takes a "source" argument
+                # Huh, but since the scheduling uid comes from the prmopt, perhaps it's not an issue? Why do I have this many scheduled for delete, then?
+                return AnkiQA(
+                    question=_with_parent_doc(prompt, prompt.question),
+                    answer=prompt.answer,
+                    base_deck=deck,
+                    tags=prompt.tags,
+                    css=self.card_css,
+                    uuid=prompt.scheduling_uid,
+                    edit_url=prompt.edit_url,
+                )
             case QAPrompt():
                 return AnkiQA(
                     question=prompt.question,
