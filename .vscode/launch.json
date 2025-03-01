@@ -20,8 +20,8 @@
             "console": "integratedTerminal",
             "justMyCode": true,
             "args": [
-                "--input-dir=/Users/Shared/life-lessons/docs/life-lessons",
-                "--max-deletions-per-run=0",
+                "--input-dir=/Users/mabe/Documents/life-lessons",
+                "--max-deletions-per-run=7000",
             ]
         }
     ]
