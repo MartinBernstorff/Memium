@@ -124,4 +124,18 @@ inv validate_ci
 
 # Roadmap
 * p2: simplify the prompt hierarchy. 
+
 * p1: infer scheduling_uuid during creation in the same way as during sync. Ensures they cannot drift.
+
+Seems it keeps recreating these prompts, e.g. 
+```
+In Java, how do you rewrite this?
+
+if (claims.isPresent()) {
+    this.context = AccessUtils.getContext(claims.get());
+} else {
+    this.context = Optional.empty();
+}
+```
+
+It seems it's especially code prompts. 
