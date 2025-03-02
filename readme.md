@@ -122,3 +122,6 @@ inv validate_ci
 [github issue tracker]: https://github.com/MartinBernstorff/memium/issues
 [github discussions]: https://github.com/MartinBernstorff/memium/discussions
 
+# Roadmap
+* p2: simplify the prompt hierarchy. 
+* p1: infer scheduling_uuid during creation in the same way as during sync. Ensures they cannot drift.
