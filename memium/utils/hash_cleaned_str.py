@@ -49,12 +49,15 @@ def remove_list_markup(text: str) -> str:
     without_dashes = re.sub(r"^\s- ", "", without_bullets, flags=re.MULTILINE)
     return without_dashes
 
+def remove_code_block_language_specification(text: str) -> str:
+    return re.sub(r"```\s*\w+\n", "```", text)
 
 def clean_str(input_str: str) -> str:
-    """Clean string before hashing, so changes to spacing, punctuation, newlines etc. do not affect the hash."""
+    """Clean string before hashing, so changes to spacing, punctuation etc. do not affect the hash."""
     cleaned = input_str
 
     for cleaner in [
+        remove_code_block_language_specification,
         remove_non_content_html_tags,
         remove_markdown_links,
         remove_list_markup,

@@ -35,7 +35,50 @@ def test_hash_cleaned_str_should_remove_html_tags(input_str: str, hash_identical
         ("""* One\n\t* Two""", "one_two"),
         ("""- One\n\t- Two""", "one_two"),
         ("[link1](blah) and [link2](blah)", "link1_and_link2"),
+        ('<pre><code class="language-r">ls()</code></pre>', "ls"),
+        (
+            """```r
+ls()
+```""",
+            "ls",
+        ),
     ],
 )
 def test_str_cleaner(input_str: str, expected: str):
     assert clean_str(input_str) == expected
+
+
+@pytest.mark.parametrize(
+    ("markdown_str", "html"),
+    [
+        ('```df.select(["A", "B"])```', '<p><code>df.select(["A", "B"])</code></p>'),
+        (
+            """``` js
+for (let i = 0; i < 4; i += 1) {
+	console.log(i);
+};
+```""",
+            """<pre><code class="language-js">for (let i = 0; i &lt; 4; i += 1) {
+    console.log(i);
+};
+</code></pre>""",
+        ),
+        (
+            """``` python
+```""",
+            """<pre><code class="language-python"></code></pre>""",
+        ),
+        (
+            """```python
+df.filter(pl.col("ID").is_in(ids_set))
+```""",
+            """<pre><code class="language-python">df.filter(pl.col("ID").is_in(ids_set))
+</code></pre>""",
+        ),
+    ],
+)
+def test_str_cleaner_preserves_identity(markdown_str: str, html: str):
+    cleaned_markdown = clean_str(markdown_str)
+    cleaned_html = clean_str(html)
+    assert cleaned_markdown == cleaned_html
+    assert hash_cleaned_str(markdown_str) == hash_cleaned_str(html)
