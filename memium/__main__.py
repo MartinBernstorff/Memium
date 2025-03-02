@@ -8,7 +8,7 @@ from typing import Annotated, Optional
 
 import typer
 
-from memium.core import main
+from memium.core import core
 
 log = logging.getLogger(__name__)
 
@@ -73,7 +73,7 @@ def cli(
         return
 
     main_fn = partial(
-        main,
+        core,
         base_deck=deck_name,
         input_dir=input_dir,
         max_deletions_per_run=max_deletions_per_run,

@@ -34,6 +34,10 @@ class AnkiConnectDestination(PromptDestination):
 
     def _delete_prompts(self, prompts: Sequence[DestinationPrompt]) -> None:
         prompt_ids = {int(remote_prompt.destination_id) for remote_prompt in prompts}
+        log.info(f"Deleting {len(prompt_ids)} prompts from Anki")
+        for prompt in prompts:
+            log.info(f"Deleting prompt: {prompt.prompt.edit_url}")
+
         self.gateway.delete_notes(list(prompt_ids))
 
     def _grouped_cards_to_deck(

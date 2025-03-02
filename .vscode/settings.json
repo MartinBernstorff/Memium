@@ -17,4 +17,5 @@
         "master",
         "trunk"
     ],
+    "editor.formatOnSave": true,
 }

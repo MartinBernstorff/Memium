@@ -13,7 +13,7 @@ from memium.source.extractors.extractor_table import TableExtractor
 from memium.source.prompt_source import DocumentPromptSource
 
 
-def main(
+def core(
     base_deck: str,
     input_dir: Path,
     max_deletions_per_run: int,
