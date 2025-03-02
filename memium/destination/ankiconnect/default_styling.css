@@ -13,6 +13,10 @@
   color: #d7dee9;
 }
 
+div.edit_button {
+  display: block;
+}
+
 p {
   margin: 0.1em 0 0 0;
 }
@@ -21,6 +25,7 @@ div.highlight {
   background-color: rgba(255, 255, 255, 0.1) !important;
   font-family: Arial;
 }
+
 div.back div.question {
   font-size: 0.7em;
   line-height: 100%;
@@ -43,11 +48,13 @@ div.extra {
   justify-content: center;
   flex-direction: column;
 }
+
 div.extra h4.left {
   text-align: left;
   float: left;
-  width: 60%;
+  width: 100%;
 }
+
 h4 {
   color: rgba(120, 105, 200, 0);
   font-weight: 0;
@@ -55,11 +62,13 @@ h4 {
   font-size: 0.4em;
   line-height: 120%;
 }
+
 div.extra h4.right {
   text-align: right;
   width: 30%;
   float: right;
 }
+
 div.extra h4.right a {
   text-align: right;
   float: right;

@@ -69,7 +69,7 @@ class AnkiQA(AnkiPrompt):
     def _extra_field_content(self) -> str:
         note_title = f"<span style='opacity: 0.5; font-size: 0.7em; line-height: 0%;'>{self.source_title}</span>" if self.source_title else ""
         edit_button_html = edit_button(self.edit_url) if self.edit_url else ""
-        return f"{edit_button_html}{note_title}"
+        return f"<div class='edit_button' style='text-align: center;'>{edit_button_html}</div>{note_title}"
 
     def to_genanki_note(self) -> genanki.Note:
         return genanki.Note(
@@ -97,14 +97,13 @@ class AnkiQA(AnkiPrompt):
 
 def edit_button(url: str) -> str:
     return f"""<a href="{url}" style="background-color: #5f0069;
-border: none;
-color: white;
-padding: 0.8em;
-text-align: center;
-text-decoration: none;
-font-size: 0.8em;
-font-family: 'Inter', sans-serif;
-float: right;
-border-radius: 8px;
-opacity: 0.8;
+        border: none;
+        color: white;
+        padding: 0.8em;
+        text-align: center;
+        text-decoration: none;
+        font-size: 0.8em;
+        font-family: 'Inter', sans-serif;
+        border-radius: 8px;
+        opacity: 0.8;
 ">Obsidian</a>"""
