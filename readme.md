@@ -127,15 +127,16 @@ inv validate_ci
 
 * p1: infer scheduling_uuid during creation in the same way as during sync. Ensures they cannot drift.
 
-Seems it keeps recreating these prompts, e.g. 
-```
-In Java, how do you rewrite this?
+The markdown 
 
-if (claims.isPresent()) {
-    this.context = AccessUtils.getContext(claims.get());
-} else {
-    this.context = Optional.empty();
-}
-```
+'In Java, how do you go from `Optional<Optional<T>>` to `Optional<T>`?' 
 
-It seems it's especially code prompts. 
+is parsed to 
+
+'In Java, how do you go from `Optional>` to `Optional`?'
+
+This seems to be a general problem with generics, but only when instantiating from markdown. 
+
+By beautifulsoup. So, this assumes that there is a lossless back-conversion, which does not seem to be the case. The alternative is to store the UUID with the prompt, which would've been a better choice! But I'm not sure that's possible without having to redo the note, which means redoing the entire library?
+
+Huh! Perhaps this info is stored already in the UUID field. We still need changes in a few places; the syncer, and deleting based on note IDs. But that's very feasible!
