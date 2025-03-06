@@ -3,3 +3,7 @@ info:
 
 build:
 	docker build . -t ghcr.io/martinbernstorff/memium:latest -f Dockerfile
+
+test:
+	uv run pytest
+	uv run pyright
