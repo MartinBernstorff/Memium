@@ -29,10 +29,10 @@ class AnkiQA(AnkiPrompt):
         ]
 
         QUESTION_STR = r"{{ Question }}"
-        TTS_QUESTION_STR = r"{{ tts en_US voices=Apple_Samantha speed=1.05:Question }}" # type: ignore
+        # TTS_QUESTION_STR = r"{{ tts en_US voices=Apple_Samantha speed=1.05:Question }}"  # noqa: ERA001
 
         ANSWER_STR = r"{{ Answer }}"
-        TTS_ANSWER_STR = r"{{ tts en_US voices=Apple_Samantha speed=1.05:Answer }}" # type: ignore
+        # TTS_ANSWER_STR = r"{{ tts en_US voices=Apple_Samantha speed=1.05:Answer }}"  # noqa: ERA001
 
         EXTRA_STR = r"{{ Extra }}"
 
@@ -67,7 +67,11 @@ class AnkiQA(AnkiPrompt):
 
     @property
     def _extra_field_content(self) -> str:
-        note_title = f"<span style='opacity: 0.5; font-size: 0.7em; line-height: 0%;'>{self.source_title}</span>" if self.source_title else ""
+        note_title = (
+            f"<span style='opacity: 0.5; font-size: 0.7em; line-height: 0%;'>{self.source_title}</span>"
+            if self.source_title
+            else ""
+        )
         edit_button_html = edit_button(self.edit_url) if self.edit_url else ""
         return f"<div class='edit_button' style='text-align: center;'>{edit_button_html}</div>{note_title}"
 
