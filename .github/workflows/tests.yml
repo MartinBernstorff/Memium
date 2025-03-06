@@ -17,6 +17,7 @@ jobs:
       - name: Checkout (GitHub)
         uses: actions/checkout@v4
 
+      # p2: migrate this to uv
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v3 
         with:

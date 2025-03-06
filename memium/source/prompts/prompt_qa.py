@@ -18,12 +18,6 @@ class QAPrompt(BasePrompt):
 
     @property
     def scheduling_uid(self) -> int:
-        # p1: This is where the scheduling_uid is generated for QAPrompts
-        # Where is it generated when getting the sync logic?
-        # Also, should it perhaps be generated at the level of AnkiQA?
-        # I think it needs to, if we want to ensure consistent scheduling_uids
-        # when extracting from Anki as well
-        # Huh, so this is also where it is used when generating it for deletion!
         return hash_str_to_int(self.scheduling_uid_str)
 
     @property

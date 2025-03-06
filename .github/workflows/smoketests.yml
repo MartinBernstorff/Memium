@@ -20,6 +20,7 @@ jobs:
       - name: Checkout (GitHub)
         uses: actions/checkout@v4
 
+      # p2 migrate this to uv
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
@@ -28,6 +29,7 @@ jobs:
       - name: Install invoke
         run: |
           python -m pip install --upgrade pip
+          # p2: migrate this to a makefile
           pip install invoke
 
       - name: Run integration test

@@ -55,10 +55,6 @@ class AnkiPromptConverter:
     def note_info_to_prompt(self, note_info: NoteInfo) -> DestinationPrompt:
         if "Question" in note_info.fields and "Answer" in note_info.fields:
             return DestinationPrompt(
-                # p1: This is where the values for the fields are extracted, and thus where
-                # the raw materials for the scheduling_uid are extracted
-                # This means that, essentially, I need to make sure that the string cleaner removes everything
-                # that could be relevant.
                 QAWithoutDoc(
                     question=note_info.fields["Question"].value,
                     answer=note_info.fields["Answer"].value,
