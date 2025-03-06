@@ -16,8 +16,10 @@ class TableExtractorExample:
     table_prompt: str  # What the example is testing
     expectation: Sequence[FakeQAPrompt]  # Expected prompts
 
+
 # fix: if the row contains a wikilink with a pipe, it will be split into two cells
 # e.g. [[Name|Alias]] will be parsed incorrectly.
+
 
 @pytest.mark.parametrize(
     ("example"),
