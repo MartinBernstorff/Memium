@@ -1,42 +1,28 @@
-# This workflow will install Python dependencies, run pytests and run notebooks
-# then it will in python 3.9 (ubuntu-latest) create a badge with the coverage
-# and add it to the PR. This badge will be updated if the PR is updated.
+name: tests
 
-name: Tests
 on:
+  workflow_dispatch:
   push:
-    branches: [main]
+    branches: [ main ]
   pull_request:
-    branches: [main]
+    branches: [ main ]
 
 jobs:
-  build-and-test:
-    permissions: write-all
+  verify:
     runs-on: ubuntu-latest
+    if: github.event.pull_request.draft == false
     steps:
-      - name: Checkout (GitHub)
+      - name: Checkout Base
         uses: actions/checkout@v4
 
-      # p2: migrate this to uv
-      - name: Login to GitHub Container Registry
-        uses: docker/login-action@v3 
-        with:
-          registry: ghcr.io
-          username: MartinBernstorff
-          password: ${{ secrets.GITHUB_TOKEN }}
-      
-      - name: Create github hosts file
-        run: | # If this file is not created, the dev container fails because of non-existant mount
-          mkdir -p ~/.config/gh
-          mkdir -p ~/ankidecks
-          touch ~/.config/gh/hosts.yml
+      - name: Install the latest version of uv
+        uses: astral-sh/setup-uv@v5
 
-      - name: Pre-build dev container image
-        uses: devcontainers/ci@v0.3
-        with:
-          imageName: ghcr.io/martinbernstorff/memium-devcontainer
-          cacheFrom: ghcr.io/martinbernstorff/memium-devcontainer:latest
-          push: filter
-          refFilterForPush: refs/heads/main
-          runCmd:
-            inv validate-ci
+      - name: Install the project
+        run: |
+          uv sync --dev
+
+      - name: Type check
+        run: |
+          make test
+
