@@ -15,7 +15,7 @@ def get_code_blocks_from_md(md_path: Path) -> Sequence[str]:
 
 def create_smoketest_dir() -> Path:
     print("💨 Running smoketest")
-    input_dir = Path.home() / ".smoketest_dir"
+    input_dir = Path() / ".smoketest_dir"
     input_dir.mkdir(exist_ok=True)
 
     test_file = input_dir / "test.md"
@@ -35,9 +35,9 @@ def smoketest_docker(c: inv.Context):
     replaced_image_location = docker_block.replace(
         "ghcr.io/martinbernstorff/memium:latest", "memium"
     )
-    replaced_input_dir = replaced_image_location.replace("$INPUT_DIR", str(input_dir)).replace(
-        "--name=memium", f"--name={uuid.uuid4()}"
-    )
+    replaced_input_dir = replaced_image_location.replace(
+        "$INPUT_DIR", str(input_dir.absolute())
+    ).replace("--name=memium", f"--name={uuid.uuid4()}")
 
     smoketest_docker_command = replaced_input_dir + "  --dry-run \\\n" + "  --skip-sync"
 
