@@ -4,18 +4,17 @@
     '<p>Q. This is a <em>question</em>?</p>',
     '<p>FakeAnswer</p>',
     '''
-      <a href="FakeEditURL" style="background-color: #5f0069;
-      border: none;
-      color: white;
-      padding: 0.8em;
-      text-align: center;
-      text-decoration: none;
-      font-size: 0.8em;
-      font-family: 'Inter', sans-serif;
-      float: right;
-      border-radius: 8px;
-      opacity: 0.8;
-      ">Obsidian</a>
+      <div class='edit_button' style='text-align: center;'><a href="FakeEditURL" style="background-color: #5f0069;
+              border: none;
+              color: white;
+              padding: 0.8em;
+              text-align: center;
+              text-decoration: none;
+              font-size: 0.8em;
+              font-family: 'Inter', sans-serif;
+              border-radius: 8px;
+              opacity: 0.8;
+      ">Obsidian</a></div>
     ''',
     '0',
   ])

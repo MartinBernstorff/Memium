@@ -58,8 +58,7 @@ docker run -i \
   -v $INPUT_DIR:/input \
   --restart unless-stopped \
   ghcr.io/martinbernstorff/memium:latest \
-  memium \
-  --input-dir /input/
+  memium --input-dir /input
 ```
 
 This will start a docker container which updates your deck from `$INPUT_DIR`. In case of updated files, it will sync the difference (create new prompts and delete deleted prompts) to Anki. 
@@ -137,8 +136,8 @@ is parsed to
 
 This seems to be a general problem with generics, but only when instantiating from markdown. 
 
-By beautifulsoup. So, this assumes that there is a lossless back-conversion, which does not seem to be the case. The alternative is to store the UUID with the prompt, which would've been a better choice! But I'm not sure that's possible without having to redo the note, which means redoing the entire library?
-
-Huh! Perhaps this info is stored already in the UUID field. We still need changes in a few places; the syncer, and deleting based on note IDs. But that's very feasible!
+By beautifulsoup. So, this assumes that there is a lossless back-conversion, which does not seem to be the case. The alternative is to store the UUID with the prompt, which would've been a better choice! Huh! Perhaps this info is stored already in the UUID field. We still need changes in a few places; the syncer, and deleting based on note IDs. But that's very feasible!
 
 * p2: Should AnkiQA error if any html tags or styling present in question/answer? Is a danger-sign re: scheduling UUID.
+
+* p3: Add support for "definition" prompt. Should add a reverse card without the note title.

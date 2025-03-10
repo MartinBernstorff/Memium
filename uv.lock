@@ -30,14 +30,15 @@ wheels = [
 
 [[package]]
 name = "beautifulsoup4"
-version = "4.12.3"
+version = "4.13.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "soupsieve" },
+    { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/b3/ca/824b1195773ce6166d388573fc106ce56d4a805bd7427b624e063596ec58/beautifulsoup4-4.12.3.tar.gz", hash = "sha256:74e3d1928edc070d21748185c46e3fb33490f22f52a3addee9aee0f4f7781051", size = 581181 }
+sdist = { url = "https://files.pythonhosted.org/packages/f0/3c/adaf39ce1fb4afdd21b611e3d530b183bb7759c9b673d60db0e347fd4439/beautifulsoup4-4.13.3.tar.gz", hash = "sha256:1bd32405dacc920b42b83ba01644747ed77456a65760e285fbc47633ceddaf8b", size = 619516 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/b1/fe/e8c672695b37eecc5cbf43e1d0638d88d66ba3a44c4d321c796f4e59167f/beautifulsoup4-4.12.3-py3-none-any.whl", hash = "sha256:b80878c9f40111313e55da8ba20bdba06d8fa3969fc68304167741bbf9e082ed", size = 147925 },
+    { url = "https://files.pythonhosted.org/packages/f9/49/6abb616eb3cbab6a7cca303dc02fdf3836de2e0b834bf966a7f5271a34d8/beautifulsoup4-4.13.3-py3-none-any.whl", hash = "sha256:99045d7d3f08f91f0d656bc9b7efbae189426cd913d830294a15eefa0ea4df16", size = 186015 },
 ]
 
 [[package]]
@@ -479,19 +480,6 @@ wheels = [
 ]
 
 [[package]]
-name = "lumberman"
-version = "0.35.1"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "questionary" },
-    { name = "typer" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/28/83/1b91b07d9f368f22d9461d38b30bf66fc852e1471c08d228424356fe8eb6/lumberman-0.35.1.tar.gz", hash = "sha256:eb6156f35cdff14f6e7d862a7d7ae16d4997e8fe6ded0b27927f029652b45515", size = 36194 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/6a/fe/42b987b9cde2c3b25514d48ddce7a5a46579be8558591e0032d23c2bbc9f/lumberman-0.35.1-py3-none-any.whl", hash = "sha256:6674db9237b8fa2a4aa8deb4a39eb5bda99b90882f79a998d1e3ab89e4a26684", size = 17319 },
-]
-
-[[package]]
 name = "markdown"
 version = "3.7"
 source = { registry = "https://pypi.org/simple" }
@@ -587,23 +575,20 @@ dependencies = [
     { name = "wasabi" },
 ]
 
-[package.optional-dependencies]
+[package.dev-dependencies]
 dev = [
     { name = "cruft" },
+    { name = "diff-cover" },
     { name = "herbarium" },
     { name = "invoke" },
-    { name = "lumberman" },
     { name = "pre-commit" },
     { name = "pyright" },
-    { name = "ruff" },
-]
-tests = [
-    { name = "diff-cover" },
     { name = "pytest" },
     { name = "pytest-cov" },
     { name = "pytest-sugar" },
     { name = "pytest-testmon" },
     { name = "pytest-xdist" },
+    { name = "ruff" },
     { name = "syrupy" },
 ]
 
@@ -611,31 +596,34 @@ tests = [
 requires-dist = [
     { name = "bs4", specifier = "==0.0.2" },
     { name = "cffi", specifier = "==1.17.1" },
-    { name = "cruft", marker = "extra == 'dev'", specifier = "==2.16.0" },
-    { name = "diff-cover", marker = "extra == 'tests'", specifier = "==9.2.2" },
     { name = "genanki", specifier = "==0.13.1" },
-    { name = "herbarium", marker = "extra == 'dev'" },
-    { name = "invoke", marker = "extra == 'dev'", specifier = "==2.2.0" },
     { name = "iterpy", specifier = "==1.11.1" },
-    { name = "lumberman", marker = "extra == 'dev'" },
     { name = "markdown", specifier = "==3.7" },
-    { name = "pre-commit", marker = "extra == 'dev'", specifier = "==4.1.0" },
     { name = "pydantic", specifier = "==2.10.6" },
-    { name = "pyright", marker = "extra == 'dev'", specifier = "==1.1.396" },
-    { name = "pytest", marker = "extra == 'tests'", specifier = "==8.3.5" },
-    { name = "pytest-cov", marker = "extra == 'tests'", specifier = "==6.0.0" },
-    { name = "pytest-sugar", marker = "extra == 'tests'", specifier = "==1.0.0" },
-    { name = "pytest-testmon", marker = "extra == 'tests'", specifier = "==2.1.3" },
-    { name = "pytest-xdist", marker = "extra == 'tests'", specifier = "==3.6.1" },
-    { name = "ruff", marker = "extra == 'dev'", specifier = "==0.9.9" },
     { name = "sentry-sdk", specifier = "==2.20.0" },
-    { name = "syrupy", marker = "extra == 'tests'", specifier = "==4.8.2" },
     { name = "tqdm", specifier = "==4.67.1" },
     { name = "typer", specifier = "==0.15.2" },
     { name = "unidecode", specifier = "==1.3.8" },
     { name = "wasabi", specifier = "==1.1.3" },
 ]
 provides-extras = ["tests", "dev"]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "cruft", specifier = "==2.16.0" },
+    { name = "diff-cover", specifier = "==9.2.2" },
+    { name = "herbarium", specifier = ">=0.32.1" },
+    { name = "invoke", specifier = "==2.2.0" },
+    { name = "pre-commit", specifier = "==4.1.0" },
+    { name = "pyright", specifier = "==1.1.393" },
+    { name = "pytest", specifier = "==8.3.4" },
+    { name = "pytest-cov", specifier = "==6.0.0" },
+    { name = "pytest-sugar", specifier = "==1.0.0" },
+    { name = "pytest-testmon", specifier = "==2.1.3" },
+    { name = "pytest-xdist", specifier = "==3.6.1" },
+    { name = "ruff", specifier = "==0.4.5" },
+    { name = "syrupy", specifier = "==4.8.1" },
+]
 
 [[package]]
 name = "nodeenv"
