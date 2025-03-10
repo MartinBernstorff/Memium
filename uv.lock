@@ -621,7 +621,7 @@ dev = [
     { name = "pytest-testmon", specifier = "==2.1.3" },
     { name = "pytest-xdist", specifier = "==3.6.1" },
     { name = "ruff", specifier = "==0.9.10" },
-    { name = "syrupy", specifier = "==4.8.1" },
+    { name = "syrupy", specifier = "==4.9.0" },
 ]
 
 [[package]]
@@ -1029,14 +1029,14 @@ wheels = [
 
 [[package]]
 name = "syrupy"
-version = "4.8.1"
+version = "4.9.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "pytest" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/c4/32/8b56491ed50ae103c2db14885c29fe765170bdf044fe5868548113da35ef/syrupy-4.8.1.tar.gz", hash = "sha256:8da8c0311e6d92de0b15767768c6ab98982b7b4a4c67083c08fbac3fbad4d44c", size = 50192 }
+sdist = { url = "https://files.pythonhosted.org/packages/8f/47/821aad6be7a3ee5ef590369dab1ba9f969aad0ca1d8e92ef28d737d056ba/syrupy-4.9.0.tar.gz", hash = "sha256:7bd822492a6fa9f6f98832c2ca24f513b3e69a5690f4b2166bdb3b3941eef767", size = 52304 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/80/47/5e8f44ec0f287b08e8c1f3fc63fe1fbe182f07bf606eec903d7827b95e51/syrupy-4.8.1-py3-none-any.whl", hash = "sha256:274f97cbaf44175f5e478a2f3a53559d31f41c66c6bf28131695f94ac893ea00", size = 50326 },
+    { url = "https://files.pythonhosted.org/packages/14/78/1e7aee4498f79624f85a6480eb8bc04bacb729c30336bc61b384c6ce4998/syrupy-4.9.0-py3-none-any.whl", hash = "sha256:3028d60188df9b39079678501be7d72fe64d32e2bb53d78df87f5a84bde94d76", size = 52045 },
 ]
 
 [[package]]
