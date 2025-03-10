@@ -25,7 +25,7 @@ def cli(
             file_okay=False,
             exists=True,
             readable=True,
-            writable=True,
+            writable=False,
         ),
     ],
     watch_seconds: Annotated[
