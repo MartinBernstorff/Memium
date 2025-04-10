@@ -19,3 +19,13 @@ A. A large African cat with a mane.""",
     assert len(result) == 1
     assert result[0].question == snapshot("Term for 'A large African cat with a mane.'?")
     assert result[0].answer == snapshot("Lion")
+
+
+def test_empty_definition_extractor():
+    doc = DummyDocument(
+        content="""
+Q. No def?
+A. Blah"""
+    )
+    result = ReversedDefinitionExtractor(QAPromptExtractor("Q.", "A.")).extract_prompts(doc)
+    assert len(result) == 0

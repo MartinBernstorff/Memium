@@ -15,6 +15,8 @@ class ReversedDefinitionExtractor(BasePromptExtractor):
     def extract_prompts(self, document: Document) -> Sequence[QAPrompt]:
         qa_prompts = self.qa_extractor.extract_prompts(document)
         definition_prompts = Arr(qa_prompts).filter(lambda prompt: "Definition" in prompt.question)
+        if definition_prompts.len() == 0:
+            return []
         prompt = definition_prompts[0]
         return [
             QAWithoutDoc(f"Term for '{prompt.answer}'?", document.source_path.stem, add_tags=[])
