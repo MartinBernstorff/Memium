@@ -18,6 +18,7 @@ class ReversedDefinitionExtractor(BasePromptExtractor):
         if definition_prompts.len() == 0:
             return []
         prompt = definition_prompts[0]
-        return [
-            QAWithoutDoc(f"Term for '{prompt.answer}'?", document.source_path.stem, add_tags=[])
-        ]
+        answer = prompt.answer.rstrip()
+        if answer[-1] in ".,!?;:":
+            answer = answer[:-1]
+        return [QAWithoutDoc(f"Term for '{answer}'?", document.source_path.stem, add_tags=[])]
