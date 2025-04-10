@@ -8,6 +8,7 @@ from memium.destination.destination_dryrun import DryRunDestination
 from memium.diff_determiner import PromptDiffDeterminer
 from memium.environment import host_input_dir, in_docker
 from memium.source.document_source import MarkdownDocumentSource
+from memium.source.extractors.extractor_definition import ReversedDefinitionExtractor
 from memium.source.extractors.extractor_qa import QAPromptExtractor
 from memium.source.extractors.extractor_table import TableExtractor
 from memium.source.prompt_source import DocumentPromptSource
@@ -40,10 +41,12 @@ def core(
     )
 
     # Get the inputs
+    qa_extractor = QAPromptExtractor(question_prefix="Q.", answer_prefix="A.")
     source_prompts = DocumentPromptSource(
         document_ingester=MarkdownDocumentSource(directory=input_dir),
         prompt_extractors=[
-            QAPromptExtractor(question_prefix="Q.", answer_prefix="A."),
+            qa_extractor,
+            ReversedDefinitionExtractor(qa_extractor),
             TableExtractor(),
         ],
     ).get_prompts()

@@ -7,3 +7,6 @@ build:
 test:
 	uv run pytest
 	uv run pyright
+
+snapshot:
+	uv run pytest --inline-snapshot=review
