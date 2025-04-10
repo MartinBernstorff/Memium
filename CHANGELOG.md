@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v0.29.2 (2025-04-10)
+
+### Bug Fixes
+
+- Strip ending punctuation
+  ([`a8ce2d3`](https://github.com/MartinBernstorff/Memium/commit/a8ce2d317437f17a622ac36b7c78a97d5cba3636))
+
+
 ## v0.29.1 (2025-04-10)
 
 ### Bug Fixes
