@@ -47,7 +47,7 @@ class TestMarkdownIngester:
         )
         expected_output = """Linking to a valid _Note Alias_, and can handle _Multiple Aliases_"""
         assert (
-            MarkdownDocumentSource(directory=Path())._sanitize_to_valid_markdown(  # type: ignore[PrivateMethodUsage]
+            MarkdownDocumentSource(directory=Path())._wikilinks_to_markdown(  # type: ignore[PrivateMethodUsage]
                 input_str
             )
             == expected_output
@@ -61,19 +61,22 @@ class Ex:
 
     then: str
     # What the expected result is
+    #
+    type: str
 
 
 @pytest.mark.parametrize(
     ("example"),
     [
-        Ex("[[N|Alias]]", "[[Alias]]"),  # Base
-        Ex(" [[N|Alias]] ", " [[Alias]] "),  # Spaces
-        Ex("[[N/N2|Alias]]", "[[Alias]]"),  # Nesting
-        Ex("[[-|A]]", "[[A]]"),  # Dash
+        Ex("[[N|Alias]]", "_Alias_", "Base"),
+        Ex(" [[N|Alias]] ", " _Alias_ ", "Spaces"),
+        Ex("[[N/N2|Alias]]", "_Alias_", "Nesting"),
+        Ex("[[-|A]]", "_A_", "Dash"),
+        Ex("[[swe/Test]]", "_Test_", "Subdir"),
     ],
-    ids=lambda x: x.given,
+    ids=lambda x: x.type,
 )
-def test_replace_alias_wiki_links(example: Ex):
-    given = MarkdownDocumentSource._replace_alias_wiki_links(example.given)  # type: ignore
+def test_sanitise_to_markdown(example: Ex):
+    given = MarkdownDocumentSource._wikilinks_to_markdown(example.given)  # type: ignore
     then = example.then
     assert given == then

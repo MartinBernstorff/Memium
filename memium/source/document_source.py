@@ -5,6 +5,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Protocol
 
+from iterpy import Arr
 from tqdm import tqdm
 
 from .document import Document
@@ -31,11 +32,25 @@ class MarkdownDocumentSource(BaseDocumentSource):
     def __init__(self, directory: Path) -> None:
         self.directory = directory
 
-    def _replace_wikilinks_with_styling(self, input_str: str) -> str:
+    @staticmethod
+    def _replace_wikilinks_with_styling(input_str: str) -> str:
         return input_str.replace("[[", "_").replace("]]", "_")
 
     @staticmethod
-    def _replace_alias_wiki_links(text: str) -> str:
+    def _remove_subfolder_from_wiki_links(text: str) -> str:
+        ob = r"\[\["
+        cb = r"\]\]"
+        contents = r"\w|\s|\d|\-|\/"  # Word contents
+        matches = re.findall(pattern=rf"{ob}[{contents}]+{cb}", string=text, flags=re.DOTALL)
+        for m in matches:
+            name = m.replace("[[", "").replace("]]", "").split("/")[-1]
+            replacement_str = f"[[{name}]]"
+            text = text.replace(m, replacement_str)
+
+        return text
+
+    @staticmethod
+    def _only_alias_from_wiki_links(text: str) -> str:
         ob = r"\[\["  # Open bracket
         cb = r"\]\]"  # Close bracket
         word_contents = r"\w|\s|\d|\-"  # Word contents
@@ -55,10 +70,14 @@ class MarkdownDocumentSource(BaseDocumentSource):
 
         return text
 
-    def _sanitize_to_valid_markdown(self, input_str: str) -> str:
-        aliases_handled = self._replace_alias_wiki_links(input_str)
-        wikilinks_replaced = self._replace_wikilinks_with_styling(aliases_handled)
-        return wikilinks_replaced
+    @staticmethod
+    def _wikilinks_to_markdown(input_str: str) -> str:
+        return (
+            Arr([input_str])
+            .map(MarkdownDocumentSource._only_alias_from_wiki_links)
+            .map(MarkdownDocumentSource._remove_subfolder_from_wiki_links)
+            .map(MarkdownDocumentSource._replace_wikilinks_with_styling)
+        )[0]
 
     def _get_document_from_file(self, file_path: Path) -> Document | FileNotRetrievedError:
         try:
@@ -68,7 +87,7 @@ class MarkdownDocumentSource(BaseDocumentSource):
                 raise Exception(f"Could not read file {file_path}") from e
 
             try:
-                sanitized = self._sanitize_to_valid_markdown(contents)
+                sanitized = self._wikilinks_to_markdown(contents)
             except Exception as e:
                 raise Exception(f"Could not sanitize file {file_path}") from e
 
