@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v0.28.0 (2025-04-10)
+
+### Features
+
+- Handle subfolders in wikilinks
+  ([`ad9898e`](https://github.com/MartinBernstorff/Memium/commit/ad9898e882ee7660843220bfd7a716604bf4e13a))
+
+
 ## v0.27.0 (2025-04-10)
 
 ### Bug Fixes
