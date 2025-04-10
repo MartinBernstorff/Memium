@@ -143,3 +143,5 @@ By beautifulsoup. So, this assumes that there is a lossless back-conversion, whi
 * p3: Add support for "definition" prompt. Should add a reverse card without the note title.
 
 * p2: Fix [[subdir/Name]], should be parsed as [[Name]]
+
+* p2: Reverse "definition" prompts. 
