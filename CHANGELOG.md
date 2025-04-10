@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v0.29.1 (2025-04-10)
+
+### Bug Fixes
+
+- Skip definition extraction if no def found
+  ([`bab8665`](https://github.com/MartinBernstorff/Memium/commit/bab8665d19d7a4bf4677355c5898562b52ce8082))
+
+
 ## v0.29.0 (2025-04-10)
 
 ### Chores
