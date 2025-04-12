@@ -1,6 +1,38 @@
 # CHANGELOG
 
 
+## v0.30.0 (2025-04-12)
+
+### Chores
+
+- Cleanup unused code
+  ([`cad50d4`](https://github.com/MartinBernstorff/Memium/commit/cad50d4691afbd38976d42b628ba5b200e952f06))
+
+### Documentation
+
+- Update readme.md
+  ([`4e59b4a`](https://github.com/MartinBernstorff/Memium/commit/4e59b4a9e6bac79efed49a2282a85bbce582c64b))
+
+- Update readme.md
+  ([`1b16827`](https://github.com/MartinBernstorff/Memium/commit/1b16827cd7ee4bbb711f9592998bd3beb653e2d0))
+
+### Features
+
+- Specify whether to show parent doc title independently from prompt type
+  ([`b0a0217`](https://github.com/MartinBernstorff/Memium/commit/b0a0217e151bfcf2a29d7dba0267ee403e9ff1b6))
+
+### Refactoring
+
+- Inline more of QA
+  ([`8b7fd40`](https://github.com/MartinBernstorff/Memium/commit/8b7fd404839545b8fc8380613bfae9bd6aa0c503))
+
+- Inline QAFromDoc
+  ([`838aa03`](https://github.com/MartinBernstorff/Memium/commit/838aa03a72bf063d135bea29b6d10c8813edc629))
+
+- Remove cloze
+  ([`0c6e524`](https://github.com/MartinBernstorff/Memium/commit/0c6e524a4c673621f4b7c5ca4d12da3e2ee19e2e))
+
+
 ## v0.29.3 (2025-04-11)
 
 ### Bug Fixes
