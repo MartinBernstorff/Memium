@@ -3,7 +3,7 @@ import re
 from collections.abc import Sequence
 
 from ..document import Document
-from ..prompts.prompt_qa import QAFromDoc, QAPromptT
+from ..prompts.prompt_qa import QAFromDoc, QAPrompt
 from .extractor import BasePromptExtractor
 
 log = logging.getLogger(__name__)
@@ -48,8 +48,8 @@ class QAPromptExtractor(BasePromptExtractor):
             != 0
         )
 
-    def extract_prompts(self, document: Document) -> Sequence[QAPromptT]:
-        prompts: list[QAPromptT] = []
+    def extract_prompts(self, document: Document) -> Sequence[QAPrompt]:
+        prompts: list[QAPrompt] = []
         blocks = self._string_to_blocks_by_newlines(document.content)
         block_starting_line_nr = 1
 

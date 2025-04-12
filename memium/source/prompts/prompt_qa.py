@@ -5,7 +5,6 @@ from typing import Protocol
 from memium.source.document import Document
 
 from ...utils.hash_cleaned_str import clean_str, hash_str_to_int
-from .prompt import BasePrompt
 from .prompt_from_doc import PromptFromDoc, obsidian_url
 
 
@@ -26,14 +25,16 @@ class QAPromptProtocol(Protocol):
 
 
 @dataclass(frozen=True)
-class QAPrompt(BasePrompt):
+class QAWithoutDoc(PromptProtocol, QAPromptProtocol):
     question: str
     answer: str
+
+    add_tags: Sequence[str]
 
     @property
     def scheduling_uid_str(self) -> str:
         """Str used for generating the update_uid. Super helpful for debugging."""
-        return _scheduling_uid_str(self.question, self.answer)
+        return qa_scheduling_uid_str(self.question, self.answer)
 
     @property
     def scheduling_uid(self) -> int:
@@ -42,20 +43,11 @@ class QAPrompt(BasePrompt):
     @property
     def update_uid_str(self) -> str:
         """Str used for generating the update_uid. Super helpful for debugging."""
-        return _update_uid_str(self.question, self.answer, self.tags)
+        return qa_update_uid_str(self.question, self.answer, self.tags)
 
     @property
     def update_uid(self) -> int:
         return hash_str_to_int(self.update_uid_str)
-
-    @property
-    def tags(self) -> Sequence[str]:
-        return ()
-
-
-@dataclass(frozen=True)
-class QAWithoutDoc(QAPrompt):
-    add_tags: Sequence[str]
 
     @property
     def tags(self) -> Sequence[str]:
@@ -76,7 +68,7 @@ class QAFromDoc(PromptProtocol, QAPromptProtocol, PromptFromDoc):
 
     @property
     def scheduling_uid_str(self) -> str:
-        return _scheduling_uid_str(self.question, self.answer)
+        return qa_scheduling_uid_str(self.question, self.answer)
 
     @property
     def scheduling_uid(self) -> int:
@@ -84,7 +76,7 @@ class QAFromDoc(PromptProtocol, QAPromptProtocol, PromptFromDoc):
 
     @property
     def update_uid_str(self) -> str:
-        return _update_uid_str(self.question, self.answer, self.parent_doc.tags)
+        return qa_update_uid_str(self.question, self.answer, self.parent_doc.tags)
 
     @property
     def update_uid(self) -> int:
@@ -99,12 +91,12 @@ class QAFromDoc(PromptProtocol, QAPromptProtocol, PromptFromDoc):
         return obsidian_url(self.parent_doc.title, self.line_nr)
 
 
-def _scheduling_uid_str(question: str, answer: str) -> str:
+def qa_scheduling_uid_str(question: str, answer: str) -> str:
     return f"{clean_str(question)}_{clean_str(answer)}"
 
 
-def _update_uid_str(question: str, answer: str, tags: Sequence[str]) -> str:
+def qa_update_uid_str(question: str, answer: str, tags: Sequence[str]) -> str:
     return f"{question}_{answer}_{tags}"
 
 
-QAPromptT = QAPrompt | QAFromDoc
+QAPrompt = QAWithoutDoc | QAFromDoc
