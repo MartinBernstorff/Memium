@@ -26,6 +26,7 @@ class AnkiPromptConverter:
                     uuid=prompt.scheduling_uid,
                     edit_url=prompt.edit_url,
                     source_title=prompt.parent_doc.title,
+                    render_parent_doc=prompt.render_parent_doc,
                 )
             case QAWithoutDoc():
                 return AnkiQA(
@@ -37,6 +38,7 @@ class AnkiPromptConverter:
                     uuid=prompt.scheduling_uid,
                     edit_url=prompt.edit_url,
                     source_title=None,
+                    render_parent_doc=False,
                 )
             case BasePrompt():
                 raise ValueError("BasePrompt is the base class for all prompts, use a subclass")

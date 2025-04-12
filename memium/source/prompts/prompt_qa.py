@@ -69,7 +69,10 @@ class QAFromDoc(BasePrompt, QAPromptProtocol, PromptFromDoc):
     answer: str
 
     parent_doc: Document
+
     line_nr: int
+
+    render_parent_doc: bool = True
 
     @property
     def scheduling_uid_str(self) -> str:

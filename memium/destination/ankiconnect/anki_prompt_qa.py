@@ -11,12 +11,17 @@ from .anki_prompt import AnkiPrompt
 
 @dataclass(frozen=True)
 class AnkiQA(AnkiPrompt):
-    base_deck: str
-    tags: Sequence[str]
     question: str
     answer: str
     source_title: str | None
+
+    render_parent_doc: bool
+
     css: str
+
+    base_deck: str
+    tags: Sequence[str]
+
     uuid: int  # UUID used for scheduling. If a new note is added with the same uuid, it will override the old note.
 
     @property
@@ -69,7 +74,7 @@ class AnkiQA(AnkiPrompt):
     def _extra_field_content(self) -> str:
         note_title = (
             f"<span style='opacity: 0.5; font-size: 0.7em; line-height: 0%;'>{self.source_title}</span>"
-            if self.source_title
+            if self.source_title and self.render_parent_doc
             else ""
         )
         edit_button_html = edit_button(self.edit_url) if self.edit_url else ""
