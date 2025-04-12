@@ -74,27 +74,6 @@ If you would like to build build your own Python application on top of the abstr
 pip install memium
 ```
 
-### Pipeline abstractions
-The library is built as a pipeline illustrated below. Left describes the abstract pipeline, defined by interfaces. The right path describes an implementation of those interfaces from markdown to Anki, which is available in the CLI. 
-
-```mermaid
-
-graph TD 
-	FD["File on disk"]
-        DP["Prompts at Destination"]
-	FD -- DocumentSource --> Document
-	Document -- PromptExtractor --> Prompt
-	Prompt -- Destination --> DP
- 
-	MD["Markdown file"]
-	Prompts["[QAPrompt | ClozePrompt]"]
-        Anki["Cards in the Anki app"]
- 
-	MD -- MarkdownDocumentSource --> Document
-	Document -- "[QAPromptExtractor, \nClozePromptExtractor]" --> Prompts
-        Prompts -- AnkiConnectDestination --> Anki
- ```
-
 ## Contributing
 ### Setting up a dev environment
 1. Install [Orbstack](https://orbstack.dev/) or Docker Desktop. Make sure to complete the full install process before continuing.
@@ -124,6 +103,9 @@ inv validate_ci
 # Roadmap
 * p1: simplify the prompt hierarchy
         * Have only interfaces on the top-level
+        * Is there a need for "QAWithoutDoc"? Is it more of a "anonymousfront", essentially a rendering method?
+      
+* p3: rename fake objects to dummy
 
 * p2: infer scheduling_uuid during creation in the same way as during sync. Ensures they cannot drift.
 

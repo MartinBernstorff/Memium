@@ -2,7 +2,6 @@ from collections.abc import Mapping
 
 import pytest
 
-from ..source.prompts.prompt_cloze import ClozeWithoutDoc
 from ..source.prompts.prompt_qa import QAWithoutDoc
 from .ankiconnect.anki_converter import AnkiPromptConverter
 from .ankiconnect.ankiconnect_gateway import (
@@ -19,7 +18,6 @@ from .destination_ankiconnect import AnkiConnectDestination
 @pytest.mark.parametrize(
     ("fields"),
     [
-        ({"Text": AnkiField(value="MockText", order=0)}),
         (
             {
                 "Question": AnkiField(value="MockQuestion", order=0),
@@ -55,14 +53,13 @@ def test_ankiconnect_push_prompts():
                         question="FakeQuestion",
                         answer="FakeAnswer",
                         add_tags=["anki/deck/FakeSubdeck/FakeSubSubdeck"],
-                    ),
-                    ClozeWithoutDoc(text="FakeText", add_tags=["FakeTag"]),
+                    )
                 ]
             )
         ]
     )
 
-    expected_commands = [(ImportPackage, 1), (UpdateModel, 2)]
+    expected_commands = [(ImportPackage, 1), (UpdateModel, 1)]
     import_package_command = next(
         c for c in gateway.executed_commands if isinstance(c, ImportPackage)
     )
@@ -70,7 +67,7 @@ def test_ankiconnect_push_prompts():
         import_package_command.package.decks[0].name  # type: ignore
         == "FakeDeck::FakeSubdeck::FakeSubSubdeck"
     )
-    assert len(import_package_command.package.decks) == 2  # type: ignore
+    assert len(import_package_command.package.decks) == 1  # type: ignore
 
     for command in expected_commands:
         assert (

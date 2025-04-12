@@ -1,8 +1,6 @@
 from ...source.prompts.prompt import BasePrompt, DestinationPrompt
-from ...source.prompts.prompt_cloze import ClozePrompt, ClozeWithoutDoc
 from ...source.prompts.prompt_qa import QAFromDoc, QAWithoutDoc
 from .anki_prompt import AnkiPrompt
-from .anki_prompt_cloze import AnkiCloze
 from .anki_prompt_qa import AnkiQA
 from .ankiconnect_gateway import NoteInfo
 
@@ -40,15 +38,6 @@ class AnkiPromptConverter:
                     edit_url=prompt.edit_url,
                     source_title=None,
                 )
-            case ClozePrompt():
-                return AnkiCloze(
-                    text=prompt.text,
-                    base_deck=deck,
-                    tags=prompt.tags,
-                    css=self.card_css,
-                    uuid=prompt.scheduling_uid,
-                    edit_url=prompt.edit_url,
-                )
             case BasePrompt():
                 raise ValueError("BasePrompt is the base class for all prompts, use a subclass")
 
@@ -63,10 +52,4 @@ class AnkiPromptConverter:
                 destination_id=str(note_info.noteId),
             )
 
-        if "Text" in note_info.fields:
-            return DestinationPrompt(
-                ClozeWithoutDoc(text=note_info.fields["Text"].value, add_tags=note_info.tags),
-                destination_id=str(note_info.noteId),
-            )
-
-        raise ValueError(f"NoteInfo {note_info} has neither Question nor Text field")
+        raise ValueError(f"No Question field in note info: {note_info}")

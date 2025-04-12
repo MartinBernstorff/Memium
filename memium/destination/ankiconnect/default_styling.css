@@ -82,14 +82,7 @@ div.extra h4.right a {
   margin: 4px 2px;
   border-radius: 200px;
 }
-.cloze,
-.cloze b,
-.cloze u,
-.cloze i {
-  font-weight: bold;
-  color: MediumSeaGreen !important;
-  min-width: 30 em;
-}
+
 #extra,
 #extra i {
   font-size: 15px;
