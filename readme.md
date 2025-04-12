@@ -101,10 +101,11 @@ inv validate_ci
 [github discussions]: https://github.com/MartinBernstorff/memium/discussions
 
 # Roadmap
-* p2: Is there a need for "QAWithoutDoc"? Is it more of a "anonymousfront", essentially a rendering method?
+* p2: Is there a need for "QAWithoutDoc"? It is because the 
+  * Seems it's being used inside `DestinationPrompt`. But which parts of DestinationPrompt are being used?
+  * Likely only scheduling_uuid and update_uuid in diff_determiner. Let's try narrowing down the interface.
+  * Hmm, narrowing down the interface also dramatically decreases debug- and testability, because it doesn't include the values used for generating the IDs. For now, I'll leave thsi be.
       
-* p1: remove "core" indirection layer
-
 * p2: infer scheduling_uuid during creation in the same way as during sync. Ensures they cannot drift.
 
 The markdown 
@@ -120,5 +121,3 @@ This seems to be a general problem with generics, but only when instantiating fr
 By beautifulsoup. So, this assumes that there is a lossless back-conversion, which does not seem to be the case. The alternative is to store the UUID with the prompt, which would've been a better choice! Huh! Perhaps this info is stored already in the UUID field. We still need changes in a few places; the syncer, and deleting based on note IDs. But that's very feasible!
 
 * p2: Should AnkiQA error if any html tags or styling present in question/answer? Is a danger-sign re: scheduling UUID.
-
-* p2: Obsidian link, but no note-title, for reverse-definition prompts
