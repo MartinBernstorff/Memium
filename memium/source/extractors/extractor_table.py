@@ -7,7 +7,7 @@ from typing import Literal
 from memium.source.document import Document
 from memium.source.extractors.to_line_blocks import LineBlock, to_line_blocks
 
-from ..prompts.prompt_qa import QAFromDoc, QAPrompt
+from ..prompts.prompt_qa import QAFromDoc, QAPromptT
 from .extractor import BasePromptExtractor
 
 
@@ -125,8 +125,8 @@ class TableExtractor(BasePromptExtractor):
 
     def _parsed_table_to_prompt(
         self, parsed_table: ParsedTable, doc: Document
-    ) -> Sequence[QAPrompt]:
-        prompts: Sequence[QAPrompt] = []
+    ) -> Sequence[QAPromptT]:
+        prompts: Sequence[QAPromptT] = []
         match parsed_table.mode:
             case TableParseMode.ASCENDING | TableParseMode.DESCENDING:
                 break_index = len(parsed_table.rows) - 2
@@ -152,7 +152,7 @@ class TableExtractor(BasePromptExtractor):
                 break
         return prompts
 
-    def extract_prompts(self, document: Document) -> Sequence[QAPrompt]:
+    def extract_prompts(self, document: Document) -> Sequence[QAPromptT]:
         blocks = to_line_blocks(document.content)
 
         parsed_tables = [self._parse_table(block) for block in blocks]

@@ -1,10 +1,19 @@
 from abc import ABC
 from collections.abc import Sequence
 from dataclasses import dataclass
+from typing import Protocol
 from urllib.parse import quote
 
 from ..document import Document
 from .prompt import BasePrompt
+
+
+class PromptFromDoc(Protocol):
+    parent_doc: Document
+    line_nr: int
+
+    @property
+    def edit_url(self) -> str | None: ...
 
 
 @dataclass(frozen=True)
