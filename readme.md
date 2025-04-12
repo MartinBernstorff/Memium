@@ -122,9 +122,10 @@ inv validate_ci
 [github discussions]: https://github.com/MartinBernstorff/memium/discussions
 
 # Roadmap
-* p2: simplify the prompt hierarchy. 
+* p1: simplify the prompt hierarchy
+        * Have only interfaces on the top-level
 
-* p1: infer scheduling_uuid during creation in the same way as during sync. Ensures they cannot drift.
+* p2: infer scheduling_uuid during creation in the same way as during sync. Ensures they cannot drift.
 
 The markdown 
 
