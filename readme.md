@@ -103,8 +103,6 @@ inv validate_ci
 # Roadmap
 * p2: Is there a need for "QAWithoutDoc"? Is it more of a "anonymousfront", essentially a rendering method?
       
-* p1: rename fake objects to dummy
-
 * p1: remove "core" indirection layer
 
 * p2: infer scheduling_uuid during creation in the same way as during sync. Ensures they cannot drift.

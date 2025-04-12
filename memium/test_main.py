@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-from memium.core import core
+from memium.__main__ import main
 
 from .destination.ankiconnect.ankiconnect_gateway import anki_connect_is_live
 
@@ -32,11 +32,11 @@ A. å
 """
         )
 
-    core(base_deck=base_deck, input_dir=test_input_path, max_deletions_per_run=2, dry_run=False)
+    main(base_deck=base_deck, input_dir=test_input_path, max_deletions_per_run=2, dry_run=False)
     assert "Pushing 1 cards to Anki" in caplog.text
 
     # Test idempotency
-    core(
+    main(
         base_deck=base_deck,
         input_dir=test_input_path,
         max_deletions_per_run=0,  # 0 deletions allowed to test idempotency
