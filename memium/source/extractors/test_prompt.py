@@ -13,11 +13,11 @@ from memium.utils.hash_cleaned_str import hash_str_to_int
 
 
 @dataclass(frozen=True)
-class FakeQAPrompt(QAWithoutDoc):
-    question: str = "FakeQuestion?"
-    answer: str = "FakeAnswer"
+class DummyQAPrompt(QAWithoutDoc):
+    question: str = "DummyQuestion"
+    answer: str = "DummyAnswer"
 
-    add_tags: Sequence[str] = ("FakeTag",)
+    add_tags: Sequence[str] = ("DummyTag",)
 
     @property
     def scheduling_uid_str(self) -> str:

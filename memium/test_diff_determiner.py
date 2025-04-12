@@ -2,7 +2,7 @@ from collections.abc import Sequence
 
 import pytest
 
-from memium.source.extractors.test_prompt import FakeQAPrompt
+from memium.source.extractors.test_prompt import DummyQAPrompt
 
 from .destination.destination import DeletePrompts, PushPrompts
 from .diff_determiner import GeneralSyncer, PromptDiffDeterminer
@@ -10,7 +10,7 @@ from .source.prompts.prompt import BasePrompt, DestinationPrompt
 from .source.prompts.prompt_qa import QAWithoutDoc
 
 
-@pytest.fixture()
+@pytest.fixture
 def diff_determiner() -> PromptDiffDeterminer:
     return PromptDiffDeterminer()
 
@@ -40,17 +40,17 @@ class DiffDeterminerExample:
         DiffDeterminerExample(
             example_title="Basic",
             source_prompts=[
-                FakeQAPrompt(question="a", answer="a"),
-                FakeQAPrompt(question="b", answer="b"),
+                DummyQAPrompt(question="a", answer="a"),
+                DummyQAPrompt(question="b", answer="b"),
             ],
             destination_prompts=[
-                DestinationPrompt(FakeQAPrompt(question="b", answer="b"), destination_id="2"),
-                DestinationPrompt(FakeQAPrompt(question="c", answer="c"), destination_id="3"),
+                DestinationPrompt(DummyQAPrompt(question="b", answer="b"), destination_id="2"),
+                DestinationPrompt(DummyQAPrompt(question="c", answer="c"), destination_id="3"),
             ],
             delete_prompts=[
-                DestinationPrompt(FakeQAPrompt(question="c", answer="c"), destination_id="3")
+                DestinationPrompt(DummyQAPrompt(question="c", answer="c"), destination_id="3")
             ],
-            push_prompts=[FakeQAPrompt(question="a", answer="a")],
+            push_prompts=[DummyQAPrompt(question="a", answer="a")],
         ),
         (
             DiffDeterminerExample(

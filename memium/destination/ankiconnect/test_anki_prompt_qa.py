@@ -20,6 +20,7 @@ class FakeAnkiQA(AnkiQA):
     uuid: int = 0
     edit_url: str = "FakeEditURL"
     source_title: str | None = None
+    render_parent_doc: bool = False
 
 
 from dataclasses import dataclass

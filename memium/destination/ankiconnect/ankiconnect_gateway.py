@@ -182,16 +182,16 @@ class AnkiConnectGateway:
 
 
 @dataclass(frozen=True)
-class FakeAnkiCommand: ...
+class DummyAnkiCommand: ...
 
 
 @dataclass(frozen=True)
-class ImportPackage(FakeAnkiCommand):
+class ImportPackage(DummyAnkiCommand):
     package: genanki.Package
 
 
 @dataclass(frozen=True)
-class UpdateModel(FakeAnkiCommand):
+class UpdateModel(DummyAnkiCommand):
     model: genanki.Model
 
 
@@ -199,7 +199,7 @@ class SpieAnkiconnectGateway(AnkiConnectGateway):
     def __init__(self, note_infos: Sequence[NoteInfo] = ()) -> None:
         self.deck_name = "FakeDeck"
         self.note_infos: list[NoteInfo] = list(note_infos)
-        self.executed_commands: list[FakeAnkiCommand] = []
+        self.executed_commands: list[DummyAnkiCommand] = []
 
     def update_model(self, model: genanki.Model) -> None:
         self.executed_commands.append(UpdateModel(model=model))
