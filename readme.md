@@ -101,11 +101,11 @@ inv validate_ci
 [github discussions]: https://github.com/MartinBernstorff/memium/discussions
 
 # Roadmap
-* p1: simplify the prompt hierarchy
-        * Have only interfaces on the top-level
-        * Is there a need for "QAWithoutDoc"? Is it more of a "anonymousfront", essentially a rendering method?
+* p2: Is there a need for "QAWithoutDoc"? Is it more of a "anonymousfront", essentially a rendering method?
       
-* p3: rename fake objects to dummy
+* p1: rename fake objects to dummy
+
+* p1: remove "core" indirection layer
 
 * p2: infer scheduling_uuid during creation in the same way as during sync. Ensures they cannot drift.
 
