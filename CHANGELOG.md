@@ -1,6 +1,111 @@
 # CHANGELOG
 
 
+## v0.30.1 (2025-04-14)
+
+### Bug Fixes
+
+- **deps**: Update dependency sentry-sdk to v2.26.0
+  ([#858](https://github.com/MartinBernstorff/Memium/pull/858),
+  [`692af80`](https://github.com/MartinBernstorff/Memium/commit/692af80ce267ac656dcdf8287345eb4378948e03))
+
+This PR contains the following updates:
+
+| Package | Change | Age | Adoption | Passing | Confidence | |---|---|---|---|---|---| |
+  [sentry-sdk](https://redirect.github.com/getsentry/sentry-python)
+  ([changelog](https://redirect.github.com/getsentry/sentry-python/blob/master/CHANGELOG.md)) |
+  `==2.25.1` -> `==2.26.0` |
+  [![age](https://developer.mend.io/api/mc/badges/age/pypi/sentry-sdk/2.26.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+  |
+  [![adoption](https://developer.mend.io/api/mc/badges/adoption/pypi/sentry-sdk/2.26.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+  |
+  [![passing](https://developer.mend.io/api/mc/badges/compatibility/pypi/sentry-sdk/2.25.1/2.26.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+  |
+  [![confidence](https://developer.mend.io/api/mc/badges/confidence/pypi/sentry-sdk/2.25.1/2.26.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+  |
+
+---
+
+### Release Notes
+
+<details> <summary>getsentry/sentry-python (sentry-sdk)</summary>
+
+### [`v2.26.0`](https://redirect.github.com/getsentry/sentry-python/blob/HEAD/CHANGELOG.md#2260)
+
+[Compare Source](https://redirect.github.com/getsentry/sentry-python/compare/2.25.1...2.26.0)
+
+##### Various fixes & improvements
+
+- fix(debug): Do not consider parent loggers for debug logging
+  ([#&#8203;4286](https://redirect.github.com/getsentry/sentry-python/issues/4286)) by
+  [@&#8203;szokeasaurusrex](https://redirect.github.com/szokeasaurusrex) - test(tracing): Simplify
+  static/classmethod tracing tests
+  ([#&#8203;4278](https://redirect.github.com/getsentry/sentry-python/issues/4278)) by
+  [@&#8203;szokeasaurusrex](https://redirect.github.com/szokeasaurusrex) - feat(transport): Add a
+  timeout ([#&#8203;4252](https://redirect.github.com/getsentry/sentry-python/issues/4252)) by
+  [@&#8203;sentrivana](https://redirect.github.com/sentrivana) - meta: Change CODEOWNERS back to
+  Python SDK owners
+  ([#&#8203;4269](https://redirect.github.com/getsentry/sentry-python/issues/4269)) by
+  [@&#8203;sentrivana](https://redirect.github.com/sentrivana) - feat(logs): Add sdk name and
+  version as log attributes
+  ([#&#8203;4262](https://redirect.github.com/getsentry/sentry-python/issues/4262)) by
+  [@&#8203;AbhiPrasad](https://redirect.github.com/AbhiPrasad) - feat(logs): Add server.address to
+  logs ([#&#8203;4257](https://redirect.github.com/getsentry/sentry-python/issues/4257)) by
+  [@&#8203;AbhiPrasad](https://redirect.github.com/AbhiPrasad) - chore: Deprecate
+  `same_process_as_parent`
+  ([#&#8203;4244](https://redirect.github.com/getsentry/sentry-python/issues/4244)) by
+  [@&#8203;sentrivana](https://redirect.github.com/sentrivana) - feat(logs): Add sentry.origin
+  attribute for log handler
+  ([#&#8203;4250](https://redirect.github.com/getsentry/sentry-python/issues/4250)) by
+  [@&#8203;AbhiPrasad](https://redirect.github.com/AbhiPrasad) - feat(tests): Add optional cutoff to
+  toxgen ([#&#8203;4243](https://redirect.github.com/getsentry/sentry-python/issues/4243)) by
+  [@&#8203;sentrivana](https://redirect.github.com/sentrivana) - toxgen: Retry & fail if we fail to
+  fetch PyPI data ([#&#8203;4251](https://redirect.github.com/getsentry/sentry-python/issues/4251))
+  by [@&#8203;sentrivana](https://redirect.github.com/sentrivana) - build(deps): bump
+  actions/create-github-app-token from 1.12.0 to 2.0.2
+  ([#&#8203;4248](https://redirect.github.com/getsentry/sentry-python/issues/4248)) by
+  [@&#8203;dependabot](https://redirect.github.com/dependabot) - Trying to prevent the grpc setup
+  from being flaky ([#&#8203;4233](https://redirect.github.com/getsentry/sentry-python/issues/4233))
+  by [@&#8203;antonpirker](https://redirect.github.com/antonpirker) - feat(breadcrumbs): add `_meta`
+  information for truncation of breadcrumbs
+  ([#&#8203;4007](https://redirect.github.com/getsentry/sentry-python/issues/4007)) by
+  [@&#8203;shellmayr](https://redirect.github.com/shellmayr) - tests: Move django under toxgen
+  ([#&#8203;4238](https://redirect.github.com/getsentry/sentry-python/issues/4238)) by
+  [@&#8203;sentrivana](https://redirect.github.com/sentrivana) - fix: Handle JSONDecodeError
+  gracefully in StarletteRequestExtractor
+  ([#&#8203;4226](https://redirect.github.com/getsentry/sentry-python/issues/4226)) by
+  [@&#8203;moodix](https://redirect.github.com/moodix) - fix(asyncio): Remove shutdown handler
+  ([#&#8203;4237](https://redirect.github.com/getsentry/sentry-python/issues/4237)) by
+  [@&#8203;sentrivana](https://redirect.github.com/sentrivana)
+
+</details>
+
+### Configuration
+
+📅 **Schedule**: Branch creation - At any time (no schedule defined), Automerge - At any time (no
+  schedule defined).
+
+🚦 **Automerge**: Enabled.
+
+♻ **Rebasing**: Whenever PR is behind base branch, or you tick the rebase/retry checkbox.
+
+🔕 **Ignore**: Close this PR and you won't be reminded about this update again.
+
+- [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check this box
+
+This PR was generated by [Mend Renovate](https://mend.io/renovate/). View the [repository job
+  log](https://developer.mend.io/github/MartinBernstorff/Memium).
+
+<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiIzOS4yMzguMCIsInVwZGF0ZWRJblZlciI6IjM5LjIzOC4wIiwidGFyZ2V0QnJhbmNoIjoibWFpbiIsImxhYmVscyI6W119-->
+
+Co-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>
+
+### Documentation
+
+- Update readme.md
+  ([`7ad4590`](https://github.com/MartinBernstorff/Memium/commit/7ad45900a597b85c3ba38c7c61c09c3490eca44d))
+
+
 ## v0.30.0 (2025-04-12)
 
 ### Chores
