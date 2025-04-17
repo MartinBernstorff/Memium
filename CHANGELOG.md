@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v0.31.0 (2025-04-17)
+
+### Features
+
+- Reversible use- and avoid cases
+  ([`89c8b4f`](https://github.com/MartinBernstorff/Memium/commit/89c8b4ffbcac2fdefb17fb3c83505daee7b5f0ec))
+
+
 ## v0.30.2 (2025-04-15)
 
 ### Bug Fixes
