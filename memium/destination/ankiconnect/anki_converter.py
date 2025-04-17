@@ -43,7 +43,9 @@ class AnkiPromptConverter:
             return DestinationPrompt(
                 QAWithoutDoc(
                     QAPromptImpl(
+                        # Add raw question here
                         question=note_info.fields["Question"].value,
+                        # Add raw answer here
                         answer=note_info.fields["Answer"].value,
                     ),
                     add_tags=note_info.tags,

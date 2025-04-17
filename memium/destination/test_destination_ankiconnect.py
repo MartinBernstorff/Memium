@@ -1,10 +1,13 @@
 from collections.abc import Mapping
+from pathlib import Path
 
 import pytest
 
 from ..source.prompts.prompt_qa import QAWithoutDoc
 from .ankiconnect.anki_converter import AnkiPromptConverter
 from .ankiconnect.ankiconnect_gateway import (
+    ANKICONNECT_URL,
+    AnkiConnectGateway,
     AnkiField,
     ImportPackage,
     SpieAnkiconnectGateway,
@@ -73,3 +76,19 @@ def test_ankiconnect_push_prompts():
         assert (
             len([c for c in gateway.executed_commands if isinstance(c, command[0])]) == command[1]
         )
+
+
+def test_getting_all_prompts(tmp_path: Path):
+    gateway = AnkiConnectGateway(
+        ankiconnect_url=ANKICONNECT_URL,
+        base_deck="Memium",
+        tmp_read_dir=tmp_path,
+        tmp_write_dir=tmp_path,
+        max_deletions_per_run=10,
+        max_wait_seconds=3600,
+    )
+    dest = AnkiConnectDestination(
+        gateway=gateway,
+        prompt_converter=AnkiPromptConverter(base_deck="FakeDeck", card_css="FakeCSS"),
+    )
+    dest.get_all_prompts()

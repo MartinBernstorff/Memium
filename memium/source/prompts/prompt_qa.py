@@ -44,8 +44,10 @@ class QAPromptImpl(QAPromptProtocol):
 
     @property
     def scheduling_uid_str(self) -> str:
-        """Str used for generating the update_uid. Super helpful for debugging."""
-        return qa_scheduling_uid_str(self.question, self.answer)
+        """Str used for generating the update_uid. We clean this of formatting so that formatting changes do not change the uid.
+
+        This is required because Anki requires the formatted question and answer to be part of the note."""
+        return cleaned_qa_scheduling_uid_str(self.question, self.answer)
 
     @property
     def scheduling_uid(self) -> int:
@@ -148,12 +150,8 @@ class QAFromDoc(BasePrompt, PromptFromDoc):
         return obsidian_url(self.parent_doc.title, self.line_nr)
 
 
-def qa_scheduling_uid_str(question: str, answer: str) -> str:
+def cleaned_qa_scheduling_uid_str(question: str, answer: str) -> str:
     return f"{clean_str(question)}_{clean_str(answer)}"
-
-
-def qa_update_uid_str(question: str, answer: str, tags: Sequence[str]) -> str:
-    return f"{question}_{answer}_{tags}"
 
 
 QAPrompt = QAWithoutDoc | QAFromDoc

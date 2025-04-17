@@ -78,6 +78,5 @@ def test_formatting():
         opacity: 0.8;
 ">Obsidian</a></div>\
 """,
-            "3462918412",
-        ]
+            "3462918412", 'Q. This is a _question_?', 'DummyAnswer']
     )

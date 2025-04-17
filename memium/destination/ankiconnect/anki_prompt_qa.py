@@ -35,6 +35,8 @@ class AnkiPrompt:
             {"name": "Answer"},
             {"name": "Extra"},
             {"name": "UUID"},
+            {"name": "Question raw"},
+            {"name": "Answer raw"},
         ]
 
         QUESTION_STR = r"{{ Question }}"
@@ -65,9 +67,10 @@ class AnkiPrompt:
             }
         ]
 
+        field_names = [d["name"] for d in model_fields]
         return genanki.Model(
-            model_id=hash_str_to_int("Ankdown QA with UUID"),
-            name=("Ankdown QA with UUID"),
+            model_id=hash_str_to_int("-".join(field_names)),
+            name=(f"Ankdown QA with {field_names}"),
             fields=model_fields,
             templates=model_template,
             css=self.css,
@@ -96,6 +99,8 @@ class AnkiPrompt:
                 self._md_to_html(self.prompt.answer),
                 self._extra_field_content,
                 str(self.uuid),
+                self.prompt.question,
+                self.prompt.answer,
             ],
             tags=self.tags,
         )
