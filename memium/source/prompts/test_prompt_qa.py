@@ -1,6 +1,7 @@
+import pytest
 from inline_snapshot import snapshot
 
-from memium.source.prompts.prompt_qa import obsidian_url
+from memium.source.prompts.prompt_qa import QAPromptImpl, obsidian_url
 
 
 def test_file_title_to_uri():
@@ -8,3 +9,10 @@ def test_file_title_to_uri():
     assert obsidian_url(title, 5) == snapshot(
         "obsidian://advanced-uri?filename=Heap%20Properties&line=5"
     )
+
+
+def test_should_error_on_styling():
+    with pytest.raises(ValueError) as excinfo:  # noqa: PT011
+        QAPromptImpl("Testing <p style='opacity: 1'>", "")
+
+    assert str(excinfo.value) == snapshot("'style=' found in question")

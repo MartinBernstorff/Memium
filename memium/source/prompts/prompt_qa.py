@@ -21,6 +21,23 @@ class QAPromptImpl(QAPromptProtocol):
     question: str
     answer: str
 
+    def __post_init__(self):
+        """Styling should not occur in this value object, since any change to style would change its scheduling identity.
+
+        Instead, styling should happen in the destination (e.g. AnkiQA)."""
+        forbidden = ["style="]
+
+        errors: list[str] = []
+        for tag in forbidden:
+            if tag in self.question:
+                errors.append(f"'{tag}' found in question")
+            if tag in self.answer:
+                errors.append(f"'{tag}' found in answer")
+
+        if errors:
+            error_str = "\n".join(errors)
+            raise ValueError(error_str)
+
     @staticmethod
     def dummy(question: str = "DummyQuestion", answer: str = "DummyAnswer") -> "QAPromptImpl":
         return QAPromptImpl(question=question, answer=answer)
