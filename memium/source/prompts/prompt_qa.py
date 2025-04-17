@@ -45,7 +45,7 @@ class QAPromptImpl(QAPromptProtocol):
     @property
     def scheduling_uid_str(self) -> str:
         """Str used for generating the update_uid. Super helpful for debugging."""
-        return qa_scheduling_uid_str(self.question, self.answer)
+        return cleaned_qa_scheduling_uid_str(self.question, self.answer)
 
     @property
     def scheduling_uid(self) -> int:
@@ -148,7 +148,7 @@ class QAFromDoc(BasePrompt, PromptFromDoc):
         return obsidian_url(self.parent_doc.title, self.line_nr)
 
 
-def qa_scheduling_uid_str(question: str, answer: str) -> str:
+def cleaned_qa_scheduling_uid_str(question: str, answer: str) -> str:
     return f"{clean_str(question)}_{clean_str(answer)}"
 
 

@@ -100,22 +100,7 @@ inv validate_ci
 [github issue tracker]: https://github.com/MartinBernstorff/memium/issues
 [github discussions]: https://github.com/MartinBernstorff/memium/discussions
 
-# Roadmap
-* p2: Is there a need for "QAWithoutDoc"? It is because the 
+# Design decisions
+* Is there a need for "QAWithoutDoc"? It is because the 
   * Seems it's being used inside `DestinationPrompt`. But which parts of DestinationPrompt are being used?
-  * Likely only scheduling_uuid and update_uuid in diff_determiner. Let's try narrowing down the interface.
-  * Hmm, narrowing down the interface also dramatically decreases debug- and testability, because it doesn't include the values used for generating the IDs. For now, I'll leave thsi be.
-      
-* p2: infer scheduling_uuid during creation in the same way as during sync. Ensures they cannot drift.
-
-The markdown 
-
-'In Java, how do you go from `Optional<Optional<T>>` to `Optional<T>`?' 
-
-is parsed to 
-
-'In Java, how do you go from `Optional>` to `Optional`?'
-
-This seems to be a general problem with generics, but only when instantiating from markdown. 
-
-By beautifulsoup. So, this assumes that there is a lossless back-conversion, which does not seem to be the case. The alternative is to store the UUID with the prompt, which would've been a better choice! Huh! Perhaps this info is stored already in the UUID field. We still need changes in a few places; the syncer, and deleting based on note IDs. But that's very feasible!
+  * Ah, so we cannot instantiate a full document from the data we get from Anki, and the document's tags is needed for the sync UUID. This means we need some other representation to get the sync UUID.
