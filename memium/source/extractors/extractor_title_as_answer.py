@@ -1,4 +1,5 @@
 from collections.abc import Sequence
+from dataclasses import dataclass
 from typing import cast
 
 from iterpy import Arr
@@ -9,13 +10,26 @@ from memium.source.extractors.extractor_qa import QAPromptExtractor
 from memium.source.prompts.prompt_qa import QAFromDoc, QAPrompt
 
 
-class ReversedDefinitionExtractor(BasePromptExtractor):
-    def __init__(self, qa_extractor: QAPromptExtractor) -> None:
-        self.qa_extractor = qa_extractor
+@dataclass
+class TitleAsAnswerExtractor(BasePromptExtractor):
+    """Extracts prompts from a document, but does not add the document to the front of the prompt. E.g.:
+
+    # Lion
+    Q. Definition?
+    A. A large African cat with a mane.
+
+    Results in:
+    Q. Term for 'A large African cat with a mane'?
+    A. Lion
+    """
+
+    qa_extractor: QAPromptExtractor
+    matcher: str
+    reversed_question: str
 
     def extract_prompts(self, document: Document) -> Sequence[QAPrompt]:
         qa_prompts = self.qa_extractor.extract_prompts(document)
-        definition_prompts = Arr(qa_prompts).filter(lambda prompt: "Definition?" in prompt.question)
+        definition_prompts = Arr(qa_prompts).filter(lambda prompt: self.matcher in prompt.question)
 
         if definition_prompts.len() == 0:
             return []
@@ -29,7 +43,7 @@ class ReversedDefinitionExtractor(BasePromptExtractor):
             QAFromDoc(
                 parent_doc=document,
                 line_nr=prompt.line_nr,
-                question=f"Term for '{answer}'?",
+                question=self.reversed_question % answer,
                 answer=document.source_path.stem,
                 render_parent_doc=False,
             )

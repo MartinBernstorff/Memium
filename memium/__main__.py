@@ -16,9 +16,9 @@ from memium.destination.destination_dryrun import DryRunDestination
 from memium.diff_determiner import PromptDiffDeterminer
 from memium.environment import host_input_dir, in_docker
 from memium.source.document_source import MarkdownDocumentSource
-from memium.source.extractors.extractor_definition import ReversedDefinitionExtractor
 from memium.source.extractors.extractor_qa import QAPromptExtractor
 from memium.source.extractors.extractor_table import TableExtractor
+from memium.source.extractors.extractor_title_as_answer import TitleAsAnswerExtractor
 from memium.source.prompt_source import DocumentPromptSource
 
 log = logging.getLogger(__name__)
@@ -58,7 +58,17 @@ def main(
         document_ingester=MarkdownDocumentSource(directory=input_dir),
         prompt_extractors=[
             qa_extractor,
-            ReversedDefinitionExtractor(qa_extractor),
+            TitleAsAnswerExtractor(
+                qa_extractor, matcher="Definition?", reversed_question="Term for '%s'?"
+            ),
+            TitleAsAnswerExtractor(
+                qa_extractor, matcher="Use when?", reversed_question="What should we use for '%s'?"
+            ),
+            TitleAsAnswerExtractor(
+                qa_extractor,
+                matcher="Avoid when?",
+                reversed_question="What should we avoid when '%s'?",
+            ),
             TableExtractor(),
         ],
     ).get_prompts()
