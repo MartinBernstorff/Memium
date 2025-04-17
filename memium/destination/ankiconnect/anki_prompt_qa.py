@@ -5,13 +5,13 @@ import genanki
 
 from memium.source.prompts.prompt_qa import QAPromptImpl
 from memium.utils.extract_terms import get_terms_surrounded_by_underscores
+from memium.utils.markdown_parser import md_to_html
 
 from ...utils.hash_cleaned_str import hash_str_to_int
-from .anki_prompt import AnkiPrompt
 
 
 @dataclass(frozen=True)
-class AnkiQA(AnkiPrompt):
+class AnkiPrompt:
     prompt: QAPromptImpl
     source_title: str | None
 
@@ -22,7 +22,11 @@ class AnkiQA(AnkiPrompt):
     base_deck: str
     tags: Sequence[str]
 
-    uuid: int  # UUID used for scheduling. If a new note is added with the same uuid, it will override the old note.
+    edit_url: str | None
+
+    @property
+    def uuid(self) -> int:
+        return self.prompt.scheduling_uid
 
     @property
     def genanki_model(self) -> genanki.Model:
@@ -70,6 +74,9 @@ class AnkiQA(AnkiPrompt):
             model_type=0,
         )
 
+    def _md_to_html(self, field: str) -> str:
+        return md_to_html(field)
+
     @property
     def _extra_field_content(self) -> str:
         note_title = (
@@ -95,13 +102,22 @@ class AnkiQA(AnkiPrompt):
 
     @property
     def deck(self) -> str:
-        base_deck = super().deck
+        deck_prefix = "anki/deck/"
+        deck_in_tags = (
+            tag.replace(deck_prefix, "").replace("/", "::")
+            for tag in self.tags
+            if tag.startswith(deck_prefix)
+        )
+        subdeck = next(deck_in_tags, None)
+
+        base_anki_deck = self.base_deck if subdeck is None else f"{self.base_deck}::{subdeck}"
+
         wiki_links = get_terms_surrounded_by_underscores(self.prompt.question)
         wiki_subdeck = "-".join(sorted(wiki_links))
 
         if wiki_subdeck != "":
-            return f"{base_deck}::{wiki_subdeck}"
-        return base_deck
+            return f"{base_anki_deck}::{wiki_subdeck}"
+        return base_anki_deck
 
 
 def edit_button(url: str) -> str:

@@ -5,7 +5,7 @@ from inline_snapshot import snapshot
 
 from memium.source.prompts.prompt_qa import QAPromptImpl
 
-from .anki_prompt_qa import AnkiQA
+from .anki_prompt_qa import AnkiPrompt
 
 
 def fake_tag_factory() -> Sequence[str]:
@@ -13,12 +13,11 @@ def fake_tag_factory() -> Sequence[str]:
 
 
 @dataclass(frozen=True)
-class FakeAnkiQA(AnkiQA):
+class FakeAnkiQA(AnkiPrompt):
     base_deck: str = "FakeBaseDeck"
     tags: Sequence[str] = field(default_factory=fake_tag_factory)
     prompt: QAPromptImpl = field(default_factory=QAPromptImpl.dummy)
     css: str = "FakeCSS"
-    uuid: int = 0
     edit_url: str = "FakeEditURL"
     source_title: str | None = None
     render_parent_doc: bool = False
@@ -31,7 +30,7 @@ import pytest
 
 @dataclass(frozen=True)
 class QAExample:
-    card: AnkiQA
+    card: AnkiPrompt
     deck: str
 
 
@@ -79,6 +78,6 @@ def test_formatting():
         opacity: 0.8;
 ">Obsidian</a></div>\
 """,
-            "0",
+            "3462918412",
         ]
     )

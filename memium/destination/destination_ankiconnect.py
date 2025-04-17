@@ -8,7 +8,7 @@ from iterpy import Iter
 from ..source.prompts.prompt import DestinationPrompt
 from ..utils.hash_cleaned_str import clean_str, hash_str_to_int
 from .ankiconnect.anki_converter import AnkiPromptConverter
-from .ankiconnect.anki_prompt import AnkiPrompt
+from .ankiconnect.anki_prompt_qa import AnkiPrompt
 from .ankiconnect.ankiconnect_gateway import AnkiConnectGateway
 from .destination import DeletePrompts, PromptDestination, PromptDestinationCommand, PushPrompts
 

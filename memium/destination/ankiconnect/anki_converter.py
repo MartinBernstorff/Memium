@@ -1,7 +1,6 @@
 from ...source.prompts.prompt import BasePrompt, DestinationPrompt
 from ...source.prompts.prompt_qa import QAFromDoc, QAPromptImpl, QAWithoutDoc
-from .anki_prompt import AnkiPrompt
-from .anki_prompt_qa import AnkiQA
+from .anki_prompt_qa import AnkiPrompt
 from .ankiconnect_gateway import NoteInfo
 
 
@@ -17,23 +16,21 @@ class AnkiPromptConverter:
 
         match prompt:
             case QAFromDoc():
-                return AnkiQA(
+                return AnkiPrompt(
                     prompt=prompt.prompt,
                     base_deck=deck,
                     tags=prompt.tags,
                     css=self.card_css,
-                    uuid=prompt.scheduling_uid,
                     edit_url=prompt.edit_url,
                     source_title=prompt.parent_doc.title,
                     render_parent_doc=prompt.render_parent_doc,
                 )
             case QAWithoutDoc():
-                return AnkiQA(
+                return AnkiPrompt(
                     prompt=prompt.prompt,
                     base_deck=deck,
                     tags=prompt.tags,
                     css=self.card_css,
-                    uuid=prompt.scheduling_uid,
                     edit_url=prompt.edit_url,
                     source_title=None,
                     render_parent_doc=False,
