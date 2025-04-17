@@ -3,6 +3,7 @@ from dataclasses import dataclass
 
 import genanki
 
+from memium.source.prompts.prompt_qa import QAPromptImpl
 from memium.utils.extract_terms import get_terms_surrounded_by_underscores
 
 from ...utils.hash_cleaned_str import hash_str_to_int
@@ -11,8 +12,7 @@ from .anki_prompt import AnkiPrompt
 
 @dataclass(frozen=True)
 class AnkiQA(AnkiPrompt):
-    question: str
-    answer: str
+    prompt: QAPromptImpl
     source_title: str | None
 
     render_parent_doc: bool
@@ -85,8 +85,8 @@ class AnkiQA(AnkiPrompt):
             guid=str(self.uuid),
             model=self.genanki_model,
             fields=[
-                self._to_html(self.question),
-                self._to_html(self.answer),
+                self._md_to_html(self.prompt.question),
+                self._md_to_html(self.prompt.answer),
                 self._extra_field_content,
                 str(self.uuid),
             ],
@@ -96,7 +96,7 @@ class AnkiQA(AnkiPrompt):
     @property
     def deck(self) -> str:
         base_deck = super().deck
-        wiki_links = get_terms_surrounded_by_underscores(self.question)
+        wiki_links = get_terms_surrounded_by_underscores(self.prompt.question)
         wiki_subdeck = "-".join(sorted(wiki_links))
 
         if wiki_subdeck != "":

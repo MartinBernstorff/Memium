@@ -121,3 +121,7 @@ This seems to be a general problem with generics, but only when instantiating fr
 By beautifulsoup. So, this assumes that there is a lossless back-conversion, which does not seem to be the case. The alternative is to store the UUID with the prompt, which would've been a better choice! Huh! Perhaps this info is stored already in the UUID field. We still need changes in a few places; the syncer, and deleting based on note IDs. But that's very feasible!
 
 * p2: Should AnkiQA error if any html tags or styling present in question/answer? Is a danger-sign re: scheduling UUID.
+
+* p2: Extract the ValueObject portion of the prompts into their own components, and then wrap it? 
+   * We can define that the ValueObject takes markdown only, and error if it contains any formatting (i.e. HTML)
+   * Means we can error if any formatting sneaks its way into the ValueObject. 

@@ -5,8 +5,18 @@ from typing import Protocol, runtime_checkable
 @runtime_checkable
 class BasePrompt(Protocol):
     @property
+    def scheduling_uid_str(self) -> str:
+        """Str used for generating the update_uid. Super helpful for debugging."""
+        ...
+
+    @property
     def scheduling_uid(self) -> int:
         """UID used when scheduling the prompt. If this UID changes, the old prompt is deleted and a new prompt is created."""
+        ...
+
+    @property
+    def update_uid_str(self) -> str:
+        """Str used for generating the update_uid. Super helpful for debugging."""
         ...
 
     @property
@@ -29,4 +39,7 @@ from dataclasses import dataclass
 @dataclass(frozen=True)
 class DestinationPrompt:
     prompt: BasePrompt
+
+    # Destinations can have their own ID-scheme. E.g. Anki assigns a Note id at creation time, which
+    # is independent of content. This ID is used to delete or update the note.
     destination_id: str

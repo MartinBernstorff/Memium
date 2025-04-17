@@ -49,10 +49,10 @@ def test_ankiconnect_push_prompts():
         [
             PushPrompts(
                 prompts=[
-                    QAWithoutDoc(
+                    QAWithoutDoc.dummy(
                         question="FakeQuestion",
                         answer="FakeAnswer",
-                        add_tags=["anki/deck/FakeSubdeck/FakeSubSubdeck"],
+                        tags=["anki/deck/FakeSubdeck/FakeSubSubdeck"],
                     )
                 ]
             )

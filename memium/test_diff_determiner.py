@@ -2,8 +2,6 @@ from collections.abc import Sequence
 
 import pytest
 
-from memium.source.extractors.test_prompt import DummyQAPrompt
-
 from .destination.destination import DeletePrompts, PushPrompts
 from .diff_determiner import GeneralSyncer, PromptDiffDeterminer
 from .source.prompts.prompt import BasePrompt, DestinationPrompt
@@ -38,35 +36,33 @@ class DiffDeterminerExample:
     "example",
     [
         DiffDeterminerExample(
-            example_title="Basic",
             source_prompts=[
-                DummyQAPrompt(question="a", answer="a"),
-                DummyQAPrompt(question="b", answer="b"),
+                QAWithoutDoc.dummy(question="a", answer="a"),
+                QAWithoutDoc.dummy(question="b", answer="b"),
             ],
             destination_prompts=[
-                DestinationPrompt(DummyQAPrompt(question="b", answer="b"), destination_id="2"),
-                DestinationPrompt(DummyQAPrompt(question="c", answer="c"), destination_id="3"),
+                DestinationPrompt(QAWithoutDoc.dummy(question="b", answer="b"), destination_id="2"),
+                DestinationPrompt(QAWithoutDoc.dummy(question="c", answer="c"), destination_id="3"),
             ],
             delete_prompts=[
-                DestinationPrompt(DummyQAPrompt(question="c", answer="c"), destination_id="3")
+                DestinationPrompt(QAWithoutDoc.dummy(question="c", answer="c"), destination_id="3")
             ],
-            push_prompts=[DummyQAPrompt(question="a", answer="a")],
+            push_prompts=[QAWithoutDoc.dummy(question="a", answer="a")],
+            example_title="Should push 'a' only in source and delete 'c' only in destination",
         ),
         (
             DiffDeterminerExample(
-                example_title="Updated tags",
-                source_prompts=[QAWithoutDoc(question="a", answer="a", add_tags=["NewTag"])],
+                source_prompts=[QAWithoutDoc.dummy(tags=["NewTag"])],
                 destination_prompts=[
-                    DestinationPrompt(
-                        QAWithoutDoc(question="a", answer="a", add_tags=["OldTag"]),
-                        destination_id="1",
-                    )
+                    DestinationPrompt(QAWithoutDoc.dummy(tags=["OldTag"]), destination_id="1")
                 ],
                 delete_prompts=[],
-                push_prompts=[QAWithoutDoc(question="a", answer="a", add_tags=["NewTag"])],
+                push_prompts=[QAWithoutDoc.dummy(tags=["NewTag"])],
+                example_title="Updated tags should result in pushing the prompt",
             )
         ),
     ],
+    ids=lambda example: example.example_title,
 )
 def test_prompt_diff_determiner(
     diff_determiner: PromptDiffDeterminer, example: DiffDeterminerExample
@@ -74,4 +70,5 @@ def test_prompt_diff_determiner(
     diff = diff_determiner.sync(
         source_prompts=example.source_prompts, destination_prompts=example.destination_prompts
     )
-    assert diff == [DeletePrompts(example.delete_prompts), PushPrompts(example.push_prompts)]
+    assert diff[0] == DeletePrompts(example.delete_prompts)
+    assert diff[1] == PushPrompts(example.push_prompts)

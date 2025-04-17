@@ -19,8 +19,8 @@ A. A large African cat with a mane.""",
     ).extract_prompts(doc)
 
     assert len(result) == 1
-    assert result[0].question == snapshot("Term for 'A large African cat with a mane'?")
-    assert result[0].answer == snapshot("Lion")
+    assert result[0].prompt.question == snapshot("Term for 'A large African cat with a mane'?")
+    assert result[0].prompt.answer == snapshot("Lion")
 
 
 def test_empty_definition_extractor():
@@ -48,8 +48,8 @@ A. Preventing coagulation.""",
     ).extract_prompts(doc)
 
     assert len(result) == 1
-    assert result[0].question == snapshot("What should we use for 'Preventing coagulation'?")
-    assert result[0].answer == snapshot("Heparin")
+    assert result[0].prompt.question == snapshot("What should we use for 'Preventing coagulation'?")
+    assert result[0].prompt.answer == snapshot("Heparin")
 
 
 def test_avoid_extractor():
@@ -65,5 +65,7 @@ A. High risk of venous bleeding, e.g. intestinal.""",
     ).extract_prompts(doc)
 
     assert len(result) == 1
-    assert result[0].question == snapshot("What should we avoid when 'High risk of venous bleeding, e.g. intestinal'?")
-    assert result[0].answer == snapshot("Heparin")
+    assert result[0].prompt.question == snapshot(
+        "What should we avoid when 'High risk of venous bleeding, e.g. intestinal'?"
+    )
+    assert result[0].prompt.answer == snapshot("Heparin")

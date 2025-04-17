@@ -4,7 +4,7 @@ from dataclasses import dataclass
 
 import genanki
 
-from memium.utils.markdown_parser import to_html
+from memium.utils.markdown_parser import md_to_html
 
 
 @dataclass(frozen=True)
@@ -14,8 +14,8 @@ class AnkiPrompt(ABC):
     uuid: int  # UUID is a unique identifier for the prompt, used for scheduling. If a new prompt is added with the same uuid, it will be treated as an update to the existing prompt. Otherwise, they will be interpreted as separate prompts.
     edit_url: str | None
 
-    def _to_html(self, field: str) -> str:
-        return to_html(field)
+    def _md_to_html(self, field: str) -> str:
+        return md_to_html(field)
 
     @property
     @abstractmethod

@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from memium.source.extractors.test_prompt import DummyQAPrompt
+from memium.source.prompts.prompt_qa import QAWithoutDoc
 
 from ..document import Document
 from .extractor_table import TableExtractor
@@ -14,7 +14,7 @@ from .to_line_blocks import LineBlock, to_line_blocks
 @dataclass(frozen=True)
 class TableExtractorExample:
     table_prompt: str  # What the example is testing
-    expectation: Sequence[DummyQAPrompt]  # Expected prompts
+    expectation: Sequence[QAWithoutDoc]  # Expected prompts
 
 
 # p3: if the row contains a wikilink with a pipe, it will be split into two cells
@@ -26,20 +26,20 @@ class TableExtractorExample:
     [
         TableExtractorExample(
             table_prompt="Descending // |Column one|? // |Column two|.",
-            expectation=[DummyQAPrompt(question="11?", answer="22.")],
+            expectation=[QAWithoutDoc.dummy(question="11?", answer="22.")],
         ),
         TableExtractorExample(
             table_prompt="Ascending // |Column one|? // |Column two|.",
             expectation=[
-                DummyQAPrompt(question="21?", answer="12."),
-                DummyQAPrompt(question="31?", answer="22."),
+                QAWithoutDoc.dummy(question="21?", answer="12."),
+                QAWithoutDoc.dummy(question="31?", answer="22."),
             ],
         ),
         TableExtractorExample(
             table_prompt="Rowwise // |Column one|? // |Column two|.",
             expectation=[
-                DummyQAPrompt(question="11?", answer="12."),
-                DummyQAPrompt(question="21?", answer="22."),
+                QAWithoutDoc.dummy(question="11?", answer="12."),
+                QAWithoutDoc.dummy(question="21?", answer="22."),
             ],
         ),
     ],

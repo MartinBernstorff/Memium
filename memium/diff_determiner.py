@@ -34,15 +34,15 @@ class PromptDiffDeterminer(BaseDiffDeterminer):
     ) -> Sequence[PromptDestinationCommand]:
         # Update prompts if content or tags have changed. This doesn't affect scheduling.
         prompts_to_update = GeneralSyncer(
-            source={prompt.update_uid: prompt for prompt in source_prompts},
-            destination={prompt.prompt.update_uid: prompt for prompt in destination_prompts},
+            source={prompt.update_uid_str: prompt for prompt in source_prompts},
+            destination={prompt.prompt.update_uid_str: prompt for prompt in destination_prompts},
         ).only_in_source()
 
         # Only delete prompts whose content have changed. This essentially resets their scheduling.
         prompts_to_delete = GeneralSyncer(
-            source={prompt.scheduling_uid: prompt for prompt in source_prompts},
+            source={prompt.scheduling_uid_str: prompt for prompt in source_prompts},
             destination={
-                dest_prompt.prompt.scheduling_uid: dest_prompt
+                dest_prompt.prompt.scheduling_uid_str: dest_prompt
                 for dest_prompt in destination_prompts
             },
         ).only_in_destination()

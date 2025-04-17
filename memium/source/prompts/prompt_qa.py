@@ -15,11 +15,15 @@ class QAPromptProtocol(Protocol):
 
 
 @dataclass(frozen=True)
-class QAWithoutDoc(BasePrompt, QAPromptProtocol):
+class QAPromptImpl(QAPromptProtocol):
+    """Value object for a question-answer prompt. Its identity is determined entirely by its values."""
+
     question: str
     answer: str
 
-    add_tags: Sequence[str]
+    @staticmethod
+    def dummy(question: str = "DummyQuestion", answer: str = "DummyAnswer") -> "QAPromptImpl":
+        return QAPromptImpl(question=question, answer=answer)
 
     @property
     def scheduling_uid_str(self) -> str:
@@ -30,10 +34,36 @@ class QAWithoutDoc(BasePrompt, QAPromptProtocol):
     def scheduling_uid(self) -> int:
         return hash_str_to_int(self.scheduling_uid_str)
 
+
+def _update_uid_str(scheduling_uid: str, tags: Sequence[str]) -> str:
+    return scheduling_uid + "_" + "_".join(tags)
+
+
+@dataclass(frozen=True)
+class QAWithoutDoc(BasePrompt):
+    prompt: QAPromptImpl
+
+    add_tags: Sequence[str]
+
+    @staticmethod
+    def dummy(
+        question: str = "DummyQuestion",
+        answer: str = "DummyAnswer",
+        tags: Sequence[str] = ("DummyTag",),
+    ) -> "QAWithoutDoc":
+        return QAWithoutDoc(QAPromptImpl(question=question, answer=answer), add_tags=tags)
+
+    @property
+    def scheduling_uid_str(self) -> str:
+        return self.prompt.scheduling_uid_str
+
+    @property
+    def scheduling_uid(self) -> int:
+        return self.prompt.scheduling_uid
+
     @property
     def update_uid_str(self) -> str:
-        """Str used for generating the update_uid. Super helpful for debugging."""
-        return qa_update_uid_str(self.question, self.answer, self.tags)
+        return _update_uid_str(self.scheduling_uid_str, self.tags)
 
     @property
     def update_uid(self) -> int:
@@ -46,6 +76,9 @@ class QAWithoutDoc(BasePrompt, QAPromptProtocol):
     @property
     def edit_url(self) -> str | None:
         return None
+
+    def to_qa_from_doc(self, doc: Document, line_nr: int) -> "QAFromDoc":
+        return QAFromDoc(prompt=self.prompt, parent_doc=doc, line_nr=line_nr)
 
 
 def obsidian_url(file_title: str, line_nr: int | None) -> str:
@@ -64,9 +97,8 @@ class PromptFromDoc(Protocol):
 
 
 @dataclass(frozen=True)
-class QAFromDoc(BasePrompt, QAPromptProtocol, PromptFromDoc):
-    question: str
-    answer: str
+class QAFromDoc(BasePrompt, PromptFromDoc):
+    prompt: QAPromptImpl
 
     parent_doc: Document
 
@@ -76,15 +108,15 @@ class QAFromDoc(BasePrompt, QAPromptProtocol, PromptFromDoc):
 
     @property
     def scheduling_uid_str(self) -> str:
-        return qa_scheduling_uid_str(self.question, self.answer)
+        return self.prompt.scheduling_uid_str
 
     @property
     def scheduling_uid(self) -> int:
-        return hash_str_to_int(self.scheduling_uid_str)
+        return self.prompt.scheduling_uid
 
     @property
     def update_uid_str(self) -> str:
-        return qa_update_uid_str(self.question, self.answer, self.parent_doc.tags)
+        return _update_uid_str(self.scheduling_uid_str, self.tags)
 
     @property
     def update_uid(self) -> int:

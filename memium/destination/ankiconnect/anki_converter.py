@@ -1,5 +1,5 @@
 from ...source.prompts.prompt import BasePrompt, DestinationPrompt
-from ...source.prompts.prompt_qa import QAFromDoc, QAWithoutDoc
+from ...source.prompts.prompt_qa import QAFromDoc, QAPromptImpl, QAWithoutDoc
 from .anki_prompt import AnkiPrompt
 from .anki_prompt_qa import AnkiQA
 from .ankiconnect_gateway import NoteInfo
@@ -18,8 +18,7 @@ class AnkiPromptConverter:
         match prompt:
             case QAFromDoc():
                 return AnkiQA(
-                    question=prompt.question,
-                    answer=prompt.answer,
+                    prompt=prompt.prompt,
                     base_deck=deck,
                     tags=prompt.tags,
                     css=self.card_css,
@@ -30,8 +29,7 @@ class AnkiPromptConverter:
                 )
             case QAWithoutDoc():
                 return AnkiQA(
-                    question=prompt.question,
-                    answer=prompt.answer,
+                    prompt=prompt.prompt,
                     base_deck=deck,
                     tags=prompt.tags,
                     css=self.card_css,
@@ -47,8 +45,10 @@ class AnkiPromptConverter:
         if "Question" in note_info.fields and "Answer" in note_info.fields:
             return DestinationPrompt(
                 QAWithoutDoc(
-                    question=note_info.fields["Question"].value,
-                    answer=note_info.fields["Answer"].value,
+                    QAPromptImpl(
+                        question=note_info.fields["Question"].value,
+                        answer=note_info.fields["Answer"].value,
+                    ),
                     add_tags=note_info.tags,
                 ),
                 destination_id=str(note_info.noteId),

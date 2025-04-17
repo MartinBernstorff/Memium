@@ -1,7 +1,7 @@
 import pytest
 
 from ...source.prompts.prompt import BasePrompt
-from ...source.prompts.prompt_qa import QAWithoutDoc
+from ...source.prompts.prompt_qa import QAPromptImpl, QAWithoutDoc
 from .anki_converter import AnkiPromptConverter
 from .anki_prompt import AnkiPrompt
 from .test_anki_prompt_qa import FakeAnkiQA
@@ -11,7 +11,10 @@ from .test_anki_prompt_qa import FakeAnkiQA
     ("input_prompt", "expected_card"),
     [
         (
-            QAWithoutDoc(question="FakeQuestion", answer="FakeAnswer", add_tags=["FakeTag"]),
+            QAWithoutDoc(
+                prompt=QAPromptImpl.dummy(question="FakeQuestion", answer="FakeAnswer"),
+                add_tags=["FakeTag"],
+            ),
             FakeAnkiQA(
                 uuid=4875918425
             ),  # Ensure that UUID generation remains stable to retain idempotency over time

@@ -7,7 +7,7 @@ from typing import Literal
 from memium.source.document import Document
 from memium.source.extractors.to_line_blocks import LineBlock, to_line_blocks
 
-from ..prompts.prompt_qa import QAFromDoc, QAPrompt
+from ..prompts.prompt_qa import QAFromDoc, QAPrompt, QAPromptImpl
 from .extractor import BasePromptExtractor
 
 
@@ -142,8 +142,7 @@ class TableExtractor(BasePromptExtractor):
             if card:
                 prompts.append(
                     QAFromDoc(
-                        question=card.front,
-                        answer=card.back,
+                        prompt=QAPromptImpl(question=card.front, answer=card.back),
                         parent_doc=doc,
                         line_nr=parsed_table.end_line_nr,
                     )
