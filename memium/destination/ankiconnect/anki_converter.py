@@ -55,7 +55,6 @@ class AnkiPromptConverter:
                         edit_url=prompt.edit_url,
                         render_parent_doc=prompt.render_parent_doc,
                     ),
-                    UUID=Markdown(str(prompt.prompt.scheduling_uid)),
                     tags=prompt.tags,
                     raw_prompt=prompt.prompt,
                     root_deck=deck,
@@ -67,7 +66,6 @@ class AnkiPromptConverter:
                     Extra=extra_field_content(
                         source_title=None, edit_url=prompt.edit_url, render_parent_doc=False
                     ),
-                    UUID=Markdown(str(prompt.prompt.scheduling_uid)),
                     tags=prompt.tags,
                     raw_prompt=prompt.prompt,
                     root_deck=deck,
@@ -85,6 +83,7 @@ class AnkiPromptConverter:
                     ),
                     add_tags=note_info.tags,
                 ),
+                extra=note_info.fields["Extra"].value,
                 destination_id=str(note_info.noteId),
             )
 

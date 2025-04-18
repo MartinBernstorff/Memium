@@ -41,11 +41,17 @@ class DiffDeterminerExample:
                 QAWithoutDoc.dummy(question="b", answer="b"),
             ],
             destination_prompts=[
-                DestinationPrompt(QAWithoutDoc.dummy(question="b", answer="b"), destination_id="2"),
-                DestinationPrompt(QAWithoutDoc.dummy(question="c", answer="c"), destination_id="3"),
+                DestinationPrompt.dummy(
+                    QAWithoutDoc.dummy(question="b", answer="b"), destination_id="2"
+                ),
+                DestinationPrompt.dummy(
+                    QAWithoutDoc.dummy(question="c", answer="c"), destination_id="3"
+                ),
             ],
             delete_prompts=[
-                DestinationPrompt(QAWithoutDoc.dummy(question="c", answer="c"), destination_id="3")
+                DestinationPrompt.dummy(
+                    QAWithoutDoc.dummy(question="c", answer="c"), destination_id="3"
+                )
             ],
             push_prompts=[QAWithoutDoc.dummy(question="a", answer="a")],
             example_title="Should push 'a' only in source and delete 'c' only in destination",
@@ -54,7 +60,7 @@ class DiffDeterminerExample:
             DiffDeterminerExample(
                 source_prompts=[QAWithoutDoc.dummy(tags=["NewTag"])],
                 destination_prompts=[
-                    DestinationPrompt(QAWithoutDoc.dummy(tags=["OldTag"]), destination_id="1")
+                    DestinationPrompt.dummy(QAWithoutDoc.dummy(tags=["OldTag"]), destination_id="1")
                 ],
                 delete_prompts=[],
                 push_prompts=[QAWithoutDoc.dummy(tags=["NewTag"])],

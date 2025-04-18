@@ -11,19 +11,14 @@ from memium.utils.markdown_parser import md_to_html
 class AnkiQAFormatter:
     css: str
 
-    CARD_NAME = "Ankdown QA with UUID"
+    CARD_NAME = "Ankdown QA with raw text"
 
     def format(self, model: AnkiQAModel) -> genanki.Note:
         return genanki.Note(
-            guid=str(model.UUID),
+            guid=str(model.raw_prompt.scheduling_uid),
             model=self._genanki_model(model),
             fields=[
-                *[
-                    md_to_html(getattr(model, field))
-                    for field in model.field_names
-                    if field != "UUID"
-                ],
-                model.UUID,
+                *[md_to_html(getattr(model, field)) for field in model.formatted_field_names],
                 model.raw_prompt.question,
                 model.raw_prompt.answer,
             ],
@@ -35,7 +30,8 @@ class AnkiQAFormatter:
             model_id=hash_str_to_int(self.CARD_NAME),
             name=(self.CARD_NAME),
             fields=[
-                {"name": field} for field in [*model.field_names, "raw_question", "raw_answer"]
+                {"name": field}
+                for field in [*model.formatted_field_names, "raw_question", "raw_answer"]
             ],
             templates=self._model_template(model),
             css=self.css,
@@ -53,7 +49,10 @@ class AnkiQAFormatter:
         placeholders = [QUESTION_PLACEHOLDER, ANSWER_PLACEHOLDER, EXTRA_PLACEHOLDER]
 
         for placeholder in placeholders:
-            if placeholder.replace(r"{{ ", "").replace(r" }}", "") not in model.field_names:
+            if (
+                placeholder.replace(r"{{ ", "").replace(r" }}", "")
+                not in model.formatted_field_names
+            ):
                 raise ValueError(f"Field {placeholder} is not defined in the model")
 
         return [

@@ -14,7 +14,6 @@ class AnkiQAModel:
     Question: Markdown
     Answer: Markdown
     Extra: Markdown
-    UUID: Markdown
 
     raw_prompt: QAPromptImpl
 
@@ -32,18 +31,13 @@ class AnkiQAModel:
             Question=Markdown(question),
             Answer=Markdown(answer),
             Extra=Markdown(extra),
-            UUID=Markdown(""),
             tags=tags,
             raw_prompt=QAPromptImpl.dummy(question, answer),
             root_deck="FakeBaseDeck",
         )
 
     @property
-    def uuid(self) -> str:
-        return str(self.UUID).replace("<p>", "").replace("</p>", "")
-
-    @property
-    def field_names(self) -> list[str]:
+    def formatted_field_names(self) -> list[str]:
         return [name for name, type_hint in self.__annotations__.items() if type_hint == Markdown]
 
     @property

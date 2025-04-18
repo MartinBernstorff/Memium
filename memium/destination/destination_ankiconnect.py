@@ -63,7 +63,9 @@ class AnkiConnectDestination(PromptDestination):
         prompt_ids = {int(remote_prompt.destination_id) for remote_prompt in prompts}
         log.info(f"Deleting {len(prompt_ids)} prompts from Anki")
         for prompt in prompts:
-            log.info(f"Deleting prompt: {prompt.prompt.edit_url}")
+            log.info(
+                f"Deleting prompt: {prompt.prompt.edit_url if prompt.prompt.edit_url else prompt}"
+            )
 
         self.gateway.delete_notes(list(prompt_ids))
 

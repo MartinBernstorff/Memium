@@ -40,6 +40,14 @@ from dataclasses import dataclass
 class DestinationPrompt:
     prompt: BasePrompt
 
+    extra: str
+
     # Destinations can have their own ID-scheme. E.g. Anki assigns a Note id at creation time, which
     # is independent of content. This ID is used to delete or update the note.
     destination_id: str
+
+    @staticmethod
+    def dummy(
+        prompt: BasePrompt, extra: str = "DummyExtra", destination_id: str = "DummyDestinationID"
+    ) -> "DestinationPrompt":
+        return DestinationPrompt(prompt=prompt, extra=extra, destination_id=destination_id)

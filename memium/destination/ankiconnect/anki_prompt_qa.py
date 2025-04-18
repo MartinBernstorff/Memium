@@ -11,7 +11,3 @@ class AnkiPrompt:
     edit_url: str | None
 
     render_parent_doc: bool
-
-    @property
-    def uuid(self) -> int:
-        return self.prompt.scheduling_uid

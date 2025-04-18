@@ -103,4 +103,3 @@ inv validate_ci
 # Design decisions
 * Is there a need for "QAWithoutDoc"? It is because the 
   * Seems it's being used inside `DestinationPrompt`. But which parts of DestinationPrompt are being used?
-  * Ah, so we cannot instantiate a full document from the data we get from Anki, and the document's tags is needed for the sync UUID. This means we need some other representation to get the sync UUID.
