@@ -1,6 +1,27 @@
 # CHANGELOG
 
 
+## v0.33.1 (2025-04-18)
+
+### Bug Fixes
+
+- Missing import
+  ([`1099c66`](https://github.com/MartinBernstorff/Memium/commit/1099c66dbbd8a056e167a2346e1cdbcdbba5c84a))
+
+### Documentation
+
+- Update readme.md
+  ([`6f8c7da`](https://github.com/MartinBernstorff/Memium/commit/6f8c7da1ebd36859d126449f12cf9fceb0f2694d))
+
+### Refactoring
+
+- Major cleanup of prompt class hierarchy
+  ([`cc37aba`](https://github.com/MartinBernstorff/Memium/commit/cc37abace5b3b6a79f47d9985a5e919bb68213ae))
+
+- Remove uuid and add dummies
+  ([`89779cc`](https://github.com/MartinBernstorff/Memium/commit/89779cc25247bdf5c6a9f13a268d55739a5fc5ba))
+
+
 ## v0.33.0 (2025-04-18)
 
 ### Features
