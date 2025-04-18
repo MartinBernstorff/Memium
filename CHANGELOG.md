@@ -1,6 +1,27 @@
 # CHANGELOG
 
 
+## v0.33.0 (2025-04-18)
+
+### Features
+
+- Store question and answer as markdown
+  ([`e6b1e36`](https://github.com/MartinBernstorff/Memium/commit/e6b1e36a512023934136acd7755ef4c0be2cb40e))
+
+Storing them with less formatting makes for much more robust value-object identity
+
+### Refactoring
+
+- Improve cohesion of AnkiQA and add dummies
+  ([`c7af9db`](https://github.com/MartinBernstorff/Memium/commit/c7af9db1efd7a0612e3578800657dd6a8a25236d))
+
+- Inline AnkiPrompt
+  ([`5b57d2a`](https://github.com/MartinBernstorff/Memium/commit/5b57d2a264e54b54c157bbc22fb20afcdfe62dd6))
+
+- Misc.
+  ([`ce050aa`](https://github.com/MartinBernstorff/Memium/commit/ce050aa6345f7f2c6393bf4d0e7aa8a0edac2675))
+
+
 ## v0.32.0 (2025-04-17)
 
 ### Chores
