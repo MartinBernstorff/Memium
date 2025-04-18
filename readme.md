@@ -37,7 +37,7 @@ If you want to sync markdown notes to Anki, here's how to get started!
 2. Install Memium in its own virtual environment with pipx,
 
 ```bash
-> pipx install memium
+> uv tool install memium
 ```
 
 3. Import your notes!
@@ -81,13 +81,6 @@ pip install memium
 3. Press this [link](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/MartinBernstorff/memium/)
 4. Complete the setup process
 
-### Submitting a PR
-Feel free to submit pull requests! If you want to run the entire pipeline locally, run:
-
-```bash
-inv validate_ci
-```
-
 # 💬 Where to ask questions
 
 | Type                           |                        |
@@ -99,7 +92,3 @@ inv validate_ci
 
 [github issue tracker]: https://github.com/MartinBernstorff/memium/issues
 [github discussions]: https://github.com/MartinBernstorff/memium/discussions
-
-# Design decisions
-* Is there a need for "QAFromDoc"? It is because the 
-  * Seems it's being used inside `DestinationPrompt`. But which parts of DestinationPrompt are being used?
