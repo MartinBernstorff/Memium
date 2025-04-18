@@ -9,6 +9,17 @@ class Document:
     content: str
     source_path: Path
 
+    @staticmethod
+    def dummy(
+        content: str | None = None, source_path: Path = Path("DummyPath"), tags: Sequence[str] = ()
+    ) -> "Document":
+        return Document(
+            content=content
+            if content is not None
+            else "dummy content with tags: " + ", ".join(f"#{tag}" for tag in tags),
+            source_path=source_path,
+        )
+
     @property
     def tags(self) -> Sequence[str]:
         tag_strings: list[str] = list(re.findall(r"#[\w\/]+", self.content))

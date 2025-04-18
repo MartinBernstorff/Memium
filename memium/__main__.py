@@ -27,13 +27,7 @@ log = logging.getLogger(__name__)
 app = typer.Typer()
 
 
-def main(
-    root_deck: str,
-    input_dir: Path,
-    max_deletions_per_run: int,
-    dry_run: bool,
-    push_all: bool = False,
-):
+def main(root_deck: str, input_dir: Path, max_deletions_per_run: int, dry_run: bool):
     # Setup gateway as first step. If Anki is not running, no need to parse all the prompts.
     gateway = AnkiConnectGateway(
         ankiconnect_url=ANKICONNECT_URL,
@@ -79,18 +73,13 @@ def main(
     # p2: Preprocessors could then be applied here. Definition of preprocessor is that it takes a prompt with markdown,
     # not a formatted prompt.
 
-    diff = PromptDiffDeterminer().sync(
+    diff = PromptDiffDeterminer().to_delete(
         source_prompts=source_prompts, destination_prompts=destination.get_all_prompts()
     )
 
     delete_prompts = [command for command in diff if isinstance(command, DeletePrompts)]
-    push_prompts = (
-        [command for command in diff if isinstance(command, PushPrompts)]
-        if not push_all
-        else [PushPrompts(prompts=source_prompts)]
-    )
 
-    destination.update(commands=[*delete_prompts, *push_prompts])
+    destination.update(commands=[*delete_prompts, PushPrompts(prompts=source_prompts)])
 
 
 @app.command()
@@ -119,12 +108,6 @@ def cli(
             help="Maximum number of cards to delete per sync to avoid unintentional deletions. If exceeded, raises error."
         ),
     ] = 50,
-    push_all: Annotated[
-        bool,
-        typer.Option(
-            help="Push all prompts to Anki, not just the diff. Useful if you have e.g. changed your CSS template. Note that this does not change scheduling, nor delete prompts that no longer exist in your markdown."
-        ),
-    ] = False,
     dry_run: Annotated[
         bool, typer.Option(help="Don't update via AnkiConnect, just log what would happen")
     ] = False,
@@ -161,7 +144,6 @@ def cli(
         input_dir=input_dir,
         max_deletions_per_run=max_deletions_per_run,
         dry_run=dry_run,
-        push_all=push_all,
     )
     main_fn()
 

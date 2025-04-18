@@ -1,10 +1,9 @@
 from collections.abc import Sequence
 from dataclasses import dataclass
-from pathlib import Path
 
 import pytest
 
-from memium.source.prompts.prompt_qa import QAWithoutDoc
+from memium.source.prompt import QAWithDoc
 
 from ..document import Document
 from .extractor_table import TableExtractor
@@ -14,7 +13,7 @@ from .to_line_blocks import LineBlock, to_line_blocks
 @dataclass(frozen=True)
 class TableExtractorExample:
     table_prompt: str  # What the example is testing
-    expectation: Sequence[QAWithoutDoc]  # Expected prompts
+    expectation: Sequence[QAWithDoc]  # Expected prompts
 
 
 # p3: if the row contains a wikilink with a pipe, it will be split into two cells
@@ -26,27 +25,27 @@ class TableExtractorExample:
     [
         TableExtractorExample(
             table_prompt="Descending // |Column one|? // |Column two|.",
-            expectation=[QAWithoutDoc.dummy(question="11?", answer="22.")],
+            expectation=[QAWithDoc.dummy(question="11?", answer="22.", line_nr=8)],
         ),
         TableExtractorExample(
             table_prompt="Ascending // |Column one|? // |Column two|.",
             expectation=[
-                QAWithoutDoc.dummy(question="21?", answer="12."),
-                QAWithoutDoc.dummy(question="31?", answer="22."),
+                QAWithDoc.dummy(question="31?", answer="22.", line_nr=8),
+                QAWithDoc.dummy(question="21?", answer="12.", line_nr=8),
             ],
         ),
         TableExtractorExample(
             table_prompt="Rowwise // |Column one|? // |Column two|.",
             expectation=[
-                QAWithoutDoc.dummy(question="11?", answer="12."),
-                QAWithoutDoc.dummy(question="21?", answer="22."),
+                QAWithDoc.dummy(question="21?", answer="22.", line_nr=8),
+                QAWithDoc.dummy(question="11?", answer="12.", line_nr=8),
             ],
         ),
     ],
     ids=lambda x: x.table_prompt,
 )
 def test_table_extractor(example: TableExtractorExample):
-    input_doc = Document(
+    input_doc = Document.dummy(
         content=f"""
     Block one
 
@@ -55,14 +54,16 @@ def test_table_extractor(example: TableExtractorExample):
 | 11 | 12 |
 | 21 | 22 |
 | 31 |      |
-{example.table_prompt}""",
-        source_path=Path(__file__),
+{example.table_prompt}"""
     )
 
-    assert {
-        example.to_qa_from_doc(doc=input_doc, line_nr=len(input_doc.content.split("\n")) - 1)
-        for example in example.expectation
-    } == set(TableExtractor().extract_prompts(input_doc))
+    result = TableExtractor().extract_prompts(input_doc)
+
+    assert _scheduling_strs(result) == _scheduling_strs(example.expectation)
+
+
+def _scheduling_strs(prompts: Sequence[QAWithDoc]) -> set[str]:
+    return {p.scheduling_str for p in prompts}
 
 
 def test_line_block_extractor():

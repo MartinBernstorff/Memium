@@ -1,7 +1,7 @@
 from memium.destination.ankiconnect.anki_model import AnkiQAModel, Markdown
 
-from ...source.prompts.prompt import BasePrompt, DestinationPrompt
-from ...source.prompts.prompt_qa import QAFromDoc, QAPromptImpl, QAWithoutDoc
+from ...source.prompt import QAPrompt, QAWithDoc
+from ..destination import DestinationPrompt
 from .ankiconnect_gateway import NoteInfo
 
 
@@ -19,7 +19,7 @@ def _edit_button(url: str) -> str:
 ">Obsidian</a>"""
 
 
-def extra_field_content(
+def _extra_field_content(
     source_title: str | None, edit_url: str | None, render_parent_doc: bool
 ) -> Markdown:
     note_title = (
@@ -42,46 +42,29 @@ class AnkiPromptConverter:
     def dummy() -> "AnkiPromptConverter":
         return AnkiPromptConverter(root_deck="FakeBaseDeck")
 
-    def to_destination(self, prompt: BasePrompt) -> AnkiQAModel:
+    def to_destination(self, prompt: QAWithDoc) -> AnkiQAModel:
         deck_in_tags = [tag for tag in prompt.tags if tag.startswith(self.deck_prefix)]
         deck = deck_in_tags[0] if deck_in_tags else self.root_deck
-        match prompt:
-            case QAFromDoc():
-                return AnkiQAModel(
-                    Question=Markdown(prompt.prompt.question),
-                    Answer=Markdown(prompt.prompt.answer),
-                    Extra=extra_field_content(
-                        source_title=prompt.parent_doc.title,
-                        edit_url=prompt.edit_url,
-                        render_parent_doc=prompt.render_parent_doc,
-                    ),
-                    tags=prompt.tags,
-                    raw_prompt=prompt.prompt,
-                    root_deck=deck,
-                )
-            case QAWithoutDoc():
-                return AnkiQAModel(
-                    Question=Markdown(prompt.prompt.question),
-                    Answer=Markdown(prompt.prompt.answer),
-                    Extra=extra_field_content(
-                        source_title=None, edit_url=prompt.edit_url, render_parent_doc=False
-                    ),
-                    tags=prompt.tags,
-                    raw_prompt=prompt.prompt,
-                    root_deck=deck,
-                )
-            case BasePrompt():
-                raise ValueError("BasePrompt is the base class for all prompts, use a subclass")
+
+        return AnkiQAModel(
+            Question=Markdown(prompt.prompt.question),
+            Answer=Markdown(prompt.prompt.answer),
+            Extra=_extra_field_content(
+                source_title=prompt.parent_doc.title,
+                edit_url=prompt.edit_url,
+                render_parent_doc=prompt.render_parent_doc,
+            ),
+            tags=prompt.tags,
+            raw_prompt=prompt.prompt,
+            root_deck=deck,
+        )
 
     def from_destination(self, note_info: NoteInfo) -> DestinationPrompt:
         if "Question" in note_info.fields and "Answer" in note_info.fields:
             return DestinationPrompt(
-                QAWithoutDoc(
-                    QAPromptImpl(
-                        question=note_info.fields["raw_question"].value,
-                        answer=note_info.fields["raw_answer"].value,
-                    ),
-                    add_tags=note_info.tags,
+                QAPrompt(
+                    question=note_info.fields["raw_question"].value,
+                    answer=note_info.fields["raw_answer"].value,
                 ),
                 extra=note_info.fields["Extra"].value,
                 destination_id=str(note_info.noteId),

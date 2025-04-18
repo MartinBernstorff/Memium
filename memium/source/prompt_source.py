@@ -5,16 +5,17 @@ from typing import Protocol
 
 from iterpy import Iter
 
+from memium.source.prompt import QAWithDoc
+
 from .document import Document
 from .document_source import BaseDocumentSource
 from .extractors.extractor import BasePromptExtractor
-from .prompts.prompt import BasePrompt
 
 log = logging.getLogger(__name__)
 
 
 class BasePromptSource(Protocol):
-    def get_prompts(self) -> Sequence[BasePrompt]: ...
+    def get_prompts(self) -> Sequence[QAWithDoc]: ...
 
 
 @dataclass(frozen=True)
@@ -22,8 +23,8 @@ class DocumentPromptSource(BasePromptSource):
     document_ingester: BaseDocumentSource
     prompt_extractors: Sequence[BasePromptExtractor]
 
-    def _get_prompts_from_document(self, document: Document) -> Sequence[BasePrompt]:
-        prompts: list[BasePrompt] = []
+    def _get_prompts_from_document(self, document: Document) -> Sequence[QAWithDoc]:
+        prompts: list[QAWithDoc] = []
 
         for extractor in self.prompt_extractors:
             try:
@@ -36,7 +37,7 @@ class DocumentPromptSource(BasePromptSource):
 
         return prompts
 
-    def _deduplicate_group(self, group: tuple[str, Sequence[BasePrompt]]) -> BasePrompt:
+    def _deduplicate_group(self, group: tuple[str, Sequence[QAWithDoc]]) -> QAWithDoc:
         prompts_in_group = group[1]
 
         if len(prompts_in_group) != 1:
@@ -45,7 +46,7 @@ class DocumentPromptSource(BasePromptSource):
 
         return prompts_in_group[0]
 
-    def _deduplicate_prompts(self, prompts: Sequence[BasePrompt]) -> Sequence[BasePrompt]:
+    def _deduplicate_prompts(self, prompts: Sequence[QAWithDoc]) -> Sequence[QAWithDoc]:
         """Deduplicate prompts based on scheduling id. If the scheduling id is the same, the prompt is considered a duplicate."""
         scheduling_id_groups = Iter(prompts).groupby(lambda prompt: str(prompt.scheduling_id))
 
@@ -57,7 +58,7 @@ class DocumentPromptSource(BasePromptSource):
 
         return unique_prompts
 
-    def get_prompts(self) -> Sequence[BasePrompt]:
+    def get_prompts(self) -> Sequence[QAWithDoc]:
         prompts = (
             Iter(self.document_ingester.get_documents())
             .map(self._get_prompts_from_document)

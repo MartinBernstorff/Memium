@@ -1,19 +1,14 @@
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
-from typing import Generic, Protocol, TypeVar
+from typing import Generic, TypeVar
 
-from .destination.destination import DeletePrompts, PromptDestinationCommand, PushPrompts
-from .source.prompts.prompt import BasePrompt, DestinationPrompt
+from memium.source.prompt import QAWithDoc
+
+from .destination.destination import DestinationPrompt
 
 K = TypeVar("K")
 T = TypeVar("T")
 S = TypeVar("S")
-
-
-class BaseDiffDeterminer(Protocol):
-    def sync(
-        self, source_prompts: Sequence[BasePrompt], destination_prompts: Sequence[DestinationPrompt]
-    ) -> Sequence[PromptDestinationCommand]: ...
 
 
 @dataclass(frozen=True)
@@ -28,23 +23,17 @@ class GeneralSyncer(Generic[K, T, S]):
         return [value for key, value in self.destination.items() if key not in self.source]
 
 
-class PromptDiffDeterminer(BaseDiffDeterminer):
-    def sync(
-        self, source_prompts: Sequence[BasePrompt], destination_prompts: Sequence[DestinationPrompt]
-    ) -> Sequence[PromptDestinationCommand]:
-        # Update prompts if content or tags have changed. This doesn't affect scheduling.
-        prompts_to_update = GeneralSyncer(
-            source={prompt.update_uid_str: prompt for prompt in source_prompts},
-            destination={prompt.prompt.update_uid_str: prompt for prompt in destination_prompts},
-        ).only_in_source()
-
+class PromptDiffDeterminer:
+    def to_delete(
+        self, source_prompts: Sequence[QAWithDoc], destination_prompts: Sequence[DestinationPrompt]
+    ) -> Sequence[DestinationPrompt]:
         # Only delete prompts whose content have changed. This essentially resets their scheduling.
         prompts_to_delete = GeneralSyncer(
-            source={prompt.scheduling_uid_str: prompt for prompt in source_prompts},
+            source={prompt.scheduling_str: prompt for prompt in source_prompts},
             destination={
                 dest_prompt.prompt.scheduling_uid_str: dest_prompt
                 for dest_prompt in destination_prompts
             },
         ).only_in_destination()
 
-        return [DeletePrompts(prompts_to_delete), PushPrompts(prompts_to_update)]
+        return prompts_to_delete

@@ -2,7 +2,9 @@ from collections.abc import Mapping
 
 import pytest
 
-from ..source.prompts.prompt_qa import QAWithoutDoc
+from memium.source.document import Document
+
+from ..source.prompt import QAWithDoc
 from .ankiconnect.ankiconnect_gateway import (
     AnkiField,
     ImportPackage,
@@ -47,10 +49,10 @@ def test_ankiconnect_push_prompts():
         [
             PushPrompts(
                 prompts=[
-                    QAWithoutDoc.dummy(
+                    QAWithDoc.dummy(
                         question="FakeQuestion",
                         answer="FakeAnswer",
-                        tags=["anki/deck/FakeSubdeck/FakeSubSubdeck"],
+                        parent_doc=Document.dummy(tags=["anki/deck/FakeSubdeck/FakeSubSubdeck"]),
                     )
                 ]
             )

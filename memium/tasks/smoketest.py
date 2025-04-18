@@ -1,10 +1,7 @@
-import uuid
 from collections.abc import Sequence
 from pathlib import Path
 
 import invoke as inv
-
-from memium.tasks.graphite import submit_pr  # noqa: F401 # type: ignore
 
 
 def get_code_blocks_from_md(md_path: Path) -> Sequence[str]:
@@ -21,32 +18,6 @@ def create_smoketest_dir() -> Path:
     test_file = input_dir / "test.md"
     test_file.write_text("Q. Question here\nA. Answer!")
     return input_dir
-
-
-@inv.task  # type: ignore
-def smoketest_docker(c: inv.Context):
-    input_dir = create_smoketest_dir()
-
-    code_blocks = get_code_blocks_from_md(Path("readme.md"))
-    docker_block = next(block for block in code_blocks if "docker run" in block).strip() + " \\\n"
-
-    # Only keep content after docker line
-    docker_block = docker_block[docker_block.index("docker run") :]
-    replaced_image_location = docker_block.replace(
-        "ghcr.io/martinbernstorff/memium:latest", "memium"
-    )
-    replaced_input_dir = replaced_image_location.replace(
-        "$INPUT_DIR", str(input_dir.absolute())
-    ).replace("--name=memium", f"--name={uuid.uuid4()}")
-
-    smoketest_docker_command = replaced_input_dir + "  --dry-run \\\n" + "  --skip-sync"
-
-    print(smoketest_docker_command)
-
-    c.run("docker build . -t memium:latest -f Dockerfile")
-    c.run("docker volume create ankidecks")
-    c.run(smoketest_docker_command)
-    print("💨🎉 Smoketest complete")
 
 
 @inv.task  # type: ignore

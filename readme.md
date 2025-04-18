@@ -101,5 +101,5 @@ inv validate_ci
 [github discussions]: https://github.com/MartinBernstorff/memium/discussions
 
 # Design decisions
-* Is there a need for "QAWithoutDoc"? It is because the 
+* Is there a need for "QAFromDoc"? It is because the 
   * Seems it's being used inside `DestinationPrompt`. But which parts of DestinationPrompt are being used?

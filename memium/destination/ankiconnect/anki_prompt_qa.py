@@ -1,11 +1,11 @@
 from dataclasses import dataclass
 
-from memium.source.prompts.prompt_qa import QAPromptImpl
+from memium.source.prompt import QAPrompt
 
 
 @dataclass(frozen=True)
 class AnkiPrompt:
-    prompt: QAPromptImpl
+    prompt: QAPrompt
 
     source_title: str | None
     edit_url: str | None

@@ -4,7 +4,7 @@ import genanki
 
 from memium.destination.ankiconnect.anki_model import AnkiQAModel
 from memium.utils.hash_cleaned_str import hash_str_to_int
-from memium.utils.markdown_parser import md_to_html
+from memium.utils.markdown import md_to_html
 
 
 @dataclass(frozen=True)

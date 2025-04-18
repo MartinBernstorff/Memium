@@ -9,11 +9,16 @@ from iterpy import Iter
 from memium.destination.ankiconnect.anki_formatter import AnkiQAFormatter
 from memium.destination.ankiconnect.anki_model import AnkiQAModel
 
-from ..source.prompts.prompt import DestinationPrompt
 from ..utils.hash_cleaned_str import clean_str, hash_str_to_int
 from .ankiconnect.anki_converter import AnkiPromptConverter
 from .ankiconnect.ankiconnect_gateway import AnkiConnectGateway
-from .destination import DeletePrompts, PromptDestination, PromptDestinationCommand, PushPrompts
+from .destination import (
+    DeletePrompts,
+    DestinationPrompt,
+    PromptDestination,
+    PromptDestinationCommand,
+    PushPrompts,
+)
 
 log = logging.getLogger(__name__)
 
@@ -63,9 +68,7 @@ class AnkiConnectDestination(PromptDestination):
         prompt_ids = {int(remote_prompt.destination_id) for remote_prompt in prompts}
         log.info(f"Deleting {len(prompt_ids)} prompts from Anki")
         for prompt in prompts:
-            log.info(
-                f"Deleting prompt: {prompt.prompt.edit_url if prompt.prompt.edit_url else prompt}"
-            )
+            log.info(f"Deleting prompt: {prompt}")
 
         self.gateway.delete_notes(list(prompt_ids))
 
