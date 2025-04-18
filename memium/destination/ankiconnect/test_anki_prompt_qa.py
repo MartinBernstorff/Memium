@@ -49,7 +49,7 @@ def test_model():
     assert model.model_type == snapshot(0)  # type: ignore
     assert model.name == snapshot("Ankdown QA with UUID")  # type: ignore
     assert model.fields == snapshot(  # type: ignore
-        [{"name": "Question"}, {"name": "Answer"}, {"name": "Extra"}, {"name": "UUID"}]
+        [{"name": "Question"}, {"name": "Answer"}, {"name": "Extra"}, {"name": "UUID"}, {'name':'raw_question'}, {'name':'raw_answer'}]
     )  # type: ignore
     assert model.css == snapshot('FakeCSS')  # type: ignore
     assert model.templates == snapshot(  # type: ignore
@@ -87,6 +87,5 @@ def test_formatting():
             "<p>Q. This is a <em>question</em>?</p>",
             '<p>A. DummyAnswer</p>',
             '',
-            '',
-        ]
+            '', 'Q. This is a _question_?', 'A. DummyAnswer']
     )

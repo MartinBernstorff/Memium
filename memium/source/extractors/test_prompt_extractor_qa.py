@@ -24,4 +24,4 @@ A. 42
     assert prompt.prompt.question == "What is the meaning of life?"
     assert prompt.prompt.answer == "42"
     assert prompt.tags == ["anki/tag/test_tag"]
-    assert prompt.scheduling_uid == 3643087944
+    assert prompt.scheduling_id == 3643087944

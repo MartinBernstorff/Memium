@@ -57,6 +57,7 @@ class AnkiPromptConverter:
                     ),
                     UUID=Markdown(str(prompt.prompt.scheduling_uid)),
                     tags=prompt.tags,
+                    raw_prompt=prompt.prompt,
                     root_deck=deck,
                 )
             case QAWithoutDoc():
@@ -68,6 +69,7 @@ class AnkiPromptConverter:
                     ),
                     UUID=Markdown(str(prompt.prompt.scheduling_uid)),
                     tags=prompt.tags,
+                    raw_prompt=prompt.prompt,
                     root_deck=deck,
                 )
             case BasePrompt():
@@ -78,8 +80,8 @@ class AnkiPromptConverter:
             return DestinationPrompt(
                 QAWithoutDoc(
                     QAPromptImpl(
-                        question=note_info.fields["Question"].value,
-                        answer=note_info.fields["Answer"].value,
+                        question=note_info.fields["raw_question"].value,
+                        answer=note_info.fields["raw_answer"].value,
                     ),
                     add_tags=note_info.tags,
                 ),

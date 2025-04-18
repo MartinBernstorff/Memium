@@ -40,20 +40,16 @@ class DocumentPromptSource(BasePromptSource):
         prompts_in_group = group[1]
 
         if len(prompts_in_group) != 1:
-            identifier = (
-                prompts_in_group[0].edit_url
-                if prompts_in_group[0].edit_url
-                else prompts_in_group[0]
-            )
-            log.warning(f"""Duplicate prompts: {identifier}""")
+            identifiers = [p.edit_url if p.edit_url else p for p in prompts_in_group]
+            log.warning(f"""Duplicate prompts: {identifiers}""")
 
         return prompts_in_group[0]
 
     def _deduplicate_prompts(self, prompts: Sequence[BasePrompt]) -> Sequence[BasePrompt]:
-        """Deduplicate prompts based on scheduling UID. If the scheduling UID is the same, the prompt is considered a duplicate."""
-        scheduling_uuid_groups = Iter(prompts).groupby(lambda prompt: str(prompt.scheduling_uid))
+        """Deduplicate prompts based on scheduling id. If the scheduling id is the same, the prompt is considered a duplicate."""
+        scheduling_id_groups = Iter(prompts).groupby(lambda prompt: str(prompt.scheduling_id))
 
-        unique_prompts = scheduling_uuid_groups.map(self._deduplicate_group).to_list()
+        unique_prompts = scheduling_id_groups.map(self._deduplicate_group).to_list()
 
         n_duplicates = len(prompts) - len(unique_prompts)
         if n_duplicates != 0:

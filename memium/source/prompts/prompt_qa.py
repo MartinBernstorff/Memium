@@ -75,7 +75,7 @@ class QAWithoutDoc(BasePrompt):
         return self.prompt.scheduling_uid_str
 
     @property
-    def scheduling_uid(self) -> int:
+    def scheduling_id(self) -> int:
         return self.prompt.scheduling_uid
 
     @property
@@ -128,7 +128,7 @@ class QAFromDoc(BasePrompt, PromptFromDoc):
         return self.prompt.scheduling_uid_str
 
     @property
-    def scheduling_uid(self) -> int:
+    def scheduling_id(self) -> int:
         return self.prompt.scheduling_uid
 
     @property

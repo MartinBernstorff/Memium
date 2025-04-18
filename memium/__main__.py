@@ -59,6 +59,8 @@ def main(
         document_ingester=MarkdownDocumentSource(directory=input_dir),
         prompt_extractors=[
             qa_extractor,
+            # p2: refactor TitleAsAnswerExtractor to be a "preprocessor" instead, which generates more prompts
+            # from the existing QAPrompts
             TitleAsAnswerExtractor(
                 qa_extractor, matcher="Definition?", reversed_question="Term for '%s'?"
             ),
@@ -73,6 +75,9 @@ def main(
             TableExtractor(),
         ],
     ).get_prompts()
+
+    # p2: Preprocessors could then be applied here. Definition of preprocessor is that it takes a prompt with markdown,
+    # not a formatted prompt.
 
     diff = PromptDiffDeterminer().sync(
         source_prompts=source_prompts, destination_prompts=destination.get_all_prompts()
@@ -131,11 +136,11 @@ def cli(
     config_dir = input_dir / ".memium"
     config_dir.mkdir(exist_ok=True)
 
+    date = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    log_path = config_dir / f"{date}-memium.log"
+
     logging.basicConfig(
-        handlers=[
-            logging.StreamHandler(sys.stdout),
-            logging.FileHandler(config_dir / "memium.log"),
-        ],
+        handlers=[logging.StreamHandler(sys.stdout), logging.FileHandler(log_path)],
         level=logging.INFO,
         format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
         datefmt="%Y/%m/%d %H:%M:%S",
@@ -144,6 +149,8 @@ def cli(
     if skip_sync:
         log.info("Skipping sync")
         return
+
+    log.info(f"Logging to {log_path}")
 
     # The watching logic requires having a "core" which can terminate.
     # Alternatively, we could do a recursive call, but that would result in
@@ -157,6 +164,8 @@ def cli(
         push_all=push_all,
     )
     main_fn()
+
+    log.info(f"Logged to {log_path}")
 
     if watch_seconds:
         log.info(

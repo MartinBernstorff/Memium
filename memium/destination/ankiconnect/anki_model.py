@@ -2,6 +2,7 @@ from collections.abc import Sequence
 from dataclasses import dataclass
 from typing import NewType
 
+from memium.source.prompts.prompt_qa import QAPromptImpl
 from memium.utils.extract_terms import get_terms_surrounded_by_underscores
 
 Markdown = NewType("Markdown", str)
@@ -14,6 +15,8 @@ class AnkiQAModel:
     Answer: Markdown
     Extra: Markdown
     UUID: Markdown
+
+    raw_prompt: QAPromptImpl
 
     tags: Sequence[str]
     root_deck: str
@@ -31,6 +34,7 @@ class AnkiQAModel:
             Extra=Markdown(extra),
             UUID=Markdown(""),
             tags=tags,
+            raw_prompt=QAPromptImpl.dummy(question, answer),
             root_deck="FakeBaseDeck",
         )
 

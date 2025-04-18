@@ -10,7 +10,7 @@ class BasePrompt(Protocol):
         ...
 
     @property
-    def scheduling_uid(self) -> int:
+    def scheduling_id(self) -> int:
         """UID used when scheduling the prompt. If this UID changes, the old prompt is deleted and a new prompt is created."""
         ...
 

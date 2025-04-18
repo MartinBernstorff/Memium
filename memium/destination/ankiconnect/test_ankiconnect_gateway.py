@@ -17,7 +17,11 @@ from .ankiconnect_gateway import (
 class MockNoteInfo(NoteInfo):
     noteId: int = 1
     tags: Sequence[str] = ["MockTag"]
-    fields: Mapping[str, AnkiField] = {"Text": AnkiField(value="MockText", order=0)}
+    fields: Mapping[str, AnkiField] = {
+        "Text": AnkiField(value="MockText", order=0),
+        "raw_question": AnkiField(value="MockQuestion", order=1),
+        "raw_answer": AnkiField(value="MockAnswer", order=2),
+    }
     modelName: str = "MockModel"
     cards: Sequence[int] = [1]
 

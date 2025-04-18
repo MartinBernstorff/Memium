@@ -24,6 +24,8 @@ class AnkiQAFormatter:
                     if field != "UUID"
                 ],
                 model.UUID,
+                model.raw_prompt.question,
+                model.raw_prompt.answer,
             ],
             tags=model.tags,
         )
@@ -32,7 +34,9 @@ class AnkiQAFormatter:
         return genanki.Model(
             model_id=hash_str_to_int(self.CARD_NAME),
             name=(self.CARD_NAME),
-            fields=[{"name": field} for field in model.field_names],
+            fields=[
+                {"name": field} for field in [*model.field_names, "raw_question", "raw_answer"]
+            ],
             templates=self._model_template(model),
             css=self.css,
             model_type=0,

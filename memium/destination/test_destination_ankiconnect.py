@@ -21,6 +21,8 @@ from .destination_ankiconnect import AnkiConnectDestination
             {
                 "Question": AnkiField(value="MockQuestion", order=0),
                 "Answer": AnkiField(value="MockAnswer", order=1),
+                "raw_question": AnkiField(value="MockQuestion", order=2),
+                "raw_answer": AnkiField(value="MockAnswer", order=3),
             }
         ),
         pytest.param(
