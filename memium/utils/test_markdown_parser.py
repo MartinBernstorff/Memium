@@ -2,6 +2,7 @@ import pathlib
 from dataclasses import dataclass
 
 import pytest
+from inline_snapshot import snapshot
 
 from .markdown_parser import md_to_html
 
@@ -25,9 +26,13 @@ def test_markdown_parser(example: Ex):
     assert md_to_html(example.given) == f"<p>{example.then}</p>"
 
 
-def test_code_block_parsing(snapshot: str, tmp_path: pathlib.Path):
+def test_code_block_parsing(tmp_path: pathlib.Path):
     contents = pathlib.Path(__file__).parent / "code_block.md"
     parsed = md_to_html(contents.read_text())
     path = tmp_path / "test.htm"
     path.write_text(parsed)
-    assert parsed == snapshot
+    assert parsed == snapshot("""\
+<pre><code class="language-python">def myfunc():
+    return res
+</code></pre>\
+""")

@@ -58,7 +58,7 @@ class TestAnkiConnectGateway:
         tmp_read_dir = get_host_home_dir() / "ankidecks"
         gateway = AnkiConnectGateway(
             ankiconnect_url=ANKICONNECT_URL,
-            base_deck="Test deck",
+            root_deck="Test deck",
             tmp_read_dir=tmp_read_dir,
             tmp_write_dir=self.output_path,
             max_deletions_per_run=1,
@@ -83,7 +83,7 @@ class TestAnkiConnectGateway:
     def test_error_if_deleting_more_than_allowed(self):
         gateway = AnkiConnectGateway(
             ankiconnect_url=ANKICONNECT_URL,
-            base_deck="Test deck",
+            root_deck="Test deck",
             tmp_read_dir=Path("/tmp"),
             tmp_write_dir=Path("/tmp"),
             max_deletions_per_run=0,
@@ -97,7 +97,7 @@ def test_error_if_not_running():
     with pytest.raises(ConnectionError, match="Could not connect to Anki"):
         AnkiConnectGateway(
             ankiconnect_url="http://localhost:1234",
-            base_deck="Test deck",
+            root_deck="Test deck",
             tmp_read_dir=Path("/tmp"),
             tmp_write_dir=Path("/tmp"),
             max_deletions_per_run=0,

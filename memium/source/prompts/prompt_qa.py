@@ -64,9 +64,9 @@ class QAWithoutDoc(BasePrompt):
 
     @staticmethod
     def dummy(
-        question: str = "DummyQuestion",
-        answer: str = "DummyAnswer",
-        tags: Sequence[str] = ("DummyTag",),
+        question: str = "FakeQuestion",
+        answer: str = "FakeAnswer",
+        tags: Sequence[str] = ("FakeTag",),
     ) -> "QAWithoutDoc":
         return QAWithoutDoc(QAPromptImpl(question=question, answer=answer), add_tags=tags)
 

@@ -9,6 +9,7 @@ from typing import Annotated, Optional
 import typer
 
 from memium.destination.ankiconnect.anki_converter import AnkiPromptConverter
+from memium.destination.ankiconnect.anki_formatter import AnkiQAFormatter
 from memium.destination.ankiconnect.ankiconnect_gateway import ANKICONNECT_URL, AnkiConnectGateway
 from memium.destination.destination import DeletePrompts, PushPrompts
 from memium.destination.destination_ankiconnect import AnkiConnectDestination
@@ -27,7 +28,7 @@ app = typer.Typer()
 
 
 def main(
-    base_deck: str,
+    root_deck: str,
     input_dir: Path,
     max_deletions_per_run: int,
     dry_run: bool,
@@ -36,7 +37,7 @@ def main(
     # Setup gateway as first step. If Anki is not running, no need to parse all the prompts.
     gateway = AnkiConnectGateway(
         ankiconnect_url=ANKICONNECT_URL,
-        base_deck=base_deck,
+        root_deck=root_deck,
         tmp_read_dir=host_input_dir() if in_docker() else input_dir,
         tmp_write_dir=input_dir,
         max_deletions_per_run=max_deletions_per_run,
@@ -46,9 +47,9 @@ def main(
     dest_class = AnkiConnectDestination if not dry_run else DryRunDestination
     destination = dest_class(
         gateway=gateway,
-        prompt_converter=AnkiPromptConverter(
-            base_deck=base_deck,
-            card_css=Path("memium/destination/ankiconnect/default_styling.css").read_text(),
+        prompt_converter=AnkiPromptConverter(root_deck=root_deck),
+        formatter=AnkiQAFormatter(
+            Path("memium/destination/ankiconnect/default_styling.css").read_text()
         ),
     )
 
@@ -149,7 +150,7 @@ def cli(
     # an infinitely growing stack.
     main_fn = partial(
         main,
-        base_deck=deck_name,
+        root_deck=deck_name,
         input_dir=input_dir,
         max_deletions_per_run=max_deletions_per_run,
         dry_run=dry_run,

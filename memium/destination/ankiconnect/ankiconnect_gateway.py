@@ -23,6 +23,9 @@ log = logging.getLogger(__name__)
 import shutil
 from contextlib import contextmanager
 
+ANKICONNECT_URL = "http://host.docker.internal:8765" if in_docker() else "http://localhost:8765"
+# On host machine, port is 8765
+
 
 @contextmanager
 def tempdir(tmp_path: Path) -> Iterator[Path]:
@@ -68,11 +71,24 @@ class AnkiConnectCommand(Enum):
 @dataclass(frozen=True)
 class AnkiConnectGateway:
     ankiconnect_url: str
-    base_deck: str
+    root_deck: str
     tmp_read_dir: Path
     tmp_write_dir: Path
     max_deletions_per_run: int
     max_wait_seconds: int
+
+    @staticmethod
+    def dummy(
+        ankiconnect_url: str = ANKICONNECT_URL, root_deck: str = "FakeDeck"
+    ) -> "AnkiConnectGateway":
+        return AnkiConnectGateway(
+            ankiconnect_url=ankiconnect_url,
+            root_deck=root_deck,
+            tmp_read_dir=Path("tmp_read_dir"),
+            tmp_write_dir=Path("tmp_write_dir"),
+            max_deletions_per_run=100,
+            max_wait_seconds=10,
+        )
 
     def __post_init__(self) -> None:
         seconds_waited = 0
@@ -143,7 +159,7 @@ class AnkiConnectGateway:
 
     def get_all_note_infos(self) -> Sequence[NoteInfo]:
         anki_card_ids: list[int] = self._invoke(
-            AnkiConnectCommand.FIND_CARDS, query=f'"deck:{self.base_deck}"'
+            AnkiConnectCommand.FIND_CARDS, query=f'"deck:{self.root_deck}"'
         )
 
         # get a list of anki notes in the deck
@@ -209,10 +225,6 @@ class SpieAnkiconnectGateway(AnkiConnectGateway):
 
     def import_package(self, package: genanki.Package) -> None:
         self.executed_commands.append(ImportPackage(package=package))
-
-
-ANKICONNECT_URL = "http://host.docker.internal:8765" if in_docker() else "http://localhost:8765"
-# On host machine, port is 8765
 
 
 def anki_connect_is_live(ankiconnect_url: str = ANKICONNECT_URL) -> bool:

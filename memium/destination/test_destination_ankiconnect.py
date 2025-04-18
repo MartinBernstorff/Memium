@@ -3,7 +3,6 @@ from collections.abc import Mapping
 import pytest
 
 from ..source.prompts.prompt_qa import QAWithoutDoc
-from .ankiconnect.anki_converter import AnkiPromptConverter
 from .ankiconnect.ankiconnect_gateway import (
     AnkiField,
     ImportPackage,
@@ -30,9 +29,8 @@ from .destination_ankiconnect import AnkiConnectDestination
     ],
 )
 def test_ankiconnect_get_all_prompts(fields: Mapping[str, AnkiField]):
-    dest = AnkiConnectDestination(
-        gateway=SpieAnkiconnectGateway(note_infos=[MockNoteInfo(fields=fields)]),
-        prompt_converter=AnkiPromptConverter(base_deck="FakeDeck", card_css="FakeCSS"),
+    dest = AnkiConnectDestination.dummy(
+        gateway=SpieAnkiconnectGateway(note_infos=[MockNoteInfo(fields=fields)])
     )
     prompts = dest.get_all_prompts()
 
@@ -41,10 +39,7 @@ def test_ankiconnect_get_all_prompts(fields: Mapping[str, AnkiField]):
 
 def test_ankiconnect_push_prompts():
     gateway = SpieAnkiconnectGateway()
-    dest = AnkiConnectDestination(
-        gateway=gateway,
-        prompt_converter=AnkiPromptConverter(base_deck="FakeDeck", card_css="FakeCSS"),
-    )
+    dest = AnkiConnectDestination.dummy(gateway=gateway)
     dest.update(
         [
             PushPrompts(
@@ -65,7 +60,7 @@ def test_ankiconnect_push_prompts():
     )
     assert (
         import_package_command.package.decks[0].name  # type: ignore
-        == "FakeDeck::FakeSubdeck::FakeSubSubdeck"
+        == "FakeBaseDeck::FakeSubdeck::FakeSubSubdeck"
     )
     assert len(import_package_command.package.decks) == 1  # type: ignore
 

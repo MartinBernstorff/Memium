@@ -1,83 +1,92 @@
 from collections.abc import Sequence
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 
 from inline_snapshot import snapshot
 
-from memium.source.prompts.prompt_qa import QAPromptImpl
-
-from .anki_prompt_qa import AnkiPrompt
+from memium.destination.ankiconnect.anki_formatter import AnkiQAFormatter
+from memium.destination.ankiconnect.anki_model import AnkiQAModel
 
 
 def fake_tag_factory() -> Sequence[str]:
     return ["FakeTag"]
 
 
-@dataclass(frozen=True)
-class FakeAnkiQA(AnkiPrompt):
-    base_deck: str = "FakeBaseDeck"
-    tags: Sequence[str] = field(default_factory=fake_tag_factory)
-    prompt: QAPromptImpl = field(default_factory=QAPromptImpl.dummy)
-    css: str = "FakeCSS"
-    edit_url: str = "FakeEditURL"
-    source_title: str | None = None
-    render_parent_doc: bool = False
-
-
-from dataclasses import dataclass
-
 import pytest
 
 
 @dataclass(frozen=True)
 class QAExample:
-    card: AnkiPrompt
-    deck: str
+    card: AnkiQAModel
+    expected_deck: str
 
 
 @pytest.mark.parametrize(
     ("example"),
     [
-        QAExample(FakeAnkiQA(tags=["anki/deck/Subdeck"]), "FakeBaseDeck::Subdeck"),
+        QAExample(AnkiQAModel.dummy(tags=["anki/deck/Subdeck"]), "FakeBaseDeck::Subdeck"),
         QAExample(
-            FakeAnkiQA(
-                tags=["anki/deck/Subdeck"],
-                prompt=QAPromptImpl.dummy(question="What are _Wikilinks_ on _Wikipedia_?"),
+            AnkiQAModel.dummy(
+                tags=["anki/deck/Subdeck"], question="What are _Wikilinks_ on _Wikipedia_?"
             ),
             "FakeBaseDeck::Subdeck::Wikilinks-Wikipedia",
         ),
         QAExample(
-            FakeAnkiQA(prompt=QAPromptImpl.dummy(question="On _Wikipedia_, what are _Wikilinks_?")),
+            AnkiQAModel.dummy(question="On _Wikipedia_, what are _Wikilinks_?"),
             "FakeBaseDeck::Wikilinks-Wikipedia",
         ),
-        QAExample(
-            FakeAnkiQA(prompt=QAPromptImpl.dummy(question="Without wikilinks?")), "FakeBaseDeck"
-        ),
+        QAExample(AnkiQAModel.dummy(question="Without wikilinks?"), "FakeBaseDeck"),
     ],
+    ids=lambda x: x.expected_deck,
 )
 def test_ankiqa_deck_inference(example: QAExample):
-    assert example.card.deck == example.deck
+    assert example.card.deck == example.expected_deck
+
+
+def test_model():
+    card = AnkiQAModel.dummy(question="Q. This is a _question_?")
+    model = AnkiQAFormatter("FakeCSS").format(card).model  # type: ignore
+    assert model.model_id == snapshot(2382214191)  # type: ignore
+    assert model.model_type == snapshot(0)  # type: ignore
+    assert model.name == snapshot("Ankdown QA with UUID")  # type: ignore
+    assert model.fields == snapshot(  # type: ignore
+        [{"name": "Question"}, {"name": "Answer"}, {"name": "Extra"}, {"name": "UUID"}]
+    )  # type: ignore
+    assert model.css == snapshot('FakeCSS')  # type: ignore
+    assert model.templates == snapshot(  # type: ignore
+        [
+            {
+                "name": 'Ankdown QA with UUID',
+                "qfmt": """\
+
+<div class="front">{{ Extra }}
+    {{ Question }}
+</div>\
+""",
+                "afmt": """\
+
+<div class="back">{{ Extra }}
+    <div class="question">
+        {{ Question }}
+    </div>
+    <div class="answer">
+        {{ Answer }}
+    </div>
+</div>
+            \
+""",
+            }
+        ]
+    )  # type: ignore
 
 
 def test_formatting():
-    card = FakeAnkiQA(prompt=QAPromptImpl.dummy(question="Q. This is a _question_?"))
-    note = card.to_genanki_note()
+    card = AnkiQAModel.dummy(question="Q. This is a _question_?")
+    note = AnkiQAFormatter("").format(card)
     assert note.fields == snapshot(  # type: ignore
         [
             "<p>Q. This is a <em>question</em>?</p>",
-            "<p>DummyAnswer</p>",
-            """\
-<div class='edit_button' style='text-align: center;'><a href="FakeEditURL" style="background-color: #5f0069;
-        border: none;
-        color: white;
-        padding: 0.8em;
-        text-align: center;
-        text-decoration: none;
-        font-size: 0.8em;
-        font-family: 'Inter', sans-serif;
-        border-radius: 8px;
-        opacity: 0.8;
-">Obsidian</a></div>\
-""",
-            "3462918412",
+            '<p>A. DummyAnswer</p>',
+            '',
+            '',
         ]
     )
