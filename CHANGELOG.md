@@ -1,6 +1,19 @@
 # CHANGELOG
 
 
+## v0.34.0 (2025-04-19)
+
+### Features
+
+- Log package version on run
+  ([`9138402`](https://github.com/MartinBernstorff/Memium/commit/913840230487a1788a764befef3f0026b19ba0a1))
+
+### Refactoring
+
+- Add processors
+  ([`cd27406`](https://github.com/MartinBernstorff/Memium/commit/cd274065207048838dc50cd419658a86304bed0a))
+
+
 ## v0.33.1 (2025-04-18)
 
 ### Bug Fixes
