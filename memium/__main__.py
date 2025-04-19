@@ -3,6 +3,7 @@ import sys
 import time
 from datetime import datetime
 from functools import partial
+from importlib.metadata import PackageNotFoundError, version
 from pathlib import Path
 from typing import Annotated, Optional
 
@@ -138,6 +139,11 @@ def cli(
         log.info("Skipping sync")
         return
 
+    try:
+        pkg_version = version("memium")
+        log.info(f"Running memium version {pkg_version}")
+    except PackageNotFoundError:
+        log.info("Running memium from local source")
     log.info(f"Logging to {log_path}")
 
     # The watching logic requires having a "core" which can terminate.
