@@ -71,7 +71,7 @@ Keeping the package update can be a bit of a chore, which can be automated with 
 If you would like to build build your own Python application on top of the abstractions added here, you can install the library from pypi:
 
 ```bash
-pip install memium
+uv add memium
 ```
 
 ## Contributing
