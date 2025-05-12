@@ -1,6 +1,400 @@
 # CHANGELOG
 
 
+## v0.34.5 (2025-05-12)
+
+### Bug Fixes
+
+- **deps**: Update dependency sentry-sdk to v2.28.0
+  ([#876](https://github.com/MartinBernstorff/Memium/pull/876),
+  [`a2abe14`](https://github.com/MartinBernstorff/Memium/commit/a2abe14a8569f0b3d000716f2d1433933eba3001))
+
+This PR contains the following updates:
+
+| Package | Change | Age | Adoption | Passing | Confidence | |---|---|---|---|---|---| |
+  [sentry-sdk](https://redirect.github.com/getsentry/sentry-python)
+  ([changelog](https://redirect.github.com/getsentry/sentry-python/blob/master/CHANGELOG.md)) |
+  `==2.27.0` -> `==2.28.0` |
+  [![age](https://developer.mend.io/api/mc/badges/age/pypi/sentry-sdk/2.28.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+  |
+  [![adoption](https://developer.mend.io/api/mc/badges/adoption/pypi/sentry-sdk/2.28.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+  |
+  [![passing](https://developer.mend.io/api/mc/badges/compatibility/pypi/sentry-sdk/2.27.0/2.28.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+  |
+  [![confidence](https://developer.mend.io/api/mc/badges/confidence/pypi/sentry-sdk/2.27.0/2.28.0?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+  |
+
+---
+
+### Release Notes
+
+<details> <summary>getsentry/sentry-python (sentry-sdk)</summary>
+
+### [`v2.28.0`](https://redirect.github.com/getsentry/sentry-python/blob/HEAD/CHANGELOG.md#2280)
+
+[Compare Source](https://redirect.github.com/getsentry/sentry-python/compare/2.27.0...2.28.0)
+
+##### Various fixes & improvements
+
+- fix(logs): Forward `extra` from logger as attributes
+  ([#&#8203;4374](https://redirect.github.com/getsentry/sentry-python/issues/4374)) by
+  [@&#8203;AbhiPrasad](https://redirect.github.com/AbhiPrasad) - fix(logs): Canonicalize paths from
+  the logger integration
+  ([#&#8203;4336](https://redirect.github.com/getsentry/sentry-python/issues/4336)) by
+  [@&#8203;colin-sentry](https://redirect.github.com/colin-sentry) - fix(logs): Use new transport
+  ([#&#8203;4317](https://redirect.github.com/getsentry/sentry-python/issues/4317)) by
+  [@&#8203;colin-sentry](https://redirect.github.com/colin-sentry) - fix: Deprecate
+  `set_measurement()` API.
+  ([#&#8203;3934](https://redirect.github.com/getsentry/sentry-python/issues/3934)) by
+  [@&#8203;antonpirker](https://redirect.github.com/antonpirker) - fix: Put feature flags on
+  isolation scope ([#&#8203;4363](https://redirect.github.com/getsentry/sentry-python/issues/4363))
+  by [@&#8203;antonpirker](https://redirect.github.com/antonpirker) - fix: Make use of `SPANDATA`
+  consistent ([#&#8203;4373](https://redirect.github.com/getsentry/sentry-python/issues/4373)) by
+  [@&#8203;antonpirker](https://redirect.github.com/antonpirker) - fix: Discord link
+  ([#&#8203;4371](https://redirect.github.com/getsentry/sentry-python/issues/4371)) by
+  [@&#8203;sentrivana](https://redirect.github.com/sentrivana) - tests: Pin snowballstemmer for now
+  ([#&#8203;4372](https://redirect.github.com/getsentry/sentry-python/issues/4372)) by
+  [@&#8203;sentrivana](https://redirect.github.com/sentrivana) - tests: Regular tox update
+  ([#&#8203;4367](https://redirect.github.com/getsentry/sentry-python/issues/4367)) by
+  [@&#8203;sentrivana](https://redirect.github.com/sentrivana) - tests: Bump test timeout for
+  recursion stacktrace extract to 2s
+  ([#&#8203;4351](https://redirect.github.com/getsentry/sentry-python/issues/4351)) by
+  [@&#8203;booxter](https://redirect.github.com/booxter) - tests: Fix test_stacktrace_big_recursion
+  failure due to argv
+  ([#&#8203;4346](https://redirect.github.com/getsentry/sentry-python/issues/4346)) by
+  [@&#8203;booxter](https://redirect.github.com/booxter) - tests: Move anthropic under toxgen
+  ([#&#8203;4348](https://redirect.github.com/getsentry/sentry-python/issues/4348)) by
+  [@&#8203;sentrivana](https://redirect.github.com/sentrivana) - tests: Update tox.ini
+  ([#&#8203;4347](https://redirect.github.com/getsentry/sentry-python/issues/4347)) by
+  [@&#8203;sentrivana](https://redirect.github.com/sentrivana) - chore: Update GH issue templates
+  for Linear compatibility
+  ([#&#8203;4328](https://redirect.github.com/getsentry/sentry-python/issues/4328)) by
+  [@&#8203;stephanie-anderson](https://redirect.github.com/stephanie-anderson) - chore: Bump
+  actions/create-github-app-token from 2.0.2 to 2.0.6
+  ([#&#8203;4358](https://redirect.github.com/getsentry/sentry-python/issues/4358)) by
+  [@&#8203;dependabot](https://redirect.github.com/dependabot)
+
+</details>
+
+### Configuration
+
+📅 **Schedule**: Branch creation - At any time (no schedule defined), Automerge - At any time (no
+  schedule defined).
+
+🚦 **Automerge**: Enabled.
+
+♻ **Rebasing**: Whenever PR is behind base branch, or you tick the rebase/retry checkbox.
+
+🔕 **Ignore**: Close this PR and you won't be reminded about this update again.
+
+- [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check this box
+
+This PR was generated by [Mend Renovate](https://mend.io/renovate/). View the [repository job
+  log](https://developer.mend.io/github/MartinBernstorff/Memium).
+
+<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiI0MC43LjEiLCJ1cGRhdGVkSW5WZXIiOiI0MC43LjEiLCJ0YXJnZXRCcmFuY2giOiJtYWluIiwibGFiZWxzIjpbXX0=-->
+
+Co-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>
+
+### Chores
+
+- **deps**: Update dependency ruff to v0.11.8
+  ([#872](https://github.com/MartinBernstorff/Memium/pull/872),
+  [`6fe3bc5`](https://github.com/MartinBernstorff/Memium/commit/6fe3bc5a28a0b1b4166581088ddafc58f201bd61))
+
+This PR contains the following updates:
+
+| Package | Change | Age | Adoption | Passing | Confidence | |---|---|---|---|---|---| |
+  [ruff](https://docs.astral.sh/ruff) ([source](https://redirect.github.com/astral-sh/ruff),
+  [changelog](https://redirect.github.com/astral-sh/ruff/blob/main/CHANGELOG.md)) | `==0.11.7` ->
+  `==0.11.8` |
+  [![age](https://developer.mend.io/api/mc/badges/age/pypi/ruff/0.11.8?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+  |
+  [![adoption](https://developer.mend.io/api/mc/badges/adoption/pypi/ruff/0.11.8?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+  |
+  [![passing](https://developer.mend.io/api/mc/badges/compatibility/pypi/ruff/0.11.7/0.11.8?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+  |
+  [![confidence](https://developer.mend.io/api/mc/badges/confidence/pypi/ruff/0.11.7/0.11.8?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+  |
+
+---
+
+### Release Notes
+
+<details> <summary>astral-sh/ruff (ruff)</summary>
+
+### [`v0.11.8`](https://redirect.github.com/astral-sh/ruff/blob/HEAD/CHANGELOG.md#0118)
+
+[Compare Source](https://redirect.github.com/astral-sh/ruff/compare/0.11.7...0.11.8)
+
+##### Preview features
+
+- \[`airflow`] Apply auto fixes to cases where the names have changed in Airflow 3 (`AIR302`,
+  `AIR311`) ([#&#8203;17553](https://redirect.github.com/astral-sh/ruff/pull/17553),
+  [#&#8203;17570](https://redirect.github.com/astral-sh/ruff/pull/17570),
+  [#&#8203;17571](https://redirect.github.com/astral-sh/ruff/pull/17571)) - \[`airflow`] Extend
+  `AIR301` rule ([#&#8203;17598](https://redirect.github.com/astral-sh/ruff/pull/17598)) -
+  \[`airflow`] Update existing `AIR302` rules with better suggestions
+  ([#&#8203;17542](https://redirect.github.com/astral-sh/ruff/pull/17542)) - \[`refurb`] Mark fix as
+  safe for `readlines-in-for` (`FURB129`)
+  ([#&#8203;17644](https://redirect.github.com/astral-sh/ruff/pull/17644)) - \[syntax-errors]
+  `nonlocal` declaration at module level
+  ([#&#8203;17559](https://redirect.github.com/astral-sh/ruff/pull/17559)) - \[syntax-errors] Detect
+  single starred expression assignment `x = *y`
+  ([#&#8203;17624](https://redirect.github.com/astral-sh/ruff/pull/17624))
+
+##### Bug fixes
+
+- \[`flake8-pyi`] Ensure `Literal[None,] | Literal[None,]` is not autofixed to `None | None`
+  (`PYI061`) ([#&#8203;17659](https://redirect.github.com/astral-sh/ruff/pull/17659)) -
+  \[`flake8-use-pathlib`] Avoid suggesting `Path.iterdir()` for `os.listdir` with file descriptor
+  (`PTH208`) ([#&#8203;17715](https://redirect.github.com/astral-sh/ruff/pull/17715)) -
+  \[`flake8-use-pathlib`] Fix `PTH104` false positive when `rename` is passed a file descriptor
+  ([#&#8203;17712](https://redirect.github.com/astral-sh/ruff/pull/17712)) - \[`flake8-use-pathlib`]
+  Fix `PTH116` false positive when `stat` is passed a file descriptor
+  ([#&#8203;17709](https://redirect.github.com/astral-sh/ruff/pull/17709)) - \[`flake8-use-pathlib`]
+  Fix `PTH123` false positive when `open` is passed a file descriptor from a function call
+  ([#&#8203;17705](https://redirect.github.com/astral-sh/ruff/pull/17705)) - \[`pycodestyle`] Fix
+  duplicated diagnostic in `E712`
+  ([#&#8203;17651](https://redirect.github.com/astral-sh/ruff/pull/17651)) - \[`pylint`] Detect
+  `global` declarations in module scope (`PLE0118`)
+  ([#&#8203;17411](https://redirect.github.com/astral-sh/ruff/pull/17411)) - \[syntax-errors] Make
+  `async-comprehension-in-sync-comprehension` more specific
+  ([#&#8203;17460](https://redirect.github.com/astral-sh/ruff/pull/17460))
+
+##### Configuration
+
+- Add option to disable `typing_extensions` imports
+  ([#&#8203;17611](https://redirect.github.com/astral-sh/ruff/pull/17611))
+
+##### Documentation
+
+- Fix example syntax for the `lint.pydocstyle.ignore-var-parameters` option
+  ([#&#8203;17740](https://redirect.github.com/astral-sh/ruff/pull/17740)) - Add fix safety sections
+  (`ASYNC116`, `FLY002`, `D200`, `RUF005`, `RUF017`, `RUF027`, `RUF028`, `RUF057`)
+  ([#&#8203;17497](https://redirect.github.com/astral-sh/ruff/pull/17497),
+  [#&#8203;17496](https://redirect.github.com/astral-sh/ruff/pull/17496),
+  [#&#8203;17502](https://redirect.github.com/astral-sh/ruff/pull/17502),
+  [#&#8203;17484](https://redirect.github.com/astral-sh/ruff/pull/17484),
+  [#&#8203;17480](https://redirect.github.com/astral-sh/ruff/pull/17480),
+  [#&#8203;17485](https://redirect.github.com/astral-sh/ruff/pull/17485),
+  [#&#8203;17722](https://redirect.github.com/astral-sh/ruff/pull/17722),
+  [#&#8203;17483](https://redirect.github.com/astral-sh/ruff/pull/17483))
+
+##### Other changes
+
+- Add Python 3.14 to configuration options
+  ([#&#8203;17647](https://redirect.github.com/astral-sh/ruff/pull/17647)) - Make syntax error for
+  unparenthesized except tuples version specific to before 3.14
+  ([#&#8203;17660](https://redirect.github.com/astral-sh/ruff/pull/17660))
+
+</details>
+
+### Configuration
+
+📅 **Schedule**: Branch creation - At any time (no schedule defined), Automerge - At any time (no
+  schedule defined).
+
+🚦 **Automerge**: Enabled.
+
+♻ **Rebasing**: Whenever PR is behind base branch, or you tick the rebase/retry checkbox.
+
+🔕 **Ignore**: Close this PR and you won't be reminded about this update again.
+
+- [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check this box
+
+This PR was generated by [Mend Renovate](https://mend.io/renovate/). View the [repository job
+  log](https://developer.mend.io/github/MartinBernstorff/Memium).
+
+<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiIzOS4yNjQuMCIsInVwZGF0ZWRJblZlciI6IjM5LjI2NC4wIiwidGFyZ2V0QnJhbmNoIjoibWFpbiIsImxhYmVscyI6W119-->
+
+Co-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>
+
+- **deps**: Update dependency ruff to v0.11.9
+  ([#874](https://github.com/MartinBernstorff/Memium/pull/874),
+  [`cdc7e59`](https://github.com/MartinBernstorff/Memium/commit/cdc7e59e694204211fb4943aded54f9c43d1885d))
+
+This PR contains the following updates:
+
+| Package | Change | Age | Adoption | Passing | Confidence | |---|---|---|---|---|---| |
+  [ruff](https://docs.astral.sh/ruff) ([source](https://redirect.github.com/astral-sh/ruff),
+  [changelog](https://redirect.github.com/astral-sh/ruff/blob/main/CHANGELOG.md)) | `==0.11.8` ->
+  `==0.11.9` |
+  [![age](https://developer.mend.io/api/mc/badges/age/pypi/ruff/0.11.9?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+  |
+  [![adoption](https://developer.mend.io/api/mc/badges/adoption/pypi/ruff/0.11.9?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+  |
+  [![passing](https://developer.mend.io/api/mc/badges/compatibility/pypi/ruff/0.11.8/0.11.9?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+  |
+  [![confidence](https://developer.mend.io/api/mc/badges/confidence/pypi/ruff/0.11.8/0.11.9?slim=true)](https://docs.renovatebot.com/merge-confidence/)
+  |
+
+---
+
+### Release Notes
+
+<details> <summary>astral-sh/ruff (ruff)</summary>
+
+### [`v0.11.9`](https://redirect.github.com/astral-sh/ruff/blob/HEAD/CHANGELOG.md#0119)
+
+[Compare Source](https://redirect.github.com/astral-sh/ruff/compare/0.11.8...0.11.9)
+
+##### Preview features
+
+- Default to latest supported Python version for version-related syntax errors
+  ([#&#8203;17529](https://redirect.github.com/astral-sh/ruff/pull/17529)) - Implement deferred
+  annotations for Python 3.14
+  ([#&#8203;17658](https://redirect.github.com/astral-sh/ruff/pull/17658)) - \[`airflow`] Fix
+  `SQLTableCheckOperator` typo (`AIR302`)
+  ([#&#8203;17946](https://redirect.github.com/astral-sh/ruff/pull/17946)) - \[`airflow`] Remove
+  `airflow.utils.dag_parsing_context.get_parsing_context` (`AIR301`)
+  ([#&#8203;17852](https://redirect.github.com/astral-sh/ruff/pull/17852)) - \[`airflow`] Skip
+  attribute check in try catch block (`AIR301`)
+  ([#&#8203;17790](https://redirect.github.com/astral-sh/ruff/pull/17790)) - \[`flake8-bandit`] Mark
+  tuples of string literals as trusted input in `S603`
+  ([#&#8203;17801](https://redirect.github.com/astral-sh/ruff/pull/17801)) - \[`isort`] Check full
+  module path against project root(s) when categorizing first-party imports
+  ([#&#8203;16565](https://redirect.github.com/astral-sh/ruff/pull/16565)) - \[`ruff`] Add new rule
+  `in-empty-collection` (`RUF060`)
+  ([#&#8203;16480](https://redirect.github.com/astral-sh/ruff/pull/16480))
+
+##### Bug fixes
+
+- Fix missing `combine` call for `lint.typing-extensions` setting
+  ([#&#8203;17823](https://redirect.github.com/astral-sh/ruff/pull/17823)) - \[`flake8-async`] Fix
+  module name in `ASYNC110`, `ASYNC115`, and `ASYNC116` fixes
+  ([#&#8203;17774](https://redirect.github.com/astral-sh/ruff/pull/17774)) - \[`pyupgrade`] Add
+  spaces between tokens as necessary to avoid syntax errors in `UP018` autofix
+  ([#&#8203;17648](https://redirect.github.com/astral-sh/ruff/pull/17648)) - \[`refurb`] Fix false
+  positive for float and complex numbers in `FURB116`
+  ([#&#8203;17661](https://redirect.github.com/astral-sh/ruff/pull/17661)) - \[parser] Flag single
+  unparenthesized generator expr with trailing comma in arguments.
+  ([#&#8203;17893](https://redirect.github.com/astral-sh/ruff/pull/17893))
+
+##### Documentation
+
+- Add instructions on how to upgrade to a newer Rust version
+  ([#&#8203;17928](https://redirect.github.com/astral-sh/ruff/pull/17928)) - Update code of conduct
+  email address ([#&#8203;17875](https://redirect.github.com/astral-sh/ruff/pull/17875)) - Add fix
+  safety sections to `PLC2801`, `PLR1722`, and `RUF013`
+  ([#&#8203;17825](https://redirect.github.com/astral-sh/ruff/pull/17825),
+  [#&#8203;17826](https://redirect.github.com/astral-sh/ruff/pull/17826),
+  [#&#8203;17759](https://redirect.github.com/astral-sh/ruff/pull/17759)) - Add link to
+  `check-typed-exception` from `S110` and `S112`
+  ([#&#8203;17786](https://redirect.github.com/astral-sh/ruff/pull/17786))
+
+##### Other changes
+
+- Allow passing a virtual environment to `ruff analyze graph`
+  ([#&#8203;17743](https://redirect.github.com/astral-sh/ruff/pull/17743))
+
+</details>
+
+### Configuration
+
+📅 **Schedule**: Branch creation - At any time (no schedule defined), Automerge - At any time (no
+  schedule defined).
+
+🚦 **Automerge**: Enabled.
+
+♻ **Rebasing**: Whenever PR is behind base branch, or you tick the rebase/retry checkbox.
+
+🔕 **Ignore**: Close this PR and you won't be reminded about this update again.
+
+- [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check this box
+
+This PR was generated by [Mend Renovate](https://mend.io/renovate/). View the [repository job
+  log](https://developer.mend.io/github/MartinBernstorff/Memium).
+
+<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiI0MC43LjEiLCJ1cGRhdGVkSW5WZXIiOiI0MC43LjEiLCJ0YXJnZXRCcmFuY2giOiJtYWluIiwibGFiZWxzIjpbXX0=-->
+
+Co-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>
+
+- **deps**: Update python-semantic-release/python-semantic-release action to v9.21.1
+  ([#873](https://github.com/MartinBernstorff/Memium/pull/873),
+  [`9bb160d`](https://github.com/MartinBernstorff/Memium/commit/9bb160ddf78a6ccfec4f9a71681b004bc86b67e8))
+
+This PR contains the following updates:
+
+| Package | Type | Update | Change | |---|---|---|---| |
+  [python-semantic-release/python-semantic-release](https://redirect.github.com/python-semantic-release/python-semantic-release)
+  | action | patch | `v9.21.0` -> `v9.21.1` |
+
+---
+
+### Release Notes
+
+<details> <summary>python-semantic-release/python-semantic-release
+  (python-semantic-release/python-semantic-release)</summary>
+
+###
+  [`v9.21.1`](https://redirect.github.com/python-semantic-release/python-semantic-release/blob/HEAD/CHANGELOG.rst#v9211-2025-05-05)
+
+[Compare
+  Source](https://redirect.github.com/python-semantic-release/python-semantic-release/compare/v9.21.0...v9.21.1)
+
+\====================
+
+## 🪲 Bug Fixes
+
+- **changelog-filters**: Fixes url resolution when prefix & path share letters, closes `#1204`\_
+  (`PR#1239`*, `f61f8a3`*)
+
+## 📖 Documentation
+
+- **github-actions**: Expound on monorepo example to include publishing actions (`PR#1229`*,
+  `550e85f`*)
+
+## ⚙️ Build System
+
+- **deps**: Bump `rich` dependency from `13.0` to `14.0` (`PR#1224`*, `691536e`*)
+
+- **deps**: Expand `python-gitlab` dependency to include `v5.0.0` (`PR#1228`*, `a0cd1be`*)
+
+..
+  \_#1204:[https://github.com/python-semantic-release/python-semantic-release/issues/1204](https://redirect.github.com/python-semantic-release/python-semantic-release/issues/1204)4
+  .. \_550e85f:
+  https://github.com/python-semantic-release/python-semantic-release/commit/550e85f5ec2695d5aa680014127846d58c680e31
+  .. \_691536e:
+  https://github.com/python-semantic-release/python-semantic-release/commit/691536e98f311d0fc6d29a72c41ce5a65f1f4b6c
+  .. \_a0cd1be:
+  https://github.com/python-semantic-release/python-semantic-release/commit/a0cd1be4e3aa283cbdc544785e5f895c8391dfb8
+  .. \_f61f8a3:
+  https://github.com/python-semantic-release/python-semantic-release/commit/f61f8a38a1a3f44a7a56cf9dcb7dde748f90ca1e
+  ..
+  \_PR#[https://github.com/python-semantic-release/python-semantic-release/pull/1224](https://redirect.github.com/python-semantic-release/python-semantic-release/pull/1224)l/1224
+  ..
+  \_PR[https://github.com/python-semantic-release/python-semantic-release/pull/1228](https://redirect.github.com/python-semantic-release/python-semantic-release/pull/1228)ll/1228
+  ..
+  \_P[https://github.com/python-semantic-release/python-semantic-release/pull/1229](https://redirect.github.com/python-semantic-release/python-semantic-release/pull/1229)ull/1229
+  ..
+  \_[https://github.com/python-semantic-release/python-semantic-release/pull/1239](https://redirect.github.com/python-semantic-release/python-semantic-release/pull/1239)pull/1239
+
+.. \_changelog-v9.21.0:
+
+</details>
+
+### Configuration
+
+📅 **Schedule**: Branch creation - At any time (no schedule defined), Automerge - At any time (no
+  schedule defined).
+
+🚦 **Automerge**: Enabled.
+
+♻ **Rebasing**: Whenever PR is behind base branch, or you tick the rebase/retry checkbox.
+
+🔕 **Ignore**: Close this PR and you won't be reminded about this update again.
+
+- [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check this box
+
+This PR was generated by [Mend Renovate](https://mend.io/renovate/). View the [repository job
+  log](https://developer.mend.io/github/MartinBernstorff/Memium).
+
+<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiIzOS4yNjQuMCIsInVwZGF0ZWRJblZlciI6IjM5LjI2NC4wIiwidGFyZ2V0QnJhbmNoIjoibWFpbiIsImxhYmVscyI6W119-->
+
+Co-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>
+
+
 ## v0.34.4 (2025-04-29)
 
 ### Bug Fixes
