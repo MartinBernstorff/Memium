@@ -17,7 +17,7 @@ dependencies = [
   "markdown==3.8",
   "pydantic==2.11.4",
   "sentry-sdk==2.28.0",
-  "typer==0.15.3",
+  "typer==0.15.4",
   "tqdm==4.67.1",
   "unidecode==1.4.0",
   "wasabi==1.1.3",
