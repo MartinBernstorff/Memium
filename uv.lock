@@ -328,7 +328,7 @@ wheels = [
 
 [[package]]
 name = "diff-cover"
-version = "9.3.0"
+version = "9.3.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "chardet" },
@@ -336,9 +336,9 @@ dependencies = [
     { name = "pluggy" },
     { name = "pygments" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/ae/b3/46c2fd1f219462abd7b7214a2a3c3644c0d5f7dd33897ee0d0ff03d64efb/diff_cover-9.3.0.tar.gz", hash = "sha256:8185be86ad33aa1b1955d9d106f899dedcff0e908f877136b02fa97654e4793d", size = 93249, upload-time = "2025-05-24T12:06:57.446Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/e6/fa/8b2bb462921054eccf2137e3bb9437188ab111dccad63e4c09eeb97df25c/diff_cover-9.3.1.tar.gz", hash = "sha256:391a37361aa9b4272c9b4301032b74e9cadc2acc1d6291d266b69e6f678996b1", size = 93246, upload-time = "2025-05-25T20:51:31.481Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/1c/21/5e58b54a52fee10b0f75408d8230d221aac9f31dfaa54d0789b5493f34f2/diff_cover-9.3.0-py3-none-any.whl", hash = "sha256:266fe45045d9860778c99ecf41c82761e49cd32603665f03c777b85265086377", size = 53735, upload-time = "2025-05-24T12:06:55.743Z" },
+    { url = "https://files.pythonhosted.org/packages/28/a8/6bc2ec8b5744bbe9ebc10f828cf7f4ebdb2d719d458c13414bf6301a0dee/diff_cover-9.3.1-py3-none-any.whl", hash = "sha256:693a5429151ab18cb81c56530bb8d46599f76270b256528a1d450dba208227dd", size = 53724, upload-time = "2025-05-25T20:51:30.287Z" },
 ]
 
 [[package]]
@@ -644,7 +644,7 @@ requires-dist = [
 [package.metadata.requires-dev]
 dev = [
     { name = "cruft", specifier = "==2.16.0" },
-    { name = "diff-cover", specifier = "==9.3.0" },
+    { name = "diff-cover", specifier = "==9.3.1" },
     { name = "herbarium", specifier = ">=0.32.1" },
     { name = "invoke", specifier = "==2.2.0" },
     { name = "pre-commit", specifier = "==4.2.0" },
