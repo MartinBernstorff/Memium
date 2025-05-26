@@ -33,7 +33,7 @@ jobs:
 
       - name: Python Semantic Release
         id: release
-        uses: python-semantic-release/python-semantic-release@v10.0.0
+        uses: python-semantic-release/python-semantic-release@v10.0.1
         with:
           github_token: ${{ secrets.RELEASE }}
 
