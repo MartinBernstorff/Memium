@@ -65,6 +65,11 @@ def main(root_deck: str, input_dir: Path, max_deletions_per_run: int, dry_run: b
                 question_matcher="Avoid when?", reversed_question="What should we avoid when '%s'?"
             )
         )
+        .map(
+            TitleAsAnswerProcessor(
+                question_matcher="Antonym?", reversed_question="What is the antonym of '%s'?"
+            )
+        )
         .flatten()
         .to_list()
     )
