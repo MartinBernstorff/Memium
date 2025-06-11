@@ -13,7 +13,7 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 
 
 # Runner stage
-FROM python:3.11-slim@sha256:80bcf8d243a0d763a7759d6b99e5bf89af1869135546698be4bf7ff6c3f98a59 AS runner
+FROM python:3.11-slim@sha256:9e1912aab0a30bbd9488eb79063f68f42a68ab0946cbe98fecf197fe5b085506 AS runner
 WORKDIR /app
 RUN useradd -m appuser
 COPY --from=builder --chown=app:app /app /app
