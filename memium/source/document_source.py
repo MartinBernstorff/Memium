@@ -60,7 +60,7 @@ class MarkdownDocumentSource(BaseDocumentSource):
 
         for match in pattern_matches:
             link_name = (
-                re.findall(pattern=r"\|[\w|\s|\d]+\]\]", string=match)[0]
+                re.findall(pattern=r"\|[\w|\s|\d|-]+\]\]", string=match)[0]
                 .replace("|", "")
                 .replace("]", "")
                 .strip()

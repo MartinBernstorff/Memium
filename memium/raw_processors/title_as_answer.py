@@ -50,4 +50,7 @@ class TitleAsAnswerProcessor:
             .map(lambda p: self._expand_prompt(p))
         )
 
-        return [*prompts, *definition_prompts]
+        if isinstance(prompts, Arr):
+            prompts = prompts.to_list()
+
+        return [*prompts, *definition_prompts.to_list()]
