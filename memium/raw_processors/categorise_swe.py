@@ -1,4 +1,3 @@
-import asyncio
 import logging
 import os
 from collections.abc import Sequence
@@ -7,7 +6,8 @@ from pathlib import Path
 from typing import Literal
 
 import instructor
-from instructor.cache import DiskCache
+from iterpy import Arr
+from joblib import Memory
 from pydantic import BaseModel
 
 from memium.source.prompt import QAWithDoc
@@ -20,16 +20,12 @@ class Category(BaseModel):
 
 
 api_key = os.getenv("OPENAI_API_KEY")
+client = instructor.from_provider("openai/gpt-4.1-nano", api_key=api_key)
 
 
-async def _process_prompts(
-    iterated_prompt: tuple[int, QAWithDoc], version: int, client: instructor.AsyncInstructor
-) -> QAWithDoc:
+def _process_prompts(prompt: QAWithDoc) -> QAWithDoc:
     # 'version' kept for future behavioural changes; underscore assignment silences unused warning
-    _ = version
-    idx, prompt = iterated_prompt
-
-    response = await client.chat.completions.create(
+    response = client.chat.completions.create(
         response_model=Category,
         messages=[
             {
@@ -44,9 +40,10 @@ async def _process_prompts(
         ],
     )
 
-    print(f"{idx}, categorised '{prompt.prompt.question}' as '{response.value}'")
-
     tags = ["anki/deck/SWE" if response.value == "Software Engineering" else "anki/deck/Other"]
+    msg = f"Categorised '{prompt.prompt.question}' as {response.value}"
+    log.info(msg)
+    print(msg)
 
     return QAWithDoc(
         prompt=prompt.prompt,
@@ -70,14 +67,10 @@ class Categoriser:
         if not prompts:
             return []
 
-        client = instructor.from_provider(
-            "openai/gpt-4.1-nano", api_key=api_key, cache=DiskCache(str(self.cache_dir))
-        )
+        self.cache_dir.mkdir(parents=True, exist_ok=True)
+        print(f"Using cache dir: {self.cache_dir}")
 
-        tasks = [_process_prompts((i, p), version=1, client=client) for i, p in enumerate(prompts)]
+        mem = Memory(str(self.cache_dir), verbose=0)
+        cached_func = mem.cache(_process_prompts)
 
-        # Run the async workflow in a fresh event loop.
-        async def run_tasks():
-            return await asyncio.gather(*tasks)
-
-        return asyncio.run(run_tasks())
+        return Arr(prompts).pmap(cached_func).to_list()
