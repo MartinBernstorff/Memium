@@ -3,7 +3,6 @@ from dataclasses import dataclass
 from typing import NewType
 
 from memium.source.prompt import QAPrompt
-from memium.utils.markdown import get_terms_surrounded_by_underscores
 
 Markdown = NewType("Markdown", str)
 
@@ -52,9 +51,4 @@ class AnkiQAModel:
 
         base_anki_deck = self.root_deck if subdeck is None else f"{self.root_deck}::{subdeck}"
 
-        wiki_links = get_terms_surrounded_by_underscores(self.Question)
-        wiki_subdeck = "-".join(sorted(wiki_links))
-
-        if wiki_subdeck != "":
-            return f"{base_anki_deck}::{wiki_subdeck}"
         return base_anki_deck

@@ -30,7 +30,8 @@ class TitleAsAnswerProcessor:
 
     def _expand_prompt(self, prompt: QAWithDoc) -> QAWithDoc:
         answer = prompt.prompt.answer
-        if answer[-1] in ".,!?;:":
+
+        if answer != "" and answer[-1] in ".,!?;:":
             answer = answer[:-1]
 
         return QAWithDoc(
@@ -49,4 +50,7 @@ class TitleAsAnswerProcessor:
             .map(lambda p: self._expand_prompt(p))
         )
 
-        return [*prompts, *definition_prompts]
+        if isinstance(prompts, Arr):
+            prompts = prompts.to_list()
+
+        return [*prompts, *definition_prompts.to_list()]

@@ -1,6 +1,7 @@
 import logging
 import sys
 import time
+from collections.abc import Sequence
 from datetime import datetime
 from functools import partial
 from importlib.metadata import PackageNotFoundError, version
@@ -18,15 +19,22 @@ from memium.destination.destination_ankiconnect import AnkiConnectDestination
 from memium.destination.destination_dryrun import DryRunDestination
 from memium.diff_determiner import PromptDiffDeterminer
 from memium.environment import host_input_dir, in_docker
+from memium.raw_processors.categorise_swe import Categoriser
 from memium.raw_processors.title_as_answer import TitleAsAnswerProcessor
 from memium.source.document_source import MarkdownDocumentSource
 from memium.source.extractors.extractor_qa import QAPromptExtractor
 from memium.source.extractors.extractor_table import TableExtractor
+from memium.source.prompt import QAWithDoc
 from memium.source.prompt_source import DocumentPromptSource
 
 log = logging.getLogger(__name__)
 
 app = typer.Typer()
+
+
+def _log_with_prefix(prefix: str, prompts: Sequence[QAWithDoc]) -> Sequence[QAWithDoc]:
+    log.info(f"{prefix}: {len(prompts)}")
+    return prompts
 
 
 def main(root_deck: str, input_dir: Path, max_deletions_per_run: int, dry_run: bool):
@@ -50,26 +58,32 @@ def main(root_deck: str, input_dir: Path, max_deletions_per_run: int, dry_run: b
     # Apply transformations
     transformed_source_prompts = (
         Arr([source_prompts])
+        .map(Categoriser(cache_dir=input_dir / ".memium" / ".cache"))
+        .map(lambda x: _log_with_prefix("After categorisation: ", x))
         .map(
             TitleAsAnswerProcessor(
                 question_matcher="Definition?", reversed_question="Term for '%s'?"
             )
         )
+        .map(lambda x: _log_with_prefix("After definition: ", x))
         .map(
             TitleAsAnswerProcessor(
                 question_matcher="Use when?", reversed_question="What should we use for '%s'?"
             )
         )
+        .map(lambda x: _log_with_prefix("After use: ", x))
         .map(
             TitleAsAnswerProcessor(
                 question_matcher="Avoid when?", reversed_question="What should we avoid when '%s'?"
             )
         )
+        .map(lambda x: _log_with_prefix("After when: ", x))
         .map(
             TitleAsAnswerProcessor(
                 question_matcher="Antonym?", reversed_question="What is the antonym of '%s'?"
             )
         )
+        .map(lambda x: _log_with_prefix("After antonym: ", x))
         .flatten()
         .to_list()
     )
