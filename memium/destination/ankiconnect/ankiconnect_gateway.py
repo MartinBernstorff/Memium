@@ -23,7 +23,7 @@ log = logging.getLogger(__name__)
 import shutil
 from contextlib import contextmanager
 
-ANKICONNECT_URL = "http://host.docker.internal:8765" if in_docker() else "http://localhost:8765"
+ANKICONNECT_URL = "http://host.docker.internal:8765" if in_docker() else "http://127.0.0.1:8765"
 # On host machine, port is 8765
 
 
