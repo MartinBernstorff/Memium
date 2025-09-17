@@ -19,7 +19,7 @@ from memium.destination.destination_ankiconnect import AnkiConnectDestination
 from memium.destination.destination_dryrun import DryRunDestination
 from memium.diff_determiner import PromptDiffDeterminer
 from memium.environment import host_input_dir, in_docker
-from memium.raw_processors.categorise_swe import Categoriser
+from memium.raw_processors.categoriser import Categoriser
 from memium.raw_processors.title_as_answer import TitleAsAnswerProcessor
 from memium.source.document_source import MarkdownDocumentSource
 from memium.source.extractors.extractor_qa import QAPromptExtractor
