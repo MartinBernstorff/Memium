@@ -6,12 +6,21 @@ from memium.source.prompt import QAWithDoc
 
 def test_swe():
     doc = QAWithDoc.dummy(question="Definition?", answer="A location used for testing.")
-    result = Categoriser(
-        question_matcher="Definition?", reversed_question="Term for '%s'?"
-    ).__call__([doc])
+    result = Categoriser(cache_dir=Path("/tmp")).__call__([doc])
 
     assert len(result) == 1
     assert result[0].parent_doc.tags == ["anki/deck/Other"]
+
+
+def test_swe2():
+    doc = QAWithDoc.dummy(
+        question="Requires?",
+        answer="1. Durable task buffer (e.g. db) 2. Retries (_ALO_) 3. Retry safety (_Idempotence_)",
+    )
+    result = Categoriser(cache_dir=Path("/tmp")).__call__([doc])
+
+    assert len(result) == 1
+    assert result[0].parent_doc.tags == ["anki/deck/Software"]
 
 
 def test_medicine():
