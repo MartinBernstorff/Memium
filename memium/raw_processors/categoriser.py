@@ -16,8 +16,7 @@ log = logging.getLogger(__name__)
 
 
 class CategoryValue(enum.Enum):
-    SWE = "Software"
-    MEDICINE = "Medicine"
+    SWE = "Software Engineering"
     OTHER = "Other"
 
 
@@ -26,10 +25,10 @@ class Category(BaseModel):
 
 
 api_key = os.getenv("OPENAI_API_KEY")
-client = instructor.from_provider("openai/gpt-4.1-nano", api_key=api_key)
+client = instructor.from_provider("openai/gpt-5-nano", api_key=api_key)
 
 
-def _process_prompts(prompt: QAWithDoc) -> QAWithDoc:
+def _process_prompts(prompt: QAWithDoc, version: int = 3) -> QAWithDoc:
     # 'version' kept for future behavioural changes; underscore assignment silences unused warning
     response: Category = client.chat.completions.create(
         response_model=Category,
@@ -38,15 +37,16 @@ def _process_prompts(prompt: QAWithDoc) -> QAWithDoc:
                 "role": "user",
                 "content": (
                     f"This is a flashcard from a note called {prompt.parent_doc.title}. "
-                    f"{prompt.prompt.question} | {prompt.prompt.answer}. "
-                    f"What is this flashcard about? Choose one of the following categories (måske på dansk): "
+                    f"Q. {prompt.prompt.question} A. {prompt.prompt.answer}. "
+                    f"What is this flashcard about? Choose one of the following categories."
                 ),
             }
         ],
     )  # type: ignore
 
     tags = ["anki/deck/" + response.value.value]
-    msg = f"Categorised '{prompt.prompt.question}' as {response.value}"
+    prompt_repr = f"{prompt.parent_doc.title}: Q. {prompt.prompt.question}"
+    msg = f"Categorised '{prompt_repr}' as {response.value.value}"
     log.info(msg)
     print(msg)
 
