@@ -1,14 +1,16 @@
 from collections.abc import Sequence
-from dataclasses import dataclass
 from typing import NewType
+
+from pydantic import BaseModel
 
 from memium.source.prompt import QAPrompt
 
 Markdown = NewType("Markdown", str)
+AnkiNoteID = NewType("AnkiNoteID", int)
+AnkiCardID = NewType("AnkiCardID", int)
 
 
-@dataclass(frozen=True)
-class AnkiQAModel:
+class AnkiQAModel(BaseModel):
     # Field capitalisation must be preserved for backwards compatibility
     Question: Markdown
     Answer: Markdown
@@ -17,7 +19,33 @@ class AnkiQAModel:
     raw_prompt: QAPrompt
 
     tags: Sequence[str]
-    root_deck: str
+    deck: str
+
+    destination_id: AnkiNoteID | None
+    card_ids: Sequence[AnkiCardID] | None
+
+    @staticmethod
+    def from_primitives(
+        question: str,
+        answer: str,
+        extra: str,
+        raw_question: str,
+        raw_answer: str,
+        tags: Sequence[str],
+        root_deck: str,
+        destination_id: AnkiNoteID | None,
+        card_ids: Sequence[AnkiCardID] | None,
+    ) -> "AnkiQAModel":
+        return AnkiQAModel(
+            Question=Markdown(question),
+            Answer=Markdown(answer),
+            Extra=Markdown(extra),
+            raw_prompt=QAPrompt(question=raw_question, answer=raw_answer),
+            tags=tags,
+            deck=root_deck,
+            destination_id=destination_id,
+            card_ids=card_ids,
+        )
 
     @staticmethod
     def dummy(
@@ -32,7 +60,9 @@ class AnkiQAModel:
             Extra=Markdown(extra),
             tags=tags,
             raw_prompt=QAPrompt.dummy(question, answer),
-            root_deck="FakeBaseDeck",
+            deck="FakeBaseDeck",
+            destination_id=None,
+            card_ids=None,
         )
 
     @property
@@ -49,6 +79,6 @@ class AnkiQAModel:
         )
         subdeck = next(deck_in_tags, None)
 
-        base_anki_deck = self.root_deck if subdeck is None else f"{self.root_deck}::{subdeck}"
+        base_anki_deck = self.deck if subdeck is None else f"{self.deck}::{subdeck}"
 
         return base_anki_deck

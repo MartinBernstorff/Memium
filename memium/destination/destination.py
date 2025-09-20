@@ -1,8 +1,10 @@
 from collections.abc import Sequence
 from dataclasses import dataclass
-from typing import Protocol, TypeAlias
+from typing import NewType, Protocol, TypeAlias
 
 from memium.source.prompt import QAPrompt, QAWithDoc
+
+DestinationId = NewType("DestinationId", int)
 
 
 @dataclass(frozen=True)
@@ -13,13 +15,15 @@ class DestinationPrompt:
 
     # Destinations can have their own ID-scheme. E.g. Anki assigns a Note id at creation time, which
     # is independent of content. This ID is used to delete or update the note.
-    destination_id: str
+    destination_id: DestinationId
 
     @staticmethod
     def dummy(
-        prompt: QAWithDoc, extra: str = "DummyExtra", destination_id: str = "DummyDestinationID"
+        prompt: QAWithDoc, extra: str = "DummyExtra", destination_id: int = 12345
     ) -> "DestinationPrompt":
-        return DestinationPrompt(prompt=prompt.prompt, extra=extra, destination_id=destination_id)
+        return DestinationPrompt(
+            prompt=prompt.prompt, extra=extra, destination_id=DestinationId(destination_id)
+        )
 
 
 @dataclass(frozen=True)

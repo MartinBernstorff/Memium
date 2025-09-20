@@ -5,13 +5,8 @@ import genanki
 import pytest
 
 from ...environment import get_host_home_dir
-from .ankiconnect_gateway import (
-    ANKICONNECT_URL,
-    AnkiConnectGateway,
-    AnkiField,
-    NoteInfo,
-    anki_connect_is_live,
-)
+from .ankiconnect_gateway import AnkiConnectGateway, AnkiField, NoteInfo
+from .ankiconnect_requester import ANKICONNECT_URL, anki_connect_is_live
 
 
 class MockNoteInfo(NoteInfo):
