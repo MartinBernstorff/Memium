@@ -56,7 +56,7 @@ class AnkiPromptConverter:
             ),
             tags=prompt.tags,
             raw_prompt=prompt.prompt,
-            root_deck=deck,
+            deck=deck,
         )
 
     def from_destination(self, note_info: NoteInfo) -> DestinationPrompt:

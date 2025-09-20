@@ -91,16 +91,6 @@ class AnkiConnectDestination(PromptDestination):
 
         return genanki.Package(deck_or_decks=decks)
 
-    def _push_prompts(self, command: PushPrompts) -> None:
-        notes = [self.prompt_converter.to_destination(e) for e in command.prompts]
-
-        package = self._create_package(notes)
-
-        self._update_models([self.formatter.format(card) for card in notes])
-
-        log.info(f"Pushing {len(notes)} cards to Anki")
-        self.gateway.import_package(package)
-
     def _update_models(self, formatted_cards: Sequence[genanki.Note]) -> None:
         unique_models: dict[int, genanki.Model] = {
             model.model_id: model  # type: ignore
@@ -109,6 +99,17 @@ class AnkiConnectDestination(PromptDestination):
 
         for model in unique_models.values():
             self.gateway.update_model(model)
+
+    def _push_prompts(self, command: PushPrompts) -> None:
+        notes = [self.prompt_converter.to_destination(e) for e in command.prompts]
+
+        package = self._create_package(notes)
+
+        self._update_models([self.formatter.format(card) for card in notes])
+        self._update_decks(command.prompts)
+
+        log.info(f"Pushing {len(notes)} cards to Anki")
+        self.gateway.import_package(package)
 
     def update(self, commands: Sequence[PromptDestinationCommand]) -> None:
         for command in commands:

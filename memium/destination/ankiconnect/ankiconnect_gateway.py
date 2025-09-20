@@ -2,28 +2,28 @@
 import datetime
 import json
 import logging
+import shutil
 import traceback
 import urllib.request
 from collections.abc import Iterator, Mapping, Sequence
+from contextlib import contextmanager
 from dataclasses import dataclass
-from enum import Enum
 from pathlib import Path
 from time import sleep
 from typing import Any
 
-from memium.environment import in_docker
-
-log = logging.getLogger(__name__)
-
 import genanki
 import pydantic
 
+from memium.destination.ankiconnect.ankiconnect_requester import (
+    ANKICONNECT_URL,
+    AnkiConnectCommand,
+    anki_connect_is_live,
+)
+
 log = logging.getLogger(__name__)
 
-import shutil
-from contextlib import contextmanager
 
-ANKICONNECT_URL = "http://host.docker.internal:8765" if in_docker() else "http://127.0.0.1:8765"
 # On host machine, port is 8765
 
 
@@ -54,20 +54,7 @@ class NoteInfo(pydantic.BaseModel):
     cards: Sequence[int]
 
 
-class AnkiConnectCommand(Enum):
-    CARDS_TO_NOTES = "cardsToNotes"
-    DELETE_NOTES = "deleteNotes"
-    FIND_CARDS = "findCards"
-    GET_NOTE_INFOS = "notesInfo"
-    IMPORT_PACKAGE = "importPackage"
-
-    # Models
-    CREATE_MODEL = "createModel"
-    UPDATE_MODEL_TEMPLATES = "updateModelTemplates"
-    UPDATE_MODEL_STYLING = "updateModelStyling"
-    GET_MODEL_NAMES = "modelNames"
-
-
+# p2: remove functionality duplicated in ankiconnect_requester.py
 @dataclass(frozen=True)
 class AnkiConnectGateway:
     ankiconnect_url: str
@@ -225,18 +212,3 @@ class SpieAnkiconnectGateway(AnkiConnectGateway):
 
     def import_package(self, package: genanki.Package) -> None:
         self.executed_commands.append(ImportPackage(package=package))
-
-
-def anki_connect_is_live(ankiconnect_url: str = ANKICONNECT_URL) -> bool:
-    try:
-        if urllib.request.urlopen(ankiconnect_url).getcode() == 200:
-            return True
-        raise Exception
-    except Exception as err:
-        log.info(f"Attempted connection on {ankiconnect_url}")
-        log.info(
-            "Unable to reach anki connect. Make sure anki is running and the Anki Connect addon is installed."
-        )
-        log.error(f"Error was {err}")
-
-    return False
