@@ -8,6 +8,7 @@ from memium.source.prompt import QAPrompt
 Markdown = NewType("Markdown", str)
 AnkiNoteID = NewType("AnkiNoteID", int)
 AnkiCardID = NewType("AnkiCardID", int)
+SyncIdentity = NewType("SyncIdentity", str)
 
 
 class AnkiQAModel(BaseModel):
@@ -19,10 +20,10 @@ class AnkiQAModel(BaseModel):
     raw_prompt: QAPrompt
 
     tags: Sequence[str]
-    deck: str
+    root_deck: str  # E.g. "BaseDeck" or "BaseDeck::Subdeck". Used with tags in the deck property to form the full deck name
 
     destination_id: AnkiNoteID | None
-    card_ids: Sequence[AnkiCardID] | None
+    card_ids: Sequence[AnkiCardID]
 
     @staticmethod
     def from_primitives(
@@ -34,7 +35,7 @@ class AnkiQAModel(BaseModel):
         tags: Sequence[str],
         root_deck: str,
         destination_id: AnkiNoteID | None,
-        card_ids: Sequence[AnkiCardID] | None,
+        card_ids: Sequence[AnkiCardID],
     ) -> "AnkiQAModel":
         return AnkiQAModel(
             Question=Markdown(question),
@@ -42,7 +43,7 @@ class AnkiQAModel(BaseModel):
             Extra=Markdown(extra),
             raw_prompt=QAPrompt(question=raw_question, answer=raw_answer),
             tags=tags,
-            deck=root_deck,
+            root_deck=root_deck,
             destination_id=destination_id,
             card_ids=card_ids,
         )
@@ -60,9 +61,9 @@ class AnkiQAModel(BaseModel):
             Extra=Markdown(extra),
             tags=tags,
             raw_prompt=QAPrompt.dummy(question, answer),
-            deck="FakeBaseDeck",
+            root_deck="FakeBaseDeck",
             destination_id=None,
-            card_ids=None,
+            card_ids=[],
         )
 
     @property
@@ -79,6 +80,10 @@ class AnkiQAModel(BaseModel):
         )
         subdeck = next(deck_in_tags, None)
 
-        base_anki_deck = self.deck if subdeck is None else f"{self.deck}::{subdeck}"
+        base_anki_deck = self.root_deck if subdeck is None else f"{self.root_deck}::{subdeck}"
 
         return base_anki_deck
+
+    def sync_identity(self) -> SyncIdentity:
+        lowered_tags = [tag.lower() for tag in self.tags]
+        return SyncIdentity(f"{self.raw_prompt.scheduling_uid_str}::{sorted(lowered_tags)}")

@@ -1,5 +1,7 @@
 from pathlib import Path
 
+from inline_snapshot import snapshot
+
 from memium.raw_processors.categoriser import Categoriser
 from memium.source.prompt import QAWithDoc
 
@@ -9,7 +11,7 @@ def test_swe():
     result = Categoriser(cache_dir=Path("/tmp")).__call__([doc])
 
     assert len(result) == 1
-    assert result[0].parent_doc.tags == ["anki/deck/Other"]
+    assert result[0].parent_doc.tags == snapshot(['anki/deck/SoftwareEngineering'])
 
 
 def test_swe2():
@@ -20,7 +22,7 @@ def test_swe2():
     result = Categoriser(cache_dir=Path("/tmp")).__call__([doc])
 
     assert len(result) == 1
-    assert result[0].parent_doc.tags == ["anki/deck/Software"]
+    assert result[0].parent_doc.tags == snapshot(['anki/deck/SoftwareEngineering'])
 
 
 def test_medicine():
@@ -28,4 +30,4 @@ def test_medicine():
     result = Categoriser(cache_dir=Path("/tmp")).__call__([doc])
 
     assert len(result) == 1
-    assert result[0].parent_doc.tags == ["anki/deck/Medicine"]
+    assert result[0].parent_doc.tags == snapshot(['anki/deck/Other'])

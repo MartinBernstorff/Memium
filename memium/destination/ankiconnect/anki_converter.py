@@ -1,8 +1,8 @@
+from iterpy import Arr
+
 from memium.destination.ankiconnect.anki_model import AnkiQAModel, Markdown
 
-from ...source.prompt import QAPrompt, QAWithDoc
-from ..destination import DestinationPrompt
-from .ankiconnect_gateway import NoteInfo
+from ...source.prompt import QAWithDoc
 
 
 def _edit_button(url: str) -> str:
@@ -34,7 +34,7 @@ def _extra_field_content(
 
 
 class AnkiPromptConverter:
-    def __init__(self, root_deck: str, deck_prefix: str = "#anki_deck") -> None:
+    def __init__(self, root_deck: str, deck_prefix: str = "anki/deck") -> None:
         self.root_deck = root_deck
         self.deck_prefix = deck_prefix
 
@@ -43,9 +43,6 @@ class AnkiPromptConverter:
         return AnkiPromptConverter(root_deck="FakeBaseDeck")
 
     def to_destination(self, prompt: QAWithDoc) -> AnkiQAModel:
-        deck_in_tags = [tag for tag in prompt.tags if tag.startswith(self.deck_prefix)]
-        deck = deck_in_tags[0] if deck_in_tags else self.root_deck
-
         return AnkiQAModel(
             Question=Markdown(prompt.prompt.question),
             Answer=Markdown(prompt.prompt.answer),
@@ -54,20 +51,9 @@ class AnkiPromptConverter:
                 edit_url=prompt.edit_url,
                 render_parent_doc=prompt.render_parent_doc,
             ),
-            tags=prompt.tags,
+            tags=Arr(prompt.tags).unique().to_list(),
             raw_prompt=prompt.prompt,
-            deck=deck,
+            root_deck=self.root_deck,
+            destination_id=None,
+            card_ids=[],
         )
-
-    def from_destination(self, note_info: NoteInfo) -> DestinationPrompt:
-        if "Question" in note_info.fields and "Answer" in note_info.fields:
-            return DestinationPrompt(
-                QAPrompt(
-                    question=note_info.fields["raw_question"].value,
-                    answer=note_info.fields["raw_answer"].value,
-                ),
-                extra=note_info.fields["Extra"].value,
-                destination_id=str(note_info.noteId),
-            )
-
-        raise ValueError(f"No Question field in note info: {note_info}")

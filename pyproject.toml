@@ -12,7 +12,6 @@ requires-python = ">=3.11"
 dependencies = [
   "bs4==0.0.2",
   "cffi==2.0.0",
-  "genanki==0.13.1",
   "iterpy==1.12.0",
   "markdown==3.10",
   "pydantic==2.12.5",
@@ -59,7 +58,7 @@ repository = "https://github.com/MartinBernstorff/memium"
 documentation = "https://MartinBernstorff.github.io/memium/"
 
 [tool.pyright]
-exclude = [".*venv*", "*subtasks*", ".git", "build"]
+exclude = [".*venv*", "*subtasks*", ".git", "build", "vulture_whitelist.py"]
 pythonPlatform = "Darwin"
 reportMissingTypeStubs = false
 reportPrivateImportUsage = false
@@ -159,6 +158,9 @@ skip-magic-trailing-comma = true
 branch = "main"
 version_toml = ["pyproject.toml:project.version"]
 build_command = "python -m pip install build; python -m build"
+
+[tool.inline-snapshot]
+format-command = "ruff format --stdin-filename {filename}"
 
 [tool.setuptools]
 include-package-data = true
