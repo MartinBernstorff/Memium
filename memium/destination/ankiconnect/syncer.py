@@ -26,9 +26,9 @@ class Syncer:
         }
 
     def sync(self) -> None:
-        self._handle_on_both()
         self._handle_only_in_source()
         self._handle_only_in_destination()
+        self._handle_on_both()
 
     def _update(self, scheduling_id: SchedulingUID):
         # XXX: Looks like some notes always update, e.g. note with id "1754651605720"
@@ -68,12 +68,12 @@ class Syncer:
         only_in_source_ids = (
             self.source_sched_id2source_prompt.keys() - self.destination_id2source_prompt.keys()
         )
-        note = Arr(only_in_source_ids).map(
+        notes = Arr(only_in_source_ids).map(
             lambda id_: self.converter.to_destination(self.source_sched_id2source_prompt[id_])
         )
 
-        log.info(f"Creating {len(note)} new notes in Anki")
-        return self.note_store.create(note.to_list())
+        log.info(f"Creating {len(notes)} new notes in Anki")
+        return self.note_store.create(notes.to_list())
 
     def _handle_only_in_destination(self) -> set[SchedulingUID]:
         only_in_destination_ids = (
