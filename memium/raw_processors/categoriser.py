@@ -1,9 +1,10 @@
 import enum
 import logging
 import os
-from collections.abc import Sequence
+from collections.abc import Callable, Sequence
 from dataclasses import dataclass
 from pathlib import Path
+from typing import cast
 
 import instructor
 from iterpy import Arr
@@ -76,6 +77,10 @@ class Categoriser:
         print(f"Using cache dir: {self.cache_dir}")
 
         mem = Memory(str(self.cache_dir), verbose=0)
-        cached_func = mem.cache(_process_prompts)
 
-        return Arr(prompts).pmap(cached_func).to_list()
+        cached_func = cast(
+            Callable[[QAWithDoc], QAWithDoc],
+            mem.cache(_process_prompts),  # type: ignore
+        )
+        result = cast(Sequence[QAWithDoc], Arr(prompts).pmap(cached_func).to_list())
+        return result

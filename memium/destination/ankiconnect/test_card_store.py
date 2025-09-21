@@ -12,9 +12,7 @@ cardStore = AnkiCardStore(
 def test_CRUD():
     new_note = AnkiQAModel.dummy(question="Random", answer="Data")
     note_id = note_store.create([new_note])[0]
-    note = note_store.read(note_id)
-    if note is None:
-        raise ValueError("Note not found after creation")
+    note = note_store.read([note_id])
 
-    cards = cardStore.read(note.card_ids[0])
+    cards = cardStore.read(note[0].card_ids[0])
     assert cards is not None

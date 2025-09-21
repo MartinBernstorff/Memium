@@ -12,12 +12,11 @@ log = logging.getLogger(__name__)
 
 
 class AnkiConnectCommand(Enum):
-    IMPORT_PACKAGE = "importPackage"
-
     # Notes
     ADD_NOTE = "addNote"
     GET_NOTE_INFOS = "notesInfo"
     UPDATE_NOTE = "updateNote"
+    UPDATE_NOTE_TAGS = "updateNoteTags"
     DELETE_NOTES = "deleteNotes"
 
     # Cards
@@ -25,12 +24,6 @@ class AnkiConnectCommand(Enum):
     CARDS_TO_NOTES = "cardsToNotes"
     FIND_CARDS = "findCards"
     CHANGE_DECK = "changeDeck"
-
-    # Models
-    CREATE_MODEL = "createModel"
-    UPDATE_MODEL_TEMPLATES = "updateModelTemplates"
-    UPDATE_MODEL_STYLING = "updateModelStyling"
-    GET_MODEL_NAMES = "modelNames"
 
 
 ANKICONNECT_URL = "http://host.docker.internal:8765" if in_docker() else "http://127.0.0.1:8765"

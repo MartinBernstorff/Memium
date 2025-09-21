@@ -21,7 +21,6 @@
             "justMyCode": true,
             "args": [
                 "--input-dir=/Users/mabe/Documents/life-lessons",
-                "--max-deletions-per-run=7000"
             ],
             "envFile": "${workspaceFolder}/.env"
         }

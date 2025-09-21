@@ -1,18 +1,17 @@
 import re
 from collections.abc import Sequence
-from typing import Protocol
 
-from markdown import Markdown
+from markdown import Markdown as MDLibMarkdown
 
-
-class MarkdownParser(Protocol):
-    def __call__(self, markdown: str) -> str: ...
+from memium.destination.ankiconnect.anki_model import Markdown
 
 
-def md_to_html(markdown: str) -> str:
+def md_to_html(markdown: Markdown) -> Markdown:
     return Markdown(
-        output_format="html", extensions=["legacy_em", "fenced_code", "tables", "nl2br"]
-    ).convert(markdown)
+        MDLibMarkdown(
+            output_format="html", extensions=["legacy_em", "fenced_code", "tables", "nl2br"]
+        ).convert(markdown)
+    )
 
 
 def get_terms_surrounded_by_underscores(string: str) -> Sequence[str]:

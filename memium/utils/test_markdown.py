@@ -5,6 +5,7 @@ from dataclasses import dataclass
 import pytest
 from inline_snapshot import snapshot
 
+from memium.destination.ankiconnect.anki_model import Markdown
 from memium.utils.markdown import get_terms_surrounded_by_underscores
 
 from .markdown import md_to_html
@@ -12,17 +13,22 @@ from .markdown import md_to_html
 
 @dataclass(frozen=True)
 class Ex:
-    given: str
+    given: Markdown
     # Required setup
 
     then: str
+
     # What the expected result is
+    #
+    @staticmethod
+    def from_primitives(given: str, then: str) -> "Ex":
+        return Ex(given=Markdown(given), then=then)
 
 
 @pytest.mark.parametrize(
     ("example"),
     [
-        Ex("_Method_s", "<em>Method</em>s")  # Example one
+        Ex.from_primitives("_Method_s", "<em>Method</em>s")  # Example one
     ],
 )
 def test_markdown_parser(example: Ex):
@@ -31,7 +37,7 @@ def test_markdown_parser(example: Ex):
 
 def test_code_block_parsing(tmp_path: pathlib.Path):
     contents = pathlib.Path(__file__).parent / "code_block.md"
-    parsed = md_to_html(contents.read_text())
+    parsed = md_to_html(Markdown(contents.read_text()))
     path = tmp_path / "test.htm"
     path.write_text(parsed)
     assert parsed == snapshot("""\

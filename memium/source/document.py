@@ -35,9 +35,3 @@ class Document:
 
     def __repr__(self) -> str:
         return f"{self.title}: {self.content[0:10]}..."
-
-
-@dataclass(frozen=True)
-class DummyDocument(Document):
-    content: str = "dummy content"
-    source_path: Path = Path("dummy_path")
