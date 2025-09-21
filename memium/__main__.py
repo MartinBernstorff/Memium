@@ -33,7 +33,7 @@ def _log_with_prefix(prefix: str, prompts: Sequence[QAWithDoc]) -> Sequence[QAWi
     return prompts
 
 
-def main(root_deck: str, input_dir: Path):
+def main(root_deck: str, input_dir: Path, skip_categorisation: bool = False) -> None:
     # Get the inputs
     qa_extractor = QAPromptExtractor(question_prefix="Q.", answer_prefix="A.")
     source_prompts = DocumentPromptSource(
@@ -44,7 +44,11 @@ def main(root_deck: str, input_dir: Path):
     # Apply transformations
     transformed_source_prompts = (
         Arr([source_prompts])
-        .map(Categoriser(cache_dir=input_dir / ".memium" / ".cache"))
+        .map(
+            Categoriser(cache_dir=input_dir / ".memium" / ".cache")
+            if not skip_categorisation
+            else lambda x: x
+        )
         .map(lambda x: _log_with_prefix("After categorisations: ", x))
         .map(
             TitleAsAnswerProcessor(
@@ -111,6 +115,9 @@ def cli(
     skip_sync: Annotated[
         bool, typer.Option(help="Skip all syncing, useful for smoketesting of the interface")
     ] = False,
+    skip_categorisation: Annotated[
+        bool, typer.Option(help="Skip categorisation step, useful for debugging")
+    ] = False,
 ):
     start_time = datetime.now()
     config_dir = input_dir / ".memium"
@@ -140,7 +147,9 @@ def cli(
     # The watching logic requires having a "core" which can terminate.
     # Alternatively, we could do a recursive call, but that would result in
     # an infinitely growing stack.
-    main_fn = partial(main, root_deck=deck_name, input_dir=input_dir)
+    main_fn = partial(
+        main, root_deck=deck_name, input_dir=input_dir, skip_categorisation=skip_categorisation
+    )
     main_fn()
 
     log.info(f"Logged to {log_path}")
