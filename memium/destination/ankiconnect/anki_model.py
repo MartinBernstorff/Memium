@@ -20,6 +20,8 @@ class AnkiQAModel(BaseModel):
     raw_prompt: QAPrompt
 
     tags: Sequence[str]
+    # bug: we used the root_deck instead of the deck when updating new notes. I think this is another example of the price of using str.
+    # bug: alternatively, we could simplify the flow, so there's a lower likelihood of confusing the two
     root_deck: str  # E.g. "BaseDeck" or "BaseDeck::Subdeck". Used with tags in the deck property to form the full deck name
 
     destination_id: AnkiNoteID | None

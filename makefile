@@ -1,7 +1,7 @@
 build:
 	docker build . -t ghcr.io/martinbernstorff/memium:latest -f Dockerfile
 
-validate:
+verify:
 	uv run pyright
 	uv run pytest
 	make vulture

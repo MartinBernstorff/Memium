@@ -31,8 +31,6 @@ class Syncer:
         self._handle_on_both()
 
     def _update(self, scheduling_id: SchedulingUID):
-        # XXX: Looks like some notes always update, e.g. note with id "1754651605720"
-        # Sometimes the same note over multiple iterations, dunno why it changes identity
         source = self.source_sched_id2source_prompt[scheduling_id]
         destination = self.destination_id2source_prompt[scheduling_id]
         converted_source = self.converter.to_destination(source)

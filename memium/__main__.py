@@ -45,9 +45,9 @@ def main(root_deck: str, input_dir: Path, skip_categorisation: bool = False) -> 
     transformed_source_prompts = (
         Arr([source_prompts])
         .map(
-            Categoriser(cache_dir=input_dir / ".memium" / ".cache")
-            if not skip_categorisation
-            else lambda x: x
+            lambda x: x
+            if skip_categorisation
+            else Categoriser(cache_dir=input_dir / ".memium" / ".cache")
         )
         .map(lambda x: _log_with_prefix("After categorisations: ", x))
         .map(
