@@ -44,11 +44,7 @@ def main(root_deck: str, input_dir: Path, skip_categorisation: bool = False) -> 
     # Apply transformations
     transformed_source_prompts = (
         Arr([source_prompts])
-        .map(
-            lambda x: x
-            if skip_categorisation
-            else Categoriser(cache_dir=input_dir / ".memium" / ".cache")
-        )
+        .map(Categoriser(cache_dir=input_dir / ".memium" / ".cache"))
         .map(lambda x: _log_with_prefix("After categorisations: ", x))
         .map(
             TitleAsAnswerProcessor(
@@ -77,6 +73,9 @@ def main(root_deck: str, input_dir: Path, skip_categorisation: bool = False) -> 
         .flatten()
         .to_list()
     )
+
+    # bug: looks like we're still not moving to the right deck. Perhaps on create instead?
+    # Perhaps it's because we're doing some HTML/markdown back-and-forth?
 
     # Determine diff
     note_store = AnkiNoteStore(
