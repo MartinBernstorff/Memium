@@ -17,6 +17,7 @@ def obsidian_url(file_title: str, line_nr: int | None) -> str:
 
 
 SchedulingUID = NewType("SchedulingUID", int)
+SchedulingUIDStr = NewType("SchedulingUIDStr", str)
 
 
 @dataclass(frozen=True)
@@ -48,9 +49,9 @@ class QAPrompt:
         return QAPrompt(question=question, answer=answer)
 
     @property
-    def scheduling_uid_str(self) -> str:
+    def scheduling_uid_str(self) -> SchedulingUIDStr:
         """Str used for generating the update_uid. Super helpful for debugging."""
-        return cleaned_qa_scheduling_uid_str(self.question, self.answer)
+        return SchedulingUIDStr(cleaned_qa_scheduling_uid_str(self.question, self.answer))
 
     @property
     def scheduling_uid(self) -> SchedulingUID:
@@ -83,8 +84,8 @@ class QAWithDoc:
         )
 
     @property
-    def scheduling_str(self) -> str:
-        return self.prompt.scheduling_uid_str
+    def scheduling_str(self) -> SchedulingUIDStr:
+        return SchedulingUIDStr(self.prompt.scheduling_uid_str)
 
     @property
     def scheduling_id(self) -> SchedulingUID:

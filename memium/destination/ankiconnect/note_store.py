@@ -15,7 +15,6 @@ log = logging.getLogger(__name__)
 
 class AnkiFieldDTO(BaseModel):
     value: str
-    order: int
 
 
 class AnkiNoteInfoDTO(BaseModel):
@@ -33,11 +32,16 @@ class AnkiRawFieldsDTO(BaseModel):
     raw_answer: str
 
 
+class AnkiNoteOptionsDTO(BaseModel):
+    allowDuplicate: bool
+
+
 class AnkiRawDTO(BaseModel):
     deckName: str  # p2: NewType
     modelName: str
     fields: AnkiRawFieldsDTO
     tags: Sequence[str]
+    options: AnkiNoteOptionsDTO | None
 
 
 class AnkiUpdateDTO(BaseModel):
@@ -80,9 +84,16 @@ class AnkiNoteStore:
         # p3: include css (where?)
         # Create the note
 
+        # bug: we used to use just self.root_deck here, ignoring the deck from the AnkiQAModel
+        # Not sure how to avoid bugs in these mapping situations, other than:
+        # * Making the mapping a separate function, so there is no available context that you shouldn't use
+        # * Writing tests
+        # * Would NewTypes have helped here?
+
+        # bug: seems to detect duplicates for the "reversed" definition prompts. Not sure why.
         dtos = Arr(note).map(
             lambda it: AnkiRawDTO(
-                deckName=self.root_deck,
+                deckName=it.deck,
                 modelName="Ankdown QA with raw text",
                 fields=AnkiRawFieldsDTO(
                     Question=md_to_html(it.Question),
@@ -91,6 +102,7 @@ class AnkiNoteStore:
                     raw_question=it.raw_prompt.question,
                     raw_answer=it.raw_prompt.answer,
                 ),
+                options=AnkiNoteOptionsDTO(allowDuplicate=True),
                 tags=it.tags,
             )
         )

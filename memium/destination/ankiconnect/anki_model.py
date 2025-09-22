@@ -22,6 +22,8 @@ class AnkiQAModel(BaseModel):
     tags: Sequence[str]
     # bug: we used the root_deck instead of the deck when updating new notes. I think this is another example of the price of using str.
     # bug: alternatively, we could simplify the flow, so there's a lower likelihood of confusing the two
+
+    # bug: I need alerting when the workflow fails
     root_deck: str  # E.g. "BaseDeck" or "BaseDeck::Subdeck". Used with tags in the deck property to form the full deck name
 
     destination_id: AnkiNoteID | None
@@ -56,6 +58,7 @@ class AnkiQAModel(BaseModel):
         answer: str = "A. DummyAnswer",
         extra: str = "",
         tags: Sequence[str] = (),
+        root_deck: str = "FakeBaseDeck",
     ) -> "AnkiQAModel":
         return AnkiQAModel(
             Question=Markdown(question),
@@ -63,7 +66,7 @@ class AnkiQAModel(BaseModel):
             Extra=Markdown(extra),
             tags=tags,
             raw_prompt=QAPrompt.dummy(question, answer),
-            root_deck="FakeBaseDeck",
+            root_deck=root_deck,
             destination_id=None,
             card_ids=[],
         )

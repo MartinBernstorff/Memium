@@ -8,18 +8,28 @@ note_store = AnkiNoteStore(
     anki_requester=AnkiRequester(ankiconnect_url=ANKICONNECT_URL, max_wait_seconds=10),
     root_deck=INTEGRATION_TEST_DECK,
 )
-note_store.clear()
 
 
 def test_CRUD():
-    note = AnkiQAModel.dummy(question="What is life?", answer="But a butterfly?")
+    note_store.clear()
+    note = AnkiQAModel.dummy(
+        question="What is life?",
+        answer="But a butterfly?",
+        tags=["anki/deck/Subdeck/Subdeck2"],
+        root_deck=INTEGRATION_TEST_DECK,
+    )
 
     # Create
     note_id = note_store.create([note])[0]
 
     # Read
     read = note_store.read([note_id])[0]
-    assert read is not None
+    assert read.destination_id == note_id
+
+    # Read all
+    all_ids = note_store.get_all_ids()
+    assert note_id in all_ids
+    assert read.destination_id in all_ids
 
     # Update
     update = AnkiQAModel(
@@ -27,11 +37,12 @@ def test_CRUD():
         Answer=note.Answer,
         Extra=note.Extra,
         raw_prompt=note.raw_prompt,
-        tags=["updated"],
+        tags=["updated", "anki/deck/Subdeck/Subdeck2"],
         root_deck=INTEGRATION_TEST_DECK,
         destination_id=note_id,
         card_ids=[],
     )
+    assert update.deck == INTEGRATION_TEST_DECK + "::Subdeck::Subdeck2"
     note_store.update(update)
 
     # Assert
@@ -39,7 +50,7 @@ def test_CRUD():
     assert updated.deck == update.deck
     assert updated is not None
     assert updated.Question == md_to_html(update.Question)
-    assert updated.tags == update.tags
+    assert set(updated.tags) == set(update.tags)
 
     # Delete
     note_store.delete([note_id])
