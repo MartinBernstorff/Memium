@@ -26,7 +26,7 @@ class AnkiNoteInfoDTO(BaseModel):
 
 
 class AnkiRawFieldsDTO(BaseModel):
-    Question: str
+    Question: str  # p2: Make it clear that these are HTML?
     Answer: str
     Extra: str
     raw_question: str
@@ -34,7 +34,7 @@ class AnkiRawFieldsDTO(BaseModel):
 
 
 class AnkiRawDTO(BaseModel):
-    deckName: str
+    deckName: str  # p2: NewType
     modelName: str
     fields: AnkiRawFieldsDTO
     tags: Sequence[str]
@@ -77,6 +77,7 @@ class AnkiNoteStore:
     def create(self, note: Sequence[AnkiQAModel]) -> Sequence[AnkiNoteID]:
         # p2: Ensure note model exists
         # p2: Ensure deck exists
+        # p3: include css (where?)
         # Create the note
 
         dtos = Arr(note).map(

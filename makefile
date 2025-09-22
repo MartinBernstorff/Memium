@@ -5,7 +5,7 @@ deploy:
 validate:
 	make test
 
-validate:
+verify:
 	uv run pyright
 	uv run pytest
 	make vulture
