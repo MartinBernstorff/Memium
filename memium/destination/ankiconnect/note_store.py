@@ -103,6 +103,10 @@ class AnkiNoteStore:
                     raw_answer=it.raw_prompt.answer,
                 ),
                 options=AnkiNoteOptionsDTO(allowDuplicate=True),
+                # Anki's duplicate checking is over-eager, ignoring e.g. the "extra" field.
+                # Since it contains the note title in my modelling, a duplicate on the question field may, in fact,
+                # contain enough context in the Extra field to not be a true duplicate.
+                # Perhaps this indicates that the note title should be in the question field, but that would trigger _a lot_ of rescheduling for me.
                 tags=it.tags,
             )
         )
