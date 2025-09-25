@@ -1,15 +1,17 @@
 from collections.abc import Sequence
-from dataclasses import dataclass
 from typing import NewType
 
+from pydantic import BaseModel
+
 from memium.source.prompt import QAPrompt
-from memium.utils.markdown import get_terms_surrounded_by_underscores
 
 Markdown = NewType("Markdown", str)
+AnkiNoteID = NewType("AnkiNoteID", int)
+AnkiCardID = NewType("AnkiCardID", int)
+SyncIdentity = NewType("SyncIdentity", str)
 
 
-@dataclass(frozen=True)
-class AnkiQAModel:
+class AnkiQAModel(BaseModel):
     # Field capitalisation must be preserved for backwards compatibility
     Question: Markdown
     Answer: Markdown
@@ -18,7 +20,37 @@ class AnkiQAModel:
     raw_prompt: QAPrompt
 
     tags: Sequence[str]
-    root_deck: str
+    # bug: we used the root_deck instead of the deck when updating new notes. I think this is another example of the price of using str.
+    # bug: alternatively, we could simplify the flow, so there's a lower likelihood of confusing the two
+
+    # bug: I need alerting when the workflow fails
+    root_deck: str  # E.g. "BaseDeck" or "BaseDeck::Subdeck". Used with tags in the deck property to form the full deck name
+
+    destination_id: AnkiNoteID | None
+    card_ids: Sequence[AnkiCardID]
+
+    @staticmethod
+    def from_primitives(
+        question: str,
+        answer: str,
+        extra: str,
+        raw_question: str,
+        raw_answer: str,
+        tags: Sequence[str],
+        root_deck: str,
+        destination_id: AnkiNoteID | None,
+        card_ids: Sequence[AnkiCardID],
+    ) -> "AnkiQAModel":
+        return AnkiQAModel(
+            Question=Markdown(question),
+            Answer=Markdown(answer),
+            Extra=Markdown(extra),
+            raw_prompt=QAPrompt(question=raw_question, answer=raw_answer),
+            tags=tags,
+            root_deck=root_deck,
+            destination_id=destination_id,
+            card_ids=card_ids,
+        )
 
     @staticmethod
     def dummy(
@@ -26,6 +58,7 @@ class AnkiQAModel:
         answer: str = "A. DummyAnswer",
         extra: str = "",
         tags: Sequence[str] = (),
+        root_deck: str = "FakeBaseDeck",
     ) -> "AnkiQAModel":
         return AnkiQAModel(
             Question=Markdown(question),
@@ -33,7 +66,9 @@ class AnkiQAModel:
             Extra=Markdown(extra),
             tags=tags,
             raw_prompt=QAPrompt.dummy(question, answer),
-            root_deck="FakeBaseDeck",
+            root_deck=root_deck,
+            destination_id=None,
+            card_ids=[],
         )
 
     @property
@@ -52,9 +87,8 @@ class AnkiQAModel:
 
         base_anki_deck = self.root_deck if subdeck is None else f"{self.root_deck}::{subdeck}"
 
-        wiki_links = get_terms_surrounded_by_underscores(self.Question)
-        wiki_subdeck = "-".join(sorted(wiki_links))
-
-        if wiki_subdeck != "":
-            return f"{base_anki_deck}::{wiki_subdeck}"
         return base_anki_deck
+
+    def sync_identity(self) -> SyncIdentity:
+        lowered_tags = [tag.lower() for tag in self.tags]
+        return SyncIdentity(f"{self.raw_prompt.scheduling_uid_str}::{sorted(lowered_tags)}")

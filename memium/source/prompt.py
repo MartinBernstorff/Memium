@@ -1,6 +1,7 @@
 from collections.abc import Sequence
 from dataclasses import dataclass
 from pathlib import Path
+from typing import NewType
 from urllib.parse import quote
 
 from memium.source.document import Document
@@ -13,6 +14,10 @@ def obsidian_url(file_title: str, line_nr: int | None) -> str:
     if line_nr:
         url += f"&line={line_nr}"
     return url
+
+
+SchedulingUID = NewType("SchedulingUID", int)
+SchedulingUIDStr = NewType("SchedulingUIDStr", str)
 
 
 @dataclass(frozen=True)
@@ -44,13 +49,13 @@ class QAPrompt:
         return QAPrompt(question=question, answer=answer)
 
     @property
-    def scheduling_uid_str(self) -> str:
+    def scheduling_uid_str(self) -> SchedulingUIDStr:
         """Str used for generating the update_uid. Super helpful for debugging."""
-        return cleaned_qa_scheduling_uid_str(self.question, self.answer)
+        return SchedulingUIDStr(cleaned_qa_scheduling_uid_str(self.question, self.answer))
 
     @property
-    def scheduling_uid(self) -> int:
-        return hash_str_to_int(self.scheduling_uid_str)
+    def scheduling_uid(self) -> SchedulingUID:
+        return SchedulingUID(hash_str_to_int(self.scheduling_uid_str))
 
 
 @dataclass(frozen=True)
@@ -79,11 +84,11 @@ class QAWithDoc:
         )
 
     @property
-    def scheduling_str(self) -> str:
-        return self.prompt.scheduling_uid_str
+    def scheduling_str(self) -> SchedulingUIDStr:
+        return SchedulingUIDStr(self.prompt.scheduling_uid_str)
 
     @property
-    def scheduling_id(self) -> int:
+    def scheduling_id(self) -> SchedulingUID:
         return self.prompt.scheduling_uid
 
     @property
@@ -97,7 +102,3 @@ class QAWithDoc:
 
 def cleaned_qa_scheduling_uid_str(question: str, answer: str) -> str:
     return f"{clean_str(question)}_{clean_str(answer)}"
-
-
-def qa_update_uid_str(question: str, answer: str, tags: Sequence[str]) -> str:
-    return f"{question}_{answer}_{tags}"

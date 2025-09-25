@@ -20,6 +20,10 @@ class Document:
             source_path=source_path,
         )
 
+    def with_tags(self, tags: Sequence[str]) -> "Document":
+        content_with_tags = self.content + "\n\n\n" + " ".join(f"#{tag}" for tag in tags)
+        return Document(content=content_with_tags, source_path=self.source_path)
+
     @property
     def tags(self) -> Sequence[str]:
         tag_strings: list[str] = list(re.findall(r"#[\w\/]+", self.content))
@@ -31,9 +35,3 @@ class Document:
 
     def __repr__(self) -> str:
         return f"{self.title}: {self.content[0:10]}..."
-
-
-@dataclass(frozen=True)
-class DummyDocument(Document):
-    content: str = "dummy content"
-    source_path: Path = Path("dummy_path")

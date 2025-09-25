@@ -1,0 +1,6 @@
+cli  # unused function (memium/__main__.py:92)
+_.formatted_field_names  # unused property (memium/destination/ankiconnect/anki_model.py:69)
+modelName  # unused variable (memium/destination/ankiconnect/note_store.py:27)
+SWE  # unused variable (memium/raw_processors/categoriser.py:20)
+OTHER  # unused variable (memium/raw_processors/categoriser.py:21)
+smoketest_cli  # unused function (memium/tasks/smoketest.py:23)
