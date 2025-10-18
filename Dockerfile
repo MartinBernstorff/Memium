@@ -1,5 +1,5 @@
 # Builder stage
-FROM ghcr.io/astral-sh/uv:python3.11-bookworm-slim@sha256:b34f5698ed01a8d37f11c8f9ce882caff1369cd182bd8389b04582e10f8d3e86 AS builder
+FROM ghcr.io/astral-sh/uv:python3.11-bookworm-slim@sha256:06462b77d25ef761f66188f6f73d2ede98b5ed13486de2c0139a863880e26ee1 AS builder
 
 ENV UV_COMPILE_BYTECODE=1 UV_LINK_MODE=copy
 WORKDIR /app
