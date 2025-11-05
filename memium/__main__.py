@@ -33,7 +33,7 @@ def _log_with_prefix(prefix: str, prompts: Sequence[QAWithDoc]) -> Sequence[QAWi
     return prompts
 
 
-def main(root_deck: str, input_dir: Path, skip_categorisation: bool = False) -> None:
+def main(root_deck: str, input_dir: Path) -> None:
     # Get the inputs
     qa_extractor = QAPromptExtractor(question_prefix="Q.", answer_prefix="A.")
     source_prompts = DocumentPromptSource(
@@ -56,6 +56,9 @@ def main(root_deck: str, input_dir: Path, skip_categorisation: bool = False) -> 
             TitleAsAnswerProcessor(
                 question_matcher="Use when?", reversed_question="What should we use for '%s'?"
             )
+        )
+        .map(
+            TitleAsAnswerProcessor(question_matcher="Example?", reversed_question="Example of? %s")
         )
         .map(lambda x: _log_with_prefix("After use: ", x))
         .map(
@@ -114,9 +117,6 @@ def cli(
     skip_sync: Annotated[
         bool, typer.Option(help="Skip all syncing, useful for smoketesting of the interface")
     ] = False,
-    skip_categorisation: Annotated[
-        bool, typer.Option(help="Skip categorisation step, useful for debugging")
-    ] = False,
 ):
     start_time = datetime.now()
     config_dir = input_dir / ".memium"
@@ -146,16 +146,14 @@ def cli(
     # The watching logic requires having a "core" which can terminate.
     # Alternatively, we could do a recursive call, but that would result in
     # an infinitely growing stack.
-    main_fn = partial(
-        main, root_deck=deck_name, input_dir=input_dir, skip_categorisation=skip_categorisation
-    )
+    main_fn = partial(main, root_deck=deck_name, input_dir=input_dir)
     main_fn()
 
     log.info(f"Logged to {log_path}")
 
     if watch_seconds:
         log.info(
-            f"Sync complete in {(datetime.now() - start_time).total_seconds()} seconds, sleeping for {watch_seconds} seconds"
+            f"Sync complete in {round((datetime.now() - start_time).total_seconds(), 1)} seconds, sleeping for {watch_seconds} seconds"
         )
         time.sleep(watch_seconds)
         main_fn()
