@@ -32,3 +32,22 @@ def test_application_extractor():
     assert len(result) == 2
     assert result[1].prompt.question == snapshot("What should we use for 'Preventing coagulation'?")
     assert result[1].prompt.answer == snapshot("DummyPath")
+
+
+def test_example_extractor():
+    doc = QAWithDoc.dummy(
+        question="Example?",
+        answer="""
+```ts
+collection.update(itemId, (draft) => {draft.completed = true})
+```""",
+    )
+    result = TitleAsAnswerProcessor(
+        question_matcher="Example?", reversed_question="Example of? %s"
+    ).__call__([doc])
+
+    assert len(result) == 2
+    assert result[1].prompt.question == snapshot(
+        "Example of? \n```ts\ncollection.update(itemId, (draft) => {draft.completed = true})\n```"
+    )
+    assert result[1].prompt.answer == snapshot("DummyPath")
