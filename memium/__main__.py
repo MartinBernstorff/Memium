@@ -58,7 +58,9 @@ def main(root_deck: str, input_dir: Path) -> None:
             )
         )
         .map(
-            TitleAsAnswerProcessor(question_matcher="Example?", reversed_question="Example of? %s")
+            TitleAsAnswerProcessor(
+                question_matcher="Example?", reversed_question="%s \nExample of?"
+            )
         )
         .map(lambda x: _log_with_prefix("After use: ", x))
         .map(
