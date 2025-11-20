@@ -13,7 +13,7 @@ jobs:
     if: github.event.pull_request.draft == false
     steps:
       - name: Checkout Base
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Install the latest version of uv
         uses: astral-sh/setup-uv@v7
