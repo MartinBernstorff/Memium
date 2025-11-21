@@ -37,7 +37,7 @@ dev = [
   "pytest-sugar==1.1.1",
   "pytest-testmon==2.1.4",
   "pytest-xdist==3.8.0",
-  "ruff==0.14.5",
+  "ruff==0.14.6",
 ]
 
 [project.license]
