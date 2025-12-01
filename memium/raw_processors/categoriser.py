@@ -18,6 +18,9 @@ log = logging.getLogger(__name__)
 
 class CategoryValue(enum.Enum):
     FHIR = "FHIR"
+    JAVA = "Java"
+    PYTHON = "Python"
+    SPRING_BOOT = "SpringBoot"
     ML = "MachineLearning"
     SWE = "SoftwareEngineering"
     TRIFORK = "TRIFORK"
@@ -32,7 +35,7 @@ api_key = os.getenv("OPENAI_API_KEY")
 client = instructor.from_provider("openai/gpt-5-nano", api_key=api_key)
 
 
-def _process_prompts(prompt: QAWithDoc, version: int = 5) -> QAWithDoc:
+def _process_prompts(prompt: QAWithDoc, version: int = 6) -> QAWithDoc:
     # 'version' kept for future behavioural changes; underscore assignment silences unused warning
     response: Category = client.chat.completions.create(
         response_model=Category,
@@ -64,7 +67,7 @@ def _process_prompts(prompt: QAWithDoc, version: int = 5) -> QAWithDoc:
 
 @dataclass(frozen=True)
 class Categoriser:
-    cache_dir: Path  # kept for interface compatibility, unused in async version
+    cache_dir: Path
 
     def __call__(self, prompts: Sequence[QAWithDoc]) -> Sequence[QAWithDoc]:
         """Synchronously categorise prompts.
