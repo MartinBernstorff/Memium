@@ -30,7 +30,7 @@ dev = [
   "diff-cover==10.0.0",
   "herbarium>=0.32.1",
   "invoke==2.2.1",
-  "pre-commit==4.5.0",
+  "pre-commit==4.5.1",
   "pyright==1.1.398",
   "pytest==9.0.2",
   "pytest-cov==7.0.0",
