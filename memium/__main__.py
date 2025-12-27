@@ -33,7 +33,7 @@ def _log_with_prefix(prefix: str, prompts: Sequence[QAWithDoc]) -> Sequence[QAWi
     return prompts
 
 
-def main(root_deck: str, input_dir: Path) -> None:
+def main(root_deck: str, input_dir: Path):
     # Get the inputs
     qa_extractor = QAPromptExtractor(question_prefix="Q.", answer_prefix="A.")
     source_prompts = DocumentPromptSource(
@@ -57,11 +57,6 @@ def main(root_deck: str, input_dir: Path) -> None:
                 question_matcher="Use when?", reversed_question="What should we use for '%s'?"
             )
         )
-        .map(
-            TitleAsAnswerProcessor(
-                question_matcher="Example?", reversed_question="%s \nExample of?"
-            )
-        )
         .map(lambda x: _log_with_prefix("After use: ", x))
         .map(
             TitleAsAnswerProcessor(
@@ -78,9 +73,6 @@ def main(root_deck: str, input_dir: Path) -> None:
         .flatten()
         .to_list()
     )
-
-    # bug: looks like we're still not moving to the right deck. Perhaps on create instead?
-    # Perhaps it's because we're doing some HTML/markdown back-and-forth?
 
     # Determine diff
     note_store = AnkiNoteStore(
@@ -155,7 +147,7 @@ def cli(
 
     if watch_seconds:
         log.info(
-            f"Sync complete in {round((datetime.now() - start_time).total_seconds(), 1)} seconds, sleeping for {watch_seconds} seconds"
+            f"Sync complete in {(datetime.now() - start_time).total_seconds()} seconds, sleeping for {watch_seconds} seconds"
         )
         time.sleep(watch_seconds)
         main_fn()
