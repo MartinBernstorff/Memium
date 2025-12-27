@@ -30,7 +30,8 @@ class TitleAsAnswerProcessor:
 
     def _expand_prompt(self, prompt: QAWithDoc) -> QAWithDoc:
         answer = prompt.prompt.answer
-        if answer[-1] in ".,!?;:":
+
+        if len(answer) > 0 and answer[-1] in ".,!?;:":
             answer = answer[:-1]
 
         return QAWithDoc(
