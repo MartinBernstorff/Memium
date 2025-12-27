@@ -9,7 +9,7 @@ from pathlib import Path
 from typing import Annotated
 
 import typer
-from iterpy import Arr
+from iterpy import Iter
 
 from memium.destination.ankiconnect.anki_converter import AnkiPromptConverter
 from memium.destination.ankiconnect.ankiconnect_requester import ANKICONNECT_URL, AnkiRequester
@@ -43,7 +43,7 @@ def main(root_deck: str, input_dir: Path):
 
     # Apply transformations
     transformed_source_prompts = (
-        Arr([source_prompts])
+        Iter([source_prompts])
         .map(Categoriser(cache_dir=input_dir / ".memium" / ".cache"))
         .map(lambda x: _log_with_prefix("After categorisations: ", x))
         .map(
