@@ -5,7 +5,7 @@ from datetime import datetime
 from functools import partial
 from importlib.metadata import PackageNotFoundError, version
 from pathlib import Path
-from typing import Annotated, Optional
+from typing import Annotated
 
 import typer
 from iterpy import Arr
@@ -107,8 +107,7 @@ def cli(
         ),
     ],
     watch_seconds: Annotated[
-        Optional[int],  # noqa: UP007
-        typer.Option(help="Keep running, updating Anki deck every [ARG] seconds"),
+        int | None, typer.Option(help="Keep running, updating Anki deck every [ARG] seconds")
     ] = None,
     deck_name: Annotated[
         str, typer.Option(help="Anki path to deck, e.g. 'Parent deck::Child deck'")

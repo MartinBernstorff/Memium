@@ -41,6 +41,16 @@ class TableExtractorExample:
                 QAWithDoc.dummy(question="11?", answer="12.", line_nr=8),
             ],
         ),
+        TableExtractorExample(
+            table_prompt="Rowwise-all // What is the list? // |Column one|",
+            expectation=[
+                QAWithDoc.dummy(
+                    question="What is the list?\n\n1. ?\n2. ?\n3. ?",
+                    answer="1. 11\n2. 21\n3. 31",
+                    line_nr=8,
+                )
+            ],
+        ),
     ],
     ids=lambda x: x.table_prompt,
 )

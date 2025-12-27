@@ -18,4 +18,5 @@
         "trunk"
     ],
     "editor.formatOnSave": true,
+    "python.languageServer": "Default",
 }
