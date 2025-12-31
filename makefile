@@ -17,7 +17,6 @@ types:
 test:
 	uv run pytest --durations=5
 
-
 snapshot:
 	uv run pytest --inline-snapshot=review
 

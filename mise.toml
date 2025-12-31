@@ -1,0 +1,12 @@
+[tasks.deploy]
+run = "make deploy"
+depends = ["test", "types", "vulture"]
+
+[tasks.types]
+run = "make types"
+
+[tasks.test]
+run = "make test"
+
+[tasks.vulture]
+run = "make vulture"
