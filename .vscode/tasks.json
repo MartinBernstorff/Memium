@@ -1,0 +1,14 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "mise",
+			"task": "deploy",
+			"watch": false,
+			"runArgs": [],
+			"watchexecArgs": [],
+			"problemMatcher": [],
+			"label": "deploy"
+		}
+	]
+}

@@ -10,3 +10,6 @@ run = "make test"
 
 [tasks.vulture]
 run = "make vulture"
+
+[env]
+_.file = '.env'
