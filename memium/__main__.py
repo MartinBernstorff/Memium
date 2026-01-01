@@ -44,7 +44,7 @@ def main(root_deck: str, input_dir: Path):
     # Apply transformations
     transformed_source_prompts = (
         Iter([source_prompts])
-        .map(Categoriser(cache_dir=input_dir / ".memium" / ".cache"))
+        .map(Categoriser(cache_dir=input_dir / ".memium" / ".cache", max_concurrency=400))
         .map(lambda x: _log_with_prefix("After categorisations: ", x))
         .map(
             TitleAsAnswerProcessor(

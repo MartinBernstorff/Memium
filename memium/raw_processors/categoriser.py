@@ -1,13 +1,14 @@
+import asyncio
 import enum
 import logging
 import os
 from collections.abc import Sequence
 from dataclasses import dataclass
 from pathlib import Path
-from typing import cast
 
+import anyio
 import instructor
-from iterpy import Arr
+from anyio import Semaphore
 from pydantic import BaseModel
 
 from memium.source.prompt import QAWithDoc
@@ -20,6 +21,7 @@ class CategoryValue(enum.Enum):
     FHIR = "FHIR"
     JAVA = "Java"
     PYTHON = "Python"
+    MEDICINE = "Medicine"
     SPRING_BOOT = "SpringBoot"
     ML = "MachineLearning"
     SWE = "SoftwareEngineering"
@@ -32,12 +34,11 @@ class Category(BaseModel):
 
 
 api_key = os.getenv("OPENAI_API_KEY")
-client = instructor.from_provider("openai/gpt-5-nano", api_key=api_key)
+client = instructor.from_provider("openai/gpt-5-nano", api_key=api_key, async_client=True)
 
 
-def _process_prompts(prompt: QAWithDoc) -> QAWithDoc:
-    # 'version' kept for future behavioural changes; underscore assignment silences unused warning
-    response: Category = client.chat.completions.create(
+async def _process_prompts(prompt: QAWithDoc) -> QAWithDoc:
+    response: Category = await client.chat.completions.create(
         response_model=Category,
         messages=[
             {
@@ -65,20 +66,20 @@ def _process_prompts(prompt: QAWithDoc) -> QAWithDoc:
     )
 
 
-def _get_cache_key(prompt: QAWithDoc) -> str:
-    return prompt.prompt.scheduling_uid_str
+def _categoriser_cache_key(prompt: QAWithDoc) -> str:
+    return f"{prompt.prompt.scheduling_uid_str}_v2"
 
 
 @dataclass(frozen=True)
 class Categoriser:
     cache_dir: Path
+    max_concurrency: int = 10
 
     def __call__(self, prompts: Sequence[QAWithDoc]) -> Sequence[QAWithDoc]:
         """Synchronously categorise prompts.
 
-        Internally spins up an asyncio event loop to run the original
-        concurrent categorisation logic while exposing a blocking API
-        to callers.
+        Internally spins up an asyncio event loop to run the concurrent
+        categorisation logic while exposing a blocking API to callers.
         """
         if not prompts:
             return []
@@ -86,14 +87,28 @@ class Categoriser:
         self.cache_dir.mkdir(parents=True, exist_ok=True)
         print(f"Using cache dir: {self.cache_dir}")
 
-        cached = DiskCache[
-            QAWithDoc, QAWithDoc
-        ](
+        return asyncio.run(self._categorise_async(prompts))
+
+    async def _categorise_async(self, prompts: Sequence[QAWithDoc]) -> list[QAWithDoc]:
+        """Asynchronously categorise all prompts with controlled concurrency."""
+        cached = DiskCache[QAWithDoc, QAWithDoc](
             cache_file=str(self.cache_dir / "categoriser_cache.sqlite"),
             compute_fn=_process_prompts,
-            cache_key_fn=_get_cache_key,  # Do not use a lambda here; needs to be picklable for multiprocessing in pmap
+            cache_key_fn=_categoriser_cache_key,
             result_type=QAWithDoc,
         )
 
-        result = cast(Sequence[QAWithDoc], Arr(prompts).map(cached).to_list())
-        return result
+        semaphore = Semaphore(self.max_concurrency)
+        results: list[QAWithDoc | None] = [None] * len(prompts)
+
+        async def process_with_semaphore(index: int, prompt: QAWithDoc) -> None:
+            async with semaphore:
+                results[index] = await cached(prompt)
+                if len(prompts) % 10 == 0:
+                    log.info(f"Categorised {index + 1}/{len(prompts)}")
+
+        async with anyio.create_task_group() as tg:
+            for i, prompt in enumerate(prompts):
+                tg.start_soon(process_with_semaphore, i, prompt)
+
+        return [r for r in results if r is not None]
