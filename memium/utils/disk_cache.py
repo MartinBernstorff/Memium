@@ -92,7 +92,6 @@ class DiskCache[T: BaseModel, S: BaseModel]:
         # Check for cache hit
         cached_result = await self._get_cached(key)
         if cached_result is not None:
-            log.info(f"Cache hit for key: {key}")
             return cached_result
 
         # Cache miss: compute, store, and return
