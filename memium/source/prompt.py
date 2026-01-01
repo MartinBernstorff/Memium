@@ -1,8 +1,9 @@
 from collections.abc import Sequence
-from dataclasses import dataclass
 from pathlib import Path
 from typing import NewType
 from urllib.parse import quote
+
+import pydantic
 
 from memium.source.document import Document
 
@@ -20,14 +21,14 @@ SchedulingUID = NewType("SchedulingUID", int)
 SchedulingUIDStr = NewType("SchedulingUIDStr", str)
 
 
-@dataclass(frozen=True)
-class QAPrompt:
+class QAPrompt(pydantic.BaseModel):
     """Value object for a question-answer prompt. Its identity is determined entirely by its values."""
 
     question: str
     answer: str
 
-    def __post_init__(self):
+    @pydantic.model_validator(mode="after")
+    def check_forbidden_tags(self) -> "QAPrompt":
         """Styling should not occur in this value object, since any change to style would change its scheduling identity.
 
         Instead, styling should happen in the destination (e.g. AnkiQA)."""
@@ -43,6 +44,7 @@ class QAPrompt:
         if errors:
             error_str = "\n".join(errors)
             raise ValueError(error_str)
+        return self
 
     @staticmethod
     def dummy(question: str = "DummyQuestion", answer: str = "DummyAnswer") -> "QAPrompt":
@@ -58,8 +60,7 @@ class QAPrompt:
         return SchedulingUID(hash_str_to_int(self.scheduling_uid_str))
 
 
-@dataclass(frozen=True)
-class QAWithDoc:
+class QAWithDoc(pydantic.BaseModel):
     prompt: QAPrompt
 
     parent_doc: Document

@@ -1,17 +1,17 @@
 import enum
 import logging
 import os
-from collections.abc import Callable, Sequence
+from collections.abc import Sequence
 from dataclasses import dataclass
 from pathlib import Path
 from typing import cast
 
 import instructor
 from iterpy import Arr
-from joblib import Memory
 from pydantic import BaseModel
 
 from memium.source.prompt import QAWithDoc
+from memium.utils.disk_cache import DiskCache
 
 log = logging.getLogger(__name__)
 
@@ -35,7 +35,7 @@ api_key = os.getenv("OPENAI_API_KEY")
 client = instructor.from_provider("openai/gpt-5-nano", api_key=api_key)
 
 
-def _process_prompts(prompt: QAWithDoc, version: int = 6) -> QAWithDoc:
+def _process_prompts(prompt: QAWithDoc) -> QAWithDoc:
     # 'version' kept for future behavioural changes; underscore assignment silences unused warning
     response: Category = client.chat.completions.create(
         response_model=Category,
@@ -65,6 +65,10 @@ def _process_prompts(prompt: QAWithDoc, version: int = 6) -> QAWithDoc:
     )
 
 
+def _get_cache_key(prompt: QAWithDoc) -> str:
+    return prompt.prompt.scheduling_uid_str
+
+
 @dataclass(frozen=True)
 class Categoriser:
     cache_dir: Path
@@ -82,11 +86,14 @@ class Categoriser:
         self.cache_dir.mkdir(parents=True, exist_ok=True)
         print(f"Using cache dir: {self.cache_dir}")
 
-        mem = Memory(str(self.cache_dir), verbose=0)
-
-        cached_func = cast(
-            Callable[[QAWithDoc], QAWithDoc],
-            mem.cache(_process_prompts),  # type: ignore
+        cached = DiskCache[
+            QAWithDoc, QAWithDoc
+        ](
+            cache_file=str(self.cache_dir / "categoriser_cache.sqlite"),
+            compute_fn=_process_prompts,
+            cache_key_fn=_get_cache_key,  # Do not use a lambda here; needs to be picklable for multiprocessing in pmap
+            result_type=QAWithDoc,
         )
-        result = cast(Sequence[QAWithDoc], Arr(prompts).pmap(cached_func).to_list())
+
+        result = cast(Sequence[QAWithDoc], Arr(prompts).map(cached).to_list())
         return result

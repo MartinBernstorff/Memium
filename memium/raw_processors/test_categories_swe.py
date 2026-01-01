@@ -1,13 +1,11 @@
 from pathlib import Path
 
-import pytest
 from inline_snapshot import snapshot
 
 from memium.raw_processors.categoriser import Categoriser
 from memium.source.prompt import QAWithDoc
 
 
-@pytest.mark.skip
 def test_swe():
     doc = QAWithDoc.dummy(question="Definition?", answer="A location used for testing.")
     result = Categoriser(cache_dir=Path("/tmp")).__call__([doc])
@@ -16,7 +14,6 @@ def test_swe():
     assert result[0].parent_doc.tags == snapshot(["anki/deck/SoftwareEngineering"])
 
 
-@pytest.mark.skip
 def test_swe2():
     doc = QAWithDoc.dummy(
         question="Requires?",
@@ -28,7 +25,6 @@ def test_swe2():
     assert result[0].parent_doc.tags == snapshot(["anki/deck/SoftwareEngineering"])
 
 
-@pytest.mark.skip
 def test_medicine():
     doc = QAWithDoc.dummy(question="Hvad er symptomerne på migræne?", answer="Hovedpine")
     result = Categoriser(cache_dir=Path("/tmp")).__call__([doc])
