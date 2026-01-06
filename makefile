@@ -1,6 +1,6 @@
 deploy:
 	docker build . -t ghcr.io/martinbernstorff/memium:latest -f Dockerfile
-	cd /Users/martinbernstorff/Git/dotfiles/containers/memium && docker compose down && docker compose up -d
+	cd /Users/martinbernstorff/dotfiles/containers/memium && docker compose down && docker compose up -d
 	@echo "✅ Deploy succeeded!"
 
 verify:
