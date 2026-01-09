@@ -22,7 +22,7 @@ dependencies = [
   "inline-snapshot>=0.22.0",
   "instructor>=1.11.3",
   "joblib>=1.5.2",
-  "iterpy==1.13.0",
+  "iterpy==1.14.0",
   "sqlalchemy>=2.0.45",
   "aiosqlite>=0.22.1",
   "greenlet>=3.3.0",

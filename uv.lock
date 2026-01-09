@@ -573,11 +573,11 @@ wheels = [
 
 [[package]]
 name = "iterpy"
-version = "1.13.0"
+version = "1.14.0"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/d5/8c/c852c0bb0c579c0d42f84418fb6601f95862969c16e359ebdf0a97f0fb83/iterpy-1.13.0.tar.gz", hash = "sha256:76cd0f7a36f85824ffcf7bfc2e0f964c7c4dfe73d4048f4b11b448d8c0a6c061", size = 107524, upload-time = "2025-12-27T14:10:35.952Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/03/f8/8fc1ef1de3bb64b26983f0deb5a99c90a40e45e76684760daf6f13e1e811/iterpy-1.14.0.tar.gz", hash = "sha256:22bdda576a045cbe7897168d4c0bd519ea29e1ea44310a5427068825b1043a66", size = 108647, upload-time = "2026-01-09T12:04:36.67Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/dc/49/edf51b7bfa1e2a3c106fcc6496a1e1e7ed5df58579c281fed013d512c3ef/iterpy-1.13.0-py3-none-any.whl", hash = "sha256:4c0348c312cdb988f7f6a3b8717feff903e8600bb2e246c50bcea4063d279e7e", size = 12358, upload-time = "2025-12-27T14:10:34.526Z" },
+    { url = "https://files.pythonhosted.org/packages/2d/2a/95c1f2c50410c5f25c8eb77afac50de30068f12f28e5ef2b5942f023b137/iterpy-1.14.0-py3-none-any.whl", hash = "sha256:4689c90c24230cd3ac89e060234173d267aa0ff3ba397043b8f6463f0e897609", size = 12318, upload-time = "2026-01-09T12:04:35.262Z" },
 ]
 
 [[package]]
@@ -718,7 +718,7 @@ requires-dist = [
     { name = "greenlet", specifier = ">=3.3.0" },
     { name = "inline-snapshot", specifier = ">=0.22.0" },
     { name = "instructor", specifier = ">=1.11.3" },
-    { name = "iterpy", specifier = "==1.13.0" },
+    { name = "iterpy", specifier = "==1.14.0" },
     { name = "joblib", specifier = ">=1.5.2" },
     { name = "markdown", specifier = "==3.10" },
     { name = "pydantic", specifier = "==2.12.5" },
