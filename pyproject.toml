@@ -31,7 +31,7 @@ dependencies = [
 [dependency-groups]
 dev = [
   "cruft==2.16.0",
-  "diff-cover==10.0.0",
+  "diff-cover==10.2.0",
   "herbarium>=0.32.1",
   "invoke==2.2.1",
   "pre-commit==4.5.1",
