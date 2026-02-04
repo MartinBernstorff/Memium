@@ -21,6 +21,7 @@ class CategoryValue(enum.Enum):
     FHIR = "FHIR"
     JAVA = "Java"
     PYTHON = "Python"
+    DJANGO = "Django"
     MEDICINE = "Medicine"
     SPRING_BOOT = "SpringBoot"
     ML = "MachineLearning"
