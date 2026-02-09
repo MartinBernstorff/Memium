@@ -12,7 +12,7 @@ requires-python = "~=3.12.0"
 dependencies = [
   "bs4==0.0.2",
   "cffi==2.0.0",
-  "markdown==3.10",
+  "markdown==3.10.2",
   "pydantic==2.12.5",
   "sentry-sdk==2.48.0",
   "typer==0.21.0",
