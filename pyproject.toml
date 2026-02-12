@@ -41,7 +41,7 @@ dev = [
   "pytest-sugar==1.1.1",
   "pytest-testmon==2.2.0",
   "pytest-xdist==3.8.0",
-  "ruff==0.14.10",
+  "ruff==0.15.1",
   "ty>=0.0.7",
   "vulture>=2.14",
 ]
