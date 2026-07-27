@@ -1,6 +1,15 @@
 deploy:
+	make deploy-life-lessons
+	make deploy-flowbase
+
+deploy-life-lessons:
 	docker build . -t ghcr.io/martinbernstorff/memium:latest -f Dockerfile
-	cd /Users/martinbernstorff/dotfiles/containers/memium && docker compose down && docker compose up -d
+	cd ~/Git/dotfiles/containers/memium && docker compose down && docker compose up -d
+	@echo "✅ Deploy succeeded!"
+
+deploy-flowbase:
+	docker build . -t ghcr.io/martinbernstorff/flowbase:latest -f Dockerfile
+	cd ~/Git/dotfiles/containers/memium-flowbase && docker compose down && docker compose up -d
 	@echo "✅ Deploy succeeded!"
 
 verify:
