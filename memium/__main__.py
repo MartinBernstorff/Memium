@@ -33,11 +33,11 @@ def _log_with_prefix(prefix: str, prompts: Sequence[QAWithDoc]) -> Sequence[QAWi
     return prompts
 
 
-def main(root_deck: str, input_dir: Path):
+def main(root_deck: str, input_dir: Path, vault_name: str | None = None):
     # Get the inputs
     qa_extractor = QAPromptExtractor(question_prefix="Q.", answer_prefix="A.")
     source_prompts = DocumentPromptSource(
-        document_ingester=MarkdownDocumentSource(directory=input_dir),
+        document_ingester=MarkdownDocumentSource(directory=input_dir, vault_name=vault_name),
         prompt_extractors=[qa_extractor, TableExtractor()],
     ).get_prompts()
 
@@ -108,6 +108,12 @@ def cli(
     deck_name: Annotated[
         str, typer.Option(help="Anki path to deck, e.g. 'Parent deck::Child deck'")
     ] = "Memium",
+    vault_name: Annotated[
+        str | None,
+        typer.Option(
+            help="Name of the Obsidian vault, as it appears on the host, so that the Obsidian button on each card opens that vault. Omit to let Obsidian use whichever vault is active."
+        ),
+    ] = None,
     skip_sync: Annotated[
         bool, typer.Option(help="Skip all syncing, useful for smoketesting of the interface")
     ] = False,
@@ -140,7 +146,7 @@ def cli(
     # The watching logic requires having a "core" which can terminate.
     # Alternatively, we could do a recursive call, but that would result in
     # an infinitely growing stack.
-    main_fn = partial(main, root_deck=deck_name, input_dir=input_dir)
+    main_fn = partial(main, root_deck=deck_name, input_dir=input_dir, vault_name=vault_name)
     main_fn()
 
     log.info(f"Logged to {log_path}")

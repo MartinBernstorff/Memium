@@ -1,6 +1,6 @@
 import re
 from collections.abc import Sequence
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from pathlib import Path
 
 
@@ -8,21 +8,27 @@ from pathlib import Path
 class Document:
     content: str
     source_path: Path
+    # Optional, since prompts cached before vaults were modelled deserialise into this
+    vault_name: str | None = None
 
     @staticmethod
     def dummy(
-        content: str | None = None, source_path: Path = Path("DummyPath"), tags: Sequence[str] = ()
+        content: str | None = None,
+        source_path: Path = Path("DummyPath"),
+        tags: Sequence[str] = (),
+        vault_name: str | None = "DummyVault",
     ) -> "Document":
         return Document(
             content=content
             if content is not None
             else "dummy content with tags: " + ", ".join(f"#{tag}" for tag in tags),
             source_path=source_path,
+            vault_name=vault_name,
         )
 
     def with_tags(self, tags: Sequence[str]) -> "Document":
         content_with_tags = self.content + "\n\n\n" + " ".join(f"#{tag}" for tag in tags)
-        return Document(content=content_with_tags, source_path=self.source_path)
+        return replace(self, content=content_with_tags)
 
     @property
     def tags(self) -> Sequence[str]:

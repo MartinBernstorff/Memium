@@ -29,8 +29,9 @@ class BaseDocumentSource(Protocol):
 class MarkdownDocumentSource(BaseDocumentSource):
     """Gets markdown documents. Returns valid markdown."""
 
-    def __init__(self, directory: Path) -> None:
+    def __init__(self, directory: Path, vault_name: str | None = None) -> None:
         self.directory = directory
+        self.vault_name = vault_name
 
     @staticmethod
     def _replace_wikilinks_with_styling(input_str: str) -> str:
@@ -91,7 +92,7 @@ class MarkdownDocumentSource(BaseDocumentSource):
             except Exception as e:
                 raise Exception(f"Could not sanitize file {file_path}") from e
 
-            return Document(content=sanitized, source_path=file_path)
+            return Document(content=sanitized, source_path=file_path, vault_name=self.vault_name)
         except Exception as e:
             log.warning(f"Could not retrieve {file_path}: {e}")
             return FileNotRetrievedError(file_path, e)

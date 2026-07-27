@@ -43,7 +43,7 @@ If you want to sync markdown notes to Anki, here's how to get started!
 3. Import your notes!
 
 ```cli-block
-> memium --input-dir [YOUR_INPUT_DIR]
+> memium --input-dir [YOUR_INPUT_DIR] --vault-name [YOUR_VAULT_NAME]
 ```
 
 ### In Docker container
@@ -51,6 +51,7 @@ If you want to sync markdown notes to Anki, here's how to get started!
 3. Setup a container
 ```bash
 $INPUT_DIR="PATH_TO_YOUR_INPUT_DIR"
+VAULT_NAME="NAME_OF_YOUR_OBSIDIAN_VAULT"
 
 docker run -i \
   --name=memium \
@@ -58,8 +59,10 @@ docker run -i \
   -v $INPUT_DIR:/input \
   --restart unless-stopped \
   ghcr.io/martinbernstorff/memium:latest \
-  memium --input-dir /input
+  memium --input-dir /input --vault-name "$VAULT_NAME"
 ```
+
+`--vault-name` is optional, and is the vault's name as Obsidian shows it on your host, not a path: the "Obsidian" button on each card is resolved by Obsidian on the host, so the container's `/input` is irrelevant to it. Omit it and the button opens whichever vault is active.
 
 This will start a docker container which updates your deck from `$INPUT_DIR`. In case of updated files, it will sync the difference (create new prompts and delete deleted prompts) to Anki. 
 
