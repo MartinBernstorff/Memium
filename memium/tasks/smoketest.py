@@ -27,7 +27,9 @@ def smoketest_cli(c: inv.Context):
     cli_block = next(block for block in code_blocks if "cli-block" in block)
     sanitised_cli_block = cli_block.splitlines()[1].replace("> ", "")
 
-    cli_smoketest_cmd = sanitised_cli_block.replace("[YOUR_INPUT_DIR]", str(smoketest_dir))
+    cli_smoketest_cmd = sanitised_cli_block.replace("[YOUR_INPUT_DIR]", str(smoketest_dir)).replace(
+        "[YOUR_VAULT_NAME]", "SmoketestVault"
+    )
     print(cli_smoketest_cmd)
     c.run(cli_smoketest_cmd + "  --dry-run \\\n" + "  --skip-sync")
     print("💨🎉 Smoketest complete")

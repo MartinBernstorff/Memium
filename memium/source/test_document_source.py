@@ -23,6 +23,15 @@ class TestMarkdownIngester:
         assert document.title == "test"
         assert document.tags == ["anki/tag/test_tag", "anki/tag/test_tag2", "comment_tag"]
 
+    def test_documents_belong_to_the_given_vault(self, tmp_path: Path):
+        (tmp_path / "test.md").write_text("# Hello World")
+
+        documents = MarkdownDocumentSource(
+            directory=tmp_path, vault_name="My Vault"
+        ).get_documents()
+
+        assert documents[0].vault_name == "My Vault"
+
     def test_should_log_error_if_file_not_retrieved(
         self, tmp_path: Path, caplog: pytest.LogCaptureFixture
     ):

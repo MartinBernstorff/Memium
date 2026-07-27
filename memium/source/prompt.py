@@ -10,8 +10,12 @@ from memium.source.document import Document
 from ..utils.hash_cleaned_str import clean_str, hash_str_to_int
 
 
-def obsidian_url(file_title: str, line_nr: int | None) -> str:
-    url = f"obsidian://advanced-uri?filename={quote(file_title)}"
+def obsidian_url(file_title: str, line_nr: int | None, vault: str | None = None) -> str:
+    # Both are resolved by Obsidian on the host, so neither may be a path; that is what lets links generated inside a container work. Without a vault, Obsidian falls back to the active one.
+    url = "obsidian://advanced-uri?"
+    if vault:
+        url += f"vault={quote(vault)}&"
+    url += f"filename={quote(file_title)}"
     if line_nr:
         url += f"&line={line_nr}"
     return url
@@ -98,7 +102,7 @@ class QAWithDoc(pydantic.BaseModel):
 
     @property
     def edit_url(self) -> str:
-        return obsidian_url(self.parent_doc.title, self.line_nr)
+        return obsidian_url(self.parent_doc.title, self.line_nr, self.parent_doc.vault_name)
 
 
 def cleaned_qa_scheduling_uid_str(question: str, answer: str) -> str:
