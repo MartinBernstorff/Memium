@@ -1,6 +1,7 @@
 from iterpy import Arr
 
-from memium.destination.ankiconnect.anki_model import AnkiQAModel, Markdown
+from memium.destination.ankiconnect.anki_model import AnkiQAModel
+from memium.utils.markdown import Markdown
 
 from ...source.prompt import QAWithDoc
 

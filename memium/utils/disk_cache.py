@@ -2,7 +2,7 @@ import logging
 from collections.abc import Awaitable, Callable
 from dataclasses import dataclass
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ValidationError
 from sqlalchemy import String, Text, select
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
@@ -58,9 +58,14 @@ class DiskCache[T: BaseModel, S: BaseModel]:
             stmt = select(CacheEntry).where(CacheEntry.key == key)
             entry = await session.scalar(stmt)
 
-            if entry is not None:
+            if entry is None:
+                return None
+
+            try:
                 return self.result_type.model_validate_json(entry.value)
-            return None
+            except ValidationError:
+                log.warning(f"Could not read cache entry for '{key}', recomputing it")
+                return None
 
     async def _set_cached(self, key: str, value: S) -> None:
         """Store a value in the cache."""

@@ -5,8 +5,7 @@ from dataclasses import dataclass
 import pytest
 from inline_snapshot import snapshot
 
-from memium.destination.ankiconnect.anki_model import Markdown
-from memium.utils.markdown import get_terms_surrounded_by_underscores
+from memium.utils.markdown import Markdown, get_terms_surrounded_by_underscores
 
 from .markdown import md_to_html
 

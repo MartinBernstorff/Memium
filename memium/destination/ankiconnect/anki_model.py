@@ -4,8 +4,8 @@ from typing import NewType
 from pydantic import BaseModel
 
 from memium.source.prompt import QAPrompt
+from memium.utils.markdown import Markdown, md_to_html
 
-Markdown = NewType("Markdown", str)
 AnkiNoteID = NewType("AnkiNoteID", int)
 AnkiCardID = NewType("AnkiCardID", int)
 SyncIdentity = NewType("SyncIdentity", str)
@@ -91,4 +91,6 @@ class AnkiQAModel(BaseModel):
 
     def sync_identity(self) -> SyncIdentity:
         lowered_tags = [tag.lower() for tag in self.tags]
-        return SyncIdentity(f"{self.raw_prompt.scheduling_uid_str}::{sorted(lowered_tags)}")
+        return SyncIdentity(
+            f"{self.raw_prompt.scheduling_uid_str}::{sorted(lowered_tags)}::{md_to_html(self.Extra)}"
+        )
