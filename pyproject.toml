@@ -13,7 +13,7 @@ dependencies = [
   "bs4==0.0.2",
   "cffi==2.0.0",
   "markdown==3.10",
-  "pydantic==2.12.5",
+  "pydantic==2.13.5",
   "sentry-sdk==2.48.0",
   "typer==0.21.0",
   "tqdm==4.67.1",
