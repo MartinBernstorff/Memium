@@ -1,8 +1,8 @@
-from memium.destination.ankiconnect.anki_model import AnkiQAModel, Markdown
+from memium.destination.ankiconnect.anki_model import AnkiQAModel
 from memium.destination.ankiconnect.ankiconnect_requester import ANKICONNECT_URL, AnkiRequester
 from memium.destination.ankiconnect.note_store import AnkiNoteStore
 from memium.test_main import INTEGRATION_TEST_DECK
-from memium.utils.markdown import md_to_html
+from memium.utils.markdown import Markdown, md_to_html
 
 note_store = AnkiNoteStore(
     anki_requester=AnkiRequester(ankiconnect_url=ANKICONNECT_URL, max_wait_seconds=10),

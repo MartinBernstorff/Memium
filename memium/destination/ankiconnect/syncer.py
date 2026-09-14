@@ -2,15 +2,25 @@ import difflib
 import logging
 from collections.abc import Sequence
 from dataclasses import dataclass
+from typing import Protocol
 
 from iterpy import Arr
 
 from memium.destination.ankiconnect.anki_converter import AnkiPromptConverter
 from memium.destination.ankiconnect.anki_model import AnkiNoteID, AnkiQAModel
-from memium.destination.ankiconnect.note_store import AnkiNoteStore
 from memium.source.prompt import QAWithDoc, SchedulingUIDStr
 
 log = logging.getLogger(__name__)
+
+
+class NoteStore(Protocol):
+    """The part of the destination the syncer needs. AnkiNoteStore implements it."""
+
+    def create(self, note: Sequence[AnkiQAModel]) -> Sequence[AnkiNoteID]: ...
+
+    def update(self, note: AnkiQAModel) -> None: ...
+
+    def delete(self, note_ids: Sequence[AnkiNoteID]) -> None: ...
 
 
 @dataclass
@@ -18,7 +28,7 @@ class Syncer:
     source_prompts: Sequence[QAWithDoc]
     destination_prompts: Sequence[AnkiQAModel]
     converter: AnkiPromptConverter
-    note_store: AnkiNoteStore
+    note_store: NoteStore
 
     def __post_init__(self) -> None:
         self.source_sched_id2source_prompt = {p.scheduling_str: p for p in self.source_prompts}

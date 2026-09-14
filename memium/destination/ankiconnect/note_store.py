@@ -8,6 +8,7 @@ from pydantic import BaseModel
 from memium.destination.ankiconnect import card_store
 from memium.destination.ankiconnect.anki_model import AnkiCardID, AnkiNoteID, AnkiQAModel
 from memium.destination.ankiconnect.ankiconnect_requester import AnkiConnectCommand, AnkiRequester
+from memium.destination.ankiconnect.syncer import NoteStore
 from memium.utils.markdown import md_to_html
 
 log = logging.getLogger(__name__)
@@ -51,7 +52,7 @@ class AnkiUpdateDTO(BaseModel):
 
 
 @dataclass
-class AnkiNoteStore:
+class AnkiNoteStore(NoteStore):
     anki_requester: AnkiRequester
     root_deck: str
 

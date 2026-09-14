@@ -1,9 +1,10 @@
 import re
 from collections.abc import Sequence
+from typing import NewType
 
 from markdown import Markdown as MDLibMarkdown
 
-from memium.destination.ankiconnect.anki_model import Markdown
+Markdown = NewType("Markdown", str)
 
 
 def md_to_html(markdown: Markdown) -> Markdown:
