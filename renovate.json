@@ -12,6 +12,13 @@
         "patch"
       ],
       "automerge": true
+    },
+    {
+      "description": "Keep requires-python locked at 3.13",
+      "matchDepTypes": [
+        "requires-python"
+      ],
+      "enabled": false
     }
   ]
 }
