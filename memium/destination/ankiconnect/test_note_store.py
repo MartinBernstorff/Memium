@@ -1,16 +1,10 @@
 from memium.destination.ankiconnect.anki_model import AnkiQAModel
-from memium.destination.ankiconnect.ankiconnect_requester import ANKICONNECT_URL, AnkiRequester
 from memium.destination.ankiconnect.note_store import AnkiNoteStore
 from memium.test_main import INTEGRATION_TEST_DECK
 from memium.utils.markdown import Markdown, md_to_html
 
-note_store = AnkiNoteStore(
-    anki_requester=AnkiRequester(ankiconnect_url=ANKICONNECT_URL, max_wait_seconds=10),
-    root_deck=INTEGRATION_TEST_DECK,
-)
 
-
-def test_CRUD():
+def test_CRUD(note_store: AnkiNoteStore):
     note_store.clear()
     note = AnkiQAModel.dummy(
         question="What is life?",
@@ -60,9 +54,11 @@ def test_CRUD():
     assert len(deleted) == 0
 
 
-def test_read_all():
-    notes = AnkiNoteStore(
-        anki_requester=AnkiRequester(ankiconnect_url=ANKICONNECT_URL, max_wait_seconds=10),
-        root_deck="Memium",
-    ).get_all_sans_decks()
-    assert len(notes) > 0
+def test_read_all(note_store: AnkiNoteStore):
+    note_store.clear()
+    note_id = note_store.create(
+        [AnkiQAModel.dummy(question="Q", answer="A", root_deck=INTEGRATION_TEST_DECK)]
+    )[0]
+
+    notes = note_store.get_all_sans_decks()
+    assert [n.destination_id for n in notes] == [note_id]

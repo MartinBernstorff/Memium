@@ -23,6 +23,11 @@ jobs:
           uv sync --dev
 
       - name: Type check
-        run: |
-          make test
+        run: make types
+
+      - name: Test
+        run: make test
+
+      - name: Dead code check
+        run: make vulture
 
