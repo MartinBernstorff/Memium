@@ -51,6 +51,14 @@ class TableExtractorExample:
                 )
             ],
         ),
+        TableExtractorExample(
+            table_prompt="Rowwise-all // What is the list? // |Column two|",
+            expectation=[
+                QAWithDoc.dummy(
+                    question="What is the list?\n\n1. ?\n2. ?", answer="1. 12\n2. 22", line_nr=8
+                )
+            ],
+        ),
     ],
     ids=lambda x: x.table_prompt,
 )
@@ -70,6 +78,22 @@ def test_table_extractor(example: TableExtractorExample):
     result = TableExtractor().extract_prompts(input_doc)
 
     assert _scheduling_strs(result) == _scheduling_strs(example.expectation)
+
+
+def test_rowwise_all_skips_empty_first_row():
+    input_doc = Document.dummy(
+        content="""| Column one | Column two |
+| --- | --- |
+| 11 |      |
+| 21 | 22 |
+Rowwise-all // What is the list? // |Column two|"""
+    )
+
+    result = TableExtractor().extract_prompts(input_doc)
+
+    assert _scheduling_strs(result) == _scheduling_strs(
+        [QAWithDoc.dummy(question="What is the list?\n\n1. ?", answer="1. 22", line_nr=4)]
+    )
 
 
 def _scheduling_strs(prompts: Sequence[QAWithDoc]) -> set[str]:

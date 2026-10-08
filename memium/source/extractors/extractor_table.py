@@ -53,18 +53,16 @@ class FrontBack:
 
 def rowwise_all_prompts(parsed_table: ParsedTable, doc: Document) -> Sequence[QAWithDoc]:
     values = [
-        TableExtractor.replace_placeholders(parsed_table, RowPair(row, row))
+        value
         for row in parsed_table.rows
+        if (value := TableExtractor.replace_placeholders(parsed_table, RowPair(row, row)))
     ]
 
     if len(values) == 0:
         return []
 
-    # If there is at least one value, then we can be sure that the first one is not None
-    question: str = values[0].front  # pyright: ignore[reportOptionalMemberAccess] # ty:ignore[possibly-missing-attribute]
-
-    front = question + "\n\n" + "\n".join(f"{i + 1}. ?" for i, vb in enumerate(values) if vb)
-    back = "\n".join(f"{i + 1}. {vb.back}" for i, vb in enumerate(values) if vb)
+    front = values[0].front + "\n\n" + "\n".join(f"{i + 1}. ?" for i in range(len(values)))
+    back = "\n".join(f"{i + 1}. {value.back}" for i, value in enumerate(values))
     return [
         QAWithDoc(
             prompt=QAPrompt(question=front, answer=back),
