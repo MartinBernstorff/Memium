@@ -32,7 +32,7 @@ class DocumentPromptSource(BasePromptSource):
                 prompts += extractor_prompts
             except Exception as e:
                 log.error(
-                    f"Failed to extract prompts with {extractor} from {document.source_path.name} using {extractor}. Reason: {e}"
+                    f"Failed to extract prompts from {document.source_path.name} using {type(extractor).__name__}. Reason: {type(e).__name__}: {e}"
                 )
 
         return prompts
