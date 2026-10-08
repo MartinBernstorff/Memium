@@ -153,6 +153,11 @@ class TableExtractor(BasePromptExtractor):
         prompts: Sequence[QAWithDoc] = []
         match parsed_table.mode:
             case TableParseMode.ASCENDING | TableParseMode.DESCENDING:
+                if len(parsed_table.rows) < 2:
+                    raise ValueError(
+                        f"{parsed_table.mode.value} mode pairs adjacent rows, so it needs at least 2 rows, "
+                        f"but the table ending on line {parsed_table.end_line_nr + 1} has {len(parsed_table.rows)}."
+                    )
                 break_index = len(parsed_table.rows) - 2
             case TableParseMode.ROWWISE:
                 break_index = len(parsed_table.rows) - 1
