@@ -96,6 +96,19 @@ Rowwise-all // What is the list? // |Column two|"""
     )
 
 
+@pytest.mark.parametrize("mode", ["Ascending", "Descending"])
+def test_stack_modes_with_single_row_raise_descriptive_error(mode: str):
+    input_doc = Document.dummy(
+        content=f"""| Layer | Meaning |
+| --- | --- |
+| Layer 1 | Meaning 1 |
+{mode} // |Layer|? // |Layer|"""
+    )
+
+    with pytest.raises(ValueError, match=f"{mode} mode .* needs at least 2 rows, .* line 4 has 1"):
+        TableExtractor().extract_prompts(input_doc)
+
+
 def _scheduling_strs(prompts: Sequence[QAWithDoc]) -> set[str]:
     return {p.scheduling_str for p in prompts}
 
