@@ -81,7 +81,6 @@ class AnkiNoteStore(NoteStore):
 
     def create(self, note: Sequence[AnkiQAModel]) -> Sequence[AnkiNoteID]:
         # p2: Ensure note model exists
-        # p2: Ensure deck exists
         # p3: include css (where?)
         # Create the note
 
@@ -111,6 +110,10 @@ class AnkiNoteStore(NoteStore):
                 tags=it.tags,
             )
         )
+
+        # addNote fails if the deck does not exist. createDeck is a no-op for existing decks.
+        for deck in {it.deck for it in note}:
+            self.anki_requester.invoke(action=AnkiConnectCommand.CREATE_DECK, deck=deck)
 
         ids = dtos.map(
             lambda it: self.anki_requester.invoke(

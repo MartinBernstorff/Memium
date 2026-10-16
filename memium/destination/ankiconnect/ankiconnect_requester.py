@@ -25,6 +25,10 @@ class AnkiConnectCommand(Enum):
     FIND_CARDS = "findCards"
     CHANGE_DECK = "changeDeck"
 
+    # Decks
+    CREATE_DECK = "createDeck"
+    DELETE_DECKS = "deleteDecks"
+
 
 ANKICONNECT_URL = "http://host.docker.internal:8765" if in_docker() else "http://127.0.0.1:8765"
 

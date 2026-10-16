@@ -1,4 +1,7 @@
+import uuid
+
 from memium.destination.ankiconnect.anki_model import AnkiQAModel
+from memium.destination.ankiconnect.ankiconnect_requester import AnkiConnectCommand
 from memium.destination.ankiconnect.note_store import AnkiNoteStore
 from memium.test_main import INTEGRATION_TEST_DECK
 from memium.utils.markdown import Markdown, md_to_html
@@ -62,3 +65,20 @@ def test_read_all(note_store: AnkiNoteStore):
 
     notes = note_store.get_all_sans_decks()
     assert [n.destination_id for n in notes] == [note_id]
+
+
+def test_create_in_missing_deck(note_store: AnkiNoteStore):
+    note_store.clear()
+    subdeck = f"Missing{uuid.uuid4().hex}"
+    note = AnkiQAModel.dummy(
+        question="Q", answer="A", tags=[f"anki/deck/{subdeck}"], root_deck=INTEGRATION_TEST_DECK
+    )
+
+    try:
+        note_id = note_store.create([note])[0]
+        assert note_store.read([note_id])[0].destination_id == note_id
+    finally:
+        note_store.clear()
+        note_store.anki_requester.invoke(
+            AnkiConnectCommand.DELETE_DECKS, decks=[note.deck], cardsToo=True
+        )
