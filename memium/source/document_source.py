@@ -92,7 +92,12 @@ class MarkdownDocumentSource(BaseDocumentSource):
             except Exception as e:
                 raise Exception(f"Could not sanitize file {file_path}") from e
 
-            return Document(content=sanitized, source_path=file_path, vault_name=self.vault_name)
+            return Document(
+                content=sanitized,
+                source_path=file_path,
+                vault_name=self.vault_name,
+                root_dir=self.directory,
+            )
         except Exception as e:
             log.warning(f"Could not retrieve {file_path}: {e}")
             return FileNotRetrievedError(file_path, e)

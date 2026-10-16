@@ -1,5 +1,5 @@
 version = 1
-revision = 5
+revision = 3
 requires-python = "==3.13.*"
 
 [[package]]
@@ -710,7 +710,7 @@ wheels = [
 
 [[package]]
 name = "memium"
-version = "1.11.2"
+version = "1.11.3"
 source = { editable = "." }
 dependencies = [
     { name = "aiosqlite" },

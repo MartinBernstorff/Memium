@@ -10,6 +10,8 @@ class Document:
     source_path: Path
     # Optional, since prompts cached before vaults were modelled deserialise into this
     vault_name: str | None = None
+    # The directory the document was ingested from. Optional for the same reason as vault_name.
+    root_dir: Path | None = None
 
     @staticmethod
     def dummy(
@@ -38,6 +40,17 @@ class Document:
     @property
     def title(self) -> str:
         return self.source_path.stem
+
+    @property
+    def display_path(self) -> str:
+        """Path from the root directory, including the root directory itself, e.g. 'vault/folder/note'.
+
+        Distinguishes notes with similar titles from different vaults and folders."""
+        if self.root_dir is None:
+            return self.title
+        root = self.root_dir.absolute()
+        relative = self.source_path.absolute().relative_to(root).with_suffix("")
+        return (Path(root.name) / relative).as_posix()
 
     def __repr__(self) -> str:
         return f"{self.title}: {self.content[0:10]}..."
