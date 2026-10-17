@@ -32,7 +32,7 @@ class TestMarkdownIngester:
 
         assert documents[0].vault_name == "My Vault"
 
-    def test_display_path_includes_root_dir_and_subfolders(self, tmp_path: Path):
+    def test_display_title_includes_parent_path_from_root_dir(self, tmp_path: Path):
         vault = tmp_path / "vault"
         (vault / "projects" / "memium").mkdir(parents=True)
         (vault / "projects" / "memium" / "note.md").write_text("# Hello World")
@@ -40,9 +40,9 @@ class TestMarkdownIngester:
 
         documents = MarkdownDocumentSource(directory=vault).get_documents()
 
-        assert sorted(doc.display_path for doc in documents) == [
-            "vault/projects/memium/note",
-            "vault/top",
+        assert sorted(doc.display_title for doc in documents) == [
+            "note (vault/projects/memium)",
+            "top (vault)",
         ]
 
     def test_should_log_error_if_file_not_retrieved(
