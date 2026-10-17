@@ -34,8 +34,8 @@ A. å
 """
         )
 
-    main(root_deck=root_deck, input_dir=test_input_path)
+    main(deck_name=root_deck, input_dir=test_input_path)
     assert "Pushing 1 cards to Anki" in caplog.text
 
     # Test idempotency
-    main(root_deck=root_deck, input_dir=test_input_path)
+    main(deck_name=root_deck, input_dir=test_input_path)
