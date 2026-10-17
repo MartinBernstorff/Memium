@@ -48,7 +48,7 @@ class AnkiPromptConverter:
             Question=Markdown(prompt.prompt.question),
             Answer=Markdown(prompt.prompt.answer),
             Extra=_extra_field_content(
-                source_title=prompt.parent_doc.display_path,
+                source_title=prompt.parent_doc.display_title,
                 edit_url=prompt.edit_url,
                 render_parent_doc=prompt.render_parent_doc,
             ),

@@ -42,15 +42,15 @@ class Document:
         return self.source_path.stem
 
     @property
-    def display_path(self) -> str:
-        """Path from the root directory, including the root directory itself, e.g. 'vault/folder/note'.
+    def display_title(self) -> str:
+        """Title followed by the path to the parent folder from the root directory, including the root directory itself, e.g. 'note (vault/folder)'.
 
         Distinguishes notes with similar titles from different vaults and folders."""
         if self.root_dir is None:
             return self.title
         root = self.root_dir.absolute()
-        relative = self.source_path.absolute().relative_to(root).with_suffix("")
-        return (Path(root.name) / relative).as_posix()
+        parent = self.source_path.absolute().parent.relative_to(root)
+        return f"{self.title} ({(Path(root.name) / parent).as_posix()})"
 
     def __repr__(self) -> str:
         return f"{self.title}: {self.content[0:10]}..."
