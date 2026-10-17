@@ -27,6 +27,7 @@ class AnkiConnectCommand(Enum):
 
     # Decks
     CREATE_DECK = "createDeck"
+    DECK_NAMES = "deckNames"
     DELETE_DECKS = "deleteDecks"
 
 

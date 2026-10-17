@@ -13,6 +13,7 @@ from iterpy import Iter
 
 from memium.destination.ankiconnect.anki_converter import AnkiPromptConverter
 from memium.destination.ankiconnect.ankiconnect_requester import ANKICONNECT_URL, AnkiRequester
+from memium.destination.ankiconnect.deck_path import resolve_deck_path_in_anki
 from memium.destination.ankiconnect.note_store import AnkiNoteStore
 from memium.destination.ankiconnect.syncer import Syncer
 from memium.raw_processors.categoriser import Categoriser
@@ -33,7 +34,7 @@ def _log_with_prefix(prefix: str, prompts: Sequence[QAWithDoc]) -> Sequence[QAWi
     return prompts
 
 
-def main(root_deck: str, input_dir: Path, vault_name: str | None = None):
+def main(deck_name: str, input_dir: Path, vault_name: str | None = None):
     # Get the inputs
     qa_extractor = QAPromptExtractor(question_prefix="Q.", answer_prefix="A.")
     source_prompts = DocumentPromptSource(
@@ -75,10 +76,10 @@ def main(root_deck: str, input_dir: Path, vault_name: str | None = None):
     )
 
     # Determine diff
-    note_store = AnkiNoteStore(
-        anki_requester=AnkiRequester(ankiconnect_url=ANKICONNECT_URL, max_wait_seconds=300),
-        root_deck=root_deck,
-    )
+    anki_requester = AnkiRequester(ankiconnect_url=ANKICONNECT_URL, max_wait_seconds=300)
+    root_deck = resolve_deck_path_in_anki(deck_name, anki_requester)
+    log.info(f"Syncing to deck '{root_deck}'")
+    note_store = AnkiNoteStore(anki_requester=anki_requester, root_deck=root_deck)
 
     syncer = Syncer(
         source_prompts=transformed_source_prompts,
@@ -106,7 +107,10 @@ def cli(
         int | None, typer.Option(help="Keep running, updating Anki deck every [ARG] seconds")
     ] = None,
     deck_name: Annotated[
-        str, typer.Option(help="Anki path to deck, e.g. 'Parent deck::Child deck'")
+        str,
+        typer.Option(
+            help="Name of the Anki deck, e.g. 'Memium'. Matched against the end of existing deck paths, so the deck can be moved within Anki. If several decks match, add parent decks, e.g. 'Parent deck::Memium'."
+        ),
     ] = "Memium",
     vault_name: Annotated[
         str | None,
@@ -146,7 +150,7 @@ def cli(
     # The watching logic requires having a "core" which can terminate.
     # Alternatively, we could do a recursive call, but that would result in
     # an infinitely growing stack.
-    main_fn = partial(main, root_deck=deck_name, input_dir=input_dir, vault_name=vault_name)
+    main_fn = partial(main, deck_name=deck_name, input_dir=input_dir, vault_name=vault_name)
     main_fn()
 
     log.info(f"Logged to {log_path}")
