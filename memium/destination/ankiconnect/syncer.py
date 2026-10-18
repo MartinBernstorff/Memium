@@ -23,6 +23,26 @@ class NoteStore(Protocol):
     def delete(self, note_ids: Sequence[AnkiNoteID]) -> None: ...
 
 
+def _split_duplicates(
+    notes: Sequence[AnkiQAModel],
+) -> tuple[dict[SchedulingUIDStr, AnkiQAModel], Sequence[AnkiQAModel]]:
+    """Pick one note per scheduling ID, and return the rest as duplicates.
+
+    Duplicates occur when syncs overlap, since each creates the notes missing when it started.
+    Keeps a reviewed note, to preserve scheduling, then the oldest. The choice is deterministic, so overlapping syncs delete the same duplicates."""
+    kept: dict[SchedulingUIDStr, AnkiQAModel] = {}
+    duplicates: list[AnkiQAModel] = []
+
+    for note in sorted(notes, key=lambda it: (not it.reviewed, it.destination_id or 0)):
+        uid = note.raw_prompt.scheduling_uid_str
+        if uid in kept:
+            duplicates.append(note)
+        else:
+            kept[uid] = note
+
+    return kept, duplicates
+
+
 @dataclass
 class Syncer:
     source_prompts: Sequence[QAWithDoc]
@@ -32,14 +52,20 @@ class Syncer:
 
     def __post_init__(self) -> None:
         self.source_sched_id2source_prompt = {p.scheduling_str: p for p in self.source_prompts}
-        self.destination_id2source_prompt = {
-            p.raw_prompt.scheduling_uid_str: p for p in self.destination_prompts
-        }
+        self.destination_id2source_prompt, self.duplicates = _split_duplicates(
+            self.destination_prompts
+        )
 
     def sync(self) -> None:
+        self._delete_duplicates()
         self._handle_on_both()
         self._handle_only_in_source()
         self._handle_only_in_destination()
+
+    def _delete_duplicates(self) -> None:
+        note_ids = [it.destination_id for it in self.duplicates if it.destination_id is not None]
+        log.info(f"Deleting {len(note_ids)} duplicate notes from Anki")
+        self.note_store.delete(note_ids)
 
     def _update(self, scheduling_id: SchedulingUIDStr):
         source = self.source_sched_id2source_prompt[scheduling_id]

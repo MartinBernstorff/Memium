@@ -93,3 +93,32 @@ def test_moving_a_table_to_another_document_updates_the_note():
     assert all("moved" in note.Extra for note in note_store.updated)
     assert note_store.created == []
     assert note_store.deleted == []
+
+
+def test_duplicates_in_anki_are_deleted_keeping_the_reviewed_note():
+    prompts = _table_prompts(Path("original.md"))
+    converter = AnkiPromptConverter(root_deck="FakeBaseDeck")
+    original = _in_anki(prompts, converter)
+    reviewed_duplicates = [
+        note.model_copy(update={"destination_id": AnkiNoteID(100 + i), "reviewed": True})
+        for i, note in enumerate(original)
+    ]
+
+    note_store = _sync(prompts, [*original, *reviewed_duplicates])
+
+    assert note_store.deleted == [note.destination_id for note in original]
+    assert note_store.created == []
+    assert note_store.updated == []
+
+
+def test_duplicates_in_anki_keep_the_oldest_note_when_none_are_reviewed():
+    prompts = _table_prompts(Path("original.md"))
+    original = _in_anki(prompts, AnkiPromptConverter(root_deck="FakeBaseDeck"))
+    newer_duplicates = [
+        note.model_copy(update={"destination_id": AnkiNoteID(100 + i)})
+        for i, note in enumerate(original)
+    ]
+
+    note_store = _sync(prompts, [*newer_duplicates, *original])
+
+    assert note_store.deleted == [note.destination_id for note in newer_duplicates]

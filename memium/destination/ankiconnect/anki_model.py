@@ -28,6 +28,8 @@ class AnkiQAModel(BaseModel):
 
     destination_id: AnkiNoteID | None
     card_ids: Sequence[AnkiCardID]
+    # Whether any of the note's cards has been reviewed. Decides which copy to keep when deduplicating.
+    reviewed: bool = False
 
     @staticmethod
     def from_primitives(
