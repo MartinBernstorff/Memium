@@ -23,6 +23,12 @@ class AnkiCardStore:
         )
         return Arr(anki_card_ids).map(lambda it: AnkiCardID(it)).to_list()
 
+    def get_reviewed_ids(self) -> Sequence[AnkiCardID]:
+        anki_card_ids: Sequence[int] = self.anki_requester.invoke(
+            AnkiConnectCommand.FIND_CARDS, query=f'"deck:{self.root_deck}" -is:new'
+        )
+        return Arr(anki_card_ids).map(lambda it: AnkiCardID(it)).to_list()
+
     def read(self, card_id: AnkiCardID) -> CardDTO | None:
         anki_cards_info: list[dict[str, str]] = self.anki_requester.invoke(
             AnkiConnectCommand.CARD_INFO, cards=[card_id]

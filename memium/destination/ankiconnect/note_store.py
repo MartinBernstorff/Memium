@@ -73,7 +73,13 @@ class AnkiNoteStore(NoteStore):
 
     def get_all_sans_decks(self) -> Sequence[AnkiQAModel]:
         note_ids = self.get_all_ids()
-        return self.read(note_ids)
+        reviewed_card_ids = set(self.card_store.get_reviewed_ids())
+        return [
+            note.model_copy(
+                update={"reviewed": any(card in reviewed_card_ids for card in note.card_ids)}
+            )
+            for note in self.read(note_ids)
+        ]
 
     def clear(self) -> None:
         note_ids = self.get_all_ids()
